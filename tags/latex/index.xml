@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/tags/latex/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>LaTeX 数学符号</title>
+      <link>/post/mathematics/LaTeX-Math-Symbols/</link>
+      <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/LaTeX-Math-Symbols/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;LaTeX&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_greek_letters&#34;&gt;1. Greek Letters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_binary_operation_symbols&#34;&gt;2. Binary Operation Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_relation_symbols&#34;&gt;3. Relation Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_punctuation_symbols&#34;&gt;4. Punctuation Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_arrow_symbols&#34;&gt;5. Arrow Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_miscellaneous_symbols&#34;&gt;6. Miscellaneous Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_variable_sized_symbols&#34;&gt;7. Variable-sized Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_log_like_symbols&#34;&gt;8. Log-like Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_delimiters&#34;&gt;9. Delimiters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_large_delimiters&#34;&gt;10. Large Delimiters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_math_mode_accents&#34;&gt;11. Math mode accents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_some_other_constructions&#34;&gt;12. Some other constructions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_greek_letters&#34;&gt;1. Greek Letters&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t1.gif&#34; alt=&#34;t1&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \alpha               \theta               o                  \tau
+ \beta                \vartheta           \pi                 \upsilon
+ \gamma               \gamma              \varpi              \phi
+ \delta               \kappa              \rho                \varphi
+ \epsilon             \lambda             \varrho             \chi
+ \varepsilon          \mu                 \sigma              \psi
+ \zeta                \nu                 \varsigma           \omega
+ \eta                 \xi
+
+ \Gamma               \Lambda             \Sigma              \Psi
+ \Delta               \Xi                 \Upsilon            \Omega
+ \Theta               \Pi                 \Phi&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_binary_operation_symbols&#34;&gt;2. Binary Operation Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t2.gif&#34; alt=&#34;t2&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \pm                  \cap                \diamond                    \oplus
+ \mp                  \cup                \bigtriangleup              \ominus
+ \times               \uplus              \bigtriangledown            \otimes
+ \div                 \sqcap              \triangleleft               \oslash
+ \ast                 \sqcup              \triangleright              \odot
+ \star                \vee                \lhd$^b$                    \bigcirc
+ \circ                \wedge              \rhd$^b$                    \dagger
+ \bullet              \setminus           \unlhd$^b$                  \ddagger
+ \cdot                \wr                 \unrhd$^b$                  \amalg
+ +                    -
+
+$^b$ Not predefined in a format based on {\tt basefont.tex}.
+     Use one of the style options
+     {\tt oldlfont}, {\tt newlfont}, {\tt amsfonts} or {\tt amssymb}.&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_relation_symbols&#34;&gt;3. Relation Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t3.gif&#34; alt=&#34;t3&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \leq                 \geq                \equiv              \models
+ \prec                \succ               \sim                \perp
+ \preceq              \succeq             \simeq              \mid
+ \ll                  \gg                 \asymp              \parallel
+ \subset              \supset             \approx             \bowtie
+ \subseteq            \supseteq           \cong               \Join$^b$
+ \sqsubset$^b$        \sqsupset$^b$       \neq                \smile
+ \sqsubseteq          \sqsupseteq         \doteq              \frown
+ \in                  \ni                 \propto             =
+ \vdash               \dashv              &amp;lt;                   &amp;gt;
+ :&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_punctuation_symbols&#34;&gt;4. Punctuation Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t4.gif&#34; alt=&#34;t4&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; ,            ;           \colon              \ldotp              \cdotp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_arrow_symbols&#34;&gt;5. Arrow Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t5.gif&#34; alt=&#34;t5&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \leftarrow                   \longleftarrow              \uparrow
+ \Leftarrow                   \Longleftarrow              \Uparrow
+ \rightarrow                  \longrightarrow             \downarrow
+ \Rightarrow                  \Longrightarrow             \Downarrow
+ \leftrightarrow              \longleftrightarrow         \updownarrow
+ \Leftrightarrow              \Longleftrightarrow         \Updownarrow
+ \mapsto                      \longmapsto                 \nearrow
+ \hookleftarrow               \hookrightarrow             \searrow
+ \leftharpoonup               \rightharpoonup             \swarrow
+ \leftharpoondown             \rightharpoondown           \nwarrow
+ \rightleftharpoons           \leadsto$^b$&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_miscellaneous_symbols&#34;&gt;6. Miscellaneous Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t6.gif&#34; alt=&#34;t6&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \ldots               \cdots              \vdots              \ddots
+ \aleph               \prime              \forall             \infty
+ \hbar                \emptyset           \exists             \Box$^b$
+ \imath               \nabla              \neg                \Diamond$^b$
+ \jmath               \surd               \flat               \triangle
+ \ell                 \top                \natural            \clubsuit
+ \wp                  \bot                \sharp              \diamondsuit
+ \Re                  \|                  \backslash          \heartsuit
+ \Im                  \angle              \partial            \spadesuit
+ \mho$^b$             .                   |&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_variable_sized_symbols&#34;&gt;7. Variable-sized Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t7.gif&#34; alt=&#34;t7&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \sum                 \bigcap             \bigodot
+ \prod                \bigcup             \bigotimes
+ \coprod              \bigsqcup           \bigoplus
+ \int                 \bigvee             \biguplus
+ \oint                \bigwedge&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_log_like_symbols&#34;&gt;8. Log-like Symbols&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t8.gif&#34; alt=&#34;t8&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \arccos     \cos       \csc      \exp      \ker         \limsup      \min      \sinh
+ \arcsin     \cosh      \deg      \gcd      \lg          \ln	      \Pr       \sup
+ \arctan     \cot       \det      \hom      \lim         \log	      \sec      \tan
+ \arg        \coth      \dim      \inf      \liminf      \max	      \sin      \tanh&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_delimiters&#34;&gt;9. Delimiters&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t9.gif&#34; alt=&#34;t9&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; (                    )                   \uparrow            \Uparrow
+ [                    ]                   \downarrow          \Downarrow
+ \{                   \}                  \updownarrow        \Updownarrow
+ \lfloor              \rfloor             \lceil              \rceil
+ \langle              \rangle             /                   \backslash
+ |                    \|&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_large_delimiters&#34;&gt;10. Large Delimiters&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t10.gif&#34; alt=&#34;t10&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;  \rmoustache        \lmoustache         \rgroup            \lgroup
+  \arrowvert         \Arrowvert          \bracevert&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_math_mode_accents&#34;&gt;11. Math mode accents&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t11.gif&#34; alt=&#34;t11&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \hat{a}            \acute{a}         \bar{a}           \dot{a}           \breve{a}
+ \check{a}          \grave{a}         \vec{a}           \ddot{a}          \tilde{a}&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_some_other_constructions&#34;&gt;12. Some other constructions&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/LaTeX/t12.gif&#34; alt=&#34;t12&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; \widetilde{abc}                     \widehat{abc}
+ \overleftarrow{abc}                 \overrightarrow{abc}
+ \overline{abc}                      \underline{abc}
+ \overbrace{abc}                     \underbrace{abc}
+ \sqrt{abc}                          \sqrt[n]{abc}
+ $f&#39;$                                \frac{abc}{xyz}&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

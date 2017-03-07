@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微分</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="微分" />
+<meta property="og:description" content="微分1. 微分的定义1.1. 可微与可导的关系?1.2. 函数可微 可导 连续 有极限的关系2. 微分的几何意义3. 微分的公式 微分的运算法则4. 复合函数的微分4.1. 微分形式不变性4.2. 利用微分形式不变性4.2.1. 例题1方法1方法24.2.2. 例题24.2.3. 例题31. 微分的定义定义 (微分) 设在一点 x 处
+\[\Delta y = f(x&#43;\Delta x) - f(x)\]如果 \(\Delta y = A\Delta x &#43; o(\Delta x) \)其中 A 是只与 x 有关, 而与 \(\Delta x\) 无关的常数,则称函数 f(x) 在点 x 处可微 (differentiable),且将线性主部 \(A\Delta x\) 称为函数在点 x 处对应于 \(\Delta x\) 的微分 (differential) 记作 \(dy\)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86/" />
+
+
+<meta property="og:updated_time" content="2017-01-15T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">微分</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-15 00:00:00 &#43;0000 UTC">January 15, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">微分</div>
+<ul class="sectlevel1">
+<li><a href="#_微分的定义">1. 微分的定义</a>
+<ul class="sectlevel2">
+<li><a href="#_可微与可导的关系">1.1. 可微与可导的关系?</a></li>
+<li><a href="#_函数可微_可导_连续_有极限的关系">1.2. 函数可微 可导 连续 有极限的关系</a></li>
+</ul>
+</li>
+<li><a href="#_微分的几何意义">2. 微分的几何意义</a></li>
+<li><a href="#_微分的公式_微分的运算法则">3. 微分的公式 微分的运算法则</a></li>
+<li><a href="#_复合函数的微分">4. 复合函数的微分</a>
+<ul class="sectlevel2">
+<li><a href="#_微分形式不变性">4.1. 微分形式不变性</a></li>
+<li><a href="#_利用微分形式不变性">4.2. 利用微分形式不变性</a>
+<ul class="sectlevel3">
+<li><a href="#_例题1">4.2.1. 例题1</a>
+<ul class="sectlevel4">
+<li><a href="#_方法1">方法1</a></li>
+<li><a href="#_方法2">方法2</a></li>
+</ul>
+</li>
+<li><a href="#_例题2">4.2.2. 例题2</a></li>
+<li><a href="#_例题3">4.2.3. 例题3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_微分的定义">1. 微分的定义</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>定义 (微分) 设在一点 x 处</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\Delta y = f(x+\Delta x) - f(x)\]
+</div>
+</div>
+<div class="paragraph">
+<p>如果 \(\Delta y = A\Delta x + o(\Delta x) \)
+其中 A 是只与 x 有关, 而与 \(\Delta x\) 无关的常数,则称函数 f(x) 在点 x 处可微 (differentiable),
+且将线性主部 \(A\Delta x\) 称为函数在点 x 处对应于 \(\Delta x\) 的微分 (differential) 记作 \(dy\)</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[dy = A\Delta x\]
+</div>
+</div>
+<div class="paragraph">
+<p>\(o(\Delta x)\): 高阶无穷小</p>
+</div>
+<div class="sect2">
+<h3 id="_可微与可导的关系">1.1. 可微与可导的关系?</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>定理 (可微与可导的关系) 函数在一点可微的充分必要条件是: 函数在该点可导,且</p>
+</div>
+</blockquote>
+</div>
+<div class="stemblock">
+<div class="content">
+\[dy = f'(x)\Delta x\]
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_函数可微_可导_连续_有极限的关系">1.2. 函数可微 可导 连续 有极限的关系</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_163843.png" alt="2017 01 15 163843">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_164051.png" alt="2017 01 15 164051">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_微分的几何意义">2. 微分的几何意义</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_164409.png" alt="2017 01 15 164409">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_164819.png" alt="2017 01 15 164819">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_微分的公式_微分的运算法则">3. 微分的公式 微分的运算法则</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_165053.png" alt="2017 01 15 165053">
+</div>
+<div class="title">Figure 1. 1</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_复合函数的微分">4. 复合函数的微分</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_微分形式不变性">4.1. 微分形式不变性</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_165411.png" alt="2017 01 15 165411">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_165840.png" alt="2017 01 15 165840">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_利用微分形式不变性">4.2. 利用微分形式不变性</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_170006.png" alt="2017 01 15 170006">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_例题1">4.2.1. 例题1</h4>
+<div class="sect4">
+<h5 id="_方法1">方法1</h5>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_170212.png" alt="2017 01 15 170212">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_方法2">方法2</h5>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_170307.png" alt="2017 01 15 170307">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_例题2">4.2.2. 例题2</h4>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_171043.png" alt="2017 01 15 171043">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_171128.png" alt="2017 01 15 171128">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_例题3">4.2.3. 例题3</h4>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-01-15_171352.png" alt="2017 01 15 171352">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="prev"><span>«Previous</span><p>Java 面试题</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/" rel="next"><span>Next»</span><p>微分中值定理</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

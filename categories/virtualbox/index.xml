@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/categories/virtualbox/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>virtualbox错误</title>
+      <link>/post/linux/virtualbox/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/virtualbox/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents
+&lt;!-- toc --&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;virtualbox-tip&#34;&gt;VirtualBox Tip&lt;/h1&gt;
+
+&lt;h3 id=&#34;vbox中出现uuid-have-already-exists解决方法&#34;&gt;VBox中出现UUID have already exists解决方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;进入到&lt;code&gt;VBoxManage.exe&lt;/code&gt;所在目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 参数:虚拟vdi硬盘路径
+VBoxManage.exe internalcommands sethduuid G:\VirtualMachine\CentOS-WEB\CentOS-WEB-01.vdi
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;通信问题&#34;&gt;通信问题&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;host-only&lt;/code&gt;模式下
+
+&lt;ul&gt;
+&lt;li&gt;主机&lt;code&gt;ping&lt;/code&gt;通虚拟机  √&lt;/li&gt;
+&lt;li&gt;虚拟机&lt;code&gt;ping&lt;/code&gt;主机 ✘
+&lt;code&gt;
+关闭win10防火墙
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;修改硬盘大小&#34;&gt;修改硬盘大小&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#7d91f211-d3e4-4185-bd9a-314c9b39856d
+#修改成40G
+VBoxManage modifyhd uuid –-resize 40960
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

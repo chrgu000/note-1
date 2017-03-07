@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mysql主从配置</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="mysql主从配置" />
+<meta property="og:description" content="Mysql 主从复制1. Mysql 主从复制1.1. master1.2. slave1.3. 安装 mysql (CentOS-7 x64) master1.4. 安装 mysql (CentOS-7 x64) Slave1. Mysql 主从复制1.1. master启用二进制日志
+log-bin = master-binlog-bin-index = master-bin.index选择一个唯一 server-id
+server-id = {0-2^32}创建具有复制权限的用户
+REPLICATION SLAVEREPLICATION CLIENT1.2. slave启动中继日志
+relay-log = relay-log选择一个唯一的 server-id" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/mysql-master-slave/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">mysql主从配置</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/mysql" rel="category">mysql</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Mysql 主从复制</div>
+<ul class="sectlevel1">
+<li><a href="#_mysql_主从复制">1. Mysql 主从复制</a>
+<ul class="sectlevel2">
+<li><a href="#_master">1.1. master</a></li>
+<li><a href="#__code_slave_code">1.2. <code>slave</code></a></li>
+<li><a href="#_安装_code_mysql_code_centos_7_x64_strong_master_strong">1.3. 安装 <code>mysql</code> (CentOS-7 x64)  <strong>master</strong></a></li>
+<li><a href="#_安装_code_mysql_code_centos_7_x64_slave">1.4. 安装 <code>mysql</code> (CentOS-7 x64) Slave</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_mysql_主从复制">1. Mysql 主从复制</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_master">1.1. master</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>启用二进制日志</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>log-bin = master-bin
+log-bin-index = master-bin.index</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>选择一个唯一 <code>server-id</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>server-id = {0-2^32}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>创建具有复制权限的用户</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>REPLICATION SLAVE
+REPLICATION CLIENT</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_slave_code">1.2. <code>slave</code></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>启动中继日志</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf" data-lang="conf">relay-log = relay-log</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>选择一个唯一的 <code>server-id</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf" data-lang="conf">server-id = {0-2^32}  # 不能和主服务器相同</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>连接至主服务器,并开始复制数据</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">mysql&gt; CHANGE MASTER TO MASTER_HOST='',MASTER_PORT='',MASTER_LOG_FILE='',MASTER_LOG_POS='',MASTER_USER='',MASTER_PASSWORD='';
+mysql&gt; START SLAVE; 启动从服务器线程</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">复制线程 </dt>
+<dd>
+<p>master: dump
+slave: IO_Thread, SQL_Thread</p>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_安装_code_mysql_code_centos_7_x64_strong_master_strong">1.3. 安装 <code>mysql</code> (CentOS-7 x64)  <strong>master</strong></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>mysql-master
+asciinema::slave["mysql2","/src/records/mysql-master.json","95","25"]</p>
+</li>
+<li>
+<p>安装 <code>mysql</code> 源</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">curl -L http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm &gt; mysql.rpm
+yum localinstall mysql.rpm -y</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>指定安装 <code>mysql5.6</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>vim /etc/yum.repos.d/mysql-community.repo
+##
+# Enable to use MySQL 5.6
+[mysql56-community]
+name=MySQL 5.6 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+##
+# diable to use MySQL 5.7
+[mysql57-community]
+name=MySQL 5.7 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/6/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>yum install mysql-community-server -y
+# mysql 数据存储目录
+mkdir -p /mysql/data
+# 更改权限
+chown -hR mysql:mysql /mysql</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">配置文件 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[client]
+#password       = your_password
+port            = 3306
+socket          = /var/lib/mysql/mysql.sock
+
+[mysqld]
+port            = 3306
+user            = mysql
+pid-file        = /var/lib/mysql/mysql.pid
+socket          = /var/lib/mysql/mysql.sock
+datadir         = /var/lib/mysql
+skip-external-locking
+key_buffer_size = 384M
+max_allowed_packet = 1M
+table_open_cache = 512
+sort_buffer_size = 2M
+read_buffer_size = 2M
+read_rnd_buffer_size = 8M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+query_cache_size = 32M
+
+log-bin = master-bin
+log-bin-index= master-bin.index
+sync-binlog = ON
+
+binlog_format=mixed
+
+server-id = 1
+# 忽略大小写
+lower_case_table_names = 1
+innodb_file_per_table = 1
+character_set_server = utf8
+log-error=/var/log/mysqld.log
+
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+[myisamchk]
+key_buffer_size = 256M
+sort_buffer_size = 256M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">初始化数据 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql_install_db --datadir=/mysql/data --user=mysql --defaults-file=/etc/my.cnf</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">授权 <code>REPLICATION</code> 远程登录 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; GRANT REPLICATION SLAVE ON *.* TO 'repluser'@'172.17.%.%' IDENTIFIED BY 'replpass';
+mysql&gt;FLUSH PRIVILEGES;</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>master</code> 查看 <code>BINLOG</code> </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; SHOW MASTER STATUS;
+mysql&gt; SHOW BINLOG EVENTS IN 'master-bin.000001';</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_安装_code_mysql_code_centos_7_x64_slave">1.4. 安装 <code>mysql</code> (CentOS-7 x64) Slave</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>mysql-slave
+asciinema::slave["mysql1","/src/records/mysql-slave.json","95","25"]</p>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">配置文件 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[client]
+#password       = your_password
+port            = 3306
+socket          = /var/lib/mysql/mysql.sock
+
+[mysqld]
+port            = 3306
+user            = mysql
+pid-file        = /var/lib/mysql/mysql.pid
+socket          = /var/lib/mysql/mysql.sock
+datadir         = /var/lib/mysql
+skip-external-locking
+key_buffer_size = 384M
+max_allowed_packet = 1M
+table_open_cache = 512
+sort_buffer_size = 2M
+read_buffer_size = 2M
+read_rnd_buffer_size = 8M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+query_cache_size = 32M
+
+relay-log = relay-log
+relay-log-index = relay-log.index
+read-only = ON
+binlog_format=mixed
+server-id = 12
+innodb_file_per_table = 1
+# 忽略大小写
+lower_case_table_names = 1
+character_set_server = utf8
+log-error=/var/log/mysqld.log
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+[myisamchk]
+key_buffer_size = 256M
+sort_buffer_size = 256M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">连接 <code>mysql-master</code> </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; CHANGE MASTER TO MASTER_HOST='172.17.0.2',MASTER_USER='repluser',MASTER_PASSWORD='replpass',MASTER_LOG_FILE='master-bin.000006',MASTER_LOG_POS=410;</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>slave</code> 查看 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; SHOW SLAVE STATUS\G;
+*************************** 1. row ***************************
++
+               Slave_IO_State:
+                  Master_Host: 172.17.0.2
+                  Master_User: repluser
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: master-bin.000006
+          Read_Master_Log_Pos: 410
+               Relay_Log_File: relay-log.000001
+                Relay_Log_Pos: 4
+        Relay_Master_Log_File: master-bin.000006
+             Slave_IO_Running: No
+            Slave_SQL_Running: No
+              Replicate_Do_DB:
+          Replicate_Ignore_DB:
+           Replicate_Do_Table:
+       Replicate_Ignore_Table:
+      Replicate_Wild_Do_Table:
+  Replicate_Wild_Ignore_Table:
+                   Last_Errno: 0
+                   Last_Error:
+                 Skip_Counter: 0
+          Exec_Master_Log_Pos: 410
+              Relay_Log_Space: 120
+              Until_Condition: None
+               Until_Log_File:
+                Until_Log_Pos: 0
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File:
+           Master_SSL_CA_Path:
+              Master_SSL_Cert:
+            Master_SSL_Cipher:
+               Master_SSL_Key:
+        Seconds_Behind_Master: NULL
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error:
+               Last_SQL_Errno: 0
+               Last_SQL_Error:
+  Replicate_Ignore_Server_Ids:
+             Master_Server_Id: 0
+                  Master_UUID:
+             Master_Info_File: /mysql/data/master.info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State:
+           Master_Retry_Count: 86400
+                  Master_Bind:
+      Last_IO_Error_Timestamp:
+     Last_SQL_Error_Timestamp:
+               Master_SSL_Crl:
+           Master_SSL_Crlpath:
+           Retrieved_Gtid_Set:
+            Executed_Gtid_Set:
+                Auto_Position: 0
+1 row in set (0.00 sec)</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">启动 <code>slave</code> </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; START SLAVE;</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>slave</code> 再次查看 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; SHOW SLAVE STATUS\G;
+*************************** 1. row ***************************
++
+               Slave_IO_State: Waiting for master to send event
+                  Master_Host: 172.17.0.2
+                  Master_User: repluser
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: master-bin.000006
+          Read_Master_Log_Pos: 410
+               Relay_Log_File: relay-log.000003
+                Relay_Log_Pos: 284
+        Relay_Master_Log_File: master-bin.000006
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB:
+          Replicate_Ignore_DB:
+           Replicate_Do_Table:
+       Replicate_Ignore_Table:
+      Replicate_Wild_Do_Table:
+  Replicate_Wild_Ignore_Table:
+                   Last_Errno: 0
+                   Last_Error:
+                 Skip_Counter: 0
+          Exec_Master_Log_Pos: 410
+              Relay_Log_Space: 571
+              Until_Condition: None
+               Until_Log_File:
+                Until_Log_Pos: 0
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File:
+           Master_SSL_CA_Path:
+              Master_SSL_Cert:
+            Master_SSL_Cipher:
+               Master_SSL_Key:
+        Seconds_Behind_Master: 0
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error:
+               Last_SQL_Errno: 0
+               Last_SQL_Error:
+  Replicate_Ignore_Server_Ids:
+             Master_Server_Id: 1
+                  Master_UUID: 35f7ec52-4c03-11e6-8286-0242ac110002
+             Master_Info_File: /mysql/data/master.info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has read all relay log; waiting for the slave I/O thread to update it
+           Master_Retry_Count: 86400
+                  Master_Bind:
+      Last_IO_Error_Timestamp:
+     Last_SQL_Error_Timestamp:
+               Master_SSL_Crl:
+           Master_SSL_Crlpath:
+           Retrieved_Gtid_Set:
+            Executed_Gtid_Set:
+                Auto_Position: 0
+1 row in set (0.00 sec)
+
+ERROR:
+No query specified</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">查看 <code>mysql</code> 环境变量 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; SHOW GLOBAL VARIABLES LIKE 'read_only';
+mysql&gt; SHOW GLOBAL VARIABLES LIKE '%slave%';</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">read-only = YES </dt>
+<dd>
+<p>在从服务器上设定,但对具有SUPER权限的用户不生效</p>
+</dd>
+<dt class="hdlist1">sync-binlog = ON </dt>
+<dd>
+<p>在主服务器上设定,用于事务安全</p>
+</dd>
+<dt class="hdlist1">测试主从复制 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>CREATE DATABASE `test`;
+CREATE TABLE `test` (
+  `aa` bigint(20) NOT NULL,
+  `bb` blob,
+  PRIMARY KEY (`aa`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Q&amp;A </dt>
+</dl>
+</div>
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>Last_IO_Error: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work.?</em></p>
+<p><code><code>bash
+cd /mysql/data
+rm -f auto.cnf
+</code></code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/mycat/mycat-command-line/" rel="prev"><span>«Previous</span><p>mycat命令</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/mysql1/" rel="next"><span>Next»</span><p>mysql基础操作</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1744 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Post-rsses on 工作笔记</title>
+    <link>/post/index.xml</link>
+    <description>Recent content in Post-rsses on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 06 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>欧拉方程</title>
+      <link>/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;欧拉方程&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_欧拉方程&#34;&gt;1. 欧拉方程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_欧拉方程&#34;&gt;1. 欧拉方程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090630.png&#34; alt=&#34;2017 03 06 090630&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090702.png&#34; alt=&#34;2017 03 06 090702&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090730.png&#34; alt=&#34;2017 03 06 090730&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090747.png&#34; alt=&#34;2017 03 06 090747&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090812.png&#34; alt=&#34;2017 03 06 090812&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090838.png&#34; alt=&#34;2017 03 06 090838&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090854.png&#34; alt=&#34;2017 03 06 090854&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090907.png&#34; alt=&#34;2017 03 06 090907&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090926.png&#34; alt=&#34;2017 03 06 090926&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-03-06_090955.png&#34; alt=&#34;2017 03 06 090955&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>log</title>
+      <link>/post/linux/log/</link>
+      <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/log/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Log&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_elk&#34;&gt;1. ELK&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rsyslog&#34;&gt;2. Rsyslog&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_supervisord发送log日志到rsyslog&#34;&gt;2.1. Supervisord发送log日志到Rsyslog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_logrotate_日志分割&#34;&gt;3. Logrotate 日志分割&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_dockerfile&#34;&gt;3.1. Dockerfile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_脚本&#34;&gt;3.2. 脚本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置文件&#34;&gt;3.3. 配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定时器&#34;&gt;3.4. 定时器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_elk&#34;&gt;1. ELK&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;下载&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/gaoyingju/article/details/23750563&#34;&gt;开源分布式搜索平台ELK(Elasticsearch+Logstash+Kibana)入门学习资源索引&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.linuxea.com/1204.html&#34;&gt;日志实时收集分析-ELK Stack&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_rsyslog&#34;&gt;2. Rsyslog&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_supervisord发送log日志到rsyslog&#34;&gt;2.1. Supervisord发送log日志到Rsyslog&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;supervisor conf &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;[eventlistener:logging]
+command = supervisor_logging
+events = PROCESS_LOG
+
+[program:wuliu]
+command=/apache-tomcat-7.0.62/bin/catalina.sh run
+user=root
+autostart=true
+stdout_events_enabled = true
+stderr_events_enabled = true&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;rsyslog server &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ModLoad imudp
+$UDPServerRun 514 #开启UDP
+
+$ModLoad imtcp
+$InputTCPServerRun 514 #开启TCP
+
+#$template TraditionalFormat,&#34;%programname% %syslogtag% %msg%\n&#34;
+#$template TraditionalFormat,&#34;%programname% %hostname% %msg%\n&#34;
+$template TraditionalFormat,&#34;%fromhost-ip% %msg%\n&#34;
+
+
+$ActionFileDefaultTemplate TraditionalFormat # 默认日志格式模板与client端发送的日志格式模板保持一致
+
+$template Remote, &#34;~/log/%fromhost-ip%.log&#34;
+
+:fromhost-ip, !isequal, &#34;127.0.0.1&#34; ?Remote
+
+#:syslogtag, isequal, &#34;wuliu-log&#34; ?Remote
+#:syslogtag, isequal, &#34;wuliu-error-log&#34; ?Remote-error&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/hanyifeng/p/5463338.html&#34;&gt;Linux 之 rsyslog 系统日志转发&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.biglog.cn/tomcat-syslog/&#34;&gt;Tomcat日志配置远程Syslog采集&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_logrotate_日志分割&#34;&gt;3. Logrotate 日志分割&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.sina.com.cn/s/blog_5f54f0be0101h6y8.html&#34;&gt;Logrotate 日志分割&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_dockerfile&#34;&gt;3.1. Dockerfile&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;FROM blacklabelops/centos
+
+RUN yum install -y \
+    vi rsyslog &amp;amp;&amp;amp; \
+    yum install crontabs -y &amp;amp;&amp;amp; \
+    yum clean all &amp;amp;&amp;amp; rm -rf /var/cache/yum/* &amp;amp;&amp;amp; \
+    echo &#34;30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&#34; &amp;gt;&amp;gt; /var/spool/cron/root &amp;amp;&amp;amp; \
+    mkdir -p ~/log
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./rsyslog.conf /etc/rsyslog.d/listen.conf
+COPY ./wuliu /etc/logrotate.d/wuliu
+
+EXPOSE 514
+ENTRYPOINT [&#34;/docker-entrypoint.sh&#34;]
+CMD [&#34;rsyslogd&#34;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_脚本&#34;&gt;3.2. 脚本&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash -x
+#
+# A helper script for ENTRYPOINT.
+
+set -e
+
+if [ &#34;$1&#34; = &#39;rsyslogd&#39; ]; then
+  crond
+  rsyslogd -n
+fi
+
+exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置文件&#34;&gt;3.3. 配置文件&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;vi /etc/logrotate.d/wuliu&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;~/log/wuliu.log {
+  daily
+  rotate 5
+  sharedscripts
+  postrotate
+    /bin/kill -HUP `cat /var/run/syslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true
+    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true
+  endscript
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_定时器&#34;&gt;3.4. 定时器&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 每天晚上 10点30 执行一次
+30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>一阶线性微分方程</title>
+      <link>/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;一阶线性微分方程&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_一阶线性微分方程&#34;&gt;1. 一阶线性微分方程&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_常数变易法&#34;&gt;1.1. 常数变易法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_一阶线性方程的解的结构定理&#34;&gt;1.2. 一阶线性方程的解的结构定理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_例子&#34;&gt;1.3. 例子&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_一阶微分方程总结&#34;&gt;1.4. 一阶微分方程总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_一阶线性微分方程&#34;&gt;1. 一阶线性微分方程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102207.png&#34; alt=&#34;2017 02 25 102207&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102339.png&#34; alt=&#34;2017 02 25 102339&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102423.png&#34; alt=&#34;2017 02 25 102423&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102520.png&#34; alt=&#34;2017 02 25 102520&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102548.png&#34; alt=&#34;2017 02 25 102548&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102652.png&#34; alt=&#34;2017 02 25 102652&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102724.png&#34; alt=&#34;2017 02 25 102724&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102820.png&#34; alt=&#34;2017 02 25 102820&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102844.png&#34; alt=&#34;2017 02 25 102844&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102900.png&#34; alt=&#34;2017 02 25 102900&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_常数变易法&#34;&gt;1.1. 常数变易法&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_102950.png&#34; alt=&#34;2017 02 25 102950&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_103054.png&#34; alt=&#34;2017 02 25 103054&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_一阶线性方程的解的结构定理&#34;&gt;1.2. 一阶线性方程的解的结构定理&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_103151.png&#34; alt=&#34;2017 02 25 103151&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_例子&#34;&gt;1.3. 例子&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_104309.png&#34; alt=&#34;2017 02 25 104309&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_104504.png&#34; alt=&#34;2017 02 25 104504&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_104537.png&#34; alt=&#34;2017 02 25 104537&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_110352.png&#34; alt=&#34;2017 02 25 110352&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_110431.png&#34; alt=&#34;2017 02 25 110431&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_110454.png&#34; alt=&#34;2017 02 25 110454&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_110556.png&#34; alt=&#34;2017 02 25 110556&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_110718.png&#34; alt=&#34;2017 02 25 110718&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_一阶微分方程总结&#34;&gt;1.4. 一阶微分方程总结&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-26_093702.png&#34; alt=&#34;2017 02 26 093702&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-26_093730.png&#34; alt=&#34;2017 02 26 093730&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>伯努利方程</title>
+      <link>/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;伯努利方程&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_伯努利方程&#34;&gt;1. 伯努利方程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_伯努利方程&#34;&gt;1. 伯努利方程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_175041.png&#34; alt=&#34;2017 02 25 175041&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>向量及其线性运算</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</guid>
+      <description>&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_向量及其线性运算&#34;&gt;向量及其线性运算&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_090305.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_091205.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_091508.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_091539.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_091635.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_092511.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_模_方向角_方向余弦&#34;&gt;模 方向角 方向余弦&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093123.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093235.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093335.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093447.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093542.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093618.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093637.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093711.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093725.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093741.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093802.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093820.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093837.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_093856.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_向量的投影&#34;&gt;向量的投影&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_124618.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_124717.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_124745.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_124826.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_夹角公式&#34;&gt;夹角公式&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_125417.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_125453.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_130933.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-07_131227.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>高阶线性微分方程</title>
+      <link>/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
+      <description>&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_高阶线性微分方程&#34;&gt;高阶线性微分方程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_齐次线性方程的解的叠加原理&#34;&gt;齐次线性方程的解的叠加原理&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-02_090230.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-02_090328.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-02_090346.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-02_090409.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{img}/img/gaoshu/2017-03-02_090619.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>齐次方程</title>
+      <link>/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</link>
+      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;齐次方程&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_齐次方程&#34;&gt;1. 齐次方程&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_标准齐次方程&#34;&gt;1.1. 标准齐次方程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_齐次方程&#34;&gt;1. 齐次方程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_标准齐次方程&#34;&gt;1.1. 标准齐次方程&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_095515.png&#34; alt=&#34;2017 02 25 095515&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_095758.png&#34; alt=&#34;2017 02 25 095758&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_095839.png&#34; alt=&#34;2017 02 25 095839&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_100629.png&#34; alt=&#34;2017 02 25 100629&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_100911.png&#34; alt=&#34;2017 02 25 100911&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101055.png&#34; alt=&#34;2017 02 25 101055&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101117.png&#34; alt=&#34;2017 02 25 101117&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101207.png&#34; alt=&#34;2017 02 25 101207&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101228.png&#34; alt=&#34;2017 02 25 101228&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101300.png&#34; alt=&#34;2017 02 25 101300&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101320.png&#34; alt=&#34;2017 02 25 101320&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101419.png&#34; alt=&#34;2017 02 25 101419&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-25_101458.png&#34; alt=&#34;2017 02 25 101458&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>定积分的换元法</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</link>
+      <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;定积分的换元法&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定积分的换元法&#34;&gt;1. 定积分的换元法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_定积分的换元法&#34;&gt;1. 定积分的换元法&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_131059.png&#34; alt=&#34;2017 02 20 131059&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_131247.png&#34; alt=&#34;2017 02 20 131247&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_131524.png&#34; alt=&#34;2017 02 20 131524&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>微积分基本公式</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;微积分基本公式&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_微积分基本公式&#34;&gt;1. 微积分基本公式&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定理_2_原函数存在定理&#34;&gt;1.1. 定理 2 (原函数存在定理)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_牛顿莱布尼茨公式&#34;&gt;2. 牛顿莱布尼茨公式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_例子&#34;&gt;3. 例子&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定积分的_凑微分_公式&#34;&gt;4. 定积分的 &#34;凑微分&#34; 公式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_正弦积分函数&#34;&gt;5. 正弦积分函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_函数的几种形式&#34;&gt;6. 函数的几种形式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_积分上限函数的导数&#34;&gt;7. 积分上限函数的导数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_微积分基本公式&#34;&gt;1. 微积分基本公式&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_203834.png&#34; alt=&#34;2017 02 19 203834&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_203957.png&#34; alt=&#34;2017 02 19 203957&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_204313.png&#34; alt=&#34;2017 02 19 204313&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_定理_2_原函数存在定理&#34;&gt;1.1. 定理 2 (原函数存在定理)&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_204442.png&#34; alt=&#34;2017 02 19 204442&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_204555.png&#34; alt=&#34;2017 02 19 204555&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_牛顿莱布尼茨公式&#34;&gt;2. 牛顿莱布尼茨公式&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_204725.png&#34; alt=&#34;2017 02 19 204725&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_204857.png&#34; alt=&#34;2017 02 19 204857&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_205012.png&#34; alt=&#34;2017 02 19 205012&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_205056.png&#34; alt=&#34;2017 02 19 205056&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_205206.png&#34; alt=&#34;2017 02 19 205206&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_例子&#34;&gt;3. 例子&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_210206.png&#34; alt=&#34;2017 02 19 210206&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_定积分的_凑微分_公式&#34;&gt;4. 定积分的 &#34;凑微分&#34; 公式&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_210707.png&#34; alt=&#34;2017 02 19 210707&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_210912.png&#34; alt=&#34;2017 02 19 210912&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_211133.png&#34; alt=&#34;2017 02 19 211133&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_211250.png&#34; alt=&#34;2017 02 19 211250&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_211414.png&#34; alt=&#34;2017 02 19 211414&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_211521.png&#34; alt=&#34;2017 02 19 211521&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_211958.png&#34; alt=&#34;2017 02 19 211958&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_212553.png&#34; alt=&#34;2017 02 19 212553&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_212616.png&#34; alt=&#34;2017 02 19 212616&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-19_212941.png&#34; alt=&#34;2017 02 19 212941&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_正弦积分函数&#34;&gt;5. 正弦积分函数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_090213.png&#34; alt=&#34;2017 02 20 090213&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_090605.png&#34; alt=&#34;2017 02 20 090605&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_函数的几种形式&#34;&gt;6. 函数的几种形式&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_090653.png&#34; alt=&#34;2017 02 20 090653&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_积分上限函数的导数&#34;&gt;7. 积分上限函数的导数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_090952.png&#34; alt=&#34;2017 02 20 090952&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_091143.png&#34; alt=&#34;2017 02 20 091143&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_091233.png&#34; alt=&#34;2017 02 20 091233&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_091432.png&#34; alt=&#34;2017 02 20 091432&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_124527.png&#34; alt=&#34;2017 02 20 124527&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_124713.png&#34; alt=&#34;2017 02 20 124713&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_125009.png&#34; alt=&#34;2017 02 20 125009&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_125128.png&#34; alt=&#34;2017 02 20 125128&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_125411.png&#34; alt=&#34;2017 02 20 125411&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-20_125538.png&#34; alt=&#34;2017 02 20 125538&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>不定积分</title>
+      <link>/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;不定积分&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_不定积分&#34;&gt;1. 不定积分&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_一个函数是否有原函数&#34;&gt;1.1. 一个函数是否有原函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_原函数是否唯一&#34;&gt;1.2. 原函数是否唯一&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_例1&#34;&gt;1.2.1. 例1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_不定积分的基本性质&#34;&gt;1.3. 不定积分的基本性质&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_每个导数公式都对应一个积分公式&#34;&gt;1.4. 每个导数公式都对应一个积分公式&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_例1_2&#34;&gt;1.4.1. 例1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_不定积分性质&#34;&gt;1.5. 不定积分性质&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_不定积分&#34;&gt;1. 不定积分&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091025.png&#34; alt=&#34;2017 02 13 091025&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_一个函数是否有原函数&#34;&gt;1.1. 一个函数是否有原函数&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091432.png&#34; alt=&#34;2017 02 13 091432&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_原函数是否唯一&#34;&gt;1.2. 原函数是否唯一&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091542.png&#34; alt=&#34;2017 02 13 091542&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091653.png&#34; alt=&#34;2017 02 13 091653&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091744.png&#34; alt=&#34;2017 02 13 091744&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_例1&#34;&gt;1.2.1. 例1&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091836.png&#34; alt=&#34;2017 02 13 091836&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_091929.png&#34; alt=&#34;2017 02 13 091929&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_092035.png&#34; alt=&#34;2017 02 13 092035&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_092108.png&#34; alt=&#34;2017 02 13 092108&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_不定积分的基本性质&#34;&gt;1.3. 不定积分的基本性质&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_092646.png&#34; alt=&#34;2017 02 13 092646&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_093101.png&#34; alt=&#34;2017 02 13 093101&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_093135.png&#34; alt=&#34;2017 02 13 093135&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_093347.png&#34; alt=&#34;2017 02 13 093347&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_每个导数公式都对应一个积分公式&#34;&gt;1.4. 每个导数公式都对应一个积分公式&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_093541.png&#34; alt=&#34;2017 02 13 093541&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_093823.png&#34; alt=&#34;2017 02 13 093823&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_094125.png&#34; alt=&#34;2017 02 13 094125&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_094206.png&#34; alt=&#34;2017 02 13 094206&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_094355.png&#34; alt=&#34;2017 02 13 094355&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_094436.png&#34; alt=&#34;2017 02 13 094436&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_例1_2&#34;&gt;1.4.1. 例1&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_094705.png&#34; alt=&#34;2017 02 13 094705&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_不定积分性质&#34;&gt;1.5. 不定积分性质&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_094930.png&#34; alt=&#34;2017 02 13 094930&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_095036.png&#34; alt=&#34;2017 02 13 095036&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_095123.png&#34; alt=&#34;2017 02 13 095123&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_095156.png&#34; alt=&#34;2017 02 13 095156&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_095222.png&#34; alt=&#34;2017 02 13 095222&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_095251.png&#34; alt=&#34;2017 02 13 095251&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-13_095356.png&#34; alt=&#34;2017 02 13 095356&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>体积</title>
+      <link>/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;体积&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_体积&#34;&gt;1. 体积&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_体积&#34;&gt;1. 体积&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_161331.png&#34; alt=&#34;2017 02 23 161331&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_161757.png&#34; alt=&#34;2017 02 23 161757&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_162013.png&#34; alt=&#34;2017 02 23 162013&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_162245.png&#34; alt=&#34;2017 02 23 162245&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_162350.png&#34; alt=&#34;2017 02 23 162350&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_162714.png&#34; alt=&#34;2017 02 23 162714&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_164305.png&#34; alt=&#34;2017 02 23 164305&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_164427.png&#34; alt=&#34;2017 02 23 164427&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_164635.png&#34; alt=&#34;2017 02 23 164635&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>分步积分法</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;分步积分法&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_分步积分法&#34;&gt;1. 分步积分法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_常见的分部积分的类型&#34;&gt;2. 常见的分部积分的类型&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_总结&#34;&gt;2.1. 总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_分部积分的列表法解之&#34;&gt;3. 分部积分的列表法解之&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_分步积分法&#34;&gt;1. 分步积分法&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_091309.png&#34; alt=&#34;2017 02 16 091309&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_091524.png&#34; alt=&#34;2017 02 16 091524&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_常见的分部积分的类型&#34;&gt;2. 常见的分部积分的类型&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_091751.png&#34; alt=&#34;2017 02 16 091751&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_091922.png&#34; alt=&#34;2017 02 16 091922&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_总结&#34;&gt;2.1. 总结&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092023.png&#34; alt=&#34;2017 02 16 092023&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092131.png&#34; alt=&#34;2017 02 16 092131&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_分部积分的列表法解之&#34;&gt;3. 分部积分的列表法解之&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092437.png&#34; alt=&#34;2017 02 16 092437&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092707.png&#34; alt=&#34;2017 02 16 092707&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092748.png&#34; alt=&#34;2017 02 16 092748&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092821.png&#34; alt=&#34;2017 02 16 092821&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_092853.png&#34; alt=&#34;2017 02 16 092853&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_093000.png&#34; alt=&#34;2017 02 16 093000&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_095332.png&#34; alt=&#34;2017 02 16 095332&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_095437.png&#34; alt=&#34;2017 02 16 095437&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_095556.png&#34; alt=&#34;2017 02 16 095556&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_095659.png&#34; alt=&#34;2017 02 16 095659&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>定积分的几何应用(4)弧长</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8%284%29%E5%BC%A7%E9%95%BF/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8%284%29%E5%BC%A7%E9%95%BF/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;定积分的几何应用(4)弧长&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定积分的几何应用_4_弧长&#34;&gt;1. 定积分的几何应用(4)弧长&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定义&#34;&gt;1.1. 定义&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_弧微分推导&#34;&gt;1.2. 弧微分推导&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_定积分的几何应用_4_弧长&#34;&gt;1. 定积分的几何应用(4)弧长&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_定义&#34;&gt;1.1. 定义&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_164848.png&#34; alt=&#34;2017 02 23 164848&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-23_165051.png&#34; alt=&#34;2017 02 23 165051&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_弧微分推导&#34;&gt;1.2. 弧微分推导&lt;/h3&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>定积分的概念与性质</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;定积分的概念与性质&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定积分的意义&#34;&gt;1. 定积分的意义&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_定积分的意义&#34;&gt;1. 定积分的意义&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_141411.png&#34; alt=&#34;2017 02 16 141411&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_141455.png&#34; alt=&#34;2017 02 16 141455&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_141515.png&#34; alt=&#34;2017 02 16 141515&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_141704.png&#34; alt=&#34;2017 02 16 141704&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_141817.png&#34; alt=&#34;2017 02 16 141817&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-16_142035.png&#34; alt=&#34;2017 02 16 142035&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>平面曲线的弧长</title>
+      <link>/post/mathematics/xuxiaozhan/%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%BC%A7%E9%95%BF/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathematics/xuxiaozhan/%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%BC%A7%E9%95%BF/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;平面曲线的弧长&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_平面曲线的弧长&#34;&gt;1. 平面曲线的弧长&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_弧长公式&#34;&gt;1.1. 弧长公式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_例子&#34;&gt;1.2. 例子&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_椭圆周长&#34;&gt;1.3. 椭圆周长&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_平面曲线的弧长&#34;&gt;1. 平面曲线的弧长&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_弧长公式&#34;&gt;1.1. 弧长公式&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_090258.png&#34; alt=&#34;2017 02 24 090258&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_090749.png&#34; alt=&#34;2017 02 24 090749&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_090841.png&#34; alt=&#34;2017 02 24 090841&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_090949.png&#34; alt=&#34;2017 02 24 090949&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_例子&#34;&gt;1.2. 例子&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091021.png&#34; alt=&#34;2017 02 24 091021&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091054.png&#34; alt=&#34;2017 02 24 091054&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091123.png&#34; alt=&#34;2017 02 24 091123&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091141.png&#34; alt=&#34;2017 02 24 091141&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091204.png&#34; alt=&#34;2017 02 24 091204&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091237.png&#34; alt=&#34;2017 02 24 091237&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091300.png&#34; alt=&#34;2017 02 24 091300&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_椭圆周长&#34;&gt;1.3. 椭圆周长&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091359.png&#34; alt=&#34;2017 02 24 091359&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091420.png&#34; alt=&#34;2017 02 24 091420&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/gaoshu/2017-02-24_091450.png&#34; alt=&#34;2017 02 24 091450&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

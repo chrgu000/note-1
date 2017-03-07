@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微分中值定理</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="微分中值定理" />
+<meta property="og:description" content="微分中值定理1. 费马引理2. 费马猜想3. 罗尔 (Rolle) 定理3.1. 几何解释3.2. 三个条件缺一不可3.3. 罗尔 (Rolle) 定理原型3.4. 思考题4. 拉格朗日 (Lagrange) 中值定理4.1. 几何解释4.2. 物理解释4.3. 其他形式4.3.1. 验证4.4. Lagrange 定理有两个重要推论4.4.1. 证明4.5. Lagrange 定理应用4.5.1. 不等式的证明4.5.2. 恒等式的证明4.6. 柯西 (Cauchy) 中值定理4.7. 微分中值定理关系4.8. 中值定理的证明题4.9. 例题1. 费马引理2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/" />
+
+
+<meta property="og:updated_time" content="2017-01-15T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">微分中值定理</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-15 00:00:00 &#43;0000 UTC">January 15, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">微分中值定理</div>
+<ul class="sectlevel1">
+<li><a href="#_费马引理">1. 费马引理</a></li>
+<li><a href="#_费马猜想">2. 费马猜想</a></li>
+<li><a href="#_罗尔_rolle_定理">3. 罗尔 (Rolle) 定理</a>
+<ul class="sectlevel2">
+<li><a href="#_几何解释">3.1. 几何解释</a></li>
+<li><a href="#_三个条件缺一不可">3.2. 三个条件缺一不可</a></li>
+<li><a href="#_罗尔_rolle_定理原型">3.3. 罗尔 (Rolle) 定理原型</a></li>
+<li><a href="#_思考题">3.4. 思考题</a></li>
+</ul>
+</li>
+<li><a href="#_拉格朗日_lagrange_中值定理">4. 拉格朗日 (Lagrange) 中值定理</a>
+<ul class="sectlevel2">
+<li><a href="#_几何解释_2">4.1. 几何解释</a></li>
+<li><a href="#_物理解释">4.2. 物理解释</a></li>
+<li><a href="#_其他形式">4.3. 其他形式</a>
+<ul class="sectlevel3">
+<li><a href="#_验证">4.3.1. 验证</a></li>
+</ul>
+</li>
+<li><a href="#_lagrange_定理有两个重要推论">4.4. Lagrange 定理有两个重要推论</a>
+<ul class="sectlevel3">
+<li><a href="#_证明">4.4.1. 证明</a></li>
+</ul>
+</li>
+<li><a href="#_lagrange_定理应用">4.5. Lagrange 定理应用</a>
+<ul class="sectlevel3">
+<li><a href="#_不等式的证明">4.5.1. 不等式的证明</a></li>
+<li><a href="#_恒等式的证明">4.5.2. 恒等式的证明</a></li>
+</ul>
+</li>
+<li><a href="#_柯西_cauchy_中值定理">4.6. 柯西 (Cauchy) 中值定理</a></li>
+<li><a href="#_微分中值定理关系">4.7. 微分中值定理关系</a></li>
+<li><a href="#_中值定理的证明题">4.8. 中值定理的证明题</a></li>
+<li><a href="#_例题">4.9. 例题</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_费马引理">1. 费马引理</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_221146.png" alt="2017 02 07 221146">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_费马猜想">2. 费马猜想</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_221323.png" alt="2017 02 07 221323">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_罗尔_rolle_定理">3. 罗尔 (Rolle) 定理</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_221732.png" alt="2017 02 07 221732">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_几何解释">3.1. 几何解释</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_221839.png" alt="2017 02 07 221839">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_221911.png" alt="2017 02 07 221911">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_三个条件缺一不可">3.2. 三个条件缺一不可</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_222314.png" alt="2017 02 07 222314">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_罗尔_rolle_定理原型">3.3. 罗尔 (Rolle) 定理原型</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_222733.png" alt="2017 02 07 222733">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_225650.png" alt="2017 02 07 225650">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_225736.png" alt="2017 02 07 225736">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_思考题">3.4. 思考题</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_225813.png" alt="2017 02 07 225813">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-07_230036.png" alt="2017 02 07 230036">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_拉格朗日_lagrange_中值定理">4. 拉格朗日 (Lagrange) 中值定理</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-08_100604.png" alt="2017 02 08 100604">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_几何解释_2">4.1. 几何解释</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-08_101042.png" alt="2017 02 08 101042">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-08_101707.png" alt="2017 02 08 101707">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_物理解释">4.2. 物理解释</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/2017-02-08_102126.png" alt="2017 02 08 102126">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_其他形式">4.3. 其他形式</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2016-11-18-01.png" alt="2016 11 18 01">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_103900.png" alt="2017 02 08 103900">
+</div>
+<div class="title">Figure 1. 有限增量公式</div>
+</div>
+<div class="sect3">
+<h4 id="_验证">4.3.1. 验证</h4>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_104234.png" alt="2017 02 08 104234">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lagrange_定理有两个重要推论">4.4. Lagrange 定理有两个重要推论</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_104234.png" alt="2017 02 08 104234">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_证明">4.4.1. 证明</h4>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_104715.png" alt="2017 02 08 104715">
+</div>
+<div class="title">Figure 2. 在一区间上导数恒为零的函数必为常值函数</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_105037.png" alt="2017 02 08 105037">
+</div>
+<div class="title">Figure 3. 在一区间上导数恒等的两个函数只相差一个常数</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lagrange_定理应用">4.5. Lagrange 定理应用</h3>
+<div class="sect3">
+<h4 id="_不等式的证明">4.5.1. 不等式的证明</h4>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_105530.png" alt="2017 02 08 105530">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_105758.png" alt="2017 02 08 105758">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_105914.png" alt="2017 02 08 105914">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_110147.png" alt="2017 02 08 110147">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_110422.png" alt="2017 02 08 110422">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_110528.png" alt="2017 02 08 110528">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_恒等式的证明">4.5.2. 恒等式的证明</h4>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_113059.png" alt="2017 02 08 113059">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_柯西_cauchy_中值定理">4.6. 柯西 (Cauchy) 中值定理</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_113158.png" alt="2017 02 08 113158">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_113414.png" alt="2017 02 08 113414">
+</div>
+<div class="title">Figure 4. 倒推法</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_132725.png" alt="2017 02 08 132725">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_微分中值定理关系">4.7. 微分中值定理关系</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_133306.png" alt="2017 02 08 133306">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_中值定理的证明题">4.8. 中值定理的证明题</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_133647.png" alt="2017 02 08 133647">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_133910.png" alt="2017 02 08 133910">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_例题">4.9. 例题</h3>
+<div class="imageblock">
+<div class="content">
+<img src="http://localhost:1313/src/img/gaoshu/2017-02-08_134504.png" alt="2017 02 08 134504">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86/" rel="prev"><span>«Previous</span><p>微分</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/java/netty/" rel="next"><span>Next»</span><p>Netty</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

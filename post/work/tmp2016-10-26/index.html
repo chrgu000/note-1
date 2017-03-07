@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>临时文件</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="临时文件" />
+<meta property="og:description" content="ContentsServer definitionsaddress of a MySQL server.This will keep MaxScale aware of the state of the servers.MySQL Monitor documentation:Service definitionsReadConnRoute documentation:ReadWriteSplit documentation:This service enables the use of the MaxAdmin interfaceMaxScale administration guide:Listener definitions for the servicesGRANT ALL PRIVILEGES ON . TO &#39;mlq&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;flush privileges;
+GRANT ALL PRIVILEGES ON . TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/tmp2016-10-26/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">临时文件</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_server_definitions">Server definitions</a></li>
+<li><a href="#_address_of_a_mysql_server">address of a MySQL server.</a></li>
+<li><a href="#_this_will_keep_maxscale_aware_of_the_state_of_the_servers">This will keep MaxScale aware of the state of the servers.</a></li>
+<li><a href="#_mysql_monitor_documentation">MySQL Monitor documentation:</a></li>
+<li><a href="#_service_definitions">Service definitions</a></li>
+<li><a href="#_readconnroute_documentation">ReadConnRoute documentation:</a></li>
+<li><a href="#_readwritesplit_documentation">ReadWriteSplit documentation:</a></li>
+<li><a href="#_this_service_enables_the_use_of_the_maxadmin_interface">This service enables the use of the MaxAdmin interface</a></li>
+<li><a href="#_maxscale_administration_guide">MaxScale administration guide:</a></li>
+<li><a href="#_listener_definitions_for_the_services">Listener definitions for the services</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>GRANT ALL PRIVILEGES ON <strong>.</strong> TO 'mlq'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;
+flush privileges;</p>
+</div>
+<div class="paragraph">
+<p>GRANT ALL PRIVILEGES ON <strong>.</strong> TO 'root'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;</p>
+</div>
+<div class="paragraph">
+<p>threads=1</p>
+</div>
+<h1 id="_server_definitions" class="sect0">Server definitions</h1>
+
+<h1 id="_address_of_a_mysql_server" class="sect0">address of a MySQL server.</h1>
+<div class="paragraph">
+<p>#</p>
+</div>
+<div class="paragraph">
+<p>type=server
+address=mysql-m
+port=3306
+protocol=MySQLBackend</p>
+</div>
+<div class="paragraph">
+<p>type=server
+address=mysql-s1
+port=3306
+protocol=MySQLBackend</p>
+</div>
+<h1 id="_this_will_keep_maxscale_aware_of_the_state_of_the_servers" class="sect0">This will keep MaxScale aware of the state of the servers.</h1>
+
+<h1 id="_mysql_monitor_documentation" class="sect0">MySQL Monitor documentation:</h1>
+<div class="paragraph">
+<p>type=monitor
+module=mysqlmon
+servers=server1,server2
+user=root</p>
+</div>
+<h1 id="_service_definitions" class="sect0">Service definitions</h1>
+<div class="paragraph">
+<p>#
+# Service Definition for a read-only service and
+# a read/write splitting service.
+#</p>
+</div>
+<h1 id="_readconnroute_documentation" class="sect0">ReadConnRoute documentation:</h1>
+<div class="paragraph">
+<p>type=service
+router=readconnroute
+servers=server1,server2
+user=root
+passwd=111111
+router_options=slave</p>
+</div>
+<h1 id="_readwritesplit_documentation" class="sect0">ReadWriteSplit documentation:</h1>
+
+<h1 id="_this_service_enables_the_use_of_the_maxadmin_interface" class="sect0">This service enables the use of the MaxAdmin interface</h1>
+
+<h1 id="_maxscale_administration_guide" class="sect0">MaxScale administration guide:</h1>
+<div class="paragraph">
+<p>type=service
+router=cli</p>
+</div>
+<h1 id="_listener_definitions_for_the_services" class="sect0">Listener definitions for the services</h1>
+<div class="paragraph">
+<p>#
+# These listeners represent the ports the
+# services will listen on.
+#</p>
+</div>
+<div class="paragraph">
+<p>type=listener
+service=Read-Only Service
+protocol=MySQLClient
+port=4008</p>
+</div>
+<div class="paragraph">
+<p>type=listener
+service=MaxAdmin Service
+protocol=maxscaled
+port=6603</p>
+</div>
+<div class="paragraph">
+<p>port            = 3306
+socket          = /tmp/mysql.sock</p>
+</div>
+<div class="paragraph">
+<p>port            = 3306
+socket          = /tmp/mysql.sock
+skip-external-locking
+key_buffer_size = 256M
+max_allowed_packet = 1M
+table_open_cache = 256
+sort_buffer_size = 1M
+read_buffer_size = 1M
+read_rnd_buffer_size = 4M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+query_cache_size= 16M
+thread_concurrency = 8
+innodb_data_home_dir =
+innodb_data_file_path = /dev/raw/raw6:1Graw
+log-bin=mysql-bin
+binlog_format=mixed
+server-id=1
+log-bin=mysql-bin
+binlog-do-db=bbs
+binlog-do-db=test
+binlog-ignore-db=mysql</p>
+</div>
+<div class="paragraph">
+<p>quick
+max_allowed_packet = 16M</p>
+</div>
+<div class="paragraph">
+<p>no-auto-rehash</p>
+</div>
+<div class="paragraph">
+<p>key_buffer_size = 128M
+sort_buffer_size = 128M
+read_buffer = 2Ms
+write_buffer = 2M</p>
+</div>
+<div class="paragraph">
+<p>interactive-timeout</p>
+</div>
+<div class="paragraph">
+<p>ssh core@192.168.137.15</p>
+</div>
+<div class="paragraph">
+<p>docker --version</p>
+</div>
+<div class="paragraph">
+<p>docker-compose --version</p>
+</div>
+<div class="paragraph">
+<p>sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher dishui.io:5000/rancher/agent:v1.1.0 <a href="http://192.168.137.17:8080/v1/scripts/7BE4F56FB3CACF7BAF3A:1481533200000:ygHX6SMPGkg8lv7J6hgNxDcgk" class="bare">http://192.168.137.17:8080/v1/scripts/7BE4F56FB3CACF7BAF3A:1481533200000:ygHX6SMPGkg8lv7J6hgNxDcgk</a></p>
+</div>
+<div class="paragraph">
+<p>openssl req -x509 -days 3650 -subj '/CN=docker.io/' -nodes -newkey rsa:2048 -keyout registry.key -out registry.crt</p>
+</div>
+<div class="paragraph">
+<p>312 197
+146 56</p>
+</div>
+<div class="paragraph">
+<p>app
+banner 尺寸</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">类别</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">尺寸(宽 X 高)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">banner</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">750X486</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">热门推荐</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">312X197</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">商品图片</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">750X458</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">店铺logo(长)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">146X56</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>version: '2'
+services:
+  test-n1:
+    image: dishui.io:5000/nginx:stable
+    volume_driver: rancher-nfs
+    stdin_open: true
+    volumes:
+    - test:/test
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+#!/bin/bash
+docker pull rancher/healthcheck:v0.1.0
+docker pull rancher/net:v0.7.5
+docker pull rancher/metadata:v0.6.8
+docker pull rancher/network-manager:v0.2.17
+docker pull rancher/scheduler:v0.4.0</p>
+</div>
+<div class="paragraph">
+<p>docker push dishui.io:5000/rancher/healthcheck:v0.1.0
+docker push dishui.io:5000/rancher/net:v0.7.5
+docker push dishui.io:5000/rancher/metadata:v0.6.8
+docker push dishui.io:5000/rancher/network-manager:v0.2.17
+docker push dishui.io:5000/rancher/scheduler:v0.4.0</p>
+</div>
+<div class="paragraph">
+<p>awk '{if($1 ~ "^rancher"){print $1" "$2" "$3}}'</p>
+</div>
+<div class="paragraph">
+<p>str=$1</p>
+</div>
+<div class="paragraph">
+<p>for i=0; i &lt; ${#str[*]}; i++
+do
+    echo ${str[$i]}
+done</p>
+</div>
+<div class="paragraph">
+<p>str=($1)</p>
+</div>
+<div class="paragraph">
+<p>docker tag ${str[2]} dishui.io:5000/${str[0]}:${str[1]}
+docker push dishui.io:5000/${str[0]}:${str[1]}</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  test-n1:
+    scale: 1
+  maxscale:
+    image: dishui.io:5000/asosso/maxscale:1.4
+    container_name: maxscale
+    volumes:
+      - ./maxscale.cnf:/etc/maxscale.cnf
+  mysql-m:
+    container_name: mysql-m
+    image: dishui.io:5000/mysql:5.5.52
+    environment:
+      MYSQL_ROOT_PASSWORD: '111111'
+    volumes:
+      - ./cnf/mysql/mysql-m.cnf:/etc/mysql/conf.d/mysqld.cnf
+  mysql-s1:
+    container_name: mysql-s1
+    image: dishui.io:5000/mysql:5.5.52
+    environment:
+      MYSQL_ROOT_PASSWORD: '111111'
+    volumes:
+      - ./cnf/mysql/mysql-s1.cnf:/etc/mysql/conf.d/mysqld.cnf
+  mysql-s2:
+    container_name: mysql-s2
+    image: dishui.io:5000/mysql:5.5.52
+    environment:
+      MYSQL_ROOT_PASSWORD: '111111'
+    volumes:
+      - ./cnf/mysql/slave2-my.cnf:/etc/mysql/conf.d/mysqld.cnf</p>
+</div>
+<div class="paragraph">
+<p>GRANT REPLICATION SLAVE ON <strong>.</strong> TO 'repluser'@'%' IDENTIFIED BY 'replpass';
+FLUSH PRIVILEGES;</p>
+</div>
+<div class="paragraph">
+<p>CHANGE MASTER TO MASTER_HOST='mysql-m',MASTER_USER='repluser',MASTER_PASSWORD='replpass',MASTER_LOG_FILE='master-bin.000004',MASTER_LOG_POS=397;</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash
+docker pull mailiqing.com:5000/$1
+docker tag mailiqing.com:5000/$1 $1
+docker rmi mailiqing.com:5000/$1</p>
+</div>
+<div class="paragraph">
+<p>docker run -d --name=rancher-server --restart=unless-stopped -p 9090:8080 rancher/server</p>
+</div>
+<div class="paragraph">
+<p>netstat -an</p>
+</div>
+<div class="paragraph">
+<p>2，lsof -i</p>
+</div>
+<div class="paragraph">
+<p>tar -zxPvf /tmp/stable-path`date +%Y-%m-%d`.tar.gz -C /home/b2b/</p>
+</div>
+<div class="paragraph">
+<p>/program/company/address/index.jsp?menu_id=20160512O573674</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pc-web:
+  mem_limit: 4294967296
+  image: mailiqing.com:5000/tomcat:1.2
+  stdin_open: true
+  volumes:
+  - b2b:/apache-tomcat-7.0.62/webapps/b2b
+  - data:/apache-tomcat-7.0.62/webapps/b2b/data
+  tty: true
+  links:
+  - redis:redis
+  ports:
+  - 8080:8080/tcp
+  labels:
+    io.rancher.container.pull_image: always</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>rancher/dns:v0.11.0
+rancher/network-manager:v0.2.17
+rancher/agent:v1.1.1
+rancher/net:v0.7.5
+rancher/metadata:v0.6.8
+rancher/storage-nfs:v0.6.0
+rancher/scheduler:v0.4.0
+rancher/healthcheck:v0.1.0</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash
+docker pull mailiqing.com:5000/$1
+docker tag mailiqing.com:5000/$1 $1
+docker rmi mailiqing.com:5000/$1</p>
+</div>
+<div class="paragraph">
+<p>mount -t nfs -o rsize=8192,wsize=8192 192.168.1.126:/home/data /home/core/b2b/data</p>
+</div>
+<div class="paragraph">
+<p>FROM dishui.io:5000/dishuigit/java:1.0
+COPY ./apache-tomcat-7.0.62.tar.gz ./python3.tar.gz /tar/
+COPY ./tomcat.conf /etc/supervisord.conf.d/tomcat.conf
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+       &amp;&amp; tar -zxPf /tar/python3.tar.gz -C / \
+       &amp;&amp; ln -s /usr/local/python3/bin/python3 /usr/bin/python3 \
+       &amp;&amp; curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" class="bare">http://mirrors.aliyun.com/repo/Centos-7.repo</a> \
+       &amp;&amp; yum install python-setuptools -y \
+       &amp;&amp; easy_install -i <a href="http://pypi.doubanio.com/simple" class="bare">http://pypi.doubanio.com/simple</a> supervisor \
+       &amp;&amp; echo_supervisord_conf &gt; /etc/supervisord.conf \
+       &amp;&amp; mkdir -p /etc/supervisord.conf.d \
+       &amp;&amp; echo -e "[include]\nfiles = /etc/supervisord.conf.d/*.conf" &gt;&gt; /etc/supervisord.conf \
+      &amp;&amp; tar -zxPf /tar/apache-tomcat-7.0.62.tar.gz -C / \
+      &amp;&amp; rm -rf tar
+COPY ./server.xml /apache-tomcat-7.0.62/conf/server.xml
+EXPOSE 8080
+ENTRYPOINT  ["/usr/bin/supervisord","-n"]</p>
+</div>
+<div class="paragraph">
+<p>FROM centos:7
+MAINTAINER <a href="mailto:dishui_git@126.com">dishui_git@126.com</a>
+ENV LANG en_US.utf8
+ENV JAVA_HOME /usr/local/java/jdk1.7.0_79
+COPY ./python3.tar.gz ./jdk-7u79-linux-x64.rpm /tar/
+RUN tar -zxPf /tar/python3.tar.gz -C / \
+       &amp;&amp; ln -s /usr/local/python3/bin/python3 /usr/bin/python3 \
+       &amp;&amp; curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" class="bare">http://mirrors.aliyun.com/repo/Centos-7.repo</a> \
+       &amp;&amp; yum install python-setuptools -y \
+       &amp;&amp; easy_install -i <a href="http://pypi.doubanio.com/simple" class="bare">http://pypi.doubanio.com/simple</a> supervisor \
+       &amp;&amp; echo_supervisord_conf &gt; /etc/supervisord.conf \
+       &amp;&amp; mkdir -p /etc/supervisord.conf.d \
+       &amp;&amp; echo -e "[include]\nfiles = /etc/supervisord.conf.d/*.conf" &gt;&gt; /etc/supervisord.conf \
+       &amp;&amp; rpm -ivh tar/jdk-7u79-linux-x64.rpm --prefix=/usr/local/java \
+       &amp;&amp; rm -rf tar</p>
+</div>
+<div class="paragraph">
+<p>netsh interface portproxy add v4tov4 listenport=2222 connectaddress=192.168.137.20 connectport=22</p>
+</div>
+<div class="paragraph">
+<p>/home/core/opt/src/data/b2b:/apache-tomcat-7.0.62/webapps/b2b
+/home/core/opt/src/data/setenv.sh:/apache-tomcat-7.0.62/bin/setenv.sh
+/home/core/opt/src/data/jprofiler9:/jprofiler9</p>
+</div>
+<div class="paragraph">
+<p>JAVA_OPTS="-agentpath:/jprofiler9/bin/linux-x86/libjprofilerti.so=port=8849,nowait"</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  pc-web:
+    image: dishui.io:5000/dishuigit/tomcat:1.0
+    stdin_open: true
+    volumes:
+    - /home/core/opt/src/data/setenv.sh:/apache-tomcat-7.0.62/bin/setenv.sh
+    - /home/core/opt/src/data/b2b:/apache-tomcat-7.0.62/webapps/b2b
+    - /home/core/opt/src/data/jprofiler9:/jprofiler9
+    tty: true
+    ports:
+    - 8080:8080/tcp
+    labels:
+      io.rancher.container.pull_image: always</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  pc-web:
+    scale: 1</p>
+</div>
+<div class="paragraph">
+<p>location ~* \.(gif|jpg|jpeg|png)$ {</p>
+</div>
+<div class="paragraph">
+<p>}</p>
+</div>
+<div class="paragraph">
+<p>极光推送 内网 不能成功</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  pc-web1:
+    image: mailiqing.com:5000/tomcat:1.2
+    stdin_open: true
+    volumes:
+    - /home/core/b2b:/apache-tomcat-7.0.62/webapps/b2b
+    - /home/core/jprofiler9:/jprofiler9
+    - /home/core/setenv.sh:/apache-tomcat-7.0.62/bin/setenv.sh
+    tty: true
+    ports:
+    - 8080:8080/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  redis:
+    image: mailiqing.com:5000/redis:3.2-alpine
+    stdin_open: true
+    tty: true
+    ports:
+    - 6379:6379/tcp
+    command:
+    - redis-server
+    - --appendonly
+    - 'yes'
+    labels:
+      io.rancher.container.pull_image: always</p>
+</div>
+<div class="paragraph">
+<p>116.90.81.68/</p>
+</div>
+<div class="paragraph">
+<p>20161122Clb346X
+20161122C5oL647
+20161121aGkCkBU
+20161121wsdA515
+201611215E5D76H
+20161121438Dhpo
+20161122S2673K5
+20161122IB3q4VX</p>
+</div>
+<div class="paragraph">
+<p>20161122uo05V64
+201611222jYYGMS
+20161121ovyNQnO
+20161121E04N050
+20161121180V27h
+20161121840UMhE
+201611223q648N6
+20161122GlwA81y</p>
+</div>
+<div class="paragraph">
+<p>LANG="zh_CN.GB18030"
+SUPPORTED="zh_CN.UTF-8:zh_CN:zh:en_US.UTF-8:en_US:en"
+SYSFONT="latarcyrheb-sun16"</p>
+</div>
+<div class="paragraph">
+<p>sudo docker-volume cifs --username user --password pass --domain domain --security security</p>
+</div>
+<div class="paragraph">
+<p>sudo nohup docker-volume-netshare cifs &amp;</p>
+</div>
+<div class="paragraph">
+<p>mount -t cifs //192.168.137.2/hugo /hugo -o username=dishui,domain=storage,password=dishui,uid=0,gid=0</p>
+</div>
+<div class="paragraph">
+<p>docker volume create -d cifs --name cifshost/share --opt username=dishui --opt password=dishui --opt domain=192.168.137.2 --opt security=security</p>
+</div>
+<div class="paragraph">
+<p>docker volume create -d cifs --name myvol -o share=cifs:/share -o username=dishui -o password=dishui -o domain=storage -o security=security</p>
+</div>
+<div class="paragraph">
+<p>docker volume create -d cifs --name myvol -o share=192.168.137.2/hugo:/share -o username=dishui -o password=dishui -o domain=storage</p>
+</div>
+<div class="paragraph">
+<p>docker volume create -d cifs --name myvol -o share=//192.168.137.2/hugo:/share -o username=dishui -o password=dishui -o domain=storage</p>
+</div>
+<div class="paragraph">
+<p>--username dishui --password dishui --domain domain</p>
+</div>
+<div class="paragraph">
+<p>sudo nohup docker-volume-netshare cifs --username dishui --password dishui --domain storage &amp;</p>
+</div>
+<div class="paragraph">
+<p>docker run -i -t --volume-driver=cifs -v 192.168.137.2/hugo:/hugo centos:7 /bin/bash</p>
+</div>
+<div class="paragraph">
+<p>'\ntitle = ""\ndate = "2016-12-27"\n'
+--update-cache --repository <a href="http://dl-3.alpinelinux.org/alpine/main/x86_64/" class="bare">http://dl-3.alpinelinux.org/alpine/main/x86_64/</a> --allow-untrusted</p>
+</div>
+<div class="paragraph">
+<p>懒人</p>
+</div>
+<div class="paragraph">
+<p>FROM mailiqing.com/java:1.1
+COPY ./es1.7.tar.gz /
+COPY ./es.conf /etc/supervisord.conf.d/es.conf
+RUN tar -zxf /es1.7.tar.gz \
+    &amp;&amp; rm -rf /elasticsearch-1.7.1/logs \
+    &amp;&amp; rm -rf /es1.7.tar.gz
+EXPOSE 9200 9300
+CMD ["/usr/bin/supervisord","-n"]</p>
+</div>
+<div class="paragraph">
+<p>\ndescription = \"\"\ndate = "$DATE"\ncategories = [\n]\ntags = [\n]\nthumbnail = \"\"\ntitle = \"\"\n\n\n</p>
+</div>
+<div class="paragraph">
+<p>+\ndescription = \"\"\n</p>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/tmp/" rel="prev"><span>«Previous</span><p>临时文件</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/mathematics/xuxiaozhan/hanshu-qiudao/" rel="next"><span>Next»</span><p>函数求导</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

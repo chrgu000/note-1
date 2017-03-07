@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>swarm</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="swarm" />
+<meta property="og:description" content="Contents1. Swarm1.1. 环境1.2. docker 版本1.3. docker swarm 命令详情1.4. 创建 Swarm 集群1.4.1. 初始化1.4.2. 查看结果1.4.3. 把 agent swarm-01 添加到 swarm 集群1.4.4. 部署应用2. TMP1. Swarm1.1. 环境linux主机CoreOS Alpha 1214.0.0
+主机名
+IP
+类型
+swarm-manager
+192.168.137.16
+manager
+swarm-01
+192." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/docker-swarm/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">swarm</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/docker" rel="category">docker</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_swarm">1. Swarm</a>
+<ul class="sectlevel2">
+<li><a href="#_环境">1.1. 环境</a></li>
+<li><a href="#_docker_版本">1.2. docker 版本</a></li>
+<li><a href="#_docker_swarm_命令详情">1.3. docker swarm 命令详情</a></li>
+<li><a href="#_创建_strong_swarm_strong_集群">1.4. 创建 <strong>Swarm</strong> 集群</a>
+<ul class="sectlevel3">
+<li><a href="#_初始化">1.4.1. 初始化</a></li>
+<li><a href="#_查看结果">1.4.2. 查看结果</a></li>
+<li><a href="#_把_strong_agent_strong_strong_swarm_01_strong_添加到_strong_swarm_strong_集群">1.4.3. 把 <strong>agent</strong> <strong>swarm-01</strong> 添加到 <strong>swarm</strong> 集群</a></li>
+<li><a href="#_部署应用">1.4.4. 部署应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_tmp">2. TMP</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_swarm">1. Swarm</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_环境">1.1. 环境</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>linux主机CoreOS Alpha 1214.0.0</p>
+</div>
+</blockquote>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">主机名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">类型</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">swarm-manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.137.16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">swarm-01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.137.17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_docker_版本">1.2. docker 版本</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession">$ docker version
+Client:
+ Version:      1.12.1
+ API version:  1.24
+ Go version:   go1.6.3
+ Git commit:   7a86f89
+ Built:
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.12.1
+ API version:  1.24
+ Go version:   go1.6.3
+ Git commit:   7a86f89
+ Built:
+ OS/Arch:      linux/amd64</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_swarm_命令详情">1.3. docker swarm 命令详情</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>docker swarm</code>：集群管理，子命令有 <code>init</code>, <code>join</code>,<code>join-token</code>, <code>leave</code>, <code>update</code></p>
+</li>
+<li>
+<p><code>docker node</code>：节点管理，子命令有 <code>demote</code>, <code>inspect</code>,<code>ls</code>, <code>promote</code>, <code>rm</code>, <code>ps</code>, <code>update</code></p>
+</li>
+<li>
+<p><code>docker service</code>：服务管理，子命令有 <code>create</code>, <code>inspect</code>, <code>ps</code>, <code>ls</code> ,<code>rm</code> , <code>scale</code>, <code>update</code></p>
+</li>
+<li>
+<p><code>docker stack/deploy</code>：试验特性，用于多应用部署</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_创建_strong_swarm_strong_集群">1.4. 创建 <strong>Swarm</strong> 集群</h3>
+<div class="sect3">
+<h4 id="_初始化">1.4.1. 初始化</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker swarm init --listen-addr 192.168.137.16:2377 <i class="conum" data-value="1"></i><b>(1)</b>
+    --advertise-addr 192.168.137.16  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>监听地址和端口</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>广播地址</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_查看结果">1.4.2. 查看结果</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession">$ docker node ls
+ID                           HOSTNAME    STATUS  AVAILABILITY  MANAGER STATUS
+4cq8ppe7gpf8tvvqcdp6nqty8    swarm-01    Ready   Active
+56sak7fpfts2tihvc5wpfhbt6 *  coreostest  Ready   Active        Leader</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_把_strong_agent_strong_strong_swarm_01_strong_添加到_strong_swarm_strong_集群">1.4.3. 把 <strong>agent</strong> <strong>swarm-01</strong> 添加到 <strong>swarm</strong> 集群</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker swarm join --token SWMTKN-1-4orz6854t4zhmbwigvqw1i2js5agediqfxm3hglunw9njw2rsu-5296wwmly6c6j5scorkrkmxz8     192.168.137.16:2377</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_部署应用">1.4.4. 部署应用</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker service create --replicas 3 --name my-web -p 80:80 dishui.io:5000/nginx:stable</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">参考</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[[<a href="https://docs.docker.com/engine/swarm" class="bare">https://docs.docker.com/engine/swarm</a>]]</p>
+</li>
+<li>
+<p>[[使用docker 1.12 搭建多主机docker swarm集群 | <a href="http://www.lxy520.net/2016/07/02/shi-yong-docker-1-12-da-jian-duo-zhu-ji-docker-swarmji-qun/" class="bare">http://www.lxy520.net/2016/07/02/shi-yong-docker-1-12-da-jian-duo-zhu-ji-docker-swarmji-qun/</a>]]</p>
+</li>
+<li>
+<p>[[docker 1.12 的服务自动发现 | <a href="http://www.lxy520.net/2016/09/03/docker-1-12-de-fu-wu-zi-dong-fa-xian/" class="bare">http://www.lxy520.net/2016/09/03/docker-1-12-de-fu-wu-zi-dong-fa-xian/</a>]]</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tmp">2. TMP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>docker swarm join \
+    --token SWMTKN-1-4orz6854t4zhmbwigvqw1i2js5agediqfxm3hglunw9njw2rsu-5296wwmly6c6j5scorkrkmxz8 \
+    192.168.137.16:2377</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/svn-setup/" rel="prev"><span>«Previous</span><p>svn 安装与配置</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/tip/" rel="next"><span>Next»</span><p>tip</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

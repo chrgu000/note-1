@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netty</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Netty" />
+<meta property="og:description" content="NIO 服务端的主要创建过程打开 ServerSocketChannel, 用于监听客户端的连接,它是所有客户端连接的父管道
+ServerSocketChannel acceptorSvr = ServerSocketChannel.open();绑定监听端口, 设置连接为非阻塞模式
+acceptorSvr.socket().bind(new InetSocketAddress(InetAddress.getByName(&#34;IP&#34;),port));acceptorSvr.configureBlocking(false);创建 Reactor 线程, 创建多路复用器并启动线程
+Selector selector = Selector.open();new Thread(new ReactorTask()).start();将 ServerSocketChannel 注册到 Reactor 线程的多路复用器 Selector 上, 监听 ACCEPT 事件
+SelectionKey key = acceptorSvr.register(selector, SelectionKey.OP_ACCEPT, ioHandler);多路复用器在线程 run 方法的无线循环体内轮询准备就绪的 Key
+int num = selector.select();Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();Iterator&lt;SelectionKey&gt; it = selectionKeys." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/netty/" />
+
+
+<meta property="og:updated_time" content="2017-01-09T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Netty</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-09 00:00:00 &#43;0000 UTC">January 09, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/java" rel="category">java</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="sect1">
+<h2 id="_nio_服务端的主要创建过程">NIO 服务端的主要创建过程</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>打开 <code>ServerSocketChannel</code>, 用于监听客户端的连接,它是所有客户端连接的父管道</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>ServerSocketChannel acceptorSvr = ServerSocketChannel.open();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>绑定监听端口, 设置连接为非阻塞模式</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>acceptorSvr.socket().bind(new InetSocketAddress(InetAddress.getByName("IP"),port));
+acceptorSvr.configureBlocking(false);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>创建 <code>Reactor</code> 线程, 创建多路复用器并启动线程</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Selector selector = Selector.open();
+        new Thread(new ReactorTask()).start();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将 <code>ServerSocketChannel</code> 注册到 <code>Reactor</code> 线程的多路复用器 <code>Selector</code> 上, 监听 <code>ACCEPT</code> 事件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>SelectionKey key = acceptorSvr.register(selector, SelectionKey.OP_ACCEPT, ioHandler);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>多路复用器在线程 <code>run</code> 方法的无线循环体内轮询准备就绪的 <code>Key</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>int num = selector.select();
+Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();
+Iterator&lt;SelectionKey&gt; it = selectionKeys.iterator();
+while (it.hasNext()) {
+    SelectionKey key = (SelectionKey) it.next();
+    // ... deal with I/O event
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>多路复用器监听到有新的客户端接入,处理新的接入请求,完成 <code>TCP</code> 三次握手,建立物理链路</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>SocketChannel channel = svrChannel.accept();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>设置客户端链路为非阻塞模式</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>channel.configureBlocking(false);
+channel.socket().setReuseAddress(true);
+....</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将新接入的客户端连接注册到 <code>Reactor</code> 线程的多路复用器上,监听读操作,读取客户端发送的网络消息</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>SelectionKey key = socketChannel.register(selector,SelectionKey.OP_READ,ioHandler);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>异步读取客户端请求消息到缓冲区</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>int readNumber = channel.read(receivedBuffer);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>对 <code>ByteBuffer</code> 进行编解码,如果有半包消息指针 <code>reset</code>, 继续读取后续的报文,将解码成功的消息封装成 <code>Task</code>, 投递到业务线程池中,进行业务逻辑编排</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Object message = null;
+while(buffer.hasRemain())
+{
+	byteBuffer.mask();
+	Object message decode(byteBuffer);
+	if (message == null){
+		byteBuffer.reset();
+		break;
+	}
+	messageList.add(message);
+	if(!byteBuffer.hasRemain())
+		byteBuffer.clear();
+	else
+		byteBuffer.compact();
+	if(messageList != null &amp; !messageList.isEmpty()){
+		for(Object messageE : messageList){
+			handlerTask(messageE);
+		}
+	}
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将 <code>POJO</code> 对象 <code>encode</code> 成 <code>ByteBuffer</code>, 调用 <code>SocketChannel</code> 的异步 <code>write</code> 接口, 将消息异步发送给客户端</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>SocketChannel.write(buffer);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<hr>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>如果发送区 <code>TCP</code> 缓冲区满, 会导致写半包, 此时, 需要注册监听写操作位,循环写,直到整包消息写入 <code>TCP</code> 缓冲区</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_参考">参考</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/code4craft/netty-learning">netty-learning</a>
+.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/" rel="prev"><span>«Previous</span><p>微分中值定理</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/activemq/" rel="next"><span>Next»</span><p>ActiveMq</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

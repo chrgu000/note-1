@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>supervisor</title>
+      <link>/post/linux/supervisord/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/supervisord/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_supervisord&#34;&gt;1. supervisord&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_centos_6_5_code_开机启动脚本&#34;&gt;1.1. &lt;code&gt;CentOS-6.5&lt;/code&gt; 开机启动脚本&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_epel_扩展源_python_pip&#34;&gt;安装 epel 扩展源 python-pip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_supervisor_logging&#34;&gt;安装 supervisor-logging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_清理&#34;&gt;清理&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_supervisord&#34;&gt;1. supervisord&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在线安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;# yum install python-setuptools
+# easy_install -i http://pypi.doubanio.com/simple supervisor&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;软件安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#! /bin/bash
+
+# 目录 /root/opt/src
+mkdir -p /root/opt &amp;amp;&amp;amp; \
+tar -zxf supervisor-4.0.0.tar.gz -C /root/opt &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/elementtree-1.2.6-20050316 &amp;amp;&amp;amp; python setup.py install &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/setuptools-20.6.7 &amp;amp;&amp;amp; python setup.py install &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/meld3-1.0.0 &amp;amp;&amp;amp; python setup.py install &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/supervisor-master &amp;amp;&amp;amp; python setup.py install
+mkdir -p /etc/supervisord.conf.d &amp;amp;&amp;amp;\
+echo_supervisord_conf &amp;gt; /etc/supervisord.conf &amp;amp;&amp;amp;\
+echo -e &#34;[include]\nfiles = /etc/supervisord.conf.d/*.conf&#34; &amp;gt;&amp;gt; /etc/supervisord.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo mkdir -p /etc/supervisord.conf.d&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件 sudo vi /etc/supervisord.conf.d/gollum.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:gollum]
+command=gollum /wiki --config /wiki/config.rb --css /wiki/custom.css
+user =root
+autostart=true
+stdout_logfile=/tmp/gollum.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/gollum-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件 sudo vi /etc/supervisord.conf.d/redis.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:redis]
+command=/root/opt/redis-3.0.7/redis-server
+user=root
+autostart=true
+stdout_logfile=/tmp/redis.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/redis-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件 sudo vi /etc/supervisord.conf.d/es.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:es]
+command=/root/opt/elasticsearch-1.7.1/bin/elasticsearch -Xmx2g -Xms2g
+user=root
+autostart=true
+stdout_logfile=/tmp/es.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/es-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Tomcat&lt;/code&gt;&lt;br&gt;
+配置文件 sudo vi /etc/supervisord.conf.d/tomcat.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:tomcat]
+command=/usr/tomcat/apache-tomcat-7.0.62/bin/catalina.sh run
+user=root
+autostart=true
+stdout_logfile=/tmp/tomcat.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/tomcat-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Mysql&lt;/code&gt; 配置文件 sudo vi /etc/supervisord.conf.d/mysql.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:mysql]
+command= /usr/bin/pidproxy /var/lib/mysql/mysql.pid /usr/bin/mysqld_safe --pid-file=/var/lib/mysql/mysql.pid
+user = mysql
+stdout_logfile=/tmp/mysql.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/mysql-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;zookeeper&lt;/code&gt; 配置文件 sudo vi /etc/supervisord.conf.d/zkServer.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:zkServer]
+command=/zookeeper-3.4.8/bin/zkServer.sh start-foreground
+stdout_logfile=/tmp/zk.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/zkServer-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_centos_6_5_code_开机启动脚本&#34;&gt;1.1. &lt;code&gt;CentOS-6.5&lt;/code&gt; 开机启动脚本&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash:/linux/scripts/supervisor-centos6.5-init.sh```&#34; data-lang=&#34;bash:/linux/scripts/supervisor-centos6.5-init.sh```&#34;&gt;== supervisor-logging&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_安装_epel_扩展源_python_pip&#34; class=&#34;sect0&#34;&gt;安装 epel 扩展源 python-pip&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum -y install epel-release python-pip&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_安装_supervisor_logging&#34; class=&#34;sect0&#34;&gt;安装 supervisor-logging&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;pip install supervisor-logging&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_清理&#34; class=&#34;sect0&#34;&gt;清理&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum remove epel-release python-pip -y
+yum clean all&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

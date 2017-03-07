@@ -1,0 +1,11 @@
+# app dev increment tar file
+app_dev_i_tar: app-dev-path{{ ansible_date_time.date }}.tar.gz
+
+# app stable increment tar file
+app_stable_i_tar: app-stable-path{{ ansible_date_time.date }}.tar.gz
+
+# wuliu increment tar file
+pc_wuliu_i_tar: pc-wuliu-path{{ ansible_date_time.date }}.tar.gz
+
+# mailiqing-pc increment tar file
+mailiqing_pc_i_tar: stable-path{{ ansible_date_time.date }}.tar.gz

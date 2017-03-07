@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="商品模块商品列表统一接口URLhttp://app.mailiqing.com/app/goods/search
+支持格式JSON
+HTTP请求方式POST
+Content-Type: application/json;charset=UTF-8
+是否需要登录否
+携带参数说明{&#34;from&#34;:0, # 起始页数&#34;searchKey&#34;:&#34;&#34;, # 搜索框&#34;catId&#34;:&#34;&#34;, # 管理类目id&#34;brandName&#34;:&#34;&#34;, # 品牌&#34;productName&#34;:&#34;&#34;, # 型号&#34;region&#34;:&#34;&#34;, # 出库地&#34;sellerNick&#34;:&#34;&#34;, # 供应商&#34;priceFrom&#34;:&#34;&#34;, # 起始价格&#34;priceTo&#34;:&#34;&#34;, # 结束价格&#34;category&#34;:&#34;&#34;, # 商品类目&#34;shopId&#34;:&#34;&#34;, # 店铺id&#34;shopCat&#34;:&#34;&#34;, # 店铺类目&#34;sort&#34;:0 # 价格排序 0:升序 1:降序}成功参照 搜索 返回数据格式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/app/goods/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="sect1">
+<h2 id="_商品模块">商品模块</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_商品列表统一接口">商品列表统一接口</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST<br>
+Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "from":0,  # 起始页数
+  "searchKey":"",  # 搜索框
+  "catId":"",  # 管理类目id
+  "brandName":"",  # 品牌
+  "productName":"",  # 型号
+  "region":"",  # 出库地
+  "sellerNick":"",  # 供应商
+  "priceFrom":"",  # 起始价格
+  "priceTo":"", # 结束价格
+  "category":"",  # 商品类目
+  "shopId":"",  # 店铺id
+  "shopCat":"",  # 店铺类目
+  "sort":0  # 价格排序 0:升序 1:降序
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>参照 搜索 返回数据格式</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_进入现货市场">进入现货市场</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods" class="bare">http://app.mailiqing.com/app/goods</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>GET<br>
+Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "brandNames": [ #品牌
+    "国产品牌",
+    "东海",
+    "中海油36-1",
+    "昆仑",
+    "韩国SK",
+    "进口品牌"
+  ],
+  "productNames": [ #型号
+    "70#",
+    "弹性体SBS改性沥青防水卷材",
+    "90#",
+    "聚氨脂防水涂料",
+    "自粘防水卷材",
+    "SBS类"
+  ],
+  "sellerNicks": [ #供应商
+    "北京市政路桥建材集团有限公司",
+    "Mai沥青自营",
+    "山东大山路桥工程有限公司",
+    "山东高速物资储运有限公司",
+    "江苏中路新材料科技发展有限公司",
+    "山东华瑞道路材料技术有限公司"
+  ],
+  "hots": [   #热门推荐
+    "国产品牌",
+    "东海",
+    "中海油36-1",
+    "昆仑",
+    "韩国SK",
+    "进口品牌"
+  ],
+  "categorys": [
+    {
+      "catId": "201509145a8o761",
+      "catName": "沥青"
+    },
+    {
+      "catId": "20150915a006n2x",
+      "catName": "沥青添加剂"
+    },
+    {
+      "catId": "20150915H047E36",
+      "catName": "沥青混合料"
+    },
+    {
+      "catId": "20150915H3y0520",
+      "catName": "防水材料"
+    },
+    {
+      "catId": "2015091534715Do",
+      "catName": "设备/检测"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_搜索框">搜索框</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>JSON</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST  Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "searchKey" : "沥青"  <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>string 必须</td>
+</tr>
+</table>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "list": [
+    {
+      "goodsId": "201512308RLi6w2", <i class="conum" data-value="1"></i><b>(1)</b>
+      "title": "70#基质沥青", <i class="conum" data-value="2"></i><b>(2)</b>
+      "imgOriginal": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img", <i class="conum" data-value="3"></i><b>(3)</b>
+      "productPrice": "1800.00", <i class="conum" data-value="4"></i><b>(4)</b>
+      "unit": "吨", <i class="conum" data-value="5"></i><b>(5)</b>
+      "minQuantity": "5000", <i class="conum" data-value="6"></i><b>(6)</b>
+      "repositoryRegion": "华东地区,江苏省,泰州市", <i class="conum" data-value="7"></i><b>(7)</b>
+      "url": "/product/get/201512308RLi6w2" <i class="conum" data-value="8"></i><b>(8)</b>
+    },
+    {
+      "id": "201509155okjh81",
+      "title": "海韵牌70#沥青",
+      "imgOriginal": null,
+      "productPrice": "1745.00",
+      "unit": "吨",
+      "minQuantity": "50000",
+      "repositoryRegion": "华东地区,山东省",
+      "url": "/product/get/201509155okjh81"
+    }
+  ],
+  "totalCount": 719, <i class="conum" data-value="9"></i><b>(9)</b>
+  "totalPages": 72, <i class="conum" data-value="10"></i><b>(10)</b>
+  "state": 1 <i class="conum" data-value="11"></i><b>(11)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>图片</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>商品价格</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>单位</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>最小起订量</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>出库地址</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>商品详情链接</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>总数</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>总页数</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>1:成功 0:失败</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_品牌过滤">品牌过滤</h3>
+<div class="paragraph">
+<p>[[/uploads/2-1.png]]</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>点击 品牌 跳转到 现货市场列表页  携带 <strong>brandName</strong> 到列表页</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST  Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "brandName" : "东海",  #品牌
+  "from" : 2 # 页数(列表页,翻页时 携带)
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>参照 搜索 返回数据格式</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_供应商过滤">供应商过滤</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>点击 供应商 跳转到 现货市场列表页  携带 <strong>sellerNick</strong> 到列表页</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST  Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "sellerNick" : "北京市政路桥建材集团有限公司",  #供应商
+  "from" : 2 # 页数(列表页,翻页时 携带)
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>参照 搜索 返回数据格式</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_型号过滤">型号过滤</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>点击 型号 跳转到 现货市场列表页  携带 <strong>productName</strong> 到列表页</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST  Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "productName" : "SBS",  #型号
+  "from" : 2 # 页数(列表页,翻页时 携带)
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>参照 搜索 返回数据格式</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_类目过滤">类目过滤</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>点击左侧类目 右侧更新数据</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search/category" class="bare">http://app.mailiqing.com/app/goods/search/category</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST  Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "catId" : "201509145a8o761" #类目id
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "brandNames": [
+    "国产品牌",
+    "山西兰亭",
+    "艾施姆"
+  ],
+  "productNames": [
+    "沥青混凝土",
+    "橡胶（ARAC）",
+    "沥青玛蹄脂碎石",
+    "环保橡胶",
+    "排水降噪",
+    "防冰融雪"
+  ],
+  "sellerNicks": [
+    "北京市政路桥建材集团有限公司",
+    "江苏中路新材料科技发展有限公司",
+    "兰亭商社",
+    "北京塞北路通商贸有限公司",
+    "北京岭北筑路材料有限公司",
+    "北京艾施姆科技有限公司"
+  ],
+  "hots": [
+    "国产品牌",
+    "山西兰亭",
+    "艾施姆"
+  ],
+  "categorys": [
+    {
+      "catName": "沥青",
+      "catId": "20150914q0asfEw"
+    },
+    {
+      "catName": "沥青添加剂",
+      "catId": "20150914i3J058e"
+    },
+    {
+      "catName": "沥青混合料",
+      "catId": "20150914m348342"
+    },
+    {
+      "catName": "防水材料",
+      "catId": "201509140qX823u"
+    },
+    {
+      "catName": "设备/检测",
+      "catId": "20150914K2Mm1LN"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_价格排序">价格排序</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST  Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "sort" : 0,    // 0:升序 1:降序
+  "from" : 2 # 页数(列表页,翻页时 携带)
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>参照 搜索 返回数据格式</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_添加商品">添加商品</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/add" class="bare">http://app.mailiqing.com/app/goods/add</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>POST JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "userId" : "2015091886Hi8X7", #用户id
+  "shopId" : "201509187M0Cv51", #店铺id
+  "title" : "东风70#", #商品名称
+  "catCode" : "20150914q0asfEw|20150914w7L7oG2|201509140732S22", #类目
+  "repositoryAddr" : "北京|北京市", #出库地址
+  "price" : 3400,   # 价格 double
+  "inventory" : 400,  # 库存 int
+  "saleAddr" : "北京|北京市", # 销售区域
+  "delivery" : 3, # 交货天数
+  "minMount" : 45,  # 最小起订量
+  "logisticsType" : 0, # 物流信息 0:买家自提 1:卖家送货
+  "goodsDesc" : "70# 沥青好东西", # 商品描述
+  "img" : "img/509476613293148127.jpg|img/624472029306431674" # 图片 多张图片使用 | 分割
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "state": 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "添加商品失败！"
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_商品分类">商品分类</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/procurement/category" class="bare">http://app.mailiqing.com/app/procurement/category</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+<dd>
+<p>无</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "msc_cl": [
+        {
+          "msc_cl": [  # 子类目 数组
+            {
+              "catName": "10#",
+              "catId": "2015091431h7wTV"
+            },
+            {
+              "catName": "60#",
+              "catId": "2015112386UvJoM"
+            },
+            {
+              "catName": "70#",
+              "catId": "201509140732S22"
+            },
+            {
+              "catName": "90#",
+              "catId": "201509144X87wlj"
+            },
+            {
+              "catName": "100#",
+              "catId": "20160112l200k78"
+            },
+            {
+              "catName": "110#",
+              "catId": "2015091482l1w41"
+            },
+            {
+              "catName": "130#",
+              "catId": "20150914L740u1U"
+            },
+            {
+              "catName": "140#",
+              "catId": "20151125460MI7i"
+            },
+            {
+              "catName": "180#",
+              "catId": "20151223iX8q82e,20150914w7L7oG2"
+            }
+          ],
+          "catName": "基质沥青", # 类目名
+          "catId": "20150914w7L7oG2"  # 类目id
+        },
+        {
+          "msc_cl": [
+            {
+              "catName": "SBS类",
+              "catId": "20150914m401ckq"
+            },
+            {
+              "catName": "SBR类",
+              "catId": "2015091418gJ6ub"
+            },
+            {
+              "catName": "橡胶粉",
+              "catId": "20150914pM66574"
+            },
+            {
+              "catName": "PG改性沥青",
+              "catId": "20150914F85313F"
+            },
+            {
+              "catName": "环保橡胶沥青",
+              "catId": "20150914A4mAK2U"
+            },
+            {
+              "catName": "MAC改性沥青",
+              "catId": "201601140E1sgI3"
+            }
+          ],
+          "catName": "改性沥青",
+          "catId": "20150914H6PM003"
+        },
+        {
+          "msc_cl": [
+            {
+              "catName": "公路用乳化沥青",
+              "catId": "20150914165E287"
+            },
+            {
+              "catName": "改性乳化沥青",
+              "catId": "20160318CPQ26JU"
+            },
+            {
+              "catName": "高含固量乳化沥青",
+              "catId": "20150914Wd82123"
+            },
+            {
+              "catName": "高粘度乳化沥青",
+              "catId": ",20150914K6N5Hha"
+            },
+            {
+              "catName": "微表处改性乳化沥青",
+              "catId": "20150914c453WYQ"
+            },
+            {
+              "catName": "冷再生乳化沥青",
+              "catId": "2015091476gmJ1T"
+            },
+            {
+              "catName": "特殊乳化沥青",
+              "catId": "201509146eb8Pyb"
+            },
+            {
+              "catName": "不粘轮乳化沥青",
+              "catId": "20160413Q7Km65j"
+            }
+          ],
+          "catName": "乳化沥青",
+          "catId": "20150914m34mQ5n"
+        },
+        {
+          "msc_cl": [
+            {
+              "catName": "煤沥青",
+              "catId": "20150914eB2cy68"
+            },
+            {
+              "catName": "岩沥青",
+              "catId": "2015091424K8635"
+            },
+            {
+              "catName": "彩色沥青",
+              "catId": "20160106M8nK6iI"
+            },
+            {
+              "catName": "硫化沥青",
+              "catId": "20160106O5tSxi4"
+            },
+            {
+              "catName": "防腐沥青",
+              "catId": "20151019341oqb4"
+            }
+          ],
+          "catName": "其他沥青",
+          "catId": "20150914q48W8K0"
+        }
+      ],
+      "catName": "沥青",
+      "catId": "20150914q0asfEw"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">说明</dt>
+<dd>
+<p>获取的类目是树形结构</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_品牌">品牌</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/app/procurement/brand/{categoryId}" class="bare">http://app.mailiqing.com/app/app/procurement/brand/{categoryId}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{categoryId} : 201509140732S22 # 类目id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://app.mailiqing.com/app/app/procurement/brand/201509140732S22" class="bare">http://app.mailiqing.com/app/app/procurement/brand/201509140732S22</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "brandId": "20150914NO6768t", # 品牌id
+      "brandName": "韩国SK" # 品牌名称
+    },
+    {
+      "brandId": "201509148O45Q61",
+      "brandName": "齐鲁石化"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_立即购买_结算">立即购买 结算</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/app_order/insertOrder.shtml" class="bare">http://app.mailiqing.com/app/app_order/insertOrder.shtml</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "consignee": "77777777", # 联系人
+  "consigneeContact": "177777777", # 联系方式
+  "placeOfDelivery": "277777777", # 收货地址
+  "tihuoType": "1", # 配送方式 0卖家运输，1买家自提
+  "shipRemark": "dsssdsdds", # 备注
+  "invoiceType": "0", # 发票类型 0增值税专用发票，1增值税普通发票
+  "kaijuType": "1", # 开据类型 0一票制，1两票制
+  "buyerId": "20150828QYY07uh", # 买家Id (s_custId)
+  "buyerName": "测试账号_买家1", # 买家名称
+  "goodsId": "201509233SiR651", # 商品ID
+  "goodsNum": "10", # 购买数量
+  "goodsPrice": "12.34" # 商品单价
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "id": "201610131634428", # 订单id
+  "bankNo": "862182325910001", # 账号
+  "totalShipFee": "0.0", # 订单运费
+  "totalOrderAmount": "123.40", # 订单总额
+  "state": 1,
+  "userName": "北京金兆路华电子商务有限公司", # 户名
+  "bank": "招商银行 朝阳门支行", # 开户行
+  "totalGoodsAmount": "123.40" # 订单金额
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "新增订单失败！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_筛选">筛选</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>POST JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "from":1,  # 起始页
+  "searchKey":"沥青", # 搜索关键字
+  "brandName":"国产品牌", # 品牌
+  "productName":"SBS", # 型号
+  "region":"北京市", # 地区
+  "sellerNick":"北京市政路桥建材集团有限公司", # 供应商
+  "priceFrom": 1000, # 起始价格
+  "priceTo": 2000, # 结束价格
+  "sort":0 # 0:升序 1:降序
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>参照 搜索 返回数据格式</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_获取_品牌_型号_供应商">获取 品牌 型号 供应商</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/filter" class="bare">http://app.mailiqing.com/app/goods/filter</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "brandNames": [   #品牌
+    "国产品牌",
+    "东海",
+    "中海油36-1",
+    "昆仑"
+  ],
+  "productNames": [   #型号
+    "70#",
+    "弹性体SBS改性沥青防水卷材",
+    "90#",
+    "聚氨脂防水涂料"
+  ],
+  "sellerNicks": [   #供应商
+    "北京市政路桥建材集团有限公司",
+    "Mai沥青自营",
+    "山东大山路桥工程有限公司",
+    "山东高速物资储运有限公司"
+  ],
+  "state": 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_首页_轮播">首页 轮播</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/carousel?userId=20160919OR42Yb6" class="bare">http://app.mailiqing.com/app/goods/carousel?userId=20160919OR42Yb6</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+<dd>
+<p>空</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "carousel": [ # 轮播图
+    {
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "url": "http://www.mailiqing.com/special/zhyyingkou/zhyyingkou.html"
+    },
+    {
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "url": "http://www.mailiqing.com/special/ziyuandan/ziyuandan.html"
+    }
+  ],
+  "recommend": [ # 热卖推荐
+    {
+      "title": "70#", # 标题
+      "clickCount": "2", # 点击量
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img", # 图片
+      "userName": "小明", # 发布者
+      "type": "商品",  # 类型 资源单|采购单|商品
+      "url": "http://www.mailiqing.com/special/zhyyingkou/zhyyingkou.html" # url
+    },
+    {
+      "title": "70#",
+      "clickCount": "2",
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "userName": "小明",
+      "type": "商品",
+      "url": "http://www.mailiqing.com/special/ziyuandan/ziyuandan.html"
+    }
+  ],
+  "dynamic": [
+    {
+      "imgs": [ "img/57e8efdbe4b09d52039ce4c4.img" ],   # 图片地址
+      "clist": [], # 评论列表
+      "likeCount": 0, # 点赞数量
+      "collectionCount": 0, # 收藏数量
+      "inDate": "2016-09-26 17:52:27.0", # 时间
+      "mood": "呵呵", # 动态详情
+      "userImage": "", # 用户头像
+      "type": "2", # 动态
+      "commentCount": 0, # 评论数
+      "id": "20160926g4V6j65",  # 动态ID
+      "user_name": "ceshi_buyer", # 用户名
+      "isLike": "1", # 是否已点赞 0:是 1:否
+      "isCollection": "1", # 是否收藏 0:是 1:否
+      "user_id": "20150828QYY07uh" # 用户ID
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_首页_类目">首页 类目</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>点击类目 携带类目id 跳转现货市场列表页</p>
+</li>
+<li>
+<p>URL<br>
+<a href="http://app.mailiqing.com/app/goods/search" class="bare">http://app.mailiqing.com/app/goods/search</a></p>
+</li>
+<li>
+<p>携带参数说明</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{"category":"沥青"}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/goods/category" class="bare">http://app.mailiqing.com/app/goods/category</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+<dd>
+<p>无</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "catName": "沥青", # 类目名 点击时  携带
+      "catId": "20150914q0asfEw"
+    },
+    {
+      "catName": "沥青添加剂",
+      "catId": "20150914i3J058e"
+    },
+    {
+      "catName": "沥青混合料",
+      "catId": "20150914m348342"
+    },
+    {
+      "catName": "防水材料",
+      "catId": "201509140qX823u"
+    },
+    {
+      "catName": "设备/检测",
+      "catId": "20150914K2Mm1LN"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_商品详情">商品详情</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/product/get/{id}?userId=20160919OR42Yb6" class="bare">http://app.mailiqing.com/app/product/get/{id}?userId=20160919OR42Yb6</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>id: 20160308fqkgw2G # 商品id
+userId: 20160919OR42Yb6 # 用户id (如果登录,需要携带)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://app.mailiqing.com/app/product/get/20160308fqkgw2G" class="bare">http://app.mailiqing.com/app/product/get/20160308fqkgw2G</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "title": "秦皇岛90#", # 商品名称
+  "unit": "吨", # 单位
+  "imgLarge": [ # 图片大图
+    "http://116.90.81.68:80/koto/img/57e352dee4b0b02f90bf8995.img"
+  ],
+  "imgs": [
+    "http://116.90.81.68:80/koto/img/57e352dee4b0b02f90bf8995.img_300_300.img" # 图片
+  ],
+  "sellerNick": "北京通力正实", # 公司名称
+  "productPrice": "1580.00", # 商品价格
+  "stockQuantity": "5000", # 库存量
+  "packageType": "散装 ", # 包装类型
+  "deliveryDay": "7", # 备货周期 天
+  "saleRegion": "全国",  # 销售区域
+  "minQuantity": "35", # 最小起订量
+  "repositoryRegion": "华北地区,河北省", # 出库地
+  "isSelf": "0", # 是否是自营 0：否 1：是
+  "shopId": "20151119v4N0775",  # 店铺id
+  "phone": "400-187-1158", # 客服电话
+  "goodsDesc":"/h5/goodsDesc/20160308fqkgw2G" # 商品描述
+  "huanxin_no": "20161031je43e0i", # 平台环信号
+  "m_huanxin_no": "20161031je43e0i", # 卖家环信号
+  "plat_image": "20161031je43e0i", # 平台客服头像
+  "member_image": "20161031je43e0i", # 卖家头像
+  "shopInfo": { # 店铺信息
+    "id": "20151119v4N0775", # 店铺id
+    "shopName": "北京通力正实", # 店铺名称
+    "shopLogo": "http://116.90.81.68/data/upload_image/shop/0/7/f082080de6d54d3492f5f57348aacfbe.jpg", # 店铺logo
+    "shopDesc": "\n    北京通力正实贸易有限公司，成立于2009年，公司依法从事沥青、燃料油、危险品等专业贸易。公司注册资金500万元，拥有天津塘沽沥青库（2万库容），北京沥青库（2万库容），有一支管理经验丰富，技术力量雄厚的专业团队，各类专业人才近百名。\n公司年销售、配送能力七十万吨以上。主要经销、配送中国石油秦皇岛、辽河、任丘、呼和浩特等炼厂生产的《昆仑》牌道路沥青、渣油、油浆、焦化料、催化料、塔顶油、燃料油及一线、二线、三线防水助剂；中海油滨州炼厂生产的《中海36-1》道路沥青、蜡油及200#焦化油；中国石油保定、镇海、齐鲁、南京金陵、西安、燕化等炼厂生产的《东海牌》道路沥青、油浆及渣油。在三大央企以上产品销量名列前茅。\n在公司全体员工的积极努力下，公司先后获得：2010年中国石化炼油上海销售有限公司“东海牌”沥青稳定发展奖，河北省A级经销商等荣誉；获得中油燃料油股份有限公司、中海油中海沥青股份有限公司的大客户待遇。 公司以“科技为先、质量为本、信誉为金”为宗旨，以创新发展，靠质量求市场，用诚信求合作，竭诚为各界朋友提供优质的产品和诚信的服务。", # 店铺简介
+    "url": "/shop/get/20151119v4N0775" # 店铺链接
+    "collectCount": 12, # 收藏数量
+    "isCollect": 1, # 是否收藏 0:否 1:是
+    "goodsCount": 17, # 商品数量
+    "saleCount": 11.5 # 销售量
+  },
+  "services": [ # 服务
+    {
+      "icon": "http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a7.img",
+      "text": "物流"
+    },
+    {
+      "icon": "http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a3.img",
+      "text": "金融"
+    },
+    {
+      "icon": "http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a1.img",
+      "text": "委托找货"
+    },
+    {
+      "icon": "http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a5.img",
+      "text": "加工"
+    }
+  ],
+  "recommandGoods": [ # 热门推荐
+    {
+      "title": "辽河石化70#",
+      "imgOriginal": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "productPrice": "1610.00",
+      "unit": "吨",
+      "minQuantity": "35",
+      "repositoryRegion": "华北地区,河北省",
+      "url": "/product/get/2016030874s56CG",
+      "goodsId": "2016030874s56CG"
+    },
+    {
+      "title": "石家庄炼厂90#",
+      "imgOriginal": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "productPrice": "1550.00",
+      "unit": "吨",
+      "minQuantity": "35",
+      "repositoryRegion": "华北地区,河北省",
+      "url": "/product/get/20160308La441Oe",
+      "goodsId": "20160308La441Oe"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_进入店铺">进入店铺</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/shop/get/{id}?userId=20160919OR42Yb6" class="bare">http://app.mailiqing.com/app/shop/get/{id}?userId=20160919OR42Yb6</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>GET Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{id} : 2015091404A3ol8 # 店铺id
+userId: 20160919OR42Yb6 # 用户id (如果登录,需要携带)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://app.mailiqing.com/app/shop/get/2015091404A3ol8" class="bare">http://app.mailiqing.com/app/shop/get/2015091404A3ol8</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "id" : "2015091404A3ol8", # 店铺id
+  "shopName" : "北京中物振华贸易有限公司", # 店铺名称
+  "shopLogo" : "http://116.90.81.68/data/upload_image/shop/13/0/016a6e2b4da14457b1da90ed39ed27c7.jpg", # 店铺logo
+  "shopDesc" : "北京中物振华贸易有限公司是以经营道路沥青、石化产品等为主的专业性贸易公司。公司拥有进出口企业许可证。近年来，公司在市场实践中积累了丰富的市场运作经验，拥有一支专业化、高素质、稳定团结的职工队伍。公司经营进口70号、90号道路沥青及乳化沥青和改性沥青。公司在天津塘沽建有12000吨散装沥青储存库区，年周转能力20余万吨，在山西平遥建有10000吨散装沥青库区。我公司是华北地区第一家经销进口散装道路沥青的企业，同时还是韩国“SK”沥青在部分地区的独家代理商，公司平均每年自销进口沥青20万吨以上，外贸进口额在8亿元人民币／年以上。 多年来，公司秉承“真诚、守信”的经营理念，以严谨务实的做事风格，在客户中赢得了充分的信誉和支持。", # 店铺描述
+  "url" : "/shop/get/2015091404A3ol8",
+  "collectCount" : "12", # 收藏数量
+  "goodsCount" : "12", # 商品数量
+  "saleCount" : "11.5", # 销售量
+  "isCollect" : "1", # 是否收藏 0:否 1:是
+  "shopStandardLogo" : "http://116.90.81.68/data/upload_image/shop/14/8/3a858e0536244ac9a8ede39792fe9ebe.png", # 店铺描述 图片
+  "state" : 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_搜索框_2">搜索框</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/search?q=沥青&amp;type=0&amp;from=2" class="bare">http://app.mailiqing.com/app/search?q=沥青&amp;type=0&amp;from=2</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>GET</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>q : 沥青 # 请求参数
+type : 0:全部(默认) 1:采购单搜索框 2:资源单搜索框
+from : 1 (起始页)</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+"dynamics": [
+    {
+      "imgs": [ "img/57e8efdbe4b09d52039ce4c4.img" ],   # 图片地址
+      "clist": [], # 评论列表
+      "likeCount": 0, # 点赞数量
+      "collectionCount": 0, # 收藏数量
+      "inDate": "2016-09-26 17:52:27.0", # 时间
+      "mood": "呵呵", # 动态详情
+      "userImage": "", # 用户头像
+      "type": "2", # 动态
+      "commentCount": 0, # 评论数
+      "id": "20160926g4V6j65",  # 动态ID
+      "user_name": "ceshi_buyer", # 用户名
+      "isLike": "1", # 是否已点赞 0:是 1:否
+      "isCollection": "1", # 是否收藏 0:是 1:否
+      "user_id": "20150828QYY07uh" # 用户ID
+    }
+  ],
+  "goods": [
+    {
+      "title": "70#优质沥青",
+      "imgOriginal": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "productPrice": "3500.00",
+      "unit": "吨",
+      "minQuantity": "35",
+      "repositoryRegion": "华东地区,上海市",
+      "url": "/product/get/20160614I6PXp42",
+      "goodsId": "20160614I6PXp42"
+    }
+  ],
+  "procurements": [ # 采购单
+   {
+      "id": "201508221gK5Lp5", # 采购单id
+      "title": "东海 沥青", # 标题
+      "receiveAddr": "华南地区-广西省", # 地址
+      "inDate": "2015-08-22 03:41:24", # 发布时间
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img", # 图片
+      "unit": "吨", # 单位
+      "count": "40.00" # 数量
+    },
+    {
+      "id": "20150928R564b43",
+      "title": "国产品牌 沥青",
+      "receiveAddr": "华东地区-浙江省-丽水市-青田县",
+      "inDate": "2015-09-28 08:04:50",
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "unit": "吨",
+      "count": "1.00"
+    }
+  ],
+  "resources": [ # 资源单
+    {
+      "id": "20160425Iyf0al0", # 资源单id
+      "rs_name": "山东金石沥青股份有限公司", # 公司名称
+      "rs_state": "金石沥青，质量保证，欢迎给我来我司考察。",# 公司介绍
+      "rs_area": "华东地区,山东省,日照市", # 所在地
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img" # 图片
+    },
+    {
+      "id": "201604267Rds4pK",
+      "rs_name": "东北兰亭轩飞沥青技术推广有限公司",
+      "rs_state": "公司销售以下产品《双龙70#、双龙90#、彩色沥青、高铁和隧道专用防水板、改性沥青设备、再生沥青混凝土拌合站》；欢迎各位咨询购买\r\n",
+      "rs_area": "东北地区",
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img"
+    }
+  ],
+  "state": 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_首页_通知">首页 通知</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/alter/list?userId=201610175a7YJ3K&amp;start=1&amp;limit=10" class="bare">http://app.mailiqing.com/app/alter/list?userId=201610175a7YJ3K&amp;start=1&amp;limit=10</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">userId : 用户ID
+start: 起始页
+limit: 每页个数</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "list": [
+    {
+      "dynamic": {
+        "id": "20161207X3T4722",
+        "imgs": [
+          "http://116.90.81.68:80/koto/img/5847b775e4b028b1d2a46f76.img_300_300_1.img"
+        ],
+        "isFriend": 1,
+        "user_name": "建华",
+        "collectionCount": 0,
+        "likeCount": 0,
+        "clist": [],
+        "isLike": "1",
+        "isCollection": "1",
+        "userImage": "http://116.90.81.68:80/koto/img/5829375be4b02a49b7a089d1.img_100_100_1.img",
+        "mood": "这次行不行",
+        "user_id": "20161031Je43e0i",
+        "commentCount": 10
+      },
+
+      "id": 34, #消息id
+      "moodId": "201612050UoG265", # 动态ID
+      "comment": "回复内容", # 评论内容
+      "image": "http://116.90.81.68:80/koto/img/583570ffe4b03366a5caf6e2.img_220_220_1.img", # 评论者的头像
+      "nickname": "行行行", # 评论者的昵称
+      "inDate": "2016-12-07 10:48:18", # 评论时间
+      "type": 2 # 评论的消息
+    },
+    {
+      "id": 1, #消息id
+      "msgAlter": "测试0",
+      "msgTitle": "测试0",  #消息标题
+      "inDate": "2016-11-04 10:08:42", # 时间
+      "msgContent": "测试0", #消息内容
+      "type" : 1, #系统消息
+      "url":"http://app.mailiqing.com/app/h5/alter/1"
+    },
+    {
+      "id": 4,
+      "msgAlter": "测试3",
+      "msgTitle": "测试3",
+      "inDate": "2016-11-04 10:09:04",
+      "msgContent": "测试3",
+      "type" : 1,
+      "url":"http://app.mailiqing.com/app/h5/alter/1"
+    },
+    {
+      "id":"20160817K5r07Pt", # 主键ID
+      "addStatus":1, # 添加状态：0已申请，1已添加，2已拒绝
+      "inDate":"2016-08-17 09:30:30", # 时间
+      "addedUserId":"201608153822qIE", # 被添加用户ID
+      "userId":"20150828p8jr40S", # 申请人用户ID
+      "image":"", # 申请人头像
+      "nickname":"", # 申请人昵称
+      "userName":"ceshi_buyer", # 申请人用户名称
+      "addedUserName":"bqlq" # 被添加用户名称
+      "additional":"我是谁啊" # 附加信息
+      "type" : 0 # 添加好友信息
+    }
+  ],
+  "totalsize":13, #总数
+  "state": 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/app/cservice/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/app/procurement/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

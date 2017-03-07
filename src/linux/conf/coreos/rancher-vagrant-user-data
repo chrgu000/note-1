@@ -1,0 +1,41 @@
+#cloud-config
+
+coreos:
+  units:
+    - name: docker.service
+      command: start
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the time zone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone Asia/Shanghai
+        RemainAfterExit=yes
+        Type=oneshot
+    - name: docker-volume-netshare.service
+      command: start
+      content: |
+        [Unit]
+        Description=docker-volume-netshare
+        After=docker.service
+        [Service]
+        User=root
+        ExecStart=/opt/bin/docker-volume-netshare cifs --username dishui --password dishui --domain storage
+        ExecStartPost=/usr/bin/docker volume create -d cifs --name 192.168.137.2/note-hugo
+        LimitNOFILE=40000
+        TimeoutStartSec=0
+
+        [Install]
+        WantedBy=multi-user.target
+write_files:
+  - path: /etc/hosts
+    content: |
+      127.0.0.1     localhost
+      192.168.137.15    dishui.io
+  - path: "/etc/resolv.conf"
+    permissions: "0644"
+    owner: "root"
+    content: |
+      nameserver 114.114.114.114

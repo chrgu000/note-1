@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/categories/java/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Java 面试题</title>
+      <link>/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_面向对象编程的基本理念与核心设计思想&#34;&gt;面向对象编程的基本理念与核心设计思想&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;解释下多态性（polymorphism），封装性（encapsulation），内聚（cohesion）以及耦合（coupling）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;继承（Inheritance）与聚合（Aggregation）的区别在哪里。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你是如何理解干净的代码（Clean Code）与技术负载（Technical Debt）的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;描述下常用的重构技巧。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;阐述下 SOLID 原则。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他的譬如 KISS,DRY,YAGNI 等原则又是什么含义。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是设计模式（Design Patterns）？你知道哪些设计模式？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你有了解过存在哪些反模式（Anti-Patterns）吗？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你会如何设计登陆舰/数学表达式计算程序/一条龙？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你知道哪些基本的排序算法，它们的计算复杂度如何？在给定数据的情况下你会倾向于使用哪种算法呢？
+尝试编写如下代码：&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;计算指定数字的阶乘&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开发 Fizz Buzz 小游戏&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;倒转句子中的单词&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;回文字符串检测&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;枚举给定字符串的所有排列组合&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_java_核心概念&#34;&gt;Java 核心概念&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;equals 与 hashCode 的异同点在哪里？Java 的集合中又是如何使用它们的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;描述下 Java 中集合（Collections），接口（Interfaces），实现（Implementations）的概念。LinkedList 与 ArrayList 的区别是什么？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基础类型（Primitives）与封装类型（Wrappers）的区别在哪里？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;final 与 static 关键字可以用于哪里？它们的作用是什么？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;阐述下 Java 中的访问描述符（Access Modifiers）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;描述下 String,StringBuilder 以及 StringBuffer 区别。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接口（Interface）与抽象类（Abstract Class）的区别在哪里。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;覆盖（Overriding）与重载（OverLoading）的区别在哪里。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;异常分为哪几种类型？以及所谓的handle or declare原则应该如何理解？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;简述垃圾回收器的工作原理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你是如何处理内存泄露或者栈溢出问题的？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何构建不可变的类结构？关键点在哪里？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 JIT 编译？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Java 8 / Java 7 为我们提供了什么新功能？即将到来的 Java 9 又带来了怎样的新功能？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spring&#34;&gt;Spring&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;新版的 Spring 中有哪些新特性？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;介绍下 Spring 的优势与缺陷。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是控制反转（Inversion of Control）与依赖注入（Dependency Injection）？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你用过哪些 Spring 的模块？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring 中是如何使用依赖注入的？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring 中提供了几种自动注入的机制？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;介绍下 Spring MVC。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring 中 Scopes 有哪些？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring 中 Bean 的生命周期包含哪些步骤？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Bean 与 EJB Bean 的区别在哪里？
+其他主题&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;介绍下切面编程（Aspect Oriented Programming）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;概述下 GET 与 POST 的区别。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Web Server、Web Container 与 Application Server 的区别是什么？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;简要介绍下从浏览器输入 URL 开始到获取到请求界面之后 Java Web 应用中发生了什么。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是 N 层架构？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;微服务（MicroServices）与巨石型应用（Monolithic Applications）之间的区别在哪里？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你知道哪些商业级设计模式？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你是如何测试一个应用的？知道哪些测试框架？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你是如何测试单个方法的？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在你的职业生涯中，算得上最困难的技术挑战是什么？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是领域驱动开发（Domain Driven Development）？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;介绍下一些你最爱的 IDE 的常用插件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;除了 IDE 之外，你的日常工作中还会用到哪些工具？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你使用什么版本管理工具？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分支（Branch）与标签（Tag）之间的区别在哪里？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你常用的持续集成（Continuous Integration）、静态代码分析（Static Code Analysis）工具有哪些？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Netty</title>
+      <link>/post/java/netty/</link>
+      <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/netty/</guid>
+      <description>&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_nio_服务端的主要创建过程&#34;&gt;NIO 服务端的主要创建过程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;打开 &lt;code&gt;ServerSocketChannel&lt;/code&gt;, 用于监听客户端的连接,它是所有客户端连接的父管道&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;ServerSocketChannel acceptorSvr = ServerSocketChannel.open();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;绑定监听端口, 设置连接为非阻塞模式&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;acceptorSvr.socket().bind(new InetSocketAddress(InetAddress.getByName(&#34;IP&#34;),port));
+acceptorSvr.configureBlocking(false);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建 &lt;code&gt;Reactor&lt;/code&gt; 线程, 创建多路复用器并启动线程&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;Selector selector = Selector.open();
+        new Thread(new ReactorTask()).start();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将 &lt;code&gt;ServerSocketChannel&lt;/code&gt; 注册到 &lt;code&gt;Reactor&lt;/code&gt; 线程的多路复用器 &lt;code&gt;Selector&lt;/code&gt; 上, 监听 &lt;code&gt;ACCEPT&lt;/code&gt; 事件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;SelectionKey key = acceptorSvr.register(selector, SelectionKey.OP_ACCEPT, ioHandler);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多路复用器在线程 &lt;code&gt;run&lt;/code&gt; 方法的无线循环体内轮询准备就绪的 &lt;code&gt;Key&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;int num = selector.select();
+Set&amp;lt;SelectionKey&amp;gt; selectionKeys = selector.selectedKeys();
+Iterator&amp;lt;SelectionKey&amp;gt; it = selectionKeys.iterator();
+while (it.hasNext()) {
+    SelectionKey key = (SelectionKey) it.next();
+    // ... deal with I/O event
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多路复用器监听到有新的客户端接入,处理新的接入请求,完成 &lt;code&gt;TCP&lt;/code&gt; 三次握手,建立物理链路&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;SocketChannel channel = svrChannel.accept();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置客户端链路为非阻塞模式&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;channel.configureBlocking(false);
+channel.socket().setReuseAddress(true);
+....&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将新接入的客户端连接注册到 &lt;code&gt;Reactor&lt;/code&gt; 线程的多路复用器上,监听读操作,读取客户端发送的网络消息&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;SelectionKey key = socketChannel.register(selector,SelectionKey.OP_READ,ioHandler);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;异步读取客户端请求消息到缓冲区&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;int readNumber = channel.read(receivedBuffer);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对 &lt;code&gt;ByteBuffer&lt;/code&gt; 进行编解码,如果有半包消息指针 &lt;code&gt;reset&lt;/code&gt;, 继续读取后续的报文,将解码成功的消息封装成 &lt;code&gt;Task&lt;/code&gt;, 投递到业务线程池中,进行业务逻辑编排&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;Object message = null;
+while(buffer.hasRemain())
+{
+	byteBuffer.mask();
+	Object message decode(byteBuffer);
+	if (message == null){
+		byteBuffer.reset();
+		break;
+	}
+	messageList.add(message);
+	if(!byteBuffer.hasRemain())
+		byteBuffer.clear();
+	else
+		byteBuffer.compact();
+	if(messageList != null &amp;amp; !messageList.isEmpty()){
+		for(Object messageE : messageList){
+			handlerTask(messageE);
+		}
+	}
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将 &lt;code&gt;POJO&lt;/code&gt; 对象 &lt;code&gt;encode&lt;/code&gt; 成 &lt;code&gt;ByteBuffer&lt;/code&gt;, 调用 &lt;code&gt;SocketChannel&lt;/code&gt; 的异步 &lt;code&gt;write&lt;/code&gt; 接口, 将消息异步发送给客户端&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;SocketChannel.write(buffer);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;如果发送区 &lt;code&gt;TCP&lt;/code&gt; 缓冲区满, 会导致写半包, 此时, 需要注册监听写操作位,循环写,直到整包消息写入 &lt;code&gt;TCP&lt;/code&gt; 缓冲区&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/code4craft/netty-learning&#34;&gt;netty-learning&lt;/a&gt;
+.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Btrace</title>
+      <link>/post/java/btrace/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/btrace/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_btrace&#34;&gt;1. Btrace&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_windows_git_btrace_环境&#34;&gt;1.1. windows git btrace 环境&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;1.1.1. 配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;3. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_btrace&#34;&gt;1. Btrace&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_windows_git_btrace_环境&#34;&gt;1.1. windows git btrace 环境&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_配置&#34;&gt;1.1.1. 配置&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;添加环境变量 &lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ vi /etc/profile.d/btrace.sh
+
+ # btrace
+export JAVA_HOME=/d/env/jdk/jdk1.7.0_71
+export BTRACE_HOME=/e/data/btrace-bin-1.3.8.1
+export PATH=&#34;$BTRACE_HOME/bin:$JAVA_HOME/jre/bin$PATH&#34;
+
+ # vagrant
+export COREOS=/e/vagrant/CoreOS&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;测试代码 &lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ btrace `jps | awk &#39;{if($2==&#34;AppMain&#34;){print $1}}&#39;` BTraceFiled.java &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt; &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;btrace&lt;/code&gt; &amp;lt;PID&amp;gt; 测试类&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;jps&lt;/code&gt; 查看 &lt;code&gt;pid&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.tuicool.com/articles/NNBvueR&#34;&gt;BTrace笔记&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://learnworld.iteye.com/blog/1402763&#34;&gt;BTrace使用总结&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.open-open.com/lib/view/open1452174472698.html&#34;&gt;Greys-anatomy&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/oldmanpushcart/greys-anatomy&#34;&gt;Greys-anatomy&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_q_a&#34;&gt;3. Q &amp;amp; A&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Provider sun.tools.attach.WindowsAttachProvider could not be instant&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;解决方法：将jdk原路径下的jre/bin路径添加到环境变量path下&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Intellij</title>
+      <link>/post/Intellij/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/Intellij/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;IDEA&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_intellij_idea_15&#34;&gt;1. Intellij IDEA 15&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;1.1. 配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;2. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_intellij_idea_15&#34;&gt;1. Intellij IDEA 15&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;破解地址(二选一) &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://us.idea.lanyus.com/&#34;&gt;Intellij IDEA 15 Crack(1)&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://15.idea.lanyus.com/&#34;&gt;Intellij IDEA 15 Crack(2)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://idea.lanyus.com/dishui&#34; class=&#34;bare&#34;&gt;http://idea.lanyus.com/dishui&lt;/a&gt;
+&lt;a href=&#34;mailto:dishui19950316@gmail.com&#34;&gt;dishui19950316@gmail.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_配置&#34;&gt;1.1. 配置&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;主题 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.phperz.com/article/15/0923/159059.html&#34;&gt;主题1&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.riaway.com/themeshow.php?tid=7$cid=1&#34;&gt;主题2&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;部署 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.php-note.com/article/detail/854&#34;&gt;部署Tomcat&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Ref &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/judasn/IntelliJ-IDEA-Tutorial&#34;&gt;Intellij 教程&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.youmeek.com/idea/&#34;&gt;YouMeek&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_q_a&#34;&gt;2. Q &amp;amp; A&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;intellij IDEA &lt;code&gt;Properties&lt;/code&gt; 中文unicode转码问题&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/src/img/intellij/2016-08-18_141826.png&#34; alt=&#34;2016 08 18 141826&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jackson</title>
+      <link>/post/java/jackson/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/jackson/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jackson&#34;&gt;1. Jackson&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1.1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jackson&#34;&gt;1. Jackson&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;注解&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;说明&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;code&gt;&lt;code&gt;java
+@JsonFormat(pattern=&#34;yyyy-MM-dd HH:mm:ss&#34;)
+private Date inDate;
+&lt;/code&gt;&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;输出日期格式&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;1.1. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[Jackson-Annotations | &lt;a href=&#34;https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations&#34; class=&#34;bare&#34;&gt;https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jetty</title>
+      <link>/post/java/jetty/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/jetty/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Jetty&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jetty&#34;&gt;1. Jetty&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_代码内启动_web&#34;&gt;1.1. 代码内启动 web&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jetty_pom_依赖&#34;&gt;1.1.1. Jetty pom 依赖&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_jetty_测试文件&#34;&gt;1.1.2. Jetty 测试文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jetty&#34;&gt;1. Jetty&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_代码内启动_web&#34;&gt;1.1. 代码内启动 web&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_jetty_pom_依赖&#34;&gt;1.1.1. Jetty pom 依赖&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;  &amp;lt;properties&amp;gt;
+      &amp;lt;jetty-version&amp;gt;9.2.19.v20160908&amp;lt;/jetty-version&amp;gt;
+  &amp;lt;/properties&amp;gt;
+  &amp;lt;dependencies&amp;gt;
+      &amp;lt;dependency&amp;gt;
+          &amp;lt;groupId&amp;gt;org.eclipse.jetty&amp;lt;/groupId&amp;gt;
+          &amp;lt;artifactId&amp;gt;jetty-webapp&amp;lt;/artifactId&amp;gt;
+          &amp;lt;version&amp;gt;${jetty-version}&amp;lt;/version&amp;gt;
+      &amp;lt;/dependency&amp;gt;
+      &amp;lt;dependency&amp;gt;
+          &amp;lt;groupId&amp;gt;org.eclipse.jetty&amp;lt;/groupId&amp;gt;
+          &amp;lt;artifactId&amp;gt;jetty-jsp&amp;lt;/artifactId&amp;gt;
+          &amp;lt;version&amp;gt;${jetty-version}&amp;lt;/version&amp;gt;
+      &amp;lt;/dependency&amp;gt;
+      &amp;lt;dependency&amp;gt;
+          &amp;lt;groupId&amp;gt;org.eclipse.jetty&amp;lt;/groupId&amp;gt;
+          &amp;lt;artifactId&amp;gt;apache-jstl&amp;lt;/artifactId&amp;gt; &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+          &amp;lt;version&amp;gt;${jetty-version}&amp;lt;/version&amp;gt;
+      &amp;lt;/dependency&amp;gt;
+  &amp;lt;/dependencies&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;如果没有,会引起 &lt;code&gt;The absolute uri: &lt;a href=&#34;http://java.sun.com/jsp/jstl/core&#34; class=&#34;bare&#34;&gt;http://java.sun.com/jsp/jstl/core&lt;/a&gt; cannot be resolved&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_jetty_测试文件&#34;&gt;1.1.2. Jetty 测试文件&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.DefaultServlet;
+import org.eclipse.jetty.util.log.StdErrLog;
+import org.eclipse.jetty.webapp.WebAppContext;
+
+import java.io.File;
+
+public class JettyTest {
+    private int port = 8090;
+    protected String charset = &#34;UTF-8&#34;;
+    public JettyTest() {
+    }
+    public JettyTest(int port) {
+        this.port = port;
+    }
+    public JettyTest(int port, String charset) {
+        super();
+        this.port = port;
+        this.charset = charset;
+    }
+
+    /**
+     * 服务器启动。
+     *
+     */
+    public void start() {
+        // 设置Jetty日志
+        System.setProperty(&#34;org.eclipse.jetty.util.log.class&#34;, StdErrLog.class.getName());
+        Server server = new Server(this.port);
+        // 设置context
+        WebAppContext context = new WebAppContext();
+        context.setContextPath(&#34;/&#34;); &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+        context.setResourceBase(&#34;E:/IntelliJ-1/dev-1/WebRoot&#34;); &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+        server.setHandler(context);
+        // 启动Server
+        try {
+            server.start();
+            server.join();
+        } catch (Exception e) {
+        }
+
+    }
+
+    public static void main(String[] args) {
+        JettyTest server = new JettyTest();
+        server.start();
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;上下文路径&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;WebRoot目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.eclipse.org/jetty/documentation/current/embedding-jetty.html&#34;&gt;embedding-jetty&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jmeter</title>
+      <link>/post/java/jmeter/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/jmeter/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jmeter&#34;&gt;1. JMeter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jmeter&#34;&gt;1. JMeter&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[&lt;a href=&#34;http://www.cnblogs.com/TankXiao/p/4059378.html&#34; class=&#34;bare&#34;&gt;http://www.cnblogs.com/TankXiao/p/4059378.html&lt;/a&gt; | ]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jprofiler</title>
+      <link>/post/java/jprofiler/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/jprofiler/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jprofiler&#34;&gt;1. Jprofiler&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_注册码&#34;&gt;1.1. 注册码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jprofiler&#34;&gt;1. Jprofiler&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_注册码&#34;&gt;1.1. 注册码&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;L-Larry_Lau@163.com#23874-hrwpdp1sh1wrn#0620
+L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257
+L-Larry_Lau@163.com#5481-ucjn4a16rvd98#6038
+L-Larry_Lau@163.com#99016-hli5ay1ylizjj#27215
+L-Larry_Lau@163.com#40775-3wle0g1uin5c1#0674&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jrebel 热部署</title>
+      <link>/post/java/jrebel/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/jrebel/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jrebel_热部署&#34;&gt;1. Jrebel 热部署&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装&#34;&gt;1.1. 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_脚本&#34;&gt;1.2. 脚本&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jrebel_热部署&#34;&gt;1. Jrebel 热部署&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_安装&#34;&gt;1.1. 安装&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载地址&lt;br&gt;
+&lt;a href=&#34;http://196.168.1.33:9080/f/d68fbbf872/&#34; class=&#34;bare&#34;&gt;http://196.168.1.33:9080/f/d68fbbf872/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解压 &lt;code&gt;jrebel_6.2.2.zip&lt;/code&gt; 到 &lt;code&gt;tomcat&lt;/code&gt; 安装目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改 &lt;code&gt;jrebel_6.2.2&lt;/code&gt; 中的 &lt;code&gt;jrebel.properties&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;rebel.dirs=/apache-tomcat-7.0.62/webapps/app/WEB-INF/classes/ &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;修改 &lt;code&gt;classes&lt;/code&gt; 编译目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_脚本&#34;&gt;1.2. 脚本&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在 &lt;code&gt;tomcat/bin&lt;/code&gt; 目录下创建文件&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;openblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;windows&lt;/code&gt; &lt;code&gt;startup_jrebel_jvm.bat&lt;/code&gt;&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bat&#34; data-lang=&#34;bat&#34;&gt;@echo off
+rem ---------------------------放入tomcat路径下的bin/catalina.bat同一级目录
+rem ---------------------------jrebel remoting------------------------------------------------
+cd ..
+set &#34;CATALINA_HOME=%cd%&#34;
+set JAVA_OPTS=%JAVA_OPTS% -noverify -javaagent:%CATALINA_HOME%\jrebel_6.2.2\jrebel.jar -Drebel.properties=%CATALINA_HOME%\jrebel_6.2.2\jrebel.properties -Drebel.disable_update=true
+
+rem ---------------------------JVM------------------------------------------------
+REM set JAVA_OPTS=%JAVA_OPTS% -Xms512m -Xmx512m -XX:PermSize=256m -XX:MaxPermSize=256m
+
+call &#34;%CATALINA_HOME%\bin\catalina.bat&#34; %* jpda run&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;linux&lt;/code&gt; &lt;code&gt;startup_jrebel_jvm.sh&lt;/code&gt; &lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#!/bin/bash
+
+CATALINA_HOME=/apache-tomcat-7.0.62
+
+export CATALINA_OPTS=&#34;$CATALINA_OPTS -noverify -javaagent:$CATALINA_HOME/jrebel_6.2.2/jrebel.jar -Drebel.properties=$CATALINA_HOME/jrebel_6.2.2/jrebel.properties&#34;
+
+$CATALINA_HOME/bin/catalina.sh jpda run&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>freemarker</title>
+      <link>/post/java/freemarker/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/freemarker/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;freemarker list (长度,遍历,下标,嵌套,排序)
+1. freemarker获取list的size ：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Java
+ArrayList&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Freemaker
+${list?size}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;list的遍历：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;#list animals as being&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td&amp;gt;${being.name}${being.price}&amp;lt;td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+&amp;lt;/#list&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;遍历MAP&lt;/p&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; &amp;lt;#list map?keys as k&amp;gt;
+    &amp;lt;option value=&#34;${k}&#34;&amp;gt;${map[k]}&amp;lt;/option&amp;gt;
+&amp;lt;/#list&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;4.list遍历中的下标序号：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;_index是list的一个属性
+&amp;lt;#list list as a&amp;gt;
+     ${a_index}
+&amp;lt;/#list&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;5.取LIST中第i个元素的值
+${list[i]}
+嵌套时前面要有括号，如下，将字符串变成list，然后取第i个元素的值
+ ${(str?split(&#34;,&#34;))[i]}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;list的嵌套：
+&amp;lt;#list jsskList as jsskVO&amp;gt;
+   &amp;lt;#list kcList as kcVO&amp;gt;
+           &amp;lt;#if kcVO.kch=jsskVO.kch&amp;gt; （kcVO里有编号和名称，而jsskVO里只有编号）
+                  ${kcVO.kcm}
+           &amp;lt;/#if&amp;gt;
+   &amp;lt;/#list&amp;gt;
+&amp;lt;/#list&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;list排序：
+      升序 .sort_by()
+&amp;lt;#list list?sort_by(&#34;字段&#34;) as x&amp;gt;
+&amp;lt;/#list&amp;gt;&lt;/p&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;     降序 .sort_by()?reverse
+&amp;lt;#list list?sort_by(&#34;字段&#34;)?reverse as x&amp;gt;
+&amp;lt;/#list&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;8.item_has_next,size使用：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;#list userList as user&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;  &amp;lt;#if !user_has_next&amp;gt;
+   共有${userList?size}最后一个用户是:${user.userName}
+  &amp;lt;/#if&amp;gt;
+&amp;lt;/#list&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;三目表达式&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;${(procurement.deliveryType=0)?string(&#39;热点词&#39;,&#39;热点搜索&#39;)}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考&lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[&lt;a href=&#34;http://www.blogjava.net/alinglau36/archive/2011/02/23/344970.html&#34; class=&#34;bare&#34;&gt;http://www.blogjava.net/alinglau36/archive/2011/02/23/344970.html&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>java 框架</title>
+      <link>/post/java/framework/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/framework/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_restful&#34;&gt;1. Restful&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jersey&#34;&gt;1.1. Jersey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_resteasy&#34;&gt;1.2. RestEasy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_jackson_doc&#34;&gt;1.3. Jackson-doc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_图片服务&#34;&gt;1.4. 图片服务&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_beanmapper&#34;&gt;1.5. BeanMapper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_httpcomponents&#34;&gt;2. Httpcomponents&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2.1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_restful&#34;&gt;1. Restful&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_jersey&#34;&gt;1.1. Jersey&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[Jersey|https://jersey.java.net/]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[Jersey Demo|https://github.com/waylau/RestDemo]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_resteasy&#34;&gt;1.2. RestEasy&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[Jboss|resteasyhttp://resteasy.jboss.org/docs.html]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_jackson_doc&#34;&gt;1.3. Jackson-doc&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[&lt;a href=&#34;https://github.com/FasterXML/jackson-docs&#34; class=&#34;bare&#34;&gt;https://github.com/FasterXML/jackson-docs&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[&lt;a href=&#34;http://www.studytrails.com/java/json/java-jackson-introduction.jsp&#34; class=&#34;bare&#34;&gt;http://www.studytrails.com/java/json/java-jackson-introduction.jsp&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[Jesery|/jesery]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_图片服务&#34;&gt;1.4. 图片服务&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[zimg | &lt;a href=&#34;http://zimg.buaa.us/&#34; class=&#34;bare&#34;&gt;http://zimg.buaa.us/&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[tfs | &lt;a href=&#34;http://code.taobao.org/p/tfs/src/&#34; class=&#34;bare&#34;&gt;http://code.taobao.org/p/tfs/src/&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_beanmapper&#34;&gt;1.5. BeanMapper&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;MapperFactory.getCopyByRefMapper().mapClass(TiQuoteprice.class, QuotepriceBean.class)
+		.exclude(&#34;inDate&#34;)		//忽略字段
+		.field(&#34;rsrvStr3&#34;, &#34;repositoryAddr&#34;, replaceStr)	//映射字段
+		.registerAndMap(tiQuoteprice, quotepriceBean);
+MapperFactory.getCopyByRefMapper().mapClass(TiProcurement.class, QuotepriceBean.class)
+		.field(&#34;rsrvStr4&#34;, &#34;receiveAddr&#34;, replaceStr)
+		.field(&#34;rsrvStr2&#34;, &#34;img&#34;, replaceImg)
+		.registerAndMap(tiProcurement, quotepriceBean);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_httpcomponents&#34;&gt;2. Httpcomponents&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;2.1. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[Httpcomponents Wiki | &lt;a href=&#34;http://wiki.apache.org/HttpComponents/QuickStart&#34; class=&#34;bare&#34;&gt;http://wiki.apache.org/HttpComponents/QuickStart&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>java编程题</title>
+      <link>/post/java/codes/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/codes/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_网易有道内推编程题&#34;&gt;1. 网易有道内推编程题&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_1&#34;&gt;1.1. 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_2&#34;&gt;1.2. 2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_网易有道内推编程题&#34;&gt;1. 网易有道内推编程题&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_1&#34;&gt;1.1. 1&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;洗牌在生活中十分常见，现在需要写一个程序模拟洗牌的过程。 现在需要洗2n张牌，从上到下依次是第1张，第2张，第3张一直到第2n张。首先，我们把这2n张牌分成两堆，左手拿着第1张到第n张（上半堆），右手拿着第n+1张到第2n张（下半堆）。接着就开始洗牌的过程，先放下右手的最后一张牌，再放下左手的最后一张牌，接着放下右手的倒数第二张牌，再放下左手的倒数第二张牌，直到最后放下左手的第一张牌。接着把牌合并起来就可以了。 例如有6张牌，最开始牌的序列是1,2,3,4,5,6。首先分成两组，左手拿着1,2,3；右手拿着4,5,6。在洗牌过程中按顺序放下了6,3,5,2,4,1。把这六张牌再次合成一组牌之后，我们按照从上往下的顺序看这组牌，就变成了序列1,4,2,5,3,6。 现在给出一个原始牌组，请输出这副牌洗牌k次之后从上往下的序列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int groupNumber = in.nextInt();
+        int[][] groupNumbers = new int[groupNumber][];
+        int[] ks = new int[groupNumber];
+
+        for (int i = 0; i &amp;lt; groupNumber; i++) {
+            int n = in.nextInt();
+            ks[i] = in.nextInt();
+
+            groupNumbers[i] = new int[n * 2];
+            for (int j = 0; j &amp;lt; n * 2; j++) {
+                groupNumbers[i][j] = in.nextInt();
+            }
+        }
+
+        for (int k = 0; k &amp;lt; groupNumber; k++) {
+            if ((k + 1) == groupNumber) {
+                calculateAndPrint(groupNumbers[k], ks[k], true);
+            } else {
+                calculateAndPrint(groupNumbers[k], ks[k], false);
+            }
+        }
+    }
+
+    private static void calculateAndPrint(int[] numbers, int k, boolean isLast) {
+        int length = numbers.length;
+        int start1 = 0;
+        int start2 = length / 2;
+
+        if (k == 1) {
+            for (int i = 0; i &amp;lt; length / 2; i++) {
+                System.out.print(numbers[start1] + &#34; &#34;);
+
+                if ((i + 1) == length / 2) {
+                    if(isLast){
+                        System.out.print(numbers[start2]);
+                    } else{
+                        System.out.print(numbers[start2] + &#34;\n&#34;);
+                    }
+                } else {
+                    System.out.print(numbers[start2] + &#34; &#34;);
+                }
+
+                start1++;
+                start2++;
+            }
+        } else {
+            int[] newNumbers = new int[length];
+
+            int count = 0;
+            for (int i = 0; i &amp;lt; length / 2; i++) {
+                newNumbers[count++] = numbers[start1];
+                newNumbers[count++] = numbers[start2];
+
+                start1++;
+                start2++;
+            }
+
+            calculateAndPrint(newNumbers, --k, isLast);
+        }
+
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_2&#34;&gt;1.2. 2&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;小明同学把1到n这n个数字按照一定的顺序放入了一个队列Q中。现在他对队列Q执行了如下程序： while(!Q.empty()) //队列不空，执行循环&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;{
+
+int x=Q.front();            //取出当前队头的值x
+
+Q.pop();                 //弹出当前队头
+
+Q.push(x);               //把x放入队尾
+
+x = Q.front();              //取出这时候队头的值
+
+printf(&#34;%d\n&#34;,x);          //输出x
+
+Q.pop();                 //弹出这时候的队头
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;做取出队头的值操作的时候，并不弹出当前队头。 小明同学发现，这段程序恰好按顺序输出了1,2,3,&amp;#8230;&amp;#8203;,n。现在小明想让你构造出原始的队列，你能做到吗？[注：原题样例第三行5有错，应该为3，以下已修正]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+
+        int groupNumber = in.nextInt();
+
+        for(int j = 0; j &amp;lt; groupNumber; j++){
+            int count = in.nextInt();
+            List&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();
+            for(int i = 0; i &amp;lt; count; i++){
+                list.add(i + 1);
+            }
+
+            for(int i = 1; i &amp;lt; count; i++){
+                int temp = list.get(count - 1);
+                list.add(count - i - 1, temp);
+                list.remove(list.size() - 1);
+            }
+
+            for(int i = 0; i &amp;lt; count; i++){
+                System.out.print(list.get(i));
+                if(i != count - 1){
+                    System.out.print(&#34; &#34;);
+                }
+            }
+            System.out.println();
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>mockito 单元测试</title>
+      <link>/post/java/mockito/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/mockito/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_stubbing_void_methods_with_exceptions&#34;&gt;1. Stubbing void methods with exceptions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_stubbing_void_methods_with_exceptions&#34;&gt;1. Stubbing void methods with exceptions&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;private void stubEx() {
+    List mockedList = mock(List.class);
+//  doThrow(new RuntimeException()).when(mockedList).clear();
+    doThrow(new RuntimeException()).when(mockedList).add(&#34;a&#34;); &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+
+    //following throws RuntimeException:
+//  mockedList.clear();
+    mockedList.add(&#34;8a&#34;);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;调用 &lt;code&gt;mockedList.add(&#34;a&#34;)&lt;/code&gt; 时，报 &lt;code&gt;RuntimeException&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>单元测试</title>
+      <link>/post/java/junit/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/junit/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_单元测试&#34;&gt;1. 单元测试&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_单元测试&#34;&gt;1. 单元测试&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[mockito doc| &lt;a href=&#34;http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html&#34; class=&#34;bare&#34;&gt;http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>多线程</title>
+      <link>/post/java/thread/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/thread/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_多线程&#34;&gt;1. 多线程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_多线程&#34;&gt;1. 多线程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[Java多线程基础 | &lt;a href=&#34;http://www.importnew.com/21136.html&#34; class=&#34;bare&#34;&gt;http://www.importnew.com/21136.html&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[&lt;a href=&#34;http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency&#34; class=&#34;bare&#34;&gt;http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

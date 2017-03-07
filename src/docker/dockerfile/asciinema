@@ -1,0 +1,14 @@
+FROM centos:7
+MAINTAINER dishui_git@126.com
+ENV LANG en_US.utf8
+COPY ./python3.tar.gz /
+RUN tar -zxPf /python3.tar.gz -C / \
+       && ln -s /usr/local/python3/bin/python3 /usr/bin/python3 \
+       && ln -s /usr/local/python3/bin/asciinema /usr/bin/asciinema \
+       && rm -f /python3.tar.gz \
+       && curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
+       && yum install python-setuptools -y \
+       && easy_install -i http://pypi.doubanio.com/simple supervisor \
+       && echo_supervisord_conf > /etc/supervisord.conf \
+       && mkdir -p /etc/supervisord.conf.d \
+       && echo -e "[include]\nfiles = /etc/supervisord.conf.d/*.conf" >> /etc/supervisord.conf

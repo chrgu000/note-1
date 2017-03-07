@@ -1,0 +1,4 @@
+---
+
+- name: restart web
+  raw: /opt/bin/rancher restart wuliu/pc-wuliu

@@ -1,0 +1,2079 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/tags/elasticsearch/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Elasticsearch</title>
+      <link>/post/elasticsearch/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/elasticsearch/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_elasticsearch&#34;&gt;1. Elasticsearch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_logstash&#34;&gt;2. logstash&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jdbc_数据同步&#34;&gt;2.1. jdbc 数据同步&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_test_mapping&#34;&gt;2.1.1. test mapping&lt;/a&gt;
+&lt;ul class=&#34;sectlevel4&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_elasticsearch&#34;&gt;1. Elasticsearch&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;启动添加内存参数&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;~/opt/elasticsearch-1.7.1/bin/elasticsearch -Xms512m -Xmx1g -d&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;动态脚本支持&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;script.disable_dynamic: false
+#关闭marvel
+marvel.agent.enabled: false&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;b2b(正试)&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;curl -XPOST &#34;http://192.168.1.126:9200/b2b&#34; -d&#39;
+{
+   &#34;mappings&#34;: {
+      &#34;mlq_shop_info&#34;: {
+         &#34;properties&#34;: {
+            &#34;shop_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;shop_desc&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;shop_logo&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;user_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;gmt_create&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;recom_modify&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;business_license_deadline&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;tag&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;gmt_modify&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;is_entity&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            }
+         }
+      },
+      &#34;mlq_goods&#34;: {
+         &#34;_parent&#34;: {
+            &#34;type&#34;: &#34;mlq_shop_info&#34;
+         },
+         &#34;_routing&#34;: {
+            &#34;required&#34;: true
+         },
+         &#34;properties&#34;: {
+            &#34;audit_remark&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;brand_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;brand_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;brand_name_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;cat_code&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;mmseg&#34;
+            },
+            &#34;category&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;simple&#34;
+            },
+            &#34;distribution_mode&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;gmt_create&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;gmt_listing&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;gmt_modify&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_desc&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_model&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_number&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_price&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_selling_point&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_status&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;img_large&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;is_listing_now&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;is_self&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;logistics_type&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;new_seller_nick&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;new_seller_nick_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;search_tag&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;seller_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;seller_nick&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;shop_cat_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;shop_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;shop_recommended&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;sort&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;title&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;weight&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            }
+         }
+      },
+      &#34;mlq_goods_dis&#34;: {
+         &#34;_parent&#34;: {
+            &#34;type&#34;: &#34;mlq_shop_info&#34;
+         },
+         &#34;_routing&#34;: {
+            &#34;required&#34;: true
+         },
+         &#34;properties&#34;: {
+            &#34;audit_remark&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;brand_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;brand_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;brand_name_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;cat_code&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;mmseg&#34;
+            },
+            &#34;category&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;distribution_mode&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;goods_desc&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_model&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_selling_point&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_status&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;goods_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;is_listing_now&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;gmt_listing&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;shop_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;is_self&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;new_seller_nick&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;new_seller_nick_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;shop_recommended&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;sort&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;weight&#34;: {
+               &#34;type&#34;: &#34;long&#34;
+            },
+            &#34;title&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;sale_price&#34;: {
+               &#34;type&#34;: &#34;double&#34;
+            },
+            &#34;is_distribute&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            }
+         }
+      },
+      &#34;mlq_product_dis&#34;: {
+         &#34;_parent&#34;: {
+            &#34;type&#34;: &#34;mlq_goods_dis&#34;
+         },
+         &#34;_routing&#34;: {
+            &#34;required&#34;: true
+         },
+         &#34;properties&#34;: {
+            &#34;delivery_day&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;min_quantity&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;package_type&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;product_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;product_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;product_name_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;repository_region&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;repository_region_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;simple&#34;
+            },
+            &#34;repository_region_simple&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;simple&#34;
+            },
+            &#34;sale_region&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;stock_quantity&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;unit&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            }
+         }
+      },
+      &#34;mlq_product&#34;: {
+         &#34;_parent&#34;: {
+            &#34;type&#34;: &#34;mlq_goods&#34;
+         },
+         &#34;_routing&#34;: {
+            &#34;required&#34;: true
+         },
+         &#34;properties&#34;: {
+            &#34;brand_price&#34;: {
+               &#34;type&#34;: &#34;double&#34;
+            },
+            &#34;contract_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;creater&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;delivery_day&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;gmt_create&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;gmt_modify&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;goods_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;min_quantity&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;package_type&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;product_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;product_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;product_name_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            },
+            &#34;product_price&#34;: {
+               &#34;type&#34;: &#34;double&#34;
+            },
+            &#34;repository_region&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;repository_region_noa&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;simple&#34;
+            },
+            &#34;repository_region_simple&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;simple&#34;
+            },
+            &#34;sale_region&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;stock_quantity&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            },
+            &#34;unit&#34;: {
+               &#34;type&#34;: &#34;string&#34;
+            }
+         }
+      }
+   }
+}&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_logstash&#34;&gt;2. logstash&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_jdbc_数据同步&#34;&gt;2.1. jdbc 数据同步&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;测试&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;input {
+  jdbc {
+        jdbc_connection_string =&amp;gt; &#34;jdbc:mysql://192.168.137.2:3306/test&#34;
+        jdbc_user =&amp;gt; &#34;root&#34;
+        jdbc_password =&amp;gt; &#34;111111&#34;
+        jdbc_driver_library =&amp;gt; &#34;/mysql-connector-java-5.1.33.jar&#34;
+        jdbc_driver_class =&amp;gt; &#34;com.mysql.jdbc.Driver&#34;
+        jdbc_paging_enabled =&amp;gt; &#34;true&#34;
+        jdbc_page_size =&amp;gt; &#34;50000&#34;
+        schedule =&amp;gt; &#34;* * * * *&#34;
+        use_column_value =&amp;gt; &#34;true&#34;
+        tracking_column =&amp;gt; &#34;in_date&#34;
+        statement =&amp;gt; &#34;SELECT * from contacts WHERE in_date &amp;gt; :sql_last_value&#34;
+    }
+}
+output {
+  elasticsearch {
+    hosts =&amp;gt; &#34;es:9200&#34;
+    index =&amp;gt; &#34;contacts&#34;
+    document_type =&amp;gt; &#34;contact&#34;
+    document_id =&amp;gt; &#34;%{uid}&#34;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;test1&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;input { stdin { } }
+
+filter {
+  grok {
+    match =&amp;gt; { &#34;message&#34; =&amp;gt; &#34;%{COMBINEDAPACHELOG}&#34; }
+  }
+  date {
+    match =&amp;gt; [ &#34;timestamp&#34; , &#34;dd/MMM/yyyy:HH:mm:ss Z&#34; ]
+  }
+}
+
+output {
+  stdout { codec =&amp;gt; rubydebug }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;test2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;input {
+   file {
+      type =&amp;gt; &#34;a&#34;
+      path =&amp;gt; &#34;/logstash-2.3.4/test.file.a&#34;
+   }
+   file {
+      type =&amp;gt; &#34;b&#34;
+      path =&amp;gt; &#34;/logstash-2.3.4/test.file.b&#34;
+   }
+}
+output {
+   if [type] == &#34;b&#34; {
+     stdout { codec =&amp;gt; rubydebug }
+   }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_test_mapping&#34;&gt;2.1.1. test mapping&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+   &#34;settings&#34;: {
+      &#34;number_of_replicas&#34;: &#34;1&#34;,
+      &#34;number_of_shards&#34;: &#34;1&#34;
+   },
+   &#34;mappings&#34;: {
+      &#34;resources_single&#34;: {
+         &#34;properties&#34;: {
+            &#34;rs_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_state&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            }
+         }
+      },
+      &#34;resources_single&#34;: {
+         &#34;properties&#34;: {
+            &#34;rsrv_str3&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rsrv_str4&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rsrv_str5&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;procur_f_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            }
+         }
+      }
+   }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect4&#34;&gt;
+&lt;h5 id=&#34;_q_a&#34;&gt;Q &amp;amp; A&lt;/h5&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;多分片下,使用 &lt;code&gt;parent&lt;/code&gt; &lt;code&gt;child&lt;/code&gt;
+映射中添加 &lt;code&gt;routing&lt;/code&gt; 指定统一路由地址&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yml:/linux/conf/logstash/sql-init/ceshi-mysql-es-goods-init-mapping.yml```&#34; data-lang=&#34;yml:/linux/conf/logstash/sql-init/ceshi-mysql-es-goods-init-mapping.yml```&#34;&gt;===== 参考
+. [[https://www.elastic.co/blog/logstash-jdbc-input-plugin]]
+. [[https://github.com/logstash-plugins/logstash-input-jdbc]]
+. [[jdbc 配置 | https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html]]
+. [[ | ]]
+. [[http://blog.csdn.net/laoyang360/article/details/51747266]]
+
+
+
+== 参考
+. [[logstash-input-jdbc实现mysql 与elasticsearch实时同步深入详解 | Elasticsearch 架构以及源码概览|http://jolestar.com/elasticsearch-architecture/]]
+. [[elasticsearch-sql | https://github.com/allwefantasy/elasticsearch-sql]]
+. [[一个中文拼音分词插件支持全拼、首字母、中文混合搜索 | https://github.com/gitchennan/elasticsearch-analysis-lc-pinyin]]
+. [[http://elasticsearch.cn/article/32]]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>elasticsearch-jdbc-importer</title>
+      <link>/post/elasticsearch-jdbc-importer/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/elasticsearch-jdbc-importer/</guid>
+      <description>
+
+&lt;h1 id=&#34;elasticsearch-jdbc-importer&#34;&gt;elasticsearch-jdbc-importer&lt;/h1&gt;
+
+&lt;h3 id=&#34;mysql-数据导入-elasticsearch&#34;&gt;&lt;code&gt;mysql&lt;/code&gt;数据导入&lt;code&gt;elasticsearch&lt;/code&gt;&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;设置映射&lt;/strong&gt;
+&lt;code&gt;json
+PUT /b2b
+{
+&amp;quot;settings&amp;quot;: {
+  &amp;quot;number_of_replicas&amp;quot;: &amp;quot;1&amp;quot;,
+  &amp;quot;number_of_shards&amp;quot;: &amp;quot;1&amp;quot;
+},
+&amp;quot;mappings&amp;quot;: {
+  &amp;quot;mlq_goods&amp;quot;: {
+     &amp;quot;properties&amp;quot;: {
+        &amp;quot;id&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;not_analyzed&amp;quot;
+        },
+        &amp;quot;category&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        },
+       &amp;quot;cat_code&amp;quot;: {
+          &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+          &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+          &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+          &amp;quot;analyzer&amp;quot;: &amp;quot;mmseg&amp;quot;
+       },
+        &amp;quot;brand_name&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        },
+        &amp;quot;brand_name_noa&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;not_analyzed&amp;quot;
+        },
+        &amp;quot;new_seller_nick&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        },
+        &amp;quot;goods_status&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+            &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;not_analyzed&amp;quot;
+        },
+        &amp;quot;title&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        }
+     }
+  },
+  &amp;quot;mlq_product&amp;quot;: {
+     &amp;quot;_parent&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;mlq_goods&amp;quot;
+     },
+     &amp;quot;properties&amp;quot;: {
+        &amp;quot;id&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;not_analyzed&amp;quot;
+        },
+        &amp;quot;sale_region&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        },
+        &amp;quot;repository_region&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        },
+        &amp;quot;product_name_noa&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;not_analyzed&amp;quot;
+        },
+        &amp;quot;product_name&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+           &amp;quot;store&amp;quot;: &amp;quot;yes&amp;quot;,
+           &amp;quot;index&amp;quot;: &amp;quot;analyzed&amp;quot;,
+           &amp;quot;analyzer&amp;quot;: &amp;quot;ik&amp;quot;
+        }
+     }
+  }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;import导入文件&lt;/strong&gt;
+&lt;code&gt;bash
+#!/bin/sh
+#&amp;quot;schedule&amp;quot; : &amp;quot;0 0 22 * * ?&amp;quot;,
+DIR=&amp;quot;$( cd &amp;quot;$( dirname &amp;quot;${BASH_SOURCE[0]}&amp;quot; )&amp;quot; &amp;amp;&amp;amp; pwd )&amp;quot;
+bin=${DIR}/../../bin
+lib=${DIR}/../../lib
+#
+echo &#39;
+{
+&amp;quot;type&amp;quot; : &amp;quot;jdbc&amp;quot;,
+&amp;quot;jdbc&amp;quot; : {
+ &amp;quot;url&amp;quot; : &amp;quot;jdbc:mysql://192.168.137.1:3306/b2b&amp;quot;,
+ &amp;quot;user&amp;quot; : &amp;quot;root&amp;quot;,
+ &amp;quot;password&amp;quot; : &amp;quot;111111&amp;quot;,
+ &amp;quot;sql&amp;quot; :[
+    {
+        &amp;quot;statement&amp;quot; : &amp;quot;SELECT \&amp;quot;b2b\&amp;quot; AS _index, \&amp;quot;mlq_goods\&amp;quot; as _type, mg.id AS _id, tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category, (SELECT brand_name FROM mlq_brand WHERE id = brand_id) brand_name, (SELECT tm.cust_name FROM ti_member tm WHERE tm.cust_id = mg.seller_id) new_seller_nick, mg.* FROM mlq_goods mg&amp;quot;
+    },
+    {
+        &amp;quot;statement&amp;quot; : &amp;quot;SELECT \&amp;quot;b2b\&amp;quot; AS _index, \&amp;quot;mlq_product\&amp;quot; as _type, mp.id as _id, mp.goods_id as _parent,mp.*,mpa.* FROM mlq_product mp, (SELECT mpa.product_id , tranAddr(MAX(CASE mpa.attr_name WHEN \&amp;quot;销售地区\&amp;quot; THEN mpa.attr_value ELSE 0 END ),\&amp;quot;-\&amp;quot;) sale_region, tranAddr(MAX(CASE mpa.attr_name WHEN \&amp;quot;出库地区\&amp;quot; THEN mpa.attr_value ELSE 0 END ),\&amp;quot;-\&amp;quot;) repository_region, MAX(CASE mpa.attr_name WHEN \&amp;quot;最小起订量\&amp;quot; THEN mpa.attr_value ELSE 0 END ) min_quantity, MAX(CASE mpa.attr_name WHEN \&amp;quot;库存量\&amp;quot; THEN mpa.attr_value ELSE 0 END ) stock_quantity, MAX(CASE mpa.attr_name WHEN \&amp;quot;单位\&amp;quot; THEN mpa.attr_value ELSE 0 END ) unit, MAX(CASE mpa.attr_name WHEN \&amp;quot;交货天数\&amp;quot; THEN mpa.attr_value ELSE 0 END ) delivery_day, MAX(CASE mpa.attr_name WHEN \&amp;quot;包装类型\&amp;quot; THEN mpa.attr_value ELSE 0 END ) package_type FROM mlq_product_attr mpa GROUP BY mpa.product_id) mpa WHERE mp.id = mpa.product_id&amp;quot;
+    }
+],
+&amp;quot;elasticsearch&amp;quot; : {
+        &amp;quot;cluster&amp;quot; : &amp;quot;elasticsearch&amp;quot;,
+        &amp;quot;host&amp;quot; : &amp;quot;192.168.137.107&amp;quot;,
+        &amp;quot;port&amp;quot; : 9300
+    }
+}
+}
+&#39; | java \
+-cp &amp;quot;${lib}/*&amp;quot; \
+-Dlog4j.configurationFile=${bin}/log4j2.xml \
+org.xbib.tools.Runner \
+org.xbib.tools.JDBCImporter
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>es 代码片段</title>
+      <link>/post/es-snippet/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/es-snippet/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents
+&lt;!-- toc --&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;es-snippet&#34;&gt;es-snippet&lt;/h1&gt;
+
+&lt;h3 id=&#34;new-snippets&#34;&gt;&lt;strong&gt;new snippets&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;索引分片设置&lt;/strong&gt;
+&lt;code&gt;json
+PUT /b2b
+{
+  &amp;quot;settings&amp;quot;:{
+    &amp;quot;number_of_shards&amp;quot;:1,
+    &amp;quot;number_of_replicas&amp;quot;:1
+  }
+}
+//查询b2b分片信息
+GET /b2b/_settings
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;mlq-goods&#34;&gt;mlq_goods&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;mlq_goods&lt;/code&gt;的&lt;code&gt;mapping&lt;/code&gt;设置&lt;/strong&gt;
+&lt;code&gt;json
+PUT /b2b/mlq_goods/_mapping
+{
+&amp;quot;mlq_goods&amp;quot;:{
+  &amp;quot;properties&amp;quot;: {
+    &amp;quot;id&amp;quot;: {
+      &amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;,
+      &amp;quot;store&amp;quot;:&amp;quot;yes&amp;quot;,
+      &amp;quot;index&amp;quot;:&amp;quot;not_analyzed&amp;quot;
+    },
+    &amp;quot;title&amp;quot;: {
+       &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+       &amp;quot;store&amp;quot;:&amp;quot;yes&amp;quot;,
+       &amp;quot;index&amp;quot;:&amp;quot;analyzed&amp;quot;,
+       &amp;quot;analyzer&amp;quot;:&amp;quot;ik_analyzer&amp;quot;
+      }
+    }
+}
+}
+//查询mlq_goods的mapping信息
+GET /b2b/mlq_goods/_mapping
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;从数据库导入&lt;code&gt;mlq_goods&lt;/code&gt;表到&lt;code&gt;ES&lt;/code&gt;配置信息&lt;/strong&gt;
+&lt;code&gt;json
+PUT /_river/mlq_goods/_meta 
+{
+&amp;quot;type&amp;quot; : &amp;quot;jdbc&amp;quot;,
+&amp;quot;jdbc&amp;quot; : {
+   &amp;quot;url&amp;quot; : &amp;quot;jdbc:mysql://localhost:3306/b2b&amp;quot;,
+   &amp;quot;user&amp;quot; : &amp;quot;root&amp;quot;,
+   &amp;quot;password&amp;quot; : &amp;quot;111111&amp;quot;,
+   &amp;quot;sql&amp;quot; : &amp;quot;SELECT mg.id AS _id, tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category, (SELECT brand_name FROM mlq_brand WHERE id = brand_id) brand_name, (SELECT tm.cust_name FROM ti_member tm WHERE tm.cust_id = mg.seller_id) new_seller_nick, mg.* FROM mlq_goods mg&amp;quot;,
+   &amp;quot;index&amp;quot;: &amp;quot;b2b&amp;quot;,
+   &amp;quot;type&amp;quot;: &amp;quot;mlq_goods&amp;quot;
+  }
+}
+//查询mlq_goods数据
+GET /b2b/mlq_goods/_search
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;mlq-product&#34;&gt;mlq_product&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;mlq_product&lt;/code&gt;的&lt;code&gt;mapping&lt;/code&gt;设置&lt;/strong&gt;
+&lt;code&gt;json
+PUT /b2b/mlq_product/_mapping
+{
+&amp;quot;mlq_product&amp;quot;:{
+  &amp;quot;_parent&amp;quot;: {&amp;quot;type&amp;quot;: &amp;quot;mlq_goods&amp;quot;},
+  &amp;quot;properties&amp;quot;: {
+    &amp;quot;id&amp;quot;: {
+      &amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;,
+      &amp;quot;store&amp;quot;:&amp;quot;yes&amp;quot;,
+      &amp;quot;index&amp;quot;:&amp;quot;not_analyzed&amp;quot;
+    },
+    &amp;quot;sale_region&amp;quot;: {
+       &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+       &amp;quot;store&amp;quot;:&amp;quot;yes&amp;quot;,
+       &amp;quot;index&amp;quot;:&amp;quot;analyzed&amp;quot;,
+       &amp;quot;analyzer&amp;quot;:&amp;quot;ik_analyzer&amp;quot;
+    },
+    &amp;quot;repository_region&amp;quot;: {
+       &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+       &amp;quot;store&amp;quot;:&amp;quot;yes&amp;quot;,
+       &amp;quot;index&amp;quot;:&amp;quot;analyzed&amp;quot;,
+       &amp;quot;analyzer&amp;quot;:&amp;quot;ik_analyzer&amp;quot;
+    },
+    &amp;quot;product_name&amp;quot;: {
+       &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+       &amp;quot;store&amp;quot;:&amp;quot;yes&amp;quot;,
+       &amp;quot;index&amp;quot;:&amp;quot;analyzed&amp;quot;,
+       &amp;quot;analyzer&amp;quot;:&amp;quot;ik_analyzer&amp;quot;
+      }
+   }
+}
+}
+//查询mlq_product映射maping信息
+GET /b2b/mlq_product/_mapping
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;从数据库导入&lt;code&gt;mlq_product&lt;/code&gt;表到&lt;code&gt;ES&lt;/code&gt;配置信息&lt;/strong&gt;
+&lt;code&gt;json
+PUT /_river/mlq_product/_meta 
+{
+&amp;quot;type&amp;quot; : &amp;quot;jdbc&amp;quot;,
+&amp;quot;jdbc&amp;quot; : {
+&amp;quot;url&amp;quot; : &amp;quot;jdbc:mysql://localhost:3306/b2b&amp;quot;,
+&amp;quot;user&amp;quot; : &amp;quot;root&amp;quot;,
+&amp;quot;password&amp;quot; : &amp;quot;111111&amp;quot;,
+&amp;quot;sql&amp;quot; : &amp;quot;SELECT mp.id as _id, mp.goods_id as _parent,mp.*,mpa.* FROM mlq_product mp, (SELECT mpa.product_id , tranAddr(MAX(CASE mpa.attr_name WHEN &#39;销售地区&#39; THEN mpa.attr_value ELSE 0 END ),&#39;-&#39;) sale_region, tranAddr(MAX(CASE mpa.attr_name WHEN &#39;出库地区&#39; THEN mpa.attr_value ELSE 0 END ),&#39;-&#39;) repository_region, MAX(CASE mpa.attr_name WHEN &#39;最小起订量&#39; THEN mpa.attr_value ELSE 0 END ) min_quantity, MAX(CASE mpa.attr_name WHEN &#39;库存量&#39; THEN mpa.attr_value ELSE 0 END ) stock_quantity, MAX(CASE mpa.attr_name WHEN &#39;单位&#39; THEN mpa.attr_value ELSE 0 END ) unit, MAX(CASE mpa.attr_name WHEN &#39;交货天数&#39; THEN mpa.attr_value ELSE 0 END ) delivery_day, MAX(CASE mpa.attr_name WHEN &#39;包装类型&#39; THEN mpa.attr_value ELSE 0 END ) package_type FROM mlq_product_attr mpa GROUP BY mpa.product_id) mpa WHERE mp.id = mpa.product_id&amp;quot;,
+&amp;quot;index&amp;quot;: &amp;quot;b2b&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;
+}
+}
+//查询mlq_product 数据
+GET /b2b/mlq_product/_search
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;tmp-snippets&#34;&gt;&lt;strong&gt;tmp snippets&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;GET _search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;match_all&amp;quot;: {}
+  }
+}
+
+DELETE /_river/mlq_product
+DELETE /_river/mlq_goods
+DELETE /b2b
+DELETE /b2b/mlq_goods
+
+PUT /b2b/mlq_product/_mapping
+{
+  &amp;quot;mlq_product&amp;quot;: {
+    &amp;quot;_parent&amp;quot;:{
+      &amp;quot;type&amp;quot;:&amp;quot;mlq_goods&amp;quot;
+    },
+    &amp;quot;properties&amp;quot;: {
+      &amp;quot;addr&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+        &amp;quot;store&amp;quot;: true,
+        &amp;quot;indexAnalyzer&amp;quot;: &amp;quot;ik&amp;quot;,
+        &amp;quot;searchAnalyzer&amp;quot;: &amp;quot;ik&amp;quot;
+      }
+    }
+  }
+}
+
+
+PUT /_river/mlq_product_attr/_meta
+{
+  &amp;quot;type&amp;quot; : &amp;quot;jdbc&amp;quot;,
+    &amp;quot;jdbc&amp;quot; : {
+        &amp;quot;url&amp;quot; : &amp;quot;jdbc:mysql://localhost:3306/b2b&amp;quot;,
+        &amp;quot;user&amp;quot; : &amp;quot;root&amp;quot;,
+        &amp;quot;password&amp;quot; : &amp;quot;111111&amp;quot;,
+        &amp;quot;sql&amp;quot; : &amp;quot;SELECT mpa.id AS _id,mpa.product_id AS _parent,mpa.* FROM mlq_product_attr mpa&amp;quot;,
+        &amp;quot;index&amp;quot; : &amp;quot;b2b&amp;quot;,
+        &amp;quot;type&amp;quot; : &amp;quot;mlq_product_attr&amp;quot;
+    }
+}
+
+GET /b2b/mlq_product_attr/_mapping
+GET /b2b/mlq_product_attr/_search
+
+GET /b2b/mlq_goods/_mapping
+
+GET /b2b/mlq_product/_mapping
+
+PUT /b2b/mlq_goods/_mapping
+{
+  &amp;quot;mlq_goods&amp;quot;: {
+    &amp;quot;properties&amp;quot;: {
+      &amp;quot;title&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+        &amp;quot;store&amp;quot;: true,
+        &amp;quot;analyzer&amp;quot;: &amp;quot;ik_max_word&amp;quot;
+      },
+      &amp;quot;category&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+        &amp;quot;store&amp;quot;: true,
+        &amp;quot;analyzer&amp;quot;: &amp;quot;ik_max_word&amp;quot;
+      }
+    }
+  }
+}
+
+PUT /_river/mlq_goods/_meta
+{
+  &amp;quot;type&amp;quot; : &amp;quot;jdbc&amp;quot;,
+    &amp;quot;jdbc&amp;quot; : {
+        &amp;quot;url&amp;quot; : &amp;quot;jdbc:mysql://localhost:3306/b2b&amp;quot;,
+        &amp;quot;user&amp;quot; : &amp;quot;root&amp;quot;,
+        &amp;quot;password&amp;quot; : &amp;quot;111111&amp;quot;,
+        &amp;quot;sql&amp;quot; : &amp;quot;SELECT mg.id as _id,tranCat(mg.cat_code) category,mg.* from mlq_goods mg&amp;quot;,
+        &amp;quot;index&amp;quot; : &amp;quot;b2b&amp;quot;,
+        &amp;quot;type&amp;quot; : &amp;quot;mlq_goods&amp;quot;
+    }
+}
+
+
+PUT /b2b
+{
+  &amp;quot;settings&amp;quot;: {
+    &amp;quot;number_of_shards&amp;quot;: 1
+    , &amp;quot;number_of_replicas&amp;quot;: 1
+  }
+}
+
+GET /b2b/mlq_goods/_search
+{
+  &amp;quot;from&amp;quot;: 0,
+  &amp;quot;size&amp;quot;: 5
+}
+
+GET /b2b/mlq_goods/_search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;has_child&amp;quot;: {
+      &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+      &amp;quot;query&amp;quot;: {
+        &amp;quot;term&amp;quot;: {
+          &amp;quot;addr&amp;quot;: {
+            &amp;quot;value&amp;quot;: &amp;quot;华中地区&amp;quot;
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+  &amp;quot;from&amp;quot;: 1,
+  &amp;quot;size&amp;quot;: 3, 
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;match&amp;quot;: {
+      &amp;quot;addr&amp;quot;: &amp;quot;华中地区&amp;quot;
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+ &amp;quot;query&amp;quot;: {
+   &amp;quot;term&amp;quot;: {
+     &amp;quot;addr&amp;quot;: {
+        &amp;quot;value&amp;quot;: &amp;quot;华中地区&amp;quot;
+      }
+   }
+ } 
+} 
+
+
+GET /b2b/mlq_product_attr/_mapping
+
+GET /b2b/mlq_goods/_search
+
+GET /b2b/mlq_goods/_search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;term&amp;quot;: {
+      &amp;quot;category&amp;quot;: {
+        &amp;quot;value&amp;quot;: &amp;quot;改性&amp;quot;
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_goods/_search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;filtered&amp;quot;: {
+      &amp;quot;query&amp;quot;: {
+          &amp;quot;has_child&amp;quot;: {
+          &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+          &amp;quot;query&amp;quot;: {
+            &amp;quot;term&amp;quot;: {
+              &amp;quot;addr&amp;quot;: {
+                &amp;quot;value&amp;quot;: &amp;quot;华中地区&amp;quot;
+              }
+            }
+          }
+        }
+      }, 
+      &amp;quot;filter&amp;quot;: {
+        &amp;quot;term&amp;quot;: {
+          &amp;quot;category&amp;quot;: &amp;quot;改性&amp;quot;
+        }
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;filtered&amp;quot;: {
+      &amp;quot;query&amp;quot;: {
+          &amp;quot;has_parent&amp;quot;: {
+          &amp;quot;parent_type&amp;quot;: &amp;quot;mlq_goods&amp;quot;,
+          &amp;quot;query&amp;quot;: {
+            &amp;quot;term&amp;quot;: {
+              &amp;quot;id&amp;quot;: &amp;quot;20150914JPCi4n8&amp;quot;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;filtered&amp;quot;: {
+      &amp;quot;query&amp;quot;: {
+        &amp;quot;has_parent&amp;quot;: {
+          &amp;quot;parent_type&amp;quot;: &amp;quot;mlq_goods&amp;quot;,
+          &amp;quot;query&amp;quot;: {
+            &amp;quot;term&amp;quot;: {
+              &amp;quot;id&amp;quot;: &amp;quot;20150915y2W535n&amp;quot;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /twitter/tweet/_mapping
+
+
+
+
+
+GET /twitter/tweet/_search
+{
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;filtered&amp;quot;: {
+      &amp;quot;query&amp;quot;: {
+        &amp;quot;term&amp;quot;: {
+          &amp;quot;author&amp;quot;: &amp;quot;John&amp;quot;
+        }
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2015-12-29-snippets&#34;&gt;2015-12-29 snippets&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;GET /b2b/mlq_goods/_search
+{
+  &amp;quot;fields&amp;quot;: [
+    &amp;quot;id&amp;quot;
+  ],
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;match&amp;quot;: {
+      &amp;quot;cat_code&amp;quot;: &amp;quot;20150914w7L7oG2&amp;quot;
+    }
+  },
+  &amp;quot;aggs&amp;quot;: {
+    &amp;quot;district&amp;quot;: {
+      &amp;quot;terms&amp;quot;: {
+        &amp;quot;field&amp;quot;: &amp;quot;brand_id&amp;quot;,
+        &amp;quot;size&amp;quot;: 0
+      },
+      &amp;quot;aggs&amp;quot;: {
+        &amp;quot;tops&amp;quot;: {
+          &amp;quot;top_hits&amp;quot;: {
+            &amp;quot;_source&amp;quot;: {
+              &amp;quot;include&amp;quot;: [
+                &amp;quot;brand_id&amp;quot;,
+                &amp;quot;brand_name&amp;quot;
+              ]
+            },
+            &amp;quot;size&amp;quot;: 1
+          }
+        }
+      }
+    },
+    &amp;quot;to-product&amp;quot;: {
+      &amp;quot;children&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;
+      },
+      &amp;quot;aggs&amp;quot;: {
+        &amp;quot;top-names&amp;quot;: {
+          &amp;quot;terms&amp;quot;: {
+            &amp;quot;field&amp;quot;: &amp;quot;id&amp;quot;,
+            &amp;quot;size&amp;quot;: 0
+          },
+          &amp;quot;aggs&amp;quot;: {
+            &amp;quot;tops&amp;quot;: {
+              &amp;quot;top_hits&amp;quot;: {
+                &amp;quot;_source&amp;quot;: {
+                  &amp;quot;include&amp;quot;: [
+                    &amp;quot;id&amp;quot;,
+                    &amp;quot;product_name&amp;quot;
+                  ]
+                },
+                &amp;quot;size&amp;quot;: 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;and-查询&#34;&gt;&lt;code&gt;AND&lt;/code&gt;查询&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+GET /b2b/mlq_goods/_search
+{
+&amp;quot;query&amp;quot;: {
+&amp;quot;bool&amp;quot;: {
+  &amp;quot;must&amp;quot;: [
+    {&amp;quot;match&amp;quot;: { &amp;quot;cat_code&amp;quot;: &amp;quot;20150914w7L7oG2&amp;quot;}},
+    {&amp;quot;match&amp;quot;: { &amp;quot;brand_id&amp;quot;: &amp;quot;20150914C4ie5oO&amp;quot;}}
+  ]
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;range-查询&#34;&gt;&lt;code&gt;Range&lt;/code&gt;查询&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+GET /b2b/mlq_goods/_search
+{
+&amp;quot;query&amp;quot;: {
+&amp;quot;filtered&amp;quot;: {
+  &amp;quot;query&amp;quot;: {
+    &amp;quot;match_all&amp;quot;: {}
+  },
+  &amp;quot;filter&amp;quot;: {
+    &amp;quot;has_child&amp;quot;: {
+      &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+      &amp;quot;query&amp;quot;: {
+        &amp;quot;range&amp;quot;: {
+          &amp;quot;mlq_product.product_price&amp;quot;: {
+            &amp;quot;gte&amp;quot;: 3600,
+            &amp;quot;lte&amp;quot;: 4000
+          }
+        }
+      }
+    }
+  }
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;多条件查询&#34;&gt;多条件查询&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;筛选
+&lt;code&gt;json
+POST /b2b/mlq_goods/_search
+{
+&amp;quot;from&amp;quot;: 0,
+&amp;quot;size&amp;quot;: 10,
+&amp;quot;query&amp;quot;: {
+&amp;quot;bool&amp;quot;: {
+  &amp;quot;must&amp;quot;: [
+    {
+      &amp;quot;bool&amp;quot;: {
+      &amp;quot;should&amp;quot;: [
+        {
+          &amp;quot;match&amp;quot;: {
+            &amp;quot;brand_name&amp;quot;: &amp;quot;宁波博盈&amp;quot;
+          }
+        },
+        {
+          &amp;quot;match&amp;quot;: {
+            &amp;quot;title&amp;quot;: &amp;quot;宁波博盈&amp;quot;
+          }
+        },
+        {
+          &amp;quot;match&amp;quot;: {
+            &amp;quot;new_seller_nick&amp;quot;: &amp;quot;宁波博盈&amp;quot;
+          }
+        }
+      ]
+      }
+    },
+    {
+      &amp;quot;match&amp;quot;: {
+        &amp;quot;cat_code&amp;quot;: &amp;quot;20150914w7L7oG2&amp;quot;
+      }
+    },
+    {
+      &amp;quot;match&amp;quot;: {
+        &amp;quot;new_seller_nick&amp;quot;: &amp;quot;宁波博盈石油化工有限公司&amp;quot;
+      }
+    },
+    {
+      &amp;quot;term&amp;quot;: {
+        &amp;quot;brand_name_noa&amp;quot;: &amp;quot;泰普克&amp;quot;
+      }
+    },
+    {
+      &amp;quot;has_child&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+        &amp;quot;query&amp;quot;: {
+          &amp;quot;range&amp;quot;: {
+            &amp;quot;mlq_product.product_price&amp;quot;: {
+              &amp;quot;from&amp;quot;: 1000.0,
+              &amp;quot;to&amp;quot;: 3000.0
+            }
+          }
+        }
+      }
+    },
+    {
+      &amp;quot;has_child&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+        &amp;quot;query&amp;quot;: {
+          &amp;quot;term&amp;quot;: {
+            &amp;quot;mlq_product.product_name_noa&amp;quot;: &amp;quot;70#&amp;quot;
+          }
+        }
+      }
+    },
+    {
+      &amp;quot;has_child&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+        &amp;quot;query&amp;quot;: {
+          &amp;quot;match&amp;quot;: {
+            &amp;quot;repository_region&amp;quot;: &amp;quot;华东&amp;quot;
+          }
+        }
+      }
+    }
+  ]
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;父子查询&#34;&gt;父子查询&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;父:mlq_goods - 子:mlq_product&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+&lt;li&gt;查询子
+&lt;code&gt;json
+POST /b2b/mlq_product/_search
+{
+&amp;quot;query&amp;quot;: {
+    &amp;quot;has_parent&amp;quot;: {
+        //父类型
+        &amp;quot;parent_type&amp;quot;: &amp;quot;mlq_goods&amp;quot;,
+        &amp;quot;query&amp;quot;: {
+            &amp;quot;term&amp;quot;: {
+               //父id
+               &amp;quot;id&amp;quot;: {
+                  &amp;quot;value&amp;quot;: &amp;quot;20151127y344nRq&amp;quot;
+               }
+            }
+        }
+    }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;查询父
+&lt;code&gt;json
+POST /b2b/mlq_goods/_search
+{
+&amp;quot;query&amp;quot;: {
+  &amp;quot;has_child&amp;quot;: {
+     //子类型
+     &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+     &amp;quot;query&amp;quot;: {
+        &amp;quot;term&amp;quot;: {
+           //子id
+           &amp;quot;id&amp;quot;: {
+              &amp;quot;value&amp;quot;: &amp;quot;20151127c3De6K2&amp;quot;
+           }
+        }
+     }
+  }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2016年1月24日&#34;&gt;2016年1月24日&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;加权
+&lt;code&gt;
+POST /b2b/mlq_goods/_search
+{
+&amp;quot;query&amp;quot;: {
+  &amp;quot;function_score&amp;quot;: {
+     &amp;quot;query&amp;quot;: {
+        &amp;quot;match&amp;quot;: {
+           &amp;quot;cat_code&amp;quot;: &amp;quot;20150914q0asfEw&amp;quot;
+        }
+     },
+     &amp;quot;functions&amp;quot;: [
+        {
+           &amp;quot;boost_factor&amp;quot;: 20
+        }
+     ]
+  }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;商品,单品 &lt;code&gt;weight&lt;/code&gt; 相加 得到 &lt;code&gt;score&lt;/code&gt;
+&lt;code&gt;json
+POST /b2b/mlq_goods/_search
+{
+&amp;quot;query&amp;quot;: {
+  &amp;quot;function_score&amp;quot;: {
+     &amp;quot;query&amp;quot;: {
+        &amp;quot;has_child&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+           &amp;quot;score_type&amp;quot;: &amp;quot;sum&amp;quot;,
+           &amp;quot;query&amp;quot;: {
+              &amp;quot;function_score&amp;quot;: {
+                 &amp;quot;functions&amp;quot;: [
+                    {
+                       &amp;quot;script_score&amp;quot;: {
+                          &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_product.weight&#39;].value&amp;quot;
+                       }
+                    }
+                 ],
+                 &amp;quot;query&amp;quot;: {
+                    &amp;quot;match&amp;quot;: {
+                       &amp;quot;repository_region_noa&amp;quot;: &amp;quot;甘肃&amp;quot;
+                    }
+                 },
+                 &amp;quot;boost_mode&amp;quot;: &amp;quot;replace&amp;quot;
+              }
+           }
+        }
+     },
+     &amp;quot;functions&amp;quot;: [
+        {
+           &amp;quot;script_score&amp;quot;: {
+              &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_goods.weight&#39;].value&amp;quot;
+           }
+        }
+     ],
+     &amp;quot;boost_mode&amp;quot;: &amp;quot;sum&amp;quot;
+  }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;商品,单品,店铺 &lt;code&gt;weight&lt;/code&gt; 相加 得到 score
+&lt;code&gt;json
+POST /b2b/mlq_goods/_search
+{
+&amp;quot;query&amp;quot;: {
+  &amp;quot;function_score&amp;quot;: {
+     &amp;quot;query&amp;quot;: {
+        &amp;quot;bool&amp;quot;: {
+           &amp;quot;must&amp;quot;: [
+              {
+                 &amp;quot;has_child&amp;quot;: {
+                    &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+                    &amp;quot;score_type&amp;quot;: &amp;quot;sum&amp;quot;,
+                    &amp;quot;query&amp;quot;: {
+                       &amp;quot;function_score&amp;quot;: {
+                          &amp;quot;functions&amp;quot;: [
+                             {
+                                &amp;quot;script_score&amp;quot;: {
+                                   &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_product.weight&#39;].value&amp;quot;
+                                }
+                             }
+                          ],
+                          &amp;quot;query&amp;quot;: {
+                             &amp;quot;match&amp;quot;: {
+                                &amp;quot;repository_region_noa&amp;quot;: &amp;quot;甘肃&amp;quot;
+                             }
+                          },
+                          &amp;quot;boost_mode&amp;quot;: &amp;quot;replace&amp;quot;
+                       }
+                    }
+                 }
+              },
+              {
+                 &amp;quot;has_parent&amp;quot;: {
+                    &amp;quot;parent_type&amp;quot;: &amp;quot;mlq_shop_info&amp;quot;,
+                    &amp;quot;score_type&amp;quot;: &amp;quot;score&amp;quot;,
+                    &amp;quot;query&amp;quot;: {
+                       &amp;quot;function_score&amp;quot;: {
+                          &amp;quot;functions&amp;quot;: [
+                             {
+                                &amp;quot;script_score&amp;quot;: {
+                                   &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_shop_info.weight&#39;].value&amp;quot;
+                                }
+                             }
+                          ],
+                          &amp;quot;query&amp;quot;: {
+                             &amp;quot;match_all&amp;quot;: {}
+                          },
+                          &amp;quot;boost_mode&amp;quot;: &amp;quot;replace&amp;quot;
+                       }
+                    }
+                 }
+              }
+           ]
+        }
+     },
+     &amp;quot;functions&amp;quot;: [
+        {
+           &amp;quot;script_score&amp;quot;: {
+              &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_goods.weight&#39;].value&amp;quot;
+           }
+        }
+     ],
+     &amp;quot;score_mode&amp;quot;: &amp;quot;sum&amp;quot;,
+     &amp;quot;boost_mode&amp;quot;: &amp;quot;sum&amp;quot;
+  }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;查询,得分,聚合
+&lt;code&gt;json
+{
+&amp;quot;from&amp;quot;: 0,
+&amp;quot;size&amp;quot;: 10,
+&amp;quot;query&amp;quot;: {
+  &amp;quot;function_score&amp;quot;: {
+     &amp;quot;query&amp;quot;: {
+        &amp;quot;bool&amp;quot;: {
+           &amp;quot;must&amp;quot;: [
+              {
+                 &amp;quot;match&amp;quot;: {
+                    &amp;quot;cat_code&amp;quot;: &amp;quot;201509140qX823u&amp;quot;
+                 }
+              },
+              {
+                 &amp;quot;term&amp;quot;: {
+                    &amp;quot;goods_status&amp;quot;: &amp;quot;c&amp;quot;
+                 }
+              },
+              {
+                 &amp;quot;has_child&amp;quot;: {
+                    &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+                    &amp;quot;query&amp;quot;: {
+                       &amp;quot;range&amp;quot;: {
+                          &amp;quot;mlq_product.product_price&amp;quot;: {
+                             &amp;quot;from&amp;quot;: 1000,
+                             &amp;quot;to&amp;quot;: 3000
+                          }
+                       }
+                    }
+                 }
+              },
+              {
+                 &amp;quot;has_child&amp;quot;: {
+                    &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;,
+                    &amp;quot;score_type&amp;quot;: &amp;quot;max&amp;quot;,
+                    &amp;quot;query&amp;quot;: {
+                       &amp;quot;function_score&amp;quot;: {
+                          &amp;quot;functions&amp;quot;: [
+                             {
+                                &amp;quot;script_score&amp;quot;: {
+                                   &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_product.weight&#39;].value&amp;quot;
+                                }
+                             }
+                          ],
+                          &amp;quot;query&amp;quot;: {
+                             &amp;quot;match_all&amp;quot;: {}
+                          },
+                          &amp;quot;boost_mode&amp;quot;: &amp;quot;replace&amp;quot;
+                       }
+                    }
+                 }
+              },
+              {
+                 &amp;quot;has_parent&amp;quot;: {
+                    &amp;quot;parent_type&amp;quot;: &amp;quot;mlq_shop_info&amp;quot;,
+                    &amp;quot;score_type&amp;quot;: &amp;quot;score&amp;quot;,
+                    &amp;quot;query&amp;quot;: {
+                       &amp;quot;function_score&amp;quot;: {
+                          &amp;quot;functions&amp;quot;: [
+                             {
+                                &amp;quot;script_score&amp;quot;: {
+                                   &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_shop_info.weight&#39;].value&amp;quot;
+                                }
+                             }
+                          ],
+                          &amp;quot;query&amp;quot;: {
+                             &amp;quot;match_all&amp;quot;: {}
+                          },
+                          &amp;quot;boost_mode&amp;quot;: &amp;quot;replace&amp;quot;
+                       }
+                    }
+                 }
+              }
+           ]
+        }
+     },
+     &amp;quot;functions&amp;quot;: [
+        {
+           &amp;quot;script_score&amp;quot;: {
+              &amp;quot;script&amp;quot;: &amp;quot;doc[&#39;mlq_goods.weight&#39;].value&amp;quot;
+           }
+        }
+     ],
+     &amp;quot;score_mode&amp;quot;: &amp;quot;sum&amp;quot;,
+     &amp;quot;boost_mode&amp;quot;: &amp;quot;sum&amp;quot;
+  }
+},
+&amp;quot;aggs&amp;quot;: {
+  &amp;quot;brand_names&amp;quot;: {
+     &amp;quot;terms&amp;quot;: {
+        &amp;quot;field&amp;quot;: &amp;quot;brand_name_noa&amp;quot;,
+        &amp;quot;size&amp;quot;: 10
+     }
+  },
+  &amp;quot;seller_nicks&amp;quot;: {
+     &amp;quot;terms&amp;quot;: {
+        &amp;quot;field&amp;quot;: &amp;quot;new_seller_nick_noa&amp;quot;,
+        &amp;quot;size&amp;quot;: 10
+     }
+  },
+  &amp;quot;product_names&amp;quot;: {
+     &amp;quot;children&amp;quot;: {
+        &amp;quot;type&amp;quot;: &amp;quot;mlq_product&amp;quot;
+     },
+     &amp;quot;aggs&amp;quot;: {
+        &amp;quot;tops&amp;quot;: {
+           &amp;quot;terms&amp;quot;: {
+              &amp;quot;field&amp;quot;: &amp;quot;product_name_noa&amp;quot;,
+              &amp;quot;size&amp;quot;: 10
+           }
+        }
+     }
+  }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;2016-01-26&#34;&gt;2016-01-26&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;script&lt;/code&gt;更新 &lt;code&gt;weight&lt;/code&gt;
+&lt;code&gt;json
+POST /b2b/mlq_shop_info/2015091404A3ol8/_update
+{
+&amp;quot;script&amp;quot;: &amp;quot;weight = ctx._source.weight; if (weight == null) {ctx._source.weight=0 }; ctx._source.weight+=count;&amp;quot;,
+&amp;quot;params&amp;quot;: {
+  &amp;quot;count&amp;quot;: 7
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>es 基础</title>
+      <link>/post/es-book-note/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/es-book-note/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents&lt;/p&gt;
+
+&lt;h1 id=&#34;es-book-note&#34;&gt;ES-book-note&lt;/h1&gt;
+
+&lt;h3 id=&#34;1-基本查询&#34;&gt;1、基本查询&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;词条查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;term&amp;quot;:{
+  &amp;quot;title&amp;quot;:{
+    &amp;quot;value&amp;quot;:&amp;quot;crime&amp;quot;
+  }
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;多词条查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;terms&amp;quot;:{
+  //novel,book 字段
+  &amp;quot;tags&amp;quot;:[&amp;quot;novel&amp;quot;,&amp;quot;book&amp;quot;],
+  //至少一条需要匹配
+  &amp;quot;minimum_match&amp;quot;:1
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;match_all 查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;match_all&amp;quot;:{ }
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;常用词查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;common&amp;quot;:{
+  &amp;quot;title&amp;quot;:{
+    &amp;quot;query&amp;quot;:&amp;quot;crime and punishment&amp;quot;,
+    &amp;quot;cutoff_frequncy&amp;quot;:0.001
+  }
+}
+}
+}
+&lt;/code&gt;
+&lt;strong&gt;查询可能使用下列参数&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;query:这个参数定义了实际的查询内容&lt;/li&gt;
+&lt;li&gt;cutoff_frequency: 这个参数定义一个百分比&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;match查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;match&amp;quot;:{
+  &amp;quot;title&amp;quot;:&amp;quot;crime and punishment&amp;quot;
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;布尔值匹配查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;match&amp;quot;:{
+  &amp;quot;title&amp;quot;:{
+    &amp;quot;query&amp;quot;:&amp;quot;crime and punishment&amp;quot;,
+    &amp;quot;operator&amp;quot;:&amp;quot;and&amp;quot;
+  }
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;match_phrase 查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;match&amp;quot;:{
+  &amp;quot;title&amp;quot;:{
+    &amp;quot;query&amp;quot;:&amp;quot;crime and punishment&amp;quot;,
+    &amp;quot;slop&amp;quot;:&amp;quot;1&amp;quot;
+  }
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;multi_match查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;multi_match&amp;quot;:{
+  &amp;quot;query&amp;quot;:&amp;quot;crime punishment&amp;quot;,
+  &amp;quot;fields&amp;quot;:[&amp;quot;title&amp;quot;,&amp;quot;otitle&amp;quot;]
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;query_string 查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;query_string&amp;quot;:{
+  &amp;quot;query&amp;quot;:&amp;quot;title:crime^10 +title:punishment -otitle:cat +author:(+Fyodor +dostoevsky)&amp;quot;,
+  &amp;quot;default_field&amp;quot;:&amp;quot;title&amp;quot;
+}
+}
+}
+//针对多字段的query_string查询
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;query_string&amp;quot;:{
+  &amp;quot;query&amp;quot;:&amp;quot;crime punishment&amp;quot;,
+  &amp;quot;fields&amp;quot;:[&amp;quot;title&amp;quot;,&amp;quot;otitle&amp;quot;],
+  &amp;quot;use_dis_max&amp;quot;:true
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;标识符查询&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;json
+{
+&amp;quot;query&amp;quot;:{
+&amp;quot;ids&amp;quot;:{
+  &amp;quot;type&amp;quot;:&amp;quot;book&amp;quot;,
+  &amp;quot;values&amp;quot;:[&amp;quot;10&amp;quot;,&amp;quot;11&amp;quot;,&amp;quot;12&amp;quot;,&amp;quot;13&amp;quot;]
+}
+}
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>es 插件安装</title>
+      <link>/post/escha_jian_an_zhuang/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/escha_jian_an_zhuang/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents
+&lt;!-- toc --&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;es插件&#34;&gt;ES插件&lt;/h2&gt;
+
+&lt;h3 id=&#34;插件列表&#34;&gt;插件列表&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;inquisitor   分词&lt;/li&gt;
+&lt;li&gt;paramedic&lt;/li&gt;
+&lt;li&gt;bigdesk&lt;/li&gt;
+&lt;li&gt;kopf&lt;/li&gt;
+&lt;li&gt;segmentspy&lt;/li&gt;
+&lt;li&gt;marvel&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;ps: ES-Path /root/opt/elasticsearch-1.7.1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;安装-head&#34;&gt;安装&lt;code&gt;head&lt;/code&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;bash
+bin/plugin install head
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;安装-marvel&#34;&gt;安装&lt;code&gt;Marvel&lt;/code&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;bash
+bin/plugin install elasticsearch/marvel/latest
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;es错误&#34;&gt;ES错误&lt;/h2&gt;
+
+&lt;h3 id=&#34;启动marve错误&#34;&gt;启动Marve错误&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;marvel.agent.exporter: error connecting to [[0:0:0:0:0:0:0:0]:9200] [No route to host]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;解决方法:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#vim elasticsearch.yml
+#添加
+network.host: 192.168.137.107
+# http端口
+http.port: 9200
+http.host: &amp;quot;192.168.137.107&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;找不到-mysql-驱动&#34;&gt;找不到&lt;code&gt;mysql&lt;/code&gt;驱动&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;驱动包不兼容
+
+&lt;ul&gt;
+&lt;li&gt;更换驱动包&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;驱动包路径错误
+
+&lt;ul&gt;
+&lt;li&gt;放置在&lt;code&gt;$JAVA_HOME/jre/lib/ext/&lt;/code&gt;下&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>es 问题</title>
+      <link>/post/es-issues/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/es-issues/</guid>
+      <description>
+
+&lt;h1 id=&#34;es-issues&#34;&gt;ES-issues&lt;/h1&gt;
+
+&lt;h3 id=&#34;doc-更新出错&#34;&gt;&lt;code&gt;Doc&lt;/code&gt;更新出错&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;error
+&lt;code&gt;json
+{
+&amp;quot;error&amp;quot;: &amp;quot;ElasticsearchIllegalArgumentException[failed to execute script]; nested: ScriptException[scripts of type [inline], operation [update] and lang [groovy] are disabled]; &amp;quot;,
+&amp;quot;status&amp;quot;: 400
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;fix
+&lt;code&gt;bash
+#vim ${ES_HOME}/config/elasticsearch.yml
+#添加
+script.disable_dynamic: false
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;jdbc-importer-错误&#34;&gt;&lt;code&gt;jdbc-importer&lt;/code&gt;错误&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ERROR&lt;/code&gt;
+&lt;code&gt;
+java.sql.SQLException: No suitable driver found for jdbc:mysql://192.168.137.1:3306/mailiqing
+&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Fix&lt;/p&gt;
+
+&lt;p&gt;将&lt;code&gt;mysql-connector-java-5.1.33.jar&lt;/code&gt;放到&lt;code&gt;$JAVA_HOME/jre/lib/ext&lt;/code&gt;路径下&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

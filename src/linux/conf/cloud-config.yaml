@@ -1,0 +1,30 @@
+#cloud-config
+
+hostname: coreos01
+
+coreos:
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+    - name: docker.service
+      command: start
+    - name: static.network
+      content: |
+        [Match]
+        Name=enp0s3
+
+        [Network]
+        Address=192.168.137.111/24
+        Gateway=192.168.137.1
+        DNS=114.114.114.114
+
+users:
+  - name: core
+    ssh-authorized-keys:
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVIo204k9BWPVJCd2zA/3fQmrJLwtDAiolw1Lqh2gOspgqiy5cDNIZSIgFhcIGazPQvGc31yNLbLnnxE9K6PpF7LuZQQsiycNTew+BLXD00enYX8+9QVeqC3sN3ln7gg7AO97eLAHrWMshp0s5wZJVMw4mNBt1XL0cSyFQ4xq4roahtrnVnfZA33RLFKAPO4J/jDP+XLxope259jsW+6q4AJsA9MmtXwPP97fYWkEX4fKhAl0ZVJK3n3t1BKrDa4y2FxBbUxHThhRvsnMXffx3NWkQc8kO0q9Fy9/PkLnDogzHpjyunBbMOqh/VvEy0wPYRz1549osUDVIZonQ3K0T Administrator@WIN-JBJARACQS7U
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDROpatjJDC8mECbuv2v/uuKbhwMWxtedTcpyi42kO2jimcz7pLursYdpiCy8h7+lPkczz9b13MTexApFq23OI2MIe/K2tR+C9Mb2TDsKMcZv9ma1BZLUpWyBcS1KA3bL/U4loHPnmbak9WNvT/gBo1Wdg676kJtyTabXDhQi6Mv8OfmfMiW0AQsRns88osoAoCQGYG8gOi7nJlgXNPjw7VmPS2rU4VBU0mL4vD823OfyWmdBdD1ZCXXlMQmAhY8+PrHJ3V6IDberg3oLa37z8x4/YGeZCid0s19NUH4g5MXlLOcoHhPW5kX7nOqZS15/M+t/sIwAzjNq245hopRD2V dishui@LENOVO-PC
+  - groups:
+     - sudo
+     - docker

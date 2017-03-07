@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mycat命令</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="mycat命令" />
+<meta property="og:description" content="Contents1. MyCAT 命令行监控1.1. KILL @@CONNECTION1. MyCAT 命令行监控用mysql命令行连接 mysql –utest –ptest –P9066 -h172.17.0.4
+mysql –utest –ptest –P8066 -h172.17.0.4 (jdbc连接)
+SHOW @@HELP 可显示所有相关管理命令
+SHOW @@BACKEND 显示后端物理库连接信息，包括当前连接数，端口
+mysql&gt; show @@backend\G;*************************** 1. row ***************************processor: Processor0id: 12mysqlId: 5host: mysqlSlaveport: 3306l_port: 34828net_in: 3389net_out: 861life: 2661closed: falseborrowed: falseSEND_QUEUE: 0schema: testdbcharset: latin1:8txlevel: 0autocommit: true*************************** 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/mycat/mycat-command-line/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">mycat命令</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/mysql" rel="category">mysql</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_mycat_命令行监控">1. MyCAT  命令行监控</a>
+<ul class="sectlevel3">
+<li><a href="#__code_kill_connection_code">1.1. <code>KILL @@CONNECTION</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_mycat_命令行监控">1. MyCAT  命令行监控</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">用mysql命令行连接 </dt>
+<dd>
+<p>mysql –utest –ptest –P9066 -h172.17.0.4<br>
+mysql –utest –ptest –P8066 -h172.17.0.4 (jdbc连接)</p>
+</dd>
+<dt class="hdlist1"><code>SHOW @@HELP</code> </dt>
+<dd>
+<p>可显示所有相关管理命令</p>
+</dd>
+<dt class="hdlist1"><code>SHOW @@BACKEND</code> </dt>
+<dd>
+<p>显示后端物理库连接信息，包括当前连接数，端口</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; show @@backend\G;
+*************************** 1. row ***************************
+ processor: Processor0
+        id: 12
+   mysqlId: 5
+      host: mysqlSlave
+      port: 3306
+    l_port: 34828
+    net_in: 3389
+   net_out: 861
+      life: 2661
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 2. row ***************************
+ processor: Processor0
+        id: 6
+   mysqlId: 10
+      host: mysqlMaster
+      port: 3306
+    l_port: 39710
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 3. row ***************************
+ processor: Processor0
+        id: 13
+   mysqlId: 6
+      host: mysqlSlave
+      port: 3306
+    l_port: 34830
+    net_in: 3389
+   net_out: 861
+      life: 2661
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 4. row ***************************
+ processor: Processor0
+        id: 5
+   mysqlId: 6
+      host: mysqlMaster
+      port: 3306
+    l_port: 39702
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 5. row ***************************
+ processor: Processor0
+        id: 18
+   mysqlId: 11
+      host: mysqlSlave
+      port: 3306
+    l_port: 34842
+    net_in: 1439
+   net_out: 393
+      life: 1461
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 6. row ***************************
+ processor: Processor0
+        id: 7
+   mysqlId: 11
+      host: mysqlMaster
+      port: 3306
+    l_port: 39712
+    net_in: 2043
+   net_out: 537
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 7. row ***************************
+ processor: Processor0
+        id: 8
+   mysqlId: 7
+      host: mysqlMaster
+      port: 3306
+    l_port: 39704
+    net_in: 2043
+   net_out: 537
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 8. row ***************************
+ processor: Processor0
+        id: 17
+   mysqlId: 10
+      host: mysqlSlave
+      port: 3306
+    l_port: 34840
+    net_in: 1739
+   net_out: 465
+      life: 1761
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 9. row ***************************
+ processor: Processor0
+        id: 2
+   mysqlId: 4
+      host: mysqlMaster
+      port: 3306
+    l_port: 39698
+    net_in: 2043
+   net_out: 537
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 10. row ***************************
+ processor: Processor0
+        id: 9
+   mysqlId: 3
+      host: mysqlMaster
+      port: 3306
+    l_port: 39696
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 11. row ***************************
+ processor: Processor0
+        id: 10
+   mysqlId: 12
+      host: mysqlMaster
+      port: 3306
+    l_port: 39714
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 12. row ***************************
+ processor: Processor0
+        id: 16
+   mysqlId: 9
+      host: mysqlSlave
+      port: 3306
+    l_port: 34838
+    net_in: 2114
+   net_out: 555
+      life: 2061
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 13. row ***************************
+ processor: Processor0
+        id: 15
+   mysqlId: 8
+      host: mysqlSlave
+      port: 3306
+    l_port: 34836
+    net_in: 2639
+   net_out: 681
+      life: 2361
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 14. row ***************************
+ processor: Processor0
+        id: 1
+   mysqlId: 9
+      host: mysqlMaster
+      port: 3306
+    l_port: 39708
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 15. row ***************************
+ processor: Processor0
+        id: 14
+   mysqlId: 7
+      host: mysqlSlave
+      port: 3306
+    l_port: 34834
+    net_in: 2639
+   net_out: 681
+      life: 2361
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 16. row ***************************
+ processor: Processor0
+        id: 3
+   mysqlId: 8
+      host: mysqlMaster
+      port: 3306
+    l_port: 39706
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 17. row ***************************
+ processor: Processor0
+        id: 11
+   mysqlId: 4
+      host: mysqlSlave
+      port: 3306
+    l_port: 34826
+    net_in: 3389
+   net_out: 861
+      life: 2661
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true
+*************************** 18. row ***************************
+ processor: Processor0
+        id: 4
+   mysqlId: 5
+      host: mysqlMaster
+      port: 3306
+    l_port: 39700
+    net_in: 2118
+   net_out: 555
+      life: 2662
+    closed: false
+  borrowed: false
+SEND_QUEUE: 0
+    schema: testdb
+   charset: latin1:8
+   txlevel: 0
+autocommit: true</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@CONNECTION</code> </dt>
+<dd>
+<p>显示当前前端客户端连接情况，已经网络流量信息</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; SHOW @@CONNECTION\G;
+*************************** 1. row ***************************
+    PROCESSOR: Processor0
+           ID: 6
+         HOST: 172.18.0.3
+         PORT: 9066
+   LOCAL_PORT: 41268
+         USER: test
+       SCHEMA: NULL
+      CHARSET: utf8:33
+       NET_IN: 1075
+      NET_OUT: 20439
+ALIVE_TIME(S): 1453
+  RECV_BUFFER: 4096
+   SEND_QUEUE: 0
+      txlevel:
+   autocommit:
+*************************** 2. row ***************************
+    PROCESSOR: Processor0
+           ID: 7
+         HOST: 172.18.0.4
+         PORT: 9066
+   LOCAL_PORT: 42998
+         USER: test
+       SCHEMA: NULL
+      CHARSET: utf8:33
+       NET_IN: 247
+      NET_OUT: 7395
+ALIVE_TIME(S): 878
+  RECV_BUFFER: 4096
+   SEND_QUEUE: 0
+      txlevel:
+   autocommit:</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@THREADPOOL</code> </dt>
+<dd>
+<p>当前线程池的执行情况，是否有积压(active_count)以及task_queue_size，后者为积压的待处理的SQL，若积压数目一直保值，则说明后端物理连接可能不够或者SQL执行比较缓慢。</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">*************************** 1. row ***************************
+           NAME: Timer
+      POOL_SIZE: 2
+   ACTIVE_COUNT: 0
+TASK_QUEUE_SIZE: 0
+ COMPLETED_TASK: 8972
+     TOTAL_TASK: 8972
+*************************** 2. row ***************************
+           NAME: BusinessExecutor
+      POOL_SIZE: 4
+   ACTIVE_COUNT: 0
+TASK_QUEUE_SIZE: 0
+ COMPLETED_TASK: 26
+     TOTAL_TASK: 26</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@HEARTBEAT</code> </dt>
+<dd>
+<p>当前后端物理库的心跳检测情况,RS_CODE为1表示心跳正常</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; SHOW @@HEARTBEAT\G;
+*************************** 1. row ***************************
+            NAME: mysqlMaster
+            TYPE: mysql
+            HOST: mysqlMaster
+            PORT: 3306
+         RS_CODE: 1
+           RETRY: 0
+          STATUS: idle
+         TIMEOUT: 0
+    EXECUTE_TIME: 0,0,1
+LAST_ACTIVE_TIME: 2016-07-22 07:28:54
+            STOP: false
+*************************** 2. row ***************************
+            NAME: mysqlSlave
+            TYPE: mysql
+            HOST: mysqlSlave
+            PORT: 3306
+         RS_CODE: 1
+           RETRY: 0
+          STATUS: idle
+         TIMEOUT: 0
+    EXECUTE_TIME: 0,0,0
+LAST_ACTIVE_TIME: 2016-07-22 07:28:54
+            STOP: false</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@DATANODE</code> </dt>
+<dd>
+<p>显示数据节点的访问情况，包括每个数据节点当前活动连接数(active),空闲连接数（idle）以及最大连接数(maxCon) size，EXECUTE参数表示从该节点获取连接的次数，次数越多，说明访问该节点越多。</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; SHOW @@DATANODE\G;
+*************************** 1. row ***************************
+         NAME: dn1
+      DATHOST: localhost1/testdb
+        INDEX: 0
+         TYPE: mysql
+       ACTIVE: 0
+         IDLE: 10
+         SIZE: 1000
+      EXECUTE: 445
+   TOTAL_TIME: 0
+     MAX_TIME: 0
+      MAX_SQL: 0
+RECOVERY_TIME: -1</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@PROCESSOR</code> </dt>
+<dd>
+<p>显示当前processors的处理情况，包括每个processor的IO吞吐量(NET_IN/NET_OUT)、IO队列的积压情况(R_QUEY/W_QUEUE)，Socket Buffer Pool的使用情况BU_PERCENT为已使用的百分比、BU_WARNS为Socket Buffer Pool不够时，临时创新的新的BUFFER的次数，若百分比经常超过90%并且BU_WARNS&gt;0，则表明BUFFER不够，需要增大，参见性能调优手册。</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; SHOW @@PROCESSOR\G;
+*************************** 1. row ***************************
+        NAME: Processor0
+      NET_IN: 84569
+     NET_OUT: 60967
+ REACT_COUNT: 0
+     R_QUEUE: 0
+     W_QUEUE: 0
+ FREE_BUFFER: 974
+TOTAL_BUFFER: 1000
+  BU_PERCENT: 2
+    BU_WARNS: 875
+    FC_COUNT: 2
+    BC_COUNT: 18</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@DATASOURCE</code> </dt>
+<dd>
+<p>显示数据源的信息，是否是读写节点等。</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; SHOW @@DATASOURCE\G;
+*************************** 1. row ***************************
+DATANODE: dn1
+    NAME: mysqlMaster
+    TYPE: mysql
+    HOST: mysqlMaster
+    PORT: 3306
+     W/R: W
+  ACTIVE: 0
+    IDLE: 10
+    SIZE: 1000
+ EXECUTE: 451
+*************************** 2. row ***************************
+DATANODE: dn1
+    NAME: mysqlSlave
+    TYPE: mysql
+    HOST: mysqlSlave
+    PORT: 3306
+     W/R: R
+  ACTIVE: 0
+    IDLE: 8
+    SIZE: 1000
+ EXECUTE: 457</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>SHOW @@CACHE</code> </dt>
+<dd>
+<p>显示缓存的使用情况，对于性能监控和调优很有价值
+MAX为缓存的最大值（记录个数），CUR为当前已经在缓存中的数量，ACESS为缓存读次数，HIT为缓存命中次数，PUT 为写缓存次数，LAST_XX为最后操作时间戳，比较重要的几个参数：CUR：若CUR接近MAX，而PUT大于MAX很多，则表明MAX需要增大，HIT/ACCESS为缓存命中率，这个值越高越好。</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; SHOW @@CACHE\G;
+*************************** 1. row ***************************
+      CACHE: SQLRouteCache
+        MAX: 10000
+        CUR: 0
+     ACCESS: 9
+        HIT: 0
+        PUT: 0
+LAST_ACCESS: 1469171194202
+   LAST_PUT: 0
+*************************** 2. row ***************************
+      CACHE: TableID2DataNodeCache.TESTDB_ORDERS
+        MAX: 50000
+        CUR: 0
+     ACCESS: 0
+        HIT: 0
+        PUT: 0
+LAST_ACCESS: 0
+   LAST_PUT: 0
+*************************** 3. row ***************************
+      CACHE: ER_SQL2PARENTID
+        MAX: 1000
+        CUR: 0
+     ACCESS: 0
+        HIT: 0
+        PUT: 0
+LAST_ACCESS: 0
+   LAST_PUT: 0</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_kill_connection_code">1.1. <code>KILL @@CONNECTION</code></h4>
+<div class="paragraph">
+<p>杀掉客户端的连接，参数为连接的ID值，通过show @@connection，可以展示当前连接到MyCAT的所有客户端进程，若某个进程异常，则可以通过该命令杀掉连接，如 KILL @@CONNECTION 1;</p>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/mycat/" rel="prev"><span>«Previous</span><p>mycat</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/mysql-master-slave/" rel="next"><span>Next»</span><p>mysql主从配置</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

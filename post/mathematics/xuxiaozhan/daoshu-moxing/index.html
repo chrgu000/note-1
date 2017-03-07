@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导数的概念</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="导数的概念" />
+<meta property="og:description" content="Contents1. 导数的概念1.1. 导数形式1.1.1. 例子1.2. 单侧导数1. 导数的概念瞬时速度\(v = \lim\limits_{\Delta t\to 0} \frac{\Delta s}{\Delta t} \Rightarrowv(t) = s^`(t) = \frac{ds}{dt}\)
+切线斜率\(k = \lim\limits_{\Delta x\to 0} \frac{\Delta y}{\Delta x} \Rightarrowk = f&#39;(x) = \frac{dy}{dx}\)
+线密度\(\rho = \lim\limits_{\Delta x\to 0} \frac{\Delta m}{\Delta x} \Rightarrow\rho = m&#39;(x) = \frac{dm}{dx}\)
+1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/mathematics/xuxiaozhan/daoshu-moxing/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">导数的概念</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_导数的概念">1. 导数的概念</a>
+<ul class="sectlevel2">
+<li><a href="#_导数形式">1.1. 导数形式</a>
+<ul class="sectlevel3">
+<li><a href="#_例子">1.1.1. 例子</a></li>
+</ul>
+</li>
+<li><a href="#_单侧导数">1.2. 单侧导数</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_导数的概念">1. 导数的概念</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">瞬时速度</dt>
+<dd>
+<p>\(v = \lim\limits_{\Delta t\to 0} \frac{\Delta s}{\Delta t} \Rightarrow
+v(t) = s^`(t) = \frac{ds}{dt}\)</p>
+</dd>
+<dt class="hdlist1">切线斜率</dt>
+<dd>
+<p>\(k = \lim\limits_{\Delta x\to 0} \frac{\Delta y}{\Delta x} \Rightarrow
+k = f'(x) = \frac{dy}{dx}\)</p>
+</dd>
+<dt class="hdlist1">线密度</dt>
+<dd>
+<p>\(\rho = \lim\limits_{\Delta x\to 0} \frac{\Delta m}{\Delta x} \Rightarrow
+\rho = m'(x) = \frac{dm}{dx}\)</p>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_导数形式">1.1. 导数形式</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>导数是一种特定的极限形式</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>\(\lim\limits_{\Delta x\to 0}\frac{f(x+\Delta x)-f(x)}{\Delta x} = f'(x)\)</p>
+</div>
+<div class="paragraph">
+<p>例: 设 \( f'(3)=5 \)
+	求极限 \( \lim\limits_{h\to 0}\frac{f(3+2h)-f(3)}{h} \)</p>
+</div>
+<div class="paragraph">
+<p>解: \( \lim\limits_{h\to 0}\frac{f(3+h)-f(3)}{h}=f'(3) \)</p>
+</div>
+<div class="paragraph">
+<p>\( \lim\limits_{h\to 0}\frac{f(3+2h)-f(3)}{h}=2\lim\limits_{h\to 0}\frac{f(3+2h)-f(3)}{2h} = 2f'(3)\)</p>
+</div>
+<div class="paragraph">
+<p>\(
+\bbox[yellow,5px]
+{
+\lim\limits_{h\to 0}\frac{f(x_0+ah)-f(x_0)}{h}
+= af'(x_0)
+}
+\)</p>
+</div>
+<div class="paragraph">
+<p>\(
+\bbox[yellow,5px]
+{
+\lim\limits_{h\to 0}\frac{f(x_0+bh)-f(x_0-ah)}{h}
+= (a+b)f'(x_0)
+}
+\)</p>
+</div>
+<div class="sect3">
+<h4 id="_例子">1.1.1. 例子</h4>
+<div class="paragraph">
+<p>设 \( f'(x_0)=-1 \)
+求极限 \( \lim\limits_{x\to 0}\frac{x}{f(x_0-2x)-f(x_0-h)} \)</p>
+</div>
+<div class="paragraph">
+<p>解: \( \lim\limits_{x\to 0}\frac{1}{\frac{f(x_0-2x)-f(x_0-h)}{x}} = \frac{1}{(-2+1)f'(x_0)} = \frac{1}{-f'(x_0)} = 1\)</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_单侧导数">1.2. 单侧导数</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">导数</dt>
+<dd>
+<p>\( f'(x_0) = \lim\limits_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}\)</p>
+</dd>
+<dt class="hdlist1">左导数</dt>
+<dd>
+<p>\( f^\prime_-(x_0) = \lim\limits_{x\to x_0^-}\frac{f(x)-f(x_0)}{x-x_0}\)</p>
+</dd>
+<dt class="hdlist1">右导数</dt>
+<dd>
+<p>\( f^\prime_+(x_0) = \lim\limits_{x\to x_0^+}\frac{f(x)-f(x_0)}{x-x_0}\)</p>
+</dd>
+</dl>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>导数存在的充分必要条件是左导数和右导数存在并且相等
+\( f'(x_0) \) 存在 \( \Longleftrightarrow f<sup>\prime_-(x_0)=f</sup>\prime_+(x_0)\)</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>如果 \( f^\prime_-(x_0) \neq f^\prime_+(x_0) \)
+则 \( f'(x_0) \) 不存在</p>
+</div>
+<div class="paragraph">
+<p>单侧导数可以用来讨论分段函数在分段点处的导数</p>
+</div>
+<div class="paragraph">
+<p>例1 常数的导数 设 \( f(x)=C \),求 \( f'(x) \)
+解: \( \Delta y=f(x+\Delta x)-f(x)=C-C=0 \)
+\( f'(x)= \lim\limits_{x\to 0}\frac{\Delta y}{\Delta x} = \lim\limits_{x\to 0}\frac{0}{\Delta x}\)</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>常值函数处处可导,且导数为零 \( ( C )'=0 \)</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>例2 设 \( f(x)=x^n \) (n 为正整数), 求 \( f'(x) \)</p>
+</div>
+<div class="paragraph">
+<p>解 \( \forall x_0 \in R \)</p>
+</div>
+<div class="paragraph">
+<p>\(f(x)-f(x_0)=x^n - x_0^n\)</p>
+</div>
+<div class="paragraph">
+<p>\( =(x - x_0)(x^{n-1} + x^{n-2}x_0 + \ldots + xx_0^{n-2} + x_0^{n-1}) \)</p>
+</div>
+<div class="paragraph">
+<p>\( f'(x_0)= \lim\limits_{\Delta x\to x_0}\frac{f(x)-f(x_0)}{x-x_0} \)
+\( =\lim\limits_{\Delta x\to x_0}(x^{n-1} + x^{n-2}x_0 + \ldots + xx_0<sup>{n-2}+x_0</sup>{n-1}) \)
+\( = (x_0^{n-1} + x_0^{n-2}x_0 + \ldots + x_0x_0<sup>{n-2}+x_0</sup>{n-1}) = nx_0^{n-1} \)</p>
+</div>
+<div class="paragraph">
+<p>\(
+\bbox[yellow,5px]
+{
+a^n - b^n = (a-b)(a^{n-1} + a^{n-2}b + \ldots + ab^{n-2} + b^{n-1})
+}
+\)</p>
+</div>
+<div class="paragraph">
+<p>例: \( (1 + x)^\mu - 1 \sim \mu x (x \rightarrow 0) \)</p>
+</div>
+<div class="paragraph">
+<p>\( (1+x)^{\mu} - 1 = e^{\ln(1 + x)^{\mu}} \)</p>
+</div>
+<div class="paragraph">
+<p>\( e^{\mu ln(1+x)} - 1 \sim \mu \ln(1 + x) \)</p>
+</div>
+<div class="paragraph">
+<p>\( \sim \mu x \)</p>
+</div>
+<div class="paragraph">
+<p>\(
+\bbox[yellow,5px]
+{
+	a = e^{\ln a}
+	e^{\alpha} - 1 \sim \alpha ( \alpha \rightarrow 0)
+}
+\)</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>幂函数的导数</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>\(
+\bbox[yellow,5px]
+{
+(x^{\mu})' = \mu x^{\mu - 1}
+}
+\)</p>
+</div>
+<div class="paragraph">
+<p>例如, \( (x)' = 1 \)
+\( (x^2)' = 2x \)
+\( (x^3)' = 3x^2 \)</p>
+</div>
+<div class="paragraph">
+<p>又如,
+\( (\sqrt{x})' = \frac{1}{2 \sqrt{x}} \)  常用</p>
+</div>
+<div class="paragraph">
+<p>\( (\frac{1}{x})' = - \frac{1}{x^2} \)</p>
+</div>
+<div class="paragraph">
+<p>正弦函数处处可导,且导数为余弦函数
+\( (sinx)' = cosx \)</p>
+</div>
+<div class="paragraph">
+<p>余弦函数处处可导,且导数为正弦函数的相反数
+\( (cosx)' = - sinx \)</p>
+</div>
+<div class="paragraph">
+<p>指数函数处处可导
+\( (a^x)' = a^x \ln a \)</p>
+</div>
+<div class="paragraph">
+<p>特别地
+\( (e^x)' \) = e^x</p>
+</div>
+<div class="paragraph">
+<p>对数函数处处可导
+\( (\log{_a} x )' = \frac{1}{x \ln a} \)</p>
+</div>
+<div class="paragraph">
+<p>特别地
+\( (\ln x)' = \frac{1}{x} \)</p>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/app/cservice/" rel="prev"><span>«Previous</span><p>客服管理</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/work/app/shop/" rel="next"><span>Next»</span><p>店铺模块</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

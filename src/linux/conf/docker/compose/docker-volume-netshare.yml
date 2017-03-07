@@ -1,0 +1,13 @@
+version: '2'
+services:
+  netshare:
+    container_name: docker-volume-netshare
+    image: ansible/centos7-ansible:1.7
+    volumes:
+      - data:/hugo
+    command: /bin/sh -c "while true; do echo hello world; sleep 1; done"
+volumes:
+  data:
+    driver: cifs
+    driver_opts:
+      share: 192.168.137.2:/note-hugo

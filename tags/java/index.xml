@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/tags/java/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>guava API</title>
+      <link>/post/guava/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/guava/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_操作&#34;&gt;1. 操作&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_排序&#34;&gt;1.1. 排序&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_操作&#34;&gt;1. 操作&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;遍历 &lt;code&gt;list&lt;/code&gt; &lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;import com.google.common.base.MoreObjects;
+import static com.google.common.base.Preconditions.*;
+for(T t : MoreObjects.firstNonNull(t_l, Collections.&amp;lt;T&amp;gt; emptyList())){
+	 logger.info(t);
+ }
+try {
+	checkElementIndex(0,mg.getMpp_l().size());
+} catch (Exception e) {
+	jw.value(serverUrl+mg.getImg_large());
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;判断是否为空值&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;if(Optional.fromNullable(obj).isPresent()){
+    //do something
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;过滤&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Predicate&amp;lt;Ti_invoice&amp;gt; self_p = new Predicate&amp;lt;Ti_invoice&amp;gt;() {
+	public boolean apply(Ti_invoice ti) {
+		Ti_invoice_prop tmp_tip = (Ti_invoice_prop)ti;
+		Ti_goodsorder_prop tmp_tgp = (Ti_goodsorder_prop)tmp_tip.getTg();
+		Mlq_goods tmp_mgp = tmp_tgp.getMg();
+		if(&#34;201506265aD3LcU&#34;.equals(tmp_mgp.getSeller_id())){
+			return true;
+		}
+		return false;
+	}
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_排序&#34;&gt;1.1. 排序&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;/**
+*	价格排序
+*/
+private void sortByPrice(List&amp;lt;Mlq_goods&amp;gt; mg_l,final int i) {  // 0:升序 1:降序
+        Ordering&amp;lt;Mlq_goods&amp;gt; byPrice = new Ordering&amp;lt;Mlq_goods&amp;gt;() {
+            @Override
+            public int compare(Mlq_goods mg1, Mlq_goods mg2) {
+                if (ObjUtils.notEmpty(mg1.getMp_l()) &amp;amp;&amp;amp; ObjUtils.notEmpty(mg2.getMp_l())) {
+
+                    String product_price1 = mg1.getMp_l().get(0).getProduct_price();
+                    String product_price2 = mg2.getMp_l().get(0).getProduct_price();
+
+                    Double price1 = Double.parseDouble(product_price1==null?&#34;0&#34;:product_price1);
+                    Double price2 = Double.parseDouble(product_price2==null?&#34;0&#34;:product_price2);
+                    if(0==i){
+                        return price1&amp;gt; price2? 1:(price1 == price2 ? 0:-1);
+                    }
+                    return price1&amp;lt; price2? 1:(price1 == price2 ? 0:-1);
+                }
+
+                return 0;
+            }
+        };
+        Collections.sort(mg_l,byPrice);
+    }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

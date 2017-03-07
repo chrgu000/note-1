@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CentOS基础设置</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="CentOS基础设置" />
+<meta property="og:description" content="Linux基础设置 Linux主机名设置 #主机名设置 [root@localhost ~]# vim /etc/sysconfig/network NETWORKING=yes HOSTNAME=Web-01  添加多张网卡 #eth1变成eth0 vim /etc/udev/rules.d/70-persistent-net.rules #编辑eth0 IP地址 vim /etc/sysconfig/network-scripts/ifcfg-eth0  Virtual Box 网卡MAC地址  CentOS-1  MAC:  eth0 08:00:27:3F:48:85 HostOnly ipaddr 192.168.137.101 eth1 08:00:27:e1:36:70 Nat ipaddr 10.0.2.101   CentOS-2  MAC:  eth0 08:00:27:A2:B9:68 HostOnly ipaddr 192.168.137.102   CentOS-3  MAC:  eth0 08:00:27:16:DB:38 HostOnly ipaddr 192.168.137.103   CentOS-4  MAC:  eth0 08:00:27:4C:AA:E5 HostOnly ipaddr 192." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/ji_chu_she_zhi/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">CentOS基础设置</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/linux" rel="category">linux</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<!-- toc -->
+
+<h1 id="linux基础设置">Linux基础设置</h1>
+
+<h5 id="linux主机名设置">Linux主机名设置</h5>
+
+<pre><code class="language-bash">#主机名设置
+[root@localhost ~]# vim /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=Web-01
+</code></pre>
+
+<h5 id="添加多张网卡">添加多张网卡</h5>
+
+<pre><code class="language-bash">#eth1变成eth0
+vim /etc/udev/rules.d/70-persistent-net.rules
+
+#编辑eth0 IP地址
+vim /etc/sysconfig/network-scripts/ifcfg-eth0
+</code></pre>
+
+<h5 id="virtual-box-网卡mac地址">Virtual Box 网卡MAC地址</h5>
+
+<ul>
+<li>CentOS-1
+
+<ul>
+<li>MAC:
+<code>
+eth0    08:00:27:3F:48:85       HostOnly    ipaddr    192.168.137.101
+eth1    08:00:27:e1:36:70       Nat         ipaddr    10.0.2.101
+</code></li>
+</ul></li>
+<li>CentOS-2
+
+<ul>
+<li>MAC:
+<code>
+eth0    08:00:27:A2:B9:68       HostOnly    ipaddr    192.168.137.102
+</code></li>
+</ul></li>
+<li>CentOS-3
+
+<ul>
+<li>MAC:
+<code>
+eth0    08:00:27:16:DB:38       HostOnly    ipaddr    192.168.137.103
+</code></li>
+</ul></li>
+<li>CentOS-4
+
+<ul>
+<li>MAC:
+<code>
+eth0    08:00:27:4C:AA:E5       HostOnly    ipaddr    192.168.137.104
+</code></li>
+</ul></li>
+<li>CentOS-Web-01
+
+<ul>
+<li>MAC:
+<code>
+eth0    08:00:27:60:BC:F8       HostOnly    ipaddr    192.168.137.107
+eth1    08:00:27:92:53:06       Nat         ipaddr    10.0.2.107
+</code></li>
+</ul></li>
+<li>CentOS-Web-02
+
+<ul>
+<li>MAC:
+<code>
+eth0    08:00:27:60:BC:F9       HostOnly    ipaddr    192.168.137.108
+eth1    08:00:27:09:2F:95       Nat         ipaddr    10.0.2.108
+</code></li>
+</ul></li>
+</ul>
+
+<h4 id="linux网络">Linux网络</h4>
+
+<pre><code>ifconfig [ethX]
+    -a: 显示所有接口的配置住处
+
+ifconfig ethX IP/MASK [up|down]
+    配置的地址立即生效，但重启网络服务或主机，都会失效；
+</code></pre>
+
+<p>网络服务：
+RHEL5:  /etc/init.d/network {start|stop|restart|status}
+RHEL6: /etc/init.d/NetworkManager {start|stop|restart|status}</p>
+
+<h6 id="网关">网关：</h6>
+
+<pre><code>route
+    add: 添加
+        -host: 主机路由
+        -net：网络路由
+            -net 0.0.0.0
+    route add -net|-host DEST gw NEXTHOP
+    route add default gw NEXTHOP
+
+del：删除
+    -host
+    -net
+
+    route del -net 10.0.0.0/8
+    route del -net 0.0.0.0
+    route del default
+
+    所做出的改动重启网络服务或主机后失效；
+
+查看：
+    route -n: 以数字方式显示各主机或端口等相关信息
+</code></pre>
+
+<h5 id="网络配置文件">网络配置文件：</h5>
+
+<p><code>/etc/sysconfig/network</code></p>
+
+<h6 id="网络接口配置文件">网络接口配置文件：</h6>
+
+<pre><code>/etc/sysconfig/network-scripts/ifcfg-INTERFACE_NAME
+DEVICE=: 关联的设备名称，要与文件名的后半部“INTERFACE_NAME”保持一致;
+BOOTPROTO={static|none|dhcp|bootp}: 引导协议；要使用静态地址，使用static或none；dhcp表示使用DHCP服务器获取地址；
+IPADDR=: IP地址
+NETMASK=：子网掩码
+GATEWAY=：设定默认网关；
+ONBOOT=：开机时是否自动激活此网络接口；
+HWADDR=： 硬件地址，要与硬件中的地址保持一致；可省；
+USERCTL={yes|no}: 是否允许普通用户控制此接口；
+PEERDNS={yes|no}: 是否在BOOTPROTO为dhcp时接受由DHCP服务器指定的DNS地址；
+
+不会立即生效，但重启网络服务或主机都会生效；
+</code></pre>
+
+<h4 id="路由">路由：</h4>
+
+<pre><code>/etc/sysconfig/network-scripts/route-ethX
+添加格式一：
+DEST    via     NEXTHOP
+
+添加格式二：
+ADDRESS0=
+NETMASK0=
+GATEWAY0=
+
+
+DNS服务器指定方法只有一种：
+/etc/resolv.conf
+nameserver DNS_IP_1
+nameserver DNS_IP_2
+
+指定本地解析：
+/etc/hosts
+主机IP    主机名 主机别名
+172.16.0.1      www.magedu.com      www
+
+DNS--&gt;/etc/hosts--&gt;DNS
+
+
+配置主机名：
+hostname HOSTNAME
+
+立即生效，但不是永久有效；
+
+/etc/sysconfig/network
+HOSTNAME=
+RHEL5：
+    setup: system-config-network-tui
+    system-config-network-gui
+
+ifconfig, 老旧
+
+iproute2
+    ip
+        link: 网络接口属性
+        addr: 协议地址
+        route: 路由
+
+    link
+        show
+            ip -s link show
+        set
+            ip link set DEV {up|down}
+
+    addr
+        add
+            ip addr add ADDRESS dev DEV
+        del
+            ip addr del ADDRESS dev DEV
+        show
+            ip addr show dev DEV to PREFIX
+        flush
+            ip addr flush dev DEV to PREFIX
+
+
+一块网卡可以使用多个地址：
+网络设备可以别名：
+eth0
+    ethX:X, eth0:0, eth0:1, ...
+
+配置方法：
+    ifconfig ethX:X IP/NETMASK
+
+    /etc/sysconfig/network-scripts/ifcfg-ethX:X
+    DEVICE=ethX:X
+
+    非主要地址不能使用DHCP动态获取;
+</code></pre>
+
+<p>#####ip</p>
+
+<pre><code>eth1, 添加个地址192.168.100.1
+
+ip addr add 192.168.100.1/24 dev eth1 label eth1:0
+primary address
+secondary adress
+
+192.168.100.6
+
+10.0.1.0/24, 192.168.100.6
+</code></pre>
+
+<h5 id="路由-1">路由:</h5>
+
+<pre><code>route add -net 10.0.1.0/24 gw 192.168.100.6
+
+ip route add to 10.0.1.0/24 dev eth1 via 192.168.100.6
+    add, change, show, flush, replace
+
+ifconfig eth0, 172.16.200.33/16
+
+ifconfig eth0:0 172.16.200.33/16
+
+TCP:
+    URG
+    SYN
+    ACK
+    PSH
+    RST
+    FIN
+</code></pre>
+
+<h5 id="linux-openssh">Linux: openSSH</h5>
+
+<pre><code>    C/S
+        服务器端：sshd, 配置文件/etc/ssh/sshd_config
+        客户端：ssh, 配置文件/etc/ssh/ssh_config
+            ssh-keygen: 密钥生成器
+            ssh-copy-id: 将公钥传输至远程服务器
+            scp：跨主机安全复制工具
+
+
+        ssh:
+            ssh USERNAME@HOST
+            ssh -l USERNAME HOST
+            ssh USERNAME@HOST 'COMMAND'
+
+        scp:
+            scp SRC DEST
+                -r
+                -a
+            scp USERNAME@HOST:/path/to/somefile  /path/to/local
+            scp /path/to/local  USERNAME@HOST:/path/to/somewhere
+
+        ssh-keygen
+            -t rsa
+                ~/.ssh/id_rsa
+                ~/.ssh/id_rsa.pub
+            -f /path/to/KEY_FILE
+            -P '': 指定加密私钥的密码
+
+
+        公钥追加保存到远程主机某用户的家目录下的.ssh/authorized_keys文件或.ssh/authorized_keys2文件中
+
+        ssh-copy-id
+            -i ~/.ssh/id_rsa.pub
+            ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@HOST
+</code></pre>
+
+<h3 id="centos-6-7-升级内核-源码编译"><code>CentOS 6.7</code>升级内核(源码编译)</h3>
+
+<ol>
+<li><p>下载源码包
+网址：<code>http://www.kernel.org</code>
+在首页可以看到有 <code>stable</code>，<code>longterm</code> 等版本，一般选择下载 <code>longterm</code> 版本，因为此版本为提供长期支持的稳定版，因此我选择 <code>3.10.96</code>.</p>
+
+<pre><code class="language-bash"># wget https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.10.96.tar.xz
+</code></pre></li>
+
+<li><p>解压并进入目录</p>
+
+<pre><code class="language-bash"># tar -xf linux-3.12.16.tar.xz
+# cd linux-3.12.16
+</code></pre></li>
+
+<li><p>更新当前系统</p>
+
+<pre><code class="language-bash"># yum update
+# yum upgrade
+</code></pre></li>
+
+<li><p>安装编译内核所需要的软件包</p>
+
+<pre><code class="language-bash"># yum groupinstall &quot;Development Tools&quot;
+# yum install ncurses-devel
+# yum install qt-devel
+# yum install hmaccalc zlib-devel binutils-devel elfutils-libelf-devel
+</code></pre></li>
+
+<li><p>查看当前系统内核</p>
+
+<pre><code class="language-bash"># uname -r
+2.6.32-358.11.1.el6.x86_64
+</code></pre></li>
+
+<li><p>将当前系统内核的配置文件拷贝到当前目录</p>
+
+<pre><code class="language-bash"># cp /boot/config-2.6.32-358.11.1.el6.x86_64 .config
+</code></pre></li>
+
+<li><p>使用当前系统内核配置，并自动接受每个新增选项的默认设置</p>
+
+<pre><code class="language-bash"># sh -c 'yes &quot;&quot; | make oldconfig'
+</code></pre></li>
+
+<li><p>编译</p>
+
+<pre><code class="language-bash"># make bzImage
+# make modules
+# make modules_install
+</code></pre></li>
+
+<li><p>安装</p>
+
+<pre><code class="language-bash"># make install
+如果出现少量 ERROR 可以忽略
+</code></pre></li>
+
+<li><p>修改 Grub 引导顺序</p>
+
+<pre><code class="language-bash"># vim /etc/grub.conf
+一般新内核的位置都在第一个，所以设置 default=0.
+</code></pre></li>
+
+<li><p>重启后查看内核版本号</p>
+
+<pre><code class="language-bash"># uname -r
+3.12.16
+</code></pre></li>
+
+<li><p>如果失败，转至第 5 步，在重新开始之前，需要清理上次编译的现场</p>
+
+<pre><code class="language-bash"># make mrproper
+</code></pre></li>
+</ol>
+
+<h3 id="centos-6-7-升级内核-rpm安装"><code>CentOS 6.7</code>升级内核(rpm安装)</h3>
+
+<blockquote>
+<p>在yum的ELRepo源中，有mainline（3.13.1）、long-term（3.10.28）这2个内核版本，考虑到long-term更稳定，会长期更新，所以选择这个版本。</p>
+</blockquote>
+
+<ol>
+<li>安装<code>ELRepo</code>到<code>CentOS-6.7</code>中
+<code>bash
+rpm -ivh http://www.elrepo.org/elrepo-release-6-5.el6.elrepo.noarch.rpm
+</code></li>
+<li>安装<strong>kernel-lt（lt=long-term）</strong>
+<code>bash
+yum --enablerepo=elrepo-kernel install kernel-lt -y
+</code></li>
+<li>或者安装<strong>kernel-ml（ml=mainline）</strong>
+<code>bash
+yum --enablerepo=elrepo-kernel install kernel-ml -y
+</code></li>
+<li>编辑<code>grub.conf</code>文件，修改<code>Grub</code>引导顺序
+<code>
+vim /etc/grub.conf
+修改default=0
+</code></li>
+</ol>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/java/btrace/" rel="prev"><span>«Previous</span><p>Btrace</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/CoreOS/" rel="next"><span>Next»</span><p>CoreOS</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/categories/go/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>go 基础配置</title>
+      <link>/post/go/basic/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/go/basic/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_go&#34;&gt;1. go&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;1.1. 配置&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_软件下载&#34;&gt;1.1.1. 软件下载&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_环境变量配置&#34;&gt;1.1.2. 环境变量配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sublime_go_开发环境配置&#34;&gt;1.2. sublime go 开发环境配置&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_gosublime&#34;&gt;1.2.1. GoSublime&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_gocode_和_margo&#34;&gt;1.2.2. 安装 gocode 和 margo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_go语言指针符号的_和&#34;&gt;1.3. go语言指针符号的*和&amp;amp;&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_解释&#34;&gt;1.3.1. 解释&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_windows_环境_gcc_配置&#34;&gt;1.4. windows 环境 gcc 配置&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_下载_msys2&#34;&gt;1.4.1. 下载 MSYS2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_gcc&#34;&gt;1.4.2. 安装 GCC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1.5. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_go&#34;&gt;1. go&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置&#34;&gt;1.1. 配置&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_软件下载&#34;&gt;1.1.1. 软件下载&lt;/h4&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Go SDK&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;IDE&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://www.golangtc.com/download&#34;&gt;sdk&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;sublime&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_环境变量配置&#34;&gt;1.1.2. 环境变量配置&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;GOROOT &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;go&lt;/code&gt; 的安装路径&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;GOPATH &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;go&lt;/code&gt; 项目的工作空间&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Demo &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;	GOROOT=D:\env\go1.7.windows-amd64\go
+	GOPATH=D:\env\code\go
+    path=%GOROOT%\bin;%GOPATH%\bin;%path%&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_sublime_go_开发环境配置&#34;&gt;1.2. sublime go 开发环境配置&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_gosublime&#34;&gt;1.2.1. GoSublime&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置 &lt;code&gt;project&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &#34;settings&#34;: {
+        &#34;GoSublime&#34;: {
+            &#34;env&#34;: {
+            	&#34;GOPATH&#34;: &#34;D:/env/code/go&#34; &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+            }
+        }
+    },
+    &#34;folders&#34;: [
+        {
+            &#34;path&#34;: &#34;D:/env/code/go&#34;
+        }
+    ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;go&lt;/code&gt; 工作空间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_安装_gocode_和_margo&#34;&gt;1.2.2. 安装 gocode 和 margo&lt;/h4&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+在 &lt;code&gt;GOPATH&lt;/code&gt; 路径下执行
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;go get github.com/nsf/gocode
+go get github.com/slene/margo&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_go语言指针符号的_和&#34;&gt;1.3. go语言指针符号的*和&amp;amp;&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;func main() {
+    var a int = 1
+    var b *int = &amp;amp;a
+    var c **int = &amp;amp;b
+    var x int = *b
+    fmt.Println(&#34;a = &#34;,a)
+    fmt.Println(&#34;&amp;amp;a = &#34;,&amp;amp;a)
+    fmt.Println(&#34;*&amp;amp;a = &#34;,*&amp;amp;a)
+    fmt.Println(&#34;b = &#34;,b)
+    fmt.Println(&#34;&amp;amp;b = &#34;,&amp;amp;b)
+    fmt.Println(&#34;*&amp;amp;b = &#34;,*&amp;amp;b)
+    fmt.Println(&#34;*b = &#34;,*b)
+    fmt.Println(&#34;c = &#34;,c)
+    fmt.Println(&#34;*c = &#34;,*c)
+    fmt.Println(&#34;&amp;amp;c = &#34;,&amp;amp;c)
+    fmt.Println(&#34;*&amp;amp;c = &#34;,*&amp;amp;c)
+    fmt.Println(&#34;**c = &#34;,**c)
+    fmt.Println(&#34;***&amp;amp;*&amp;amp;*&amp;amp;*&amp;amp;c = &#34;,***&amp;amp;*&amp;amp;*&amp;amp;*&amp;amp;*&amp;amp;c)
+    fmt.Println(&#34;x = &#34;,x)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_解释&#34;&gt;1.3.1. 解释&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;理论
+
+&amp;amp;符号的意思是对变量取地址，如：变量a的地址是&amp;amp;a
+*符号的意思是对指针取值，如:*&amp;amp;a，就是a变量所在地址的值，当然也就是a的值了
+
+简单的解释 ::
+
+*和 &amp;amp; 可以互相抵消,同时注意，*&amp;amp;可以抵消掉，但&amp;amp;*是不可以抵消的
+a和*&amp;amp;a是一样的，都是a的值，值为1 (因为*&amp;amp;互相抵消掉了)
+同理，a和*&amp;amp;*&amp;amp;*&amp;amp;*&amp;amp;a是一样的，都是1 (因为4个*&amp;amp;互相抵消掉了)
+
+展开
+
+因为有
+var b *int = &amp;amp;a
+所以
+a和*&amp;amp;a和*b是一样的，都是a的值，值为1 (把b当做&amp;amp;a看)
+
+再次展开
+
+因为有
+var c **int = &amp;amp;b
+所以
+**c和**&amp;amp;b是一样的，把&amp;amp;约去后
+会发现**c和`b是一样的 (从这里也不难看出，c和b也是一样的) 又因为上面得到的&amp;amp;a和b是一样的 所以**c和&amp;amp;a是一样的，再次把*&amp;amp;约去后**c和a`是一样的，都是1
+
+不信你试试？
+
+公布结果
+
+运行的结果内的地址值（0xc200开头的）可能会因不同机器运行而不同，你懂的&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_windows_环境_gcc_配置&#34;&gt;1.4. windows 环境 gcc 配置&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_下载_msys2&#34;&gt;1.4.1. 下载 MSYS2&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://repo.msys2.org/distrib/msys2-x86_64-latest.exe&#34;&gt;msys2-x86_64-latest.exe&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_安装_gcc&#34;&gt;1.4.2. 安装 GCC&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;配置 pacman 源 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;./etc/pacman.d/mirrorlist.mingw64&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;安装 GCC&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;pacman -S mingw-w64-x86_64-gcc&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;1.5. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://download.qt.io/official_releases/qt/&#34;&gt;Qt Downloads&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/gpmgo/gopm&#34;&gt;Go 包管理工具&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://gopm.io/&#34;&gt;Go 语言包管理&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/orlp/dev-on-windows/wiki/Installing-GCC--&amp;amp;-MSYS2&#34;&gt;Installing GCC &amp;amp; MSYS2&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;go build -ldflags=&#34;-H windowsgui&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

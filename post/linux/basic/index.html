@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linux 基础命令</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="linux 基础命令" />
+<meta property="og:description" content="Contents1. 命令历史的使用技巧：2. 查看 linux 系统信息3. 获取 ip 地址4. 端口查看5. 时间同步5.1. NTP 时间服务器设置5.2. 参考6. Rsync7. Centos 安装 DNS 服务器8. 查看日志1. 命令历史的使用技巧：!n:执行命令历史中的第n条命令；
+!-n:执行命令历史中的倒数第n条命令；
+!!: 执行上一条命令；
+!string:执行命令历史中最近一个以指定字符串开头的命令
+!$:引用前一个命令的最后一个参数;
+`Esc, `.
+Alt&#43;.
+2. 查看 linux 系统信息查看文件夹大小" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/basic/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">linux 基础命令</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/linux" rel="category">linux</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_命令历史的使用技巧">1. 命令历史的使用技巧：</a></li>
+<li><a href="#_查看_code_linux_code_系统信息">2. 查看 <code>linux</code> 系统信息</a></li>
+<li><a href="#_获取_code_ip_code_地址">3. 获取 <code>ip</code> 地址</a></li>
+<li><a href="#_端口查看">4. 端口查看</a></li>
+<li><a href="#_时间同步">5. 时间同步</a>
+<ul class="sectlevel3">
+<li><a href="#__code_ntp_code_时间服务器设置">5.1. <code>NTP</code> 时间服务器设置</a></li>
+<li><a href="#_参考">5.2. 参考</a></li>
+</ul>
+</li>
+<li><a href="#__code_rsync_code">6. <code>Rsync</code></a></li>
+<li><a href="#_centos_安装_dns_服务器">7. Centos 安装 DNS 服务器</a></li>
+<li><a href="#_查看日志">8. 查看日志</a></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_命令历史的使用技巧">1. 命令历史的使用技巧：</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>!n</code>:执行命令历史中的第n条命令；</p>
+</li>
+<li>
+<p><code>!-n</code>:执行命令历史中的倒数第n条命令；</p>
+</li>
+<li>
+<p><code>!!</code>: 执行上一条命令；</p>
+</li>
+<li>
+<p><code>!string</code>:执行命令历史中最近一个以指定字符串开头的命令</p>
+</li>
+<li>
+<p><code>!$</code>:引用前一个命令的最后一个参数;</p>
+</li>
+<li>
+<p>`Esc, `.</p>
+</li>
+<li>
+<p><code>Alt+.</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_查看_code_linux_code_系统信息">2. 查看 <code>linux</code> 系统信息</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看文件夹大小</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>du -sh docker-training/</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看系统硬盘信息和使用情况</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>df -h</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看主板信息等</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>lspci</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">CPU信息</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>cat /proc/cpuinfo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">内存信息</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>cat /proc/meminfo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Linux下通过端口查看进程</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">`lsof -Pnl +M -i4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">grep 8453`</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">查看监听状态的的TCP端口</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_获取_code_ip_code_地址">3. 获取 <code>ip</code> 地址</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">ifconfig|grep "inet addr:"|grep -v "127.0.0.1"|cut -d: -f2|awk '{print $1}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_端口查看">4. 端口查看</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>linux</code> 查询某个端口被什么进程占用的命令</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">lsof -i|grep 80 = 端口号即可获取进程号</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>linux</code> 查询进程占用哪些端口</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">netstat -nlap</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_时间同步">5. 时间同步</h3>
+<div class="sect3">
+<h4 id="__code_ntp_code_时间服务器设置">5.1. <code>NTP</code> 时间服务器设置</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[[鸟哥ntp时间同步设置|http://vbird.dic.ksu.edu.tw/linux_server/0440ntp_2.php]]</p>
+</li>
+<li>
+<p><code>ntp.conf</code> 配置文件<br>
+<code>vi /etc/npt.conf</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf:/linux/conf/ntp.conf```" data-lang="conf:/linux/conf/ntp.conf```">. `NTP` 的启动与观察
+```bash
+# 1. 启动 NTP
+service ntpd start
+/etc/init.d/ntpd start
+chkconfig ntpd on
+tail /var/log/messages  &lt;==自行检查看看有无错误
+# 观察启动的端口
+netstat -tlunp | grep ntp</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>局域网机器时间同步</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># 删除本地时间并设置时区为上海
+rm -rf /etc/localtime &amp;&amp;\
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# 更新时间
+ntpdate &lt;NTP IP&gt;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>联网机器同步时间</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bashSession" data-lang="bashSession">$ sudo ntpdate cn.ntp.org.cn
+ 7 May 17:32:01 ntpdate[2286]: adjust time server 110.75.190.198 offset -0.021447 sec</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>定时更新时间</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># vim /etc/crontab
+30 * * * * ntpdate 196.168.1.30
+/sbin/service crond start //启动服务
+/sbin/service crond stop //关闭服务
+/sbin/service crond restart //重启服务
+/sbin/service crond reload //重新载入配置</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>每10秒更新一次</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 10; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 20; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 30; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 40; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 50; /usr/bin/rsync -a /wiki_src/ /wiki/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_参考">5.2. 参考</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[[系统时间 | <a href="http://www.linuxidc.com/Linux/2015-01/111466.htm" class="bare">http://www.linuxidc.com/Linux/2015-01/111466.htm</a>]]</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_rsync_code">6. <code>Rsync</code></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>配置文件</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession"># vi /etc/rsyncd.conf
+uid = root
+gid = root
+log file = /var/log/rsyncd.log
+[svn_sync]
+path = /home/svn
+read only = no</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>启动服务</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo rsync --daemon --config=/etc/rsyncd.conf</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Ref </dt>
+<dd>
+<p>[[在Windows中配置Rsync同步文件的方法|http://www.jb51.net/article/59034.htm]]<br>
+[[通过rsync远程增量备份(差异备份)|http://blog.csdn.net/penglonghu/article/details/7005728]]
+[[rsync同步常用命令|ttp://blog.csdn.net/niushuai666/article/details/16880061]]</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>rsync -a rsync://196.168.1.32:873/svn_sync /cygdrive/e/Mlq-bak/ceshi</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>inotify</code> + <code>rsync</code> </dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[[<code>Linux</code> 下同步工具 <code>inotify</code> + <code>rsync</code> 使用详解 | <a href="https://segmentfault.com/a/1190000002427568" class="bare">https://segmentfault.com/a/1190000002427568</a>]]</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">本机文件夹同步 </dt>
+<dd>
+<p><code>rsync -aurtzopg /wiki_src/ /test/</code></p>
+</dd>
+<dt class="hdlist1"><code>inotifywait</code> </dt>
+<dd>
+<p><code>inotifywait -mrq --timefmt '%Y/%m/%d-%H:%M:%S' --format '%T %w %f' \
+ -e modify,delete,create,move,attrib /root/tmp/</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_centos_安装_dns_服务器">7. Centos 安装 DNS 服务器</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">参考</dt>
+<dd>
+<p>[[CentOS下搭建DNS服务器 | <a href="http://blog.csdn.net/charlsecharlse/article/details/17955119" class="bare">http://blog.csdn.net/charlsecharlse/article/details/17955119</a>]]</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>zone "test.wuliu.com" IN {
+        type master;
+        file "named.wuliu.com";
+        allow-update { none; };
+};
+zone "test.mailiqing.com" IN {
+        type master;
+        file "named.mailiqing.com";
+        allow-update { none; };
+};</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_查看日志">8. 查看日志</h3>
+<div class="paragraph">
+<p>[[<a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" class="bare">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a> | ]]</p>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/linux-tip/" rel="prev"><span>«Previous</span><p>linux tip</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/fen_qu/" rel="next"><span>Next»</span><p>linux 系统分区</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

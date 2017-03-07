@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vim编辑器</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="vim编辑器" />
+<meta property="og:description" content="include::content/post/base.adoc[] :toc-title: Contents vim编辑器 ####vim模式：
+编辑模式(命令模式) 输入模式 末行模式  模式转换： 编辑--&gt;输入： i: 在当前光标所在字符的前面，转为输入模式； a: 在当前光标所在字符的后面，转为输入模式； o: 在当前光标所在行的下方，新建一行，并转为输入模式； -- I：在当前光标所在行的行首，转换为输入模式 A：在当前光标所在行的行尾，转换为输入模式 O：在当前光标所在行的上方，新建一行，并转为输入模式； 输入--&gt;编辑： ESC 编辑--&gt;末行： ： 末行--&gt;编辑： ESC, ESC  一、打开文件  vim /path/to/somefile
+ vim &#43;# :打开文件，并定位于第#行 vim &#43;：打开文件，定位至最后一行 vim &#43;/PATTERN : 打开文件，定位至第一次被PATTERN匹配到的行的行首 默认处于编辑模式  二、关闭文件 1、末行模式关闭文件 :q 退出 :wq 保存并退出 :q! 不保存并退出 :w 保存 :w! 强行保存 :wq --&gt; :x 2、编辑模式下退出 ZZ: 保存并退出  三、移动光标(编辑模式)  1、逐字符移动：
+    h: 左 l: 右 j: 下 k: 上 #h: 移动#个字符；    2、以单词为单位移动" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/vim/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">vim编辑器</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/linux" rel="category">linux</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<p>include::content/post/base.adoc[]
+:toc-title: Contents
+<!-- toc --></p>
+
+<h2 id="vim编辑器">vim编辑器</h2>
+
+<p>####vim模式：</p>
+
+<pre><code>编辑模式(命令模式)
+输入模式
+末行模式
+</code></pre>
+
+<h4 id="模式转换">模式转换：</h4>
+
+<pre><code>编辑--&gt;输入：
+i: 在当前光标所在字符的前面，转为输入模式；
+a: 在当前光标所在字符的后面，转为输入模式；
+o: 在当前光标所在行的下方，新建一行，并转为输入模式；
+--
+I：在当前光标所在行的行首，转换为输入模式
+A：在当前光标所在行的行尾，转换为输入模式
+O：在当前光标所在行的上方，新建一行，并转为输入模式；
+输入--&gt;编辑：
+  ESC
+
+编辑--&gt;末行：
+  ：
+
+末行--&gt;编辑：
+  ESC, ESC
+</code></pre>
+
+<h4 id="一-打开文件">一、打开文件</h4>
+
+<blockquote>
+<p>vim /path/to/somefile</p>
+</blockquote>
+
+<pre><code>vim +# :打开文件，并定位于第#行 
+vim +：打开文件，定位至最后一行
+vim +/PATTERN : 打开文件，定位至第一次被PATTERN匹配到的行的行首
+
+默认处于编辑模式
+</code></pre>
+
+<h4 id="二-关闭文件">二、关闭文件</h4>
+
+<pre><code>1、末行模式关闭文件
+:q  退出
+:wq 保存并退出
+:q! 不保存并退出
+:w 保存
+:w! 强行保存
+:wq --&gt; :x
+
+2、编辑模式下退出
+ZZ: 保存并退出
+</code></pre>
+
+<h4 id="三-移动光标-编辑模式">三、移动光标(编辑模式)</h4>
+
+<blockquote>
+<p>1、逐字符移动：</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+h: 左
+l: 右
+j: 下
+k: 上
+#h: 移动#个字符；
+</code></li>
+</ul>
+
+<blockquote>
+<p>2、以单词为单位移动</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+w: 移至下一个单词的词首
+e: 跳至当前或下一个单词的词尾
+b: 跳至当前或前一个单词的词首
+---
+#w: 
+</code></li>
+</ul>
+
+<blockquote>
+<p>3、行内跳转：</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+0: 绝对行首
+^: 行首的第一个非空白字符
+$: 绝对行尾
+</code></li>
+</ul>
+
+<blockquote>
+<p>4、行间跳转</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+#G：跳转至第#行；
+G：最后一行
+---
+末行模式下，直接给出行号即可
+</code></li>
+</ul>
+
+<h4 id="四-翻屏">四、翻屏</h4>
+
+<pre><code>Ctrl+f: 向下翻一屏
+Ctrl+b: 向上翻一屏
+Ctrl+d: 向下翻半屏
+Ctrl+u: 向上翻半屏
+</code></pre>
+
+<h4 id="五-删除单个字符">五、删除单个字符</h4>
+
+<pre><code>x: 删除光标所在处的单个字符
+#x: 删除光标所在处及向后的共#个字符
+</code></pre>
+
+<h4 id="六-删除命令-d">六、删除命令: d</h4>
+
+<pre><code>d命令跟跳转命令组合使用；
+#dw, #de, #db
+
+dd: 删除当前光标所在行
+#dd: 删除包括当前光标所在行在内的#行；
+末行模式下：
+StartADD,EndADDd
+  .: 表示当前行
+  $: 最后一行
+  +#: 向下的#行
+</code></pre>
+
+<h4 id="七-粘贴命令-p">七、粘贴命令 p</h4>
+
+<pre><code>p: 如果删除或复制为整行内容，则粘贴至光标所在行的下方，如果复制或删除的内容为非整行，则粘贴至光标所在字符的后面；
+P: 如果删除或复制为整行内容，则粘贴至光标所在行的上方，如果复制或删除的内容为非整行，则粘贴至光标所在字符的前面；
+</code></pre>
+
+<h4 id="八-复制命令-y">八、复制命令 y</h4>
+
+<pre><code>用法同d命令
+</code></pre>
+
+<h4 id="九-修改-先删除内容-再转换为输入模式">九、修改：先删除内容，再转换为输入模式</h4>
+
+<pre><code>c: 用法同d命令
+</code></pre>
+
+<h4 id="十-替换-r">十、替换：r</h4>
+
+<pre><code>R: 替换模式
+</code></pre>
+
+<h4 id="十一-撤消编辑操作-u">十一、撤消编辑操作 u</h4>
+
+<pre><code>u：撤消前一次的编辑操作
+  连续u命令可撤消此前的n次编辑操作
+#u: 直接撤消最近#次编辑操作
+---
+撤消最近一次撤消操作：Ctrl+r
+</code></pre>
+
+<h4 id="十二-重复前一次编辑操作">十二、重复前一次编辑操作</h4>
+
+<pre><code>.
+</code></pre>
+
+<h4 id="十三-可视化模式">十三、可视化模式</h4>
+
+<pre><code>v: 按字符选取
+V：按矩形选取
+</code></pre>
+
+<h4 id="十四-查找">十四、查找</h4>
+
+<pre><code>/PATTERN
+?PATTERN
+  n
+  N
+</code></pre>
+
+<h4 id="十五-查找并替换">十五、查找并替换</h4>
+
+<pre><code>在末行模式下使用s命令
+ADDR1,ADDR2s@PATTERN@string@gi
+1,$
+%：表示全文
+</code></pre>
+
+<blockquote>
+<p><strong>练习</strong>：将/etc/yum.repos.d/server.repo文件中的<a href="ftp://instructor.example.com/pub替换为http://172.16.0.1/yum">ftp://instructor.example.com/pub替换为http://172.16.0.1/yum</a></p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+%s/ftp:\/\/instructor\.example\.com\/pub/http:\/\/172.16.0.1\/yum/g
+%s@ftp://instructor\.example\.com/pub@http://172.16.0.1/yum@g
+</code></li>
+</ul>
+
+<h4 id="十六-使用vim编辑多个文件">十六、使用vim编辑多个文件</h4>
+
+<pre><code>vim FILE1 FILE2 FILE3
+:next 切换至下一个文件
+:prev 切换至前一个文件
+:last 切换至最后一个文件
+:first 切换至第一个文件
+
+退出
+:qa 全部退出
+</code></pre>
+
+<h4 id="十七-分屏显示一个文件">十七、分屏显示一个文件</h4>
+
+<pre><code>Ctrl+w, s: 水平拆分窗口
+Ctrl+w, v: 垂直拆分窗口
+---
+在窗口间切换光标：
+Ctrl+w, ARROW
+---
+:qa 关闭所有窗口
+</code></pre>
+
+<h4 id="十八-分窗口编辑多个文件">十八、分窗口编辑多个文件</h4>
+
+<pre><code>vim -o : 水平分割显示
+vim -O : 垂直分割显示
+</code></pre>
+
+<h4 id="十九-将当前文件中部分内容另存为另外一个文件">十九、将当前文件中部分内容另存为另外一个文件</h4>
+
+<pre><code>末行模式下使用w命令
+:w
+:ADDR1,ADDR2w /path/to/somewhere
+</code></pre>
+
+<h4 id="二十-将另外一个文件的内容填充在当前文件中">二十、将另外一个文件的内容填充在当前文件中</h4>
+
+<pre><code>:r /path/to/somefile
+</code></pre>
+
+<h4 id="二十一-跟shell交互">二十一、跟shell交互</h4>
+
+<pre><code>:! COMMAND    
+</code></pre>
+
+<h5 id="二十二-高级话题">二十二、高级话题</h5>
+
+<blockquote>
+<p>1、显示或取消显示行号</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+  :set number
+  :set nu
+  :set nonu
+</code></li>
+</ul>
+
+<blockquote>
+<p>2、显示忽略或区分字符大小写</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+:set ignorecase
+:set ic
+--
+:set noic
+</code></li>
+</ul>
+
+<blockquote>
+<p>3、设定自动缩进</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+:set autoindent
+:set ai
+:set noai
+</code></li>
+</ul>
+
+<blockquote>
+<p>4、查找到的文本高亮显示或取消</p>
+</blockquote>
+
+<ul>
+<li>
+<code>
+:set hlsearch
+:set nohlsearch
+</code></li>
+</ul>
+
+<blockquote>
+<p>5、语法高亮</p>
+</blockquote>
+
+<ul>
+<li><code>
+:syntax on
+:syntax off
+</code></li>
+</ul>
+
+<h4 id="二十三-配置文件">二十三、配置文件</h4>
+
+<ul>
+<li>
+<code>bash
+/etc/vimrc
+~/.vimrc
+#ii映射ESC键
+imap ii &lt;Esc&gt;
+</code></li>
+</ul>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/vagrant/" rel="prev"><span>«Previous</span><p>vagrant 错误</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/virtualbox/" rel="next"><span>Next»</span><p>virtualbox错误</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

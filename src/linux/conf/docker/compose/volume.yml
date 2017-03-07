@@ -1,0 +1,12 @@
+version: '2'
+services:
+  test1:
+    image: ansible/centos7-ansible:1.7
+    container_name: test1
+    volumes:
+      - 192.168.137.2/note-hugo:/mnt
+    command: /bin/sh -c "while true;do echo 1;sleep 1;done"
+
+volumes:
+  192.168.137.2/note-hugo:
+    driver: cifs

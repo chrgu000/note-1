@@ -1,0 +1,50 @@
+[client]
+#password       = your_password
+port            = 3306
+socket          = /tmp/mysql.sock
+
+[mysqld]
+port            = 3306
+user            = mysql
+socket          = /tmp/mysql.sock
+datadir         = /data
+skip-external-locking
+key_buffer_size = 384M
+max_allowed_packet = 1M
+table_open_cache = 512
+sort_buffer_size = 2M
+read_buffer_size = 2M
+read_rnd_buffer_size = 8M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+query_cache_size = 32M
+
+log-bin = master-bin
+log-bin-index= master-bin.index
+
+binlog_format=mixed
+
+server-id = 1
+# 忽略大小写
+lower_case_table_names = 1
+innodb_file_per_table = 1
+character_set_server = utf8
+log-error=/var/log/mysqld.log
+
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+[myisamchk]
+key_buffer_size = 256M
+sort_buffer_size = 256M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mycat</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="mycat" />
+<meta property="og:description" content="Contents1. `mysql`一主一从2. centos-java dockerfile3. Mycat4. 主从数据库 授权1. `mysql`一主一从master-cnf
+[mysqld]# 表明不区分大小写lower_case_table_names=1# 字符编码character_set_server=utf8max_allowed_packet=4M# 开启二进制日志log-bin=master-binlog-bin-index=master-bin.index# 1-2^32 必须唯一server-id=1innodb_file_per_table=1&#43; slave-cnf
+[mysqld]lower_case_table_names=1character_set_server=utf8max_allowed_packet=4M# 开启中继日志relay-log=relay-logrelay-log-index=relay-log.index# 1-2^32 必须唯一server-id=11innodb_file_per_table=12. centos-java dockerfileFROM centosMAINTAINER dishui_git@126.comENV TZ &#34;Asia/Shanghai&#34;ADD jdk-7u79-linux-x64.rpm /tmpRUN mkdir -p /usr/java &amp;&amp; \rpm -ivh jdk-7u79-linux-x64." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/mycat/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">mycat</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel2">
+<li><a href="#__mysql_一主一从">1. `mysql`一主一从</a></li>
+<li><a href="#_centos_java_dockerfile">2. centos-java dockerfile</a></li>
+<li><a href="#_mycat">3. Mycat</a></li>
+<li><a href="#_主从数据库_授权">4. 主从数据库 授权</a></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="__mysql_一主一从">1. `mysql`一主一从</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>master-cnf</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">[mysqld]
+# 表明不区分大小写
+lower_case_table_names=1
+# 字符编码
+character_set_server=utf8
+max_allowed_packet=4M
+# 开启二进制日志
+log-bin=master-bin
+log-bin-index=master-bin.index
+# 1-2^32 必须唯一
+server-id=1
+innodb_file_per_table=1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+ <code>slave-cnf</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">[mysqld]
+lower_case_table_names=1
+character_set_server=utf8
+max_allowed_packet=4M
+# 开启中继日志
+relay-log=relay-log
+relay-log-index=relay-log.index
+# 1-2^32 必须唯一
+server-id=11
+innodb_file_per_table=1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_centos_java_dockerfile">2. centos-java dockerfile</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>FROM       centos
+MAINTAINER dishui_git@126.com
+ENV TZ "Asia/Shanghai"
+ADD jdk-7u79-linux-x64.rpm  /tmp
+RUN  mkdir -p /usr/java  &amp;&amp; \
+         rpm -ivh jdk-7u79-linux-x64.rpm --prefix=/usr/java/  &amp;&amp; \
+         echo "export JAVA_HOME=/usr/java/jdk1.7.0_79" &gt;&gt; /etc/profile  &amp;&amp; \
+         echo "export CLASSPATH=.:%JAVA_HOME%/lib/dt.jar:%JAVA_HOME%/lib/tools.jar" &gt;&gt; /etc/profile  &amp;&amp; \
+         echo "export PATH=$PATH:$JAVA_HOME/bin" &gt;&gt; /etc/profile  &amp;&amp; \
+         source /etc/profile  &amp;&amp; \
+         rm -f /tmp/jdk-7u79-linux-x64.rpm
+EXPOSE 22</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mycat">3. Mycat</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>安装文件,压缩包</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf /tmp/Mycat-server-1.3.0.3-release-20150527095523-linux.tar.gz -C /usr/local/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+ 读写分离</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dataHost name="localhost1" maxCon="1000" minCon="10" balance="1" writeType="0" dbType="mysql" dbDriver="native"&gt;
+    &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;
+    &lt;!-- can have multi write hosts --&gt;
+    &lt;writeHost host="hostM1" url="localhost:3306" user="root" password="123456"&gt;
+    &lt;!-- can have multi read hosts --&gt;
+        &lt;readHost host="hostS1" url="localhost2:3306" user="root" password="123456" /&gt;
+    &lt;/writeHost&gt;
+&lt;/dataHost&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+ <code>schema.xml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE mycat:schema SYSTEM "schema.dtd"&gt;
+&lt;mycat:schema xmlns:mycat="http://org.opencloudb/"&gt;
+        &lt;schema name="TESTDB" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn1"&gt;
+        &lt;/schema&gt;
+        &lt;dataNode name="dn1" dataHost="localhost1" database="testdb" /&gt;   &lt;!--database  对应 数据库中的库--&gt;
+        &lt;dataHost name="localhost1" maxCon="1000" minCon="10" balance="1"
+                writeType="0" dbType="mysql" dbDriver="native"&gt;
+                &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;
+                &lt;!-- can have multi write hosts --&gt;
+                &lt;writeHost host="192.168.138.33" url="192.168.138.33:3306" user="root" password="123"&gt;
+                        &lt;!-- can have multi read hosts --&gt;
+                        &lt;readHost host="192.168.138.22" url="192.168.138.22:3306" user="root" password="123" /&gt;
+                &lt;/writeHost&gt;
+        &lt;/dataHost&gt;
+&lt;/mycat:schema&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_主从数据库_授权">4. 主从数据库 授权</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123' WITH GRANT OPTION;
+mysql&gt; flush privileges;</code></pre>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/myBatis-generator/" rel="prev"><span>«Previous</span><p>mybatis</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/mycat/mycat-command-line/" rel="next"><span>Next»</span><p>mycat命令</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

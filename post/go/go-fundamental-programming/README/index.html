@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="《Go编程基础》 借用《Go Web编程》一书中的话，出本套教程并不代表我自身的能力有多强，而是我愿意将自己在学习过程中积累到的知识分享给大家，并结合自己遇到的一些坑爹经历来讲解如何处理各种奇葩问题，从而更好地帮助广大的和潜在的 Go 语言爱好者。
+基本信息  教程讲师：无闻 教程简介：《Go编程基础》是一套针对 Google 出品的 Go 语言的视频语音教程，主要面向 Go 语言新手级别的学习者。 开发环境：Go 语言 1.0.3-1.5.* 版本 开发工具：Sublime Text 2-3 开发系统：Windows 7 64 位 其它说明：每堂课都会建立一个文件（例如：lecture1.md）作为课堂笔记。课堂笔记中里面包含了该堂课所涵盖的知识点以及知识点开始讲解的时间点，方便学习者快速定位要了解的部分，节省不必要浪费的时间。此外，如果教程中因口误或其它原因使学习者产生迷惑的部分，同样会在课堂笔记中进行补充说明。 收录网站：  优才网 皆学问 网易云课堂 51CTO 学院  课程下载：  百度网盘（提取码：mgom）   捐赠作者 如果您觉得本套教程确实不错，并认为作者的努力值得肯定，可以通过 支付宝 为作者提供小额捐助，以资鼓励。
+教程大纲    课时数 课时标题 在线播放     第 1 课 Go开发环境搭建 土豆网 优才网 网易云课堂   第 2 课 Go基础知识 土豆网 优才网 网易云课堂   第 3 课 类型与变量 土豆网 优才网 网易云课堂   第 4 课 常量与运算符 土豆网 优才网 网易云课堂   第 5 课 控制语句 土豆网 优才网 网易云课堂   第 6 课 数组array 土豆网 优才网 网易云课堂   第 7 课 切片slice 土豆网 优才网 网易云课堂   第 8 课 map 土豆网 优才网 网易云课堂   第 9 课 函数function 土豆网 优才网 网易云课堂   第 10 课 结构struct 土豆网 优才网 网易云课堂   第 11 课 方法method 土豆网 优才网 网易云课堂   第 12 课 接口interface 土豆网 优才网 网易云课堂   第 13 课 反射reflection 土豆网 优才网 网易云课堂   第 14 课 并发concurrency 土豆网 优才网 网易云课堂   第 15 课 项目与坑 土豆网 优才网 网易云课堂    相关资源  教程资源  《Go Web基础》 《Go名库讲解》  QQ 交流群  Martini&amp;Macaron 交流群：371440803 Golang Web 开发：245386165 Go Web 交流：259316004  学习网站  Golang 友团 Go 语言学习园地 Golang 中国  辅助站点  Go Walker：在线 Go 项目 API 文档   授权许可 除特别声明外，本套教程中的内容使用CC BY-SA 3." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/go/go-fundamental-programming/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="go编程基础">《Go编程基础》</h1>
+
+<p>借用《Go Web编程》一书中的话，出本套教程并不代表我自身的能力有多强，而是我愿意将自己在学习过程中积累到的知识分享给大家，并结合自己遇到的一些坑爹经历来讲解如何处理各种奇葩问题，从而更好地帮助广大的和潜在的 Go 语言爱好者。</p>
+
+<h3 id="基本信息">基本信息</h3>
+
+<ul>
+<li><strong>教程讲师</strong>：<a href="http://weibo.com/Obahua">无闻</a></li>
+<li><strong>教程简介</strong>：《Go编程基础》是一套针对 Google 出品的 Go 语言的视频语音教程，主要面向 Go 语言新手级别的学习者。</li>
+<li><strong>开发环境</strong>：Go 语言 1.0.3-1.5.* 版本</li>
+<li><strong>开发工具</strong>：Sublime Text 2-3</li>
+<li><strong>开发系统</strong>：Windows 7 64 位</li>
+<li><strong>其它说明</strong>：每堂课都会建立一个文件（例如：lecture1.md）作为课堂笔记。课堂笔记中里面包含了该堂课所涵盖的知识点以及知识点开始讲解的时间点，方便学习者快速定位要了解的部分，节省不必要浪费的时间。此外，如果教程中因口误或其它原因使学习者产生迷惑的部分，同样会在课堂笔记中进行补充说明。</li>
+<li><strong>收录网站</strong>：
+
+<ul>
+<li><a href="http://www.ucai.cn/course/show/69">优才网</a></li>
+<li><a href="http://www.jiexuewen.com/course/courseprofile?course=co51c124508b944#view">皆学问</a></li>
+<li><a href="http://study.163.com/course/introduction.htm?courseId=306002#/courseDetail">网易云课堂</a></li>
+<li><a href="http://edu.51cto.com/course/course_id-1762.html">51CTO 学院</a></li>
+</ul></li>
+<li><strong>课程下载</strong>：
+
+<ul>
+<li><a href="http://pan.baidu.com/s/1eQkVyF4">百度网盘</a>（提取码：mgom）</li>
+</ul></li>
+</ul>
+
+<h3 id="捐赠作者">捐赠作者</h3>
+
+<p>如果您觉得本套教程确实不错，并认为作者的努力值得肯定，可以通过 <a href="http://gogs.io/donate">支付宝</a> 为作者提供小额捐助，以资鼓励。</p>
+
+<h3 id="教程大纲">教程大纲</h3>
+
+<table>
+<thead>
+<tr>
+<th align="center">课时数</th>
+<th align="left">课时标题</th>
+<th align="left">在线播放</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">第 1 课</td>
+<td align="left"><a href="lectures/lecture1.md">Go开发环境搭建</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/hlDq2A0vNes/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4555">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421012&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 2 课</td>
+<td align="left"><a href="lectures/lecture2.md">Go基础知识</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/ENEFKbYHZu4/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4556">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421013&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 3 课</td>
+<td align="left"><a href="lectures/lecture3.md">类型与变量</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/BTCIl3pJq1E/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4557">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421014&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 4 课</td>
+<td align="left"><a href="lectures/lecture4.md">常量与运算符</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/evSrdqTW9zg/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4558">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421015&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 5 课</td>
+<td align="left"><a href="lectures/lecture5.md">控制语句</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/gGJt6Cj9xi4/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4559">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421016&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 6 课</td>
+<td align="left"><a href="lectures/lecture6.md">数组array</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/U5Z-jEZ_BR0/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4560">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421017&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 7 课</td>
+<td align="left"><a href="lectures/lecture7.md">切片slice</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/I-hrdoouUjs/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4625">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421018&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 8 课</td>
+<td align="left"><a href="lectures/lecture8.md">map</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/4RPY1QgwvLg/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4626">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421019&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 9 课</td>
+<td align="left"><a href="lectures/lecture9.md">函数function</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/VUddz1lDClg/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4627">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421020&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 10 课</td>
+<td align="left"><a href="lectures/lecture10.md">结构struct</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/k1yf2WyuCwc/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3210/4669">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421021&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 11 课</td>
+<td align="left"><a href="lectures/lecture11.md">方法method</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/cN509MrfI4s/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3259/4698">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421022&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 12 课</td>
+<td align="left"><a href="lectures/lecture12.md">接口interface</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/CbLRTRA85TI/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3259/4699">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421023&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 13 课</td>
+<td align="left"><a href="lectures/lecture13.md">反射reflection</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/luV8Do0Szqw/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3259/4707">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421024&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 14 课</td>
+<td align="left"><a href="lectures/lecture14.md">并发concurrency</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/wcaWljSoJWE/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3259/4708">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421025&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+
+<tr>
+<td align="center">第 15 课</td>
+<td align="left"><a href="lectures/lecture15.md">项目与坑</a></td>
+<td align="left"><a href="http://www.tudou.com/programs/view/UdDdQf_bN6U/">土豆网</a> <a href="http://www.ucai.cn/course/chapter/69/3259/4709">优才网</a> <a href="http://study.163.com/course/courseLearn.htm?courseId=306002#/learn/video?lessonId=421026&amp;courseId=306002">网易云课堂</a></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="相关资源">相关资源</h3>
+
+<ul>
+<li>教程资源
+
+<ul>
+<li><a href="https://github.com/Unknwon/go-web-foundation">《Go Web基础》</a></li>
+<li><a href="https://github.com/Unknwon/go-rock-libraries-showcases">《Go名库讲解》</a></li>
+</ul></li>
+<li>QQ 交流群
+
+<ul>
+<li>Martini&amp;Macaron 交流群：371440803</li>
+<li>Golang Web 开发：245386165</li>
+<li>Go Web 交流：259316004</li>
+</ul></li>
+<li>学习网站
+
+<ul>
+<li><a href="http://golanghome.com">Golang 友团</a></li>
+<li><a href="http://studygolang.com/">Go 语言学习园地</a></li>
+<li><a href="http://golangtc.com/">Golang 中国</a></li>
+</ul></li>
+<li>辅助站点
+
+<ul>
+<li><a href="https://gowalker.org">Go Walker</a>：在线 Go 项目 API 文档</li>
+</ul></li>
+</ul>
+
+<h3 id="授权许可">授权许可</h3>
+
+<p>除特别声明外，本套教程中的内容使用CC BY-SA 3.0 License（创作共用 署名-相同方式共享3.0许可协议）授权，代码遵循BSD 3-Clause License（3项条款的BSD许可协议）。</p>
+
+<h3 id="鸣谢">鸣谢</h3>
+
+<ul>
+<li><a href="http://blog.studygolang.com/">polaris</a></li>
+<li><a href="https://github.com/astaxie">Asta谢</a></li>
+<li><a href="https://github.com/insionng">昌雄</a></li>
+<li>Hubery</li>
+<li>悠然</li>
+</ul>
+
+<h3 id="参考资料">参考资料</h3>
+
+<ul>
+<li><a href="https://github.com/astaxie/build-web-application-with-golang">《Go Web编程》</a>（<a href="https://github.com/astaxie">Asta谢</a>）</li>
+<li><a href="http://download.csdn.net/download/kukucckku/4394839">《The Way to Go》</a> <a href="https://github.com/Unknwon/the-way-to-go_ZH_CN">中文版《Go入门指南》</a>（Ivo Balbaert）</li>
+<li><a href="http://en.wikipedia.org/wiki/Go_%28programming_language%29">Go (programming language)</a>(维基百科)</li>
+<li><a href="http://bbs.gocn.im/thread-8-1-1.html">《Go 学习笔记》</a>（雨痕）</li>
+<li><a href="http://bbs.gocn.im/thread-153-1-1.html">《Go语言编程》</a>（晨笛）</li>
+<li><a href="http://pan.baidu.com/share/link?shareid=2570649749&amp;uk=822891499">《Golang常见的坑和编程模式》</a>（<a href="http://weibo.com/chuangyiyongpin">刘奇</a>）</li>
+</ul>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/base/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/go/go-fundamental-programming/lectures/lecture1/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

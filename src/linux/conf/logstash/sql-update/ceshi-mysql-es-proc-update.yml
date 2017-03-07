@@ -1,0 +1,49 @@
+input {
+  jdbc {
+    type => "procurement"
+    jdbc_connection_string => "jdbc:mysql://mysql1:3306/mailiqing"
+    jdbc_user => "root"
+    jdbc_password => "111111"
+    jdbc_driver_library => "/mysql-connector-java-5.1.33.jar"
+    jdbc_driver_class => "com.mysql.jdbc.Driver"
+    jdbc_paging_enabled => "true"
+    jdbc_page_size => "50000"
+    schedule => "* * * * *"
+    use_column_value => true
+    tracking_column => update_date
+    statement_filepath => "/logstash-2.3.4/sql-update/ti_procurement.sql"
+  }
+  jdbc {
+    type => "resources"
+    jdbc_connection_string => "jdbc:mysql://mysql1:3306/mailiqing"
+    jdbc_user => "root"
+    jdbc_password => "111111"
+    jdbc_driver_library => "/mysql-connector-java-5.1.33.jar"
+    jdbc_driver_class => "com.mysql.jdbc.Driver"
+    jdbc_paging_enabled => "true"
+    jdbc_page_size => "50000"
+    schedule => "* * * * *"
+    use_column_value => true
+    tracking_column => rs_modify
+    statement_filepath => "/logstash-2.3.4/sql-update/resources_single.sql"
+  }
+}
+output {
+  if [type] == "procurement" {
+    elasticsearch {
+      hosts => "es:9200"
+      index => "b2b"
+      document_type => "ti_procurement"
+      document_id => "%{procur_f_id}"
+    }
+  }
+  else if [type] == "resources" {
+    elasticsearch {
+      hosts => "es:9200"
+      index => "b2b"
+      document_type => "resources_single"
+      document_id => "%{id}"
+    }
+  }
+  stdout { codec => rubydebug }
+}

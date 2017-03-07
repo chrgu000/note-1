@@ -1,0 +1,6 @@
+FROM dishui.io:5000/dishuigit/asciinema:1.2
+ENV TERM xterm
+#系统时间
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN yum -y install openssh-clients
+ENTRYPOINT  ["/usr/bin/supervisord","-n"]

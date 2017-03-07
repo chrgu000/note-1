@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>架构</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="架构" />
+<meta property="og:description" content="Contents1. 服务器 vlan1. 服务器 vlan@startuml@startdotdigraph foo {_N1 [style=box,label=&#34;S5500(三层交换机)&#34;];_N21 [style=&#34;rounded,filled&#34;, shape=ellipse,label=&#34;Vlan10(外)&#34;];_N2 [style=&#34;rounded,filled&#34;, shape=ellipse,label=&#34;Vlan20(内)&#34;];_N4 [style=&#34;rounded,filled&#34;, shape=ellipse,label=&#34;Vlan30(内)&#34;];_N5 [shape=box,label=&#34;Web1&#34;];_N6 [shape=box,label=&#34;Web2&#34;];_N7 [shape=box,label=&#34;Image1&#34;];_N8 [shape=box,label=&#34;Image2&#34;];_N9 [shape=box,label=&#34;DB1&#34;];_N10 [shape=box,label=&#34;DB(主)&#34;];_N11 [shape=box,label=&#34;DB(从)&#34;];_N12 [shape=box,label=&#34;LVS(主)&#34;];_N13 [shape=box,label=&#34;LVS(备)&#34;];
+_N1 -&gt; _N2;_N1 -&gt; _N21;_N1 -&gt; _N4;_N2 -&gt; _N5;_N2 -&gt; _N6;_N2 -&gt; _N7;_N2 -&gt; _N8;_N4 -&gt; _N9;_N4 -&gt; _N10;_N4 -&gt; _N11;_N21 -&gt; _N12;_N21 -&gt; _N13;_V10 [style=&#34;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/arch/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">架构</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_服务器_vlan">1. 服务器 vlan</a></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_服务器_vlan">1. 服务器 vlan</h3>
+<div class="paragraph">
+<p>@startuml
+@startdot
+digraph foo {
+  _N1 [style=box,label="S5500(三层交换机)"];
+  _N21 [style="rounded,filled", shape=ellipse,label="Vlan10(外)"];
+  _N2 [style="rounded,filled", shape=ellipse,label="Vlan20(内)"];
+  _N4 [style="rounded,filled", shape=ellipse,label="Vlan30(内)"];
+  _N5 [shape=box,label="Web1"];
+  _N6 [shape=box,label="Web2"];
+  _N7 [shape=box,label="Image1"];
+  _N8 [shape=box,label="Image2"];
+  _N9 [shape=box,label="DB1"];
+  _N10 [shape=box,label="DB(主)"];
+  _N11 [shape=box,label="DB(从)"];
+  _N12 [shape=box,label="LVS(主)"];
+  _N13 [shape=box,label="LVS(备)"];</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>_N1 -&gt; _N2;
+_N1 -&gt; _N21;
+_N1 -&gt; _N4;
+_N2 -&gt; _N5;
+_N2 -&gt; _N6;
+_N2 -&gt; _N7;
+_N2 -&gt; _N8;
+_N4 -&gt; _N9;
+_N4 -&gt; _N10;
+_N4 -&gt; _N11;
+_N21 -&gt; _N12;
+_N21 -&gt; _N13;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>_V10 [style="rounded,filled", shape=ellipse,label="Vlan10(外)"];
+_V20 [style="rounded,filled", shape=ellipse,label="Vlan20(内)"];
+_V30 [style="rounded,filled", shape=ellipse,label="Vlan30(内)"];</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  _V10 -&gt; _V20
+  _V20 -&gt; _V30
+}
+@enddot
+@enduml</pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">参考 </dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[[浅谈web架构之架构设计|http://brizer.github.io/2016/07/10/%E6%B5%85%E8%B0%88web%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/]]</p>
+</li>
+<li>
+<p>[[图片服务器架构演进|http://www.jiagoushuo.com/article/1000382.html]]</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/mathematics/machine-learn/" rel="prev"><span>«Previous</span><p>机器学习</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/work/app/xiaoxi/" rel="next"><span>Next»</span><p>消息模块</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>
