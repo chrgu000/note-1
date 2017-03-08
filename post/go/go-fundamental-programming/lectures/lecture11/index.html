@@ -9,7 +9,7 @@
 <meta property="og:title" content="" />
 <meta property="og:description" content=" 第 11 课：方法 method 基本信息  课程时长：23:13 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [06:30] 方法的声明与使用 [13:05] 类型别名与方法 [16:30] Method Value 与 Method Expression [18:43] 方法名称冲突与字段访问权限 [21:20] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 10 课：结构 struct 第 12 课：接口 interface  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/hugo-html/post/go/go-fundamental-programming/lectures/lecture11/" />
+<meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/go/go-fundamental-programming/lectures/lecture11/" />
 
 
 
@@ -24,23 +24,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/hugo-htmlcss/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/hugo-htmlcss/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/hugo-htmlcss/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/hugo-htmlcss/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/hugo-htmlcss/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/hugo-htmlcss/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugocss/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugocss/atom-one-dark.css">
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugocss/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugocss/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugocss/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugocss/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/hugo-htmljs/scripts.js"></script>
+<script type="text/javascript" src="http://dishui.oschina.io/note-hugojs/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/hugo-htmljs/css3-mediaqueries.js"></script>
+	<script src="http://dishui.oschina.io/note-hugojs/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/hugo-htmljs/app.js" src="http://dishui.oschina.io/hugo-htmljs/require.js"></script>
+<script data-main="http://dishui.oschina.io/note-hugojs/app.js" src="http://dishui.oschina.io/note-hugojs/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -52,7 +52,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/hugo-html" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="http://dishui.oschina.io/note-hugo" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -135,7 +135,7 @@
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/hugo-html/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="http://dishui.oschina.io/note-hugo/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -150,12 +150,12 @@
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/hugo-html/post/go/go-fundamental-programming/lectures/lecture10/" rel="prev"><span>«Previous</span><p></p></a>
+			<a href="http://dishui.oschina.io/note-hugo/post/go/go-fundamental-programming/lectures/lecture10/" rel="prev"><span>«Previous</span><p></p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/hugo-html/post/go/go-fundamental-programming/lectures/lecture12/" rel="next"><span>Next»</span><p></p></a>
+			<a href="http://dishui.oschina.io/note-hugo/post/go/go-fundamental-programming/lectures/lecture12/" rel="next"><span>Next»</span><p></p></a>
 		</div>
 		
 	</nav>

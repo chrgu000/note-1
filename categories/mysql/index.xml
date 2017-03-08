@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/hugo-html/categories/mysql/index.xml</link>
+    <link>http://dishui.oschina.io/note-hugo/categories/mysql/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/hugo-html/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/note-hugo/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mysql错误</title>
-      <link>http://dishui.oschina.io/hugo-html/post/linux/mysqlcuo_wu/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/linux/mysqlcuo_wu/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/linux/mysqlcuo_wu/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/linux/mysqlcuo_wu/</guid>
       <description>
 
 &lt;h2 id=&#34;mysql错误&#34;&gt;Mysql错误&lt;/h2&gt;
@@ -43,10 +43,10 @@ ALTER TABLE `proc` MODIFY COLUMN `comment`  text CHARACTER SET utf8 COLLATE utf8
     
     <item>
       <title>mycat命令</title>
-      <link>http://dishui.oschina.io/hugo-html/post/linux/mycat/mycat-command-line/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/linux/mycat/mycat-command-line/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/linux/mycat/mycat-command-line/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/linux/mycat/mycat-command-line/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -637,10 +637,10 @@ LAST_ACCESS: 0
     
     <item>
       <title>mysql主从配置</title>
-      <link>http://dishui.oschina.io/hugo-html/post/linux/mysql-master-slave/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/linux/mysql-master-slave/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/linux/mysql-master-slave/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/linux/mysql-master-slave/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Mysql 主从复制&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1150,10 +1150,10 @@ rm -f auto.cnf
     
     <item>
       <title>mysql基础操作</title>
-      <link>http://dishui.oschina.io/hugo-html/post/linux/mysql1/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/linux/mysql1/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/linux/mysql1/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/linux/mysql1/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]

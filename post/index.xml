@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Post-rsses on 工作笔记</title>
-    <link>http://dishui.oschina.io/hugo-html/post/index.xml</link>
+    <link>http://dishui.oschina.io/note-hugo/post/index.xml</link>
     <description>Recent content in Post-rsses on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 06 Mar 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://dishui.oschina.io/hugo-html/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/note-hugo/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>欧拉方程</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;欧拉方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -91,10 +91,10 @@
     
     <item>
       <title>log</title>
-      <link>http://dishui.oschina.io/hugo-html/post/linux/log/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/linux/log/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/linux/log/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/linux/log/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Log&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -305,10 +305,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>一阶线性微分方程</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;一阶线性微分方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -482,10 +482,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>伯努利方程</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;伯努利方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -508,10 +508,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>向量及其线性运算</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</guid>
       <description>&lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_向量及其线性运算&#34;&gt;向量及其线性运算&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
@@ -649,10 +649,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>高阶线性微分方程</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_高阶线性微分方程&#34;&gt;高阶线性微分方程&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
@@ -686,10 +686,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>齐次方程</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;齐次方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -791,10 +791,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>定积分的换元法</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</link>
       <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;定积分的换元法&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -829,10 +829,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>微积分基本公式</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</link>
       <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;微积分基本公式&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1096,10 +1096,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>不定积分</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;不定积分&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1314,10 +1314,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>体积</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;体积&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1388,10 +1388,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>分步积分法</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;分步积分法&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1523,10 +1523,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>定积分的几何应用(4)弧长</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8%284%29%E5%BC%A7%E9%95%BF/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8%284%29%E5%BC%A7%E9%95%BF/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8%284%29%E5%BC%A7%E9%95%BF/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8%284%29%E5%BC%A7%E9%95%BF/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;定积分的几何应用(4)弧长&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1567,10 +1567,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>定积分的概念与性质</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;定积分的概念与性质&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1623,10 +1623,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>平面曲线的弧长</title>
-      <link>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%BC%A7%E9%95%BF/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%BC%A7%E9%95%BF/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/xuxiaozhan/%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%BC%A7%E9%95%BF/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%BC%A7%E9%95%BF/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;平面曲线的弧长&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;

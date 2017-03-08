@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/hugo-html/categories/mailiqng-app/index.xml</link>
+    <link>http://dishui.oschina.io/note-hugo/categories/mailiqng-app/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/hugo-html/categories/mailiqng-app/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/note-hugo/categories/mailiqng-app/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>商品模块</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/goods/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/goods/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/goods/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/goods/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1868,10 +1868,10 @@ limit: 每页个数&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>圈层模块</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/quanceng/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/quanceng/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/quanceng/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/quanceng/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1949,10 +1949,10 @@ limit: 每页个数&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>客服管理</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/cservice/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/cservice/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/cservice/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/cservice/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -2583,10 +2583,10 @@ state : 0:不通过 1:通过&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>店铺模块</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/shop/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/shop/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/shop/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/shop/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -2817,10 +2817,10 @@ state : 商品状态 c:销售中 d:已下架 a:未审核&lt;/code&gt;&lt;/pre&gt
     
     <item>
       <title>报价单模块</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/quoteprice/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/quoteprice/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/quoteprice/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/quoteprice/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -3053,10 +3053,10 @@ limit : 10 # 每页显示个数&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>接口模板</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/template/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/template/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/template/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/template/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -3124,10 +3124,10 @@ limit : 10 # 每页显示个数&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>消息模块</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/xiaoxi/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/xiaoxi/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/xiaoxi/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/xiaoxi/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -3656,10 +3656,10 @@ limit : 10 # 每页显示个数&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>购物车</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/cart/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/cart/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/cart/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/cart/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -4357,10 +4357,10 @@ http://{host}/cart/del/2015062545V2OHQ&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>采购单模块</title>
-      <link>http://dishui.oschina.io/hugo-html/post/work/app/procurement/</link>
+      <link>http://dishui.oschina.io/note-hugo/post/work/app/procurement/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/hugo-html/post/work/app/procurement/</guid>
+      <guid>http://dishui.oschina.io/note-hugo/post/work/app/procurement/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
