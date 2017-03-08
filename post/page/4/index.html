@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/" />
 
 
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-01-15T00:00:00&#43;00:00"/>
 
 
 
@@ -78,6 +78,51 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/" rel="bookmark">微分中值定理</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-15 00:00:00 &#43;0000 UTC">January 15, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						微分中值定理1. 费马引理2. 费马猜想3. 罗尔 (Rolle) 定理3.1. 几何解释3.2. 三个条件缺一不可3.3. 罗尔 (Rolle) 定理原型3.4. 思考题4. 拉格朗日 (Lagrange) 中值定理4.1. 几何解释4.2. 物理解释4.3. 其他形式4.3.1. 验证4.4. Lagrange 定理有两个重要推论4.4.1. 证明4.5. Lagrange 定理应用4.5.1. 不等式的证明4.5.2. 恒等式的证明4.6. 柯西 (Cauchy) 中值定理4.7. 微分中值定理关系4.8. 中值定理的证明题4.9. 例题1. 费马引理2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/java/netty/" rel="bookmark">Netty</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-09 00:00:00 &#43;0000 UTC">January 09, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						NIO 服务端的主要创建过程打开 ServerSocketChannel, 用于监听客户端的连接,它是所有客户端连接的父管道
+ServerSocketChannel acceptorSvr = ServerSocketChannel.open();绑定监听端口, 设置连接为非阻塞模式
+acceptorSvr.socket().bind(new InetSocketAddress(InetAddress.getByName("IP"),port));acceptorSvr.configureBlocking(false);创建 Reactor 线程, 创建多路复用器并启动线程
+Selector selector = Selector.open();new Thread(new ReactorTask()).start();将 ServerSocketChannel 注册到 Reactor 线程的多路复用器 Selector 上, 监听 ACCEPT 事件
+SelectionKey key = acceptorSvr.register(selector, SelectionKey.OP_ACCEPT, ioHandler);多路复用器在线程 run 方法的无线循环体内轮询准备就绪的 Key
+int num = selector.select();Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();Iterator&lt;SelectionKey&gt; it = selectionKeys.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -244,52 +289,6 @@ $ sudo vi /etc/coreos/update.confGROUP=stableREBOOT_STRATEGY=reboot升级
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/git-tips/" rel="bookmark">Git的奇技淫巧</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Git的奇技淫巧:see_no_evil:  Git常用命令集合，Fork于tips项目
- Git是一个“分布式版本管理工具”，简单的理解版本管理工具：大家在写东西的时候都用过“回撤”这个功能，但是回撤只能回撤几步，假如想要找回我三天之前的修改，光用“回撤”是找不回来的。而“版本管理工具”能记录每次的修改，只要提交到版本仓库，你就可以找到之前任何时刻的状态（文本状态）。
-下面的内容就是列举了常用的git命令和一些小技巧，可以通过&rdquo;页面内查找&rdquo;的方式进行快速查询：Ctrl/Command+f。
-开卷必读 如果之前未使用过Git，可以学习廖老师的免费Git教程入门
- 一定要先测试命令的效果后，再用于工作环境中，以防造成不能弥补的后果！到时候别拿着砍刀来找我 所有的命令都在git version 2.7.4 (Apple Git-66)下测试通过 统一概念：  工作区：改动（增删文件和内容） 暂存区：输入命令：git add 改动的文件名，此次改动就放到了‘暂存区’ 本地仓库(简称：本地)：输入命令：git commit 此次修改的描述，此次改动就放到了’本地仓库’，每个commit，我叫它为一个‘版本’。 远程仓库(简称：远程)：输入命令：git push 远程仓库，此次改动就放到了‘远程仓库’（github等) commit-id：输出命令：git log，最上面那行commit xxxxxx，后面的字符串就是commit-id  如果喜欢这个项目，欢迎Star、提交Pr、反馈问题😊  目录  展示帮助信息 回到远程仓库的状态 重设第一个commit 展示工作区和暂存区的不同 展示暂存区和最近版本的不同 展示暂存区、工作区和最近版本的不同 快速切换分支 删除已经合并到master的分支 展示所有的分支关联的远程仓库 关联远程分支 删除本地分支 删除远程分支 查看标签 本地创建标签 推送标签到远程仓库 删除本地标签 删除远程标签 放弃工作区的修改 回到某一个commit的状态，并重新增添一个commit 回到某个commit的状态，并删除后面的commit 修改上一个commit的描述 查看commit历史 显示本地执行过git命令 修改作者名 修改远程仓库的url 列出所有远程仓库 列出本地和远程分支 列出远程分支 查看两个星期内的改动 把A分支的某一个commit，放到B分支上 给git命令起别名 存储当前的修改，但不用提交commit 保存当前状态，包括untracked的文件 展示所有stashes 回到某个stash的状态 回到最后一个stash的状态，并删除这个stash 删除所有的stash 从stash中拿出某个文件的修改 展示所有tracked的文件 展示所有untracked的文件 展示所有忽略的文件 强制删除untracked的文件 强制删除untracked的目录 重命名分支 展示简化的commit历史 查看某段代码是谁写的 把某一个分支到导出成一个文件 从包中导入分支 执行rebase之前自动stash 从远程仓库根据ID，拉下某一状态，到本地分支 详细展示一行中的修改 清除.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/mathematics/mathjax-ref/" rel="bookmark">Greek letters</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						==Greek letters
-参考 [[http://blog.csdn.net/garfielder007/article/details/51646604]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
@@ -369,6 +368,8 @@ $ sudo vi /etc/coreos/update.confGROUP=stableREBOOT_STRATEGY=reboot升级
 			<a href="http://dishui.oschina.io/note-hugo/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
 		
 			<a href="http://dishui.oschina.io/note-hugo/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
+		
+			<a href="http://dishui.oschina.io/note-hugo/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
 		
 			<a href="http://dishui.oschina.io/note-hugo/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
 		

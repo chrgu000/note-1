@@ -1,0 +1,20 @@
+---
+
+- command: mkdir /home/core/tmp
+  args:
+    creates: /home/core/tmp
+
+- copy:
+    src: /tmp/{{ app_stable_i_tar }}
+    dest: /home/core/tmp/{{ app_stable_i_tar }}
+
+- unarchive:
+    src: /home/core/tmp/{{ app_stable_i_tar }}
+    dest: /home/core/opt/src/version2/web-data/app
+    # dest: /home/core/tmp
+    remote_src: True
+
+- name: delete {{ app_stable_i_tar }}
+  file:
+    path: /home/core/tmp/{{ app_stable_i_tar }}
+    state: absent

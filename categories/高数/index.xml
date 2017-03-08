@@ -1098,6 +1098,133 @@
     </item>
     
     <item>
+      <title>二次曲面</title>
+      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</link>
+      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;二次曲面&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_二次曲面&#34;&gt;1. 二次曲面&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_常用的二次曲面的方程&#34;&gt;1.1. 常用的二次曲面的方程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_球面&#34;&gt;1.2. 球面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_圆锥面&#34;&gt;1.3. 圆锥面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_圆柱面&#34;&gt;1.4. 圆柱面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_马鞍面&#34;&gt;1.5. 马鞍面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_直纹面&#34;&gt;1.6. 直纹面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_单叶双曲面&#34;&gt;1.7. 单叶双曲面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_维维安妮曲线&#34;&gt;1.8. 维维安妮曲线&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_二次曲面&#34;&gt;1. 二次曲面&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_常用的二次曲面的方程&#34;&gt;1.1. 常用的二次曲面的方程&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164636.png&#34; alt=&#34;2017 03 08 164636&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_球面&#34;&gt;1.2. 球面&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164823.png&#34; alt=&#34;2017 03 08 164823&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164856.png&#34; alt=&#34;2017 03 08 164856&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_圆锥面&#34;&gt;1.3. 圆锥面&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164929.png&#34; alt=&#34;2017 03 08 164929&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_圆柱面&#34;&gt;1.4. 圆柱面&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164959.png&#34; alt=&#34;2017 03 08 164959&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_马鞍面&#34;&gt;1.5. 马鞍面&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165022.png&#34; alt=&#34;2017 03 08 165022&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_直纹面&#34;&gt;1.6. 直纹面&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165059.png&#34; alt=&#34;2017 03 08 165059&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165125.png&#34; alt=&#34;2017 03 08 165125&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165143.png&#34; alt=&#34;2017 03 08 165143&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165153.png&#34; alt=&#34;2017 03 08 165153&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_单叶双曲面&#34;&gt;1.7. 单叶双曲面&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165228.png&#34; alt=&#34;2017 03 08 165228&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_维维安妮曲线&#34;&gt;1.8. 维维安妮曲线&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165450.png&#34; alt=&#34;2017 03 08 165450&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>体积</title>
       <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
@@ -1520,74 +1647,6 @@
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>微分方程</title>
-      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
-      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;微分方程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_微分方程&#34;&gt;1. 微分方程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_可分离变量的微分方程&#34;&gt;2. 可分离变量的微分方程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_微分方程&#34;&gt;1. 微分方程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_092233.png&#34; alt=&#34;2017 02 24 092233&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_092305.png&#34; alt=&#34;2017 02 24 092305&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_092720.png&#34; alt=&#34;2017 02 24 092720&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_092820.png&#34; alt=&#34;2017 02 24 092820&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_092840.png&#34; alt=&#34;2017 02 24 092840&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_可分离变量的微分方程&#34;&gt;2. 可分离变量的微分方程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_125656.png&#34; alt=&#34;2017 02 24 125656&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-24_125916.png&#34; alt=&#34;2017 02 24 125916&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

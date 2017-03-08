@@ -84,6 +84,49 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/linux/rancher/" rel="bookmark">Rancher</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Rancher1. rancher/storage-nfs1.1. 配置CoreOS nfs service1.2. 启动 Rancher Server1.2.1. docker 方式启动1.2.2. compose 方式启动1.2.3. Rancher NFS 配置1.3. maxscale-mysql2. 镜像2.1. push rancher相关镜像到 registry2.2. rancher-agent 拉取镜像2.3. 参考3. Rancher Cli API1. rancher/storage-nfs1.1. 配置CoreOS nfs serviceimage 安装 sudo vi /var/lib/coreos-install/user_datavagrant 安装 # sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data#cloud-configcoreos:units:- name: "
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/linux/redis/" rel="bookmark">Redis</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Redis1.1. 命令1.2. 配置文件1.3. Codis1.4. 参考1. Redis1.1. 命令删除所有 key
+redis-cli keys "*" | xargs redis-cli del1.2. 配置文件redis.conf# appendfsync always#每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用appendfsync everysec#每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐# appendfsync no #完全依赖os，性能最好,持久化没保证1.3. Codisgolang 版本
+go1.6.linux-amd64.tar.gz环境变量
+# vi ~/.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="http://dishui.oschina.io/note-hugo/post/iocxml_md/" rel="bookmark">Spring IOC</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -249,51 +292,6 @@
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/docker-compose/" rel="bookmark">docker-compose</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. docker-compose2. Docker+Docker-Compose+Zookeeper 集群搭建2.1. 环境2.2. docker-compose2.3. pipework2.4. zookeeper 集群2.5. docker-compose2.5.1. docker client端2.6. compose 文件2.7. api2.8. 参考2.9. Q &amp; A1. docker-compose参考 [[docker-compose.yml | https://docs.docker.com/compose/compose-file/]]
-[[CoreOS 安装 docker-compose |http://my.oschina.net/Laily/blog/678926]]
-[[docker-compose | https://github.com/docker/compose/releases]]
-[[compose-file|https://docs.docker.com/compose/compose-file]]
-[[http://dockone.io/article/1545]]
-2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/elasticsearch-jdbc-importer/" rel="bookmark">elasticsearch-jdbc-importer</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						elasticsearch-jdbc-importer mysql数据导入elasticsearch  设置映射 json PUT /b2b { &quot;settings&quot;: { &quot;number_of_replicas&quot;: &quot;1&quot;, &quot;number_of_shards&quot;: &quot;1&quot; }, &quot;mappings&quot;: { &quot;mlq_goods&quot;: { &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;category&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;cat_code&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;mmseg&quot; }, &quot;brand_name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;brand_name_noa&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;new_seller_nick&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;goods_status&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;title&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; } } }, &quot;mlq_product&quot;: { &quot;_parent&quot;: { &quot;type&quot;: &quot;mlq_goods&quot; }, &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;sale_region&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;repository_region&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;product_name_noa&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;product_name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; } } } } }  import导入文件 bash #!
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
@@ -373,6 +371,8 @@
 			<a href="http://dishui.oschina.io/note-hugo/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
 		
 			<a href="http://dishui.oschina.io/note-hugo/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
+		
+			<a href="http://dishui.oschina.io/note-hugo/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
 		
 			<a href="http://dishui.oschina.io/note-hugo/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
 		
