@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>/categories/docker/index.xml</link>
+    <link>http://dishui.oschina.io/hugo-html/categories/docker/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/hugo-html/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Rancher</title>
-      <link>/post/linux/rancher/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/rancher/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/rancher/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/rancher/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Rancher&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -390,10 +390,10 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
     
     <item>
       <title>docker 参考</title>
-      <link>/post/linux/docker-ref/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/docker-ref/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/docker-ref/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/docker-ref/</guid>
       <description>&lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
@@ -409,10 +409,10 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
     
     <item>
       <title>docker-compose</title>
-      <link>/post/linux/docker-compose/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/docker-compose/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/docker-compose/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/docker-compose/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -908,10 +908,10 @@ v2 ping attempt failed with error: Get &lt;a href=&#34;https://192.168.137.15:50
     
     <item>
       <title>swarm</title>
-      <link>/post/linux/docker-swarm/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/docker-swarm/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/docker-swarm/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/docker-swarm/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1100,10 +1100,10 @@ ID                           HOSTNAME    STATUS  AVAILABILITY  MANAGER STATUS
     
     <item>
       <title>docker 基础命令</title>
-      <link>/post/docker/docker-base/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/docker/docker-base/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/docker/docker-base/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/docker/docker-base/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;docker-base&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;

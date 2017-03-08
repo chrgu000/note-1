@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>/categories/linux/index.xml</link>
+    <link>http://dishui.oschina.io/hugo-html/categories/linux/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/hugo-html/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>log</title>
-      <link>/post/linux/log/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/log/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/log/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/log/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Log&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -224,10 +224,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>ansible</title>
-      <link>/post/linux/ansible/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/ansible/</link>
       <pubDate>Wed, 18 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/ansible/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/ansible/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;ansible&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -255,10 +255,10 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>CentOS基础设置</title>
-      <link>/post/linux/ji_chu_she_zhi/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/ji_chu_she_zhi/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/ji_chu_she_zhi/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/ji_chu_she_zhi/</guid>
       <description>
 
 &lt;!-- toc --&gt;
@@ -647,10 +647,10 @@ vim /etc/grub.conf
     
     <item>
       <title>CoreOS</title>
-      <link>/post/linux/CoreOS/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/CoreOS/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/CoreOS/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/CoreOS/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;CoreOS&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1152,10 +1152,10 @@ touch $HOME/.bootstrapped&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>NFS配置</title>
-      <link>/post/linux/nfsjian_1/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/nfsjian_1/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/nfsjian_1/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/nfsjian_1/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -1356,10 +1356,10 @@ chkconfig iptables off
     
     <item>
       <title>Nginx 安装配置</title>
-      <link>/post/linux/nginx/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/nginx/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/nginx/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/nginx/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -2230,10 +2230,10 @@ Accept-Ranges: bytes&lt;/p&gt;
     
     <item>
       <title>linux tip</title>
-      <link>/post/linux/linux-tip/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/linux-tip/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/linux-tip/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/linux-tip/</guid>
       <description>&lt;p&gt;##1、nohup命令及其输出文件&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -2330,10 +2330,10 @@ nohup /mnt/Nand3/H2000G &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
     
     <item>
       <title>linux 基础命令</title>
-      <link>/post/linux/basic/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/basic/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/basic/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/basic/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -2661,10 +2661,10 @@ zone &#34;test.mailiqing.com&#34; IN {
     
     <item>
       <title>linux 系统分区</title>
-      <link>/post/linux/fen_qu/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/fen_qu/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/fen_qu/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/fen_qu/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -2758,10 +2758,10 @@ tmpfs                 32981876        12  32981864   1% /dev/shm
     
     <item>
       <title>sed</title>
-      <link>/post/linux/linux-sed/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/linux-sed/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/linux-sed/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/linux-sed/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -2810,10 +2810,10 @@ sed [options] &#39;AddressCommand&#39; file &amp;#8230;&amp;#8203;
     
     <item>
       <title>shell</title>
-      <link>/post/linux/shell/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/shell/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/shell/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/shell/</guid>
       <description>
 
 &lt;!-- toc --&gt;
@@ -2833,10 +2833,10 @@ DIR=&amp;quot;$( cd &amp;quot;$( dirname &amp;quot;${BASH_SOURCE[0]}&amp;quot; )
     
     <item>
       <title>ssh</title>
-      <link>/post/linux/ssh/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/ssh/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/ssh/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/ssh/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -3295,10 +3295,10 @@ echo w00t, i’m 733 | cstream -b1 -t2&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>supervisor</title>
-      <link>/post/linux/supervisord/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/supervisord/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/supervisord/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/supervisord/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -3508,10 +3508,10 @@ yum clean all&lt;/p&gt;
     
     <item>
       <title>svn 安装与配置</title>
-      <link>/post/linux/svn-setup/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/svn-setup/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/svn-setup/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/svn-setup/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -3793,10 +3793,10 @@ cat update.txt | awk &#39;{gsub(&#34;\\\\&#34;,&#34;/&#34;);print $0}&#39; | xar
     
     <item>
       <title>ubuntu</title>
-      <link>/post/linux/ubuntu/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/linux/ubuntu/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/linux/ubuntu/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/linux/ubuntu/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>/tags/latex/index.xml</link>
+    <link>http://dishui.oschina.io/hugo-html/tags/latex/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="/tags/latex/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/hugo-html/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>LaTeX 数学符号</title>
-      <link>/post/mathematics/LaTeX-Math-Symbols/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/mathematics/LaTeX-Math-Symbols/</link>
       <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/mathematics/LaTeX-Math-Symbols/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/mathematics/LaTeX-Math-Symbols/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;LaTeX&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;

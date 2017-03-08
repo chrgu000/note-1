@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>/categories/bug/index.xml</link>
+    <link>http://dishui.oschina.io/hugo-html/categories/bug/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="/categories/bug/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/hugo-html/categories/bug/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>bug</title>
-      <link>/post/app/bug/</link>
+      <link>http://dishui.oschina.io/hugo-html/post/app/bug/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/app/bug/</guid>
+      <guid>http://dishui.oschina.io/hugo-html/post/app/bug/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
