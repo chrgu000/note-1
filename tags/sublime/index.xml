@@ -227,7 +227,7 @@ asciinema::slave[&#34;$2&#34;,&#34;$3&#34;,&#34;95&#34;,&#34;25&#34;]
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&amp;lt;snippet&amp;gt;
     &amp;lt;content&amp;gt;&amp;lt;![CDATA[
-image::http://localhost:1313/src/img/$1[]
+image::http://dishui.oschina.io/note-hugo/src/img/$1[]
 ]]&amp;gt;&amp;lt;/content&amp;gt;
     &amp;lt;tabTrigger&amp;gt;img&amp;lt;/tabTrigger&amp;gt;
 &amp;lt;/snippet&amp;gt;&lt;/p&gt;

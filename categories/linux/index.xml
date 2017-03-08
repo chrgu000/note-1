@@ -920,7 +920,7 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;
 &lt;h4 id=&#34;__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;3.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/h4&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://localhost:1313/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -962,7 +962,7 @@ users:
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://localhost:1313/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;literalblock&#34;&gt;
@@ -1038,7 +1038,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://localhost:1313/src/img/2016-08-30_125508.png&#34; alt=&#34;2016 08 30 125508&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/2016-08-30_125508.png&#34; alt=&#34;2016 08 30 125508&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -1046,7 +1046,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://localhost:1313/src/img/2016-08-30_125711.png&#34; alt=&#34;2016 08 30 125711&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/2016-08-30_125711.png&#34; alt=&#34;2016 08 30 125711&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;

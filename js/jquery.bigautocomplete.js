@@ -23,7 +23,7 @@
 
 			$("#bigAutocompleteContent").delegate("tr", "click", function() {
 
-				window.location.href = $(this).text();
+				window.location.href = 'http://dishui.oschina.io/note-hugo'+$(this).text();
         		return;
 		        $.post($(this).text(), function(data){
 	           		var html = $(data);
