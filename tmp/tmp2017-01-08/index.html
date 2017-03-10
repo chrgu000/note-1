@@ -1056,6 +1056,17 @@ WHERE Storage_area = '001'</p>
 "   zh_material_outbound zmo"+
 " WHERE zmo.Storage_area = ?"</p>
 </div>
+<div class="paragraph">
+<p>SELECT
+ zar.reservoir_code,
+ zar.storage_code,
+ zar.goods_model,
+ zar.order_type
+FROM
+ zh_asphalt_repertory zar
+WHERE zar.order_type =
+GROUP BY zar.goods_model</p>
+</div>
 
 		</div>
 		
