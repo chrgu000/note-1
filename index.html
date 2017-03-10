@@ -109,7 +109,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本#!/bin/shDIR=$(dirname "$0")cd $DIR/..if [[ $(git status -s) ]]thenecho "The working directory is dirty. Please commit any pending changes."exit 1;fiecho "Deleting old publication"rm -rf publicmkdir publicgit worktree prunerm -rf .
+						hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 本地启动3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本#!/bin/shDIR=$(dirname "$0")cd $DIR/..if [[ $(git status -s) ]]thenecho "The working directory is dirty. Please commit any pending changes."exit 1;fiecho "Deleting old publication"rm -rf publicmkdir publicgit worktree prunerm -rf .
 					</div>
 				</div>
 			</div>

@@ -202,7 +202,8 @@
 &lt;li&gt;&lt;a href=&#34;#_部署脚本&#34;&gt;1.2. 部署脚本&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地启动&#34;&gt;2. 本地启动&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;3. 参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -274,7 +275,28 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;h2 id=&#34;_本地启动&#34;&gt;2. 本地启动&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;替换&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;echo &#34;public&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
+echo &#34;themes/mainroad/static/js/app.js&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
+echo &#34;themes/mainroad/static/js/jquery.bigautocomplete.js&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
+echo &#34;config.toml&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
+echo &#34;content/post/base.adoc&#34; &amp;gt;&amp;gt; .gitignore&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;3. 参考&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;

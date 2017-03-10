@@ -7,12 +7,11 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="docker-compose" />
-<meta property="og:description" content="Contents1. docker-compose2. Docker&#43;Docker-Compose&#43;Zookeeper 集群搭建2.1. 环境2.2. docker-compose2.3. pipework2.4. zookeeper 集群2.5. docker-compose2.5.1. docker client端2.6. compose 文件2.7. api2.8. 参考2.9. Q &amp; A1. docker-compose参考 [[docker-compose.yml | https://docs.docker.com/compose/compose-file/]]
-[[CoreOS 安装 docker-compose |http://my.oschina.net/Laily/blog/678926]]
-[[docker-compose | https://github.com/docker/compose/releases]]
-[[compose-file|https://docs.docker.com/compose/compose-file]]
-[[http://dockone.io/article/1545]]
-2." />
+<meta property="og:description" content="docker-compose1. docker-compose2. Docker&#43;Docker-Compose&#43;Zookeeper 集群搭建2.1. 环境2.2. docker-compose2.3. pipework2.4. zookeeper 集群2.5. docker-compose3. Docker Registry3.1. 配置3.1.1. registry server3.1.2. docker client端3.2. compose 文件3.3. api3.4. 参考3.5. Q &amp; A1. docker-compose参考 docker-compose.yml 
+CoreOS 安装 docker-compose 
+docker-compose 
+compose-file
+http://dockone." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/linux/docker-compose/" />
 
@@ -92,7 +91,7 @@
 		<div class="entry-content clearfix">
 			
 			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
+<div id="toctitle">docker-compose</div>
 <ul class="sectlevel1">
 <li><a href="#_docker_compose">1. docker-compose</a></li>
 <li><a href="#_docker_docker_compose_zookeeper_集群搭建">2. Docker+Docker-Compose+Zookeeper 集群搭建</a>
@@ -101,15 +100,21 @@
 <li><a href="#_docker_compose_2">2.2. docker-compose</a></li>
 <li><a href="#_pipework">2.3. pipework</a></li>
 <li><a href="#_zookeeper_集群">2.4. zookeeper 集群</a></li>
-<li><a href="#_docker_compose_3">2.5. docker-compose</a>
-<ul class="sectlevel3">
-<li><a href="#_docker_client端">2.5.1. docker client端</a></li>
+<li><a href="#_docker_compose_3">2.5. docker-compose</a></li>
 </ul>
 </li>
-<li><a href="#__code_compose_code_文件">2.6. <code>compose</code> 文件</a></li>
-<li><a href="#_api">2.7. api</a></li>
-<li><a href="#_参考">2.8. 参考</a></li>
-<li><a href="#_q_a">2.9. Q &amp; A</a></li>
+<li><a href="#_docker_registry">3. Docker Registry</a>
+<ul class="sectlevel2">
+<li><a href="#_配置">3.1. 配置</a>
+<ul class="sectlevel3">
+<li><a href="#_registry_server">3.1.1. registry server</a></li>
+<li><a href="#_docker_client端">3.1.2. docker client端</a></li>
+</ul>
+</li>
+<li><a href="#__code_compose_code_文件">3.2. <code>compose</code> 文件</a></li>
+<li><a href="#_api">3.3. api</a></li>
+<li><a href="#_参考">3.4. 参考</a></li>
+<li><a href="#_q_a">3.5. Q &amp; A</a></li>
 </ul>
 </li>
 </ul>
@@ -124,19 +129,19 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>[[docker-compose.yml | <a href="https://docs.docker.com/compose/compose-file/" class="bare">https://docs.docker.com/compose/compose-file/</a>]]</p>
+<p><a href="https://docs.docker.com/compose/compose-file/">docker-compose.yml </a></p>
 </li>
 <li>
-<p>[[CoreOS 安装 docker-compose |http://my.oschina.net/Laily/blog/678926]]</p>
+<p><a href="http://my.oschina.net/Laily/blog/678926">CoreOS 安装 docker-compose </a></p>
 </li>
 <li>
-<p>[[docker-compose | <a href="https://github.com/docker/compose/releases" class="bare">https://github.com/docker/compose/releases</a>]]</p>
+<p><a href="https://github.com/docker/compose/releases">docker-compose </a></p>
 </li>
 <li>
-<p>[[compose-file|https://docs.docker.com/compose/compose-file]]</p>
+<p><a href="https://docs.docker.com/compose/compose-file">compose-file</a></p>
 </li>
 <li>
-<p>[[<a href="http://dockone.io/article/1545" class="bare">http://dockone.io/article/1545</a>]]</p>
+<p><a href="http://dockone.io/article/1545" class="bare">http://dockone.io/article/1545</a></p>
 </li>
 </ol>
 </div>
@@ -170,19 +175,15 @@
 </tr>
 <tr>
 <td class="tableblock halign-right valign-top"><p class="tableblock">Docker Compose</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">[[docker-compose version 1.6.2, build 4d72027</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/docker/compose/releases/">docker-compose version 1.6.2, build 4d72027</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><a href="https://github.com/docker/compose/releases/" class="bare">https://github.com/docker/compose/releases/</a>]]</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Pipework</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">[[pipework</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/dishuiGit/pipework" class="bare">https://github.com/dishuiGit/pipework</a>]]</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Pipework</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/dishuiGit/pipework">pipework</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-right valign-top"><p class="tableblock">Zookeeper</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">[[zookeeper 3.4.8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://www.apache.org/dyn/closer.cgi/zookeeper/">Zookeeper</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -193,28 +194,24 @@
 <ol class="arabic">
 <li>
 <p>安装</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` &gt; docker-compose
+<pre class="highlightjs highlight"><code>curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` &gt; docker-compose
 cp docker-compose /opt/bin/
 chmod +x /opt/bin/docker-compose</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>检测是否安装成功</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-BashSession" data-lang="BashSession">$ docker-compose --version
+<pre class="highlightjs highlight"><code>$ docker-compose --version
 docker-compose version 1.6.2, build 4d72027</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -223,30 +220,26 @@ docker-compose version 1.6.2, build 4d72027</code></pre>
 <ol class="arabic">
 <li>
 <p>安装</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">install -m 755 pipework /opt/bin/pipework</code></pre>
+<pre class="highlightjs highlight"><code>install -m 755 pipework /opt/bin/pipework</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>检测是否安装成功</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-BashSession" data-lang="BashSession">$ pipework -h
+<pre class="highlightjs highlight"><code>$ pipework -h
 Syntax:
 pipework &lt;hostinterface&gt; [-i containerinterface] [-l localinterfacename] &lt;guest&gt; &lt;ipaddr&gt;/&lt;subnet&gt;[@default_gateway] [macaddr][@vlan]
 pipework &lt;hostinterface&gt; [-i containerinterface] [-l localinterfacename] &lt;guest&gt; dhcp [macaddr][@vlan]
 pipework route &lt;guest&gt; &lt;route_command&gt;
 pipework --wait [-i containerinterface]</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -255,39 +248,28 @@ pipework --wait [-i containerinterface]</code></pre>
 <ol class="arabic">
 <li>
 <p>安装</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">tar -zxf zookeeper-3.4.8.tar.gz -C /</code></pre>
+<pre class="highlightjs highlight"><code>tar -zxf zookeeper-3.4.8.tar.gz -C /</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>启动</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession"># zookeeper-3.4.8/bin/zkServer.sh -h
+<pre class="highlightjs highlight"><code># zookeeper-3.4.8/bin/zkServer.sh -h
 ZooKeeper JMX enabled by default
 Using config: /zookeeper-3.4.8/bin/../conf/zoo.cfg
 Usage: zookeeper-3.4.8/bin/zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-cmd}</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>配置</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession"># vi zookeeper-3.4.8/conf/zoo.cfg
+<pre class="highlightjs highlight"><code># vi zookeeper-3.4.8/conf/zoo.cfg
 tickTime=2000
 initLimit=10
 syncLimit=5
@@ -298,8 +280,7 @@ server.2=192.168.138.22:2888:3888
 server.3=192.168.138.33:2888:3888</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p><code>myid</code></p>
 <div class="ulist">
@@ -309,12 +290,9 @@ server.3=192.168.138.33:2888:3888</code></pre>
 </li>
 </ul>
 </div>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">echo "1" &gt; /zookeeper/data/myid</code></pre>
+<pre class="highlightjs highlight"><code>echo "1" &gt; /zookeeper/data/myid</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -324,40 +302,108 @@ server.3=192.168.138.33:2888:3888</code></pre>
 </li>
 </ul>
 </div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_docker_compose_3">2.5. docker-compose</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>docker-compose.yml</code> </dt>
-</dl>
+<div class="listingblock">
+<div class="title">docker-compose.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>version: '2'
+services:
+  zk1:
+    ports:
+     - "2181:2181"
+    command: /usr/bin/sh init.sh
+    container_name: zk1
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 1
+      ZK_HOST1: "192.168.137.11    zk1"
+      ZK_HOST2: "192.168.137.22    zk2"
+      ZK_HOST3: "192.168.137.33    zk3"
+    image: zookeeper-t:1.2
+  zk2:
+    ports:
+     - "2182:2181"
+    command: /usr/bin/sh init.sh
+    container_name: zk2
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 2
+      ZK_HOST1: "192.168.137.11    zk1"
+      ZK_HOST2: "192.168.137.22    zk2"
+      ZK_HOST3: "192.168.137.33    zk3"
+    image: zookeeper-t:1.2
+  zk3:
+    ports:
+     - "2183:2181"
+    command: /usr/bin/sh init.sh
+    container_name: zk3
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 3
+      ZK_HOST1: "192.168.137.11    zk1"
+      ZK_HOST2: "192.168.137.22    zk2"
+      ZK_HOST3: "192.168.137.33    zk3"
+    image: zookeeper-t:1.2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">init.sh</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>#! /bin/bash
+
+# init eth1 network
+pipework --wait -i eth1
+
+# add myid
+echo $MYID &gt; /zookeeper/data/myid
+# add hosts
+echo $ZK_HOST1 &gt;&gt; /etc/hosts
+echo $ZK_HOST2 &gt;&gt; /etc/hosts
+echo $ZK_HOST3 &gt;&gt; /etc/hosts
+# start zookeeper
+/zookeeper-3.4.8/bin/zkServer.sh start-foreground</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-YAML:/src/docker/zookeeper-docker-compose.yml```" data-lang="YAML:/src/docker/zookeeper-docker-compose.yml```">`init.sh` ::
-```shell:/src/docker/init.sh```
-
-
-network
+<pre class="highlightjs highlight"><code>network
 version2 ::
 不用加 `links` 各个容器之间可以互通
 
 version1 ::
-加 `links` 可以单通,但是不可以互通
-
-== Docker Registry
-
-=== 配置
-
-==== registry server
-. 生成自签名证书
-```bash
-cd ~/
+加 `links` 可以单通,但是不可以互通</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_registry">3. Docker Registry</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_配置">3.1. 配置</h3>
+<div class="sect3">
+<h4 id="_registry_server">3.1.1. registry server</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>生成自签名证书</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd ~/
 
 mkdir registry &amp;&amp; cd registry &amp;&amp; mkdir certs &amp;&amp; cd certs
 
 openssl req -x509 -days 3650 -subj '/CN=dishui.io/' -nodes -newkey rsa:2048 -keyout registry.key -out registry.crt</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -378,82 +424,64 @@ CN=dishui.io 这里是域名
 </li>
 </ol>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_docker_client端">2.5.1. docker client端</h4>
+<h4 id="_docker_client端">3.1.2. docker client端</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>创建证书目录(没有此目录自己创建，注意端口号)</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo mkdir -p /etc/docker/certs.d/dishui.io:5000</code></pre>
+<pre class="highlightjs highlight"><code>sudo mkdir -p /etc/docker/certs.d/dishui.io:5000</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>下载证书</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo cp ~/registry/certs/registry.crt /etc/docker/certs.d/dishui.io:5000</code></pre>
+<pre class="highlightjs highlight"><code>sudo cp ~/registry/certs/registry.crt /etc/docker/certs.d/dishui.io:5000</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>域名解析</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo echo 192.168.137.15 dishui.io   &gt;&gt; /etc/hosts</code></pre>
+<pre class="highlightjs highlight"><code>sudo echo 192.168.137.15 dishui.io   &gt;&gt; /etc/hosts</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>镜像 <code>tag</code> 标签</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker tag 9a6db89 dishui.io:5000/dishuigit/codis:1.1</code></pre>
+<pre class="highlightjs highlight"><code>docker tag 9a6db89 dishui.io:5000/dishuigit/codis:1.1</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>上传镜像到 <code>registry</code></p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker push dishui.io:5000/dishuigit/codis:1.1</code></pre>
+<pre class="highlightjs highlight"><code>docker push dishui.io:5000/dishuigit/codis:1.1</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__code_compose_code_文件">2.6. <code>compose</code> 文件</h3>
+<h3 id="__code_compose_code_文件">3.2. <code>compose</code> 文件</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>gollum</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml" data-lang="yml">gollum:
+<pre class="highlightjs highlight"><code>gollum:
   privileged: true
   image: dishuigit/gollum:2.0
   container_name: gollum1
@@ -461,16 +489,12 @@ CN=dishui.io 这里是域名
    - "80:4567"</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p><code>registry</code></p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml" data-lang="yml">version: '2'
+<pre class="highlightjs highlight"><code>version: '2'
 services:
   registry1:
     image: registry:2.5
@@ -485,16 +509,12 @@ services:
       - /home/core/certs:/certs</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p><code>registry-web</code></p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml" data-lang="yml">version: '2'
+<pre class="highlightjs highlight"><code>version: '2'
 services:
   registry2:
     image: registry:2.5
@@ -515,58 +535,57 @@ services:
       - registry2</code></pre>
 </div>
 </div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_api">2.7. api</h3>
+<h3 id="_api">3.3. api</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>查看仓库 镜像列表</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-http" data-lang="http">https://192.168.137.15:5000/v2/_catalog</code></pre>
+<pre class="highlightjs highlight"><code>https://192.168.137.15:5000/v2/_catalog</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>查看 <code>tag</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list</code></pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-http" data-lang="http">https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list</code></pre>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_参考">2.8. 参考</h3>
+<h3 id="_参考">3.4. 参考</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>[[registry 部署 | <a href="https://docs.docker.com/registry/deploying/" class="bare">https://docs.docker.com/registry/deploying/</a>]]</p>
+<p><a href="https://docs.docker.com/registry/deploying/">registry 部署</a></p>
 </li>
 <li>
-<p>[[registry 配置 | <a href="https://docs.docker.com/registry/configuration/" class="bare">https://docs.docker.com/registry/configuration/</a>]]</p>
+<p><a href="https://docs.docker.com/registry/configuration/">registry 配置</a></p>
 </li>
 <li>
-<p>[[docker-registry-web | <a href="https://github.com/mkuchin/docker-registry-web" class="bare">https://github.com/mkuchin/docker-registry-web</a>]]</p>
+<p><a href="https://github.com/mkuchin/docker-registry-web">docker-registry-web</a></p>
 </li>
 <li>
-<p>[[Insecure Registry | <a href="https://docs.docker.com/registry/insecure/" class="bare">https://docs.docker.com/registry/insecure/</a>]]</p>
+<p><a href="https://docs.docker.com/registry/insecure/">Insecure Registry</a></p>
 </li>
 <li>
-<p>[[<a href="http://www.tuicool.com/articles/vMZZveM" class="bare">http://www.tuicool.com/articles/vMZZveM</a>]]</p>
+<p><a href="http://www.tuicool.com/articles/vMZZveM" class="bare">http://www.tuicool.com/articles/vMZZveM</a></p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_q_a">2.9. Q &amp; A</h3>
+<h3 id="_q_a">3.5. Q &amp; A</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">

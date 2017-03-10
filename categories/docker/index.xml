@@ -414,7 +414,7 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
       
       <guid>http://dishui.oschina.io/note-hugo/post/linux/docker-compose/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;div id=&#34;toctitle&#34;&gt;docker-compose&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_docker_compose&#34;&gt;1. docker-compose&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_docker_docker_compose_zookeeper_集群搭建&#34;&gt;2. Docker+Docker-Compose+Zookeeper 集群搭建&lt;/a&gt;
@@ -423,15 +423,21 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
 &lt;li&gt;&lt;a href=&#34;#_docker_compose_2&#34;&gt;2.2. docker-compose&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_pipework&#34;&gt;2.3. pipework&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_zookeeper_集群&#34;&gt;2.4. zookeeper 集群&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_docker_compose_3&#34;&gt;2.5. docker-compose&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_docker_client端&#34;&gt;2.5.1. docker client端&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_compose_3&#34;&gt;2.5. docker-compose&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#__code_compose_code_文件&#34;&gt;2.6. &lt;code&gt;compose&lt;/code&gt; 文件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_api&#34;&gt;2.7. api&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2.8. 参考&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;2.9. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_registry&#34;&gt;3. Docker Registry&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;3.1. 配置&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_registry_server&#34;&gt;3.1.1. registry server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_client端&#34;&gt;3.1.2. docker client端&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_compose_code_文件&#34;&gt;3.2. &lt;code&gt;compose&lt;/code&gt; 文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_api&#34;&gt;3.3. api&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;3.4. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;3.5. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -446,19 +452,19 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;[[docker-compose.yml | &lt;a href=&#34;https://docs.docker.com/compose/compose-file/&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/compose/compose-file/&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/compose/compose-file/&#34;&gt;docker-compose.yml &lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[CoreOS 安装 docker-compose |http://my.oschina.net/Laily/blog/678926]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://my.oschina.net/Laily/blog/678926&#34;&gt;CoreOS 安装 docker-compose &lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[docker-compose | &lt;a href=&#34;https://github.com/docker/compose/releases&#34; class=&#34;bare&#34;&gt;https://github.com/docker/compose/releases&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/docker/compose/releases&#34;&gt;docker-compose &lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[compose-file|https://docs.docker.com/compose/compose-file]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/compose/compose-file&#34;&gt;compose-file&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[&lt;a href=&#34;http://dockone.io/article/1545&#34; class=&#34;bare&#34;&gt;http://dockone.io/article/1545&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dockone.io/article/1545&#34; class=&#34;bare&#34;&gt;http://dockone.io/article/1545&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -492,19 +498,15 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker Compose&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;[[docker-compose version 1.6.2, build 4d72027&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/docker/compose/releases/&#34;&gt;docker-compose version 1.6.2, build 4d72027&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/docker/compose/releases/&#34; class=&#34;bare&#34;&gt;https://github.com/docker/compose/releases/&lt;/a&gt;]]&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Pipework&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;[[pipework&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/dishuiGit/pipework&#34; class=&#34;bare&#34;&gt;https://github.com/dishuiGit/pipework&lt;/a&gt;]]&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Pipework&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/dishuiGit/pipework&#34;&gt;pipework&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Zookeeper&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;[[zookeeper 3.4.8&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://www.apache.org/dyn/closer.cgi/zookeeper/&#34;&gt;Zookeeper&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -515,28 +517,24 @@ sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/doc
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;安装&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` &amp;gt; docker-compose
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` &amp;gt; docker-compose
 cp docker-compose /opt/bin/
 chmod +x /opt/bin/docker-compose&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;检测是否安装成功&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-BashSession&#34; data-lang=&#34;BashSession&#34;&gt;$ docker-compose --version
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ docker-compose --version
 docker-compose version 1.6.2, build 4d72027&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
@@ -545,30 +543,26 @@ docker-compose version 1.6.2, build 4d72027&lt;/code&gt;&lt;/pre&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;安装&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;install -m 755 pipework /opt/bin/pipework&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;install -m 755 pipework /opt/bin/pipework&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;检测是否安装成功&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-BashSession&#34; data-lang=&#34;BashSession&#34;&gt;$ pipework -h
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ pipework -h
 Syntax:
 pipework &amp;lt;hostinterface&amp;gt; [-i containerinterface] [-l localinterfacename] &amp;lt;guest&amp;gt; &amp;lt;ipaddr&amp;gt;/&amp;lt;subnet&amp;gt;[@default_gateway] [macaddr][@vlan]
 pipework &amp;lt;hostinterface&amp;gt; [-i containerinterface] [-l localinterfacename] &amp;lt;guest&amp;gt; dhcp [macaddr][@vlan]
 pipework route &amp;lt;guest&amp;gt; &amp;lt;route_command&amp;gt;
 pipework --wait [-i containerinterface]&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
@@ -577,39 +571,28 @@ pipework --wait [-i containerinterface]&lt;/code&gt;&lt;/pre&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;安装&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;tar -zxf zookeeper-3.4.8.tar.gz -C /&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxf zookeeper-3.4.8.tar.gz -C /&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启动&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;# zookeeper-3.4.8/bin/zkServer.sh -h
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# zookeeper-3.4.8/bin/zkServer.sh -h
 ZooKeeper JMX enabled by default
 Using config: /zookeeper-3.4.8/bin/../conf/zoo.cfg
 Usage: zookeeper-3.4.8/bin/zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-cmd}&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;配置&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;# vi zookeeper-3.4.8/conf/zoo.cfg
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vi zookeeper-3.4.8/conf/zoo.cfg
 tickTime=2000
 initLimit=10
 syncLimit=5
@@ -620,8 +603,7 @@ server.2=192.168.138.22:2888:3888
 server.3=192.168.138.33:2888:3888&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;myid&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;ulist&#34;&gt;
@@ -631,12 +613,9 @@ server.3=192.168.138.33:2888:3888&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo &#34;1&#34; &amp;gt; /zookeeper/data/myid&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;echo &#34;1&#34; &amp;gt; /zookeeper/data/myid&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;ulist&#34;&gt;
@@ -646,40 +625,108 @@ server.3=192.168.138.33:2888:3888&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_docker_compose_3&#34;&gt;2.5. docker-compose&lt;/h3&gt;
-&lt;div class=&#34;dlist&#34;&gt;
-&lt;dl&gt;
-&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;docker-compose.yml&lt;/code&gt; &lt;/dt&gt;
-&lt;/dl&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;docker-compose.yml&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  zk1:
+    ports:
+     - &#34;2181:2181&#34;
+    command: /usr/bin/sh init.sh
+    container_name: zk1
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 1
+      ZK_HOST1: &#34;192.168.137.11    zk1&#34;
+      ZK_HOST2: &#34;192.168.137.22    zk2&#34;
+      ZK_HOST3: &#34;192.168.137.33    zk3&#34;
+    image: zookeeper-t:1.2
+  zk2:
+    ports:
+     - &#34;2182:2181&#34;
+    command: /usr/bin/sh init.sh
+    container_name: zk2
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 2
+      ZK_HOST1: &#34;192.168.137.11    zk1&#34;
+      ZK_HOST2: &#34;192.168.137.22    zk2&#34;
+      ZK_HOST3: &#34;192.168.137.33    zk3&#34;
+    image: zookeeper-t:1.2
+  zk3:
+    ports:
+     - &#34;2183:2181&#34;
+    command: /usr/bin/sh init.sh
+    container_name: zk3
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 3
+      ZK_HOST1: &#34;192.168.137.11    zk1&#34;
+      ZK_HOST2: &#34;192.168.137.22    zk2&#34;
+      ZK_HOST3: &#34;192.168.137.33    zk3&#34;
+    image: zookeeper-t:1.2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;init.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#! /bin/bash
+
+# init eth1 network
+pipework --wait -i eth1
+
+# add myid
+echo $MYID &amp;gt; /zookeeper/data/myid
+# add hosts
+echo $ZK_HOST1 &amp;gt;&amp;gt; /etc/hosts
+echo $ZK_HOST2 &amp;gt;&amp;gt; /etc/hosts
+echo $ZK_HOST3 &amp;gt;&amp;gt; /etc/hosts
+# start zookeeper
+/zookeeper-3.4.8/bin/zkServer.sh start-foreground&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-YAML:/src/docker/zookeeper-docker-compose.yml```&#34; data-lang=&#34;YAML:/src/docker/zookeeper-docker-compose.yml```&#34;&gt;`init.sh` ::
-```shell:/src/docker/init.sh```
-
-
-network
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;network
 version2 ::
 不用加 `links` 各个容器之间可以互通
 
 version1 ::
-加 `links` 可以单通,但是不可以互通
-
-== Docker Registry
-
-=== 配置
-
-==== registry server
-. 生成自签名证书
-```bash
-cd ~/
+加 `links` 可以单通,但是不可以互通&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker_registry&#34;&gt;3. Docker Registry&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置&#34;&gt;3.1. 配置&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_registry_server&#34;&gt;3.1.1. registry server&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;生成自签名证书&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd ~/
 
 mkdir registry &amp;amp;&amp;amp; cd registry &amp;amp;&amp;amp; mkdir certs &amp;amp;&amp;amp; cd certs
 
 openssl req -x509 -days 3650 -subj &#39;/CN=dishui.io/&#39; -nodes -newkey rsa:2048 -keyout registry.key -out registry.crt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class=&#34;admonitionblock tip&#34;&gt;
 &lt;table&gt;
@@ -700,82 +747,64 @@ CN=dishui.io 这里是域名
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_docker_client端&#34;&gt;2.5.1. docker client端&lt;/h4&gt;
+&lt;h4 id=&#34;_docker_client端&#34;&gt;3.1.2. docker client端&lt;/h4&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;创建证书目录(没有此目录自己创建，注意端口号)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo mkdir -p /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo mkdir -p /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;下载证书&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp ~/registry/certs/registry.crt /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo cp ~/registry/certs/registry.crt /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;域名解析&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo echo 192.168.137.15 dishui.io   &amp;gt;&amp;gt; /etc/hosts&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo echo 192.168.137.15 dishui.io   &amp;gt;&amp;gt; /etc/hosts&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;镜像 &lt;code&gt;tag&lt;/code&gt; 标签&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker tag 9a6db89 dishui.io:5000/dishuigit/codis:1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker tag 9a6db89 dishui.io:5000/dishuigit/codis:1.1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;上传镜像到 &lt;code&gt;registry&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker push dishui.io:5000/dishuigit/codis:1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker push dishui.io:5000/dishuigit/codis:1.1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;__code_compose_code_文件&#34;&gt;2.6. &lt;code&gt;compose&lt;/code&gt; 文件&lt;/h3&gt;
+&lt;h3 id=&#34;__code_compose_code_文件&#34;&gt;3.2. &lt;code&gt;compose&lt;/code&gt; 文件&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;gollum&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;gollum:
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;gollum:
   privileged: true
   image: dishuigit/gollum:2.0
   container_name: gollum1
@@ -783,16 +812,12 @@ CN=dishui.io 这里是域名
    - &#34;80:4567&#34;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;registry&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;version: &#39;2&#39;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
 services:
   registry1:
     image: registry:2.5
@@ -807,16 +832,12 @@ services:
       - /home/core/certs:/certs&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;registry-web&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;version: &#39;2&#39;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
 services:
   registry2:
     image: registry:2.5
@@ -837,58 +858,57 @@ services:
       - registry2&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_api&#34;&gt;2.7. api&lt;/h3&gt;
+&lt;h3 id=&#34;_api&#34;&gt;3.3. api&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;查看仓库 镜像列表&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-http&#34; data-lang=&#34;http&#34;&gt;https://192.168.137.15:5000/v2/_catalog&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;https://192.168.137.15:5000/v2/_catalog&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;查看 &lt;code&gt;tag&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-http&#34; data-lang=&#34;http&#34;&gt;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_参考&#34;&gt;2.8. 参考&lt;/h3&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;3.4. 参考&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;[[registry 部署 | &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;registry 部署&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[registry 配置 | &lt;a href=&#34;https://docs.docker.com/registry/configuration/&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/registry/configuration/&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/registry/configuration/&#34;&gt;registry 配置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[docker-registry-web | &lt;a href=&#34;https://github.com/mkuchin/docker-registry-web&#34; class=&#34;bare&#34;&gt;https://github.com/mkuchin/docker-registry-web&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/mkuchin/docker-registry-web&#34;&gt;docker-registry-web&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[Insecure Registry | &lt;a href=&#34;https://docs.docker.com/registry/insecure/&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/registry/insecure/&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/registry/insecure/&#34;&gt;Insecure Registry&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;[[&lt;a href=&#34;http://www.tuicool.com/articles/vMZZveM&#34; class=&#34;bare&#34;&gt;http://www.tuicool.com/articles/vMZZveM&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.tuicool.com/articles/vMZZveM&#34; class=&#34;bare&#34;&gt;http://www.tuicool.com/articles/vMZZveM&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_q_a&#34;&gt;2.9. Q &amp;amp; A&lt;/h3&gt;
+&lt;h3 id=&#34;_q_a&#34;&gt;3.5. Q &amp;amp; A&lt;/h3&gt;
 &lt;div class=&#34;quoteblock&#34;&gt;
 &lt;blockquote&gt;
 &lt;div class=&#34;paragraph&#34;&gt;

@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hugo" />
-<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本#!/bin/shDIR=$(dirname &#34;$0&#34;)cd $DIR/..if [[ $(git status -s) ]]thenecho &#34;The working directory is dirty. Please commit any pending changes.&#34;exit 1;fiecho &#34;Deleting old publication&#34;rm -rf publicmkdir publicgit worktree prunerm -rf ." />
+<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 本地启动3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本#!/bin/shDIR=$(dirname &#34;$0&#34;)cd $DIR/..if [[ $(git status -s) ]]thenecho &#34;The working directory is dirty. Please commit any pending changes.&#34;exit 1;fiecho &#34;Deleting old publication&#34;rm -rf publicmkdir publicgit worktree prunerm -rf ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/hugo/" />
 
@@ -92,7 +92,8 @@
 <li><a href="#_部署脚本">1.2. 部署脚本</a></li>
 </ul>
 </li>
-<li><a href="#_参考">2. 参考</a></li>
+<li><a href="#_本地启动">2. 本地启动</a></li>
+<li><a href="#_参考">3. 参考</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -164,7 +165,28 @@ cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp
 </div>
 </div>
 <div class="sect1">
-<h2 id="_参考">2. 参考</h2>
+<h2 id="_本地启动">2. 本地启动</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>替换</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>echo "public" &gt;&gt; .gitignore &amp;&amp; \
+echo "themes/mainroad/static/js/app.js" &gt;&gt; .gitignore &amp;&amp; \
+echo "themes/mainroad/static/js/jquery.bigautocomplete.js" &gt;&gt; .gitignore &amp;&amp; \
+echo "config.toml" &gt;&gt; .gitignore &amp;&amp; \
+echo "content/post/base.adoc" &gt;&gt; .gitignore</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_参考">3. 参考</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
