@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hugo" />
-<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 本地启动3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本#!/bin/shDIR=$(dirname &#34;$0&#34;)cd $DIR/..if [[ $(git status -s) ]]thenecho &#34;The working directory is dirty. Please commit any pending changes.&#34;exit 1;fiecho &#34;Deleting old publication&#34;rm -rf publicmkdir publicgit worktree prunerm -rf ." />
+<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本hugo.sh#!/bin/shDIR=$(dirname &#34;$0&#34;)echo &#34;Generating site&#34;hugoecho &#34;Updating gh-pages branch&#34;cd public &amp;&amp; git add --all &amp;&amp; git commit -m &#34;$(date &#43;%Y-%m-%d)&#34; &amp;&amp; git pushecho &#34;Commit note-hugo&#34;cd ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/hugo/" />
 
@@ -92,7 +92,7 @@
 <li><a href="#_部署脚本">1.2. 部署脚本</a></li>
 </ul>
 </li>
-<li><a href="#_本地启动">2. 本地启动</a></li>
+<li><a href="#_生成_strong_lunr_strong_索引">2. 生成 <strong>lunr</strong> 索引</a></li>
 <li><a href="#_参考">3. 参考</a></li>
 </ul>
 </div>
@@ -113,39 +113,7 @@ git worktree add public gh-pages</code></pre>
 <div class="sect2">
 <h3 id="_部署脚本">1.2. 部署脚本</h3>
 <div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>#!/bin/sh
-
-DIR=$(dirname "$0")
-
-cd $DIR/..
-
-if [[ $(git status -s) ]]
-then
-    echo "The working directory is dirty. Please commit any pending changes."
-    exit 1;
-fi
-
-echo "Deleting old publication"
-rm -rf public
-mkdir public
-git worktree prune
-rm -rf .git/worktrees/public/
-
-echo "Checking out gh-pages branch into public"
-git worktree add -B gh-pages public upstream/gh-pages
-
-echo "Removing existing files"
-rm -rf public/*
-
-echo "Generating site"
-hugo
-
-echo "Updating gh-pages branch"
-cd public &amp;&amp; git add --all &amp;&amp; git commit -m "Publishing to gh-pages (publish.sh)"</code></pre>
-</div>
-</div>
-<div class="listingblock">
+<div class="title">hugo.sh</div>
 <div class="content">
 <pre class="highlightjs highlight"><code>#!/bin/sh
 
@@ -165,23 +133,39 @@ cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp
 </div>
 </div>
 <div class="sect1">
-<h2 id="_本地启动">2. 本地启动</h2>
+<h2 id="_生成_strong_lunr_strong_索引">2. 生成 <strong>lunr</strong> 索引</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>替换</p>
+<p>启动 <strong>nodejieba</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>启动 <strong>docker-volume-netshare</strong> ( <a href="/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker">docker-volume-netshare</a> )</p>
 </li>
 </ol>
 </div>
+</li>
+<li>
+<p>启动 <strong>nodejieba</strong> 容器</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>echo "public" &gt;&gt; .gitignore &amp;&amp; \
-echo "themes/mainroad/static/js/app.js" &gt;&gt; .gitignore &amp;&amp; \
-echo "themes/mainroad/static/js/jquery.bigautocomplete.js" &gt;&gt; .gitignore &amp;&amp; \
-echo "config.toml" &gt;&gt; .gitignore &amp;&amp; \
-echo "content/post/base.adoc" &gt;&gt; .gitignore</code></pre>
+<pre class="highlightjs highlight"><code>docker run -it --name=lunr --volume-driver=cifs -v 192.168.137.2/note-hugo:/hugo dishui.io:5000/nodejieba:1.1 /bin/bash</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>构建索引</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd /hugo/content &amp;&amp; \
+nodejs hugo-lunr.js &amp;&amp; \ # 生成原始数据
+nodejs index_builder.js # 生成索引</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

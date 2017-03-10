@@ -113,7 +113,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 本地启动3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本#!/bin/shDIR=$(dirname "$0")cd $DIR/..if [[ $(git status -s) ]]thenecho "The working directory is dirty. Please commit any pending changes."exit 1;fiecho "Deleting old publication"rm -rf publicmkdir publicgit worktree prunerm -rf .
+						hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本hugo.sh#!/bin/shDIR=$(dirname "$0")echo "Generating site"hugoecho "Updating gh-pages branch"cd public &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git pushecho "Commit note-hugo"cd .
 					</div>
 				</div>
 			</div>
@@ -305,7 +305,7 @@
 	<form class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
