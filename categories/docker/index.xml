@@ -772,7 +772,7 @@ CN=dishui.io 这里是域名
 &lt;p&gt;域名解析&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo echo 192.168.137.15 dishui.io   &amp;gt;&amp;gt; /etc/hosts&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo echo 192.168.137.15 dishui.io &amp;gt;&amp;gt; sudo /etc/hosts&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;

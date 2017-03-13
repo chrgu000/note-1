@@ -1007,6 +1007,19 @@ echo &#34;content/post/base.adoc&#34; &amp;gt;&amp;gt; .gitignore&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;baseurl = &#34;http://dishui.oschina.io/note-hugo/&#34;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;version: &#39;2&#39;
+services:
+  zoo1:
+    image: zookeeper
+    restart: always
+    ports:
+      - 2181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888
+07.阿里开源分布式框架dubbo&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
