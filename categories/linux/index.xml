@@ -3777,14 +3777,14 @@ then
   cat &amp;lt;&amp;lt;&amp;lt; &#39;
 #!/bin/bash
 cd `dirname $1`
-svn merge svn://196.168.1.32/project/branches/dev/$1&#39; &amp;gt; ${STABLE}merge.sh
+svn merge -r$2:HEAD svn://196.168.1.32/project/branches/dev/$1 $STABLE/$1&#39; &amp;gt; ${STABLE}merge.sh
 fi
 
 cd $DEV &amp;amp;&amp;amp; \
 svn diff --summarize -r $FROM:$END | awk &#39;{if($1 != &#34;D&#34;){print $2}}&#39; | awk -F &#39;.&#39; &#39;{if($NF ~ &#34;jsp|js|java|xml|css|properties|png|jpg|html|jar|ftl&#34;){print $0}}&#39; &amp;gt; ${STABLE}update.txt
 
 cd $STABLE &amp;amp;&amp;amp; \
-cat update.txt | awk &#39;{gsub(&#34;\\\\&#34;,&#34;/&#34;);print $0}&#39; | xargs -I tmp sh merge.sh tmp&lt;/code&gt;&lt;/pre&gt;
+cat update.txt | awk &#39;{gsub(&#34;\\\\&#34;,&#34;/&#34;);print $0}&#39; | xargs -I tmp sh merge.sh tmp $2&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

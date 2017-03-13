@@ -441,7 +441,7 @@ CN=dishui.io 这里是域名
 <p>下载证书</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>sudo cp ~/registry/certs/registry.crt /etc/docker/certs.d/dishui.io:5000</code></pre>
+<pre class="highlightjs highlight"><code>sudo cp ~/registry.crt /etc/docker/certs.d/dishui.io:5000</code></pre>
 </div>
 </div>
 </li>
@@ -449,10 +449,21 @@ CN=dishui.io 这里是域名
 <p>域名解析</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>sudo echo 192.168.137.15 dishui.io &gt;&gt; sudo /etc/hosts</code></pre>
+<pre class="highlightjs highlight"><code>sudo sh -c "echo 192.168.137.15 dishui.io &gt;&gt; /etc/hosts"</code></pre>
 </div>
 </div>
 </li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>sudo mkdir -p /etc/docker/certs.d/dishui.io:5000 &amp;&amp; \
+sudo cp ~/registry.crt /etc/docker/certs.d/dishui.io:5000 &amp;&amp; \
+sudo sh -c "echo 192.168.137.15 dishui.io &gt;&gt; /etc/hosts"</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>镜像 <code>tag</code> 标签</p>
 <div class="listingblock">

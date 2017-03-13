@@ -355,14 +355,14 @@ then
   cat &lt;&lt;&lt; '
 #!/bin/bash
 cd `dirname $1`
-svn merge svn://196.168.1.32/project/branches/dev/$1' &gt; ${STABLE}merge.sh
+svn merge -r$2:HEAD svn://196.168.1.32/project/branches/dev/$1 $STABLE/$1' &gt; ${STABLE}merge.sh
 fi
 
 cd $DEV &amp;&amp; \
 svn diff --summarize -r $FROM:$END | awk '{if($1 != "D"){print $2}}' | awk -F '.' '{if($NF ~ "jsp|js|java|xml|css|properties|png|jpg|html|jar|ftl"){print $0}}' &gt; ${STABLE}update.txt
 
 cd $STABLE &amp;&amp; \
-cat update.txt | awk '{gsub("\\\\","/");print $0}' | xargs -I tmp sh merge.sh tmp</code></pre>
+cat update.txt | awk '{gsub("\\\\","/");print $0}' | xargs -I tmp sh merge.sh tmp $2</code></pre>
 </div>
 </div>
 </div>

@@ -9,6 +9,70 @@
     <atom:link href="http://dishui.oschina.io/note-hugo/categories/hadoop/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>hadoop-shell</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop-shell/</link>
+      <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop-shell/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;hadoop-shell&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_hdfs&#34;&gt;1. hdfs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_hdfs&#34;&gt;1. hdfs&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;列表&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -ls /&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;上传文件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -put /test.ee /&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看文件内容&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -cat /test.ee&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载文件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -get /test.ee /&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建目录&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -mkdir -p /wordcount/input&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>hadoop2.4.1集群搭建</title>
       <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop2/</link>
       <pubDate>Sun, 12 Mar 2017 00:00:00 +0000</pubDate>
@@ -35,6 +99,11 @@
 &lt;li&gt;&lt;a href=&#34;#_docker_方式&#34;&gt;2. docker 方式&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_compose&#34;&gt;2.1. compose&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_example&#34;&gt;3. Example&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_wordcount&#34;&gt;3.1. wordcount&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -343,6 +412,7 @@ ssh A  #在B中执行&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_compose&#34;&gt;2.1. compose&lt;/h3&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;hadoop.yml&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
 services:
@@ -356,7 +426,10 @@ services:
       - &#34;8088:8088&#34;
     volumes:
       - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./hadoop.sh:/etc/profile.d/hadoop.sh
     command: /etc/bootstrap.sh -d
+    networks:
+      - hadoop
   mini2:
     image: dishui.io:5000/sequenceiq/hadoop-docker:2.4.1
     container_name: mini2
@@ -364,7 +437,14 @@ services:
       - &#34;HOSTNAME=mini1&#34;
     volumes:
       - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
-    command: /usr/sbin/sshd -d&lt;/code&gt;&lt;/pre&gt;
+      - ./hadoop.sh:/etc/profile.d/hadoop.sh
+    command: /usr/sbin/sshd -d
+    networks:
+      - hadoop
+
+networks:
+  hadoop:
+    driver: bridge&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -391,6 +471,62 @@ services:
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;ps: &lt;code&gt;cd $HADOOP_PREFIX&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;hadoop.sh&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export PATH=$HADOOP_PREFIX/bin:HADOOP_PREFIX/sbin:$PATH&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_example&#34;&gt;3. Example&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_wordcount&#34;&gt;3.1. wordcount&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;input
+.a.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;a
+b
+abc
+ef
+efg
+abc
+ef
+h
+aakk
+ef
+h&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;上传到 &lt;strong&gt;HDFS&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 目录不存在,创建目录 ( `hadoop fs -mkdir -p /wordcount/input` )
+hadoop fs -put /a.txt /wordcount/input&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

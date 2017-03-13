@@ -764,7 +764,7 @@ CN=dishui.io 这里是域名
 &lt;p&gt;下载证书&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo cp ~/registry/certs/registry.crt /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo cp ~/registry.crt /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -772,10 +772,21 @@ CN=dishui.io 这里是域名
 &lt;p&gt;域名解析&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo echo 192.168.137.15 dishui.io &amp;gt;&amp;gt; sudo /etc/hosts&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo sh -c &#34;echo 192.168.137.15 dishui.io &amp;gt;&amp;gt; /etc/hosts&#34;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo mkdir -p /etc/docker/certs.d/dishui.io:5000 &amp;amp;&amp;amp; \
+sudo cp ~/registry.crt /etc/docker/certs.d/dishui.io:5000 &amp;amp;&amp;amp; \
+sudo sh -c &#34;echo 192.168.137.15 dishui.io &amp;gt;&amp;gt; /etc/hosts&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;镜像 &lt;code&gt;tag&lt;/code&gt; 标签&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;

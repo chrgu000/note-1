@@ -10,12 +10,22 @@ services:
       - "8088:8088"
     volumes:
       - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./hadoop.sh:/etc/profile.d/hadoop.sh
     command: /etc/bootstrap.sh -d
+    networks:
+      - hadoop
   mini2:
     image: dishui.io:5000/sequenceiq/hadoop-docker:2.4.1
     container_name: mini2
-    environment:  
+    environment:
       - "HOSTNAME=mini1"
     volumes:
       - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./hadoop.sh:/etc/profile.d/hadoop.sh
     command: /usr/sbin/sshd -d
+    networks:
+      - hadoop
+
+networks:
+  hadoop:
+    driver: bridge
