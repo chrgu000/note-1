@@ -10,6 +10,7 @@ services:
       - "8088:8088"
     volumes:
       - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
       - ./hadoop.sh:/etc/profile.d/hadoop.sh
     command: /etc/bootstrap.sh -d
     networks:
@@ -21,6 +22,7 @@ services:
       - "HOSTNAME=mini1"
     volumes:
       - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
       - ./hadoop.sh:/etc/profile.d/hadoop.sh
     command: /usr/sbin/sshd -d
     networks:

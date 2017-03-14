@@ -1093,6 +1093,136 @@ services:
       ZOO_SERVERS: server.1=zoo1:2888:3888
 07.阿里开源分布式框架dubbo</p>
 </div>
+<div class="paragraph">
+<p>9df8e09ee259
+cadc21522a4a
+e3eb53c850a3
+0ec18fcb5f14
+dcfb02a0f0c0
+1ae259b410a4
+9a0db3e1e5fa
+a299de9d8b43
+2354e58c407f</p>
+</div>
+<div class="paragraph">
+<p>" SELECT"<br>
+"   dat.*,"<br>
+"   SUM(dat.rksl) AS count_rk,"<br>
+"   SUM(dat.cksl) AS count_ck,"<br>
+"   (SELECT"<br>
+"     SUM(zar.goods_count)"<br>
+"   FROM"<br>
+"     zh_asphalt_repertory zar"<br>
+"   WHERE dat.goods_code = zar.goods_code"<br>
+"     AND TYPE = '01') AS count_kc,"<br>
+"   SUM(dat.scsl) AS count_sc,"<br>
+"   SUM(dat.pdsl) AS count_pdf"<br>
+" FROM"<br>
+"   (SELECT"<br>
+"     DATE_FORMAT(sp.storage_date, '%Y-%m-%d') AS storage_date,"<br>
+"     sp.Storage_area,"<br>
+"     sp.reservoir_code,"<br>
+"     sp.goods_code,"<br>
+"     gi.goods_name,"<br>
+"     sp.brand,"<br>
+"     sp.model,"<br>
+"     sp.specifications,"<br>
+"     sp.Inventory_quantity AS rksl,"<br>
+"     '' AS cksl,"<br>
+"     '' AS scsl,"<br>
+"     '' AS pdsl"<br>
+"   FROM"<br>
+"     zh_sr_productin sp,"<br>
+"     zh_goods_info gi"<br>
+"   WHERE sp.goods_code = gi.goods_code"<br>
+"   UNION"<br>
+"   ALL"<br>
+"   SELECT"<br>
+"     mo.start_date,"<br>
+"     mo.Storage_area,"<br>
+"     ra.abbreviation,"<br>
+"     mo.goods_code,"<br>
+"     gi.goods_name,"<br>
+"     mo.brand,"<br>
+"     mo.model,"<br>
+"     mo.specifications,"<br>
+"     '',"<br>
+"     mo.number,"<br>
+"     '',"<br>
+"     ''"<br>
+"   FROM"<br>
+"     zh_material_outbound mo,"<br>
+"     zh_goods_info gi,"<br>
+"     zh_reservoir_area ra"<br>
+"   WHERE mo.Storage_area = ra.reservoir_code"<br>
+"     AND mo.goods_code = gi.goods_code"<br>
+"   UNION"<br>
+"   ALL"<br>
+"   SELECT"<br>
+"     DATE_FORMAT(zps.start_time, '%Y-%m-%d'),"<br>
+"     pp.Storage_area,"<br>
+"     pp.reservoir_code,"<br>
+"     zps.Name_commodity,"<br>
+"     gi.goods_name,"<br>
+"     zps.brand,"<br>
+"     zps.model,"<br>
+"     zps.specifications,"<br>
+"     '',"<br>
+"     '',"<br>
+"     zps.Production_quantity,"<br>
+"     ''"<br>
+"   FROM"<br>
+"     zh_production_subsidiary zps,"<br>
+"     zh_goods_info gi,"<br>
+"     zh_production_processing pp"<br>
+"   WHERE pp.Production_order = zps.production_order"<br>
+"     AND zps.goods_code = gi.goods_code"<br>
+"   UNION"<br>
+"   ALL"<br>
+"   SELECT"<br>
+"     DATE_FORMAT(ait.<code>data</code>, '%Y-%m-%d'),"<br>
+"     ra.abbreviation,"<br>
+"     ait.storage_area,"<br>
+"     ait.accessories_name,"<br>
+"     gi.goods_name,"<br>
+"     ait.brand,"<br>
+"     ait.model,"<br>
+"     ait.specifications,"<br>
+"     '',"<br>
+"     '',"<br>
+"     '',"<br>
+"     ait.inventory_number"<br>
+"   FROM"<br>
+"     zh_additive_inventory_table ait,"<br>
+"     zh_goods_info gi,"<br>
+"     zh_reservoir_area ra"<br>
+"   WHERE ait.storage_area = ra.reservoir_code"<br>
+"     AND gi.goods_code = ait.accessories_name) dat"<br>
+" WHERE 1 = 1";</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>向 namenode 请求上传文件 /a/sss.txt</p>
+</li>
+<li>
+<p>响应,可以上传</p>
+</li>
+<li>
+<p>rpc 请求上传第一个 block(0-128M), 请求返回 datanode</p>
+</li>
+<li>
+<p>返回 (datanode1,datanode2,datanode3)
+考虑因素: 空间/距离</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>上传数据时, datanode 的选择策略
+1. 第一个副本先考虑跟 client 离最近的 (同机架)
+2. 第二个副本再考虑跨机架挑选一个 datanode, 增加副本的可靠性
+3. 第三个副本就在第一个副本同机架另外挑选一台 datanode 存放</p>
+</div>
 
 		</div>
 		

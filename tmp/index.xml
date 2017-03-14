@@ -1020,6 +1020,136 @@ services:
       ZOO_SERVERS: server.1=zoo1:2888:3888
 07.阿里开源分布式框架dubbo&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;9df8e09ee259
+cadc21522a4a
+e3eb53c850a3
+0ec18fcb5f14
+dcfb02a0f0c0
+1ae259b410a4
+9a0db3e1e5fa
+a299de9d8b43
+2354e58c407f&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34; SELECT&#34;&lt;br&gt;
+&#34;   dat.*,&#34;&lt;br&gt;
+&#34;   SUM(dat.rksl) AS count_rk,&#34;&lt;br&gt;
+&#34;   SUM(dat.cksl) AS count_ck,&#34;&lt;br&gt;
+&#34;   (SELECT&#34;&lt;br&gt;
+&#34;     SUM(zar.goods_count)&#34;&lt;br&gt;
+&#34;   FROM&#34;&lt;br&gt;
+&#34;     zh_asphalt_repertory zar&#34;&lt;br&gt;
+&#34;   WHERE dat.goods_code = zar.goods_code&#34;&lt;br&gt;
+&#34;     AND TYPE = &#39;01&#39;) AS count_kc,&#34;&lt;br&gt;
+&#34;   SUM(dat.scsl) AS count_sc,&#34;&lt;br&gt;
+&#34;   SUM(dat.pdsl) AS count_pdf&#34;&lt;br&gt;
+&#34; FROM&#34;&lt;br&gt;
+&#34;   (SELECT&#34;&lt;br&gt;
+&#34;     DATE_FORMAT(sp.storage_date, &#39;%Y-%m-%d&#39;) AS storage_date,&#34;&lt;br&gt;
+&#34;     sp.Storage_area,&#34;&lt;br&gt;
+&#34;     sp.reservoir_code,&#34;&lt;br&gt;
+&#34;     sp.goods_code,&#34;&lt;br&gt;
+&#34;     gi.goods_name,&#34;&lt;br&gt;
+&#34;     sp.brand,&#34;&lt;br&gt;
+&#34;     sp.model,&#34;&lt;br&gt;
+&#34;     sp.specifications,&#34;&lt;br&gt;
+&#34;     sp.Inventory_quantity AS rksl,&#34;&lt;br&gt;
+&#34;     &#39;&#39; AS cksl,&#34;&lt;br&gt;
+&#34;     &#39;&#39; AS scsl,&#34;&lt;br&gt;
+&#34;     &#39;&#39; AS pdsl&#34;&lt;br&gt;
+&#34;   FROM&#34;&lt;br&gt;
+&#34;     zh_sr_productin sp,&#34;&lt;br&gt;
+&#34;     zh_goods_info gi&#34;&lt;br&gt;
+&#34;   WHERE sp.goods_code = gi.goods_code&#34;&lt;br&gt;
+&#34;   UNION&#34;&lt;br&gt;
+&#34;   ALL&#34;&lt;br&gt;
+&#34;   SELECT&#34;&lt;br&gt;
+&#34;     mo.start_date,&#34;&lt;br&gt;
+&#34;     mo.Storage_area,&#34;&lt;br&gt;
+&#34;     ra.abbreviation,&#34;&lt;br&gt;
+&#34;     mo.goods_code,&#34;&lt;br&gt;
+&#34;     gi.goods_name,&#34;&lt;br&gt;
+&#34;     mo.brand,&#34;&lt;br&gt;
+&#34;     mo.model,&#34;&lt;br&gt;
+&#34;     mo.specifications,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     mo.number,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     &#39;&#39;&#34;&lt;br&gt;
+&#34;   FROM&#34;&lt;br&gt;
+&#34;     zh_material_outbound mo,&#34;&lt;br&gt;
+&#34;     zh_goods_info gi,&#34;&lt;br&gt;
+&#34;     zh_reservoir_area ra&#34;&lt;br&gt;
+&#34;   WHERE mo.Storage_area = ra.reservoir_code&#34;&lt;br&gt;
+&#34;     AND mo.goods_code = gi.goods_code&#34;&lt;br&gt;
+&#34;   UNION&#34;&lt;br&gt;
+&#34;   ALL&#34;&lt;br&gt;
+&#34;   SELECT&#34;&lt;br&gt;
+&#34;     DATE_FORMAT(zps.start_time, &#39;%Y-%m-%d&#39;),&#34;&lt;br&gt;
+&#34;     pp.Storage_area,&#34;&lt;br&gt;
+&#34;     pp.reservoir_code,&#34;&lt;br&gt;
+&#34;     zps.Name_commodity,&#34;&lt;br&gt;
+&#34;     gi.goods_name,&#34;&lt;br&gt;
+&#34;     zps.brand,&#34;&lt;br&gt;
+&#34;     zps.model,&#34;&lt;br&gt;
+&#34;     zps.specifications,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     zps.Production_quantity,&#34;&lt;br&gt;
+&#34;     &#39;&#39;&#34;&lt;br&gt;
+&#34;   FROM&#34;&lt;br&gt;
+&#34;     zh_production_subsidiary zps,&#34;&lt;br&gt;
+&#34;     zh_goods_info gi,&#34;&lt;br&gt;
+&#34;     zh_production_processing pp&#34;&lt;br&gt;
+&#34;   WHERE pp.Production_order = zps.production_order&#34;&lt;br&gt;
+&#34;     AND zps.goods_code = gi.goods_code&#34;&lt;br&gt;
+&#34;   UNION&#34;&lt;br&gt;
+&#34;   ALL&#34;&lt;br&gt;
+&#34;   SELECT&#34;&lt;br&gt;
+&#34;     DATE_FORMAT(ait.&lt;code&gt;data&lt;/code&gt;, &#39;%Y-%m-%d&#39;),&#34;&lt;br&gt;
+&#34;     ra.abbreviation,&#34;&lt;br&gt;
+&#34;     ait.storage_area,&#34;&lt;br&gt;
+&#34;     ait.accessories_name,&#34;&lt;br&gt;
+&#34;     gi.goods_name,&#34;&lt;br&gt;
+&#34;     ait.brand,&#34;&lt;br&gt;
+&#34;     ait.model,&#34;&lt;br&gt;
+&#34;     ait.specifications,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     &#39;&#39;,&#34;&lt;br&gt;
+&#34;     ait.inventory_number&#34;&lt;br&gt;
+&#34;   FROM&#34;&lt;br&gt;
+&#34;     zh_additive_inventory_table ait,&#34;&lt;br&gt;
+&#34;     zh_goods_info gi,&#34;&lt;br&gt;
+&#34;     zh_reservoir_area ra&#34;&lt;br&gt;
+&#34;   WHERE ait.storage_area = ra.reservoir_code&#34;&lt;br&gt;
+&#34;     AND gi.goods_code = ait.accessories_name) dat&#34;&lt;br&gt;
+&#34; WHERE 1 = 1&#34;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;向 namenode 请求上传文件 /a/sss.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;响应,可以上传&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;rpc 请求上传第一个 block(0-128M), 请求返回 datanode&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;返回 (datanode1,datanode2,datanode3)
+考虑因素: 空间/距离&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;上传数据时, datanode 的选择策略
+1. 第一个副本先考虑跟 client 离最近的 (同机架)
+2. 第二个副本再考虑跨机架挑选一个 datanode, 增加副本的可靠性
+3. 第三个副本就在第一个副本同机架另外挑选一台 datanode 存放&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
