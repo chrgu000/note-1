@@ -1212,16 +1212,223 @@ a299de9d8b43
 <p>rpc 请求上传第一个 block(0-128M), 请求返回 datanode</p>
 </li>
 <li>
-<p>返回 (datanode1,datanode2,datanode3)
-考虑因素: 空间/距离</p>
+<p>返回 (datanode1,datanode2,datanode3)</p>
+</li>
+<li>
+<p>请求建立 block 传输通道 channel
+5.1. 请求建立通道
+5.2. 请求建立通道
+6.1. 应答成功
+6.2. 应答成功</p>
+</li>
+<li>
+<p>请求建立通道</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>考虑因素: 空间/距离</p>
 </div>
 <div class="paragraph">
 <p>上传数据时, datanode 的选择策略
 1. 第一个副本先考虑跟 client 离最近的 (同机架)
 2. 第二个副本再考虑跨机架挑选一个 datanode, 增加副本的可靠性
 3. 第三个副本就在第一个副本同机架另外挑选一台 datanode 存放</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+  dat.*,
+  SUM(dat.rksl) AS count_rk,
+  SUM(dat.cksl) AS count_ck,
+  (SELECT
+    SUM(zar.goods_count)
+  FROM
+    zh_asphalt_repertory zar
+  WHERE dat.goods_code = zar.goods_code
+    AND TYPE = '01') AS count_kc,
+  SUM(dat.scsl) AS count_sc,
+  SUM(dat.pdsl) AS count_pdf
+FROM
+  (SELECT
+    DATE_FORMAT(sp.storage_date, '%Y-%m-%d') AS storage_date,
+    sp.Storage_area,
+    sp.reservoir_code,
+    sp.goods_code,
+    gi.goods_name,
+    sp.brand,
+    sp.model,
+    sp.specifications,
+    sp.Inventory_quantity AS rksl,
+    '' AS cksl,
+    '' AS scsl,
+    '' AS pdsl
+  FROM
+    zh_sr_productin sp,
+    zh_goods_info gi
+  WHERE sp.goods_code = gi.goods_code
+  UNION
+  ALL
+  SELECT
+    mo.start_date,
+    mo.Storage_area,
+    ra.abbreviation,
+    mo.goods_code,
+    gi.goods_name,
+    mo.brand,
+    mo.model,
+    mo.specifications,
+    '' AS rksl,
+    mo.number AS cksl,
+    '' AS scsl,
+    '' AS pdsl
+  FROM
+    zh_material_outbound mo,
+    zh_goods_info gi,
+    zh_reservoir_area ra
+  WHERE mo.Storage_area = ra.reservoir_code
+    AND mo.goods_code = gi.goods_code
+  UNION
+  ALL
+  SELECT
+    DATE_FORMAT(zps.start_time, '%Y-%m-%d'),
+    pp.Storage_area,
+    pp.reservoir_code,
+    zps.Name_commodity,
+    gi.goods_name,
+    zps.brand,
+    zps.model,
+    zps.specifications,
+    '' AS rksl,
+    '' AS cksl,
+    zps.Production_quantity AS scsl,
+    '' AS pdsl
+  FROM
+    zh_production_subsidiary zps,
+    zh_goods_info gi,
+    zh_production_processing pp
+  WHERE pp.Production_order = zps.production_order
+    AND zps.goods_code = gi.goods_code
+  UNION
+  ALL
+  SELECT
+    DATE_FORMAT(ait.<code>data</code>, '%Y-%m-%d'),
+    ra.abbreviation,
+    ait.storage_area,
+    ait.accessories_name,
+    gi.goods_name,
+    ait.brand,
+    ait.model,
+    ait.specifications,
+    '' AS rksl,
+    '' AS cksl,
+    '' AS scsl,
+    ait.inventory_number AS pdsl
+  FROM
+    zh_additive_inventory_table ait,
+    zh_goods_info gi,
+    zh_reservoir_area ra
+  WHERE ait.storage_area = ra.reservoir_code
+    AND gi.goods_code = ait.accessories_name) dat
+WHERE 1 = 1
+GROUP BY dat.goods_code
+ORDER BY dat.storage_date DESC</p>
+</div>
+<div class="paragraph">
+<p>" SELECT"<br>
+"   dat.*,"<br>
+"   SUM(dat.rksl) AS count_rk,"<br>
+"   SUM(dat.cksl) AS count_ck,"<br>
+"   (SELECT"<br>
+"     SUM(zar.goods_count)"<br>
+"   FROM"<br>
+"     zh_asphalt_repertory zar"<br>
+"   WHERE dat.goods_code = zar.goods_code"<br>
+"     AND TYPE = '01') AS count_kc,"<br>
+"   SUM(dat.scsl) AS count_sc,"<br>
+"   SUM(dat.pdsl) AS count_pdf"<br>
+" FROM"<br>
+"   (SELECT"<br>
+"     DATE_FORMAT(sp.storage_date, '%Y-%m-%d') AS storage_date,"<br>
+"     sp.Storage_area,"<br>
+"     sp.reservoir_code,"<br>
+"     sp.goods_code,"<br>
+"     gi.goods_name,"<br>
+"     sp.brand,"<br>
+"     sp.model,"<br>
+"     sp.specifications,"<br>
+"     sp.Inventory_quantity AS rksl,"<br>
+"     '' AS cksl,"<br>
+"     '' AS scsl,"<br>
+"     '' AS pdsl"<br>
+"   FROM"<br>
+"     zh_sr_productin sp,"<br>
+"     zh_goods_info gi"<br>
+"   WHERE sp.goods_code = gi.goods_code"<br>
+"   UNION"<br>
+"   ALL"<br>
+"   SELECT"<br>
+"     mo.start_date,"<br>
+"     ra.abbreviation AS Storage_area,"<br>
+"     mo.Storage_area AS reservoir_code,"<br>
+"     mo.goods_code,"<br>
+"     gi.goods_name,"<br>
+"     mo.brand,"<br>
+"     mo.model,"<br>
+"     mo.specifications,"<br>
+"     '' AS rksl,"<br>
+"     mo.number AS cksl,"<br>
+"     '' AS scsl,"<br>
+"     '' AS pdsl"<br>
+"   FROM"<br>
+"     zh_material_outbound mo,"<br>
+"     zh_goods_info gi,"<br>
+"     zh_reservoir_area ra"<br>
+"   WHERE mo.Storage_area = ra.reservoir_code"<br>
+"     AND mo.goods_code = gi.goods_code"<br>
+"   UNION"<br>
+"   ALL"<br>
+"   SELECT"<br>
+"     DATE_FORMAT(zps.start_time, '%Y-%m-%d'),"<br>
+"     pp.Storage_area,"<br>
+"     pp.reservoir_code,"<br>
+"     zps.goods_code,"<br>
+"     zps.Name_commodity AS goods_name,"<br>
+"     zps.brand,"<br>
+"     zps.model,"<br>
+"     zps.specifications,"<br>
+"     '' AS rksl,"<br>
+"     '' AS cksl,"<br>
+"     zps.Production_quantity AS scsl,"<br>
+"     '' AS pdsl"<br>
+"   FROM"<br>
+"     zh_production_subsidiary zps,"<br>
+"     zh_goods_info gi,"<br>
+"     zh_production_processing pp"<br>
+"   WHERE pp.Production_order = zps.production_order"<br>
+"     AND zps.goods_code = gi.goods_code"<br>
+"   UNION"<br>
+"   ALL"<br>
+"   SELECT"<br>
+"     DATE_FORMAT(ait.<code>data</code>, '%Y-%m-%d'),"<br>
+"     ra.abbreviation,"<br>
+"     ait.storage_area,"<br>
+"     ait.accessories_name AS goods_code,"<br>
+"     gi.goods_name,"<br>
+"     ait.brand,"<br>
+"     ait.model,"<br>
+"     ait.specifications,"<br>
+"     '' AS rksl,"<br>
+"     '' AS cksl,"<br>
+"     '' AS scsl,"<br>
+"     ait.inventory_number AS pdsl"<br>
+"   FROM"<br>
+"     zh_additive_inventory_table ait,"<br>
+"     zh_goods_info gi,"<br>
+"     zh_reservoir_area ra"<br>
+"   WHERE ait.storage_area = ra.reservoir_code"<br>
+"     AND gi.goods_code = ait.accessories_name) dat"<br>
+" GROUP BY dat.reservoir_code,"<br>
+"   dat.goods_code"<br></p>
 </div>
 
 		</div>
