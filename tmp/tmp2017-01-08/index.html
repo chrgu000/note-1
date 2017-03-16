@@ -1430,6 +1430,98 @@ ORDER BY dat.storage_date DESC</p>
 " GROUP BY dat.reservoir_code,"<br>
 "   dat.goods_code"<br></p>
 </div>
+<div class="paragraph">
+<p>GRANT ALL PRIVILEGES ON <strong>.</strong> TO 'root'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;
+mysql&gt; flush privileges;</p>
+</div>
+<div class="paragraph">
+<p>docker run -it --rm \
+  --net=hadoop \
+  --volume-driver=cifs \
+  -v 192.168.137.2/hadoop:/hadoop \
+  --hostname hadoop-master \
+  kiwenlau/hadoop:1.0</p>
+</div>
+<div class="paragraph">
+<p>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+    &lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+    &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;
+  &lt;/property&gt;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+  &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+  &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+  &lt;value&gt;root&lt;/value&gt;
+  &lt;description&gt;username to use against metastore database&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+    &lt;value&gt;111111&lt;/value&gt;
+    &lt;description&gt;password to use against metastore database&lt;/description&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>create database shizhan03;</p>
+</div>
+<div class="paragraph">
+<p>use shizhan03;</p>
+</div>
+<div class="paragraph">
+<p>create table t_sz01(id int,name string);</p>
+</div>
+<div class="paragraph">
+<p>drop table t_sz01;</p>
+</div>
+<div class="paragraph">
+<p>create table t_sz01(id int,name string) row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>vi /sz.dat</p>
+</div>
+<div class="paragraph">
+<p>1,zhangsan
+2,lisi
+3,fengjie
+4,chunge
+5,shizi
+6,koukjj</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -put /sz.dat /user/hive/warehouse/shizhan03.db/t_sz01</p>
+</div>
+<div class="paragraph">
+<p>select * from t_sz01;</p>
+</div>
+<div class="paragraph">
+<p>select count(1) from t_sz01;</p>
+</div>
+<div class="paragraph">
+<p>select id,name from t_sz01 where id&gt;3;</p>
+</div>
+<div class="paragraph">
+<p>show tables;</p>
+</div>
+<div class="paragraph">
+<p>create exte</p>
+</div>
 
 		</div>
 		

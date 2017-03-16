@@ -6,8 +6,171 @@
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 13 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Mar 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://dishui.oschina.io/note-hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>hive</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive/</link>
+      <pubDate>Thu, 16 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;hive&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_hive只在一个节点上安装即可&#34;&gt;1. Hive只在一个节点上安装即可&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_hive只在一个节点上安装即可&#34;&gt;1. Hive只在一个节点上安装即可&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;上传tar包&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解压&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf hive-1.2.1.tar.gz -C /hadoop/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;mysql.yml&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  mysql:
+    image: dishui.io:5000/mysql:5.5.52
+    container_name: mysql
+    environment:
+      - &#34;MYSQL_ROOT_PASSWORD=111111&#34;
+    ports:
+      - &#34;3306:3306&#34;
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置 &lt;strong&gt;hive&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置 &lt;strong&gt;HIVE_HOME&lt;/strong&gt; 环境变量  &lt;strong&gt;vi conf/hive-env.sh&lt;/strong&gt; 配置其中的 &lt;strong&gt;$hadoop_home&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置元数据库信息   &lt;strong&gt;vi hive-site.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+	&amp;lt;property&amp;gt;
+		&amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
+		&amp;lt;value&amp;gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&amp;lt;/value&amp;gt;
+		&amp;lt;description&amp;gt;JDBC connect string for a JDBC metastore&amp;lt;/description&amp;gt;
+	&amp;lt;/property&amp;gt;
+
+	&amp;lt;property&amp;gt;
+		&amp;lt;name&amp;gt;javax.jdo.option.ConnectionDriverName&amp;lt;/name&amp;gt;
+		&amp;lt;value&amp;gt;com.mysql.jdbc.Driver&amp;lt;/value&amp;gt;
+		&amp;lt;description&amp;gt;Driver class name for a JDBC metastore&amp;lt;/description&amp;gt;
+	&amp;lt;/property&amp;gt;
+
+	&amp;lt;property&amp;gt;
+		&amp;lt;name&amp;gt;javax.jdo.option.ConnectionUserName&amp;lt;/name&amp;gt;
+		&amp;lt;value&amp;gt;root&amp;lt;/value&amp;gt;
+		&amp;lt;description&amp;gt;username to use against metastore database&amp;lt;/description&amp;gt;
+	&amp;lt;/property&amp;gt;
+
+	&amp;lt;property&amp;gt;
+		&amp;lt;name&amp;gt;javax.jdo.option.ConnectionPassword&amp;lt;/name&amp;gt;
+		&amp;lt;value&amp;gt;111111&amp;lt;/value&amp;gt;
+		&amp;lt;description&amp;gt;password to use against metastore database&amp;lt;/description&amp;gt;
+	&amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装 &lt;strong&gt;hive&lt;/strong&gt; 和 &lt;strong&gt;mysql&lt;/strong&gt; 完成后，将 &lt;strong&gt;mysql&lt;/strong&gt; 的连接 &lt;strong&gt;jar&lt;/strong&gt; 包拷贝到 &lt;strong&gt;$HIVE_HOME/lib&lt;/strong&gt; 目录下&lt;/p&gt;
+&lt;div class=&#34;openblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;如果出现没有权限的问题，在 &lt;strong&gt;mysql&lt;/strong&gt; 授权(在安装 &lt;strong&gt;mysql&lt;/strong&gt; 的机器上执行)&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql -uroot -p&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;执行下面的语句  &lt;strong&gt;.&lt;/strong&gt;:所有库下的所有表   %：任何IP地址或主机都可以连接&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Jline&lt;/strong&gt; 包版本不一致的问题，需要拷贝 &lt;strong&gt;hive&lt;/strong&gt; 的 &lt;strong&gt;lib&lt;/strong&gt; 目录中 &lt;strong&gt;jline.2.12.jar&lt;/strong&gt; 的 &lt;strong&gt;jar&lt;/strong&gt; 包替换掉 &lt;strong&gt;hadoop&lt;/strong&gt; 中的
+&lt;strong&gt;/home/hadoop/app/hadoop-2.6.4/share/hadoop/yarn/lib/jline-0.9.94.jar&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动 &lt;strong&gt;hive&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/hive&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建表(默认是内部表)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;create table trade_detail(id bigint, account string, income double, expenses double, time string) row format delimited fields terminated by &#39;\t&#39;;
+# 建分区表
+create table td_part(id bigint, account string, income double, expenses double, time string) partitioned by (logdate string) row format delimited fields terminated by &#39;\t&#39;;
+# 建外部表
+create external table td_ext(id bigint, account string, income double, expenses double, time string) row format delimited fields terminated by &#39;\t&#39; location &#39;/td_ext&#39;;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建分区表&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 普通表和分区表区别：有大量数据增加的需要建分区表
+create table book (id bigint, name string) partitioned by (pubdate string) row format delimited fields terminated by &#39;\t&#39;;
+
+# 分区表加载数据
+load data local inpath &#39;./book.txt&#39; overwrite into table book partition (pubdate=&#39;2010-08-22&#39;);
+
+load data local inpath &#39;/root/data.am&#39; into table beauty partition (nation=&#34;USA&#34;);
+
+select nation, avg(size) from beauties group by nation order by avg(size);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>hadoop-shell</title>
@@ -2206,133 +2369,6 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-13_095356.png&#34; alt=&#34;2017 02 13 095356&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>二次曲面</title>
-      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</link>
-      <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;二次曲面&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_二次曲面&#34;&gt;1. 二次曲面&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_常用的二次曲面的方程&#34;&gt;1.1. 常用的二次曲面的方程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_球面&#34;&gt;1.2. 球面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_圆锥面&#34;&gt;1.3. 圆锥面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_圆柱面&#34;&gt;1.4. 圆柱面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_马鞍面&#34;&gt;1.5. 马鞍面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_直纹面&#34;&gt;1.6. 直纹面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_单叶双曲面&#34;&gt;1.7. 单叶双曲面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_维维安妮曲线&#34;&gt;1.8. 维维安妮曲线&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_二次曲面&#34;&gt;1. 二次曲面&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_常用的二次曲面的方程&#34;&gt;1.1. 常用的二次曲面的方程&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164636.png&#34; alt=&#34;2017 03 08 164636&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_球面&#34;&gt;1.2. 球面&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164823.png&#34; alt=&#34;2017 03 08 164823&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164856.png&#34; alt=&#34;2017 03 08 164856&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_圆锥面&#34;&gt;1.3. 圆锥面&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164929.png&#34; alt=&#34;2017 03 08 164929&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_圆柱面&#34;&gt;1.4. 圆柱面&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_164959.png&#34; alt=&#34;2017 03 08 164959&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_马鞍面&#34;&gt;1.5. 马鞍面&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165022.png&#34; alt=&#34;2017 03 08 165022&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_直纹面&#34;&gt;1.6. 直纹面&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165059.png&#34; alt=&#34;2017 03 08 165059&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165125.png&#34; alt=&#34;2017 03 08 165125&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165143.png&#34; alt=&#34;2017 03 08 165143&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165153.png&#34; alt=&#34;2017 03 08 165153&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_单叶双曲面&#34;&gt;1.7. 单叶双曲面&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165228.png&#34; alt=&#34;2017 03 08 165228&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_维维安妮曲线&#34;&gt;1.8. 维维安妮曲线&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-08_165450.png&#34; alt=&#34;2017 03 08 165450&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;

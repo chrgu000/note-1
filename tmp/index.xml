@@ -1357,6 +1357,98 @@ ORDER BY dat.storage_date DESC&lt;/p&gt;
 &#34; GROUP BY dat.reservoir_code,&#34;&lt;br&gt;
 &#34;   dat.goods_code&#34;&lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;GRANT ALL PRIVILEGES ON &lt;strong&gt;.&lt;/strong&gt; TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;
+mysql&amp;gt; flush privileges;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -it --rm \
+  --net=hadoop \
+  --volume-driver=cifs \
+  -v 192.168.137.2/hadoop:/hadoop \
+  --hostname hadoop-master \
+  kiwenlau/hadoop:1.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;configuration&amp;gt;
+  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&amp;lt;/value&amp;gt;
+    &amp;lt;description&amp;gt;JDBC connect string for a JDBC metastore&amp;lt;/description&amp;gt;
+  &amp;lt;/property&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionDriverName&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;com.mysql.jdbc.Driver&amp;lt;/value&amp;gt;
+  &amp;lt;description&amp;gt;Driver class name for a JDBC metastore&amp;lt;/description&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionUserName&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;root&amp;lt;/value&amp;gt;
+  &amp;lt;description&amp;gt;username to use against metastore database&amp;lt;/description&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;javax.jdo.option.ConnectionPassword&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;111111&amp;lt;/value&amp;gt;
+    &amp;lt;description&amp;gt;password to use against metastore database&amp;lt;/description&amp;gt;
+  &amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create database shizhan03;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;use shizhan03;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_sz01(id int,name string);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;drop table t_sz01;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_sz01(id int,name string) row format delimited fields terminated by &#39;,&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;vi /sz.dat&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1,zhangsan
+2,lisi
+3,fengjie
+4,chunge
+5,shizi
+6,koukjj&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop fs -put /sz.dat /user/hive/warehouse/shizhan03.db/t_sz01&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select * from t_sz01;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select count(1) from t_sz01;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select id,name from t_sz01 where id&amp;gt;3;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;show tables;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create exte&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
