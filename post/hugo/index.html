@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hugo" />
-<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本hugo.sh#!/bin/shDIR=$(dirname &#34;$0&#34;)echo &#34;Generating site&#34;hugoecho &#34;Updating gh-pages branch&#34;cd public &amp;&amp; git add --all &amp;&amp; git commit -m &#34;$(date &#43;%Y-%m-%d)&#34; &amp;&amp; git pushecho &#34;Commit note-hugo&#34;cd ." />
+<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 本地部署1.2.2. 码云部署2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 本地部署hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo &#34;替换域名&#34;git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.tomlsed -i &#39;s/dishui.oschina.io\/note-hugo/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.tomlecho &#34;启动 hugo server&#34;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/hugo/" />
 
@@ -89,7 +89,12 @@
 <li><a href="#_hugo">1. hugo</a>
 <ul class="sectlevel2">
 <li><a href="#_设置发布目录">1.1. 设置发布目录</a></li>
-<li><a href="#_部署脚本">1.2. 部署脚本</a></li>
+<li><a href="#_部署">1.2. 部署</a>
+<ul class="sectlevel3">
+<li><a href="#_本地部署">1.2.1. 本地部署</a></li>
+<li><a href="#_码云部署">1.2.2. 码云部署</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_生成_strong_lunr_strong_索引">2. 生成 <strong>lunr</strong> 索引</a></li>
@@ -111,13 +116,37 @@ git worktree add public gh-pages</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_部署脚本">1.2. 部署脚本</h3>
+<h3 id="_部署">1.2. 部署</h3>
+<div class="sect3">
+<h4 id="_本地部署">1.2.1. 本地部署</h4>
+<div class="listingblock">
+<div class="title">hugo-local.sh</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>#!/bin/sh
+
+cd /e/note-hugo/
+
+# 替换域名
+echo "替换域名"
+git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml
+sed -i 's/dishui.oschina.io\/note-hugo/localhost:1313/g' themes/mainroad/static/js/app.js content/post/base.adoc config.toml
+echo "启动 hugo server"
+hugo server</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_码云部署">1.2.2. 码云部署</h4>
 <div class="listingblock">
 <div class="title">hugo.sh</div>
 <div class="content">
 <pre class="highlightjs highlight"><code>#!/bin/sh
 
-DIR=$(dirname "$0")
+cd /e/note-hugo/
+
+# 还原
+echo "恢复域名"
+git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml
 
 echo "Generating site"
 hugo
@@ -127,6 +156,7 @@ cd public &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" 
 
 echo "Commit note-hugo"
 cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git push</code></pre>
+</div>
 </div>
 </div>
 </div>

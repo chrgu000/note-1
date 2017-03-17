@@ -93,7 +93,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						hugo1. hugo1.1. 设置发布目录1.2. 部署脚本2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署脚本hugo.sh#!/bin/shDIR=$(dirname "$0")echo "Generating site"hugoecho "Updating gh-pages branch"cd public &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git pushecho "Commit note-hugo"cd .
+						hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 本地部署1.2.2. 码云部署2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 本地部署hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo "替换域名"git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.tomlsed -i 's/dishui.oschina.io\/note-hugo/localhost:1313/g' themes/mainroad/static/js/app.js content/post/base.adoc config.tomlecho "启动 hugo server"
 					</div>
 				</div>
 			</div>

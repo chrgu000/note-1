@@ -20,7 +20,12 @@
 &lt;li&gt;&lt;a href=&#34;#_hugo&#34;&gt;1. hugo&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_设置发布目录&#34;&gt;1.1. 设置发布目录&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_部署脚本&#34;&gt;1.2. 部署脚本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_部署&#34;&gt;1.2. 部署&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地部署&#34;&gt;1.2.1. 本地部署&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_码云部署&#34;&gt;1.2.2. 码云部署&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_生成_strong_lunr_strong_索引&#34;&gt;2. 生成 &lt;strong&gt;lunr&lt;/strong&gt; 索引&lt;/a&gt;&lt;/li&gt;
@@ -42,13 +47,37 @@ git worktree add public gh-pages&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_部署脚本&#34;&gt;1.2. 部署脚本&lt;/h3&gt;
+&lt;h3 id=&#34;_部署&#34;&gt;1.2. 部署&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_本地部署&#34;&gt;1.2.1. 本地部署&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;hugo-local.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
+
+cd /e/note-hugo/
+
+# 替换域名
+echo &#34;替换域名&#34;
+git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml
+sed -i &#39;s/dishui.oschina.io\/note-hugo/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.toml
+echo &#34;启动 hugo server&#34;
+hugo server&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_码云部署&#34;&gt;1.2.2. 码云部署&lt;/h4&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;hugo.sh&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
 
-DIR=$(dirname &#34;$0&#34;)
+cd /e/note-hugo/
+
+# 还原
+echo &#34;恢复域名&#34;
+git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml
 
 echo &#34;Generating site&#34;
 hugo
@@ -58,6 +87,7 @@ cd public &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34
 
 echo &#34;Commit note-hugo&#34;
 cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
