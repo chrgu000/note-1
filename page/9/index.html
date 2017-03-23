@@ -80,6 +80,50 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/linux/docker-compose/" rel="bookmark">docker-compose</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						docker-compose1. docker-compose2. Docker+Docker-Compose+Zookeeper 集群搭建2.1. 环境2.2. docker-compose2.3. pipework2.4. zookeeper 集群2.5. docker-compose3. Docker Registry3.1. 配置3.1.1. registry server3.1.2. docker client端3.2. compose 文件3.3. api3.4. 参考3.5. Q &amp; A1. docker-compose参考 docker-compose.yml 
+CoreOS 安装 docker-compose 
+docker-compose 
+compose-file
+http://dockone.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/elasticsearch-jdbc-importer/" rel="bookmark">elasticsearch-jdbc-importer</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						elasticsearch-jdbc-importer mysql数据导入elasticsearch  设置映射 json PUT /b2b { &quot;settings&quot;: { &quot;number_of_replicas&quot;: &quot;1&quot;, &quot;number_of_shards&quot;: &quot;1&quot; }, &quot;mappings&quot;: { &quot;mlq_goods&quot;: { &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;category&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;cat_code&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;mmseg&quot; }, &quot;brand_name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;brand_name_noa&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;new_seller_nick&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;goods_status&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;title&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; } } }, &quot;mlq_product&quot;: { &quot;_parent&quot;: { &quot;type&quot;: &quot;mlq_goods&quot; }, &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;sale_region&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;repository_region&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;product_name_noa&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;product_name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; } } } } }  import导入文件 bash #!
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="http://dishui.oschina.io/note-hugo/post/es-snippet/" rel="bookmark">es 代码片段</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -265,51 +309,6 @@ ES-book-note 1、基本查询  词条查询
 sdk
 sublime
 1.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/gollum/" rel="bookmark">gollum</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. gollum2. Vagrantfile3. 样式修改3.1. DockerHub3.1.1. gollum1. gollum启动
-sudo docker run -d -p 80:4567 --name gollum -v ~/wiki:/root/wikidata suttang/gollum支持配置文件
-#修改Asciidoc文件后缀sudo docker run -d -p 80:4567 --name gollum -v ~/wiki:/ gollum/wiki alpine-gollum:1.1 --config /home/vagrant/wiki/config.rb --css /home/vagrant/wiki/wiki /custom.css2. VagrantfileVagrant.configure(2) do |config|config.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/guava/" rel="bookmark">guava API</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 操作1.1. 排序1. 操作遍历 list 
-import com.google.common.base.MoreObjects;import static com.google.common.base.Preconditions.*;for(T t : MoreObjects.firstNonNull(t_l, Collections.&lt;T&gt; emptyList())){logger.info(t);}try {checkElementIndex(0,mg.getMpp_l().size());} catch (Exception e) {jw.value(serverUrl+mg.getImg_large());}判断是否为空值
-if(Optional.fromNullable(obj).isPresent()){//do something}过滤
-Predicate&lt;Ti_invoice&gt; self_p = new Predicate&lt;Ti_invoice&gt;() {public boolean apply(Ti_invoice ti) {Ti_invoice_prop tmp_tip = (Ti_invoice_prop)ti;Ti_goodsorder_prop tmp_tgp = (Ti_goodsorder_prop)tmp_tip.
 					</div>
 				</div>
 			</div>

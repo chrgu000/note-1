@@ -3,7 +3,17 @@
   
   <url>
     <loc>http://dishui.oschina.io/note-hugo/</loc>
-    <lastmod>2017-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/docker/hadoop-docker/</loc>
+    <lastmod>2017-03-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hbase/</loc>
+    <lastmod>2017-03-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -892,6 +902,14 @@
   
   <url>
     <loc>http://dishui.oschina.io/note-hugo/post/work/pc/1/</loc>
+  </url>
+  
+  <url>
+    <loc>http://dishui.oschina.io/note-hugo/post/work/pc/222/</loc>
+  </url>
+  
+  <url>
+    <loc>http://dishui.oschina.io/note-hugo/post/work/pc/mailiqing-ts/1/</loc>
   </url>
   
   <url>

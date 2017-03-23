@@ -1455,6 +1455,18 @@ mysql&amp;gt; flush privileges;&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;git checkout&amp;#8201;&amp;#8212;&amp;#8201;themes/mainroad/static/js/app.js content/post/base.adoc config.toml&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;lt;&amp;lt;&amp;lt; &#39;FLUME_CLASSPATH=&#34;/opt/flume/lib&#34;&#39; &amp;gt; flume-env.sh&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl &lt;a href=&#34;https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py&#34; class=&#34;bare&#34;&gt;https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py&lt;/a&gt; | sudo tee /opt/bin/delete_docker_registry_image &amp;gt;/dev/null&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sudo chmod a+x /opt/bin/delete_docker_registry_image&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;export REGISTRY_DATA_DIR=/home/core/registry/docker/registry/v2&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     

@@ -6,8 +6,128 @@
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 17 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Mar 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://dishui.oschina.io/note-hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>hadoop-docker</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/docker/hadoop-docker/</link>
+      <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/docker/hadoop-docker/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/HariSekhon/Dockerfiles&#34; class=&#34;bare&#34;&gt;https://github.com/HariSekhon/Dockerfiles&lt;/a&gt;
+&lt;a href=&#34;https://hub.docker.com/r/harisekhon&#34; class=&#34;bare&#34;&gt;https://hub.docker.com/r/harisekhon&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>hbase</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hbase/</link>
+      <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hbase/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;create &#39;user&#39;,&#39;info1&#39;,&#39;info2&#39;
+
+describe &#39;user&#39;
+
+exists &#39;user&#39;
+
+put &#39;user&#39;,&#39;1234&#39;,&#39;info1:name&#39;,&#39;zhangsan&#39;
+put &#39;user&#39;,&#39;1234&#39;,&#39;info2:name&#39;,&#39;zhangsan&#39;
+
+scan &#39;user&#39;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;名称&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;命令表达式&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;创建表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;create &#39;表名&#39;, &#39;列族名1&#39;,&#39;列族名2&#39;,&#39;列族名N&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看所有表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;list&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;描述表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;describe &#39;表名&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;判断表存在&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;exists &#39;表名&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;判断是否禁用启用表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;is_enabled &#39;表名&#39; is_disabled ‘表名’&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;添加记录&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;put  ‘表名’, ‘rowKey’, ‘列族 : 列‘  ,  &#39;值&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看记录rowkey下的所有数据&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;get  &#39;表名&#39; , &#39;rowKey&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看表中的记录总数&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;count  &#39;表名&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;获取某个列族&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;get &#39;表名&#39;,&#39;rowkey&#39;,&#39;列族&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;获取某个列族的某个列&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;get &#39;表名&#39;,&#39;rowkey&#39;,&#39;列族：列’&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;删除记录&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;delete  ‘表名’ ,‘行名’ , ‘列族：列&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;删除整行&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;deleteall &#39;表名&#39;,&#39;rowkey&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;删除一张表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;先要屏蔽该表，才能对该表进行删除
+第一步 disable ‘表名’，第二步  drop &#39;表名&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;清空表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;truncate &#39;表名&#39;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看所有记录&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;scan &#34;表名&#34;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看某个表某个列中所有数据&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;scan &#34;表名&#34; , {COLUMNS&amp;#8658;&#39;列族名:列名&#39;}&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;更新记录&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;就是重写一遍，进行覆盖，hbase没有修改，都是追加&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
     
     <item>
       <title>flume-sqoop</title>
@@ -303,6 +423,14 @@ a1.sinks.k1.channel = c1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_采集案例&#34;&gt;2.2. 采集案例&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Q &amp;amp; A &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.voidcn.com/blog/lmh94604/article/p-6042484.html&#34; class=&#34;bare&#34;&gt;http://www.voidcn.com/blog/lmh94604/article/p-6042484.html&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_采集目录到hdfs&#34;&gt;2.2.1. 采集目录到HDFS&lt;/h4&gt;
 &lt;div class=&#34;quoteblock&#34;&gt;
@@ -4517,149 +4645,6 @@ exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>齐次方程</title>
-      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</link>
-      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;齐次方程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_齐次方程&#34;&gt;1. 齐次方程&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_标准齐次方程&#34;&gt;1.1. 标准齐次方程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_齐次方程&#34;&gt;1. 齐次方程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_标准齐次方程&#34;&gt;1.1. 标准齐次方程&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_095515.png&#34; alt=&#34;2017 02 25 095515&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_095758.png&#34; alt=&#34;2017 02 25 095758&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_095839.png&#34; alt=&#34;2017 02 25 095839&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_100629.png&#34; alt=&#34;2017 02 25 100629&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_100911.png&#34; alt=&#34;2017 02 25 100911&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101055.png&#34; alt=&#34;2017 02 25 101055&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101117.png&#34; alt=&#34;2017 02 25 101117&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101207.png&#34; alt=&#34;2017 02 25 101207&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101228.png&#34; alt=&#34;2017 02 25 101228&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101300.png&#34; alt=&#34;2017 02 25 101300&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101320.png&#34; alt=&#34;2017 02 25 101320&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101419.png&#34; alt=&#34;2017 02 25 101419&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_101458.png&#34; alt=&#34;2017 02 25 101458&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>定积分的换元法</title>
-      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</link>
-      <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;定积分的换元法&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_定积分的换元法&#34;&gt;1. 定积分的换元法&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_定积分的换元法&#34;&gt;1. 定积分的换元法&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-20_131059.png&#34; alt=&#34;2017 02 20 131059&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-20_131247.png&#34; alt=&#34;2017 02 20 131247&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-20_131524.png&#34; alt=&#34;2017 02 20 131524&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

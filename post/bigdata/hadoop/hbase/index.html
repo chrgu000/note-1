@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hbase</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="hbase" />
+<meta property="og:description" content="&#43;
+create &#39;user&#39;,&#39;info1&#39;,&#39;info2&#39;describe &#39;user&#39;exists &#39;user&#39;put &#39;user&#39;,&#39;1234&#39;,&#39;info1:name&#39;,&#39;zhangsan&#39;put &#39;user&#39;,&#39;1234&#39;,&#39;info2:name&#39;,&#39;zhangsan&#39;scan &#39;user&#39;名称
+命令表达式
+创建表
+create &#39;表名&#39;, &#39;列族名1&#39;,&#39;列族名2&#39;,&#39;列族名N&#39;
+查看所有表
+list
+描述表
+describe &#39;表名&#39;
+判断表存在
+exists &#39;表名&#39;
+判断是否禁用启用表
+is_enabled &#39;表名&#39; is_disabled ‘表名’
+添加记录
+put ‘表名’, ‘rowKey’, ‘列族 : 列‘ , &#39;值&#39;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hbase/" />
+
+
+<meta property="og:updated_time" content="2017-03-22T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/atom-one-dark.css">
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.tocify.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="http://dishui.oschina.io/note-hugo/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="http://dishui.oschina.io/note-hugo/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="http://dishui.oschina.io/note-hugo/js/app.js" src="http://dishui.oschina.io/note-hugo/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="http://dishui.oschina.io/note-hugo/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+		
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">hbase</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-22 00:00:00 &#43;0000 UTC">March 22, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/note-hugo/categories/hadoop" rel="category">hadoop</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>create 'user','info1','info2'
+
+describe 'user'
+
+exists 'user'
+
+put 'user','1234','info1:name','zhangsan'
+put 'user','1234','info2:name','zhangsan'
+
+scan 'user'</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">名称</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">命令表达式</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">创建表</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">create '表名', '列族名1','列族名2','列族名N'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看所有表</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">描述表</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">describe '表名'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">判断表存在</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">exists '表名'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">判断是否禁用启用表</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">is_enabled '表名' is_disabled ‘表名’</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">添加记录</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">put  ‘表名’, ‘rowKey’, ‘列族 : 列‘  ,  '值'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看记录rowkey下的所有数据</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">get  '表名' , 'rowKey'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看表中的记录总数</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">count  '表名'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">获取某个列族</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">get '表名','rowkey','列族'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">获取某个列族的某个列</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">get '表名','rowkey','列族：列’</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">删除记录</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">delete  ‘表名’ ,‘行名’ , ‘列族：列'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">删除整行</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">deleteall '表名','rowkey'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">删除一张表</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">先要屏蔽该表，才能对该表进行删除
+第一步 disable ‘表名’，第二步  drop '表名'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">清空表</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">truncate '表名'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看所有记录</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">scan "表名"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">查看某个表某个列中所有数据</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">scan "表名" , {COLUMNS&#8658;'列族名:列名'}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">更新记录</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">就是重写一遍，进行覆盖，hbase没有修改，都是追加</p></td>
+</tr>
+</tbody>
+</table>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="http://dishui.oschina.io/note-hugo/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/docker/hadoop-docker/" rel="prev"><span>«Previous</span><p>hadoop-docker</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/flume-sqoop/" rel="next"><span>Next»</span><p>flume-sqoop</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

@@ -1528,6 +1528,18 @@ mysql&gt; flush privileges;</p>
 <div class="paragraph">
 <p>git checkout&#8201;&#8212;&#8201;themes/mainroad/static/js/app.js content/post/base.adoc config.toml</p>
 </div>
+<div class="paragraph">
+<p>cat &lt;&lt;&lt; 'FLUME_CLASSPATH="/opt/flume/lib"' &gt; flume-env.sh</p>
+</div>
+<div class="paragraph">
+<p>curl <a href="https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py" class="bare">https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py</a> | sudo tee /opt/bin/delete_docker_registry_image &gt;/dev/null</p>
+</div>
+<div class="paragraph">
+<p>sudo chmod a+x /opt/bin/delete_docker_registry_image</p>
+</div>
+<div class="paragraph">
+<p>export REGISTRY_DATA_DIR=/home/core/registry/docker/registry/v2</p>
+</div>
 
 		</div>
 		

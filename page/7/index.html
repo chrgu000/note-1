@@ -80,6 +80,50 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/jsutils/" rel="bookmark">Js工具类</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						JSUtils JS绑定模板 /*---------- -----start----------------*/ $(document).ready(function(){ $(&quot;#f_btn_id&quot;).each(function(){ $(this).bind(&quot;click&quot;,{flag:$(this)},jumpToUrl); }); function jumpToUrl(event){ var data = event.data.flag; console.log(data.attr(&quot;a_user_id&quot;)); window.location.href = &quot;fabu.jsp?cust_id=&quot;+data.attr(&quot;a_cust_id&quot;); }; }); /*---------- -----end----------------*/ //页面全部加载后执行 $(document).ready(function(){ $(&quot;.wrap_con_r&quot;).find(&quot;*[a_flag]&quot;).each(function(){ alert('a'); $(this).bind(&quot;click&quot;,{flag:$(this)},toSupply); }); });  在div中查找具有attr属性的所有元素 function genProAttr2(obj,fifter,attr_id,attr_code,attr_name){ var tmp_str = &quot;&quot;; //在div中查找具有attr属性的所有元素 obj.find(&quot;*[&quot;+fifter+&quot;]&quot;).each(function(){ var tmp1 = &quot;&quot;; if($(this).val()!=&quot;&quot; &amp;&amp; $(this).val()!=&quot;-1&quot;){ tmp1 = {attr_id:$(this).attr(attr_id),attr_code:$(this).attr(attr_code),attr_name:$(this).attr(attr_name),attr_value:$(this).val()}; tmp_str =$.toJSON(tmp1)+&quot;|&quot;+ tmp_str; }; }); //替换,号 return tmp_str.replace(/\&quot;/g, &quot;@&quot;); }  字符串去重复 function ArrayRemoveByValue(str_value,arr_remove){ var num_to_del =new RegExp(str_value); var db_d =new RegExp('\,{2}'); var se_d =new RegExp('(^\,)|(\,$)'); arr_ret = arr_remove.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/linux/cluster/" rel="bookmark">LVS 集群配置</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 机群1.1. LVS1.1.1. ipvsadm1. 机群1.1. LVS1.1.1. ipvsadm开启转发
+cat /proc/sys/net/ipv4/ip_forwardecho 1 &gt; /proc/sys/net/ipv4/ip_forward添加VIP
+ipvsadm -A -t 172.16.100.1:80 -s rr添加`RealServer`
+ipvsadm -a -t 172.16.100.1:80 -r 192.168.10.8 -mipvsadm -a -t 172.16.100.1:80 -r 192.168.10.9 -m查看
+ipvsadm -L -n测试
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="http://dishui.oschina.io/note-hugo/post/mailiqing/" rel="bookmark">Mailiqing 服务器配置</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -267,49 +311,6 @@ nginx 平台为：rhel 6.4/CentOS-6.5 32bit
 一、安装Nginx： 1、解决依赖关系 # 方法1 yum groupinstall &quot;Development Tools&quot; &quot;Server Platform Deveopment&quot; yum install openssl-devel pcre-devel # 方法2 #安装make yum -y install gcc automake autoconf libtool make #安装g++ yum -y install gcc gcc-c++ #安装pcre yum install openssl-devel pcre-devel  2、安装  首先添加用户nginx，实现以之运行nginx服务进程：
 # groupadd -r nginx # useradd -r -g nginx nginx  接着开始编译和安装：
 # ./configure \ --prefix=/usr \ --sbin-path=/usr/sbin/nginx \ --conf-path=/etc/nginx/nginx.conf \ --error-log-path=/var/log/nginx/error.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/rancher/" rel="bookmark">Rancher</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Rancher1. rancher/storage-nfs1.1. 配置CoreOS nfs service1.2. 启动 Rancher Server1.2.1. docker 方式启动1.2.2. compose 方式启动1.2.3. Rancher NFS 配置1.3. maxscale-mysql2. 镜像2.1. push rancher相关镜像到 registry2.2. rancher-agent 拉取镜像2.3. 参考3. Rancher Cli API1. rancher/storage-nfs1.1. 配置CoreOS nfs serviceimage 安装 sudo vi /var/lib/coreos-install/user_datavagrant 安装 # sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data#cloud-configcoreos:units:- name: "
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/redis/" rel="bookmark">Redis</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Redis1.1. 命令1.2. 配置文件1.3. Codis1.4. 参考1. Redis1.1. 命令删除所有 key
-redis-cli keys "*" | xargs redis-cli del1.2. 配置文件redis.conf# appendfsync always#每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用appendfsync everysec#每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐# appendfsync no #完全依赖os，性能最好,持久化没保证1.3. Codisgolang 版本
-go1.6.linux-amd64.tar.gz环境变量
-# vi ~/.
 					</div>
 				</div>
 			</div>

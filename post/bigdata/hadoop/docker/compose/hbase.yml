@@ -1,0 +1,13 @@
+version: '2'
+services:
+  hbase:
+    image: dishui.io:5000/harisekhon/hbase
+    container_name: hbase
+    volumes:
+      - ./files/hbase/core-site.conf:/hbase/conf/core-site.conf
+      - ./files/hbase/hdfs-site.conf:/hbase/conf/hdfs-site.conf
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true
