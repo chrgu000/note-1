@@ -36,6 +36,13 @@ coreos:
         What=/dev/sdb1
         Where=/soft
         Type=ext4
+    - name: home-core-registry2.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/home/core/registry2
+        Type=ext4
 write_files:
   - path: /etc/hosts
     content: |

@@ -589,7 +589,8 @@ image::http://dishui.oschina.io/note-hugo/src/img/$1[]
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-html:/snippets.adoc```&#34; data-lang=&#34;html:/snippets.adoc```&#34;&gt;=== 参考
-. [[Sublime text 3更改侧边栏【sidebar】的字体大小 |http://blog.csdn.net/crper/article/details/50609370]]&lt;/code&gt;&lt;/pre&gt;
+. http://blog.csdn.net/crper/article/details/50609370[Sublime text 3更改侧边栏【sidebar】的字体大小]
+. https://www.zhihu.com/question/24896283[Sublime 使用技巧]&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

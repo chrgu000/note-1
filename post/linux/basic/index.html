@@ -182,7 +182,7 @@
 <h3 id="_获取_code_ip_code_地址">3. 获取 <code>ip</code> 地址</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">ifconfig|grep "inet addr:"|grep -v "127.0.0.1"|cut -d: -f2|awk '{print $1}'</code></pre>
+<pre class="highlightjs highlight"><code>ifconfig|grep "inet addr:"|grep -v "127.0.0.1"|cut -d: -f2|awk '{print $1}'</code></pre>
 </div>
 </div>
 </div>
@@ -192,25 +192,21 @@
 <ol class="arabic">
 <li>
 <p><code>linux</code> 查询某个端口被什么进程占用的命令</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">lsof -i|grep 80 = 端口号即可获取进程号</code></pre>
+<pre class="highlightjs highlight"><code>lsof -i|grep 80 = 端口号即可获取进程号</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p><code>linux</code> 查询进程占用哪些端口</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">netstat -nlap</code></pre>
+<pre class="highlightjs highlight"><code>netstat -nlap</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -220,19 +216,76 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>[[鸟哥ntp时间同步设置|http://vbird.dic.ksu.edu.tw/linux_server/0440ntp_2.php]]</p>
+<p><a href="http://vbird.dic.ksu.edu.tw/linux_server/0440ntp_2.php">鸟哥ntp时间同步设置</a></p>
 </li>
 <li>
 <p><code>ntp.conf</code> 配置文件<br>
 <code>vi /etc/npt.conf</code></p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-conf:/linux/conf/ntp.conf```" data-lang="conf:/linux/conf/ntp.conf```">. `NTP` 的启动与观察
-```bash
-# 1. 启动 NTP
+<pre class="highlightjs highlight"><code># Permit time synchronization with our time source, but do not
+# permit the source to query or modify the service on this system.
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+restrict 110.75.186.247
+restrict 110.75.186.248
+# Permit all access over the loopback interface.  This could
+# be tightened as well, but to do so would effect some of
+# the administrative functions.
+restrict 127.0.0.1
+restrict -6 ::1
+
+# Hosts on local network are less restricted.
+#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+restrict 196.168.1.0 mask 255.255.255.0 nomodify
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+#server 0.centos.pool.ntp.org
+#server 1.centos.pool.ntp.org
+#server 2.centos.pool.ntp.org
+#server 3.centos.pool.ntp.org
+
+server cn.ntp.org.cn
+
+#broadcast 192.168.1.255 key 42		# broadcast server
+#broadcastclient			# broadcast client
+#broadcast 224.0.1.1 key 42		# multicast server
+#multicastclient 224.0.1.1		# multicast client
+#manycastserver 239.255.254.254		# manycast server
+#manycastclient 239.255.254.254 key 42	# manycast client
+
+# Undisciplined Local Clock. This is a fake driver intended for backup
+# and when no outside source of synchronized time is available.
+server	127.127.1.0	# local clock
+fudge	127.127.1.0 stratum 10
+
+# Drift file.  Put this in a directory which the daemon can write to.
+# No symbolic links allowed, either, since the daemon updates the file
+# by creating a temporary in the same directory and then rename()'ing
+# it to the file.
+driftfile /var/lib/ntp/drift
+
+# Key file containing the keys and key identifiers used when operating
+# with symmetric key cryptography.
+keys /etc/ntp/keys
+
+# Specify the key identifiers which are trusted.
+#trustedkey 4 8 42
+
+# Specify the key identifier to use with the ntpdc utility.
+#requestkey 8
+
+# Specify the key identifier to use with the ntpq utility.
+#controlkey 8</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>NTP</code> 的启动与观察</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 1. 启动 NTP
 service ntpd start
 /etc/init.d/ntpd start
 chkconfig ntpd on
@@ -241,16 +294,12 @@ tail /var/log/messages  &lt;==自行检查看看有无错误
 netstat -tlunp | grep ntp</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>局域网机器时间同步</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># 删除本地时间并设置时区为上海
+<pre class="highlightjs highlight"><code># 删除本地时间并设置时区为上海
 rm -rf /etc/localtime &amp;&amp;\
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -258,29 +307,21 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ntpdate &lt;NTP IP&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>联网机器同步时间</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bashSession" data-lang="bashSession">$ sudo ntpdate cn.ntp.org.cn
+<pre class="highlightjs highlight"><code>$ sudo ntpdate cn.ntp.org.cn
  7 May 17:32:01 ntpdate[2286]: adjust time server 110.75.190.198 offset -0.021447 sec</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>定时更新时间</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># vim /etc/crontab
+<pre class="highlightjs highlight"><code># vim /etc/crontab
 30 * * * * ntpdate 196.168.1.30
 /sbin/service crond start //启动服务
 /sbin/service crond stop //关闭服务
@@ -288,16 +329,12 @@ ntpdate &lt;NTP IP&gt;</code></pre>
 /sbin/service crond reload //重新载入配置</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>每10秒更新一次</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/rsync -a /wiki_src/ /wiki/
+<pre class="highlightjs highlight"><code>* * * * * /usr/bin/rsync -a /wiki_src/ /wiki/
 * * * * * sleep 10; /usr/bin/rsync -a /wiki_src/ /wiki/
 * * * * * sleep 20; /usr/bin/rsync -a /wiki_src/ /wiki/
 * * * * * sleep 30; /usr/bin/rsync -a /wiki_src/ /wiki/
@@ -305,13 +342,16 @@ ntpdate &lt;NTP IP&gt;</code></pre>
 * * * * * sleep 50; /usr/bin/rsync -a /wiki_src/ /wiki/</code></pre>
 </div>
 </div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_参考">5.2. 参考</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>[[系统时间 | <a href="http://www.linuxidc.com/Linux/2015-01/111466.htm" class="bare">http://www.linuxidc.com/Linux/2015-01/111466.htm</a>]]</p>
+<p><a href="http://www.linuxidc.com/Linux/2015-01/111466.htm">系统时间</a></p>
 </li>
 </ol>
 </div>
@@ -323,12 +363,9 @@ ntpdate &lt;NTP IP&gt;</code></pre>
 <ol class="arabic">
 <li>
 <p>配置文件</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession"># vi /etc/rsyncd.conf
+<pre class="highlightjs highlight"><code># vi /etc/rsyncd.conf
 uid = root
 gid = root
 log file = /var/log/rsyncd.log
@@ -337,27 +374,26 @@ path = /home/svn
 read only = no</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>启动服务</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo rsync --daemon --config=/etc/rsyncd.conf</code></pre>
+<pre class="highlightjs highlight"><code>sudo rsync --daemon --config=/etc/rsyncd.conf</code></pre>
 </div>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Ref </dt>
 <dd>
-<p>[[在Windows中配置Rsync同步文件的方法|http://www.jb51.net/article/59034.htm]]<br>
-[[通过rsync远程增量备份(差异备份)|http://blog.csdn.net/penglonghu/article/details/7005728]]
-[[rsync同步常用命令|ttp://blog.csdn.net/niushuai666/article/details/16880061]]</p>
+<p><a href="http://www.jb51.net/article/59034.htm">在Windows中配置Rsync同步文件的方法</a>
+<a href="http://blog.csdn.net/penglonghu/article/details/7005728">通过rsync远程增量备份(差异备份)</a>
+<a href="http://blog.csdn.net/niushuai666/article/details/16880061">rsync同步常用命令</a></p>
 </dd>
 </dl>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>rsync -a rsync://196.168.1.32:873/svn_sync /cygdrive/e/Mlq-bak/ceshi</p>
@@ -369,7 +405,7 @@ read only = no</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>[[<code>Linux</code> 下同步工具 <code>inotify</code> + <code>rsync</code> 使用详解 | <a href="https://segmentfault.com/a/1190000002427568" class="bare">https://segmentfault.com/a/1190000002427568</a>]]</p>
+<p><a href="https://segmentfault.com/a/1190000002427568"> <code>Linux</code> 下同步工具 <code>inotify</code> + <code>rsync</code> 使用详解</a></p>
 </li>
 </ol>
 </div>
@@ -392,27 +428,31 @@ read only = no</code></pre>
 <dl>
 <dt class="hdlist1">参考</dt>
 <dd>
-<p>[[CentOS下搭建DNS服务器 | <a href="http://blog.csdn.net/charlsecharlse/article/details/17955119" class="bare">http://blog.csdn.net/charlsecharlse/article/details/17955119</a>]]</p>
+<p><a href="http://blog.csdn.net/charlsecharlse/article/details/17955119">CentOS下搭建DNS服务器</a></p>
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>zone "test.wuliu.com" IN {
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>//物流项目
+zone "test.wuliu.com" IN {
         type master;
         file "named.wuliu.com";
         allow-update { none; };
 };
+//mailiqing项目
 zone "test.mailiqing.com" IN {
         type master;
         file "named.mailiqing.com";
         allow-update { none; };
-};</p>
+};</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_查看日志">8. 查看日志</h3>
 <div class="paragraph">
-<p>[[<a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" class="bare">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a> | ]]</p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" class="bare">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
 </div>
 </div>
 

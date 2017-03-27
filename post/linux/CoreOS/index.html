@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="CoreOS" />
-<meta property="og:description" content="CoreOS1. CoreOS1.1. 升级策略1.1.1. Window 主机 启动脚本1.2. Problem 003 - unix:///var/run/supervisor.sock refused connection2. CoreOS 安装 docker-compose3. CoreOS 硬盘安装3.1. 镜像3.2. Http 服务器3.2.1. HFS3.2.2. 配置文件3.3. 操作3.4. 设置 core 密码3.5. 参考4. 安装 Python1. CoreOS1.1. 升级策略修改升级策略
+<meta property="og:description" content="CoreOS1. CoreOS1.1. 升级策略1.1.1. Window 主机 启动脚本1.2. Problem 003 - unix:///var/run/supervisor.sock refused connection2. UML3. CoreOS 安装 docker-compose4. CoreOS 硬盘安装4.1. 镜像4.2. Http 服务器4.2.1. HFS4.2.2. 配置文件4.3. 操作4.4. 设置 core 密码4.5. 参考5. 安装 Python1. CoreOS1.1. 升级策略修改升级策略
 $ sudo vi /etc/coreos/update.confGROUP=stableREBOOT_STRATEGY=reboot升级策略主要与自动升级后的重启更新方式有关。它的值可以是 best-effort（默认值）、 etcd-lock、 reboot 和 off。其作用依次解释如下：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/linux/CoreOS/" />
@@ -100,22 +100,23 @@ $ sudo vi /etc/coreos/update.confGROUP=stableREBOOT_STRATEGY=reboot升级
 <li><a href="#_problem_003_code_unix_var_run_supervisor_sock_refused_connection_code">1.2. Problem 003 - <code>unix:///var/run/supervisor.sock refused connection</code></a></li>
 </ul>
 </li>
-<li><a href="#_coreos_安装_docker_compose">2. CoreOS 安装 docker-compose</a></li>
-<li><a href="#_coreos_硬盘安装">3. CoreOS 硬盘安装</a>
+<li><a href="#_uml">2. UML</a></li>
+<li><a href="#_coreos_安装_docker_compose">3. CoreOS 安装 docker-compose</a></li>
+<li><a href="#_coreos_硬盘安装">4. CoreOS 硬盘安装</a>
 <ul class="sectlevel2">
-<li><a href="#_镜像">3.1. 镜像</a></li>
-<li><a href="#_http_服务器">3.2. Http 服务器</a>
+<li><a href="#_镜像">4.1. 镜像</a></li>
+<li><a href="#_http_服务器">4.2. Http 服务器</a>
 <ul class="sectlevel3">
-<li><a href="#__a_href_http_rejetto_com_hfs_f_dl_hfs_a">3.2.1. <a href="http://rejetto.com/hfs/?f=dl">HFS</a></a></li>
-<li><a href="#_配置文件">3.2.2. 配置文件</a></li>
+<li><a href="#__a_href_http_rejetto_com_hfs_f_dl_hfs_a">4.2.1. <a href="http://rejetto.com/hfs/?f=dl">HFS</a></a></li>
+<li><a href="#_配置文件">4.2.2. 配置文件</a></li>
 </ul>
 </li>
-<li><a href="#_操作">3.3. 操作</a></li>
-<li><a href="#_设置_core_密码">3.4. 设置 core 密码</a></li>
-<li><a href="#_参考">3.5. 参考</a></li>
+<li><a href="#_操作">4.3. 操作</a></li>
+<li><a href="#_设置_core_密码">4.4. 设置 core 密码</a></li>
+<li><a href="#_参考">4.5. 参考</a></li>
 </ul>
 </li>
-<li><a href="#_安装_python">4. 安装 Python</a></li>
+<li><a href="#_安装_python">5. 安装 Python</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -272,45 +273,111 @@ nodaemon=true  ;  前台运行</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml:/linux/conf/vagrantfile-user-data```" data-lang="yaml:/linux/conf/vagrantfile-user-data```"></code></pre>
+<pre class="highlightjs highlight"><code>#cloud-config
+
+coreos:
+  units:
+    - name: "docker.service"
+      drop-ins:
+        - name: "50-insecure-registry.conf"
+          content: |
+            [Service]
+            Environment=DOCKER_OPTS='--registry-mirror=http://0821f5e0.m.daocloud.io'
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the time zone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone Asia/Shanghai
+        RemainAfterExit=yes
+        Type=oneshot
+
+    - name: "docker-gollum.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description=Gollum container
+        Author=Me
+        After=docker.service
+        [Service]
+        Restart=always
+        ExecStart=/opt/bin/docker-compose -f /home/core/gollum.yml start gollum
+    - name: soft.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/soft
+        Type=ext4
+    - name: home-core-registry2.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/home/core/registry2
+        Type=ext4
+write_files:
+  - path: /etc/hosts
+    content: |
+      127.0.0.1     localhost
+      192.168.137.15    dishui.io
+  - path: "/etc/resolv.conf"
+    permissions: "0644"
+    owner: "root"
+    content: |
+      nameserver 114.114.114.114
+      nameserver 172.17.0.1</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data
-sudo coreos-cloudinit -from-file=/var/lib/coreos-vagrant/vagrantfile-user-data</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>. [[journalctl|https://coreos.com/os/docs/latest/reading-the-system-log.html
-
-== UML
-
-. 中文乱码
-```bash
-# 安装中文字体
-apt-get install fonts-droid</code></pre>
+<pre class="highlightjs highlight"><code>sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data
+sudo coreos-cloudinit -from-file=/var/lib/coreos-vagrant/vagrantfile-user-data</code></pre>
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>gollum</p>
+<p><a href="https://coreos.com/os/docs/latest/reading-the-system-log.html">journalctl</a></p>
 </li>
 </ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#启动 plantuml
-docker run -d -p 8080:8080 -v ~/opt/src/tomcat/plantuml:/tomcat/webapps --name plantuml-1 tomcat7
-# 启动 gollum  --privileged 以root 用户启动 docker
-docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7</code></pre>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_coreos_安装_docker_compose">2. CoreOS 安装 docker-compose</h2>
+<h2 id="_uml">2. UML</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>中文乱码</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 安装中文字体
+apt-get install fonts-droid</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>gollum</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#启动 plantuml
+docker run -d -p 8080:8080 -v ~/opt/src/tomcat/plantuml:/tomcat/webapps --name plantuml-1 tomcat7
+# 启动 gollum  --privileged 以root 用户启动 docker
+docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_coreos_安装_docker_compose">3. CoreOS 安装 docker-compose</h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -335,10 +402,10 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_coreos_硬盘安装">3. CoreOS 硬盘安装</h2>
+<h2 id="_coreos_硬盘安装">4. CoreOS 硬盘安装</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_镜像">3.1. 镜像</h3>
+<h3 id="_镜像">4.1. 镜像</h3>
 <div class="paragraph">
 <p><a href="https://stable.release.core-os.net/amd64-usr/current/">Coreos image</a></p>
 </div>
@@ -351,9 +418,9 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_http_服务器">3.2. Http 服务器</h3>
+<h3 id="_http_服务器">4.2. Http 服务器</h3>
 <div class="sect3">
-<h4 id="__a_href_http_rejetto_com_hfs_f_dl_hfs_a">3.2.1. <a href="http://rejetto.com/hfs/?f=dl">HFS</a></h4>
+<h4 id="__a_href_http_rejetto_com_hfs_f_dl_hfs_a">4.2.1. <a href="http://rejetto.com/hfs/?f=dl">HFS</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="http://dishui.oschina.io/note-hugo/src/img/2016-08-30_113636.png" alt="2016 08 30 113636">
@@ -361,7 +428,7 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_配置文件">3.2.2. 配置文件</h4>
+<h4 id="_配置文件">4.2.2. 配置文件</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>#cloud-config
@@ -446,7 +513,7 @@ users:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_操作">3.3. 操作</h3>
+<h3 id="_操作">4.3. 操作</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code># 切换 root
@@ -468,7 +535,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_设置_core_密码">3.4. 设置 core 密码</h3>
+<h3 id="_设置_core_密码">4.4. 设置 core 密码</h3>
 <div class="paragraph">
 <p>开机,按 <kbd>↓</kbd><br></p>
 </div>
@@ -490,7 +557,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_参考">3.5. 参考</h3>
+<h3 id="_参考">4.5. 参考</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -526,7 +593,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_安装_python">4. 安装 Python</h2>
+<h2 id="_安装_python">5. 安装 Python</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">

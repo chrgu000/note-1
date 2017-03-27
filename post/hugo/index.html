@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hugo" />
-<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 本地部署1.2.2. 码云部署2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 本地部署hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo &#34;替换域名&#34;git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.tomlsed -i &#39;s/dishui.oschina.io\/note-hugo/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.tomlecho &#34;启动 hugo server&#34;" />
+<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 本地部署1.2.2. 码云部署2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 本地部署hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo &#34;替换域名&#34;git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.jssed -i &#39;s/dishui.oschina.io\/note-hugo/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.jsecho &#34;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/hugo/" />
 
@@ -128,8 +128,8 @@ cd /e/note-hugo/
 
 # 替换域名
 echo "替换域名"
-git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml
-sed -i 's/dishui.oschina.io\/note-hugo/localhost:1313/g' themes/mainroad/static/js/app.js content/post/base.adoc config.toml
+git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
+sed -i 's/dishui.oschina.io\/note-hugo/localhost:1313/g' themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
 echo "启动 hugo server"
 hugo server</code></pre>
 </div>
@@ -146,7 +146,7 @@ cd /e/note-hugo/
 
 # 还原
 echo "恢复域名"
-git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml
+git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
 
 echo "Generating site"
 hugo

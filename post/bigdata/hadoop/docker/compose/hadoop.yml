@@ -1,0 +1,13 @@
+version: '2'
+services:
+  hadoop:
+    image: dishui.io:5000/harisekhon/hadoop:2.6
+    container_name: hadoop
+    # volumes:
+    #   - ./files/hbase/core-site.conf:/hbase/conf/core-site.conf
+    #   - ./files/hbase/hdfs-site.conf:/hbase/conf/hdfs-site.conf
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true

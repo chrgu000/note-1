@@ -1540,6 +1540,33 @@ mysql&gt; flush privileges;</p>
 <div class="paragraph">
 <p>export REGISTRY_DATA_DIR=/home/core/registry/docker/registry/v2</p>
 </div>
+<div class="paragraph">
+<p>{
+    "server":"0.0.0.0",
+    "server_port":8888,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "password":"111111",
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": false,
+    "workers": 1
+}</p>
+</div>
+<div class="paragraph">
+<p>SELECT zspl.*
+FROM zh_sub_plan_launch zspl,
+zh_send_goods_check zsgc
+WHERE zspl.plan_code IN
+(SELECT plan_code
+FROM zh_plan_launch zpl
+WHERE zpl.state = '01'
+AND zpl.table_date &gt;= '2017-03-24 14:44:19'
+AND zpl.table_date &#8656; '2017-03-24 23:44:25')
+AND zspl.project_name = zsgc.project_name
+AND zsgc.make_time = '2017-03-24'
+AND zsgc.status  = '4'</p>
+</div>
 
 		</div>
 		

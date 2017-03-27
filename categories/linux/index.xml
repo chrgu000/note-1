@@ -9,6 +9,34 @@
     <atom:link href="http://dishui.oschina.io/note-hugo/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>CentOS7</title>
+      <link>http://dishui.oschina.io/note-hugo/post/linux/CentOS7/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/linux/CentOS7/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;CentOS7&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_centos7&#34;&gt;1. CentOS7&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_docker&#34;&gt;1.1. 安装 docker&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_centos7&#34;&gt;1. CentOS7&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_安装_docker&#34;&gt;1.1. 安装 docker&lt;/h3&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>log</title>
       <link>http://dishui.oschina.io/note-hugo/post/linux/log/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
@@ -664,22 +692,23 @@ vim /etc/grub.conf
 &lt;li&gt;&lt;a href=&#34;#_problem_003_code_unix_var_run_supervisor_sock_refused_connection_code&#34;&gt;1.2. Problem 003 - &lt;code&gt;unix:///var/run/supervisor.sock refused connection&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_coreos_安装_docker_compose&#34;&gt;2. CoreOS 安装 docker-compose&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_coreos_硬盘安装&#34;&gt;3. CoreOS 硬盘安装&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#_uml&#34;&gt;2. UML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_coreos_安装_docker_compose&#34;&gt;3. CoreOS 安装 docker-compose&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_coreos_硬盘安装&#34;&gt;4. CoreOS 硬盘安装&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_镜像&#34;&gt;3.1. 镜像&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_http_服务器&#34;&gt;3.2. Http 服务器&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#_镜像&#34;&gt;4.1. 镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_http_服务器&#34;&gt;4.2. Http 服务器&lt;/a&gt;
 &lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;3.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_配置文件&#34;&gt;3.2.2. 配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;4.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置文件&#34;&gt;4.2.2. 配置文件&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_操作&#34;&gt;3.3. 操作&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_设置_core_密码&#34;&gt;3.4. 设置 core 密码&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;3.5. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_操作&#34;&gt;4.3. 操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_设置_core_密码&#34;&gt;4.4. 设置 core 密码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;4.5. 参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_安装_python&#34;&gt;4. 安装 Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_python&#34;&gt;5. 安装 Python&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -836,45 +865,111 @@ nodaemon=true  ;  前台运行&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-yaml:/linux/conf/vagrantfile-user-data```&#34; data-lang=&#34;yaml:/linux/conf/vagrantfile-user-data```&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#cloud-config
+
+coreos:
+  units:
+    - name: &#34;docker.service&#34;
+      drop-ins:
+        - name: &#34;50-insecure-registry.conf&#34;
+          content: |
+            [Service]
+            Environment=DOCKER_OPTS=&#39;--registry-mirror=http://0821f5e0.m.daocloud.io&#39;
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the time zone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone Asia/Shanghai
+        RemainAfterExit=yes
+        Type=oneshot
+
+    - name: &#34;docker-gollum.service&#34;
+      command: &#34;start&#34;
+      content: |
+        [Unit]
+        Description=Gollum container
+        Author=Me
+        After=docker.service
+        [Service]
+        Restart=always
+        ExecStart=/opt/bin/docker-compose -f /home/core/gollum.yml start gollum
+    - name: soft.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/soft
+        Type=ext4
+    - name: home-core-registry2.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/home/core/registry2
+        Type=ext4
+write_files:
+  - path: /etc/hosts
+    content: |
+      127.0.0.1     localhost
+      192.168.137.15    dishui.io
+  - path: &#34;/etc/resolv.conf&#34;
+    permissions: &#34;0644&#34;
+    owner: &#34;root&#34;
+    content: |
+      nameserver 114.114.114.114
+      nameserver 172.17.0.1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data
-sudo coreos-cloudinit -from-file=/var/lib/coreos-vagrant/vagrantfile-user-data&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;. [[journalctl|https://coreos.com/os/docs/latest/reading-the-system-log.html
-
-== UML
-
-. 中文乱码
-```bash
-# 安装中文字体
-apt-get install fonts-droid&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data
+sudo coreos-cloudinit -from-file=/var/lib/coreos-vagrant/vagrantfile-user-data&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;gollum&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://coreos.com/os/docs/latest/reading-the-system-log.html&#34;&gt;journalctl&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#启动 plantuml
-docker run -d -p 8080:8080 -v ~/opt/src/tomcat/plantuml:/tomcat/webapps --name plantuml-1 tomcat7
-# 启动 gollum  --privileged 以root 用户启动 docker
-docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_coreos_安装_docker_compose&#34;&gt;2. CoreOS 安装 docker-compose&lt;/h2&gt;
+&lt;h2 id=&#34;_uml&#34;&gt;2. UML&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;中文乱码&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 安装中文字体
+apt-get install fonts-droid&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;gollum&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#启动 plantuml
+docker run -d -p 8080:8080 -v ~/opt/src/tomcat/plantuml:/tomcat/webapps --name plantuml-1 tomcat7
+# 启动 gollum  --privileged 以root 用户启动 docker
+docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_coreos_安装_docker_compose&#34;&gt;3. CoreOS 安装 docker-compose&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;dlist&#34;&gt;
 &lt;dl&gt;
@@ -899,10 +994,10 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_coreos_硬盘安装&#34;&gt;3. CoreOS 硬盘安装&lt;/h2&gt;
+&lt;h2 id=&#34;_coreos_硬盘安装&#34;&gt;4. CoreOS 硬盘安装&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_镜像&#34;&gt;3.1. 镜像&lt;/h3&gt;
+&lt;h3 id=&#34;_镜像&#34;&gt;4.1. 镜像&lt;/h3&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;a href=&#34;https://stable.release.core-os.net/amd64-usr/current/&#34;&gt;Coreos image&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -915,9 +1010,9 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_http_服务器&#34;&gt;3.2. Http 服务器&lt;/h3&gt;
+&lt;h3 id=&#34;_http_服务器&#34;&gt;4.2. Http 服务器&lt;/h3&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;3.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;4.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/h4&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
@@ -925,7 +1020,7 @@ docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_配置文件&#34;&gt;3.2.2. 配置文件&lt;/h4&gt;
+&lt;h4 id=&#34;_配置文件&#34;&gt;4.2.2. 配置文件&lt;/h4&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#cloud-config
@@ -1010,7 +1105,7 @@ users:
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_操作&#34;&gt;3.3. 操作&lt;/h3&gt;
+&lt;h3 id=&#34;_操作&#34;&gt;4.3. 操作&lt;/h3&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 切换 root
@@ -1032,7 +1127,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_设置_core_密码&#34;&gt;3.4. 设置 core 密码&lt;/h3&gt;
+&lt;h3 id=&#34;_设置_core_密码&#34;&gt;4.4. 设置 core 密码&lt;/h3&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;开机,按 &lt;kbd&gt;↓&lt;/kbd&gt;&lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -1054,7 +1149,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_参考&#34;&gt;3.5. 参考&lt;/h3&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;4.5. 参考&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
@@ -1090,7 +1185,7 @@ coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_安装_python&#34;&gt;4. 安装 Python&lt;/h2&gt;
+&lt;h2 id=&#34;_安装_python&#34;&gt;5. 安装 Python&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
@@ -2423,7 +2518,7 @@ nohup /mnt/Nand3/H2000G &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
 &lt;h3 id=&#34;_获取_code_ip_code_地址&#34;&gt;3. 获取 &lt;code&gt;ip&lt;/code&gt; 地址&lt;/h3&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ifconfig|grep &#34;inet addr:&#34;|grep -v &#34;127.0.0.1&#34;|cut -d: -f2|awk &#39;{print $1}&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ifconfig|grep &#34;inet addr:&#34;|grep -v &#34;127.0.0.1&#34;|cut -d: -f2|awk &#39;{print $1}&#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2433,25 +2528,21 @@ nohup /mnt/Nand3/H2000G &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;linux&lt;/code&gt; 查询某个端口被什么进程占用的命令&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;lsof -i|grep 80 = 端口号即可获取进程号&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;lsof -i|grep 80 = 端口号即可获取进程号&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;linux&lt;/code&gt; 查询进程占用哪些端口&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;netstat -nlap&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;netstat -nlap&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
@@ -2461,19 +2552,76 @@ nohup /mnt/Nand3/H2000G &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;[[鸟哥ntp时间同步设置|http://vbird.dic.ksu.edu.tw/linux_server/0440ntp_2.php]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://vbird.dic.ksu.edu.tw/linux_server/0440ntp_2.php&#34;&gt;鸟哥ntp时间同步设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;ntp.conf&lt;/code&gt; 配置文件&lt;br&gt;
 &lt;code&gt;vi /etc/npt.conf&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf:/linux/conf/ntp.conf```&#34; data-lang=&#34;conf:/linux/conf/ntp.conf```&#34;&gt;. `NTP` 的启动与观察
-```bash
-# 1. 启动 NTP
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# Permit time synchronization with our time source, but do not
+# permit the source to query or modify the service on this system.
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+restrict 110.75.186.247
+restrict 110.75.186.248
+# Permit all access over the loopback interface.  This could
+# be tightened as well, but to do so would effect some of
+# the administrative functions.
+restrict 127.0.0.1
+restrict -6 ::1
+
+# Hosts on local network are less restricted.
+#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+restrict 196.168.1.0 mask 255.255.255.0 nomodify
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+#server 0.centos.pool.ntp.org
+#server 1.centos.pool.ntp.org
+#server 2.centos.pool.ntp.org
+#server 3.centos.pool.ntp.org
+
+server cn.ntp.org.cn
+
+#broadcast 192.168.1.255 key 42		# broadcast server
+#broadcastclient			# broadcast client
+#broadcast 224.0.1.1 key 42		# multicast server
+#multicastclient 224.0.1.1		# multicast client
+#manycastserver 239.255.254.254		# manycast server
+#manycastclient 239.255.254.254 key 42	# manycast client
+
+# Undisciplined Local Clock. This is a fake driver intended for backup
+# and when no outside source of synchronized time is available.
+server	127.127.1.0	# local clock
+fudge	127.127.1.0 stratum 10
+
+# Drift file.  Put this in a directory which the daemon can write to.
+# No symbolic links allowed, either, since the daemon updates the file
+# by creating a temporary in the same directory and then rename()&#39;ing
+# it to the file.
+driftfile /var/lib/ntp/drift
+
+# Key file containing the keys and key identifiers used when operating
+# with symmetric key cryptography.
+keys /etc/ntp/keys
+
+# Specify the key identifiers which are trusted.
+#trustedkey 4 8 42
+
+# Specify the key identifier to use with the ntpdc utility.
+#requestkey 8
+
+# Specify the key identifier to use with the ntpq utility.
+#controlkey 8&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;NTP&lt;/code&gt; 的启动与观察&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 1. 启动 NTP
 service ntpd start
 /etc/init.d/ntpd start
 chkconfig ntpd on
@@ -2482,16 +2630,12 @@ tail /var/log/messages  &amp;lt;==自行检查看看有无错误
 netstat -tlunp | grep ntp&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;局域网机器时间同步&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;# 删除本地时间并设置时区为上海
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 删除本地时间并设置时区为上海
 rm -rf /etc/localtime &amp;amp;&amp;amp;\
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -2499,29 +2643,21 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ntpdate &amp;lt;NTP IP&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;联网机器同步时间&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashSession&#34; data-lang=&#34;bashSession&#34;&gt;$ sudo ntpdate cn.ntp.org.cn
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ sudo ntpdate cn.ntp.org.cn
  7 May 17:32:01 ntpdate[2286]: adjust time server 110.75.190.198 offset -0.021447 sec&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;定时更新时间&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;# vim /etc/crontab
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vim /etc/crontab
 30 * * * * ntpdate 196.168.1.30
 /sbin/service crond start //启动服务
 /sbin/service crond stop //关闭服务
@@ -2529,16 +2665,12 @@ ntpdate &amp;lt;NTP IP&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 /sbin/service crond reload //重新载入配置&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;每10秒更新一次&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;* * * * * /usr/bin/rsync -a /wiki_src/ /wiki/
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;* * * * * /usr/bin/rsync -a /wiki_src/ /wiki/
 * * * * * sleep 10; /usr/bin/rsync -a /wiki_src/ /wiki/
 * * * * * sleep 20; /usr/bin/rsync -a /wiki_src/ /wiki/
 * * * * * sleep 30; /usr/bin/rsync -a /wiki_src/ /wiki/
@@ -2546,13 +2678,16 @@ ntpdate &amp;lt;NTP IP&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 * * * * * sleep 50; /usr/bin/rsync -a /wiki_src/ /wiki/&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_参考&#34;&gt;5.2. 参考&lt;/h4&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;[[系统时间 | &lt;a href=&#34;http://www.linuxidc.com/Linux/2015-01/111466.htm&#34; class=&#34;bare&#34;&gt;http://www.linuxidc.com/Linux/2015-01/111466.htm&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.linuxidc.com/Linux/2015-01/111466.htm&#34;&gt;系统时间&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -2564,12 +2699,9 @@ ntpdate &amp;lt;NTP IP&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;配置文件&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;# vi /etc/rsyncd.conf
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vi /etc/rsyncd.conf
 uid = root
 gid = root
 log file = /var/log/rsyncd.log
@@ -2578,27 +2710,26 @@ path = /home/svn
 read only = no&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启动服务&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo rsync --daemon --config=/etc/rsyncd.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo rsync --daemon --config=/etc/rsyncd.conf&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;dlist&#34;&gt;
 &lt;dl&gt;
 &lt;dt class=&#34;hdlist1&#34;&gt;Ref &lt;/dt&gt;
 &lt;dd&gt;
-&lt;p&gt;[[在Windows中配置Rsync同步文件的方法|http://www.jb51.net/article/59034.htm]]&lt;br&gt;
-[[通过rsync远程增量备份(差异备份)|http://blog.csdn.net/penglonghu/article/details/7005728]]
-[[rsync同步常用命令|ttp://blog.csdn.net/niushuai666/article/details/16880061]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.jb51.net/article/59034.htm&#34;&gt;在Windows中配置Rsync同步文件的方法&lt;/a&gt;
+&lt;a href=&#34;http://blog.csdn.net/penglonghu/article/details/7005728&#34;&gt;通过rsync远程增量备份(差异备份)&lt;/a&gt;
+&lt;a href=&#34;http://blog.csdn.net/niushuai666/article/details/16880061&#34;&gt;rsync同步常用命令&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;rsync -a rsync://196.168.1.32:873/svn_sync /cygdrive/e/Mlq-bak/ceshi&lt;/p&gt;
@@ -2610,7 +2741,7 @@ read only = no&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;[[&lt;code&gt;Linux&lt;/code&gt; 下同步工具 &lt;code&gt;inotify&lt;/code&gt; + &lt;code&gt;rsync&lt;/code&gt; 使用详解 | &lt;a href=&#34;https://segmentfault.com/a/1190000002427568&#34; class=&#34;bare&#34;&gt;https://segmentfault.com/a/1190000002427568&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000002427568&#34;&gt; &lt;code&gt;Linux&lt;/code&gt; 下同步工具 &lt;code&gt;inotify&lt;/code&gt; + &lt;code&gt;rsync&lt;/code&gt; 使用详解&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -2633,27 +2764,31 @@ read only = no&lt;/code&gt;&lt;/pre&gt;
 &lt;dl&gt;
 &lt;dt class=&#34;hdlist1&#34;&gt;参考&lt;/dt&gt;
 &lt;dd&gt;
-&lt;p&gt;[[CentOS下搭建DNS服务器 | &lt;a href=&#34;http://blog.csdn.net/charlsecharlse/article/details/17955119&#34; class=&#34;bare&#34;&gt;http://blog.csdn.net/charlsecharlse/article/details/17955119&lt;/a&gt;]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/charlsecharlse/article/details/17955119&#34;&gt;CentOS下搭建DNS服务器&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;zone &#34;test.wuliu.com&#34; IN {
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//物流项目
+zone &#34;test.wuliu.com&#34; IN {
         type master;
         file &#34;named.wuliu.com&#34;;
         allow-update { none; };
 };
+//mailiqing项目
 zone &#34;test.mailiqing.com&#34; IN {
         type master;
         file &#34;named.mailiqing.com&#34;;
         allow-update { none; };
-};&lt;/p&gt;
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_查看日志&#34;&gt;8. 查看日志&lt;/h3&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;[[&lt;a href=&#34;http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34; class=&#34;bare&#34;&gt;http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&lt;/a&gt; | ]]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34; class=&#34;bare&#34;&gt;http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -3785,366 +3920,6 @@ svn diff --summarize -r $FROM:$END | awk &#39;{if($1 != &#34;D&#34;){print $2}}&
 
 cd $STABLE &amp;amp;&amp;amp; \
 cat update.txt | awk &#39;{gsub(&#34;\\\\&#34;,&#34;/&#34;);print $0}&#39; | xargs -I tmp sh merge.sh tmp $2&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>ubuntu</title>
-      <link>http://dishui.oschina.io/note-hugo/post/linux/ubuntu/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/linux/ubuntu/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_软件安装&#34;&gt;1. 软件安装&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_配置samba实现文件夹共享&#34;&gt;1.1. 配置samba实现文件夹共享&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_网络&#34;&gt;2. 网络&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;preamble&#34;&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat /etc/hostname&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;环境变量&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;JAVA_HOME=&#34;/home/vagrant/opt/sof/jdk1.7.0_79&#34;   #java环境变量
-ANT_HOME=&#34;/home/vagrant/opt/sof/apache-ant-1.9.4&#34; #ant环境变量
-CLASSPATH=&#34;.:$JAVA_HOME/lib:$ANT_HOME/lib&#34;
-PATH=&#34;$ANT_HOME/bin:$JAVA_HOME/bin:$PATH&#34;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;主机与 &lt;code&gt;ip&lt;/code&gt; 的映射&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat /etc/hosts&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;编辑 &lt;code&gt;sources.list&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vi /etc/apt/sources.list&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;更新&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apt-get update&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;查看已安装软件列表&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dpkg -l | awk &#39;{print $2}&#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;ubuntu-14&lt;/strong&gt;网易源&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;阿里源&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;安装Virtualbox&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#添加软件源
-sudo sh -c &#39;echo &#34;deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib&#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/virtualbox.list&#39;
-#对于Linux Mint来说，请以该系统基于Ubuntu发行版的名称替换$(lsb_release -cs)的代码部分，例如trusty, precise, raring, 等。
-#然后下载和导入软件源密钥：
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-#最后，你就可以通过你的软件管理器来安装 virtualbox-4.3 或者通过运行以下命令来安装：
-sudo apt-get update
-sudo apt-get install virtualbox-4.3&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;VirtualBox Guest Additions 安装&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#挂载
-sudo mount -o loop -t iso9660 VBoxGuestAdditions.iso /mnt
-#VirtualBox Guest Additions kernel modules 需要的依赖
-sudo apt-get install dkms build-essential linux-headers-$(uname -r)
-#安装VirtualBox Guest Additions
-sudo ./VBoxLinuxAdditions.run&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Samba服务器配置&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get install samba
-sudo apt-get install cifs-utils&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_软件安装&#34;&gt;1. 软件安装&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_配置samba实现文件夹共享&#34;&gt;1.1. 配置samba实现文件夹共享&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;samba的安装:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-Bashshellscripts&#34; data-lang=&#34;Bashshellscripts&#34;&gt;sudo apt-get insall samba
-sudo apt-get install cifs-utils&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建共享目录:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mkdir /home/vagrant/wiki
-sudo chmod 777 /home/vagrant/wiki&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建Samba配置文件:&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;保存现有的配置文件&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;修改现配置文件&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo vi /etc/samba/smb.conf&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;在smb.conf最后添加&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[global]
-    workgroup = WORKGROUP
-#   security = share
-    load printers = no
-
-[wiki]
-   comment = Wiki
-   path = /home/vagrant/wiki
-   writable = yes
-   browseable = yes
-   guest ok = yes
-
-[images]
-   comment = images
-   path = /home/vagrant/images
-   writable = yes
-   browseable = yes
-   guest ok = yes&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建samba帐户&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  sudo touch /etc/samba/smbpasswd
-  sudo smbpasswd -a vagrant&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;然后会要求你输入samba帐户的密码&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;［如果没有第四步，当你登录时会提示 session setup failed: NT_STATUS_LOGON_FAILURE］&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;重启samba服务器&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo /etc/init.d/samba restart
-#或
-sudo service smbd restart&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;测试&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;smbclient -L //localhost/share&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;使用&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;可以到windows下输入ip使用了，在文件夹处输入 &#34;\\&#34; + &#34;Ubuntu机器的ip或主机名&#34; + &#34;\\&#34; + &#34;share&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_网络&#34;&gt;2. 网络&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;重启网卡&lt;br&gt;
-&lt;code&gt;sudo /etc/init.d/networking restart&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;修改DNS&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;# sudo vi /etc/resolv.conf
-nameserver 114.114.114.114&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;mount.cifs&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;$ sudo apt-get install cifs-utils&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
