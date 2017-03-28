@@ -84,6 +84,80 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/mysql/" rel="bookmark">Mysql 常用操作</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Mysql 查询1.1. MySQL拼音首字母查询2. Mysql-table3. 复制一条数据4. 根据 某一列的值 if else5. Mysql 子查询优化6. Issues7. 参考1. Mysql 查询1.1. MySQL拼音首字母查询英文26个字母中除了i,u,v三个字母不能成为汉语拼音的首字母外，其它的字母都可以。如果我们需要查询结果集中以A或者其它字母开头的汉语，实现方法如下
+SELECT*FROMmlq_shop_infoWHERE CONV(HEX(LEFT(CONVERT(shop_name USING gbk), 1)),16,10) BETWEEN 45253AND 45760参考
+字母起值止值A
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/linux/mysqlcuo_wu/" rel="bookmark">Mysql错误</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 Mysql错误 MySQL Daemon failed to start.  bash #查看mysql日志 less /var/log/mysqld.log  unknown variable 'default-character-set=utf8'  用character_set_server=utf8来取代 default-character-set=utf8   Cannot load from mysql.proc. The table is probably corrupted # use mysql; # ALTER TABLE `proc` MODIFY COLUMN `comment` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL AFTER `sql_mode`;  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/linux/nfsjian_1/" rel="bookmark">NFS配置</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents
+NFS配置 ####一、 系统环境
+系统平台：CentOS 6.5 NFS Server IP：192.168.137.101 防火墙已关闭/iptables: Firewall is not running.  ####二、 安装NFS服务
+ 查看系统是否已安装NFS(系统默认安装)  bash [root@c1 tmp]# rpm -qa|grep nfs nfs-utils-lib-1.1.5-6.el6.i686 nfs4-acl-tools-0.3.3-6.el6.i686 nfs-utils-1.2.3-39.el6.i686    ####三、 NFS服务器的配置
+NFS服务器的配置相对比较简单，只需要在相应的配置文件中进行设置，然后启动NFS服务器即可。
+NFS的常用目录
+/etc/exports NFS服务的主要配置文件 /usr/sbin/exportfs NFS服务的管理命令 /usr/sbin/showmount 客户端的查看命令 /var/lib/nfs/etab 记录NFS分享出来的目录的完整权限设定值 /var/lib/nfs/xtab 记录曾经登录过的客户端信息  NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。
+/etc/exports文件内容格式：
+&lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]  a. 输出目录：
+输出目录是指NFS系统中需要共享给客户机使用的目录；  b. 客户端：
+客户端是指网络中可以访问这个NFS输出目录的计算机
+客户端常用的指定方式
+指定ip地址的主机：192.168.0.200 指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0 指定域名的主机：david.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="http://dishui.oschina.io/note-hugo/post/linux/nagios/" rel="bookmark">Nagios</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -227,69 +301,6 @@ nginx 平台为：rhel 6.4/CentOS-6.5 32bit
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
 						MVC_xml springmvc.xml &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd &quot;&gt; &lt;!-- 配置式开发开始=========================================== --&gt; &lt;!-- 处理器 映射器 &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt; --&gt; &lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt; &lt;!-- 集中管理Url --&gt; &lt;property name=&quot;mappings&quot;&gt; &lt;props&gt; &lt;prop key=&quot;/items1.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items2.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items3.action &quot;&gt;items1Controller&lt;/prop&gt; &lt;/props&gt; &lt;/property&gt; &lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现Controller接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现HttpRequestHandler接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 视图解释器 jspViewResolver 默认支持 jstl --&gt; &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt; &lt;!
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/vagrant/" rel="bookmark">Vagrant常用命令</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Vagrant常用命令  添加box bash #到vagrant所在目录 cd D:\vagrant\CentOS # vagrant box add ubuntu-14.04 trusty-server-cloudimg-amd64-vagrant-disk1.box  初始化 cmd #打开目录 cd D:\vagrant\work #如果你添加的box名称不是base，那么需要在初始化的时候指定名称，例如 vagrant init ubuntu14.04  启动虚拟机  vagrant up  ssh到虚拟机  vagrant ssh  重启虚拟机（重新载入配置文件）  vagrant reload  打包分发  vagrant package   Vagrantfile  配置文件 ruby Vagrant.configure(2) do |config| config.vm.define &quot;u1&quot; do |u1| u1.vm.box = &quot;ubuntu-14.04-1&quot; u1.vm.hostname = &quot;u1&quot; u1.vm.network &quot;private_network&quot;, ip: &quot;192.168.137.11&quot; end config.vm.define &quot;u2&quot; do |u2| u2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/alpine/" rel="bookmark">alpine</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. gollum 安装2. 安装软件2.1. 安装 PlantUML1. gollum 安装安装ruby
-sudo apk --update add ruby ruby-nokogiri ruby-rdoc build-base ruby-dev icu-dev zlib-dev git安装gollum
-sudo gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/sudo gem install gollum github-markdown asciidoctor pygments.rb --no-ri --no-rdoc局域网访问慢
-sudo vi /usr/lib/ruby/2.2.0/webrick/config.rb#第 36 行：:DoNotReverseLookup =&gt; nil,:DoNotReverseLookup =&gt; true开机自启动(Adding a custom service to rc-service)
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/awk/" rel="bookmark">awk</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. AWK1.1. 去除重复行1.2. ps 查询进程1. AWK1.1. 去除重复行awk '!a[$0]++' test-ins-2.txtcat arg.txt | awk -F '.' '{if($NF ~ "java"){print $0}}' | xargs -I t dirname t | awk '!a[$0]++' | xargs -I s ls s | awk '{print $1}' | awk -F'.' '{if($1 ~ /\$/){print $1}}'1.2. ps 查询进程ps -ef|grep varnish | awk '{if($1 ~ "
 					</div>
 				</div>
 			</div>

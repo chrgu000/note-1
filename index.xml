@@ -6,8 +6,1114 @@
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 26 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://dishui.oschina.io/note-hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kafka集群安装部署、Kafka生产者、Kafka消费者</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/kafka/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/kafka/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;kafka&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka是什么&#34;&gt;Kafka是什么&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_jms是什么&#34;&gt;JMS是什么&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jms的基础&#34;&gt;1. JMS的基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_jms消息传输模型&#34;&gt;2. JMS消息传输模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_jms核心组件&#34;&gt;3. JMS核心组件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_常见的类jms消息服务器&#34;&gt;4. 常见的类JMS消息服务器&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jms消息服务器_activemq&#34;&gt;4.1. JMS消息服务器 ActiveMQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_分布式消息中间件_metamorphosis&#34;&gt;4.2. 分布式消息中间件 Metamorphosis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_分布式消息中间件_rocketmq&#34;&gt;4.3. 分布式消息中间件 RocketMQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_其他mq&#34;&gt;4.4. 其他MQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_为什么需要消息队列_重要&#34;&gt;为什么需要消息队列（重要）&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_用户注册的一般流程&#34;&gt;1. 用户注册的一般流程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_用户注册的并行执行&#34;&gt;2. 用户注册的并行执行&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_用户注册的最终一致&#34;&gt;3. 用户注册的最终一致&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka核心组件&#34;&gt;Kafka核心组件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka集群部署&#34;&gt;Kafka集群部署&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_集群部署的基本流程&#34;&gt;1. 集群部署的基本流程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_集群部署的基础环境准备&#34;&gt;2. 集群部署的基础环境准备&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka集群部署_2&#34;&gt;3. Kafka集群部署&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_下载安装包&#34;&gt;3.1. 下载安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_解压安装包&#34;&gt;3.2. 解压安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_修改配置文件&#34;&gt;3.3. 修改配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_分发安装包&#34;&gt;3.4. 分发安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_再次修改配置文件_重要&#34;&gt;3.5. 再次修改配置文件（重要）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动集群&#34;&gt;3.6. 启动集群&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka生产者java_api&#34;&gt;Kafka生产者Java API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka消费者java_api&#34;&gt;Kafka消费者Java API&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_kafka是什么&#34; class=&#34;sect0&#34;&gt;Kafka是什么&lt;/h1&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。
+　　
+　　KAFKA + STORM +REDIS
+[disc]　
+* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。
+* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。
+* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。
+* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。
+* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_jms是什么&#34; class=&#34;sect0&#34;&gt;JMS是什么&lt;/h1&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jms的基础&#34;&gt;1. JMS的基础&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;    JMS是什么：JMS是Java提供的一套技术规范
+　　JMS干什么用：用来异构系统 集成通信，缓解系统瓶颈，提高系统的伸缩性增强系统用户体验，使得系统模块化和组件化变得可行并更加灵活
+　　通过什么方式：生产消费者模式（生产者、服务器、消费者）&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152744.png&#34; alt=&#34;2017 03 28 152744&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　jdk，kafka，activemq……&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jms消息传输模型&#34;&gt;2. JMS消息传输模型&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;点对点模式（一对一，消费者主动拉取数据，消息收到后消息清除）
+点对点模型通常是一个基于拉取或者轮询的消息传送模型，这种模型从队列中请求信息，而不是将消息推送到客户端。这个模型的特点是发送到队列的消息被一个且只有一个接收者接收处理，即使有多个消息监听者也是如此。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;发布/订阅模式（一对多，数据生产后，推送给所有订阅者）
+发布订阅模型则是一个基于推送的消息传送模型。发布订阅模型可以有多种不同的订阅者，临时订阅者只在主动监听主题时才接收消息，而持久订阅者则监听主题的所有消息，即时当前订阅者不可用，处于离线状态。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152816.png&#34; alt=&#34;2017 03 28 152816&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;queue.put（object）  数据生产
+queue.take(object)    数据消费&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_jms核心组件&#34;&gt;3. JMS核心组件&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Destination：消息发送的目的地，也就是前面说的Queue和Topic。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Message [m1]：从字面上就可以看出是被发送的消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Producer： 消息的生产者，要发送一个消息，必须通过这个生产者来发送。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MessageConsumer： 与生产者相对应，这是消息的消费者或接收者，通过它来接收一个消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152836.png&#34; alt=&#34;2017 03 28 152836&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;通过与ConnectionFactory可以获得一个connection
+通过connection可以获得一个session会话。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_常见的类jms消息服务器&#34;&gt;4. 常见的类JMS消息服务器&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_jms消息服务器_activemq&#34;&gt;4.1. JMS消息服务器 ActiveMQ&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的。
+　　主要特点：&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby, Perl, Python, PHP。应用协议: OpenWire,Stomp REST,WS Notification,XMPP,AMQP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;完全支持JMS1.1和J2EE 1.4规范 (持久化,XA消息,事务)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对Spring的支持,ActiveMQ可以很容易内嵌到使用Spring的系统里面去,而且也支持Spring2.0的特性&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过了常见J2EE服务器(如 Geronimo,JBoss 4, GlassFish,WebLogic)的测试,其中通过JCA 1.5 resource adaptors的配置,可以让ActiveMQ可以自动的部署到任何兼容J2EE 1.4 商业服务器上&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持多种传送协议:in-VM,TCP,SSL,NIO,UDP,JGroups,JXTA&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持通过JDBC和journal提供高速的消息持久化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;从设计上保证了高性能的集群,客户端-服务器,点对点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持Ajax&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持与Axis的整合&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以很容易得调用内嵌JMS provider,进行测试&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_分布式消息中间件_metamorphosis&#34;&gt;4.2. 分布式消息中间件 Metamorphosis&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　Metamorphosis (MetaQ) 是一个高性能、高可用、可扩展的分布式消息中间件，类似于LinkedIn的Kafka，具有消息存储顺序写、吞吐量大和支持本地和XA事务等特性，适用于大吞吐量、顺序消息、广播和日志数据传输等场景，在淘宝和支付宝有着广泛的应用，现已开源。
+　　主要特点：&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;生产者、服务器和消费者都可分布&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消息存储顺序写&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;性能极高,吞吐量大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持消息顺序&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持本地和XA事务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端pull，随机读,利用sendfile系统调用，zero-copy ,批量拉数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持消费端事务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持消息广播模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持异步发送消息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持http协议&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持消息重试和recover&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据迁移、扩容对用户透明&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消费状态保存在客户端&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持同步和异步复制两种HA&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持group commit&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_分布式消息中间件_rocketmq&#34;&gt;4.3. 分布式消息中间件 RocketMQ&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　RocketMQ 是一款分布式、队列模型的消息中间件，具有以下特点：
+* 能够保证严格的消息顺序
+* 提供丰富的消息拉取模式
+* 高效的订阅者水平扩展能力
+* 实时的消息订阅机制
+* 亿级消息堆积能力
+* Metaq3.0 版本改名，产品名称改为RocketMQ&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_其他mq&#34;&gt;4.4. 其他MQ&lt;/h3&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;.NET消息中间件 DotNetMQ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于HBase的消息队列 HQueue&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go 的 MQ 框架 KiteQ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AMQP消息服务器 RabbitMQ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MemcacheQ 是一个基于 MemcacheDB 的消息队列服务器。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_为什么需要消息队列_重要&#34; class=&#34;sect0&#34;&gt;为什么需要消息队列（重要）&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;消息系统的核心作用就是三点：解耦，异步和并行
+以用户注册的案列来说明消息系统的作用&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_用户注册的一般流程&#34;&gt;1. 用户注册的一般流程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152848.png&#34; alt=&#34;2017 03 28 152848&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;问题：随着后端流程越来越多，每步流程都需要额外的耗费很多时间，从而会导致用户更长的等待延迟。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_用户注册的并行执行&#34;&gt;2. 用户注册的并行执行&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152855.png&#34; alt=&#34;2017 03 28 152855&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;问题：系统并行的发起了4个请求，4个请求中，如果某一个环节执行1分钟，其他环节再快，用户也需要等待1分钟。如果其中一个环节异常之后，整个服务挂掉了。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152902.png&#34; alt=&#34;2017 03 28 152902&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_用户注册的最终一致&#34;&gt;3. 用户注册的最终一致&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152910.png&#34; alt=&#34;2017 03 28 152910&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1、 保证主流程的正常执行、执行成功之后，发送MQ消息出去。
+2、 需要这个destination的其他系统通过消费数据再执行，最终一致。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152916.png&#34; alt=&#34;2017 03 28 152916&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_kafka核心组件&#34; class=&#34;sect0&#34;&gt;Kafka核心组件&lt;/h1&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Topic ：消息根据Topic进行归类&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Producer：发送消息者&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Consumer：消息接受者&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;broker：每个kafka实例(server)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Zookeeper：依赖集群保存meta信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152924.png&#34; alt=&#34;2017 03 28 152924&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;_kafka集群部署&#34; class=&#34;sect0&#34;&gt;Kafka集群部署&lt;/h1&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_集群部署的基本流程&#34;&gt;1. 集群部署的基本流程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　下载安装包、解压安装包、修改配置文件、分发安装包、启动集群&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_集群部署的基础环境准备&#34;&gt;2. 集群部署的基础环境准备&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　安装前的准备工作（zk集群已经部署完毕）&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;关闭防火墙
+　　chkconfig iptables off  &amp;amp;&amp;amp; setenforce 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建用户
+　　groupadd realtime &amp;amp;&amp;amp;　useradd realtime　&amp;amp;&amp;amp; usermod -a -G realtime realtime&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建工作目录并赋权
+　　mkdir /export
+　　mkdir /export/servers
+　　chmod 755 -R /export&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;切换到realtime用户下
+　　su realtime&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kafka集群部署_2&#34;&gt;3. Kafka集群部署&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_下载安装包&#34;&gt;3.1. 下载安装包&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　http://kafka.apache.org/downloads.html
+　　在linux中使用wget命令下载安装包
+    wget http://mirrors.hust.edu.cn/apache/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_解压安装包&#34;&gt;3.2. 解压安装包&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　tar -zxvf /export/software/kafka_2.11-0.8.2.2.tgz -C /export/servers/
+　　cd /export/servers/
+　　ln -s kafka_2.11-0.8.2.2 kafka&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_修改配置文件&#34;&gt;3.3. 修改配置文件&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cp   /export/servers/kafka/config/server.properties
+　　/export/servers/kafka/config/server.properties.bak
+　　vi /export/servers/kafka/config/server.properties
+　　输入以下内容：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152939.png&#34; alt=&#34;2017 03 28 152939&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_分发安装包&#34;&gt;3.4. 分发安装包&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　scp -r /export/servers/kafka_2.11-0.8.2.2 kafka02:/export/servers
+　　然后分别在各机器上创建软连
+　　cd /export/servers/
+　　ln -s kafka_2.11-0.8.2.2 kafka&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_再次修改配置文件_重要&#34;&gt;3.5. 再次修改配置文件（重要）&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　依次修改各服务器上配置文件的的broker.id，分别是0,1,2不得重复。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_启动集群&#34;&gt;3.6. 启动集群&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　依次在各节点上启动kafka
+　　bin/kafka-server-start.sh config/server.properties
+　　
+== Kafka常用操作命令&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看当前服务器中的所有topic
+　　bin/kafka-topics.sh --list --zookeeper zk01:2181&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建topic
+　　./kafka-topics.sh --create --zookeeper mini1:2181 --replication-factor 1 --partitions 3 --topic first&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除topic
+　　sh bin/kafka-topics.sh --delete --zookeeper zk01:2181 --topic test
+需要server.properties中设置delete.topic.enable=true否则只是标记删除或者直接重启。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过shell命令发送消息
+　　kafka-console-producer.sh --broker-list kafka01:9092 --topic itheima&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过shell消费消息
+　　sh bin/kafka-console-consumer.sh --zookeeper zk01:2181 --from-beginning --topic test1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看消费位置
+　　sh kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper zk01:2181 --group testGroup&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看某个Topic的详情
+　　sh kafka-topics.sh --topic test --describe --zookeeper zk01:2181&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_kafka生产者java_api&#34; class=&#34;sect0&#34;&gt;Kafka生产者Java API&lt;/h1&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152953.png&#34; alt=&#34;2017 03 28 152953&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;_kafka消费者java_api&#34; class=&#34;sect0&#34;&gt;Kafka消费者Java API&lt;/h1&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_153002.png&#34; alt=&#34;2017 03 28 153002&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　
+　　StreamMessage：Java 数据流消息，用标准流操作来顺序的填充和读取。
+　　MapMessage：一个Map类型的消息；名称为 string 类型，而值为 Java 的基本类型。
+　　TextMessage：普通字符串消息，包含一个String。
+　　ObjectMessage：对象消息，包含一个可序列化的Java 对象
+　　BytesMessage：二进制数组消息，包含一个byte[]。
+　　XMLMessage:  一个XML类型的消息。
+最常用的是TextMessage和ObjectMessage。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Storm目录树、任务提交、消息容错</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Storm&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm程序的并发机制&#34;&gt;1. Storm程序的并发机制&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_概念&#34;&gt;1.1. 概念&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置并行度&#34;&gt;1.2. 配置并行度&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm通信机制&#34;&gt;2. Storm通信机制&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_worker进程间通信&#34;&gt;3. Worker进程间通信&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_worker进程间通信分析&#34;&gt;4. Worker进程间通信分析&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_worker进程间技术_netty_zeromq&#34;&gt;5. Worker进程间技术(Netty、ZeroMQ)&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_netty&#34;&gt;5.1. Netty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_zeromq&#34;&gt;5.2. ZeroMQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_worker_内部通信技术_disruptor&#34;&gt;6. Worker 内部通信技术(Disruptor)&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_disruptor的来历&#34;&gt;6.1. Disruptor的来历&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_disruptor是什么&#34;&gt;6.2. Disruptor是什么&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_disruptor主要特点&#34;&gt;6.3. Disruptor主要特点&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm组件本地目录树&#34;&gt;7. Storm组件本地目录树&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm_zookeeper目录树&#34;&gt;8. Storm zookeeper目录树&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm_任务提交的过程&#34;&gt;9. Storm 任务提交的过程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm_消息容错机制&#34;&gt;10. Storm 消息容错机制&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_总体介绍&#34;&gt;10.1. 总体介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_基本实现&#34;&gt;10.2. 基本实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_可靠性配置&#34;&gt;10.3. 可靠性配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm程序的并发机制&#34;&gt;1. Storm程序的并发机制&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_概念&#34;&gt;1.1. 概念&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Workers (JVMs)&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology?&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Executors (threads)&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。?&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Tasks(bolt/spout instances&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Task就是具体的处理逻辑对象，每一个Spout和Bolt会被当作很多task在整个集群里面执行。每一个task对应到一个线程，而stream grouping则是定义怎么从一堆task发射tuple到另外一堆task。你可以调用TopologyBuilder.setSpout和TopBuilder.setBolt来设置并行度 — 也就是有多少个task。?&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置并行度&#34;&gt;1.2. 配置并行度&lt;/h3&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于并发度的配置, 在storm里面可以在多个地方进行配置, 优先级为：&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;　　defaults.yaml &amp;lt; storm.yaml &amp;lt; topology-specific configuration
+　　&amp;lt; internal component-specific configuration &amp;lt; external component-specific configuration?&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;worker processes的数目, 可以通过配置文件和代码中配置, worker就是执行进程, 所以考虑并发的效果, 数目至少应该大亍machines的数目?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;executor的数目, component的并发线程数，只能在代码中配置(通过setBolt和setSpout的参数), 例如, setBolt(&#34;green-bolt&#34;, new GreenBolt(), 2)?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;tasks的数目, 可以不配置, 默认和executor1:1, 也可以通过setNumTasks()配置?&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;Topology的worker数通过config设置，即执行该topology的worker（java）进程数。它可以通过 storm rebalance 命令任意调整。?
+Config conf =?newConfig();
+conf.setNumWorkers(2);//用2个worker
+topologyBuilder.setSpout(&#34;blue-spout&#34;,newBlueSpout(),2);//设置2个并发度
+topologyBuilder.setBolt(&#34;green-bolt&#34;,newGreenBolt(),2).setNumTasks(4).shuffleGrouping(&#34;blue-spout&#34;);//设置2个并发度，4个任务
+topologyBuilder.setBolt(&#34;yellow-bolt&#34;,newYellowBolt(),6).shuffleGrouping(&#34;green-bolt&#34;);//设置6个并发度
+StormSubmitter.submitTopology(&#34;mytopology&#34;, conf, topologyBuilder.createTopology());&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163004.png&#34; alt=&#34;2017 03 28 163004&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;3个组件的并发度加起来是10，就是说拓扑一共有10个executor，一共有2个worker，每个worker产生10 / 2 = 5条线程。
+绿色的bolt配置成2个executor和4个task。为此每个executor为这个bolt运行2个task。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;动态的改变并行度
+　　Storm支持在不 restart topology 的情况下, 动态的改变(增减) worker processes 的数目和 executors 的数目, 称为rebalancing. 通过Storm web UI，或者通过storm rebalance命令实现：?
+storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm通信机制&#34;&gt;2. Storm通信机制&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Worker间的通信经常需要通过网络跨节点进行，Storm使用ZeroMQ或Netty(0.9以后默认使用)作为进程间通信的消息框架。
+Worker进程内部通信：不同worker的thread通信使用LMAX Disruptor来完成。
+不同topologey之间的通信，Storm不负责，需要自己想办法实现，例如使用kafka等；&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_worker进程间通信&#34;&gt;3. Worker进程间通信&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　worker进程间消息传递机制，消息的接收和处理的大概流程见下图&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163014.png&#34; alt=&#34;2017 03 28 163014&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于worker进程来说，为了管理流入和传出的消息，每个worker进程有一个独立的接收线程[m1](对配置的TCP端口supervisor.slots.ports进行监听);
+对应Worker接收线程，每个worker存在一个独立的发送线程[m2]，它负责从worker的transfer-queue[m3]中读取消息，并通过网络发送给其他worker&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个executor有自己的incoming-queue[m4]和outgoing-queue[m5]。
+Worker接收线程将收到的消息通过task编号传递给对应的executor(一个或多个)的incoming-queues;
+每个executor有单独的线程分别来处理spout/bolt的业务逻辑，业务逻辑输出的中间数据会存放在outgoing-queue中，当executor的outgoing-queue中的tuple达到一定的阀值，executor的发送线程将批量获取outgoing-queue中的tuple,并发送到transfer-queue中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个worker进程控制一个或多个executor线程，用户可在代码中进行配置。其实就是我们在代码中设置的并发度个数。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_worker进程间通信分析&#34;&gt;4. Worker进程间通信分析&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163023.png&#34; alt=&#34;2017 03 28 163023&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1、 Worker接受线程通过网络接受数据，并根据Tuple中包含的taskId，匹配到对应的executor；然后根据executor找到对应的incoming-queue，将数据存发送到incoming-queue队列中。
+2、 业务逻辑执行现成消费incoming-queue的数据，通过调用Bolt的execute(xxxx)方法，将Tuple作为参数传输给用户自定义的方法
+3、 业务逻辑执行完毕之后，将计算的中间数据发送给outgoing-queue队列，当outgoing-queue中的tuple达到一定的阀值，executor的发送线程将批量获取outgoing-queue中的tuple,并发送到Worker的transfer-queue中
+4、 Worker发送线程消费transfer-queue中数据，计算Tuple的目的地，连接不同的node+port将数据通过网络传输的方式传送给另一个的Worker。
+5、 另一个worker执行以上步骤1的操作。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_worker进程间技术_netty_zeromq&#34;&gt;5. Worker进程间技术(Netty、ZeroMQ)&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_netty&#34;&gt;5.1. Netty&lt;/h3&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　Netty是一个NIO client-server(客户端服务器)框架，使用Netty可以快速开发网络应用，例如服务器和客户端协议。Netty提供了一种新的方式来使开发网络应用程序，这种新的方式使得它很容易使用和有很强的扩展性。Netty的内部实现时很复杂的，但是Netty提供了简单易用的api从网络处理代码中解耦业务逻辑。Netty是完全基于NIO实现的，所以整个Netty都是异步的。
+　　书籍：Netty权威指南&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_zeromq&#34;&gt;5.2. ZeroMQ&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ZeroMQ是一种基于消息队列的多线程网络库，其对套接字类型、连接处理、帧、甚至路由的底层细节进行抽象，提供跨越多种传输协议的套接字。ZeroMQ是网络通信中新的一层，介于应用层和传输层之间（按照TCP/IP划分），其是一个可伸缩层，可并行运行，分散在分布式系统间。
+ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socket library，他使得Socket编程更加简单、简洁和性能更高。是一个消息处理队列库，可在多个线程、内核和主机盒之间弹性伸缩。ZMQ的明确目标是“成为标准网络协议栈的一部分，之后进入Linux内核”。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_worker_内部通信技术_disruptor&#34;&gt;6. Worker 内部通信技术(Disruptor)&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_disruptor的来历&#34;&gt;6.1. Disruptor的来历&lt;/h3&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一个公司的业务与技术的关系，一般可以分为三个阶段。第一个阶段就是跟着业务跑。第二个阶段是经历了几年的时间，才达到的驱动业务阶段。第三个阶段，技术引领业务的发展乃至企业的发展。所以我们在学习Disruptor这个技术时，不得不提LMAX这个机构，因为Disruptor这门技术就是由LMAX公司开发并开源的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LMAX是在英国注册并受到FSA监管（监管号码为509778）的外汇黄金交易所。LMAX也是欧洲第一家也是唯一一家采用多边交易设施Multilateral Trading Facility（MTF）拥有交易所牌照和经纪商牌照的欧洲顶级金融公司&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LAMX拥有最迅捷的交易平台，顶级技术支持。LMAX交易所使用“（MTF）分裂器Disruptor”技术，可以在极短时间内（一般在3百万秒之一内）处理订单，在一个线程里每秒处理6百万订单。所有订单均为撮合成交形式，无一例外。多边交易设施（MTF）曾经用来设计伦敦证券交易 所（london Stock Exchange）、德国证券及衍生工具交易所（Deutsche Borse）和欧洲证券交易所（Euronext）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2011年LMAX凭借该技术获得了金融行业技术评选大赛的最佳交易系统奖和甲骨文“公爵杯”创新编程框架奖。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_disruptor是什么&#34;&gt;6.2. Disruptor是什么&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1、 简单理解：Disruptor是一个Queue。Disruptor是实现了“队列”的功能，而且是一个有界队列。而队列的应用场景自然就是“生产者-消费者”模型。
+2、 在JDK中Queue有很多实现类，包括不限于ArrayBlockingQueue、LinkBlockingQueue，这两个底层的数据结构分别是数组和链表。数组查询快，链表增删快，能够适应大多数应用场景。
+3、 但是ArrayBlockingQueue、LinkBlockingQueue都是线程安全的。涉及到线程安全，就会有synchronized、lock等关键字，这就意味着CPU会打架。
+4、 Disruptor一种线程之间信息无锁的交换方式（使用CAS（Compare And Swap/Set）操作）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_disruptor主要特点&#34;&gt;6.3. Disruptor主要特点&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1、 没有竞争=没有锁=非常快。
+2、 所有访问者都记录自己的序号的实现方式，允许多个生产者与多个消费者共享相同的数据结构。
+3、 在每个对象中都能跟踪序列号（ring buffer，claim Strategy，生产者和消费者），加上神奇的cache line padding，就意味着没有为伪共享和非预期的竞争。
+2.4.2、 Disruptor 核心技术点
+　　Disruptor可以看成一个事件监听或消息机制，在队列中一边生产者放入消息，另外一边消费者并行取出处理.
+　　底层是单个数据结构：一个ring buffer。
+　　每个生产者和消费者都有一个次序计算器，以显示当前缓冲工作方式。
+　　每个生产者消费者能够操作自己的次序计数器的能够读取对方的计数器，生产者能够读取消费者的计算器确保其在没有锁的情况下是可写的。
+　　
+　　核心组件
+* Ring Buffer 环形的缓冲区，负责对通过 Disruptor 进行交换的数据（事件）进行存储和更新。
+* Sequence 通过顺序递增的序号来编号管理通过其进行交换的数据（事件），对数据(事件)的处理过程总是沿着序号逐个递增处理。
+* RingBuffer底层是个数组，次序计算器是一个64bit long 整数型，平滑增长。
+　　&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163035.png&#34; alt=&#34;2017 03 28 163035&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1、 接受数据并写入到脚标31的位置，之后会沿着序号一直写入，但是不会绕过消费者所在的脚标。
+2、 Joumaler和replicator同时读到24的位置，他们可以批量读取数据到30
+3、消费逻辑线程读到了14的位置，但是没法继续读下去，因为他的sequence暂停在15的位置上，需要等到他的sequence给他序号。如果sequence能正常工作，就能读取到30的数据。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm组件本地目录树&#34;&gt;7. Storm组件本地目录树&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163042.png&#34; alt=&#34;2017 03 28 163042&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm_zookeeper目录树&#34;&gt;8. Storm zookeeper目录树&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163050.png&#34; alt=&#34;2017 03 28 163050&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm_任务提交的过程&#34;&gt;9. Storm 任务提交的过程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163058.png&#34; alt=&#34;2017 03 28 163058&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;TopologyMetricsRunnable.TaskStartEvent[oldAssignment=&amp;lt;null&amp;gt;,newAssignment=Assignment[masterCodeDir=C:\Users\MAOXIA~1\AppData\Local\Temp\\e73862a8-f7e7-41f3-883d-af494618bc9f\nimbus\stormdist\double11-1-1458909887,nodeHost={61ce10a7-1e78-4c47-9fb3-c21f43a331ba=192.168.1.106},taskStartTimeSecs={1=1458909910, 2=1458909910, 3=1458909910, 4=1458909910, 5=1458909910, 6=1458909910, 7=1458909910, 8=1458909910},workers=[ResourceWorkerSlot[hostname=192.168.1.106,memSize=0,cpu=0,tasks=[1, 2, 3, 4, 5, 6, 7, 8],jvm=&amp;lt;null&amp;gt;,nodeId=61ce10a7-1e78-4c47-9fb3-c21f43a331ba,port=6900]],timeStamp=1458909910633,type=Assign],task2Component=&amp;lt;null&amp;gt;,clusterName=&amp;lt;null&amp;gt;,topologyId=double11-1-1458909887,timestamp=0]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163734.png&#34; alt=&#34;2017 03 28 163734&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm_消息容错机制&#34;&gt;10. Storm 消息容错机制&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_总体介绍&#34;&gt;10.1. 总体介绍&lt;/h3&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在storm中，可靠的信息处理机制是从spout开始的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一个提供了可靠的处理机制的spout需要记录他发射出去的tuple，当下游bolt处理tuple或者子tuple失败时spout能够重新发射。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Storm通过调用Spout的nextTuple()发送一个tuple。为实现可靠的消息处理，首先要给每个发出的tuple带上唯一的ID，并且将ID作为参数传递给SoputOutputCollector的emit()方法：collector.emit(new Values(&#34;value1&#34;,&#34;value2&#34;), msgId); messageid就是用来标示唯一的tupke的，而rootid是随机生成的
+给每个tuple指定ID告诉Storm系统，无论处理成功还是失败，spout都要接收tuple树上所有节点返回的通知。如果处理成功，spout的ack()方法将会对编号是msgId的消息应答确认；如果处理失败或者超时，会调用fail()方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_基本实现&#34;&gt;10.2. 基本实现&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Storm 系统中有一组叫做&#34;acker&#34;的特殊的任务，它们负责跟踪DAG（有向无环图）中的每个消息。
+acker任务保存了spout id到一对值的映射。第一个值就是spout的任务id，通过这个id，acker就知道消息处理完成时该通知哪个spout任务。第二个值是一个64bit的数字，我们称之为&#34;ack val&#34;， 它是树中所有消息的随机id的异或计算结果。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ack val表示了整棵树的的状态，无论这棵树多大，只需要这个固定大小的数字就可以跟踪整棵树。当消息被创建和被应答的时候都会有相同的消息id发送过来做异或。?每当acker发现一棵树的ack val值为0的时候，它就知道这棵树已经被完全处理了&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163743.png&#34; alt=&#34;2017 03 28 163743&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163751.png&#34; alt=&#34;2017 03 28 163751&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163757.png&#34; alt=&#34;2017 03 28 163757&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163804.png&#34; alt=&#34;2017 03 28 163804&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163811.png&#34; alt=&#34;2017 03 28 163811&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_可靠性配置&#34;&gt;10.3. 可靠性配置&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;有三种方法可以去掉消息的可靠性：
+将参数Config.TOPOLOGY_ACKERS设置为0，通过此方法，当Spout发送一个消息的时候，它的ack方法将立刻被调用；
+Spout发送一个消息时，不指定此消息的messageID。当需要关闭特定消息可靠性的时候，可以使用此方法；
+最后，如果你不在意某个消息派生出来的子孙消息的可靠性，则此消息派生出来的子消息在发送时不要做锚定，即在emit方法中不指定输入消息。因为这些子孙消息没有被锚定在任何tuple tree中，因此他们的失败不会引起任何spout重新发送消息。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;一个worker进程运行一个专用的接收线程来负责将外部发送过来的消息移动到对应的executor线程的incoming-queue中
+transfer-queue的大小由参数topology.transfer.buffer.size来设置。transfer-queue的每个元素实际上代表一个tuple的集合
+transfer-queue的大小由参数topology.transfer.buffer.size来设置。
+executor的incoming-queue的大小用户可以自定义配置。
+executor的outgoing-queue的大小用户可以自定义配置&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>storm集群部署,单词计数,Stream Grouping.adoc</title>
+      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</link>
+      <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1、  集群部署的基本流程
+集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群
+注意：
+    所有的集群上都需要配置hosts
+    vi  /etc/hosts
+    192.168.239.128 storm01 zk01 hadoop01
+      192.168.239.129 storm02 zk02 hadoop02
+    192.168.239.130 storm03 zk03 hadoop03&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;2、  集群部署的基础环境准备
+安装前的准备工作（zk集群已经部署完毕）
+   关闭防火墙
+chkconfig iptables off  &amp;amp;&amp;amp; setenforce 0
+   创建用户
+groupadd realtime &amp;amp;&amp;amp;　useradd realtime　&amp;amp;&amp;amp; usermod -a -G realtime realtime
+   创建工作目录并赋权
+mkdir /export
+mkdir /export/servers
+chmod 755 -R /export
+   切换到realtime用户下
+su realtime
+3、Storm集群部署
+3.1、下载安装包
+    wget    &lt;a href=&#34;http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz&#34; class=&#34;bare&#34;&gt;http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;3.2、解压安装包
+tar -zxvf apache-storm-0.9.5.tar.gz -C /export/servers/
+cd /export/servers/
+ln -s apache-storm-0.9.5 storm
+3.3、修改配置文件
+    mv /export/servers/storm/conf/storm.yaml /export/servers/storm/conf/storm.yaml.bak
+vi /export/servers/storm/conf/storm.yaml
+输入以下内容：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-01.png&#34; alt=&#34;2017 03 28 01&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;3.4、分发安装包
+scp -r /export/servers/apache-storm-0.9.5 storm02:/export/servers
+然后分别在各机器上创建软连接
+cd /export/servers/
+ln -s apache-storm-0.9.5 storm
+3.5、启动集群
+   在nimbus.host所属的机器上启动 nimbus服务
+cd /export/servers/storm/bin/
+nohup ./storm nimbus &amp;amp;
+   在nimbus.host所属的机器上启动ui服务
+cd /export/servers/storm/bin/
+nohup ./storm ui &amp;amp;
+   在其它个点击上启动supervisor服务
+cd /export/servers/storm/bin/
+nohup ./storm supervisor &amp;amp;
+3.6、查看集群
+访问nimbus.host:/8080，即可看到storm的ui界面。
+image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-02.png[]
+---
+4、Storm常用操作命令
+有许多简单且有用的命令可以用来管理拓扑，它们可以提交、杀死、禁用、再平衡拓扑。
+   提交任务命令格式：storm jar 【jar路径】 【拓扑包名.拓扑类名】 【拓扑名称】
+bin/storm jar examples/storm-starter/storm-starter-topologies-0.9.6.jar storm.starter.WordCountTopology wordcount
+   杀死任务命令格式：storm kill 【拓扑名称】 -w 10（执行kill命令时可以通过-w [等待秒数]指定拓扑停用以后的等待时间）
+storm kill topology-name -w 10
+   停用任务命令格式：storm deactivte  【拓扑名称】
+storm deactivte topology-name
+我们能够挂起或停用运行中的拓扑。当停用拓扑时，所有已分发的元组都会得到处理，但是spouts的nextTuple方法不会被调用。销毁一个拓扑，可以使用kill命令。它会以一种安全的方式销毁一个拓扑，首先停用拓扑，在等待拓扑消息的时间段内允许拓扑完成当前的数据流。
+   启用任务命令格式：storm activate【拓扑名称】
+        storm activate topology-name
+   重新部署任务命令格式：storm rebalance  【拓扑名称】
+        storm rebalance topology-name
+        再平衡使你重分配集群任务。这是个很强大的命令。比如，你向一个运行中的集群增加了节点。再平衡命令将会停用拓扑，然后在相应超时时间之后重分配工人，并重启拓扑。
+5、Storm集群的进程及日志熟悉
+5.1、部署成功之后，启动storm集群。
+    依次启动集群的各种角色
+5.2、查看nimbus的日志信息
+在nimbus的服务器上
+cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/nimbus.log
+5.3、查看ui运行日志信息
+在ui的服务器上，一般和nimbus一个服务器
+cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/ui.log
+5.4、查看supervisor运行日志信息
+在supervisor服务上
+cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/supervisor.log
+5.5、查看supervisor上worker运行日志信息
+在supervisor服务上
+cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/worker-6702.log
+image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-03.png[]
+---
+(该worker正在运行wordcount程序)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;6、Storm源码下载及目录熟悉
+6.1、在Storm官方网站上寻找源码地址
+    &lt;a href=&#34;http://storm.apache.org/downloads.html&#34; class=&#34;bare&#34;&gt;http://storm.apache.org/downloads.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;6.2、点击文字标签进入github
+点击Apache/storm文字标签，进入github
+      &lt;a href=&#34;https://github.com/apache/storm&#34; class=&#34;bare&#34;&gt;https://github.com/apache/storm&lt;/a&gt;
+6.3、拷贝storm源码地址
+在网页右侧，拷贝storm源码地址&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;6.4、使用Subversion客户端下载&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/apache/storm/tags/v0.9.5&#34; class=&#34;bare&#34;&gt;https://github.com/apache/storm/tags/v0.9.5&lt;/a&gt;
+6.5、Storm源码目录分析（重要）&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;扩展包中的三个项目，使storm能与hbase、hdfs、kafka交互&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;7、Storm单词技术案例（重点掌握）
+7.1、功能说明
+设计一个topology，来实现对文档里面的单词出现的频率进行统计。
+整个topology分为三个部分：
+   RandomSentenceSpout：数据源，在已知的英文句子中，随机发送一条句子出去。
+   SplitSentenceBolt：负责将单行文本记录（句子）切分成单词
+   WordCountBolt：负责对单词的频率进行累加
+7.2、项目主要流程
+image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-04.png[]
+---
+7.3、RandomSentenceSpout的实现及生命周期
+image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-05.png[]
+---
+7.4、SplitSentenceBolt的实现及生命周期
+image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-06.png[]
+---&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;7.5、WordCountBolt的实现及生命周期
+image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-07.png[]
+---
+7.6、Stream Grouping详解
+Storm里面有7种类型的stream grouping
+   Shuffle Grouping: 随机分组， 随机派发stream里面的tuple，保证每个bolt接收到的tuple数目大致相同。
+   Fields Grouping：按字段分组，比如按userid来分组，具有同样userid的tuple会被分到相同的Bolts里的一个task，而不同的userid则会被分配到不同的bolts里的task。
+   All Grouping：广播发送，对于每一个tuple，所有的bolts都会收到。
+   Global Grouping：全局分组， 这个tuple被分配到storm中的一个bolt的其中一个task。再具体一点就是分配给id值最低的那个task。
+   Non Grouping：不分组，这stream grouping个分组的意思是说stream不关心到底谁会收到它的tuple。目前这种分组和Shuffle grouping是一样的效果， 有一点不同的是storm会把这个bolt放到这个bolt的订阅者同一个线程里面去执行。
+   Direct Grouping： 直接分组， 这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个task处理这个消息。只有被声明为Direct Stream的消息流可以声明这种分组方法。而且这种消息tuple必须使用emitDirect方法来发射。消息处理者可以通过TopologyContext来获取处理它的消息的task的id （OutputCollector.emit方法也会返回task的id）。
+   Local or shuffle grouping：如果目标bolt有一个或者多个task在同一个工作进程中，tuple将会被随机发生给这些tasks。否则，和普通的Shuffle Grouping行为一致。&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>storm</title>
@@ -5129,423 +6235,6 @@ nodejs index_builder.js # 生成索引&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-03-06_090955.png&#34; alt=&#34;2017 03 06 090955&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>log</title>
-      <link>http://dishui.oschina.io/note-hugo/post/linux/log/</link>
-      <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/linux/log/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Log&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_elk&#34;&gt;1. ELK&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_rsyslog&#34;&gt;2. Rsyslog&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_supervisord发送log日志到rsyslog&#34;&gt;2.1. Supervisord发送log日志到Rsyslog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_logrotate_日志分割&#34;&gt;3. Logrotate 日志分割&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_dockerfile&#34;&gt;3.1. Dockerfile&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_脚本&#34;&gt;3.2. 脚本&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_配置文件&#34;&gt;3.3. 配置文件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_定时器&#34;&gt;3.4. 定时器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_elk&#34;&gt;1. ELK&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;下载&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;dlist&#34;&gt;
-&lt;dl&gt;
-&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
-&lt;dd&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/gaoyingju/article/details/23750563&#34;&gt;开源分布式搜索平台ELK(Elasticsearch+Logstash+Kibana)入门学习资源索引&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.linuxea.com/1204.html&#34;&gt;日志实时收集分析-ELK Stack&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_rsyslog&#34;&gt;2. Rsyslog&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_supervisord发送log日志到rsyslog&#34;&gt;2.1. Supervisord发送log日志到Rsyslog&lt;/h3&gt;
-&lt;div class=&#34;dlist&#34;&gt;
-&lt;dl&gt;
-&lt;dt class=&#34;hdlist1&#34;&gt;supervisor conf &lt;/dt&gt;
-&lt;dd&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;[eventlistener:logging]
-command = supervisor_logging
-events = PROCESS_LOG
-
-[program:wuliu]
-command=/apache-tomcat-7.0.62/bin/catalina.sh run
-user=root
-autostart=true
-stdout_events_enabled = true
-stderr_events_enabled = true&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/dd&gt;
-&lt;dt class=&#34;hdlist1&#34;&gt;rsyslog server &lt;/dt&gt;
-&lt;dd&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ModLoad imudp
-$UDPServerRun 514 #开启UDP
-
-$ModLoad imtcp
-$InputTCPServerRun 514 #开启TCP
-
-#$template TraditionalFormat,&#34;%programname% %syslogtag% %msg%\n&#34;
-#$template TraditionalFormat,&#34;%programname% %hostname% %msg%\n&#34;
-$template TraditionalFormat,&#34;%fromhost-ip% %msg%\n&#34;
-
-
-$ActionFileDefaultTemplate TraditionalFormat # 默认日志格式模板与client端发送的日志格式模板保持一致
-
-$template Remote, &#34;~/log/%fromhost-ip%.log&#34;
-
-:fromhost-ip, !isequal, &#34;127.0.0.1&#34; ?Remote
-
-#:syslogtag, isequal, &#34;wuliu-log&#34; ?Remote
-#:syslogtag, isequal, &#34;wuliu-error-log&#34; ?Remote-error&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/dd&gt;
-&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
-&lt;dd&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/hanyifeng/p/5463338.html&#34;&gt;Linux 之 rsyslog 系统日志转发&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.biglog.cn/tomcat-syslog/&#34;&gt;Tomcat日志配置远程Syslog采集&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_logrotate_日志分割&#34;&gt;3. Logrotate 日志分割&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;dlist&#34;&gt;
-&lt;dl&gt;
-&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
-&lt;dd&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.sina.com.cn/s/blog_5f54f0be0101h6y8.html&#34;&gt;Logrotate 日志分割&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_dockerfile&#34;&gt;3.1. Dockerfile&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;FROM blacklabelops/centos
-
-RUN yum install -y \
-    vi rsyslog &amp;amp;&amp;amp; \
-    yum install crontabs -y &amp;amp;&amp;amp; \
-    yum clean all &amp;amp;&amp;amp; rm -rf /var/cache/yum/* &amp;amp;&amp;amp; \
-    echo &#34;30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&#34; &amp;gt;&amp;gt; /var/spool/cron/root &amp;amp;&amp;amp; \
-    mkdir -p ~/log
-
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-COPY ./rsyslog.conf /etc/rsyslog.d/listen.conf
-COPY ./wuliu /etc/logrotate.d/wuliu
-
-EXPOSE 514
-ENTRYPOINT [&#34;/docker-entrypoint.sh&#34;]
-CMD [&#34;rsyslogd&#34;]&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_脚本&#34;&gt;3.2. 脚本&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash -x
-#
-# A helper script for ENTRYPOINT.
-
-set -e
-
-if [ &#34;$1&#34; = &#39;rsyslogd&#39; ]; then
-  crond
-  rsyslogd -n
-fi
-
-exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_配置文件&#34;&gt;3.3. 配置文件&lt;/h3&gt;
-&lt;div class=&#34;quoteblock&#34;&gt;
-&lt;blockquote&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;vi /etc/logrotate.d/wuliu&lt;/p&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;~/log/wuliu.log {
-  daily
-  rotate 5
-  sharedscripts
-  postrotate
-    /bin/kill -HUP `cat /var/run/syslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true
-    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true
-  endscript
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_定时器&#34;&gt;3.4. 定时器&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 每天晚上 10点30 执行一次
-30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>一阶线性微分方程</title>
-      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
-      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;一阶线性微分方程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_一阶线性微分方程&#34;&gt;1. 一阶线性微分方程&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_常数变易法&#34;&gt;1.1. 常数变易法&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_一阶线性方程的解的结构定理&#34;&gt;1.2. 一阶线性方程的解的结构定理&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_例子&#34;&gt;1.3. 例子&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_一阶微分方程总结&#34;&gt;1.4. 一阶微分方程总结&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_一阶线性微分方程&#34;&gt;1. 一阶线性微分方程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102207.png&#34; alt=&#34;2017 02 25 102207&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102339.png&#34; alt=&#34;2017 02 25 102339&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102423.png&#34; alt=&#34;2017 02 25 102423&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102520.png&#34; alt=&#34;2017 02 25 102520&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102548.png&#34; alt=&#34;2017 02 25 102548&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102652.png&#34; alt=&#34;2017 02 25 102652&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102724.png&#34; alt=&#34;2017 02 25 102724&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102820.png&#34; alt=&#34;2017 02 25 102820&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102844.png&#34; alt=&#34;2017 02 25 102844&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102900.png&#34; alt=&#34;2017 02 25 102900&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_常数变易法&#34;&gt;1.1. 常数变易法&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_102950.png&#34; alt=&#34;2017 02 25 102950&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_103054.png&#34; alt=&#34;2017 02 25 103054&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_一阶线性方程的解的结构定理&#34;&gt;1.2. 一阶线性方程的解的结构定理&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_103151.png&#34; alt=&#34;2017 02 25 103151&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_例子&#34;&gt;1.3. 例子&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_104309.png&#34; alt=&#34;2017 02 25 104309&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_104504.png&#34; alt=&#34;2017 02 25 104504&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_104537.png&#34; alt=&#34;2017 02 25 104537&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_110352.png&#34; alt=&#34;2017 02 25 110352&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_110431.png&#34; alt=&#34;2017 02 25 110431&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_110454.png&#34; alt=&#34;2017 02 25 110454&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_110556.png&#34; alt=&#34;2017 02 25 110556&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_110718.png&#34; alt=&#34;2017 02 25 110718&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_一阶微分方程总结&#34;&gt;1.4. 一阶微分方程总结&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-26_093702.png&#34; alt=&#34;2017 02 26 093702&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-26_093730.png&#34; alt=&#34;2017 02 26 093730&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>伯努利方程</title>
-      <link>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</link>
-      <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;伯努利方程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_伯努利方程&#34;&gt;1. 伯努利方程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_伯努利方程&#34;&gt;1. 伯努利方程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-25_175041.png&#34; alt=&#34;2017 02 25 175041&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;

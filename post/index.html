@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/" />
 
 
-<meta property="og:updated_time" content="2017-03-26T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-03-28T00:00:00&#43;00:00"/>
 
 
 
@@ -78,6 +78,69 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/bigdata/storm/kafka/" rel="bookmark">Kafka集群安装部署、Kafka生产者、Kafka消费者</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群Kafka生产者Java APIKafka消费者Java APIKafka是什么　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA + STORM +REDIS[disc]　* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性JMS是什么1.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" rel="bookmark">Storm目录树、任务提交、消息容错</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Storm1. Storm程序的并发机制1.1. 概念1.2. 配置并行度2. Storm通信机制3. Worker进程间通信4. Worker进程间通信分析5. Worker进程间技术(Netty、ZeroMQ)5.1. Netty5.2. ZeroMQ6. Worker 内部通信技术(Disruptor)6.1. Disruptor的来历6.2. Disruptor是什么6.3. Disruptor主要特点7. Storm组件本地目录树8. Storm zookeeper目录树9. Storm 任务提交的过程10. Storm 消息容错机制10.1. 总体介绍10.2. 基本实现10.3. 可靠性配置1. Storm程序的并发机制1.1. 概念Workers (JVMs)在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology?
+Executors (threads)在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。?
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="bookmark">storm集群部署,单词计数,Stream Grouping.adoc</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						1、 集群部署的基本流程集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群注意：所有的集群上都需要配置hostsvi /etc/hosts192.168.239.128 storm01 zk01 hadoop01192.168.239.129 storm02 zk02 hadoop02192.168.239.130 storm03 zk03 hadoop03
+2、 集群部署的基础环境准备安装前的准备工作（zk集群已经部署完毕） 关闭防火墙chkconfig iptables off &amp;&amp; setenforce 0 创建用户groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime 创建工作目录并赋权mkdir /exportmkdir /export/serverschmod 755 -R /export 切换到realtime用户下su realtime3、Storm集群部署3.1、下载安装包wget http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz
+3.2、解压安装包tar -zxvf apache-storm-0.9.5.tar.gz -C /export/servers/cd /export/servers/ln -s apache-storm-0.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -229,73 +292,6 @@ mysql.ymlversion: '2'services:mysql:image: dishui.io:5000/mysql:5.5.52conta
 配置 HIVE_HOME 环境变量 vi conf/hive-env.sh 配置其中的 $hadoop_home
 配置元数据库信息 vi hive-site.xml
 &lt;configuration&gt;&lt;property&gt;&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;&lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;&lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;&lt;/property&gt;&lt;property&gt;&lt;name&gt;javax.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop-shell/" rel="bookmark">hadoop-shell</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-13 00:00:00 &#43;0000 UTC">March 13, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hadoop-shell1. hdfs1. hdfs列表
-hadoop fs -ls /上传文件
-hadoop fs -put /test.ee /查看文件内容
-hadoop fs -cat /test.ee下载文件
-hadoop fs -get /test.ee /创建目录
-hadoop fs -mkdir -p /wordcount/input
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop2/" rel="bookmark">hadoop2.4.1集群搭建</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-12 00:00:00 &#43;0000 UTC">March 12, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hadoop1. CentOS 安装1.1. 准备Linux环境1.2. 安装 JDK1.3. 安装 hadoop2.4.11.3.1. 将 hadoop 添加到环境变量1.3.2. 格式化 namenode（是对 namenode 进行初始化）1.3.3. 启动 hadoop1.3.4. 验证是否启动成功1.4. 配置ssh免登陆2. docker 方式2.1. compose3. Example3.1. wordcount4. hdfs 文件上传流程5. 参考1. CentOS 安装1.1. 准备Linux环境先将虚拟机的网络模式选为NAT
-修改主机名
-vi /etc/sysconfig/networkNETWORKING=yesHOSTNAME=mini1 ###修改IP
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/" rel="bookmark">多元函数</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-09 00:00:00 &#43;0000 UTC">March 09, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						多元函数1. 多元函数1.1. 二元函数1.2. 二元函数图形1.3. 复杂的二元函数2. 多元函数的极限和连续性2.1. 一元函数的极限2.2. 二元函数的极限1. 多元函数1.1. 二元函数1.2. 二元函数图形1.3. 复杂的二元函数2.
 					</div>
 				</div>
 			</div>

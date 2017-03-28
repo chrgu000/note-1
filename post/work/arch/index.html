@@ -146,19 +146,130 @@ _V30 [style="rounded,filled", shape=ellipse,label="Vlan30(内)"];</pre>
 <dl>
 <dt class="hdlist1">参考 </dt>
 <dd>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>[[浅谈web架构之架构设计|http://brizer.github.io/2016/07/10/%E6%B5%85%E8%B0%88web%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/]]</p>
-</li>
-<li>
-<p>[[图片服务器架构演进|http://www.jiagoushuo.com/article/1000382.html]]</p>
-</li>
-</ol>
-</div>
+<p><a href="http://brizer.github.io/2016/07/10/%E6%B5%85%E8%B0%88web%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">浅谈web架构之架构设计</a></p>
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p><a href="http://www.jiagoushuo.com/article/1000382.html">图片服务器架构演进</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://dishui.oschina.io/note-hugo/src/img/work/Mai沥青架构图.svg" alt="Mai沥青架构图">
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>物理机(2)
+  IBM x3650M4 2U 机架式服务器
+  一颗E5-2609v2 2.5GHz/16GB（4*8GB）/2x1TB 7.2K SAS 2.5"/Raid 5/四端口千兆网卡/双冗余550W</p>
+</div>
+<div class="paragraph">
+<p>软件运行环境
+  Linux coreos01 4.9.0-coreos + Tomcat7.0.62 + Mysql5.5 + Redis3.2 + ElasticSearch1.4</p>
+</div>
+<div class="paragraph">
+<p>物理机1(虚拟机)</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">主机名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">操作系统</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">处理器</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">内存</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">运行软件</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.129</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CoreOS 1262.0.0 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker+tomcat+mysql+elasticsearch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos02</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.124</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CoreOS 1262.0.0 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker+tomcat+mysql</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos03</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.145</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CoreOS 1262.0.0 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker+tomcat+mysql</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>物理机2(虚拟机)</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">主机名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">操作系统</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">处理器</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">内存</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">运行软件</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos04</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.127</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CoreOS 1262.0.0 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker+tomcat+mysql</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos05</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.130</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CoreOS 1262.0.0 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos06</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.125</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CentOS6.5 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coreos07</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.128(内) 116.90.81.70(外)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CentOS6.5 (Linux)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1核</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 		</div>
