@@ -613,15 +613,15 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;dl&gt;
 &lt;dt class=&#34;hdlist1&#34;&gt;Workers (JVMs)&lt;/dt&gt;
 &lt;dd&gt;
-&lt;p&gt;在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology?&lt;/p&gt;
+&lt;p&gt;在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology&lt;/p&gt;
 &lt;/dd&gt;
 &lt;dt class=&#34;hdlist1&#34;&gt;Executors (threads)&lt;/dt&gt;
 &lt;dd&gt;
-&lt;p&gt;在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。?&lt;/p&gt;
+&lt;p&gt;在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。&lt;/p&gt;
 &lt;/dd&gt;
 &lt;dt class=&#34;hdlist1&#34;&gt;Tasks(bolt/spout instances&lt;/dt&gt;
 &lt;dd&gt;
-&lt;p&gt;Task就是具体的处理逻辑对象，每一个Spout和Bolt会被当作很多task在整个集群里面执行。每一个task对应到一个线程，而stream grouping则是定义怎么从一堆task发射tuple到另外一堆task。你可以调用TopologyBuilder.setSpout和TopBuilder.setBolt来设置并行度 — 也就是有多少个task。?&lt;/p&gt;
+&lt;p&gt;Task就是具体的处理逻辑对象，每一个Spout和Bolt会被当作很多task在整个集群里面执行。每一个task对应到一个线程，而stream grouping则是定义怎么从一堆task发射tuple到另外一堆task。你可以调用TopologyBuilder.setSpout和TopBuilder.setBolt来设置并行度 — 也就是有多少个task。&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -635,22 +635,22 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;　　defaults.yaml &amp;lt; storm.yaml &amp;lt; topology-specific configuration
-　　&amp;lt; internal component-specific configuration &amp;lt; external component-specific configuration?&lt;/code&gt;&lt;/pre&gt;
+　　&amp;lt; internal component-specific configuration &amp;lt; external component-specific configuration&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;worker processes的数目, 可以通过配置文件和代码中配置, worker就是执行进程, 所以考虑并发的效果, 数目至少应该大亍machines的数目?&lt;/p&gt;
+&lt;p&gt;worker processes的数目, 可以通过配置文件和代码中配置, worker就是执行进程, 所以考虑并发的效果, 数目至少应该大亍machines的数目&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;executor的数目, component的并发线程数，只能在代码中配置(通过setBolt和setSpout的参数), 例如, setBolt(&#34;green-bolt&#34;, new GreenBolt(), 2)?&lt;/p&gt;
+&lt;p&gt;executor的数目, component的并发线程数，只能在代码中配置(通过setBolt和setSpout的参数), 例如, setBolt(&#34;green-bolt&#34;, new GreenBolt(), 2)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;tasks的数目, 可以不配置, 默认和executor1:1, 也可以通过setNumTasks()配置?&lt;/p&gt;
+&lt;p&gt;tasks的数目, 可以不配置, 默认和executor1:1, 也可以通过setNumTasks()配置&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;Topology的worker数通过config设置，即执行该topology的worker（java）进程数。它可以通过 storm rebalance 命令任意调整。?
-Config conf =?newConfig();
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;Topology的worker数通过config设置，即执行该topology的worker（java）进程数。它可以通过 storm rebalance 命令任意调整。
+Config conf = newConfig();
 conf.setNumWorkers(2);//用2个worker
 topologyBuilder.setSpout(&#34;blue-spout&#34;,newBlueSpout(),2);//设置2个并发度
 topologyBuilder.setBolt(&#34;green-bolt&#34;,newGreenBolt(),2).setNumTasks(4).shuffleGrouping(&#34;blue-spout&#34;);//设置2个并发度，4个任务
@@ -675,7 +675,7 @@ StormSubmitter.submitTopology(&#34;mytopology&#34;, conf, topologyBuilder.create
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;动态的改变并行度
-　　Storm支持在不 restart topology 的情况下, 动态的改变(增减) worker processes 的数目和 executors 的数目, 称为rebalancing. 通过Storm web UI，或者通过storm rebalance命令实现：?
+　　Storm支持在不 restart topology 的情况下, 动态的改变(增减) worker processes 的数目和 executors 的数目, 称为rebalancing. 通过Storm web UI，或者通过storm rebalance命令实现：
 storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -898,7 +898,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 acker任务保存了spout id到一对值的映射。第一个值就是spout的任务id，通过这个id，acker就知道消息处理完成时该通知哪个spout任务。第二个值是一个64bit的数字，我们称之为&#34;ack val&#34;， 它是树中所有消息的随机id的异或计算结果。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ack val表示了整棵树的的状态，无论这棵树多大，只需要这个固定大小的数字就可以跟踪整棵树。当消息被创建和被应答的时候都会有相同的消息id发送过来做异或。?每当acker发现一棵树的ack val值为0的时候，它就知道这棵树已经被完全处理了&lt;/p&gt;
+&lt;p&gt;ack val表示了整棵树的的状态，无论这棵树多大，只需要这个固定大小的数字就可以跟踪整棵树。当消息被创建和被应答的时候都会有相同的消息id发送过来做异或。 每当acker发现一棵树的ack val值为0的时候，它就知道这棵树已经被完全处理了&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -953,47 +953,122 @@ executor的outgoing-queue的大小用户可以自定义配置&lt;/p&gt;
     </item>
     
     <item>
-      <title>storm集群部署,单词计数,Stream Grouping.adoc</title>
+      <title>storm集群部署,单词计数,Stream Grouping</title>
       <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</link>
       <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;1、  集群部署的基本流程
-集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;storm&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_集群部署的基本流程&#34;&gt;1. 集群部署的基本流程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_集群部署的基础环境准备&#34;&gt;2. 集群部署的基础环境准备&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm集群部署&#34;&gt;3. Storm集群部署&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm常用操作命令&#34;&gt;4. Storm常用操作命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm集群的进程及日志熟悉&#34;&gt;5. Storm集群的进程及日志熟悉&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm源码下载及目录熟悉&#34;&gt;6. Storm源码下载及目录熟悉&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_storm单词技术案例_重点掌握&#34;&gt;7. Storm单词技术案例（重点掌握）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_集群部署的基本流程&#34;&gt;1. 集群部署的基本流程&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群
 注意：
-    所有的集群上都需要配置hosts
-    vi  /etc/hosts
-    192.168.239.128 storm01 zk01 hadoop01
-      192.168.239.129 storm02 zk02 hadoop02
-    192.168.239.130 storm03 zk03 hadoop03&lt;/p&gt;
+    所有的集群上都需要配置hosts&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vi  /etc/hosts
+192.168.239.128 storm01 zk01 hadoop01
+192.168.239.129 storm02 zk02 hadoop02
+192.168.239.130 storm03 zk03 hadoop03&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_集群部署的基础环境准备&#34;&gt;2. 集群部署的基础环境准备&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;2、  集群部署的基础环境准备
-安装前的准备工作（zk集群已经部署完毕）
-   关闭防火墙
-chkconfig iptables off  &amp;amp;&amp;amp; setenforce 0
-   创建用户
-groupadd realtime &amp;amp;&amp;amp;　useradd realtime　&amp;amp;&amp;amp; usermod -a -G realtime realtime
-   创建工作目录并赋权
-mkdir /export
+&lt;p&gt;安装前的准备工作（zk集群已经部署完毕）&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;关闭防火墙&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;chkconfig iptables off  &amp;amp;&amp;amp; setenforce 0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建用户&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;groupadd realtime &amp;amp;&amp;amp;　useradd realtime　&amp;amp;&amp;amp; usermod -a -G realtime realtime&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建工作目录并赋权&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mkdir /export
 mkdir /export/servers
-chmod 755 -R /export
-   切换到realtime用户下
-su realtime
-3、Storm集群部署
-3.1、下载安装包
-    wget    &lt;a href=&#34;http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz&#34; class=&#34;bare&#34;&gt;http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+chmod 755 -R /export&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;切换到realtime用户下&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;su realtime&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm集群部署&#34;&gt;3. Storm集群部署&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载安装包&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;wget http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解压安装包&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf apache-storm-0.9.5.tar.gz -C /export/servers/
+cd /export/servers/
+ln -s apache-storm-0.9.5 storm&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改配置文件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mv /export/servers/storm/conf/storm.yaml /export/servers/storm/conf/storm.yaml.bak
+vi /export/servers/storm/conf/storm.yaml&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;3.2、解压安装包
-tar -zxvf apache-storm-0.9.5.tar.gz -C /export/servers/
-cd /export/servers/
-ln -s apache-storm-0.9.5 storm
-3.3、修改配置文件
-    mv /export/servers/storm/conf/storm.yaml /export/servers/storm/conf/storm.yaml.bak
-vi /export/servers/storm/conf/storm.yaml
-输入以下内容：&lt;/p&gt;
+&lt;p&gt;输入以下内容：&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -1001,116 +1076,302 @@ vi /export/servers/storm/conf/storm.yaml
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;3.4、分发安装包
-scp -r /export/servers/apache-storm-0.9.5 storm02:/export/servers
-然后分别在各机器上创建软连接
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分发安装包&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;scp -r /export/servers/apache-storm-0.9.5 storm02:/export/servers
+#然后分别在各机器上创建软连接
 cd /export/servers/
-ln -s apache-storm-0.9.5 storm
-3.5、启动集群
-   在nimbus.host所属的机器上启动 nimbus服务
+ln -s apache-storm-0.9.5 storm&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动集群&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#在nimbus.host所属的机器上启动 nimbus服务
 cd /export/servers/storm/bin/
 nohup ./storm nimbus &amp;amp;
-   在nimbus.host所属的机器上启动ui服务
+#在nimbus.host所属的机器上启动ui服务
 cd /export/servers/storm/bin/
 nohup ./storm ui &amp;amp;
-   在其它个点击上启动supervisor服务
+#在其它个点击上启动supervisor服务
 cd /export/servers/storm/bin/
-nohup ./storm supervisor &amp;amp;
-3.6、查看集群
-访问nimbus.host:/8080，即可看到storm的ui界面。
-image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-02.png[]
----
-4、Storm常用操作命令
-有许多简单且有用的命令可以用来管理拓扑，它们可以提交、杀死、禁用、再平衡拓扑。
-   提交任务命令格式：storm jar 【jar路径】 【拓扑包名.拓扑类名】 【拓扑名称】
-bin/storm jar examples/storm-starter/storm-starter-topologies-0.9.6.jar storm.starter.WordCountTopology wordcount
-   杀死任务命令格式：storm kill 【拓扑名称】 -w 10（执行kill命令时可以通过-w [等待秒数]指定拓扑停用以后的等待时间）
-storm kill topology-name -w 10
-   停用任务命令格式：storm deactivte  【拓扑名称】
-storm deactivte topology-name
-我们能够挂起或停用运行中的拓扑。当停用拓扑时，所有已分发的元组都会得到处理，但是spouts的nextTuple方法不会被调用。销毁一个拓扑，可以使用kill命令。它会以一种安全的方式销毁一个拓扑，首先停用拓扑，在等待拓扑消息的时间段内允许拓扑完成当前的数据流。
-   启用任务命令格式：storm activate【拓扑名称】
-        storm activate topology-name
-   重新部署任务命令格式：storm rebalance  【拓扑名称】
-        storm rebalance topology-name
-        再平衡使你重分配集群任务。这是个很强大的命令。比如，你向一个运行中的集群增加了节点。再平衡命令将会停用拓扑，然后在相应超时时间之后重分配工人，并重启拓扑。
-5、Storm集群的进程及日志熟悉
-5.1、部署成功之后，启动storm集群。
-    依次启动集群的各种角色
-5.2、查看nimbus的日志信息
-在nimbus的服务器上
-cd /export/servers/storm/logs
-tail -100f /export/servers/storm/logs/nimbus.log
-5.3、查看ui运行日志信息
-在ui的服务器上，一般和nimbus一个服务器
-cd /export/servers/storm/logs
-tail -100f /export/servers/storm/logs/ui.log
-5.4、查看supervisor运行日志信息
-在supervisor服务上
-cd /export/servers/storm/logs
-tail -100f /export/servers/storm/logs/supervisor.log
-5.5、查看supervisor上worker运行日志信息
-在supervisor服务上
-cd /export/servers/storm/logs
-tail -100f /export/servers/storm/logs/worker-6702.log
-image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-03.png[]
----
-(该worker正在运行wordcount程序)&lt;/p&gt;
+nohup ./storm supervisor &amp;amp;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看集群
+访问nimbus.host:/8080，即可看到storm的ui界面。&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-02.png&#34; alt=&#34;2017 03 28 02&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm常用操作命令&#34;&gt;4. Storm常用操作命令&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;有许多简单且有用的命令可以用来管理拓扑，它们可以提交、杀死、禁用、再平衡拓扑。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;提交任务命令格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;storm jar 【jar路径】 【拓扑包名.拓扑类名】 【拓扑名称】&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/storm jar examples/storm-starter/storm-starter-topologies-0.9.6.jar storm.starter.WordCountTopology wordcount&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;杀死任务命令格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;storm kill 【拓扑名称】 -w 10（执行kill命令时可以通过-w [等待秒数]指定拓扑停用以后的等待时间）&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;storm kill topology-name -w 10&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;停用任务命令格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;storm deactivte  【拓扑名称】&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;storm deactivte topology-name&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;6、Storm源码下载及目录熟悉
-6.1、在Storm官方网站上寻找源码地址
-    &lt;a href=&#34;http://storm.apache.org/downloads.html&#34; class=&#34;bare&#34;&gt;http://storm.apache.org/downloads.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们能够挂起或停用运行中的拓扑。当停用拓扑时，所有已分发的元组都会得到处理，但是spouts的nextTuple方法不会被调用。销毁一个拓扑，可以使用kill命令。它会以一种安全的方式销毁一个拓扑，首先停用拓扑，在等待拓扑消息的时间段内允许拓扑完成当前的数据流。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;启用任务命令格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;storm activate【拓扑名称】&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;storm activate topology-name&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;重新部署任务命令格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;storm rebalance  【拓扑名称】&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;storm rebalance topology-name&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;6.2、点击文字标签进入github
+&lt;p&gt;再平衡使你重分配集群任务。这是个很强大的命令。比如，你向一个运行中的集群增加了节点。再平衡命令将会停用拓扑，然后在相应超时时间之后重分配工人，并重启拓扑。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm集群的进程及日志熟悉&#34;&gt;5. Storm集群的进程及日志熟悉&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;部署成功之后，启动storm集群。
+依次启动集群的各种角色&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看nimbus的日志信息
+在nimbus的服务器上&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/nimbus.log&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看ui运行日志信息
+在ui的服务器上，一般和nimbus一个服务器&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/ui.log&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看supervisor运行日志信息
+在supervisor服务上&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/supervisor.log&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看supervisor上worker运行日志信息
+在supervisor服务上&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/worker-6702.log&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-03.png&#34; alt=&#34;2017 03 28 03&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(该worker正在运行wordcount程序)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm源码下载及目录熟悉&#34;&gt;6. Storm源码下载及目录熟悉&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;在Storm官方网站上寻找源码地址&lt;br&gt;
+&lt;a href=&#34;http://storm.apache.org/downloads.html&#34; class=&#34;bare&#34;&gt;http://storm.apache.org/downloads.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击文字标签进入github&lt;br&gt;
 点击Apache/storm文字标签，进入github
-      &lt;a href=&#34;https://github.com/apache/storm&#34; class=&#34;bare&#34;&gt;https://github.com/apache/storm&lt;/a&gt;
-6.3、拷贝storm源码地址
+      &lt;a href=&#34;https://github.com/apache/storm&#34; class=&#34;bare&#34;&gt;https://github.com/apache/storm&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;拷贝storm源码地址&lt;br&gt;
 在网页右侧，拷贝storm源码地址&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用Subversion客户端下载&lt;br&gt;
+&lt;a href=&#34;https://github.com/apache/storm/tags/v0.9.5&#34; class=&#34;bare&#34;&gt;https://github.com/apache/storm/tags/v0.9.5&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Storm源码目录分析（重要）&lt;br&gt;
+扩展包中的三个项目，使storm能与hbase、hdfs、kafka交互&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;6.4、使用Subversion客户端下载&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/apache/storm/tags/v0.9.5&#34; class=&#34;bare&#34;&gt;https://github.com/apache/storm/tags/v0.9.5&lt;/a&gt;
-6.5、Storm源码目录分析（重要）&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;扩展包中的三个项目，使storm能与hbase、hdfs、kafka交互&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;7、Storm单词技术案例（重点掌握）
-7.1、功能说明
-设计一个topology，来实现对文档里面的单词出现的频率进行统计。
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_storm单词技术案例_重点掌握&#34;&gt;7. Storm单词技术案例（重点掌握）&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;功能说明&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;设计一个topology，来实现对文档里面的单词出现的频率进行统计。
 整个topology分为三个部分：
-   RandomSentenceSpout：数据源，在已知的英文句子中，随机发送一条句子出去。
-   SplitSentenceBolt：负责将单行文本记录（句子）切分成单词
-   WordCountBolt：负责对单词的频率进行累加
-7.2、项目主要流程
-image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-04.png[]
----
-7.3、RandomSentenceSpout的实现及生命周期
-image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-05.png[]
----
-7.4、SplitSentenceBolt的实现及生命周期
-image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-06.png[]
----&lt;/p&gt;
+RandomSentenceSpout：
+    数据源，在已知的英文句子中，随机发送一条句子出去。
+SplitSentenceBolt：
+    负责将单行文本记录（句子）切分成单词
+WordCountBolt：
+    负责对单词的频率进行累加&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;7.5、WordCountBolt的实现及生命周期
-image::http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-07.png[]
----
-7.6、Stream Grouping详解
-Storm里面有7种类型的stream grouping
-   Shuffle Grouping: 随机分组， 随机派发stream里面的tuple，保证每个bolt接收到的tuple数目大致相同。
-   Fields Grouping：按字段分组，比如按userid来分组，具有同样userid的tuple会被分到相同的Bolts里的一个task，而不同的userid则会被分配到不同的bolts里的task。
-   All Grouping：广播发送，对于每一个tuple，所有的bolts都会收到。
-   Global Grouping：全局分组， 这个tuple被分配到storm中的一个bolt的其中一个task。再具体一点就是分配给id值最低的那个task。
-   Non Grouping：不分组，这stream grouping个分组的意思是说stream不关心到底谁会收到它的tuple。目前这种分组和Shuffle grouping是一样的效果， 有一点不同的是storm会把这个bolt放到这个bolt的订阅者同一个线程里面去执行。
-   Direct Grouping： 直接分组， 这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个task处理这个消息。只有被声明为Direct Stream的消息流可以声明这种分组方法。而且这种消息tuple必须使用emitDirect方法来发射。消息处理者可以通过TopologyContext来获取处理它的消息的task的id （OutputCollector.emit方法也会返回task的id）。
-   Local or shuffle grouping：如果目标bolt有一个或者多个task在同一个工作进程中，tuple将会被随机发生给这些tasks。否则，和普通的Shuffle Grouping行为一致。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;项目主要流程&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-04.png&#34; alt=&#34;2017 03 28 04&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RandomSentenceSpout的实现及生命周期&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-05.png&#34; alt=&#34;2017 03 28 05&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SplitSentenceBolt的实现及生命周期&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-06.png&#34; alt=&#34;2017 03 28 06&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;WordCountBolt的实现及生命周期&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-07.png&#34; alt=&#34;2017 03 28 07&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stream Grouping详解&lt;br&gt;
+Storm里面有7种类型的stream grouping&lt;/p&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Shuffle Grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;随机分组， 随机派发stream里面的tuple，保证每个bolt接收到的tuple数目大致相同。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Fields Grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;按字段分组，比如按userid来分组，具有同样userid的tuple会被分到相同的Bolts里的一个task，而不同的userid则会被分配到不同的bolts里的task。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;All Grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;广播发送，对于每一个tuple，所有的bolts都会收到。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Global Grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;全局分组， 这个tuple被分配到storm中的一个bolt的其中一个task。再具体一点就是分配给id值最低的那个task。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Non Grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;不分组，这stream grouping个分组的意思是说stream不关心到底谁会收到它的tuple。目前这种分组和Shuffle grouping是一样的效果， 有一点不同的是storm会把这个bolt放到这个bolt的订阅者同一个线程里面去执行。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Direct Grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;直接分组， 这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个task处理这个消息。只有被声明为Direct Stream的消息流可以声明这种分组方法。而且这种消息tuple必须使用emitDirect方法来发射。消息处理者可以通过TopologyContext来获取处理它的消息的task的id （OutputCollector.emit方法也会返回task的id）。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Local or shuffle grouping&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;如果目标bolt有一个或者多个task在同一个工作进程中，tuple将会被随机发生给这些tasks。否则，和普通的Shuffle Grouping行为一致。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>

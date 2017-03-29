@@ -7,8 +7,8 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="Storm目录树、任务提交、消息容错" />
-<meta property="og:description" content="Storm1. Storm程序的并发机制1.1. 概念1.2. 配置并行度2. Storm通信机制3. Worker进程间通信4. Worker进程间通信分析5. Worker进程间技术(Netty、ZeroMQ)5.1. Netty5.2. ZeroMQ6. Worker 内部通信技术(Disruptor)6.1. Disruptor的来历6.2. Disruptor是什么6.3. Disruptor主要特点7. Storm组件本地目录树8. Storm zookeeper目录树9. Storm 任务提交的过程10. Storm 消息容错机制10.1. 总体介绍10.2. 基本实现10.3. 可靠性配置1. Storm程序的并发机制1.1. 概念Workers (JVMs)在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology?
-Executors (threads)在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。?" />
+<meta property="og:description" content="Storm1. Storm程序的并发机制1.1. 概念1.2. 配置并行度2. Storm通信机制3. Worker进程间通信4. Worker进程间通信分析5. Worker进程间技术(Netty、ZeroMQ)5.1. Netty5.2. ZeroMQ6. Worker 内部通信技术(Disruptor)6.1. Disruptor的来历6.2. Disruptor是什么6.3. Disruptor主要特点7. Storm组件本地目录树8. Storm zookeeper目录树9. Storm 任务提交的过程10. Storm 消息容错机制10.1. 总体介绍10.2. 基本实现10.3. 可靠性配置1. Storm程序的并发机制1.1. 概念Workers (JVMs)在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology
+Executors (threads)在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" />
 
@@ -133,15 +133,15 @@
 <dl>
 <dt class="hdlist1">Workers (JVMs)</dt>
 <dd>
-<p>在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology?</p>
+<p>在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology</p>
 </dd>
 <dt class="hdlist1">Executors (threads)</dt>
 <dd>
-<p>在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。?</p>
+<p>在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。</p>
 </dd>
 <dt class="hdlist1">Tasks(bolt/spout instances</dt>
 <dd>
-<p>Task就是具体的处理逻辑对象，每一个Spout和Bolt会被当作很多task在整个集群里面执行。每一个task对应到一个线程，而stream grouping则是定义怎么从一堆task发射tuple到另外一堆task。你可以调用TopologyBuilder.setSpout和TopBuilder.setBolt来设置并行度 — 也就是有多少个task。?</p>
+<p>Task就是具体的处理逻辑对象，每一个Spout和Bolt会被当作很多task在整个集群里面执行。每一个task对应到一个线程，而stream grouping则是定义怎么从一堆task发射tuple到另外一堆task。你可以调用TopologyBuilder.setSpout和TopBuilder.setBolt来设置并行度 — 也就是有多少个task。</p>
 </dd>
 </dl>
 </div>
@@ -155,22 +155,22 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>　　defaults.yaml &lt; storm.yaml &lt; topology-specific configuration
-　　&lt; internal component-specific configuration &lt; external component-specific configuration?</code></pre>
+　　&lt; internal component-specific configuration &lt; external component-specific configuration</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>worker processes的数目, 可以通过配置文件和代码中配置, worker就是执行进程, 所以考虑并发的效果, 数目至少应该大亍machines的数目?</p>
+<p>worker processes的数目, 可以通过配置文件和代码中配置, worker就是执行进程, 所以考虑并发的效果, 数目至少应该大亍machines的数目</p>
 </li>
 <li>
-<p>executor的数目, component的并发线程数，只能在代码中配置(通过setBolt和setSpout的参数), 例如, setBolt("green-bolt", new GreenBolt(), 2)?</p>
+<p>executor的数目, component的并发线程数，只能在代码中配置(通过setBolt和setSpout的参数), 例如, setBolt("green-bolt", new GreenBolt(), 2)</p>
 </li>
 <li>
-<p>tasks的数目, 可以不配置, 默认和executor1:1, 也可以通过setNumTasks()配置?</p>
+<p>tasks的数目, 可以不配置, 默认和executor1:1, 也可以通过setNumTasks()配置</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Topology的worker数通过config设置，即执行该topology的worker（java）进程数。它可以通过 storm rebalance 命令任意调整。?
-Config conf =?newConfig();
+<pre class="highlightjs highlight"><code>Topology的worker数通过config设置，即执行该topology的worker（java）进程数。它可以通过 storm rebalance 命令任意调整。
+Config conf = newConfig();
 conf.setNumWorkers(2);//用2个worker
 topologyBuilder.setSpout("blue-spout",newBlueSpout(),2);//设置2个并发度
 topologyBuilder.setBolt("green-bolt",newGreenBolt(),2).setNumTasks(4).shuffleGrouping("blue-spout");//设置2个并发度，4个任务
@@ -195,7 +195,7 @@ StormSubmitter.submitTopology("mytopology", conf, topologyBuilder.createTopology
 <ul>
 <li>
 <p>动态的改变并行度
-　　Storm支持在不 restart topology 的情况下, 动态的改变(增减) worker processes 的数目和 executors 的数目, 称为rebalancing. 通过Storm web UI，或者通过storm rebalance命令实现：?
+　　Storm支持在不 restart topology 的情况下, 动态的改变(增减) worker processes 的数目和 executors 的数目, 称为rebalancing. 通过Storm web UI，或者通过storm rebalance命令实现：
 storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10</p>
 </li>
 </ul>
@@ -418,7 +418,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 acker任务保存了spout id到一对值的映射。第一个值就是spout的任务id，通过这个id，acker就知道消息处理完成时该通知哪个spout任务。第二个值是一个64bit的数字，我们称之为"ack val"， 它是树中所有消息的随机id的异或计算结果。</p>
 </div>
 <div class="paragraph">
-<p>ack val表示了整棵树的的状态，无论这棵树多大，只需要这个固定大小的数字就可以跟踪整棵树。当消息被创建和被应答的时候都会有相同的消息id发送过来做异或。?每当acker发现一棵树的ack val值为0的时候，它就知道这棵树已经被完全处理了</p>
+<p>ack val表示了整棵树的的状态，无论这棵树多大，只需要这个固定大小的数字就可以跟踪整棵树。当消息被创建和被应答的时候都会有相同的消息id发送过来做异或。 每当acker发现一棵树的ack val值为0的时候，它就知道这棵树已经被完全处理了</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -496,7 +496,7 @@ executor的outgoing-queue的大小用户可以自定义配置</p>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="next"><span>Next»</span><p>storm集群部署,单词计数,Stream Grouping.adoc</p></a>
+			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="next"><span>Next»</span><p>storm集群部署,单词计数,Stream Grouping</p></a>
 		</div>
 		
 	</nav>
