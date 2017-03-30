@@ -1625,7 +1625,36 @@ AND zsgc.status  = '4'</p>
 <p>docker run -d -p 8888:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k 111111 -m aes-256-cfb</p>
 </div>
 <div class="paragraph">
-<p>/v2/tutum/influxdb/manifests</p>
+<p>/v2/tutum/influxdb/manifests/0.9</p>
+</div>
+<div class="paragraph">
+<p>SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = '01' AND zpl.table_date &gt;= '2017-03-29 00:35:07' AND zpl.table_date &#8656; '2017-03-29 23:35:14') AND zspl.project_name = zsgc.project_name AND zsgc.make_time = '2017-03-29' AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = '4'</p>
+</div>
+<div class="paragraph">
+<p>hi 陈经理:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>大物流服务器配置(高-中-低),在附件的三个sheet里,请下载查看</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>谢谢</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  registry2:
+    image: dishui.io:5000/registry:2.5
+    container_name: registry2
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/registry.key
+    volumes:
+      - /home/core/registrydata:/var/lib/registry
+      - /home/core/registry/certs:/certs</p>
 </div>
 
 		</div>
