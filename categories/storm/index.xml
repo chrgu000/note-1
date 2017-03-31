@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/note-hugo/categories/storm/index.xml</link>
+    <link>http://dishui.oschina.io/categories/storm/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/note-hugo/categories/storm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/categories/storm/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kafka集群安装部署、Kafka生产者、Kafka消费者</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/kafka/</link>
+      <link>http://dishui.oschina.io/post/bigdata/storm/kafka/</link>
       <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/kafka/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/storm/kafka/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;kafka&lt;/div&gt;
 &lt;ul class=&#34;sectlevel0&#34;&gt;
@@ -88,7 +88,7 @@
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152744.png&#34; alt=&#34;2017 03 28 152744&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152744.png&#34; alt=&#34;2017 03 28 152744&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -116,7 +116,7 @@
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152816.png&#34; alt=&#34;2017 03 28 152816&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152816.png&#34; alt=&#34;2017 03 28 152816&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -147,7 +147,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152836.png&#34; alt=&#34;2017 03 28 152836&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152836.png&#34; alt=&#34;2017 03 28 152836&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -309,7 +309,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152848.png&#34; alt=&#34;2017 03 28 152848&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152848.png&#34; alt=&#34;2017 03 28 152848&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -323,7 +323,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152855.png&#34; alt=&#34;2017 03 28 152855&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152855.png&#34; alt=&#34;2017 03 28 152855&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -332,7 +332,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152902.png&#34; alt=&#34;2017 03 28 152902&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152902.png&#34; alt=&#34;2017 03 28 152902&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -343,7 +343,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152910.png&#34; alt=&#34;2017 03 28 152910&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152910.png&#34; alt=&#34;2017 03 28 152910&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -353,7 +353,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152916.png&#34; alt=&#34;2017 03 28 152916&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152916.png&#34; alt=&#34;2017 03 28 152916&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -381,7 +381,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152924.png&#34; alt=&#34;2017 03 28 152924&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152924.png&#34; alt=&#34;2017 03 28 152924&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -461,7 +461,7 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152939.png&#34; alt=&#34;2017 03 28 152939&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152939.png&#34; alt=&#34;2017 03 28 152939&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -534,14 +534,14 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;h1 id=&#34;_kafka生产者java_api&#34; class=&#34;sect0&#34;&gt;Kafka生产者Java API&lt;/h1&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152953.png&#34; alt=&#34;2017 03 28 152953&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_152953.png&#34; alt=&#34;2017 03 28 152953&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;_kafka消费者java_api&#34; class=&#34;sect0&#34;&gt;Kafka消费者Java API&lt;/h1&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_153002.png&#34; alt=&#34;2017 03 28 153002&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_153002.png&#34; alt=&#34;2017 03 28 153002&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -562,10 +562,10 @@ queue.take(object)    数据消费&lt;/p&gt;
     
     <item>
       <title>Storm目录树、任务提交、消息容错</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/</link>
+      <link>http://dishui.oschina.io/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/</link>
       <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Storm&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -662,7 +662,7 @@ StormSubmitter.submitTopology(&#34;mytopology&#34;, conf, topologyBuilder.create
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163004.png&#34; alt=&#34;2017 03 28 163004&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163004.png&#34; alt=&#34;2017 03 28 163004&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -704,7 +704,7 @@ Worker进程内部通信：不同worker的thread通信使用LMAX Disruptor来完
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163014.png&#34; alt=&#34;2017 03 28 163014&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163014.png&#34; alt=&#34;2017 03 28 163014&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -731,7 +731,7 @@ Worker接收线程将收到的消息通过task编号传递给对应的executor(�
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163023.png&#34; alt=&#34;2017 03 28 163023&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163023.png&#34; alt=&#34;2017 03 28 163023&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -816,7 +816,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163035.png&#34; alt=&#34;2017 03 28 163035&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163035.png&#34; alt=&#34;2017 03 28 163035&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -833,7 +833,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163042.png&#34; alt=&#34;2017 03 28 163042&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163042.png&#34; alt=&#34;2017 03 28 163042&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -844,7 +844,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163050.png&#34; alt=&#34;2017 03 28 163050&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163050.png&#34; alt=&#34;2017 03 28 163050&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -855,7 +855,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163058.png&#34; alt=&#34;2017 03 28 163058&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163058.png&#34; alt=&#34;2017 03 28 163058&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -864,7 +864,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163734.png&#34; alt=&#34;2017 03 28 163734&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163734.png&#34; alt=&#34;2017 03 28 163734&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -901,31 +901,31 @@ acker任务保存了spout id到一对值的映射。第一个值就是spout的�
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163743.png&#34; alt=&#34;2017 03 28 163743&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163743.png&#34; alt=&#34;2017 03 28 163743&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163751.png&#34; alt=&#34;2017 03 28 163751&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163751.png&#34; alt=&#34;2017 03 28 163751&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163757.png&#34; alt=&#34;2017 03 28 163757&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163757.png&#34; alt=&#34;2017 03 28 163757&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163804.png&#34; alt=&#34;2017 03 28 163804&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163804.png&#34; alt=&#34;2017 03 28 163804&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_163811.png&#34; alt=&#34;2017 03 28 163811&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28_163811.png&#34; alt=&#34;2017 03 28 163811&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -953,10 +953,10 @@ executor的outgoing-queue的大小用户可以自定义配置&lt;/p&gt;
     
     <item>
       <title>storm集群部署,单词计数,Stream Grouping</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</link>
+      <link>http://dishui.oschina.io/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</link>
       <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;storm&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1071,7 +1071,7 @@ vi /export/servers/storm/conf/storm.yaml&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-01.png&#34; alt=&#34;2017 03 28 01&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-01.png&#34; alt=&#34;2017 03 28 01&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1108,7 +1108,7 @@ nohup ./storm supervisor &amp;amp;&lt;/code&gt;&lt;/pre&gt;
 访问nimbus.host:/8080，即可看到storm的ui界面。&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-02.png&#34; alt=&#34;2017 03 28 02&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-02.png&#34; alt=&#34;2017 03 28 02&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1234,7 +1234,7 @@ tail -100f /export/servers/storm/logs/worker-6702.log&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-03.png&#34; alt=&#34;2017 03 28 03&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-03.png&#34; alt=&#34;2017 03 28 03&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1300,7 +1300,7 @@ WordCountBolt：
 &lt;p&gt;项目主要流程&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-04.png&#34; alt=&#34;2017 03 28 04&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-04.png&#34; alt=&#34;2017 03 28 04&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1309,7 +1309,7 @@ WordCountBolt：
 &lt;p&gt;RandomSentenceSpout的实现及生命周期&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-05.png&#34; alt=&#34;2017 03 28 05&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-05.png&#34; alt=&#34;2017 03 28 05&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1318,7 +1318,7 @@ WordCountBolt：
 &lt;p&gt;SplitSentenceBolt的实现及生命周期&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-06.png&#34; alt=&#34;2017 03 28 06&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-06.png&#34; alt=&#34;2017 03 28 06&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1327,7 +1327,7 @@ WordCountBolt：
 &lt;p&gt;WordCountBolt的实现及生命周期&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28-07.png&#34; alt=&#34;2017 03 28 07&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-28-07.png&#34; alt=&#34;2017 03 28 07&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1377,10 +1377,10 @@ Storm里面有7种类型的stream grouping&lt;/p&gt;
     
     <item>
       <title>storm</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm/</link>
+      <link>http://dishui.oschina.io/post/bigdata/storm/storm/</link>
       <pubDate>Sun, 26 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/storm/storm/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/storm/storm/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;storm 简介&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1513,7 +1513,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-26-3.png&#34; alt=&#34;2017 03 26 3&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-26-3.png&#34; alt=&#34;2017 03 26 3&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1532,7 +1532,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-26-2.png&#34; alt=&#34;2017 03 26 2&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-26-2.png&#34; alt=&#34;2017 03 26 2&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1553,7 +1553,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-26-1.png&#34; alt=&#34;2017 03 26 1&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/storm/2017-03-26-1.png&#34; alt=&#34;2017 03 26 1&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/note-hugo/tags/hugo/index.xml</link>
+    <link>http://dishui.oschina.io/tags/hugo/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/note-hugo/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>hugo</title>
-      <link>http://dishui.oschina.io/note-hugo/post/hugo/</link>
+      <link>http://dishui.oschina.io/post/hugo/</link>
       <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/hugo/</guid>
+      <guid>http://dishui.oschina.io/post/hugo/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;hugo&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -60,7 +60,7 @@ cd /e/note-hugo/
 # 替换域名
 echo &#34;替换域名&#34;
 git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-sed -i &#39;s/dishui.oschina.io\/note-hugo/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
+sed -i &#39;s/dishui.oschina.io/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
 echo &#34;启动 hugo server&#34;
 hugo server&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -103,7 +103,7 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;启动 &lt;strong&gt;docker-volume-netshare&lt;/strong&gt; ( &lt;a href=&#34;http://dishui.oschina.io/note-hugo/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;docker-volume-netshare&lt;/a&gt; )&lt;/p&gt;
+&lt;p&gt;启动 &lt;strong&gt;docker-volume-netshare&lt;/strong&gt; ( &lt;a href=&#34;http://dishui.oschina.io/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;docker-volume-netshare&lt;/a&gt; )&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

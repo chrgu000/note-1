@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/note-hugo/categories/hadoop/index.xml</link>
+    <link>http://dishui.oschina.io/categories/hadoop/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/note-hugo/categories/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/categories/hadoop/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>hadoop-docker</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/docker/hadoop-docker/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/docker/hadoop-docker/</link>
       <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/docker/hadoop-docker/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/docker/hadoop-docker/</guid>
       <description>&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/HariSekhon/Dockerfiles&#34; class=&#34;bare&#34;&gt;https://github.com/HariSekhon/Dockerfiles&lt;/a&gt;
 &lt;a href=&#34;https://hub.docker.com/r/harisekhon&#34; class=&#34;bare&#34;&gt;https://hub.docker.com/r/harisekhon&lt;/a&gt;&lt;/p&gt;
@@ -23,10 +23,10 @@
     
     <item>
       <title>hbase</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hbase/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/hbase/</link>
       <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hbase/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/hbase/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;hbase&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -396,10 +396,10 @@ vi /etc/security/limits.conf在文件最后加上：
     
     <item>
       <title>flume-sqoop</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/flume-sqoop/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/flume-sqoop/</link>
       <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/flume-sqoop/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/flume-sqoop/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;flume-sqoop&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -476,7 +476,7 @@ vi /etc/security/limits.conf在文件最后加上：
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image001.png&#34; alt=&#34;image001&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image001.png&#34; alt=&#34;image001&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -525,7 +525,7 @@ vi /etc/security/limits.conf在文件最后加上：
 &lt;p&gt;&lt;strong&gt;Channel&lt;/strong&gt;：&lt;strong&gt;angent&lt;/strong&gt; 内部的数据传输通道，用于从 &lt;strong&gt;source&lt;/strong&gt; 将数据传递到 &lt;strong&gt;sink&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image003.png&#34; alt=&#34;image003&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image003.png&#34; alt=&#34;image003&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -548,7 +548,7 @@ vi /etc/security/limits.conf在文件最后加上：
 &lt;p&gt;单个agent采集数据&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image005.png&#34; alt=&#34;image005&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image005.png&#34; alt=&#34;image005&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -564,7 +564,7 @@ vi /etc/security/limits.conf在文件最后加上：
 &lt;p&gt;多个agent之间串联&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image007.png&#34; alt=&#34;image007&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image007.png&#34; alt=&#34;image007&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -673,7 +673,7 @@ a1.sinks.k1.channel = c1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image009.png&#34; alt=&#34;image009&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image009.png&#34; alt=&#34;image009&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1368,7 +1368,7 @@ command=echo &#39;hello&#39;&lt;/code&gt;&lt;/pre&gt;
 首先创建project&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image011.png&#34; alt=&#34;image011&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image011.png&#34; alt=&#34;image011&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1377,14 +1377,14 @@ command=echo &#39;hello&#39;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image013.png&#34; alt=&#34;image013&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image013.png&#34; alt=&#34;image013&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启动执行该job
-image::http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image015.png[]
+image::http://dishui.oschina.io/src/img/hadoop/flume/image015.png[]
 ---&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -1422,7 +1422,7 @@ command=echo bar&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;将所有job资源文件打到一个zip包中&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image017.png&#34; alt=&#34;image017&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image017.png&#34; alt=&#34;image017&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1454,7 +1454,7 @@ command=/home/hadoop/apps/hadoop-2.6.1/bin/hadoop fs -mkdir /azaz&lt;/code&gt;&l
 &lt;p&gt;将job资源文件打包成zip文件&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image019.png&#34; alt=&#34;image019&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image019.png&#34; alt=&#34;image019&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1489,7 +1489,7 @@ command=/home/hadoop/apps/hadoop-2.6.1/bin/hadoop  jar hadoop-mapreduce-examples
 &lt;p&gt;将所有job资源文件打到一个zip包中&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/flume/image021.png&#34; alt=&#34;image021&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/flume/image021.png&#34; alt=&#34;image021&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2142,10 +2142,10 @@ emp.java&lt;/p&gt;
     
     <item>
       <title>hive详解</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;hive详解&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -2278,7 +2278,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/2017-03-17_155621.png&#34; alt=&#34;2017 03 17 155621&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/2017-03-17_155621.png&#34; alt=&#34;2017 03 17 155621&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2343,7 +2343,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/2017-03-17_160404.png&#34; alt=&#34;2017 03 17 160404&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/2017-03-17_160404.png&#34; alt=&#34;2017 03 17 160404&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2352,7 +2352,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;h3 id=&#34;_hive与传统数据库对比&#34;&gt;2.4. Hive与传统数据库对比&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/2017-03-17_160454.png&#34; alt=&#34;2017 03 17 160454&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/2017-03-17_160454.png&#34; alt=&#34;2017 03 17 160454&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2428,7 +2428,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;__strong_hive_strong_的安装部署&#34;&gt;2.7. &lt;strong&gt;HIVE&lt;/strong&gt; 的安装部署&lt;/h3&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive&#34;&gt;hive 安装&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dishui.oschina.io/post/bigdata/hadoop/hive&#34;&gt;hive 安装&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_使用方式&#34;&gt;2.7.1. 使用方式&lt;/h4&gt;
@@ -2597,7 +2597,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;p&gt;创建内部表mytable&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image010.png&#34; alt=&#34;image010&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image010.png&#34; alt=&#34;image010&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2606,7 +2606,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;p&gt;创建外部表pageview&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image012.png&#34; alt=&#34;image012&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image012.png&#34; alt=&#34;image012&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2620,7 +2620,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image014.png&#34; alt=&#34;image014&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image014.png&#34; alt=&#34;image014&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2629,7 +2629,7 @@ MapReduce实现复杂查询逻辑开发难度太大&lt;/p&gt;
 &lt;p&gt;创建带桶的表student&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image016.png&#34; alt=&#34;image016&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image016.png&#34; alt=&#34;image016&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2665,13 +2665,13 @@ ALTER TABLE table_name DROP partition_spec, partition_spec,...&lt;/code&gt;&lt;/
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image018.png&#34; alt=&#34;image018&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image018.png&#34; alt=&#34;image018&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image020.png&#34; alt=&#34;image020&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image020.png&#34; alt=&#34;image020&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2695,7 +2695,7 @@ ALTER TABLE table_name DROP partition_spec, partition_spec,...&lt;/code&gt;&lt;/
 &lt;dd&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image022.png&#34; alt=&#34;image022&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image022.png&#34; alt=&#34;image022&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2731,7 +2731,7 @@ ALTER TABLE table_name DROP partition_spec, partition_spec,...&lt;/code&gt;&lt;/
 &lt;dd&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image024.png&#34; alt=&#34;image024&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image024.png&#34; alt=&#34;image024&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2821,7 +2821,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]&lt;/code&gt;&lt;/
 &lt;p&gt;加载相对路径数据&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image026.png&#34; alt=&#34;image026&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image026.png&#34; alt=&#34;image026&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2830,7 +2830,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]&lt;/code&gt;&lt;/
 &lt;p&gt;加载绝对路径数据&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image028.png&#34; alt=&#34;image028&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image028.png&#34; alt=&#34;image028&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2839,7 +2839,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]&lt;/code&gt;&lt;/
 &lt;p&gt;加载包含模式数据&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image030.png&#34; alt=&#34;image030&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image030.png&#34; alt=&#34;image030&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2848,7 +2848,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]&lt;/code&gt;&lt;/
 &lt;p&gt;OVERWRITE关键字使用&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image032.png&#34; alt=&#34;image032&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image032.png&#34; alt=&#34;image032&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2887,7 +2887,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...
 &lt;p&gt;基本模式插入&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image034.png&#34; alt=&#34;image034&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image034.png&#34; alt=&#34;image034&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2896,7 +2896,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...
 &lt;p&gt;多插入模式&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image036.png&#34; alt=&#34;image036&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image036.png&#34; alt=&#34;image036&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2905,7 +2905,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...
 &lt;p&gt;自动分区模式&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image038.png&#34; alt=&#34;image038&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image038.png&#34; alt=&#34;image038&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2941,7 +2941,7 @@ INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
 &lt;p&gt;导出文件到本地&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image040.png&#34; alt=&#34;image040&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image040.png&#34; alt=&#34;image040&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -2958,7 +2958,7 @@ INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
 &lt;p&gt;导出数据到HDFS&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image042.png&#34; alt=&#34;image042&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image042.png&#34; alt=&#34;image042&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3008,7 +3008,7 @@ FROM table_reference
 &lt;p&gt;获取年龄大的3个学生&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image044.png&#34; alt=&#34;image044&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image044.png&#34; alt=&#34;image044&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3017,25 +3017,25 @@ FROM table_reference
 &lt;p&gt;查询学生信息按年龄，降序排序&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image046.png&#34; alt=&#34;image046&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image046.png&#34; alt=&#34;image046&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image048.png&#34; alt=&#34;image048&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image048.png&#34; alt=&#34;image048&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image050.png&#34; alt=&#34;image050&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image050.png&#34; alt=&#34;image050&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image052.png&#34; alt=&#34;image052&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image052.png&#34; alt=&#34;image052&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3044,7 +3044,7 @@ FROM table_reference
 &lt;p&gt;按学生名称汇总学生年龄&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image054.png&#34; alt=&#34;image054&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image054.png&#34; alt=&#34;image054&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3215,7 +3215,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 &lt;p&gt;获取已经分配班级的学生姓名&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image056.png&#34; alt=&#34;image056&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image056.png&#34; alt=&#34;image056&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3224,7 +3224,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 &lt;p&gt;获取尚未分配班级的学生姓名&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image058.png&#34; alt=&#34;image058&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image058.png&#34; alt=&#34;image058&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3233,7 +3233,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 &lt;p&gt;LEFT  SEMI  JOIN是IN/EXISTS的高效实现&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image060.png&#34; alt=&#34;image060&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image060.png&#34; alt=&#34;image060&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3285,7 +3285,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 &lt;p&gt;运行一个查询&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image062.png&#34; alt=&#34;image062&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image062.png&#34; alt=&#34;image062&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3294,7 +3294,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 &lt;p&gt;运行一个文件&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image064.png&#34; alt=&#34;image064&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image064.png&#34; alt=&#34;image064&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3303,7 +3303,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 &lt;p&gt;运行参数文件&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/hadoop/image066.png&#34; alt=&#34;image066&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/hadoop/image066.png&#34; alt=&#34;image066&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -3804,10 +3804,10 @@ order by A.username,A.month;&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>hive</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/hive/</link>
       <pubDate>Thu, 16 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/hive/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;hive&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -3967,10 +3967,10 @@ select nation, avg(size) from beauties group by nation order by avg(size);&lt;/c
     
     <item>
       <title>hadoop-shell</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop-shell/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/hadoop-shell/</link>
       <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop-shell/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/hadoop-shell/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;hadoop-shell&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -4031,10 +4031,10 @@ select nation, avg(size) from beauties group by nation order by avg(size);&lt;/c
     
     <item>
       <title>hadoop2.4.1集群搭建</title>
-      <link>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop2/</link>
+      <link>http://dishui.oschina.io/post/bigdata/hadoop/hadoop2/</link>
       <pubDate>Sun, 12 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop2/</guid>
+      <guid>http://dishui.oschina.io/post/bigdata/hadoop/hadoop2/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;hadoop&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -4498,7 +4498,7 @@ hadoop fs -put /a.txt /wordcount/input&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hadoop-upload.svg&#34; alt=&#34;hadoop upload&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/post/bigdata/hadoop/hadoop-upload.svg&#34; alt=&#34;hadoop upload&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

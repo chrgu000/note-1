@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Src-rsses on 工作笔记</title>
-    <link>http://dishui.oschina.io/note-hugo/src/index.xml</link>
+    <link>http://dishui.oschina.io/src/index.xml</link>
     <description>Recent content in Src-rsses on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/note-hugo/src/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/src/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title></title>
-      <link>http://dishui.oschina.io/note-hugo/src/a/</link>
+      <link>http://dishui.oschina.io/src/a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/src/a/</guid>
+      <guid>http://dishui.oschina.io/src/a/</guid>
       <description>.My Gist
 gist::123456[]</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://dishui.oschina.io/note-hugo/src/java/alter-page/</link>
+      <link>http://dishui.oschina.io/src/java/alter-page/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/src/java/alter-page/</guid>
+      <guid>http://dishui.oschina.io/src/java/alter-page/</guid>
       <description>&lt;%@ page language=&#34;java&#34; import=&#34;java.util.*&#34; pageEncoding=&#34;UTF-8&#34;%&gt;
 &lt;%@ page isELIgnored=&#34;false&#34;%&gt;
 &lt;%@ taglib uri=&#34;http://java.sun.com/jsp/jstl/core&#34; prefix=&#34;c&#34; %&gt;
@@ -116,10 +116,10 @@ gist::123456[]</description>
     
     <item>
       <title></title>
-      <link>http://dishui.oschina.io/note-hugo/src/records_bak/test/</link>
+      <link>http://dishui.oschina.io/src/records_bak/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/src/records_bak/test/</guid>
+      <guid>http://dishui.oschina.io/src/records_bak/test/</guid>
       <description>&lt;html&gt;
 &lt;head&gt;
   &lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;./asciinema-player.css&#34; /&gt;

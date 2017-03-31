@@ -9,7 +9,7 @@
 <meta property="og:title" content="Kafka集群安装部署、Kafka生产者、Kafka消费者" />
 <meta property="og:description" content="kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群Kafka生产者Java APIKafka消费者Java APIKafka是什么　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA &#43; STORM &#43;REDIS[disc]　* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性JMS是什么1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/bigdata/storm/kafka/" />
+<meta property="og:url" content="http://dishui.oschina.io/post/bigdata/storm/kafka/" />
 
 
 <meta property="og:updated_time" content="2017-03-28T00:00:00&#43;00:00"/>
@@ -24,23 +24,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
+<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/note-hugo/js/scripts.js"></script>
+<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/note-hugo/js/css3-mediaqueries.js"></script>
+	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/note-hugo/js/app.js" src="http://dishui.oschina.io/note-hugo/js/require.js"></script>
+<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -52,7 +52,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/note-hugo/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -64,7 +64,15 @@
 				<div class="mr-main-nav-wrap">
 					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 	<ul class="menu__list">
-		
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
 	</ul>
 </nav>
 				</div>
@@ -81,7 +89,7 @@
 				<time class="entry-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
 				<span class="entry-meta-categories">
 					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/note-hugo/categories/storm" rel="category">storm</a></span>
+					<a class="meta-categories" href="/categories/storm" rel="category">storm</a></span>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
@@ -160,7 +168,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152744.png" alt="2017 03 28 152744">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152744.png" alt="2017 03 28 152744">
 </div>
 </div>
 <hr>
@@ -188,7 +196,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152816.png" alt="2017 03 28 152816">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152816.png" alt="2017 03 28 152816">
 </div>
 </div>
 <hr>
@@ -219,7 +227,7 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152836.png" alt="2017 03 28 152836">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152836.png" alt="2017 03 28 152836">
 </div>
 </div>
 <hr>
@@ -381,7 +389,7 @@ queue.take(object)    数据消费</p>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152848.png" alt="2017 03 28 152848">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152848.png" alt="2017 03 28 152848">
 </div>
 </div>
 <hr>
@@ -395,7 +403,7 @@ queue.take(object)    数据消费</p>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152855.png" alt="2017 03 28 152855">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152855.png" alt="2017 03 28 152855">
 </div>
 </div>
 <hr>
@@ -404,7 +412,7 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152902.png" alt="2017 03 28 152902">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152902.png" alt="2017 03 28 152902">
 </div>
 </div>
 <hr>
@@ -415,7 +423,7 @@ queue.take(object)    数据消费</p>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152910.png" alt="2017 03 28 152910">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152910.png" alt="2017 03 28 152910">
 </div>
 </div>
 <hr>
@@ -425,7 +433,7 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152916.png" alt="2017 03 28 152916">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152916.png" alt="2017 03 28 152916">
 </div>
 </div>
 <hr>
@@ -453,7 +461,7 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152924.png" alt="2017 03 28 152924">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152924.png" alt="2017 03 28 152924">
 </div>
 </div>
 <hr>
@@ -533,7 +541,7 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152939.png" alt="2017 03 28 152939">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152939.png" alt="2017 03 28 152939">
 </div>
 </div>
 <hr>
@@ -606,14 +614,14 @@ queue.take(object)    数据消费</p>
 <h1 id="_kafka生产者java_api" class="sect0">Kafka生产者Java API</h1>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_152953.png" alt="2017 03 28 152953">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_152953.png" alt="2017 03 28 152953">
 </div>
 </div>
 <hr>
 <h1 id="_kafka消费者java_api" class="sect0">Kafka消费者Java API</h1>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/storm/2017-03-28_153002.png" alt="2017 03 28 153002">
+<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_153002.png" alt="2017 03 28 153002">
 </div>
 </div>
 <hr>
@@ -636,7 +644,7 @@ queue.take(object)    数据消费</p>
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/note-hugo/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -652,7 +660,7 @@ queue.take(object)    数据消费</p>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" rel="next"><span>Next»</span><p>Storm目录树、任务提交、消息容错</p></a>
+			<a href="http://dishui.oschina.io/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" rel="next"><span>Next»</span><p>Storm目录树、任务提交、消息容错</p></a>
 		</div>
 		
 	</nav>

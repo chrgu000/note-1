@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/note-hugo/categories/java/index.xml</link>
+    <link>http://dishui.oschina.io/categories/java/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/note-hugo/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Java 面试题</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <link>http://dishui.oschina.io/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
       <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <guid>http://dishui.oschina.io/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
       <description>&lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_面向对象编程的基本理念与核心设计思想&#34;&gt;面向对象编程的基本理念与核心设计思想&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
@@ -217,10 +217,10 @@
     
     <item>
       <title>Netty</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/netty/</link>
+      <link>http://dishui.oschina.io/post/java/netty/</link>
       <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/netty/</guid>
+      <guid>http://dishui.oschina.io/post/java/netty/</guid>
       <description>&lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_nio_服务端的主要创建过程&#34;&gt;NIO 服务端的主要创建过程&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
@@ -373,10 +373,10 @@ while(buffer.hasRemain())
     
     <item>
       <title>Btrace</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/btrace/</link>
+      <link>http://dishui.oschina.io/post/java/btrace/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/btrace/</guid>
+      <guid>http://dishui.oschina.io/post/java/btrace/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -487,10 +487,10 @@ export COREOS=/e/vagrant/CoreOS&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Intellij</title>
-      <link>http://dishui.oschina.io/note-hugo/post/Intellij/</link>
+      <link>http://dishui.oschina.io/post/Intellij/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/Intellij/</guid>
+      <guid>http://dishui.oschina.io/post/Intellij/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;IDEA&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -553,7 +553,7 @@ export COREOS=/e/vagrant/CoreOS&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;intellij IDEA &lt;code&gt;Properties&lt;/code&gt; 中文unicode转码问题&lt;/p&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/note-hugo/src/img/intellij/2016-08-18_141826.png&#34; alt=&#34;2016 08 18 141826&#34;&gt;
+&lt;img src=&#34;http://dishui.oschina.io/src/img/intellij/2016-08-18_141826.png&#34; alt=&#34;2016 08 18 141826&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -566,10 +566,10 @@ export COREOS=/e/vagrant/CoreOS&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Jackson</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/jackson/</link>
+      <link>http://dishui.oschina.io/post/java/jackson/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/jackson/</guid>
+      <guid>http://dishui.oschina.io/post/java/jackson/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -619,10 +619,10 @@ private Date inDate;
     
     <item>
       <title>Jetty</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/jetty/</link>
+      <link>http://dishui.oschina.io/post/java/jetty/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/jetty/</guid>
+      <guid>http://dishui.oschina.io/post/java/jetty/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Jetty&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -766,10 +766,10 @@ public class JettyTest {
     
     <item>
       <title>Jmeter</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/jmeter/</link>
+      <link>http://dishui.oschina.io/post/java/jmeter/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/jmeter/</guid>
+      <guid>http://dishui.oschina.io/post/java/jmeter/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -800,10 +800,10 @@ public class JettyTest {
     
     <item>
       <title>Jprofiler</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/jprofiler/</link>
+      <link>http://dishui.oschina.io/post/java/jprofiler/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/jprofiler/</guid>
+      <guid>http://dishui.oschina.io/post/java/jprofiler/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -836,10 +836,10 @@ L-Larry_Lau@163.com#40775-3wle0g1uin5c1#0674&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Jrebel 热部署</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/jrebel/</link>
+      <link>http://dishui.oschina.io/post/java/jrebel/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/jrebel/</guid>
+      <guid>http://dishui.oschina.io/post/java/jrebel/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -941,10 +941,10 @@ $CATALINA_HOME/bin/catalina.sh jpda run&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>freemarker</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/freemarker/</link>
+      <link>http://dishui.oschina.io/post/java/freemarker/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/freemarker/</guid>
+      <guid>http://dishui.oschina.io/post/java/freemarker/</guid>
       <description>&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;freemarker list (长度,遍历,下标,嵌套,排序)
 1. freemarker获取list的size ：&lt;/p&gt;
@@ -1066,10 +1066,10 @@ ${list[i]}
     
     <item>
       <title>java 框架</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/framework/</link>
+      <link>http://dishui.oschina.io/post/java/framework/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/framework/</guid>
+      <guid>http://dishui.oschina.io/post/java/framework/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1181,10 +1181,10 @@ MapperFactory.getCopyByRefMapper().mapClass(TiProcurement.class, QuotepriceBean.
     
     <item>
       <title>java编程题</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/codes/</link>
+      <link>http://dishui.oschina.io/post/java/codes/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/codes/</guid>
+      <guid>http://dishui.oschina.io/post/java/codes/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1362,10 +1362,10 @@ public class Main{
     
     <item>
       <title>mockito 单元测试</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/mockito/</link>
+      <link>http://dishui.oschina.io/post/java/mockito/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/mockito/</guid>
+      <guid>http://dishui.oschina.io/post/java/mockito/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
@@ -1401,10 +1401,10 @@ public class Main{
     
     <item>
       <title>单元测试</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/junit/</link>
+      <link>http://dishui.oschina.io/post/java/junit/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/junit/</guid>
+      <guid>http://dishui.oschina.io/post/java/junit/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1435,10 +1435,10 @@ public class Main{
     
     <item>
       <title>多线程</title>
-      <link>http://dishui.oschina.io/note-hugo/post/java/thread/</link>
+      <link>http://dishui.oschina.io/post/java/thread/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/java/thread/</guid>
+      <guid>http://dishui.oschina.io/post/java/thread/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;

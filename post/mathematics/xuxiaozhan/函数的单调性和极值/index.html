@@ -9,7 +9,7 @@
 <meta property="og:title" content="函数的单调性和极值" />
 <meta property="og:description" content="函数的单调性和极值1. 函数的单调性和极值1.1. 函数单调性的判定定理1.2. 函数的极值1.2.1. 极值的必要条件极值的第一充分条件极值的第二充分条件1.2.2. 最值例11.3. 推论1.3.1. 例11.4. 函数单调性应用1.4.1. 例61.5. 利用单调性证明函数为正函数1.6. 利用函数的最值证明不等式1.7. 单调性证明方程有唯一的实根1. 函数的单调性和极值1.1. 函数单调性的判定定理1.2. 函数的极值1.2.1. 极值的必要条件极值的第一充分条件极值的第二充分条件1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E5%92%8C%E6%9E%81%E5%80%BC/" />
+<meta property="og:url" content="http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E5%92%8C%E6%9E%81%E5%80%BC/" />
 
 
 <meta property="og:updated_time" content="2017-02-12T00:00:00&#43;00:00"/>
@@ -24,23 +24,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
+<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/note-hugo/js/scripts.js"></script>
+<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/note-hugo/js/css3-mediaqueries.js"></script>
+	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/note-hugo/js/app.js" src="http://dishui.oschina.io/note-hugo/js/require.js"></script>
+<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -52,7 +52,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/note-hugo/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -64,7 +64,15 @@
 				<div class="mr-main-nav-wrap">
 					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 	<ul class="menu__list">
-		
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
 	</ul>
 </nav>
 				</div>
@@ -81,7 +89,7 @@
 				<time class="entry-meta-date updated" datetime="2017-02-12 00:00:00 &#43;0000 UTC">February 12, 2017</time>
 				<span class="entry-meta-categories">
 					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/note-hugo/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
+					<a class="meta-categories" href="/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
@@ -131,19 +139,19 @@
 <h3 id="_函数单调性的判定定理">1.1. 函数单调性的判定定理</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_084154.png" alt="2017 02 12 084154">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_084154.png" alt="2017 02 12 084154">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_084351.png" alt="2017 02 12 084351">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_084351.png" alt="2017 02 12 084351">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_084521.png" alt="2017 02 12 084521">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_084521.png" alt="2017 02 12 084521">
 </div>
 </div>
 <hr>
@@ -152,13 +160,13 @@
 <h3 id="_函数的极值">1.2. 函数的极值</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_084903.png" alt="2017 02 12 084903">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_084903.png" alt="2017 02 12 084903">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_084938.png" alt="2017 02 12 084938">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_084938.png" alt="2017 02 12 084938">
 </div>
 </div>
 <hr>
@@ -166,31 +174,31 @@
 <h4 id="_极值的必要条件">1.2.1. 极值的必要条件</h4>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_085202.png" alt="2017 02 12 085202">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_085202.png" alt="2017 02 12 085202">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_085425.png" alt="2017 02 12 085425">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_085425.png" alt="2017 02 12 085425">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_085543.png" alt="2017 02 12 085543">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_085543.png" alt="2017 02 12 085543">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_085634.png" alt="2017 02 12 085634">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_085634.png" alt="2017 02 12 085634">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_090200.png" alt="2017 02 12 090200">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_090200.png" alt="2017 02 12 090200">
 </div>
 </div>
 <hr>
@@ -198,13 +206,13 @@
 <h5 id="_极值的第一充分条件">极值的第一充分条件</h5>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_090748.png" alt="2017 02 12 090748">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_090748.png" alt="2017 02 12 090748">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_091226.png" alt="2017 02 12 091226">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_091226.png" alt="2017 02 12 091226">
 </div>
 </div>
 <hr>
@@ -213,13 +221,13 @@
 <h5 id="_极值的第二充分条件">极值的第二充分条件</h5>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_092546.png" alt="2017 02 12 092546">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_092546.png" alt="2017 02 12 092546">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_093558.png" alt="2017 02 12 093558">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_093558.png" alt="2017 02 12 093558">
 </div>
 </div>
 <hr>
@@ -229,7 +237,7 @@
 <h4 id="_最值">1.2.2. 最值</h4>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_142739.png" alt="2017 02 12 142739">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_142739.png" alt="2017 02 12 142739">
 </div>
 </div>
 <hr>
@@ -237,19 +245,19 @@
 <h5 id="_例1">例1</h5>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_142940.png" alt="2017 02 12 142940">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_142940.png" alt="2017 02 12 142940">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_143217.png" alt="2017 02 12 143217">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_143217.png" alt="2017 02 12 143217">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_143515.png" alt="2017 02 12 143515">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_143515.png" alt="2017 02 12 143515">
 </div>
 </div>
 <hr>
@@ -260,13 +268,13 @@
 <h3 id="_推论">1.3. 推论</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_162957.png" alt="2017 02 12 162957">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_162957.png" alt="2017 02 12 162957">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_163216.png" alt="2017 02 12 163216">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_163216.png" alt="2017 02 12 163216">
 </div>
 </div>
 <hr>
@@ -274,31 +282,31 @@
 <h4 id="_例1_2">1.3.1. 例1</h4>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_163216.png" alt="2017 02 12 163216">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_163216.png" alt="2017 02 12 163216">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_163457.png" alt="2017 02 12 163457">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_163457.png" alt="2017 02 12 163457">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_163906.png" alt="2017 02 12 163906">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_163906.png" alt="2017 02 12 163906">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_164054.png" alt="2017 02 12 164054">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_164054.png" alt="2017 02 12 164054">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_164155.png" alt="2017 02 12 164155">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_164155.png" alt="2017 02 12 164155">
 </div>
 </div>
 <hr>
@@ -310,19 +318,19 @@
 <h4 id="_例6">1.4.1. 例6</h4>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_164417.png" alt="2017 02 12 164417">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_164417.png" alt="2017 02 12 164417">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_164700.png" alt="2017 02 12 164700">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_164700.png" alt="2017 02 12 164700">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_164840.png" alt="2017 02 12 164840">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_164840.png" alt="2017 02 12 164840">
 </div>
 </div>
 <hr>
@@ -332,31 +340,31 @@
 <h3 id="_利用单调性证明函数为正函数">1.5. 利用单调性证明函数为正函数</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_165116.png" alt="2017 02 12 165116">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_165116.png" alt="2017 02 12 165116">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_165452.png" alt="2017 02 12 165452">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_165452.png" alt="2017 02 12 165452">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_165549.png" alt="2017 02 12 165549">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_165549.png" alt="2017 02 12 165549">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_165914.png" alt="2017 02 12 165914">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_165914.png" alt="2017 02 12 165914">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_170039.png" alt="2017 02 12 170039">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_170039.png" alt="2017 02 12 170039">
 </div>
 </div>
 <hr>
@@ -365,7 +373,7 @@
 <h3 id="_利用函数的最值证明不等式">1.6. 利用函数的最值证明不等式</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_170234.png" alt="2017 02 12 170234">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_170234.png" alt="2017 02 12 170234">
 </div>
 </div>
 <hr>
@@ -374,49 +382,49 @@
 <h3 id="_单调性证明方程有唯一的实根">1.7. 单调性证明方程有唯一的实根</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_170453.png" alt="2017 02 12 170453">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_170453.png" alt="2017 02 12 170453">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_170650.png" alt="2017 02 12 170650">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_170650.png" alt="2017 02 12 170650">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_170758.png" alt="2017 02 12 170758">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_170758.png" alt="2017 02 12 170758">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_171026.png" alt="2017 02 12 171026">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_171026.png" alt="2017 02 12 171026">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_171103.png" alt="2017 02 12 171103">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_171103.png" alt="2017 02 12 171103">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_171131.png" alt="2017 02 12 171131">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_171131.png" alt="2017 02 12 171131">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_171347.png" alt="2017 02 12 171347">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_171347.png" alt="2017 02 12 171347">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/gaoshu/2017-02-12_171516.png" alt="2017 02 12 171516">
+<img src="http://dishui.oschina.io/src/img/gaoshu/2017-02-12_171516.png" alt="2017 02 12 171516">
 </div>
 </div>
 <hr>
@@ -430,7 +438,7 @@
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/note-hugo/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -445,12 +453,12 @@
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E6%9C%89%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86/" rel="prev"><span>«Previous</span><p>有理函数的积分</p></a>
+			<a href="http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E6%9C%89%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86/" rel="prev"><span>«Previous</span><p>有理函数的积分</p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/note-hugo/post/mathematics/xuxiaozhan/%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95/" rel="next"><span>Next»</span><p>换元积分法</p></a>
+			<a href="http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95/" rel="next"><span>Next»</span><p>换元积分法</p></a>
 		</div>
 		
 	</nav>

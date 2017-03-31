@@ -9,7 +9,7 @@
 <meta property="og:title" content="hive详解" />
 <meta property="og:description" content="hive详解1. Hive简介1.1. 什么是Hive1.2. 为什么使用Hive1.3. Hive的特点2. Hive 架构2.1. 基本组成2.2. 各组件的基本功能2.3. Hive与Hadoop的关系2.4. Hive与传统数据库对比2.5. 对比2.6. Hive的数据存储2.7. HIVE 的安装部署2.7.1. 使用方式3. Hive基本操作3.1. DDL操作3.1.1. 创建表具体实例3.1.2. 修改表增加/删除分区重命名表增加/更新列显示命令3.1.3. DML操作LoadInsertSELECT3.1.4. Hive Join4. Hive Shell参数4.1. Hive命令行4." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/" />
+<meta property="og:url" content="http://dishui.oschina.io/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/" />
 
 
 <meta property="og:updated_time" content="2017-03-17T00:00:00&#43;00:00"/>
@@ -24,23 +24,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
+<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/note-hugo/js/scripts.js"></script>
+<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/note-hugo/js/css3-mediaqueries.js"></script>
+	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/note-hugo/js/app.js" src="http://dishui.oschina.io/note-hugo/js/require.js"></script>
+<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -52,7 +52,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/note-hugo/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -64,7 +64,15 @@
 				<div class="mr-main-nav-wrap">
 					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 	<ul class="menu__list">
-		
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
 	</ul>
 </nav>
 				</div>
@@ -81,7 +89,7 @@
 				<time class="entry-meta-date updated" datetime="2017-03-17 00:00:00 &#43;0000 UTC">March 17, 2017</time>
 				<span class="entry-meta-categories">
 					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/note-hugo/categories/hadoop" rel="category">hadoop</a></span>
+					<a class="meta-categories" href="/categories/hadoop" rel="category">hadoop</a></span>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
@@ -218,7 +226,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/2017-03-17_155621.png" alt="2017 03 17 155621">
+<img src="http://dishui.oschina.io/src/img/hadoop/2017-03-17_155621.png" alt="2017 03 17 155621">
 </div>
 </div>
 <hr>
@@ -283,7 +291,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/2017-03-17_160404.png" alt="2017 03 17 160404">
+<img src="http://dishui.oschina.io/src/img/hadoop/2017-03-17_160404.png" alt="2017 03 17 160404">
 </div>
 </div>
 <hr>
@@ -292,7 +300,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 <h3 id="_hive与传统数据库对比">2.4. Hive与传统数据库对比</h3>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/2017-03-17_160454.png" alt="2017 03 17 160454">
+<img src="http://dishui.oschina.io/src/img/hadoop/2017-03-17_160454.png" alt="2017 03 17 160454">
 </div>
 </div>
 <hr>
@@ -537,7 +545,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 <p>创建内部表mytable</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image010.png" alt="image010">
+<img src="http://dishui.oschina.io/src/img/hadoop/image010.png" alt="image010">
 </div>
 </div>
 <hr>
@@ -546,7 +554,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 <p>创建外部表pageview</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image012.png" alt="image012">
+<img src="http://dishui.oschina.io/src/img/hadoop/image012.png" alt="image012">
 </div>
 </div>
 <hr>
@@ -560,7 +568,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image014.png" alt="image014">
+<img src="http://dishui.oschina.io/src/img/hadoop/image014.png" alt="image014">
 </div>
 </div>
 <hr>
@@ -569,7 +577,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 <p>创建带桶的表student</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image016.png" alt="image016">
+<img src="http://dishui.oschina.io/src/img/hadoop/image016.png" alt="image016">
 </div>
 </div>
 <hr>
@@ -605,13 +613,13 @@ ALTER TABLE table_name DROP partition_spec, partition_spec,...</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image018.png" alt="image018">
+<img src="http://dishui.oschina.io/src/img/hadoop/image018.png" alt="image018">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image020.png" alt="image020">
+<img src="http://dishui.oschina.io/src/img/hadoop/image020.png" alt="image020">
 </div>
 </div>
 <hr>
@@ -635,7 +643,7 @@ ALTER TABLE table_name DROP partition_spec, partition_spec,...</code></pre>
 <dd>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image022.png" alt="image022">
+<img src="http://dishui.oschina.io/src/img/hadoop/image022.png" alt="image022">
 </div>
 </div>
 <hr>
@@ -671,7 +679,7 @@ ALTER TABLE table_name DROP partition_spec, partition_spec,...</code></pre>
 <dd>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image024.png" alt="image024">
+<img src="http://dishui.oschina.io/src/img/hadoop/image024.png" alt="image024">
 </div>
 </div>
 <hr>
@@ -761,7 +769,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]</code></pre>
 <p>加载相对路径数据</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image026.png" alt="image026">
+<img src="http://dishui.oschina.io/src/img/hadoop/image026.png" alt="image026">
 </div>
 </div>
 <hr>
@@ -770,7 +778,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]</code></pre>
 <p>加载绝对路径数据</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image028.png" alt="image028">
+<img src="http://dishui.oschina.io/src/img/hadoop/image028.png" alt="image028">
 </div>
 </div>
 <hr>
@@ -779,7 +787,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]</code></pre>
 <p>加载包含模式数据</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image030.png" alt="image030">
+<img src="http://dishui.oschina.io/src/img/hadoop/image030.png" alt="image030">
 </div>
 </div>
 <hr>
@@ -788,7 +796,7 @@ TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]</code></pre>
 <p>OVERWRITE关键字使用</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image032.png" alt="image032">
+<img src="http://dishui.oschina.io/src/img/hadoop/image032.png" alt="image032">
 </div>
 </div>
 <hr>
@@ -827,7 +835,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...
 <p>基本模式插入</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image034.png" alt="image034">
+<img src="http://dishui.oschina.io/src/img/hadoop/image034.png" alt="image034">
 </div>
 </div>
 <hr>
@@ -836,7 +844,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...
 <p>多插入模式</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image036.png" alt="image036">
+<img src="http://dishui.oschina.io/src/img/hadoop/image036.png" alt="image036">
 </div>
 </div>
 <hr>
@@ -845,7 +853,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...
 <p>自动分区模式</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image038.png" alt="image038">
+<img src="http://dishui.oschina.io/src/img/hadoop/image038.png" alt="image038">
 </div>
 </div>
 <hr>
@@ -881,7 +889,7 @@ INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
 <p>导出文件到本地</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image040.png" alt="image040">
+<img src="http://dishui.oschina.io/src/img/hadoop/image040.png" alt="image040">
 </div>
 </div>
 <hr>
@@ -898,7 +906,7 @@ INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
 <p>导出数据到HDFS</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image042.png" alt="image042">
+<img src="http://dishui.oschina.io/src/img/hadoop/image042.png" alt="image042">
 </div>
 </div>
 <hr>
@@ -948,7 +956,7 @@ FROM table_reference
 <p>获取年龄大的3个学生</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image044.png" alt="image044">
+<img src="http://dishui.oschina.io/src/img/hadoop/image044.png" alt="image044">
 </div>
 </div>
 <hr>
@@ -957,25 +965,25 @@ FROM table_reference
 <p>查询学生信息按年龄，降序排序</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image046.png" alt="image046">
+<img src="http://dishui.oschina.io/src/img/hadoop/image046.png" alt="image046">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image048.png" alt="image048">
+<img src="http://dishui.oschina.io/src/img/hadoop/image048.png" alt="image048">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image050.png" alt="image050">
+<img src="http://dishui.oschina.io/src/img/hadoop/image050.png" alt="image050">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image052.png" alt="image052">
+<img src="http://dishui.oschina.io/src/img/hadoop/image052.png" alt="image052">
 </div>
 </div>
 <hr>
@@ -984,7 +992,7 @@ FROM table_reference
 <p>按学生名称汇总学生年龄</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image054.png" alt="image054">
+<img src="http://dishui.oschina.io/src/img/hadoop/image054.png" alt="image054">
 </div>
 </div>
 <hr>
@@ -1155,7 +1163,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 <p>获取已经分配班级的学生姓名</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image056.png" alt="image056">
+<img src="http://dishui.oschina.io/src/img/hadoop/image056.png" alt="image056">
 </div>
 </div>
 <hr>
@@ -1164,7 +1172,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 <p>获取尚未分配班级的学生姓名</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image058.png" alt="image058">
+<img src="http://dishui.oschina.io/src/img/hadoop/image058.png" alt="image058">
 </div>
 </div>
 <hr>
@@ -1173,7 +1181,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 <p>LEFT  SEMI  JOIN是IN/EXISTS的高效实现</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image060.png" alt="image060">
+<img src="http://dishui.oschina.io/src/img/hadoop/image060.png" alt="image060">
 </div>
 </div>
 <hr>
@@ -1225,7 +1233,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 <p>运行一个查询</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image062.png" alt="image062">
+<img src="http://dishui.oschina.io/src/img/hadoop/image062.png" alt="image062">
 </div>
 </div>
 <hr>
@@ -1234,7 +1242,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 <p>运行一个文件</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image064.png" alt="image064">
+<img src="http://dishui.oschina.io/src/img/hadoop/image064.png" alt="image064">
 </div>
 </div>
 <hr>
@@ -1243,7 +1251,7 @@ reducer 会缓存 join 序列中除了最后一个表的所有表的记录，再
 <p>运行参数文件</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/note-hugo/src/img/hadoop/image066.png" alt="image066">
+<img src="http://dishui.oschina.io/src/img/hadoop/image066.png" alt="image066">
 </div>
 </div>
 <hr>
@@ -1746,7 +1754,7 @@ order by A.username,A.month;</code></pre>
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/note-hugo/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -1761,12 +1769,12 @@ order by A.username,A.month;</code></pre>
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/flume-sqoop/" rel="prev"><span>«Previous</span><p>flume-sqoop</p></a>
+			<a href="http://dishui.oschina.io/post/bigdata/hadoop/flume-sqoop/" rel="prev"><span>«Previous</span><p>flume-sqoop</p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/note-hugo/post/bigdata/hadoop/hive/" rel="next"><span>Next»</span><p>hive</p></a>
+			<a href="http://dishui.oschina.io/post/bigdata/hadoop/hive/" rel="next"><span>Next»</span><p>hive</p></a>
 		</div>
 		
 	</nav>

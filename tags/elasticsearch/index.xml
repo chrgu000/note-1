@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/note-hugo/tags/elasticsearch/index.xml</link>
+    <link>http://dishui.oschina.io/tags/elasticsearch/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/note-hugo/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dishui.oschina.io/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Elasticsearch</title>
-      <link>http://dishui.oschina.io/note-hugo/post/elasticsearch/</link>
+      <link>http://dishui.oschina.io/post/elasticsearch/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/elasticsearch/</guid>
+      <guid>http://dishui.oschina.io/post/elasticsearch/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -699,10 +699,10 @@ output {
     
     <item>
       <title>elasticsearch-jdbc-importer</title>
-      <link>http://dishui.oschina.io/note-hugo/post/elasticsearch-jdbc-importer/</link>
+      <link>http://dishui.oschina.io/post/elasticsearch-jdbc-importer/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/elasticsearch-jdbc-importer/</guid>
+      <guid>http://dishui.oschina.io/post/elasticsearch-jdbc-importer/</guid>
       <description>
 
 &lt;h1 id=&#34;elasticsearch-jdbc-importer&#34;&gt;elasticsearch-jdbc-importer&lt;/h1&gt;
@@ -848,10 +848,10 @@ org.xbib.tools.JDBCImporter
     
     <item>
       <title>es 代码片段</title>
-      <link>http://dishui.oschina.io/note-hugo/post/es-snippet/</link>
+      <link>http://dishui.oschina.io/post/es-snippet/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/es-snippet/</guid>
+      <guid>http://dishui.oschina.io/post/es-snippet/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -1735,10 +1735,10 @@ POST /b2b/mlq_shop_info/2015091404A3ol8/_update
     
     <item>
       <title>es 基础</title>
-      <link>http://dishui.oschina.io/note-hugo/post/es-book-note/</link>
+      <link>http://dishui.oschina.io/post/es-book-note/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/es-book-note/</guid>
+      <guid>http://dishui.oschina.io/post/es-book-note/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -1953,10 +1953,10 @@ POST /b2b/mlq_shop_info/2015091404A3ol8/_update
     
     <item>
       <title>es 插件安装</title>
-      <link>http://dishui.oschina.io/note-hugo/post/escha_jian_an_zhuang/</link>
+      <link>http://dishui.oschina.io/post/escha_jian_an_zhuang/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/escha_jian_an_zhuang/</guid>
+      <guid>http://dishui.oschina.io/post/escha_jian_an_zhuang/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -2034,10 +2034,10 @@ http.host: &amp;quot;192.168.137.107&amp;quot;
     
     <item>
       <title>es 问题</title>
-      <link>http://dishui.oschina.io/note-hugo/post/es-issues/</link>
+      <link>http://dishui.oschina.io/post/es-issues/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/note-hugo/post/es-issues/</guid>
+      <guid>http://dishui.oschina.io/post/es-issues/</guid>
       <description>
 
 &lt;h1 id=&#34;es-issues&#34;&gt;ES-issues&lt;/h1&gt;

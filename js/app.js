@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: 'http://dishui.oschina.io/note-hugo/js/',
+  baseUrl: 'http://dishui.oschina.io/js/',
   paths:{
     'jquery':'jquery-1.11.2.min',
     'lunr':'lunr',
@@ -25,7 +25,7 @@ require([
   'pin',
   'highlight',
   'domReady',
-  'text!http://dishui.oschina.io/note-hugo/js/example_index.json'
+  'text!http://dishui.oschina.io/js/example_index.json'
   ], function ($, lunr, _ , _, hljs, domReady, indexDump) {
 
   var indexDump = JSON.parse(indexDump)
