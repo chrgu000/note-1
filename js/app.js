@@ -1,11 +1,12 @@
 require.config({
-  baseUrl: 'http://dishui.oschina.io/js/',
+  baseUrl: '/js/',
   paths:{
     'jquery':'jquery-1.11.2.min',
     'lunr':'lunr',
     'jquery-bigautocomplete':'jquery.bigautocomplete',
     'pin':'jquery.pin',
-    'highlight':'highlight.min'
+    'highlight':'highlight.min',
+    'jquery-scrollUp':'jquery.scrollUp'
   },
   shim:{
     'jquery-bigautocomplete':{
@@ -13,7 +14,10 @@ require.config({
     },
     'pin':{
       deps: ['jquery']
-    }
+    },
+    'jquery-scrollUp':{
+      deps: ['jquery']
+    },
   }
 });
 
@@ -25,8 +29,9 @@ require([
   'pin',
   'highlight',
   'domReady',
-  'text!http://dishui.oschina.io/js/example_index.json'
-  ], function ($, lunr, _ , _, hljs, domReady, indexDump) {
+  'text!/js/example_index.json',
+  'jquery-scrollUp'
+  ], function ($, lunr, _ , _, hljs, domReady, indexDump, _) {
 
   var indexDump = JSON.parse(indexDump)
   console.time('load')
@@ -62,7 +67,14 @@ require([
     $('pre code').each(function(i, block) {
       hljs.highlightBlock(block);
     });
-
+    //回到顶端
+    $.scrollUp({
+          animation: 'fade',
+          scrollImg: {
+            active: true,
+            type: 'background',
+          }
+        });
   });
 
   $('#side-toc').find('a').each(function(){

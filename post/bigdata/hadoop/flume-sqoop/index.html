@@ -9,7 +9,7 @@
 <meta property="og:title" content="flume-sqoop" />
 <meta property="og:description" content="flume-sqoop1. Flume介绍1.1. 概述1.2. 运行机制1.3. Flume采集系统结构图2. Flume实战案例2.1. Flume的安装部署2.2. 采集案例2.2.1. 采集目录到HDFS2.2.2. 采集文件到HDFS2.2.3. 更多source和sink组件3. 工作流调度器azkaban3.1. 为什么需要工作流调度系统3.2. 工作流调度实现方式3.3. 常见工作流调度系统3.4. Azkaban与Oozie对比3.4.1. Azkaban介绍3.4.2. Azkaban安装部署3.4.3. Azkaban实战Command类型多job工作流flowHDFS操作任务MAPREDUCE任务HIVE脚本任务4. sqoop数据迁移4.1. sqoop安装4.2. Sqoop的数据导入4.2.1. 示例导入表表数据到HDFS导入关系表到HIVE导入到HDFS指定目录导入表数据子集增量导入4." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/post/bigdata/hadoop/flume-sqoop/" />
+<meta property="og:url" content="/post/bigdata/hadoop/flume-sqoop/" />
 
 
 <meta property="og:updated_time" content="2017-03-17T00:00:00&#43;00:00"/>
@@ -24,23 +24,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
+<script type="text/javascript" src="/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
+	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -52,7 +52,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -170,7 +170,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image001.png" alt="image001">
+<img src="/src/img/hadoop/flume/image001.png" alt="image001">
 </div>
 </div>
 <hr>
@@ -219,7 +219,7 @@
 <p><strong>Channel</strong>：<strong>angent</strong> 内部的数据传输通道，用于从 <strong>source</strong> 将数据传递到 <strong>sink</strong></p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image003.png" alt="image003">
+<img src="/src/img/hadoop/flume/image003.png" alt="image003">
 </div>
 </div>
 <hr>
@@ -242,7 +242,7 @@
 <p>单个agent采集数据</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image005.png" alt="image005">
+<img src="/src/img/hadoop/flume/image005.png" alt="image005">
 </div>
 </div>
 <hr>
@@ -258,7 +258,7 @@
 <p>多个agent之间串联</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image007.png" alt="image007">
+<img src="/src/img/hadoop/flume/image007.png" alt="image007">
 </div>
 </div>
 <hr>
@@ -367,7 +367,7 @@ a1.sinks.k1.channel = c1</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image009.png" alt="image009">
+<img src="/src/img/hadoop/flume/image009.png" alt="image009">
 </div>
 </div>
 <hr>
@@ -1062,7 +1062,7 @@ command=echo 'hello'</code></pre>
 首先创建project</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image011.png" alt="image011">
+<img src="/src/img/hadoop/flume/image011.png" alt="image011">
 </div>
 </div>
 <hr>
@@ -1071,14 +1071,14 @@ command=echo 'hello'</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image013.png" alt="image013">
+<img src="/src/img/hadoop/flume/image013.png" alt="image013">
 </div>
 </div>
 <hr>
 </li>
 <li>
 <p>启动执行该job
-image::http://dishui.oschina.io/src/img/hadoop/flume/image015.png[]
+image::/src/img/hadoop/flume/image015.png[]
 ---</p>
 </li>
 </ol>
@@ -1116,7 +1116,7 @@ command=echo bar</code></pre>
 <p>将所有job资源文件打到一个zip包中</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image017.png" alt="image017">
+<img src="/src/img/hadoop/flume/image017.png" alt="image017">
 </div>
 </div>
 <hr>
@@ -1148,7 +1148,7 @@ command=/home/hadoop/apps/hadoop-2.6.1/bin/hadoop fs -mkdir /azaz</code></pre>
 <p>将job资源文件打包成zip文件</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image019.png" alt="image019">
+<img src="/src/img/hadoop/flume/image019.png" alt="image019">
 </div>
 </div>
 <hr>
@@ -1183,7 +1183,7 @@ command=/home/hadoop/apps/hadoop-2.6.1/bin/hadoop  jar hadoop-mapreduce-examples
 <p>将所有job资源文件打到一个zip包中</p>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/hadoop/flume/image021.png" alt="image021">
+<img src="/src/img/hadoop/flume/image021.png" alt="image021">
 </div>
 </div>
 <hr>
@@ -1838,7 +1838,7 @@ emp.java</p>
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -1853,12 +1853,12 @@ emp.java</p>
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/post/bigdata/hadoop/hbase/" rel="prev"><span>«Previous</span><p>hbase</p></a>
+			<a href="/post/bigdata/hadoop/hbase/" rel="prev"><span>«Previous</span><p>hbase</p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/" rel="next"><span>Next»</span><p>hive详解</p></a>
+			<a href="/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/" rel="next"><span>Next»</span><p>hive详解</p></a>
 		</div>
 		
 	</nav>

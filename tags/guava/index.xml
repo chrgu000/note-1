@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/tags/guava/index.xml</link>
+    <link>/tags/guava/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/tags/guava/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/guava/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>guava API</title>
-      <link>http://dishui.oschina.io/post/guava/</link>
+      <link>/post/guava/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/guava/</guid>
+      <guid>/post/guava/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;

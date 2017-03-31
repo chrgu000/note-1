@@ -9,7 +9,7 @@
 <meta property="og:title" content="Vagrant常用命令" />
 <meta property="og:description" content="Vagrant常用命令  添加box bash #到vagrant所在目录 cd D:\vagrant\CentOS # vagrant box add ubuntu-14.04 trusty-server-cloudimg-amd64-vagrant-disk1.box  初始化 cmd #打开目录 cd D:\vagrant\work #如果你添加的box名称不是base，那么需要在初始化的时候指定名称，例如 vagrant init ubuntu14.04  启动虚拟机  vagrant up  ssh到虚拟机  vagrant ssh  重启虚拟机（重新载入配置文件）  vagrant reload  打包分发  vagrant package   Vagrantfile  配置文件 ruby Vagrant.configure(2) do |config| config.vm.define &quot;u1&quot; do |u1| u1.vm.box = &quot;ubuntu-14.04-1&quot; u1.vm.hostname = &quot;u1&quot; u1.vm.network &quot;private_network&quot;, ip: &quot;192.168.137.11&quot; end config.vm.define &quot;u2&quot; do |u2| u2." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/post/vagrant/" />
+<meta property="og:url" content="/post/vagrant/" />
 
 
 <meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
@@ -24,23 +24,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
+<script type="text/javascript" src="/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
+	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -52,7 +52,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -206,7 +206,7 @@ as well.</p>
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -221,12 +221,12 @@ as well.</p>
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/post/mvcxml_md/" rel="prev"><span>«Previous</span><p>SpringMVC</p></a>
+			<a href="/post/mvcxml_md/" rel="prev"><span>«Previous</span><p>SpringMVC</p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/post/linux/alpine/" rel="next"><span>Next»</span><p>alpine</p></a>
+			<a href="/post/linux/alpine/" rel="next"><span>Next»</span><p>alpine</p></a>
 		</div>
 		
 	</nav>

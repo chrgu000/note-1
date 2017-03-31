@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/categories/go/index.xml</link>
+    <link>/categories/go/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>go 基础配置</title>
-      <link>http://dishui.oschina.io/post/go/basic/</link>
+      <link>/post/go/basic/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/go/basic/</guid>
+      <guid>/post/go/basic/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;

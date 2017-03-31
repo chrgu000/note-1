@@ -23,7 +23,7 @@
 
 			$("#bigAutocompleteContent").delegate("tr", "click", function() {
 
-				window.location.href = 'http://dishui.oschina.io'+$(this).text();
+				window.location.href = $(this).text();
 				// window.location.href = ''+$(this).text();
         		return;
 		        $.post($(this).text(), function(data){
@@ -62,7 +62,7 @@
 			               callback:null};
 			$.extend(this.config,param);
 			$this.data("config",this.config);
-			console.log($this.data("config"));
+			// console.log($this.data("config"));
 			$this.keydown(function(event) {
 				switch (event.keyCode) {
 				case 40:
@@ -118,7 +118,7 @@
 			});
 
 			$this.keyup(function(event) {
-				console.log($this.data("config"));
+				// console.log($this.data("config"));
 				var k = event.keyCode;
 				var ctrl = event.ctrlKey;
 				var isFunctionalKey = false;
@@ -149,7 +149,7 @@
 							// if(data[i].title.indexOf(keyword_) > -1){
 								data_.push(data[i]);
 							// }
-							console.log(data[i]);
+							// console.log(data[i]);
 						}
 						makeContAndShow(data_);
 					}else if(url != null && url != ""){

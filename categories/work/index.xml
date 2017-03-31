@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/categories/work/index.xml</link>
+    <link>/categories/work/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/categories/work/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/work/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>物流</title>
-      <link>http://dishui.oschina.io/post/work/wuliu/basic/</link>
+      <link>/post/work/wuliu/basic/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/work/wuliu/basic/</guid>
+      <guid>/post/work/wuliu/basic/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -197,7 +197,7 @@ docker-compose -f nginx.yml restart wuliu&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;_表关系&#34;&gt;5.1. 表关系&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/work/wuliu/2017-02-28_110200.png&#34; alt=&#34;2017 02 28 110200&#34;&gt;
+&lt;img src=&#34;/src/img/work/wuliu/2017-02-28_110200.png&#34; alt=&#34;2017 02 28 110200&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;

@@ -10,7 +10,7 @@
 <meta property="og:description" content="Storm1. Storm程序的并发机制1.1. 概念1.2. 配置并行度2. Storm通信机制3. Worker进程间通信4. Worker进程间通信分析5. Worker进程间技术(Netty、ZeroMQ)5.1. Netty5.2. ZeroMQ6. Worker 内部通信技术(Disruptor)6.1. Disruptor的来历6.2. Disruptor是什么6.3. Disruptor主要特点7. Storm组件本地目录树8. Storm zookeeper目录树9. Storm 任务提交的过程10. Storm 消息容错机制10.1. 总体介绍10.2. 基本实现10.3. 可靠性配置1. Storm程序的并发机制1.1. 概念Workers (JVMs)在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology
 Executors (threads)在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" />
+<meta property="og:url" content="/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" />
 
 
 <meta property="og:updated_time" content="2017-03-28T00:00:00&#43;00:00"/>
@@ -25,23 +25,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
+<script type="text/javascript" src="/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
+	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -53,7 +53,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -191,7 +191,7 @@ StormSubmitter.submitTopology("mytopology", conf, topologyBuilder.createTopology
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163004.png" alt="2017 03 28 163004">
+<img src="/src/img/storm/2017-03-28_163004.png" alt="2017 03 28 163004">
 </div>
 </div>
 <hr>
@@ -233,7 +233,7 @@ Worker进程内部通信：不同worker的thread通信使用LMAX Disruptor来完
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163014.png" alt="2017 03 28 163014">
+<img src="/src/img/storm/2017-03-28_163014.png" alt="2017 03 28 163014">
 </div>
 </div>
 <hr>
@@ -260,7 +260,7 @@ Worker接收线程将收到的消息通过task编号传递给对应的executor(�
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163023.png" alt="2017 03 28 163023">
+<img src="/src/img/storm/2017-03-28_163023.png" alt="2017 03 28 163023">
 </div>
 </div>
 <hr>
@@ -345,7 +345,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163035.png" alt="2017 03 28 163035">
+<img src="/src/img/storm/2017-03-28_163035.png" alt="2017 03 28 163035">
 </div>
 </div>
 <hr>
@@ -362,7 +362,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163042.png" alt="2017 03 28 163042">
+<img src="/src/img/storm/2017-03-28_163042.png" alt="2017 03 28 163042">
 </div>
 </div>
 <hr>
@@ -373,7 +373,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163050.png" alt="2017 03 28 163050">
+<img src="/src/img/storm/2017-03-28_163050.png" alt="2017 03 28 163050">
 </div>
 </div>
 <hr>
@@ -384,7 +384,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163058.png" alt="2017 03 28 163058">
+<img src="/src/img/storm/2017-03-28_163058.png" alt="2017 03 28 163058">
 </div>
 </div>
 <hr>
@@ -393,7 +393,7 @@ ZeroMQ定位为：一个简单好用的传输层，像框架一样的一个socke
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163734.png" alt="2017 03 28 163734">
+<img src="/src/img/storm/2017-03-28_163734.png" alt="2017 03 28 163734">
 </div>
 </div>
 <hr>
@@ -430,31 +430,31 @@ acker任务保存了spout id到一对值的映射。第一个值就是spout的�
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163743.png" alt="2017 03 28 163743">
+<img src="/src/img/storm/2017-03-28_163743.png" alt="2017 03 28 163743">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163751.png" alt="2017 03 28 163751">
+<img src="/src/img/storm/2017-03-28_163751.png" alt="2017 03 28 163751">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163757.png" alt="2017 03 28 163757">
+<img src="/src/img/storm/2017-03-28_163757.png" alt="2017 03 28 163757">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163804.png" alt="2017 03 28 163804">
+<img src="/src/img/storm/2017-03-28_163804.png" alt="2017 03 28 163804">
 </div>
 </div>
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-28_163811.png" alt="2017 03 28 163811">
+<img src="/src/img/storm/2017-03-28_163811.png" alt="2017 03 28 163811">
 </div>
 </div>
 <hr>
@@ -484,7 +484,7 @@ executor的outgoing-queue的大小用户可以自定义配置</p>
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -499,12 +499,12 @@ executor的outgoing-queue的大小用户可以自定义配置</p>
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/post/bigdata/storm/kafka/" rel="prev"><span>«Previous</span><p>Kafka集群安装部署、Kafka生产者、Kafka消费者</p></a>
+			<a href="/post/bigdata/storm/kafka/" rel="prev"><span>«Previous</span><p>Kafka集群安装部署、Kafka生产者、Kafka消费者</p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="next"><span>Next»</span><p>storm集群部署,单词计数,Stream Grouping</p></a>
+			<a href="/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="next"><span>Next»</span><p>storm集群部署,单词计数,Stream Grouping</p></a>
 		</div>
 		
 	</nav>

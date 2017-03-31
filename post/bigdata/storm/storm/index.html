@@ -11,7 +11,7 @@
 3. 离线计算与实时计算的区别最大的区别：实时收集、实时计算、实时展示
 4. Storm是什么？Flume实时采集，低延迟Kafka消息队列，低延迟Storm实时计算，低延迟Redis实时存储，低延迟Storm用来实时处理数据，特点：低延迟、高可用、分布式、可扩展、数据不丢失。提供简单容易理解的接口，便于开发。海量数据？数据类型很多，产生数据的终端很多，处理数据能力增强5. Storm与Hadoop的区别 Storm用于实时计算，Hadoop用于离线计算。 Storm处理的数据保存在内存中，源源不断；Hadoop处理的数据保存在文件系统中，一批一批。 Storm的数据通过网络传输进来；Hadoop的数据保存在磁盘中。 Storm与Hadoop的编程模型相似Job：任务名称JobTracker：项目经理TaskTracker：开发组长、产品经理Child:负责开发的人员Mapper/Reduce:开发人员中的两种角色，一种是服务器开发、一种是客户端开发Topology:任务名称Nimbus:项目经理Supervisor:开组长、产品经理Worker:开人员Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是客户端开发6." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dishui.oschina.io/post/bigdata/storm/storm/" />
+<meta property="og:url" content="/post/bigdata/storm/storm/" />
 
 
 <meta property="og:updated_time" content="2017-03-26T00:00:00&#43;00:00"/>
@@ -26,23 +26,23 @@
 
 
 
-<link rel="stylesheet" href="http://dishui.oschina.io/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/css/jquery.tocify.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="http://dishui.oschina.io/js/scripts.js"></script>
+<script type="text/javascript" src="/js/scripts.js"></script>
 <!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/js/css3-mediaqueries.js"></script>
+	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
 
-<script data-main="http://dishui.oschina.io/js/app.js" src="http://dishui.oschina.io/js/require.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -54,7 +54,7 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/" title="工作笔记" rel="home">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
 										<h1 class="mr-header-title">工作笔记</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
@@ -228,7 +228,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-26-3.png" alt="2017 03 26 3">
+<img src="/src/img/storm/2017-03-26-3.png" alt="2017 03 26 3">
 </div>
 </div>
 <hr>
@@ -247,7 +247,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-26-2.png" alt="2017 03 26 2">
+<img src="/src/img/storm/2017-03-26-2.png" alt="2017 03 26 2">
 </div>
 </div>
 <hr>
@@ -268,7 +268,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="http://dishui.oschina.io/src/img/storm/2017-03-26-1.png" alt="2017 03 26 1">
+<img src="/src/img/storm/2017-03-26-1.png" alt="2017 03 26 1">
 </div>
 </div>
 <hr>
@@ -289,7 +289,7 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 	
 <div class="mr-author-box clearfix">
 	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="http://dishui.oschina.io/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
 	</figure>
 	<div class="mr-author-box-header">
 		<span class="mr-author-box-name">About dishui</span>
@@ -304,12 +304,12 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="http://dishui.oschina.io/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="prev"><span>«Previous</span><p>storm集群部署,单词计数,Stream Grouping</p></a>
+			<a href="/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="prev"><span>«Previous</span><p>storm集群部署,单词计数,Stream Grouping</p></a>
 		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="http://dishui.oschina.io/post/linux/CentOS7/" rel="next"><span>Next»</span><p>CentOS7</p></a>
+			<a href="/post/linux/CentOS7/" rel="next"><span>Next»</span><p>CentOS7</p></a>
 		</div>
 		
 	</nav>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记</title>
-    <link>http://dishui.oschina.io/categories/%E9%AB%98%E6%95%B0/index.xml</link>
+    <link>/categories/%E9%AB%98%E6%95%B0/index.xml</link>
     <description>Recent content on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <atom:link href="http://dishui.oschina.io/categories/%E9%AB%98%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/%E9%AB%98%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>多元函数</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/</link>
+      <link>/post/mathematics/xuxiaozhan/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/</link>
       <pubDate>Thu, 09 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;多元函数&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -39,31 +39,31 @@
 &lt;h3 id=&#34;_二元函数&#34;&gt;1.1. 二元函数&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_084154.png&#34; alt=&#34;2017 03 09 084154&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_084154.png&#34; alt=&#34;2017 03 09 084154&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_084307.png&#34; alt=&#34;2017 03 09 084307&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_084307.png&#34; alt=&#34;2017 03 09 084307&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_084436.png&#34; alt=&#34;2017 03 09 084436&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_084436.png&#34; alt=&#34;2017 03 09 084436&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085405.png&#34; alt=&#34;2017 03 09 085405&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085405.png&#34; alt=&#34;2017 03 09 085405&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085445.png&#34; alt=&#34;2017 03 09 085445&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085445.png&#34; alt=&#34;2017 03 09 085445&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -72,31 +72,31 @@
 &lt;h3 id=&#34;_二元函数图形&#34;&gt;1.2. 二元函数图形&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085648.png&#34; alt=&#34;2017 03 09 085648&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085648.png&#34; alt=&#34;2017 03 09 085648&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085710.png&#34; alt=&#34;2017 03 09 085710&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085710.png&#34; alt=&#34;2017 03 09 085710&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085736.png&#34; alt=&#34;2017 03 09 085736&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085736.png&#34; alt=&#34;2017 03 09 085736&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085810.png&#34; alt=&#34;2017 03 09 085810&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085810.png&#34; alt=&#34;2017 03 09 085810&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085829.png&#34; alt=&#34;2017 03 09 085829&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085829.png&#34; alt=&#34;2017 03 09 085829&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -105,37 +105,37 @@
 &lt;h3 id=&#34;_复杂的二元函数&#34;&gt;1.3. 复杂的二元函数&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085844.png&#34; alt=&#34;2017 03 09 085844&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085844.png&#34; alt=&#34;2017 03 09 085844&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085922.png&#34; alt=&#34;2017 03 09 085922&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085922.png&#34; alt=&#34;2017 03 09 085922&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_085943.png&#34; alt=&#34;2017 03 09 085943&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_085943.png&#34; alt=&#34;2017 03 09 085943&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090004.png&#34; alt=&#34;2017 03 09 090004&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090004.png&#34; alt=&#34;2017 03 09 090004&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090044.png&#34; alt=&#34;2017 03 09 090044&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090044.png&#34; alt=&#34;2017 03 09 090044&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090320.png&#34; alt=&#34;2017 03 09 090320&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090320.png&#34; alt=&#34;2017 03 09 090320&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -149,7 +149,7 @@
 &lt;h3 id=&#34;_一元函数的极限&#34;&gt;2.1. 一元函数的极限&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090540.png&#34; alt=&#34;2017 03 09 090540&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090540.png&#34; alt=&#34;2017 03 09 090540&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -158,25 +158,25 @@
 &lt;h3 id=&#34;_二元函数的极限&#34;&gt;2.2. 二元函数的极限&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090750.png&#34; alt=&#34;2017 03 09 090750&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090750.png&#34; alt=&#34;2017 03 09 090750&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090911.png&#34; alt=&#34;2017 03 09 090911&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090911.png&#34; alt=&#34;2017 03 09 090911&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_090935.png&#34; alt=&#34;2017 03 09 090935&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_090935.png&#34; alt=&#34;2017 03 09 090935&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_091037.png&#34; alt=&#34;2017 03 09 091037&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_091037.png&#34; alt=&#34;2017 03 09 091037&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -188,10 +188,10 @@
     
     <item>
       <title>欧拉方程</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</link>
+      <link>/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;欧拉方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -203,61 +203,61 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090630.png&#34; alt=&#34;2017 03 06 090630&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090630.png&#34; alt=&#34;2017 03 06 090630&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090702.png&#34; alt=&#34;2017 03 06 090702&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090702.png&#34; alt=&#34;2017 03 06 090702&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090730.png&#34; alt=&#34;2017 03 06 090730&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090730.png&#34; alt=&#34;2017 03 06 090730&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090747.png&#34; alt=&#34;2017 03 06 090747&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090747.png&#34; alt=&#34;2017 03 06 090747&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090812.png&#34; alt=&#34;2017 03 06 090812&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090812.png&#34; alt=&#34;2017 03 06 090812&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090838.png&#34; alt=&#34;2017 03 06 090838&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090838.png&#34; alt=&#34;2017 03 06 090838&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090854.png&#34; alt=&#34;2017 03 06 090854&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090854.png&#34; alt=&#34;2017 03 06 090854&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090907.png&#34; alt=&#34;2017 03 06 090907&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090907.png&#34; alt=&#34;2017 03 06 090907&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090926.png&#34; alt=&#34;2017 03 06 090926&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090926.png&#34; alt=&#34;2017 03 06 090926&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-06_090955.png&#34; alt=&#34;2017 03 06 090955&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090955.png&#34; alt=&#34;2017 03 06 090955&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -268,10 +268,10 @@
     
     <item>
       <title>一阶线性微分方程</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+      <link>/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;一阶线性微分方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -290,61 +290,61 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102207.png&#34; alt=&#34;2017 02 25 102207&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102207.png&#34; alt=&#34;2017 02 25 102207&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102339.png&#34; alt=&#34;2017 02 25 102339&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102339.png&#34; alt=&#34;2017 02 25 102339&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102423.png&#34; alt=&#34;2017 02 25 102423&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102423.png&#34; alt=&#34;2017 02 25 102423&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102520.png&#34; alt=&#34;2017 02 25 102520&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102520.png&#34; alt=&#34;2017 02 25 102520&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102548.png&#34; alt=&#34;2017 02 25 102548&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102548.png&#34; alt=&#34;2017 02 25 102548&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102652.png&#34; alt=&#34;2017 02 25 102652&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102652.png&#34; alt=&#34;2017 02 25 102652&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102724.png&#34; alt=&#34;2017 02 25 102724&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102724.png&#34; alt=&#34;2017 02 25 102724&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102820.png&#34; alt=&#34;2017 02 25 102820&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102820.png&#34; alt=&#34;2017 02 25 102820&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102844.png&#34; alt=&#34;2017 02 25 102844&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102844.png&#34; alt=&#34;2017 02 25 102844&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102900.png&#34; alt=&#34;2017 02 25 102900&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102900.png&#34; alt=&#34;2017 02 25 102900&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -352,13 +352,13 @@
 &lt;h3 id=&#34;_常数变易法&#34;&gt;1.1. 常数变易法&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_102950.png&#34; alt=&#34;2017 02 25 102950&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_102950.png&#34; alt=&#34;2017 02 25 102950&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_103054.png&#34; alt=&#34;2017 02 25 103054&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_103054.png&#34; alt=&#34;2017 02 25 103054&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -367,7 +367,7 @@
 &lt;h3 id=&#34;_一阶线性方程的解的结构定理&#34;&gt;1.2. 一阶线性方程的解的结构定理&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_103151.png&#34; alt=&#34;2017 02 25 103151&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_103151.png&#34; alt=&#34;2017 02 25 103151&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -376,49 +376,49 @@
 &lt;h3 id=&#34;_例子&#34;&gt;1.3. 例子&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_104309.png&#34; alt=&#34;2017 02 25 104309&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_104309.png&#34; alt=&#34;2017 02 25 104309&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_104504.png&#34; alt=&#34;2017 02 25 104504&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_104504.png&#34; alt=&#34;2017 02 25 104504&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_104537.png&#34; alt=&#34;2017 02 25 104537&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_104537.png&#34; alt=&#34;2017 02 25 104537&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_110352.png&#34; alt=&#34;2017 02 25 110352&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_110352.png&#34; alt=&#34;2017 02 25 110352&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_110431.png&#34; alt=&#34;2017 02 25 110431&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_110431.png&#34; alt=&#34;2017 02 25 110431&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_110454.png&#34; alt=&#34;2017 02 25 110454&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_110454.png&#34; alt=&#34;2017 02 25 110454&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_110556.png&#34; alt=&#34;2017 02 25 110556&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_110556.png&#34; alt=&#34;2017 02 25 110556&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_110718.png&#34; alt=&#34;2017 02 25 110718&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_110718.png&#34; alt=&#34;2017 02 25 110718&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -427,13 +427,13 @@
 &lt;h3 id=&#34;_一阶微分方程总结&#34;&gt;1.4. 一阶微分方程总结&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-26_093702.png&#34; alt=&#34;2017 02 26 093702&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-26_093702.png&#34; alt=&#34;2017 02 26 093702&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-26_093730.png&#34; alt=&#34;2017 02 26 093730&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-26_093730.png&#34; alt=&#34;2017 02 26 093730&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -445,10 +445,10 @@
     
     <item>
       <title>伯努利方程</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</link>
+      <link>/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;伯努利方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -460,7 +460,7 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_175041.png&#34; alt=&#34;2017 02 25 175041&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_175041.png&#34; alt=&#34;2017 02 25 175041&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -471,10 +471,10 @@
     
     <item>
       <title>向量及其线性运算</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</link>
+      <link>/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;向量及其线性运算&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -489,37 +489,37 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_090305.png&#34; alt=&#34;2017 03 07 090305&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_090305.png&#34; alt=&#34;2017 03 07 090305&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_091205.png&#34; alt=&#34;2017 03 07 091205&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_091205.png&#34; alt=&#34;2017 03 07 091205&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_091508.png&#34; alt=&#34;2017 03 07 091508&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_091508.png&#34; alt=&#34;2017 03 07 091508&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_091539.png&#34; alt=&#34;2017 03 07 091539&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_091539.png&#34; alt=&#34;2017 03 07 091539&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_091635.png&#34; alt=&#34;2017 03 07 091635&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_091635.png&#34; alt=&#34;2017 03 07 091635&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_092511.png&#34; alt=&#34;2017 03 07 092511&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_092511.png&#34; alt=&#34;2017 03 07 092511&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -530,85 +530,85 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093123.png&#34; alt=&#34;2017 03 07 093123&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093123.png&#34; alt=&#34;2017 03 07 093123&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093235.png&#34; alt=&#34;2017 03 07 093235&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093235.png&#34; alt=&#34;2017 03 07 093235&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093335.png&#34; alt=&#34;2017 03 07 093335&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093335.png&#34; alt=&#34;2017 03 07 093335&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093447.png&#34; alt=&#34;2017 03 07 093447&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093447.png&#34; alt=&#34;2017 03 07 093447&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093542.png&#34; alt=&#34;2017 03 07 093542&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093542.png&#34; alt=&#34;2017 03 07 093542&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093618.png&#34; alt=&#34;2017 03 07 093618&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093618.png&#34; alt=&#34;2017 03 07 093618&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093637.png&#34; alt=&#34;2017 03 07 093637&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093637.png&#34; alt=&#34;2017 03 07 093637&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093711.png&#34; alt=&#34;2017 03 07 093711&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093711.png&#34; alt=&#34;2017 03 07 093711&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093725.png&#34; alt=&#34;2017 03 07 093725&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093725.png&#34; alt=&#34;2017 03 07 093725&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093741.png&#34; alt=&#34;2017 03 07 093741&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093741.png&#34; alt=&#34;2017 03 07 093741&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093802.png&#34; alt=&#34;2017 03 07 093802&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093802.png&#34; alt=&#34;2017 03 07 093802&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093820.png&#34; alt=&#34;2017 03 07 093820&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093820.png&#34; alt=&#34;2017 03 07 093820&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093837.png&#34; alt=&#34;2017 03 07 093837&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093837.png&#34; alt=&#34;2017 03 07 093837&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_093856.png&#34; alt=&#34;2017 03 07 093856&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_093856.png&#34; alt=&#34;2017 03 07 093856&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -619,25 +619,25 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_124618.png&#34; alt=&#34;2017 03 07 124618&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_124618.png&#34; alt=&#34;2017 03 07 124618&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_124717.png&#34; alt=&#34;2017 03 07 124717&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_124717.png&#34; alt=&#34;2017 03 07 124717&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_124745.png&#34; alt=&#34;2017 03 07 124745&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_124745.png&#34; alt=&#34;2017 03 07 124745&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_124826.png&#34; alt=&#34;2017 03 07 124826&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_124826.png&#34; alt=&#34;2017 03 07 124826&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -648,25 +648,25 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_125417.png&#34; alt=&#34;2017 03 07 125417&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_125417.png&#34; alt=&#34;2017 03 07 125417&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_125453.png&#34; alt=&#34;2017 03 07 125453&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_125453.png&#34; alt=&#34;2017 03 07 125453&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_130933.png&#34; alt=&#34;2017 03 07 130933&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_130933.png&#34; alt=&#34;2017 03 07 130933&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-07_131227.png&#34; alt=&#34;2017 03 07 131227&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-07_131227.png&#34; alt=&#34;2017 03 07 131227&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -677,10 +677,10 @@
     
     <item>
       <title>高阶线性微分方程</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+      <link>/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E9%AB%98%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_高阶线性微分方程&#34;&gt;高阶线性微分方程&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
@@ -714,10 +714,10 @@
     
     <item>
       <title>齐次方程</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</link>
+      <link>/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</link>
       <pubDate>Sat, 25 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;齐次方程&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -735,79 +735,79 @@
 &lt;h3 id=&#34;_标准齐次方程&#34;&gt;1.1. 标准齐次方程&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_095515.png&#34; alt=&#34;2017 02 25 095515&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_095515.png&#34; alt=&#34;2017 02 25 095515&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_095758.png&#34; alt=&#34;2017 02 25 095758&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_095758.png&#34; alt=&#34;2017 02 25 095758&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_095839.png&#34; alt=&#34;2017 02 25 095839&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_095839.png&#34; alt=&#34;2017 02 25 095839&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_100629.png&#34; alt=&#34;2017 02 25 100629&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_100629.png&#34; alt=&#34;2017 02 25 100629&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_100911.png&#34; alt=&#34;2017 02 25 100911&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_100911.png&#34; alt=&#34;2017 02 25 100911&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101055.png&#34; alt=&#34;2017 02 25 101055&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101055.png&#34; alt=&#34;2017 02 25 101055&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101117.png&#34; alt=&#34;2017 02 25 101117&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101117.png&#34; alt=&#34;2017 02 25 101117&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101207.png&#34; alt=&#34;2017 02 25 101207&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101207.png&#34; alt=&#34;2017 02 25 101207&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101228.png&#34; alt=&#34;2017 02 25 101228&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101228.png&#34; alt=&#34;2017 02 25 101228&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101300.png&#34; alt=&#34;2017 02 25 101300&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101300.png&#34; alt=&#34;2017 02 25 101300&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101320.png&#34; alt=&#34;2017 02 25 101320&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101320.png&#34; alt=&#34;2017 02 25 101320&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101419.png&#34; alt=&#34;2017 02 25 101419&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101419.png&#34; alt=&#34;2017 02 25 101419&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-25_101458.png&#34; alt=&#34;2017 02 25 101458&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-25_101458.png&#34; alt=&#34;2017 02 25 101458&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -819,10 +819,10 @@
     
     <item>
       <title>定积分的换元法</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</link>
+      <link>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</link>
       <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;定积分的换元法&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -834,19 +834,19 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_131059.png&#34; alt=&#34;2017 02 20 131059&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_131059.png&#34; alt=&#34;2017 02 20 131059&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_131247.png&#34; alt=&#34;2017 02 20 131247&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_131247.png&#34; alt=&#34;2017 02 20 131247&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_131524.png&#34; alt=&#34;2017 02 20 131524&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_131524.png&#34; alt=&#34;2017 02 20 131524&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -857,10 +857,10 @@
     
     <item>
       <title>微积分基本公式</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</link>
+      <link>/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</link>
       <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;微积分基本公式&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -882,19 +882,19 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_203834.png&#34; alt=&#34;2017 02 19 203834&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_203834.png&#34; alt=&#34;2017 02 19 203834&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_203957.png&#34; alt=&#34;2017 02 19 203957&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_203957.png&#34; alt=&#34;2017 02 19 203957&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_204313.png&#34; alt=&#34;2017 02 19 204313&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_204313.png&#34; alt=&#34;2017 02 19 204313&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -902,13 +902,13 @@
 &lt;h3 id=&#34;_定理_2_原函数存在定理&#34;&gt;1.1. 定理 2 (原函数存在定理)&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_204442.png&#34; alt=&#34;2017 02 19 204442&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_204442.png&#34; alt=&#34;2017 02 19 204442&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_204555.png&#34; alt=&#34;2017 02 19 204555&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_204555.png&#34; alt=&#34;2017 02 19 204555&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -920,31 +920,31 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_204725.png&#34; alt=&#34;2017 02 19 204725&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_204725.png&#34; alt=&#34;2017 02 19 204725&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_204857.png&#34; alt=&#34;2017 02 19 204857&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_204857.png&#34; alt=&#34;2017 02 19 204857&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_205012.png&#34; alt=&#34;2017 02 19 205012&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_205012.png&#34; alt=&#34;2017 02 19 205012&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_205056.png&#34; alt=&#34;2017 02 19 205056&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_205056.png&#34; alt=&#34;2017 02 19 205056&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_205206.png&#34; alt=&#34;2017 02 19 205206&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_205206.png&#34; alt=&#34;2017 02 19 205206&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -955,7 +955,7 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_210206.png&#34; alt=&#34;2017 02 19 210206&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_210206.png&#34; alt=&#34;2017 02 19 210206&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -966,61 +966,61 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_210707.png&#34; alt=&#34;2017 02 19 210707&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_210707.png&#34; alt=&#34;2017 02 19 210707&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_210912.png&#34; alt=&#34;2017 02 19 210912&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_210912.png&#34; alt=&#34;2017 02 19 210912&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_211133.png&#34; alt=&#34;2017 02 19 211133&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_211133.png&#34; alt=&#34;2017 02 19 211133&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_211250.png&#34; alt=&#34;2017 02 19 211250&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_211250.png&#34; alt=&#34;2017 02 19 211250&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_211414.png&#34; alt=&#34;2017 02 19 211414&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_211414.png&#34; alt=&#34;2017 02 19 211414&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_211521.png&#34; alt=&#34;2017 02 19 211521&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_211521.png&#34; alt=&#34;2017 02 19 211521&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_211958.png&#34; alt=&#34;2017 02 19 211958&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_211958.png&#34; alt=&#34;2017 02 19 211958&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_212553.png&#34; alt=&#34;2017 02 19 212553&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_212553.png&#34; alt=&#34;2017 02 19 212553&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_212616.png&#34; alt=&#34;2017 02 19 212616&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_212616.png&#34; alt=&#34;2017 02 19 212616&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-19_212941.png&#34; alt=&#34;2017 02 19 212941&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-19_212941.png&#34; alt=&#34;2017 02 19 212941&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1031,13 +1031,13 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_090213.png&#34; alt=&#34;2017 02 20 090213&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_090213.png&#34; alt=&#34;2017 02 20 090213&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_090605.png&#34; alt=&#34;2017 02 20 090605&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_090605.png&#34; alt=&#34;2017 02 20 090605&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1048,7 +1048,7 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_090653.png&#34; alt=&#34;2017 02 20 090653&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_090653.png&#34; alt=&#34;2017 02 20 090653&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1059,61 +1059,61 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_090952.png&#34; alt=&#34;2017 02 20 090952&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_090952.png&#34; alt=&#34;2017 02 20 090952&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_091143.png&#34; alt=&#34;2017 02 20 091143&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_091143.png&#34; alt=&#34;2017 02 20 091143&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_091233.png&#34; alt=&#34;2017 02 20 091233&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_091233.png&#34; alt=&#34;2017 02 20 091233&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_091432.png&#34; alt=&#34;2017 02 20 091432&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_091432.png&#34; alt=&#34;2017 02 20 091432&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_124527.png&#34; alt=&#34;2017 02 20 124527&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_124527.png&#34; alt=&#34;2017 02 20 124527&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_124713.png&#34; alt=&#34;2017 02 20 124713&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_124713.png&#34; alt=&#34;2017 02 20 124713&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_125009.png&#34; alt=&#34;2017 02 20 125009&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_125009.png&#34; alt=&#34;2017 02 20 125009&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_125128.png&#34; alt=&#34;2017 02 20 125128&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_125128.png&#34; alt=&#34;2017 02 20 125128&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_125411.png&#34; alt=&#34;2017 02 20 125411&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_125411.png&#34; alt=&#34;2017 02 20 125411&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-20_125538.png&#34; alt=&#34;2017 02 20 125538&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-20_125538.png&#34; alt=&#34;2017 02 20 125538&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1124,10 +1124,10 @@
     
     <item>
       <title>不定积分</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</link>
+      <link>/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;不定积分&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1155,14 +1155,14 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091025.png&#34; alt=&#34;2017 02 13 091025&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091025.png&#34; alt=&#34;2017 02 13 091025&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_一个函数是否有原函数&#34;&gt;1.1. 一个函数是否有原函数&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091432.png&#34; alt=&#34;2017 02 13 091432&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091432.png&#34; alt=&#34;2017 02 13 091432&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1171,19 +1171,19 @@
 &lt;h3 id=&#34;_原函数是否唯一&#34;&gt;1.2. 原函数是否唯一&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091542.png&#34; alt=&#34;2017 02 13 091542&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091542.png&#34; alt=&#34;2017 02 13 091542&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091653.png&#34; alt=&#34;2017 02 13 091653&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091653.png&#34; alt=&#34;2017 02 13 091653&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091744.png&#34; alt=&#34;2017 02 13 091744&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091744.png&#34; alt=&#34;2017 02 13 091744&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1191,25 +1191,25 @@
 &lt;h4 id=&#34;_例1&#34;&gt;1.2.1. 例1&lt;/h4&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091836.png&#34; alt=&#34;2017 02 13 091836&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091836.png&#34; alt=&#34;2017 02 13 091836&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_091929.png&#34; alt=&#34;2017 02 13 091929&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_091929.png&#34; alt=&#34;2017 02 13 091929&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_092035.png&#34; alt=&#34;2017 02 13 092035&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_092035.png&#34; alt=&#34;2017 02 13 092035&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_092108.png&#34; alt=&#34;2017 02 13 092108&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_092108.png&#34; alt=&#34;2017 02 13 092108&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1219,25 +1219,25 @@
 &lt;h3 id=&#34;_不定积分的基本性质&#34;&gt;1.3. 不定积分的基本性质&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_092646.png&#34; alt=&#34;2017 02 13 092646&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_092646.png&#34; alt=&#34;2017 02 13 092646&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_093101.png&#34; alt=&#34;2017 02 13 093101&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_093101.png&#34; alt=&#34;2017 02 13 093101&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_093135.png&#34; alt=&#34;2017 02 13 093135&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_093135.png&#34; alt=&#34;2017 02 13 093135&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_093347.png&#34; alt=&#34;2017 02 13 093347&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_093347.png&#34; alt=&#34;2017 02 13 093347&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1246,37 +1246,37 @@
 &lt;h3 id=&#34;_每个导数公式都对应一个积分公式&#34;&gt;1.4. 每个导数公式都对应一个积分公式&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_093541.png&#34; alt=&#34;2017 02 13 093541&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_093541.png&#34; alt=&#34;2017 02 13 093541&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_093823.png&#34; alt=&#34;2017 02 13 093823&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_093823.png&#34; alt=&#34;2017 02 13 093823&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_094125.png&#34; alt=&#34;2017 02 13 094125&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_094125.png&#34; alt=&#34;2017 02 13 094125&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_094206.png&#34; alt=&#34;2017 02 13 094206&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_094206.png&#34; alt=&#34;2017 02 13 094206&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_094355.png&#34; alt=&#34;2017 02 13 094355&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_094355.png&#34; alt=&#34;2017 02 13 094355&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_094436.png&#34; alt=&#34;2017 02 13 094436&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_094436.png&#34; alt=&#34;2017 02 13 094436&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1284,7 +1284,7 @@
 &lt;h4 id=&#34;_例1_2&#34;&gt;1.4.1. 例1&lt;/h4&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_094705.png&#34; alt=&#34;2017 02 13 094705&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_094705.png&#34; alt=&#34;2017 02 13 094705&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1294,43 +1294,43 @@
 &lt;h3 id=&#34;_不定积分性质&#34;&gt;1.5. 不定积分性质&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_094930.png&#34; alt=&#34;2017 02 13 094930&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_094930.png&#34; alt=&#34;2017 02 13 094930&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_095036.png&#34; alt=&#34;2017 02 13 095036&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_095036.png&#34; alt=&#34;2017 02 13 095036&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_095123.png&#34; alt=&#34;2017 02 13 095123&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_095123.png&#34; alt=&#34;2017 02 13 095123&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_095156.png&#34; alt=&#34;2017 02 13 095156&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_095156.png&#34; alt=&#34;2017 02 13 095156&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_095222.png&#34; alt=&#34;2017 02 13 095222&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_095222.png&#34; alt=&#34;2017 02 13 095222&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_095251.png&#34; alt=&#34;2017 02 13 095251&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_095251.png&#34; alt=&#34;2017 02 13 095251&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-13_095356.png&#34; alt=&#34;2017 02 13 095356&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-13_095356.png&#34; alt=&#34;2017 02 13 095356&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1342,10 +1342,10 @@
     
     <item>
       <title>二次曲面</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</link>
+      <link>/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;二次曲面&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1370,7 +1370,7 @@
 &lt;h3 id=&#34;_常用的二次曲面的方程&#34;&gt;1.1. 常用的二次曲面的方程&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_164636.png&#34; alt=&#34;2017 03 08 164636&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_164636.png&#34; alt=&#34;2017 03 08 164636&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1379,13 +1379,13 @@
 &lt;h3 id=&#34;_球面&#34;&gt;1.2. 球面&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_164823.png&#34; alt=&#34;2017 03 08 164823&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_164823.png&#34; alt=&#34;2017 03 08 164823&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_164856.png&#34; alt=&#34;2017 03 08 164856&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_164856.png&#34; alt=&#34;2017 03 08 164856&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1394,7 +1394,7 @@
 &lt;h3 id=&#34;_圆锥面&#34;&gt;1.3. 圆锥面&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_164929.png&#34; alt=&#34;2017 03 08 164929&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_164929.png&#34; alt=&#34;2017 03 08 164929&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1403,7 +1403,7 @@
 &lt;h3 id=&#34;_圆柱面&#34;&gt;1.4. 圆柱面&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_164959.png&#34; alt=&#34;2017 03 08 164959&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_164959.png&#34; alt=&#34;2017 03 08 164959&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1412,7 +1412,7 @@
 &lt;h3 id=&#34;_马鞍面&#34;&gt;1.5. 马鞍面&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165022.png&#34; alt=&#34;2017 03 08 165022&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165022.png&#34; alt=&#34;2017 03 08 165022&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1421,25 +1421,25 @@
 &lt;h3 id=&#34;_直纹面&#34;&gt;1.6. 直纹面&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165059.png&#34; alt=&#34;2017 03 08 165059&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165059.png&#34; alt=&#34;2017 03 08 165059&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165125.png&#34; alt=&#34;2017 03 08 165125&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165125.png&#34; alt=&#34;2017 03 08 165125&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165143.png&#34; alt=&#34;2017 03 08 165143&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165143.png&#34; alt=&#34;2017 03 08 165143&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165153.png&#34; alt=&#34;2017 03 08 165153&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165153.png&#34; alt=&#34;2017 03 08 165153&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1448,7 +1448,7 @@
 &lt;h3 id=&#34;_单叶双曲面&#34;&gt;1.7. 单叶双曲面&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165228.png&#34; alt=&#34;2017 03 08 165228&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165228.png&#34; alt=&#34;2017 03 08 165228&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1457,7 +1457,7 @@
 &lt;h3 id=&#34;_维维安妮曲线&#34;&gt;1.8. 维维安妮曲线&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-08_165450.png&#34; alt=&#34;2017 03 08 165450&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-08_165450.png&#34; alt=&#34;2017 03 08 165450&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1469,10 +1469,10 @@
     
     <item>
       <title>二重积分</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/</link>
+      <link>/post/mathematics/xuxiaozhan/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;二重积分&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1484,115 +1484,115 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_092338.png&#34; alt=&#34;2017 03 10 092338&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_092338.png&#34; alt=&#34;2017 03 10 092338&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_092518.png&#34; alt=&#34;2017 03 10 092518&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_092518.png&#34; alt=&#34;2017 03 10 092518&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_092559.png&#34; alt=&#34;2017 03 10 092559&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_092559.png&#34; alt=&#34;2017 03 10 092559&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_092732.png&#34; alt=&#34;2017 03 10 092732&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_092732.png&#34; alt=&#34;2017 03 10 092732&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_092752.png&#34; alt=&#34;2017 03 10 092752&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_092752.png&#34; alt=&#34;2017 03 10 092752&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093438.png&#34; alt=&#34;2017 03 10 093438&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093438.png&#34; alt=&#34;2017 03 10 093438&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093516.png&#34; alt=&#34;2017 03 10 093516&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093516.png&#34; alt=&#34;2017 03 10 093516&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093536.png&#34; alt=&#34;2017 03 10 093536&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093536.png&#34; alt=&#34;2017 03 10 093536&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093608.png&#34; alt=&#34;2017 03 10 093608&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093608.png&#34; alt=&#34;2017 03 10 093608&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093623.png&#34; alt=&#34;2017 03 10 093623&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093623.png&#34; alt=&#34;2017 03 10 093623&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093642.png&#34; alt=&#34;2017 03 10 093642&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093642.png&#34; alt=&#34;2017 03 10 093642&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093709.png&#34; alt=&#34;2017 03 10 093709&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093709.png&#34; alt=&#34;2017 03 10 093709&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093725.png&#34; alt=&#34;2017 03 10 093725&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093725.png&#34; alt=&#34;2017 03 10 093725&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093743.png&#34; alt=&#34;2017 03 10 093743&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093743.png&#34; alt=&#34;2017 03 10 093743&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093759.png&#34; alt=&#34;2017 03 10 093759&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093759.png&#34; alt=&#34;2017 03 10 093759&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093822.png&#34; alt=&#34;2017 03 10 093822&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093822.png&#34; alt=&#34;2017 03 10 093822&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093838.png&#34; alt=&#34;2017 03 10 093838&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093838.png&#34; alt=&#34;2017 03 10 093838&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093859.png&#34; alt=&#34;2017 03 10 093859&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093859.png&#34; alt=&#34;2017 03 10 093859&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_093913.png&#34; alt=&#34;2017 03 10 093913&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_093913.png&#34; alt=&#34;2017 03 10 093913&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1603,10 +1603,10 @@
     
     <item>
       <title>体积</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</link>
+      <link>/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E4%BD%93%E7%A7%AF/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;体积&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1618,55 +1618,55 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_161331.png&#34; alt=&#34;2017 02 23 161331&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_161331.png&#34; alt=&#34;2017 02 23 161331&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_161757.png&#34; alt=&#34;2017 02 23 161757&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_161757.png&#34; alt=&#34;2017 02 23 161757&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_162013.png&#34; alt=&#34;2017 02 23 162013&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_162013.png&#34; alt=&#34;2017 02 23 162013&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_162245.png&#34; alt=&#34;2017 02 23 162245&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_162245.png&#34; alt=&#34;2017 02 23 162245&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_162350.png&#34; alt=&#34;2017 02 23 162350&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_162350.png&#34; alt=&#34;2017 02 23 162350&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_162714.png&#34; alt=&#34;2017 02 23 162714&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_162714.png&#34; alt=&#34;2017 02 23 162714&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_164305.png&#34; alt=&#34;2017 02 23 164305&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_164305.png&#34; alt=&#34;2017 02 23 164305&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_164427.png&#34; alt=&#34;2017 02 23 164427&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_164427.png&#34; alt=&#34;2017 02 23 164427&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-23_164635.png&#34; alt=&#34;2017 02 23 164635&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-23_164635.png&#34; alt=&#34;2017 02 23 164635&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1677,10 +1677,10 @@
     
     <item>
       <title>偏导数</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%81%8F%E5%AF%BC%E6%95%B0/</link>
+      <link>/post/mathematics/xuxiaozhan/%E5%81%8F%E5%AF%BC%E6%95%B0/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%81%8F%E5%AF%BC%E6%95%B0/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E5%81%8F%E5%AF%BC%E6%95%B0/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;偏导数&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1699,55 +1699,55 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153221.png&#34; alt=&#34;2017 03 09 153221&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153221.png&#34; alt=&#34;2017 03 09 153221&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153321.png&#34; alt=&#34;2017 03 09 153321&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153321.png&#34; alt=&#34;2017 03 09 153321&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153351.png&#34; alt=&#34;2017 03 09 153351&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153351.png&#34; alt=&#34;2017 03 09 153351&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153409.png&#34; alt=&#34;2017 03 09 153409&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153409.png&#34; alt=&#34;2017 03 09 153409&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153436.png&#34; alt=&#34;2017 03 09 153436&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153436.png&#34; alt=&#34;2017 03 09 153436&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153456.png&#34; alt=&#34;2017 03 09 153456&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153456.png&#34; alt=&#34;2017 03 09 153456&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153515.png&#34; alt=&#34;2017 03 09 153515&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153515.png&#34; alt=&#34;2017 03 09 153515&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153544.png&#34; alt=&#34;2017 03 09 153544&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153544.png&#34; alt=&#34;2017 03 09 153544&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153616.png&#34; alt=&#34;2017 03 09 153616&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153616.png&#34; alt=&#34;2017 03 09 153616&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1755,73 +1755,73 @@
 &lt;h3 id=&#34;_偏导数的例子&#34;&gt;1.1. 偏导数的例子&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153659.png&#34; alt=&#34;2017 03 09 153659&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153659.png&#34; alt=&#34;2017 03 09 153659&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153720.png&#34; alt=&#34;2017 03 09 153720&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153720.png&#34; alt=&#34;2017 03 09 153720&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153827.png&#34; alt=&#34;2017 03 09 153827&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153827.png&#34; alt=&#34;2017 03 09 153827&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_153855.png&#34; alt=&#34;2017 03 09 153855&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_153855.png&#34; alt=&#34;2017 03 09 153855&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154009.png&#34; alt=&#34;2017 03 09 154009&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154009.png&#34; alt=&#34;2017 03 09 154009&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154038.png&#34; alt=&#34;2017 03 09 154038&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154038.png&#34; alt=&#34;2017 03 09 154038&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154053.png&#34; alt=&#34;2017 03 09 154053&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154053.png&#34; alt=&#34;2017 03 09 154053&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154105.png&#34; alt=&#34;2017 03 09 154105&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154105.png&#34; alt=&#34;2017 03 09 154105&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154119.png&#34; alt=&#34;2017 03 09 154119&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154119.png&#34; alt=&#34;2017 03 09 154119&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154132.png&#34; alt=&#34;2017 03 09 154132&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154132.png&#34; alt=&#34;2017 03 09 154132&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154132.png&#34; alt=&#34;2017 03 09 154132&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154132.png&#34; alt=&#34;2017 03 09 154132&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154132.png&#34; alt=&#34;2017 03 09 154132&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154132.png&#34; alt=&#34;2017 03 09 154132&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1830,37 +1830,37 @@
 &lt;h3 id=&#34;_偏导数的几何意义&#34;&gt;1.2. 偏导数的几何意义&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154353.png&#34; alt=&#34;2017 03 09 154353&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154353.png&#34; alt=&#34;2017 03 09 154353&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154440.png&#34; alt=&#34;2017 03 09 154440&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154440.png&#34; alt=&#34;2017 03 09 154440&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154454.png&#34; alt=&#34;2017 03 09 154454&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154454.png&#34; alt=&#34;2017 03 09 154454&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154509.png&#34; alt=&#34;2017 03 09 154509&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154509.png&#34; alt=&#34;2017 03 09 154509&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154524.png&#34; alt=&#34;2017 03 09 154524&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154524.png&#34; alt=&#34;2017 03 09 154524&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-09_154544.png&#34; alt=&#34;2017 03 09 154544&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-09_154544.png&#34; alt=&#34;2017 03 09 154544&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1869,25 +1869,25 @@
 &lt;h3 id=&#34;_f_x_y_的四个二阶偏导数&#34;&gt;1.3. f(x,y) 的四个二阶偏导数&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_090448.png&#34; alt=&#34;2017 03 10 090448&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_090448.png&#34; alt=&#34;2017 03 10 090448&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_090536.png&#34; alt=&#34;2017 03 10 090536&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_090536.png&#34; alt=&#34;2017 03 10 090536&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_090600.png&#34; alt=&#34;2017 03 10 090600&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_090600.png&#34; alt=&#34;2017 03 10 090600&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_090658.png&#34; alt=&#34;2017 03 10 090658&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_090658.png&#34; alt=&#34;2017 03 10 090658&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1896,25 +1896,25 @@
 &lt;h3 id=&#34;_克莱罗定理&#34;&gt;1.4. 克莱罗定理&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_090754.png&#34; alt=&#34;2017 03 10 090754&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_090754.png&#34; alt=&#34;2017 03 10 090754&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_090902.png&#34; alt=&#34;2017 03 10 090902&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_090902.png&#34; alt=&#34;2017 03 10 090902&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_091044.png&#34; alt=&#34;2017 03 10 091044&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_091044.png&#34; alt=&#34;2017 03 10 091044&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-03-10_091232.png&#34; alt=&#34;2017 03 10 091232&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-03-10_091232.png&#34; alt=&#34;2017 03 10 091232&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1926,10 +1926,10 @@
     
     <item>
       <title>分步积分法</title>
-      <link>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</link>
+      <link>/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</link>
       <pubDate>Mon, 13 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://dishui.oschina.io/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</guid>
+      <guid>/post/mathematics/xuxiaozhan/%E5%88%86%E6%AD%A5%E7%A7%AF%E5%88%86%E6%B3%95/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;分步积分法&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -1947,13 +1947,13 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_091309.png&#34; alt=&#34;2017 02 16 091309&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_091309.png&#34; alt=&#34;2017 02 16 091309&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_091524.png&#34; alt=&#34;2017 02 16 091524&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_091524.png&#34; alt=&#34;2017 02 16 091524&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1964,13 +1964,13 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_091751.png&#34; alt=&#34;2017 02 16 091751&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_091751.png&#34; alt=&#34;2017 02 16 091751&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_091922.png&#34; alt=&#34;2017 02 16 091922&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_091922.png&#34; alt=&#34;2017 02 16 091922&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1978,13 +1978,13 @@
 &lt;h3 id=&#34;_总结&#34;&gt;2.1. 总结&lt;/h3&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092023.png&#34; alt=&#34;2017 02 16 092023&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092023.png&#34; alt=&#34;2017 02 16 092023&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092131.png&#34; alt=&#34;2017 02 16 092131&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092131.png&#34; alt=&#34;2017 02 16 092131&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -1996,61 +1996,61 @@
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092437.png&#34; alt=&#34;2017 02 16 092437&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092437.png&#34; alt=&#34;2017 02 16 092437&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092707.png&#34; alt=&#34;2017 02 16 092707&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092707.png&#34; alt=&#34;2017 02 16 092707&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092748.png&#34; alt=&#34;2017 02 16 092748&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092748.png&#34; alt=&#34;2017 02 16 092748&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092821.png&#34; alt=&#34;2017 02 16 092821&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092821.png&#34; alt=&#34;2017 02 16 092821&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_092853.png&#34; alt=&#34;2017 02 16 092853&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_092853.png&#34; alt=&#34;2017 02 16 092853&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_093000.png&#34; alt=&#34;2017 02 16 093000&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_093000.png&#34; alt=&#34;2017 02 16 093000&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_095332.png&#34; alt=&#34;2017 02 16 095332&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_095332.png&#34; alt=&#34;2017 02 16 095332&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_095437.png&#34; alt=&#34;2017 02 16 095437&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_095437.png&#34; alt=&#34;2017 02 16 095437&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_095556.png&#34; alt=&#34;2017 02 16 095556&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_095556.png&#34; alt=&#34;2017 02 16 095556&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;http://dishui.oschina.io/src/img/gaoshu/2017-02-16_095659.png&#34; alt=&#34;2017 02 16 095659&#34;&gt;
+&lt;img src=&#34;/src/img/gaoshu/2017-02-16_095659.png&#34; alt=&#34;2017 02 16 095659&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
