@@ -1,0 +1,20 @@
+---
+
+- command: mkdir /home/core/tmp
+  args:
+    creates: /home/core/tmp
+
+- copy:
+    src: /tmp/{{ mailiqing_pc_i_tar }}
+    dest: /home/core/tmp/{{ mailiqing_pc_i_tar }}
+  notify: restart web
+
+- unarchive:
+    src: /home/core/tmp/{{ mailiqing_pc_i_tar }}
+    dest: /home/core/tmp
+    remote_src: True
+
+- name: delete {{ mailiqing_pc_i_tar }}
+  file:
+    path: /home/core/tmp/{{ mailiqing_pc_i_tar }}
+    state: absent

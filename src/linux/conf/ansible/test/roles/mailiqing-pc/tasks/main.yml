@@ -7,7 +7,6 @@
 - copy:
     src: /tmp/{{ mailiqing_pc_i_tar }}
     dest: /home/core/tmp/{{ mailiqing_pc_i_tar }}
-  notify: restart web
 
 - unarchive:
     src: /home/core/tmp/{{ mailiqing_pc_i_tar }}

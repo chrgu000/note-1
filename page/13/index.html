@@ -28,7 +28,6 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -82,6 +81,29 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/ssh/" rel="bookmark">ssh</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 安装2. 25个必须记住的SSH命令3. ssh-copy-id1. 安装CentOS7 64 系统
+yum install openssh-server -y启动 ssh
+# /usr/sbin/sshdCould not load host key: /etc/ssh/ssh_host_rsa_keyCould not load host key: /etc/ssh/ssh_host_ecdsa_keyCould not load host key: /etc/ssh/ssh_host_ed25519_key解决办法
+ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key # 重新建立 ssh_host_dsa_key 文件ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key # 重新建立 ssh_host_rsa_key 文件2.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -290,29 +312,6 @@ Preferences-&#8594;Settings-User
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/vim/" rel="bookmark">vim编辑器</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents vim编辑器 ####vim模式：
-编辑模式(命令模式) 输入模式 末行模式  模式转换： 编辑--&gt;输入： i: 在当前光标所在字符的前面，转为输入模式； a: 在当前光标所在字符的后面，转为输入模式； o: 在当前光标所在行的下方，新建一行，并转为输入模式； -- I：在当前光标所在行的行首，转换为输入模式 A：在当前光标所在行的行尾，转换为输入模式 O：在当前光标所在行的上方，新建一行，并转为输入模式； 输入--&gt;编辑： ESC 编辑--&gt;末行： ： 末行--&gt;编辑： ESC, ESC  一、打开文件  vim /path/to/somefile
- vim +# :打开文件，并定位于第#行 vim +：打开文件，定位至最后一行 vim +/PATTERN : 打开文件，定位至第一次被PATTERN匹配到的行的行首 默认处于编辑模式  二、关闭文件 1、末行模式关闭文件 :q 退出 :wq 保存并退出 :q! 不保存并退出 :w 保存 :w! 强行保存 :wq --&gt; :x 2、编辑模式下退出 ZZ: 保存并退出  三、移动光标(编辑模式)  1、逐字符移动：
-    h: 左 l: 右 j: 下 k: 上 #h: 移动#个字符；    2、以单词为单位移动
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
@@ -422,7 +421,7 @@ Preferences-&#8594;Settings-User
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

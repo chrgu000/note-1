@@ -28,7 +28,6 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.tocify.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -101,7 +100,8 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 本地部署1.2.2. 码云部署2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 本地部署hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo "替换域名"git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.jssed -i 's/dishui.oschina.io/localhost:1313/g' themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.jsecho "
+						hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 带项目名1.2.2. 不带项目名2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 带项目名http://dishui.oschina.io/note-hugo/
+hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo "替换域名"git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.jssed -i 's/dishui.
 					</div>
 				</div>
 			</div>
@@ -206,7 +206,7 @@
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
+				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

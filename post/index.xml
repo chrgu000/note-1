@@ -6,8 +6,341 @@
     <description>Recent content in Post-rsses on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Apr 2017 09:31:48 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kafka负载均衡-自定义Partition-文件存储机制</title>
+      <link>/post/bigdata/storm/Kafka%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-%E8%87%AA%E5%AE%9A%E4%B9%89Partition-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Sat, 01 Apr 2017 09:31:48 +0000</pubDate>
+      
+      <guid>/post/bigdata/storm/Kafka%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-%E8%87%AA%E5%AE%9A%E4%B9%89Partition-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;kafka&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka整体结构图&#34;&gt;1. Kafka整体结构图&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_consumer与topic关系&#34;&gt;2. Consumer与topic关系&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka消息的分发&#34;&gt;3. Kafka消息的分发&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_consumer的负载均衡&#34;&gt;4. Consumer的负载均衡&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka文件存储机制&#34;&gt;5. kafka文件存储机制&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka文件存储基本结构&#34;&gt;5.1. Kafka文件存储基本结构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka_partition_segment&#34;&gt;5.2. Kafka Partition Segment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka_查找message&#34;&gt;5.3. Kafka 查找message&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_查找segment_file&#34;&gt;5.3.1. 查找segment file&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka自定义partition&#34;&gt;6. Kafka自定义Partition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kafka整体结构图&#34;&gt;1. Kafka整体结构图&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Kafka名词解释和工作方式&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Producer &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;消息生产者，就是向kafka broker发消息的客户端。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Consumer &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;消息消费者，向kafka broker取消息的客户端&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Topic &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;咋们可以理解为一个队列。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Consumer Group （CG）&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;这是 &lt;strong&gt;kafka&lt;/strong&gt; 用来实现一个 &lt;strong&gt;topic&lt;/strong&gt; 消息的广播（发给所有的 &lt;strong&gt;consumer&lt;/strong&gt; ）和单播（发给任意一个 &lt;strong&gt;consumer&lt;/strong&gt; ）的手段。一个 &lt;strong&gt;topic&lt;/strong&gt; 可以有多个 &lt;strong&gt;CG&lt;/strong&gt; 。&lt;strong&gt;topic&lt;/strong&gt; 的消息会复制（不是真的复制，是概念上的）到所有的 &lt;strong&gt;CG&lt;/strong&gt; ，但每个 &lt;strong&gt;partion&lt;/strong&gt; 只会把消息发给该 &lt;strong&gt;CG&lt;/strong&gt; 中的一个 &lt;strong&gt;consumer&lt;/strong&gt; 。如果需要实现广播，只要每个 &lt;strong&gt;consumer&lt;/strong&gt; 有一个独立的 &lt;strong&gt;CG&lt;/strong&gt; 就可以了。要实现单播只要所有的 &lt;strong&gt;consumer&lt;/strong&gt; 在同一个 &lt;strong&gt;CG&lt;/strong&gt; 。用 &lt;strong&gt;CG&lt;/strong&gt; 还可以将 &lt;strong&gt;consumer&lt;/strong&gt; 进行自由的分组而不需要多次发送消息到不同的 &lt;strong&gt;topic&lt;/strong&gt; 。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Broker &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;一台 &lt;strong&gt;kafka&lt;/strong&gt; 服务器就是一个 &lt;strong&gt;broker&lt;/strong&gt; 。一个集群由多个 &lt;strong&gt;broker&lt;/strong&gt; 组成。一个 &lt;strong&gt;broker&lt;/strong&gt; 可以容纳多个 &lt;strong&gt;topic&lt;/strong&gt; 。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Partition&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;为了实现扩展性，一个非常大的 &lt;strong&gt;topic&lt;/strong&gt; 可以分布到多个 &lt;strong&gt;broker&lt;/strong&gt; （即服务器）上，一个 &lt;strong&gt;topic&lt;/strong&gt; 可以分为多个 &lt;strong&gt;partition&lt;/strong&gt; ，每个 &lt;strong&gt;partition&lt;/strong&gt; 是一个有序的队列。 &lt;strong&gt;partition&lt;/strong&gt; 中的每条消息都会被分配一个有序的 &lt;strong&gt;id&lt;/strong&gt; （ &lt;strong&gt;offset&lt;/strong&gt; ）。 &lt;strong&gt;kafka&lt;/strong&gt; 只保证按一个 &lt;strong&gt;partition&lt;/strong&gt; 中的顺序将消息发给 &lt;strong&gt;consumer&lt;/strong&gt; ，不保证一个 &lt;strong&gt;topic&lt;/strong&gt; 的整体（多个 &lt;strong&gt;partition&lt;/strong&gt; 间）的顺序。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Offset&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;strong&gt;kafka&lt;/strong&gt; 的存储文件都是按照 &lt;strong&gt;offset.kafka&lt;/strong&gt; 来命名，用 &lt;strong&gt;offset&lt;/strong&gt; 做名字的好处是方便查找。例如你想找位于2049的位置，只要找到 &lt;strong&gt;2048.kafka&lt;/strong&gt; 的文件即可。当然 &lt;strong&gt;the first offset&lt;/strong&gt; 就是 &lt;strong&gt;00000000000.kafka&lt;/strong&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_consumer与topic关系&#34;&gt;2. Consumer与topic关系&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;本质上 &lt;strong&gt;kafka&lt;/strong&gt; 只支持 &lt;strong&gt;Topic&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;每个 &lt;strong&gt;group&lt;/strong&gt; 中可以有多个 &lt;strong&gt;consumer&lt;/strong&gt; ，每个 &lt;strong&gt;consumer&lt;/strong&gt; 属于一个 &lt;strong&gt;consumer&lt;/strong&gt;   &lt;strong&gt;group&lt;/strong&gt; ；
+　　通常情况下，一个 &lt;strong&gt;group&lt;/strong&gt; 中会包含多个 &lt;strong&gt;consumer&lt;/strong&gt; ，这样不仅可以提高 &lt;strong&gt;topic&lt;/strong&gt; 中消息的并发消费能力，而且还能提高&#34;故障容错&#34;性，如果 &lt;strong&gt;group&lt;/strong&gt; 中的某个 &lt;strong&gt;consumer&lt;/strong&gt; 失效那么其消费的 &lt;strong&gt;partitions&lt;/strong&gt; 将会有其他 &lt;strong&gt;consumer&lt;/strong&gt; 自动接管。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于 &lt;strong&gt;Topic&lt;/strong&gt; 中的一条特定的消息，只会被订阅此 &lt;strong&gt;Topic&lt;/strong&gt; 的每个 &lt;strong&gt;group&lt;/strong&gt; 中的其中一个 &lt;strong&gt;consumer&lt;/strong&gt; 消费，此消息不会发送给一个 &lt;strong&gt;group&lt;/strong&gt; 的多个 &lt;strong&gt;consumer&lt;/strong&gt; ；
+　　那么一个 &lt;strong&gt;group&lt;/strong&gt; 中所有的 &lt;strong&gt;consumer&lt;/strong&gt; 将会交错的消费整个 &lt;strong&gt;Topic&lt;/strong&gt; ，每个 &lt;strong&gt;group&lt;/strong&gt; 中 &lt;strong&gt;consumer&lt;/strong&gt; 消息消费互相独立，我们可以认为一个 &lt;strong&gt;group&lt;/strong&gt; 是一个&#34;订阅&#34;者。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 &lt;strong&gt;kafka&lt;/strong&gt; 中,一个 &lt;strong&gt;partition&lt;/strong&gt; 中的消息只会被 &lt;strong&gt;group&lt;/strong&gt; 中的一个 &lt;strong&gt;consumer&lt;/strong&gt; 消费(同一时刻)；
+一个 &lt;strong&gt;Topic&lt;/strong&gt; 中的每个 &lt;strong&gt;partions&lt;/strong&gt; ，只会被一个&#34;订阅者&#34;中的一个 &lt;strong&gt;consumer&lt;/strong&gt; 消费，不过一个 &lt;strong&gt;consumer&lt;/strong&gt; 可以同时消费多个 &lt;strong&gt;partitions&lt;/strong&gt; 中的消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;kafka&lt;/strong&gt; 的设计原理决定,对于一个 &lt;strong&gt;topic&lt;/strong&gt; ，同一个 &lt;strong&gt;group&lt;/strong&gt; 中不能有多于 &lt;strong&gt;partitions&lt;/strong&gt; 个数的 &lt;strong&gt;consumer&lt;/strong&gt; 同时消费，否则将意味着某些 &lt;strong&gt;consumer&lt;/strong&gt; 将无法得到消息。
+　　 &lt;strong&gt;kafka&lt;/strong&gt; 只能保证一个 &lt;strong&gt;partition&lt;/strong&gt; 中的消息被某个 &lt;strong&gt;consumer&lt;/strong&gt; 消费时是顺序的；事实上，从 &lt;strong&gt;Topic&lt;/strong&gt; 角度来说,当有多个 &lt;strong&gt;partitions&lt;/strong&gt; 时,消息仍不是全局有序的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kafka消息的分发&#34;&gt;3. Kafka消息的分发&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Producer&lt;/strong&gt; 客户端负责消息的分发&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;kafka&lt;/strong&gt; 集群中的任何一个 &lt;strong&gt;broker&lt;/strong&gt; 都可以向 &lt;strong&gt;producer&lt;/strong&gt; 提供 &lt;strong&gt;metadata&lt;/strong&gt; 信息,这些 &lt;strong&gt;metadata&lt;/strong&gt; 中包含&#34;集群中存活的 &lt;strong&gt;servers&lt;/strong&gt; 列表 &lt;strong&gt;&#34;/&#34;partitions leader&lt;/strong&gt; 列表&#34;等信息；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当 &lt;strong&gt;producer&lt;/strong&gt; 获取到 &lt;strong&gt;metadata&lt;/strong&gt; 信息之后,  &lt;strong&gt;producer&lt;/strong&gt; 将会和 &lt;strong&gt;Topic&lt;/strong&gt; 下所有 &lt;strong&gt;partition&lt;/strong&gt;   &lt;strong&gt;leader&lt;/strong&gt; 保持 &lt;strong&gt;socket&lt;/strong&gt; 连接；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消息由 &lt;strong&gt;producer&lt;/strong&gt; 直接通过 &lt;strong&gt;socket&lt;/strong&gt; 发送到 &lt;strong&gt;broker&lt;/strong&gt; ，中间不会经过任何&#34;路由层&#34;，事实上，消息被路由到哪个 &lt;strong&gt;partition&lt;/strong&gt; 上由 &lt;strong&gt;producer&lt;/strong&gt; 客户端决定；
+　　比如可以采用&#34; &lt;strong&gt;random&lt;/strong&gt; &#34;&#34; &lt;strong&gt;key&lt;/strong&gt; - &lt;strong&gt;hash&lt;/strong&gt; &#34;&#34;轮询&#34;等,如果一个 &lt;strong&gt;topic&lt;/strong&gt; 中有多个 &lt;strong&gt;partitions&lt;/strong&gt; ,那么在 &lt;strong&gt;producer&lt;/strong&gt; 端实现&#34;消息均衡分发&#34;是必要的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 &lt;strong&gt;producer&lt;/strong&gt; 端的配置文件中,开发者可以指定 &lt;strong&gt;partition&lt;/strong&gt; 路由的方式。&lt;/p&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　Producer消息发送的应答机制
+　　设置发送数据是否需要服务端的反馈,有三个值0,1,-1
+　　0: producer不会等待broker发送ack
+　　1: 当leader接收到消息之后发送ack
+　　-1: 当所有的follower都同步消息成功后发送ack
+    request.required.acks=0&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_consumer的负载均衡&#34;&gt;4. Consumer的负载均衡&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;当一个 &lt;strong&gt;group&lt;/strong&gt; 中,有 &lt;strong&gt;consumer&lt;/strong&gt; 加入或者离开时,会触发 &lt;strong&gt;partitions&lt;/strong&gt; 均衡.均衡的最终目的,是提升 &lt;strong&gt;topic&lt;/strong&gt; 的并发消费能力，步骤如下：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;假如 &lt;strong&gt;topic1&lt;/strong&gt; ,具有如下 &lt;strong&gt;partitions: P0,P1,P2,P3&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;加入 &lt;strong&gt;group&lt;/strong&gt; 中,有如下 &lt;strong&gt;consumer: C1,C2&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;首先根据 &lt;strong&gt;partition&lt;/strong&gt; 索引号对 &lt;strong&gt;partitions&lt;/strong&gt; 排序:  &lt;strong&gt;P0,P1,P2,P3&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;根据 &lt;strong&gt;consumer.id&lt;/strong&gt; 排序:  &lt;strong&gt;C0,C1&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;计算倍数:  &lt;strong&gt;M = [P0,P1,P2,P3].size / [C0,C1].size&lt;/strong&gt; ,本例值 &lt;strong&gt;M=2&lt;/strong&gt; (向上取整)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后依次分配 &lt;strong&gt;partitions&lt;/strong&gt; :  &lt;strong&gt;C0 = [P0,P1],C1=[P2,P3],即Ci = [P(i * M),P((i + 1) * M -1)]&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/storm/2017-04-01_104025.png&#34; alt=&#34;2017 04 01 104025&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kafka文件存储机制&#34;&gt;5. kafka文件存储机制&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_kafka文件存储基本结构&#34;&gt;5.1. Kafka文件存储基本结构&lt;/h3&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;在 &lt;strong&gt;Kafka&lt;/strong&gt; 文件存储中，同一个 &lt;strong&gt;topic&lt;/strong&gt; 下有多个不同 &lt;strong&gt;partition&lt;/strong&gt; ，每个 &lt;strong&gt;partition&lt;/strong&gt; 为一个目录， &lt;strong&gt;partiton&lt;/strong&gt; 命名规则为 &lt;strong&gt;topic&lt;/strong&gt; 名称+有序序号，第一个 &lt;strong&gt;partiton&lt;/strong&gt; 序号从0开始，序号最大值为 &lt;strong&gt;partitions&lt;/strong&gt; 数量减1。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个 &lt;strong&gt;partion&lt;/strong&gt; (目录)相当于一个巨型文件被平均分配到多个大小相等 &lt;strong&gt;segment&lt;/strong&gt; (段)数据文件中。但每个段 &lt;strong&gt;segment file&lt;/strong&gt; 消息数量不一定相等，这种特性方便 &lt;strong&gt;old&lt;/strong&gt;   &lt;strong&gt;segment&lt;/strong&gt;   &lt;strong&gt;file&lt;/strong&gt; 快速被删除。默认保留7天的数据。&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/storm/2017-04-01_104135.png&#34; alt=&#34;2017 04 01 104135&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个 &lt;strong&gt;partiton&lt;/strong&gt; 只需要支持顺序读写就行了， &lt;strong&gt;segment&lt;/strong&gt; 文件生命周期由服务端配置参数决定。（什么时候创建，什么时候删除）&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/storm/2017-04-01_104143.png&#34; alt=&#34;2017 04 01 104143&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;数据有序的讨论？&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;一个 &lt;strong&gt;partition&lt;/strong&gt; 的数据是否是有序的？&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;间隔性有序，不连续
+针对一个 &lt;strong&gt;topic&lt;/strong&gt; 里面的数据，只能做到 &lt;strong&gt;partition&lt;/strong&gt; 内部有序，不能做到全局有序。
+特别加入消费者的场景后，如何保证消费者消费的数据全局有序的？伪命题。
+只有一种情况下才能保证全局有序？就是只有一个 &lt;strong&gt;partition&lt;/strong&gt; 。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_kafka_partition_segment&#34;&gt;5.2. Kafka Partition Segment&lt;/h3&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Segment file&lt;/strong&gt; 组成：由2大部分组成，分别为 &lt;strong&gt;index&lt;/strong&gt;   &lt;strong&gt;file&lt;/strong&gt; 和 &lt;strong&gt;data&lt;/strong&gt;   &lt;strong&gt;file&lt;/strong&gt; ，此2个文件一一对应，成对出现，后缀 &lt;strong&gt;.index&lt;/strong&gt; 和 &lt;strong&gt;.log&lt;/strong&gt; 分别表示为 &lt;strong&gt;segment&lt;/strong&gt; 索引文件、数据文件。&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/storm/2017-04-01_104152.png&#34; alt=&#34;2017 04 01 104152&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Segment&lt;/strong&gt; 文件命名规则： &lt;strong&gt;partion&lt;/strong&gt; 全局的第一个 &lt;strong&gt;segment&lt;/strong&gt; 从0开始，后续每个 &lt;strong&gt;segment&lt;/strong&gt; 文件名为上一个 &lt;strong&gt;segment&lt;/strong&gt; 文件最后一条消息的 &lt;strong&gt;offset&lt;/strong&gt; 值。数值最大为64位 &lt;strong&gt;long&lt;/strong&gt; 大小，19位数字字符长度，没有数字用0填充。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;索引文件存储大量元数据，数据文件存储大量消息，索引文件中元数据指向对应数据文件中 &lt;strong&gt;message&lt;/strong&gt; 的物理偏移地址。&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/storm/2017-04-01_104159.png&#34; alt=&#34;2017 04 01 104159&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;3，497：当前log文件中的第几条信息，存放在磁盘上的那个地方&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;上述图中索引文件存储大量元数据，数据文件存储大量消息，索引文件中元数据指向对应数据文件中message的物理偏移地址。
+其中以索引文件中元数据3,497为例，依次在数据文件中表示第3个message(在全局partiton表示第368772个message)、以及该消息的物理偏移地址为497。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;segment data file由许多message组成， qq物理结构如下：
+关键字
+解释说明&lt;/p&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;8 byte offset &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;在parition(分区)内的每条消息都有一个有序的id号，这个id号被称为偏移(offset),它可以唯一确定每条消息在parition(分区)内的位置。即offset表示partiion的第多少message&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;4 byte message size &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;message大小&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;4 byte CRC32 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;用crc32校验message&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;1 byte “magic&#34; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;表示本次发布Kafka服务程序协议版本号&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;1 byte “attributes&#34; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;表示为独立版本、或标识压缩类型、或编码类型。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;4 byte key length &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;表示key的长度,当key为-1时，K byte key字段不填&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;K byte key &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;可选&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;value bytes payload &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;表示实际消息数据。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_kafka_查找message&#34;&gt;5.3. Kafka 查找message&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;读取offset=368776的message，需要通过下面2个步骤查找。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/storm/2017-04-01_104213.png&#34; alt=&#34;2017 04 01 104213&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_查找segment_file&#34;&gt;5.3.1. 查找segment file&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　00000000000000000000.index表示最开始的文件，起始偏移量(offset)为0
+　　00000000000000368769.index的消息量起始偏移量为368770 = 368769 + 1
+　　00000000000000737337.index的起始偏移量为737338=737337 + 1
+　　其他后续文件依次类推。
+以起始偏移量命名并排序这些文件，只要根据offset **二分查找**文件列表，就可以快速定位到具体文件。当offset=368776时定位到00000000000000368769.index和对应log文件。
+5.3.2、通过segment file查找message
+当offset=368776时，依次定位到00000000000000368769.index的元数据物理位置和00000000000000368769.log的物理偏移地址
+　　然后再通过00000000000000368769.log顺序查找直到offset=368776为止。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kafka自定义partition&#34;&gt;6. Kafka自定义Partition&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;见代码&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Kafka集群安装部署、Kafka生产者、Kafka消费者</title>
@@ -6301,8 +6634,8 @@ hadoop fs -put /a.txt /wordcount/input&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;a href=&#34;#_设置发布目录&#34;&gt;1.1. 设置发布目录&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_部署&#34;&gt;1.2. 部署&lt;/a&gt;
 &lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_本地部署&#34;&gt;1.2.1. 本地部署&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_码云部署&#34;&gt;1.2.2. 码云部署&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_带项目名&#34;&gt;1.2.1. 带项目名&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_不带项目名&#34;&gt;1.2.2. 不带项目名&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -6328,7 +6661,14 @@ git worktree add public gh-pages&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_部署&#34;&gt;1.2. 部署&lt;/h3&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_本地部署&#34;&gt;1.2.1. 本地部署&lt;/h4&gt;
+&lt;h4 id=&#34;_带项目名&#34;&gt;1.2.1. 带项目名&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://dishui.oschina.io/note-hugo/&#34; class=&#34;bare&#34;&gt;http://dishui.oschina.io/note-hugo/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;hugo-local.sh&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -6344,9 +6684,6 @@ echo &#34;启动 hugo server&#34;
 hugo server&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_码云部署&#34;&gt;1.2.2. 码云部署&lt;/h4&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;hugo.sh&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -6369,6 +6706,43 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_不带项目名&#34;&gt;1.2.2. 不带项目名&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://dishui.oschina.io&#34; class=&#34;bare&#34;&gt;http://dishui.oschina.io&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;hugo-local.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
+
+cd /e/dishui/
+
+echo &#34;启动 hugo server&#34;
+hugo server&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;hugo-oschina.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
+
+cd /e/dishui/
+
+hugo
+
+echo &#34;Updating gh-pages branch&#34;
+cd public &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push
+
+echo &#34;Commit note&#34;
+cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6378,14 +6752,8 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;启动 &lt;strong&gt;nodejieba&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;olist loweralpha&#34;&gt;
-&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;启动 &lt;strong&gt;docker-volume-netshare&lt;/strong&gt; ( &lt;a href=&#34;/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;docker-volume-netshare&lt;/a&gt; )&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
+&lt;p&gt;启动 &lt;strong&gt;nodejieba&lt;/strong&gt;&lt;br&gt;
+启动 &lt;strong&gt;docker-volume-netshare&lt;/strong&gt; ( &lt;a href=&#34;/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;docker-volume-netshare&lt;/a&gt; )&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启动 &lt;strong&gt;nodejieba&lt;/strong&gt; 容器&lt;/p&gt;
@@ -6419,86 +6787,6 @@ nodejs index_builder.js # 生成索引&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>欧拉方程</title>
-      <link>/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</link>
-      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;欧拉方程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_欧拉方程&#34;&gt;1. 欧拉方程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_欧拉方程&#34;&gt;1. 欧拉方程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090630.png&#34; alt=&#34;2017 03 06 090630&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090702.png&#34; alt=&#34;2017 03 06 090702&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090730.png&#34; alt=&#34;2017 03 06 090730&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090747.png&#34; alt=&#34;2017 03 06 090747&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090812.png&#34; alt=&#34;2017 03 06 090812&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090838.png&#34; alt=&#34;2017 03 06 090838&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090854.png&#34; alt=&#34;2017 03 06 090854&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090907.png&#34; alt=&#34;2017 03 06 090907&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090926.png&#34; alt=&#34;2017 03 06 090926&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/gaoshu/2017-03-06_090955.png&#34; alt=&#34;2017 03 06 090955&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

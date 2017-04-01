@@ -2070,8 +2070,12 @@ java.sql.SQLException: No suitable driver found for jdbc:mysql://192.168.137.1:3
 
 &lt;li&gt;&lt;p&gt;Fix&lt;/p&gt;
 
-&lt;p&gt;将&lt;code&gt;mysql-connector-java-5.1.33.jar&lt;/code&gt;放到&lt;code&gt;$JAVA_HOME/jre/lib/ext&lt;/code&gt;路径下&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;将&lt;code&gt;mysql-connector-java-5.1.33.jar&lt;/code&gt;放到&lt;code&gt;$JAVA_HOME/jre/lib/ext&lt;/code&gt;路径下&lt;/p&gt;
+
+&lt;p&gt;asdf&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;asdfsd&lt;/p&gt;
 </description>
     </item>
     
