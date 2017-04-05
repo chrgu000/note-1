@@ -3,7 +3,12 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-04-01T09:31:48+00:00</lastmod>
+    <lastmod>2017-04-04T15:25:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/scala/scala%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2017-04-04T15:25:28+00:00</lastmod>
   </url>
   
   <url>
@@ -77,7 +82,7 @@
   </url>
   
   <url>
-    <loc>/post/hugo/</loc>
+    <loc>/post/my/hugo/</loc>
     <lastmod>2017-03-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -247,12 +252,12 @@
   </url>
   
   <url>
-    <loc>/post/activemq/</loc>
+    <loc>/post/java/activemq/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/httpd/</loc>
+    <loc>/post/linux/httpd/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -282,12 +287,12 @@
   </url>
   
   <url>
-    <loc>/post/elasticsearch/</loc>
+    <loc>/post/java/es/elasticsearch/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/git-tips/</loc>
+    <loc>/post/linux/git-tips/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -297,17 +302,17 @@
   </url>
   
   <url>
-    <loc>/post/Intellij-keymap/</loc>
+    <loc>/post/editor/Intellij-keymap/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/Intellij/</loc>
+    <loc>/post/editor/Intellij/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/js-html/</loc>
+    <loc>/post/js/js-html/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -337,7 +342,7 @@
   </url>
   
   <url>
-    <loc>/post/jsutils/</loc>
+    <loc>/post/js/jsutils/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -352,7 +357,7 @@
   </url>
   
   <url>
-    <loc>/post/maven/</loc>
+    <loc>/post/java/maven/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -362,7 +367,7 @@
   </url>
   
   <url>
-    <loc>/post/mysql/</loc>
+    <loc>/post/linux/mysql/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -397,22 +402,22 @@
   </url>
   
   <url>
-    <loc>/post/iocxml_md/</loc>
+    <loc>/post/java/iocxml_md/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/spring-conf/</loc>
+    <loc>/post/java/spring-conf/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/mvcxml_md/</loc>
+    <loc>/post/java/mvcxml_md/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/vagrant/</loc>
+    <loc>/post/linux/vagrant/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -442,27 +447,27 @@
   </url>
   
   <url>
-    <loc>/post/elasticsearch-jdbc-importer/</loc>
+    <loc>/post/java/es/elasticsearch-jdbc-importer/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/es-snippet/</loc>
+    <loc>/post/java/es/es-snippet/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/es-book-note/</loc>
+    <loc>/post/java/es/es-book-note/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/escha_jian_an_zhuang/</loc>
+    <loc>/post/java/es/escha_jian_an_zhuang/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/es-issues/</loc>
+    <loc>/post/java/es/es-issues/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -477,7 +482,7 @@
   </url>
   
   <url>
-    <loc>/post/git/</loc>
+    <loc>/post/linux/git/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -487,12 +492,12 @@
   </url>
   
   <url>
-    <loc>/post/gollum/</loc>
+    <loc>/post/my/gollum/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/guava/</loc>
+    <loc>/post/java/guava/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -502,12 +507,12 @@
   </url>
   
   <url>
-    <loc>/post/java/</loc>
+    <loc>/post/java/java/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/java-class/</loc>
+    <loc>/post/java/java-class/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -527,7 +532,7 @@
   </url>
   
   <url>
-    <loc>/post/jesery/</loc>
+    <loc>/post/java/jesery/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -552,7 +557,7 @@
   </url>
   
   <url>
-    <loc>/post/lunr/</loc>
+    <loc>/post/my/lunr/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -612,12 +617,12 @@
   </url>
   
   <url>
-    <loc>/post/snippets/</loc>
+    <loc>/post/editor/snippets/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/sublime/</loc>
+    <loc>/post/editor/sublime/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -637,7 +642,7 @@
   </url>
   
   <url>
-    <loc>/post/tip/</loc>
+    <loc>/post/work/tip/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -647,7 +652,7 @@
   </url>
   
   <url>
-    <loc>/post/understand/</loc>
+    <loc>/post/editor/understand/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -747,7 +752,7 @@
   </url>
   
   <url>
-    <loc>/post/well/</loc>
+    <loc>/post/work/well/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
   </url>
   

@@ -1,0 +1,1325 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记</title>
+    <link>/categories/scala/index.xml</link>
+    <description>Recent content on 工作笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>scala基础</title>
+      <link>/post/bigdata/scala/scala%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 04 Apr 2017 15:25:28 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/scala%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;scala基础&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_scala基础&#34;&gt;1. Scala基础&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_声明变量&#34;&gt;1.1. 声明变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_常用类型&#34;&gt;1.2. 常用类型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_条件表达式&#34;&gt;1.3. 条件表达式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_块表达式&#34;&gt;1.4. 块表达式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_循环&#34;&gt;1.5. 循环&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_调用方法和函数&#34;&gt;1.6. 调用方法和函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定义方法和函数&#34;&gt;1.7. 定义方法和函数&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定义方法&#34;&gt;1.7.1. 定义方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定义函数&#34;&gt;1.7.2. 定义函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_方法和函数的区别&#34;&gt;1.7.3. 方法和函数的区别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_将方法转换成函数_神奇的下划线&#34;&gt;1.7.4. 将方法转换成函数（神奇的下划线）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_数组_映射_元组_集合&#34;&gt;2. 数组、映射、元组、集合&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_数组&#34;&gt;2.1. 数组&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_定长数组和变长数组&#34;&gt;2.1.1. 定长数组和变长数组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_遍历数组&#34;&gt;2.1.2. 遍历数组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_数组转换&#34;&gt;2.1.3. 数组转换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_数组常用算法&#34;&gt;2.1.4. 数组常用算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_映射&#34;&gt;2.2. 映射&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_构建映射&#34;&gt;2.2.1. 构建映射&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取和修改映射中的值&#34;&gt;2.2.2. 获取和修改映射中的值&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_元组&#34;&gt;2.3. 元组&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_创建元组&#34;&gt;2.3.1. 创建元组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取元组中的值&#34;&gt;2.3.2. 获取元组中的值&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_将对偶的集合转换成映射&#34;&gt;2.3.3. 将对偶的集合转换成映射&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_拉链操作&#34;&gt;2.3.4. 拉链操作&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_集合&#34;&gt;2.4. 集合&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_序列&#34;&gt;2.4.1. 序列&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_set&#34;&gt;2.5. Set&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_map&#34;&gt;2.6. Map&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_类_对象_继承_特质&#34;&gt;3. 类、对象、继承、特质&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_类&#34;&gt;3.1. 类&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_类的定义&#34;&gt;3.1.1. 类的定义&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_构造器&#34;&gt;3.1.2. 构造器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_对象&#34;&gt;3.2. 对象&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_单例对象&#34;&gt;3.2.1. 单例对象&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_伴生对象&#34;&gt;3.2.2. 伴生对象&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_apply方法&#34;&gt;3.2.3. apply方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_应用程序对象&#34;&gt;3.2.4. 应用程序对象&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_继承&#34;&gt;3.3. 继承&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_扩展类&#34;&gt;3.3.1. 扩展类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_重写方法&#34;&gt;3.3.2. 重写方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_类型检查和转换&#34;&gt;3.3.3. 类型检查和转换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_超类的构造&#34;&gt;3.3.4. 超类的构造&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_模式匹配和样例类&#34;&gt;4. 模式匹配和样例类&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_匹配字符串&#34;&gt;4.1. 匹配字符串&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_匹配类型&#34;&gt;4.2. 匹配类型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_匹配数组_元组&#34;&gt;4.3. 匹配数组、元组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_样例类&#34;&gt;4.4. 样例类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_option类型&#34;&gt;4.5. Option类型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_偏函数&#34;&gt;4.6. 偏函数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_单机版_wordcount&#34;&gt;5. 单机版 wordcount&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_scala基础&#34;&gt;1. Scala基础&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_声明变量&#34;&gt;1.1. 声明变量&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object VariableDemo {
+  def main(args: Array[String]) {
+    //使用val定义的变量值是不可变的，相当于java里用final修饰的变量
+    val i = 1
+    //使用var定义的变量是可变得，在Scala中鼓励使用val
+    var s = &#34;hello&#34;
+    //Scala编译器会自动推断变量的类型，必要的时候可以指定类型
+    //变量名在前，类型在后
+    val str: String = &#34;itcast&#34;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_常用类型&#34;&gt;1.2. 常用类型&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Scala&lt;/strong&gt; 和 &lt;strong&gt;Java&lt;/strong&gt; 一样，有7种数值类型 &lt;strong&gt;Byte&lt;/strong&gt; 、 &lt;strong&gt;Char&lt;/strong&gt; 、 &lt;strong&gt;Short&lt;/strong&gt; 、 &lt;strong&gt;Int&lt;/strong&gt; 、 &lt;strong&gt;Long&lt;/strong&gt; 、 &lt;strong&gt;Float&lt;/strong&gt; 和 &lt;strong&gt;Double&lt;/strong&gt; （无包装类型）和一个 &lt;strong&gt;Boolean&lt;/strong&gt; 类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_条件表达式&#34;&gt;1.3. 条件表达式&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Scala的的条件表达式比较简洁，例如：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ConditionDemo {
+  def main(args: Array[String]) {
+    val x = 1
+    //判断x的值，将结果赋给y
+    val y = if (x &amp;gt; 0) 1 else -1
+    //打印y的值
+    println(y)
+
+    //支持混合类型表达式
+    val z = if (x &amp;gt; 1) 1 else &#34;error&#34;
+    //打印z的值
+    println(z)
+
+    //如果缺失else，相当于if (x &amp;gt; 2) 1 else ()
+    val m = if (x &amp;gt; 2) 1
+    println(m)
+
+    //在scala中每个表达式都有值，scala中有个Unit类，写做(),相当于Java中的void
+    val n = if (x &amp;gt; 2) 1 else ()
+    println(n)
+
+    //if和else if
+    val k = if (x &amp;lt; 0) 0
+    else if (x &amp;gt;= 1) 1 else -1
+    println(k)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_块表达式&#34;&gt;1.4. 块表达式&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object BlockExpressionDemo {
+  def main(args: Array[String]) {
+    val x = 0
+    //在scala中{}中课包含一系列表达式，块中最后一个表达式的值就是块的值
+    //下面就是一个块表达式
+    val result = {
+      if (x &amp;lt; 0){
+        -1
+      } else if(x &amp;gt;= 1) {
+        1
+      } else {
+        &#34;error&#34;
+      }
+    }
+    //result的值就是块表达式的结果
+    println(result)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_循环&#34;&gt;1.5. 循环&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在scala中有for循环和while循环，用for循环比较多
+for循环语法结构：for (i &amp;#8592; 表达式/数组/集合)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ForDemo {
+  def main(args: Array[String]) {
+    //for(i &amp;lt;- 表达式),表达式1 to 10返回一个Range（区间）
+    //每次循环将区间中的一个值赋给i
+    for (i &amp;lt;- 1 to 10)
+      println(i)
+
+    //for(i &amp;lt;- 数组)
+    val arr = Array(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;)
+    for (i &amp;lt;- arr)
+      println(i)
+
+    //高级for循环
+    //每个生成器都可以带一个条件，注意：if前面没有分号
+    for(i &amp;lt;- 1 to 3; j &amp;lt;- 1 to 3 if i != j)
+      print((10 * i + j) + &#34; &#34;)
+    println()
+
+    //for推导式：如果for循环的循环体以yield开始，则该循环会构建出一个集合
+    //每次迭代生成集合中的一个值
+    val v = for (i &amp;lt;- 1 to 10) yield i * 10
+    println(v)
+
+  }
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_调用方法和函数&#34;&gt;1.6. 调用方法和函数&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Scala中的+ - * / %等操作符的作用与Java一样，位操作符 &amp;amp; | ^ &amp;gt;&amp;gt; &amp;lt;&amp;lt;也一样。只是有
+一点特别的：这些操作符实际上是方法。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;例如：
+　　a + b
+是如下方法调用的简写：
+　　a. +(b)
+a 方法 b可以写成 a.方法(b)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_定义方法和函数&#34;&gt;1.7. 定义方法和函数&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_定义方法&#34;&gt;1.7.1. 定义方法&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162650.png&#34; alt=&#34;2017 04 04 162650&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;方法的返回值类型可以不写，编译器可以自动推断出来，但是对于递归函数，必须指定返回类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_定义函数&#34;&gt;1.7.2. 定义函数&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162701.png&#34; alt=&#34;2017 04 04 162701&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_方法和函数的区别&#34;&gt;1.7.3. 方法和函数的区别&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在函数式编程语言中，函数是“头等公民”，它可以像任何其他数据类型一样被传递和操作&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+
+image::/src/img/scala/2017-04-04_162709.png[]
+---
+案例：首先定义一个方法，再定义一个函数，然后将函数传递到方法里面&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MethodAndFunctionDemo {
+  //定义一个方法
+  //方法m2参数要求是一个函数，函数的参数必须是两个Int类型
+  //返回值类型也是Int类型
+  def m1(f: (Int, Int) =&amp;gt; Int) : Int = {
+    f(2, 6)
+  }
+
+  //定义一个函数f1，参数是两个Int类型，返回值是一个Int类型
+  val f1 = (x: Int, y: Int) =&amp;gt; x + y
+  //再定义一个函数f2
+  val f2 = (m: Int, n: Int) =&amp;gt; m * n
+
+  //main方法
+  def main(args: Array[String]) {
+
+    //调用m1方法，并传入f1函数
+    val r1 = m1(f1)
+    println(r1)
+
+    //调用m1方法，并传入f2函数
+    val r2 = m1(f2)
+    println(r2)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_将方法转换成函数_神奇的下划线&#34;&gt;1.7.4. 将方法转换成函数（神奇的下划线）&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162717.png&#34; alt=&#34;2017 04 04 162717&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_数组_映射_元组_集合&#34;&gt;2. 数组、映射、元组、集合&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_数组&#34;&gt;2.1. 数组&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_定长数组和变长数组&#34;&gt;2.1.1. 定长数组和变长数组&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.collection.mutable.ArrayBuffer
+object ArrayDemo {
+
+  def main(args: Array[String]) {
+
+    //初始化一个长度为8的定长数组，其所有元素均为0
+    val arr1 = new Array[Int](8)
+    //直接打印定长数组，内容为数组的hashcode值
+    println(arr1)
+    //将数组转换成数组缓冲，就可以看到原数组中的内容了
+    //toBuffer会将数组转换长数组缓冲
+    println(arr1.toBuffer)
+
+    //注意：如果new，相当于调用了数组的apply方法，直接为数组赋值
+    //初始化一个长度为1的定长数组
+    val arr2 = Array[Int](10)
+    println(arr2.toBuffer)
+
+    //定义一个长度为3的定长数组
+    val arr3 = Array(&#34;hadoop&#34;, &#34;storm&#34;, &#34;spark&#34;)
+    //使用()来访问元素
+    println(arr3(2))
+
+    //////////////////////////////////////////////////
+    //变长数组（数组缓冲）
+    //如果想使用数组缓冲，需要导入import scala.collection.mutable.ArrayBuffer包
+    val ab = ArrayBuffer[Int]()
+    //向数组缓冲的尾部追加一个元素
+    //+=尾部追加元素
+    ab += 1
+    //追加多个元素
+    ab += (2, 3, 4, 5)
+    //追加一个数组++=
+    ab ++= Array(6, 7)
+    //追加一个数组缓冲
+    ab ++= ArrayBuffer(8,9)
+    //打印数组缓冲ab
+
+    //在数组某个位置插入元素用insert
+    ab.insert(0, -1, 0)
+    //删除数组某个位置的元素用remove
+    ab.remove(8, 2)
+    println(ab)
+
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_遍历数组&#34;&gt;2.1.2. 遍历数组&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1.增强for循环
+2.好用的until会生成脚标，0 until 10 包含0不包含10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162727.png&#34; alt=&#34;2017 04 04 162727&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ForArrayDemo {
+
+  def main(args: Array[String]) {
+    //初始化一个数组
+    val arr = Array(1,2,3,4,5,6,7,8)
+    //增强for循环
+    for(i &amp;lt;- arr)
+      println(i)
+
+    //好用的until会生成一个Range
+    //reverse是将前面生成的Range反转
+    for(i &amp;lt;- (0 until arr.length).reverse)
+      println(arr(i))
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_数组转换&#34;&gt;2.1.3. 数组转换&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yield关键字将原始的数组进行转换会产生一个新的数组，原始的数组不变&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162736.png&#34; alt=&#34;2017 04 04 162736&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ArrayYieldDemo {
+  def main(args: Array[String]) {
+    //定义一个数组
+    val arr = Array(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    //将偶数取出乘以10后再生成一个新的数组
+    val res = for (e &amp;lt;- arr if e % 2 == 0) yield e * 10
+    println(res.toBuffer)
+
+    //更高级的写法,用着更爽
+    //filter是过滤，接收一个返回值为boolean的函数
+    //map相当于将数组中的每一个元素取出来，应用传进去的函数
+    val r = arr.filter(_ % 2 == 0).map(_ * 10)
+    println(r.toBuffer)
+
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_数组常用算法&#34;&gt;2.1.4. 数组常用算法&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中，数组上的某些方法对数组进行相应的操作非常方便！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162743.png&#34; alt=&#34;2017 04 04 162743&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_映射&#34;&gt;2.2. 映射&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中，把哈希表这种数据结构叫做映射&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_构建映射&#34;&gt;2.2.1. 构建映射&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162749.png&#34; alt=&#34;2017 04 04 162749&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_获取和修改映射中的值&#34;&gt;2.2.2. 获取和修改映射中的值&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162755.png&#34; alt=&#34;2017 04 04 162755&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;好用的getOrElse&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162802.png&#34; alt=&#34;2017 04 04 162802&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;注意：在Scala中，有两种Map，一个是immutable包下的Map，该Map中的内容不可变；另一个是mutable包下的Map，该Map中的内容可变
+例子：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162812.png&#34; alt=&#34;2017 04 04 162812&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;注意：通常我们在创建一个集合是会用val这个关键字修饰一个变量（相当于java中的final），那么就意味着该变量的引用不可变，该引用中的内容是不是可变，取决于这个引用指向的集合的类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_元组&#34;&gt;2.3. 元组&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;映射是K/V对偶的集合，对偶是元组的最简单形式，元组可以装着多个不同类型的值。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_创建元组&#34;&gt;2.3.1. 创建元组&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162819.png&#34; alt=&#34;2017 04 04 162819&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_获取元组中的值&#34;&gt;2.3.2. 获取元组中的值&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162828.png&#34; alt=&#34;2017 04 04 162828&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_将对偶的集合转换成映射&#34;&gt;2.3.3. 将对偶的集合转换成映射&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162835.png&#34; alt=&#34;2017 04 04 162835&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_拉链操作&#34;&gt;2.3.4. 拉链操作&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;zip命令可以将多个值绑定在一起&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-04_162841.png&#34; alt=&#34;2017 04 04 162841&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;注意：如果两个数组的元素个数不一致，拉链操作后生成的数组的长度为较小的那个数组的元素个数&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_集合&#34;&gt;2.4. 集合&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Scala的集合有三大类&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;序列Seq、集Set、映射Map，所有的集合都扩展自Iterable特质
+在Scala中集合有可变（mutable）和不可变（immutable）两种类型，immutable类型的集合初始化后就不能改变了（注意与val修饰的变量进行区别）&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_序列&#34;&gt;2.4.1. 序列&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;不可变的序列 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;import scala.collection.immutable._&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;在Scala中列表要么为空（Nil表示空列表）要么是一个head元素加上一个tail列表。
+9 :: List(5, 2)  :: 操作符是将给定的头和尾创建一个新的列表
+注意：:: 操作符是右结合的，如9 :: 5 :: 2 :: Nil相当于 9 :: (5 :: (2 :: Nil))&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ImmutListDemo {
+
+  def main(args: Array[String]) {
+    //创建一个不可变的集合
+    val lst1 = List(1,2,3)
+    //将0插入到lst1的前面生成一个新的List
+    val lst2 = 0 :: lst1
+    val lst3 = lst1.::(0)
+    val lst4 = 0 +: lst1
+    val lst5 = lst1.+:(0)
+
+    //将一个元素添加到lst1的后面产生一个新的集合
+    val lst6 = lst1 :+ 3
+
+    val lst0 = List(4,5,6)
+    //将2个list合并成一个新的List
+    val lst7 = lst1 ++ lst0
+    //将lst1插入到lst0前面生成一个新的集合
+    val lst8 = lst1 ++: lst0
+
+    //将lst0插入到lst1前面生成一个新的集合
+    val lst9 = lst1.:::(lst0)
+
+    println(lst9)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;可变的序列 &lt;code&gt;import scala.collection.mutable._&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.collection.mutable.ListBuffer
+
+object MutListDemo extends App{
+  //构建一个可变列表，初始有3个元素1,2,3
+  val lst0 = ListBuffer[Int](1,2,3)
+  //创建一个空的可变列表
+  val lst1 = new ListBuffer[Int]
+  //向lst1中追加元素，注意：没有生成新的集合
+  lst1 += 4
+  lst1.append(5)
+
+  //将lst1中的元素最近到lst0中， 注意：没有生成新的集合
+  lst0 ++= lst1
+
+  //将lst0和lst1合并成一个新的ListBuffer 注意：生成了一个集合
+  val lst2= lst0 ++ lst1
+
+  //将元素追加到lst0的后面生成一个新的集合
+  val lst3 = lst0 :+ 5
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_set&#34;&gt;2.5. Set&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;不可变的Set&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.collection.immutable.HashSet
+
+object ImmutSetDemo extends App{
+  val set1 = new HashSet[Int]()
+  //将元素和set1合并生成一个新的set，原有set不变
+  val set2 = set1 + 4
+  //set中元素不能重复
+  val set3 = set1 ++ Set(5, 6, 7)
+  val set0 = Set(1,3,4) ++ set1
+  println(set0.getClass)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;可变的Set&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.collection.mutable
+
+object MutSetDemo extends App{
+  //创建一个可变的HashSet
+  val set1 = new mutable.HashSet[Int]()
+  //向HashSet中添加元素
+  set1 += 2
+  //add等价于+=
+  set1.add(4)
+  set1 ++= Set(1,3,5)
+  println(set1)
+  //删除一个元素
+  set1 -= 5
+  set1.remove(2)
+  println(set1)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_map&#34;&gt;2.6. Map&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.collection.mutable
+
+object MutMapDemo extends App{
+  val map1 = new mutable.HashMap[String, Int]()
+  //向map中添加数据
+  map1(&#34;spark&#34;) = 1
+  map1 += ((&#34;hadoop&#34;, 2))
+  map1.put(&#34;storm&#34;, 3)
+  println(map1)
+
+  //从map中移除元素
+  map1 -= &#34;spark&#34;
+  map1.remove(&#34;hadoop&#34;)
+  println(map1)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_类_对象_继承_特质&#34;&gt;3. 类、对象、继承、特质&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Scala的类与Java、C++的类比起来更简洁，学完之后你会更爱Scala！！！&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_类&#34;&gt;3.1. 类&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_类的定义&#34;&gt;3.1.1. 类的定义&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//在Scala中，类并不用声明为public。
+//Scala源文件中可以包含多个类，所有这些类都具有公有可见性。
+class Person {
+  //用val修饰的变量是只读属性，有getter但没有setter
+  //（相当与Java中用final修饰的变量）
+  val id = &#34;9527&#34;
+
+  //用var修饰的变量既有getter又有setter
+  var age: Int = 18
+
+  //类私有字段,只能在类的内部使用
+  private var name: String = &#34;唐伯虎&#34;
+
+  //对象私有字段,访问权限更加严格的，Person类的方法只能访问到当前对象的字段
+  private[this] val pet = &#34;小强&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_构造器&#34;&gt;3.1.2. 构造器&lt;/h4&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+主构造器会执行类定义中的所有语句
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;openblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/**
+  *每个类都有主构造器，主构造器的参数直接放置类名后面，与类交织在一起
+  */
+class Student(val name: String, val age: Int){
+  //主构造器会执行类定义中的所有语句
+  println(&#34;执行主构造器&#34;)
+
+  try {
+    println(&#34;读取文件&#34;)
+    throw new IOException(&#34;io exception&#34;)
+  } catch {
+    case e: NullPointerException =&amp;gt; println(&#34;打印异常Exception : &#34; + e)
+    case e: IOException =&amp;gt; println(&#34;打印异常Exception : &#34; + e)
+  } finally {
+    println(&#34;执行finally部分&#34;)
+  }
+
+  private var gender = &#34;male&#34;
+
+  //用this关键字定义辅助构造器
+  def this(name: String, age: Int, gender: String){
+    //每个辅助构造器必须以主构造器或其他的辅助构造器的调用开始
+    this(name, age)
+    println(&#34;执行辅助构造器&#34;)
+    this.gender = gender
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/**
+  *构造器参数可以不带val或var，如果不带val或var的参数至少被一个方法所使用，
+  *那么它将会被提升为字段
+  */
+//在类名后面加private就变成了私有的
+class Queen private(val name: String, prop: Array[String], private var age: Int = 18){
+
+  println(prop.size)
+
+  //prop被下面的方法使用后，prop就变成了不可变得对象私有字段，等同于private[this] val prop
+  //如果没有被方法使用该参数将不被保存为字段，仅仅是一个可以被主构造器中的代码访问的普通参数
+  def description = name + &#34; is &#34; + age + &#34; years old with &#34; + prop.toBuffer
+}
+
+object Queen{
+  def main(args: Array[String]) {
+    //私有的构造器，只有在其伴生对象中使用
+    val q = new Queen(&#34;hatano&#34;, Array(&#34;蜡烛&#34;, &#34;皮鞭&#34;), 20)
+    println(q.description())
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_对象&#34;&gt;3.2. 对象&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_单例对象&#34;&gt;3.2.1. 单例对象&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中没有静态方法和静态字段，但是可以使用object这个语法结构来达到同样的目的&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;存放工具方法和常量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;高效共享单个不可变的实例&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;单例模式&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.collection.mutable.ArrayBuffer
+
+object SingletonDemo {
+  def main(args: Array[String]) {
+    //单例对象，不需要new，用【类名.方法】调用对象中的方法
+    val session = SessionFactory.getSession()
+    println(session)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object SessionFactory{
+  //该部分相当于java中的静态块
+  var counts = 5
+  val sessions = new ArrayBuffer[Session]()
+  while(counts &amp;gt; 0){
+    sessions += new Session
+    counts -= 1
+  }
+
+  //在object中的方法相当于java中的静态方法
+  def getSession(): Session ={
+    sessions.remove(0)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Session{
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_伴生对象&#34;&gt;3.2.2. 伴生对象&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala的类中，与类名相同的对象叫做伴生对象，类和伴生对象之间可以相互访问私有的方法和属性&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Dog {
+  val id = 1
+  private var name = &#34;itcast&#34;
+
+  def printName(): Unit ={
+    //在Dog类中可以访问伴生对象Dog的私有属性
+    println(Dog.CONSTANT + name )
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/**
+  * 伴生对象
+  */
+object Dog {
+
+  //伴生对象中的私有属性
+  private val CONSTANT = &#34;汪汪汪 : &#34;
+
+  def main(args: Array[String]) {
+    val p = new Dog
+    //访问私有的字段name
+    p.name = &#34;123&#34;
+    p.printName()
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_apply方法&#34;&gt;3.2.3. apply方法&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;通常我们会在类的伴生对象中定义apply方法，当遇到类名(参数1,&amp;#8230;&amp;#8203;参数n)时apply方法会被调用&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ApplyDemo {
+  def main(args: Array[String]) {
+    //调用了Array伴生对象的apply方法
+    //def apply(x: Int, xs: Int*): Array[Int]
+    //arr1中只有一个元素5
+    val arr1 = Array(5)
+    println(arr1.toBuffer)
+
+    //new了一个长度为5的array，数组里面包含5个null
+    var arr2 = new Array(5)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_应用程序对象&#34;&gt;3.2.4. 应用程序对象&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Scala程序都必须从一个对象的main方法开始，可以通过扩展App特质，不写main方法。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object AppObjectDemo extends App{
+  //不用写main方法
+  println(&#34;I love you Scala&#34;)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_继承&#34;&gt;3.3. 继承&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_扩展类&#34;&gt;3.3.1. 扩展类&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中扩展类的方式和Java一样都是使用extends关键字&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_重写方法&#34;&gt;3.3.2. 重写方法&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中重写一个非抽象的方法必须使用override修饰符&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_类型检查和转换&#34;&gt;3.3.3. 类型检查和转换&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Scala
+Java
+obj.isInstanceOf[C]
+obj instanceof C
+obj.asInstanceOf[C]
+(C)obj
+classOf[C]
+C.class&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_超类的构造&#34;&gt;3.3.4. 超类的构造&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ClazzDemo {
+  def main(args: Array[String]) {
+    //val h = new Human
+    //println(h.fight)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;trait Flyable{
+  def fly(): Unit ={
+    println(&#34;I can fly&#34;)
+  }
+
+  def fight(): String
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;abstract class Animal {
+  def run(): Int
+  val name: String
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Human extends Animal with Flyable{
+
+  val name = &#34;abc&#34;
+
+  //打印几次&#34;ABC&#34;?
+  val t1,t2,(a, b, c) = {
+    println(&#34;ABC&#34;)
+    (1,2,3)
+  }
+
+  println(a)
+  println(t1._1)
+
+  //在Scala中重写一个非抽象方法必须用override修饰
+  override def fight(): String = {
+    &#34;fight with 棒子&#34;
+  }
+  //在子类中重写超类的抽象方法时，不需要使用override关键字，写了也可以
+  def run(): Int = {
+    1
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_模式匹配和样例类&#34;&gt;4. 模式匹配和样例类&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Scala有一个十分强大的模式匹配机制，可以应用到很多场合：如switch语句、类型检查等。
+并且Scala还提供了样例类，对模式匹配进行了优化，可以快速进行匹配&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_匹配字符串&#34;&gt;4.1. 匹配字符串&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.util.Random
+
+object CaseDemo01 extends App{
+  val arr = Array(&#34;YoshizawaAkiho&#34;, &#34;YuiHatano&#34;, &#34;AoiSola&#34;)
+  val name = arr(Random.nextInt(arr.length))
+  name match {
+    case &#34;YoshizawaAkiho&#34; =&amp;gt; println(&#34;吉泽老师...&#34;)
+    case &#34;YuiHatano&#34; =&amp;gt; println(&#34;波多老师...&#34;)
+    case _ =&amp;gt; println(&#34;真不知道你们在说什么...&#34;)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_匹配类型&#34;&gt;4.2. 匹配类型&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.util.Random
+
+object CaseDemo01 extends App{
+  //val v = if(x &amp;gt;= 5) 1 else if(x &amp;lt; 2) 2.0 else &#34;hello&#34;
+  val arr = Array(&#34;hello&#34;, 1, 2.0, CaseDemo)
+  val v = arr(Random.nextInt(4))
+  println(v)
+  v match {
+    case x: Int =&amp;gt; println(&#34;Int &#34; + x)
+    case y: Double if(y &amp;gt;= 0) =&amp;gt; println(&#34;Double &#34;+ y)
+    case z: String =&amp;gt; println(&#34;String &#34; + z)
+    case _ =&amp;gt; throw new Exception(&#34;not match exception&#34;)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;注意：case y: Double if(y &amp;gt;= 0) &amp;#8658; &amp;#8230;&amp;#8203;
+模式匹配的时候还可以添加守卫条件。如不符合守卫条件，将掉入case _中&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_匹配数组_元组&#34;&gt;4.3. 匹配数组、元组&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object CaseDemo03 extends App{
+
+  val arr = Array(1, 3, 5)
+  arr match {
+    case Array(1, x, y) =&amp;gt; println(x + &#34; &#34; + y)
+    case Array(0) =&amp;gt; println(&#34;only 0&#34;)
+    case Array(0, _*) =&amp;gt; println(&#34;0 ...&#34;)
+    case _ =&amp;gt; println(&#34;something else&#34;)
+  }
+
+  val lst = List(3, -1)
+  lst match {
+    case 0 :: Nil =&amp;gt; println(&#34;only 0&#34;)
+    case x :: y :: Nil =&amp;gt; println(s&#34;x: $x y: $y&#34;)
+    case 0 :: tail =&amp;gt; println(&#34;0 ...&#34;)
+    case _ =&amp;gt; println(&#34;something else&#34;)
+  }
+
+  val tup = (2, 3, 7)
+  tup match {
+    case (1, x, y) =&amp;gt; println(s&#34;1, $x , $y&#34;)
+    case (_, z, 5) =&amp;gt; println(z)
+    case  _ =&amp;gt; println(&#34;else&#34;)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;openblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+在Scala中列表要么为空（Nil表示空列表）要么是一个head元素加上一个tail列表。&lt;br&gt;
+9 :: List(5, 2)  :: 操作符是将给定的头和尾创建一个新的列表&lt;br&gt;
+:: 操作符是右结合的，如9 :: 5 :: 2 :: Nil相当于 9 :: (5 :: (2 :: Nil))
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_样例类&#34;&gt;4.4. 样例类&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中样例类是一中特殊的类，可用于模式匹配。case class是多例的，后面要跟构造参数，case object是单例的&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.util.Random
+
+case class SubmitTask(id: String, name: String)
+case class HeartBeat(time: Long)
+case object CheckTimeOutTask
+
+object CaseDemo04 extends App{
+  val arr = Array(CheckTimeOutTask, HeartBeat(12333), SubmitTask(&#34;0001&#34;, &#34;task-0001&#34;))
+
+  arr(Random.nextInt(arr.length)) match {
+    case SubmitTask(id, name) =&amp;gt; {
+      println(s&#34;$id, $name&#34;)//前面需要加上s, $id直接取id的值
+    }
+    case HeartBeat(time) =&amp;gt; {
+      println(time)
+    }
+    case CheckTimeOutTask =&amp;gt; {
+      println(&#34;check&#34;)
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_option类型&#34;&gt;4.5. Option类型&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中Option类型样例类用来表示可能存在或也可能不存在的值(Option的子类有Some和None)。Some包装了某个值，None表示没有值&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object OptionDemo {
+  def main(args: Array[String]) {
+    val map = Map(&#34;a&#34; -&amp;gt; 1, &#34;b&#34; -&amp;gt; 2)
+    val v = map.get(&#34;b&#34;) match {
+      case Some(i) =&amp;gt; i
+      case None =&amp;gt; 0
+    }
+    println(v)
+    //更好的方式
+    val v1 = map.getOrElse(&#34;c&#34;, 0)
+    println(v1)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_偏函数&#34;&gt;4.6. 偏函数&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;被包在花括号内没有match的一组case语句是一个偏函数，它是PartialFunction[A, B]的一个实例，A代表参数类型，B代表返回类型，常用作输入模式匹配&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object PartialFuncDemo  {
+
+  def func1: PartialFunction[String, Int] = {
+    case &#34;one&#34; =&amp;gt; 1
+    case &#34;two&#34; =&amp;gt; 2
+    case _ =&amp;gt; -1
+  }
+
+  def func2(num: String) : Int = num match {
+    case &#34;one&#34; =&amp;gt; 1
+    case &#34;two&#34; =&amp;gt; 2
+    case _ =&amp;gt; -1
+  }
+
+  def main(args: Array[String]) {
+    println(func1(&#34;one&#34;))
+    println(func2(&#34;one&#34;))
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_单机版_wordcount&#34;&gt;5. 单机版 wordcount&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;val lines = List(&#34;hello tom hello jerry&#34;,&#34;hello tom kitty hello hello&#34;)
+
+lines.flatMap(_.split(&#34; &#34;)) &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    .map((_,1)) &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    .groupBy(_._1) &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    .map(t =&amp;gt; (t._1,t._2.size)) &lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+    .toList.sortBy(_._2) &lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;res2: List[String] = List(hello, tom, hello, jerry, hello, tom, kitty, hello, hello)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;res4: List[(String, Int)] = Listhello,1), (tom,1), (hello,1), (jerry,1), (hello,1), (tom,1), (kitty,1), (hello,1), (hello,1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;res5: scala.collection.immutable.Map[String,List[(String, Int)]] = Map(tom &amp;#8594; Listtom,1), (tom,1, kitty &amp;#8594; Listkitty,1, jerry &amp;#8594; Listjerry,1, hello &amp;#8594; Listhello,1), (hello,1), (hello,1), (hello,1), (hello,1)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;res6: scala.collection.immutable.Map[String,Int] = Map(tom &amp;#8594; 2, kitty &amp;#8594; 1, jerry &amp;#8594; 1, hello &amp;#8594; 5)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;res7: List[(String, Int)] = Listkitty,1), (jerry,1), (tom,2), (hello,5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt; lines.flatMap(_.split(&#34; &#34;)).map((_,1)).groupBy(_._1).mapValues(_.foldLeft(0)(_+_._2))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

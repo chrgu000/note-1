@@ -1591,6 +1591,12 @@ services:
 2017-04-01_104159
 2017-04-01_104213&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val lines = List(&#34;hello tom hello jerry&#34;,&#34;hello tom kitty hello hello&#34;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;lines.flatMap(&lt;em&gt;.split(&#34; &#34;)).map&lt;/em&gt;,1.groupBy(&lt;em&gt;._1).map(t &amp;#8658; (t._1,t._2.size)).toList.sortBy(&lt;/em&gt;._2)&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     

@@ -10,10 +10,10 @@
     
     <item>
       <title>Git的奇技淫巧</title>
-      <link>/post/git-tips/</link>
+      <link>/post/linux/git-tips/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/git-tips/</guid>
+      <guid>/post/linux/git-tips/</guid>
       <description>
 
 &lt;h1 id=&#34;git的奇技淫巧-see-no-evil&#34;&gt;Git的奇技淫巧:see_no_evil:&lt;/h1&gt;
@@ -556,10 +556,10 @@ git config --global alias.st status
     
     <item>
       <title>git基础命令</title>
-      <link>/post/git/</link>
+      <link>/post/linux/git/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/git/</guid>
+      <guid>/post/linux/git/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>java</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="java" />
+<meta property="og:description" content="Contents1. 引入2. jsp分页3. 分页样式4. 根据ID查询5. Java json 样品6. java ajax7. JSTL Fn8. 字符替换9. 参考1. 引入文件
+//支持EL表达式&lt;%@ page isELIgnored=&#34;false&#34;%&gt;//支持C标签&lt;%@ taglib uri=&#34;http://java.sun.com/jsp/jstl/core&#34; prefix=&#34;c&#34; %&gt;//fn函数&lt;%@ taglib uri=&#34;http://java.sun.com/jsp/jstl/functions&#34; prefix=&#34;fn&#34; %&gt;/program/company/goods/base_script.jsp&#43; 日志
+private static Logger logger = Logger.getLogger(Clazz clazz);2. jsp分页&#43; 分页查询
+Mlq_goods_prop mg = new Mlq_goods_prop();Mlq_goodsInfo mgi = new Mlq_goodsInfo();//1:UrlString url = &#34;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/java/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">java</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_引入">1. 引入</a></li>
+<li><a href="#_jsp分页">2. jsp分页</a></li>
+<li><a href="#_分页样式">3. 分页样式</a></li>
+<li><a href="#_根据id查询">4. 根据ID查询</a></li>
+<li><a href="#_java_json_样品">5. Java json 样品</a></li>
+<li><a href="#_java_ajax">6. java ajax</a></li>
+<li><a href="#__strong_jstl_fn_strong">7. <strong>JSTL Fn</strong></a></li>
+<li><a href="#_字符替换">8. 字符替换</a></li>
+<li><a href="#_参考">9. 参考</a></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_引入">1. 引入</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>文件</strong></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">//支持EL表达式
+&lt;%@ page isELIgnored="false"%&gt;
+//支持C标签
+&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
+//fn函数
+&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %&gt;
+/program/company/goods/base_script.jsp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+ 日志</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">private static Logger logger = Logger.getLogger(Clazz clazz);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jsp分页">2. jsp分页</h3>
+<div class="paragraph">
+<p>+ <strong>分页查询</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    Mlq_goods_prop mg = new Mlq_goods_prop();
+	Mlq_goodsInfo mgi = new Mlq_goodsInfo();
+	//1:Url
+	String url = "goodsList.jsp";
+	//2:name='''&amp;isDisplay=1
+	StringBuilder params = new StringBuilder();
+	//商品列表
+		String goods_status = request.getParameter("goods_status");
+		if(goods_status!=null &amp;&amp; !"".equals(goods_status.trim())){
+			mg.setGoods_status(goods_status);
+			params.append("&amp;goods_status="+goods_status);
+		}
+	//每页显示条数
+	Integer perPageCount = PageContant.PER_PAGE_COUNT;
+	//mysql查询起始页
+	String current_page = request.getParameter("pageNo");
+	Integer startPage = 1;
+	if(current_page!=null){
+	    startPage = Pagination.cpn(Integer.parseInt(current_page));
+	}
+	mg.setStart((startPage-1)*perPageCount);
+	mg.setLimit(perPageCount);
+	//总条数
+	Integer totalCount = totalCount = mgi.getCountByObjMg(mg);
+	//商品列表
+	List&lt;Mlq_goods_prop&gt; mg_l = mgi.getListByPage(mg);
+	Pagination pagination = new Pagination(startPage,perPageCount,totalCount);
+	//页面展示功能
+	pagination.pageView(url, params.toString());
+	pagination.setList(mg_l);
+	request.setAttribute("pagination", pagination);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_分页样式">3. 分页样式</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-jsp" data-lang="jsp">    &lt;c:forEach items="${pagination.pageView }" var="page"&gt;
+		${page}
+	&lt;/c:forEach&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_根据id查询">4. 根据ID查询</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    String order_no="";
+    if(request.getParameter("order_no")!=null){
+        order_no = request.getParameter("order_no");
+    }
+    //Ti_goodsorderInfo ti_goodsorderInfo=new Ti_goodsorderInfo();
+    //Ti_goodsorder tg=ti_goodsorderInfo.getTi_goodsorderByID(order_no);
+    request.setAttribute("tg", tg);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_json_样品">5. Java json 样品</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">"{"+
+      "'buyer_bank': '1',"+
+      "'buyer_bank_no': '1',"+
+      "'buyer_name': '1',"+
+      "'consignee_contact': '1',"+
+      "'goods_brand': '1',"+
+      "'goods_name': '1',"+
+      "'goods_price': 23.4,"+
+      "'id': '1',"+
+      "'invoice_amount': 23.4,"+
+      "'invoice_goods_num': 23.4,"+
+      "'invoice_num': 23.4,"+
+      "'invoice_type': '1',"+
+      "'kaiju_type': '1',"+
+      "'order_no': '1',"+
+      "'parent_no': '1',"+
+      "'place_of_delivery': '1',"+
+      "'seller_name': '1',"+
+      "'ship_price': 23.4,"+
+      "'taxpayer_number': '1',"+
+      "'total_order_amount': 23.4,"+
+      "'trade_no': '1',"+
+      "'transport_type': '1'"+
+"}"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_ajax">6. java ajax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">&lt;%@page import="com.bizoss.trade.ti_workflow_item.Ti_workflow_item"%&gt;
+&lt;%@page import="com.bizoss.trade.ti_invoice.Ti_invoice"%&gt;
+&lt;%@page import="com.bizoss.trade.ti_workflow_item.Ti_workflow_itemInfo"%&gt;
+&lt;%@page import="com.bizoss.trade.ti_invoice.Ti_invoiceInfo"%&gt;
+&lt;%@page import="org.apache.commons.lang.StringUtils"%&gt;
+&lt;%@page import="com.bizoss.frame.util.PackToList"%&gt;
+&lt;%@page import="com.bizoss.trade.ti_order_operator.Ti_order_operatorInfo"%&gt;
+&lt;%@page import="com.bizoss.trade.ti_order_operator.Ti_order_operator_prop"%&gt;
+&lt;%@ page language="java" pageEncoding="UTF-8"%&gt;
+&lt;%@page import="net.sf.json.JSONArray"%&gt;
+&lt;%@page import="net.sf.json.JSONObject"%&gt;
+&lt;%@page import="java.util.*"%&gt;
+&lt;%	request.setCharacterEncoding("UTF-8") ;
+		String order_no = request.getParameter("order_no");
+		Ti_invoiceInfo tii = new Ti_invoiceInfo();
+		Ti_workflow_itemInfo twii = new Ti_workflow_itemInfo();
+		Ti_invoice new_tmp_ti = new Ti_invoice();
+		Ti_workflow_item tmp_twi = null;
+		//new_tmp_ti.setId("20151127n14Edwi");
+		if(!StringUtils.isBlank(order_no)){
+			new_tmp_ti.setId(order_no);
+			//获取管理工作流的票据
+			tmp_twi = tii.getWorkFlowRelTi_invoice(new_tmp_ti);
+		}
+		JSONObject jo = new JSONObject();
+		if(null == tmp_twi){
+			//是否已经关联
+			jo.put("is_rel", true);
+		}else{
+			jo.put("is_rel", false);
+		}
+		//设置返回的头
+		response.setContentType("application/Json;charset=utf-8");
+		response.getWriter().write(jo.toString());
+%&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__strong_jstl_fn_strong">7. <strong>JSTL Fn</strong></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-jsp" data-lang="jsp">    //退出循环
+    &lt;c:set var="flag1" value="true" /&gt;
+    &lt;c:forEach items="${tolp_l }" var="tolp"&gt;
+		&lt;c:if test="${tolp.version == status.index &amp;&amp; flag1}"&gt;
+		    //截取字符串
+			${fn:substring(tolp.create_date,11,16) }
+			&lt;c:set var="flag1" value="false"/&gt;
+		&lt;/c:if&gt;
+	&lt;/c:forEach&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_字符替换">8. 字符替换</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    theString = theString.replace("&gt;", "&amp;gt;");
+    theString = theString.replace("&lt;", "&amp;lt;");
+    theString = theString.replace(" ", "&amp;nbsp;");
+    theString = theString.replace("\"", "&amp;quot;");
+    theString = theString.replace("\'", "&amp;#39;");
+    theString = theString.replace("\\", "\\\\");//对斜线的转义
+    theString = theString.replace("\n", "\\n");
+    theString = theString.replace("\r", "\\r");</code></pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_参考">9. 参考</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">并发编程</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[[并发编程</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/httpdconf/" rel="prev"><span>«Previous</span><p>httpd 配置文件</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/java/java-class/" rel="next"><span>Next»</span><p>java class</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

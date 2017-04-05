@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>es 代码片段</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="es 代码片段" />
+<meta property="og:description" content="include::content/post/base.adoc[] :toc-title: Contents es-snippet new snippets  索引分片设置 json PUT /b2b { &quot;settings&quot;:{ &quot;number_of_shards&quot;:1, &quot;number_of_replicas&quot;:1 } } //查询b2b分片信息 GET /b2b/_settings   mlq_goods  mlq_goods的mapping设置 json PUT /b2b/mlq_goods/_mapping { &quot;mlq_goods&quot;:{ &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;not_analyzed&quot; }, &quot;title&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;analyzed&quot;, &quot;analyzer&quot;:&quot;ik_analyzer&quot; } } } } //查询mlq_goods的mapping信息 GET /b2b/mlq_goods/_mapping  从数据库导入mlq_goods表到ES配置信息 json PUT /_river/mlq_goods/_meta { &quot;type&quot; : &quot;jdbc&quot;, &quot;jdbc&quot; : { &quot;url&quot; : &quot;jdbc:mysql://localhost:3306/b2b&quot;, &quot;user&quot; : &quot;root&quot;, &quot;password&quot; : &quot;111111&quot;, &quot;sql&quot; : &quot;SELECT mg." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/es/es-snippet/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">es 代码片段</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<p>include::content/post/base.adoc[]
+:toc-title: Contents
+<!-- toc --></p>
+
+<h1 id="es-snippet">es-snippet</h1>
+
+<h3 id="new-snippets"><strong>new snippets</strong></h3>
+
+<ol>
+<li><strong>索引分片设置</strong>
+<code>json
+PUT /b2b
+{
+  &quot;settings&quot;:{
+    &quot;number_of_shards&quot;:1,
+    &quot;number_of_replicas&quot;:1
+  }
+}
+//查询b2b分片信息
+GET /b2b/_settings
+</code></li>
+</ol>
+
+<h4 id="mlq-goods">mlq_goods</h4>
+
+<ol>
+<li><strong><code>mlq_goods</code>的<code>mapping</code>设置</strong>
+<code>json
+PUT /b2b/mlq_goods/_mapping
+{
+&quot;mlq_goods&quot;:{
+  &quot;properties&quot;: {
+    &quot;id&quot;: {
+      &quot;type&quot;:&quot;string&quot;,
+      &quot;store&quot;:&quot;yes&quot;,
+      &quot;index&quot;:&quot;not_analyzed&quot;
+    },
+    &quot;title&quot;: {
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;store&quot;:&quot;yes&quot;,
+       &quot;index&quot;:&quot;analyzed&quot;,
+       &quot;analyzer&quot;:&quot;ik_analyzer&quot;
+      }
+    }
+}
+}
+//查询mlq_goods的mapping信息
+GET /b2b/mlq_goods/_mapping
+</code></li>
+<li><strong>从数据库导入<code>mlq_goods</code>表到<code>ES</code>配置信息</strong>
+<code>json
+PUT /_river/mlq_goods/_meta 
+{
+&quot;type&quot; : &quot;jdbc&quot;,
+&quot;jdbc&quot; : {
+   &quot;url&quot; : &quot;jdbc:mysql://localhost:3306/b2b&quot;,
+   &quot;user&quot; : &quot;root&quot;,
+   &quot;password&quot; : &quot;111111&quot;,
+   &quot;sql&quot; : &quot;SELECT mg.id AS _id, tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category, (SELECT brand_name FROM mlq_brand WHERE id = brand_id) brand_name, (SELECT tm.cust_name FROM ti_member tm WHERE tm.cust_id = mg.seller_id) new_seller_nick, mg.* FROM mlq_goods mg&quot;,
+   &quot;index&quot;: &quot;b2b&quot;,
+   &quot;type&quot;: &quot;mlq_goods&quot;
+  }
+}
+//查询mlq_goods数据
+GET /b2b/mlq_goods/_search
+</code></li>
+</ol>
+
+<h4 id="mlq-product">mlq_product</h4>
+
+<ol>
+<li><strong><code>mlq_product</code>的<code>mapping</code>设置</strong>
+<code>json
+PUT /b2b/mlq_product/_mapping
+{
+&quot;mlq_product&quot;:{
+  &quot;_parent&quot;: {&quot;type&quot;: &quot;mlq_goods&quot;},
+  &quot;properties&quot;: {
+    &quot;id&quot;: {
+      &quot;type&quot;:&quot;string&quot;,
+      &quot;store&quot;:&quot;yes&quot;,
+      &quot;index&quot;:&quot;not_analyzed&quot;
+    },
+    &quot;sale_region&quot;: {
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;store&quot;:&quot;yes&quot;,
+       &quot;index&quot;:&quot;analyzed&quot;,
+       &quot;analyzer&quot;:&quot;ik_analyzer&quot;
+    },
+    &quot;repository_region&quot;: {
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;store&quot;:&quot;yes&quot;,
+       &quot;index&quot;:&quot;analyzed&quot;,
+       &quot;analyzer&quot;:&quot;ik_analyzer&quot;
+    },
+    &quot;product_name&quot;: {
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;store&quot;:&quot;yes&quot;,
+       &quot;index&quot;:&quot;analyzed&quot;,
+       &quot;analyzer&quot;:&quot;ik_analyzer&quot;
+      }
+   }
+}
+}
+//查询mlq_product映射maping信息
+GET /b2b/mlq_product/_mapping
+</code></li>
+<li><strong>从数据库导入<code>mlq_product</code>表到<code>ES</code>配置信息</strong>
+<code>json
+PUT /_river/mlq_product/_meta 
+{
+&quot;type&quot; : &quot;jdbc&quot;,
+&quot;jdbc&quot; : {
+&quot;url&quot; : &quot;jdbc:mysql://localhost:3306/b2b&quot;,
+&quot;user&quot; : &quot;root&quot;,
+&quot;password&quot; : &quot;111111&quot;,
+&quot;sql&quot; : &quot;SELECT mp.id as _id, mp.goods_id as _parent,mp.*,mpa.* FROM mlq_product mp, (SELECT mpa.product_id , tranAddr(MAX(CASE mpa.attr_name WHEN '销售地区' THEN mpa.attr_value ELSE 0 END ),'-') sale_region, tranAddr(MAX(CASE mpa.attr_name WHEN '出库地区' THEN mpa.attr_value ELSE 0 END ),'-') repository_region, MAX(CASE mpa.attr_name WHEN '最小起订量' THEN mpa.attr_value ELSE 0 END ) min_quantity, MAX(CASE mpa.attr_name WHEN '库存量' THEN mpa.attr_value ELSE 0 END ) stock_quantity, MAX(CASE mpa.attr_name WHEN '单位' THEN mpa.attr_value ELSE 0 END ) unit, MAX(CASE mpa.attr_name WHEN '交货天数' THEN mpa.attr_value ELSE 0 END ) delivery_day, MAX(CASE mpa.attr_name WHEN '包装类型' THEN mpa.attr_value ELSE 0 END ) package_type FROM mlq_product_attr mpa GROUP BY mpa.product_id) mpa WHERE mp.id = mpa.product_id&quot;,
+&quot;index&quot;: &quot;b2b&quot;,
+&quot;type&quot;: &quot;mlq_product&quot;
+}
+}
+//查询mlq_product 数据
+GET /b2b/mlq_product/_search
+</code></li>
+</ol>
+
+<h3 id="tmp-snippets"><strong>tmp snippets</strong></h3>
+
+<pre><code class="language-json">GET _search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  }
+}
+
+DELETE /_river/mlq_product
+DELETE /_river/mlq_goods
+DELETE /b2b
+DELETE /b2b/mlq_goods
+
+PUT /b2b/mlq_product/_mapping
+{
+  &quot;mlq_product&quot;: {
+    &quot;_parent&quot;:{
+      &quot;type&quot;:&quot;mlq_goods&quot;
+    },
+    &quot;properties&quot;: {
+      &quot;addr&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;store&quot;: true,
+        &quot;indexAnalyzer&quot;: &quot;ik&quot;,
+        &quot;searchAnalyzer&quot;: &quot;ik&quot;
+      }
+    }
+  }
+}
+
+
+PUT /_river/mlq_product_attr/_meta
+{
+  &quot;type&quot; : &quot;jdbc&quot;,
+    &quot;jdbc&quot; : {
+        &quot;url&quot; : &quot;jdbc:mysql://localhost:3306/b2b&quot;,
+        &quot;user&quot; : &quot;root&quot;,
+        &quot;password&quot; : &quot;111111&quot;,
+        &quot;sql&quot; : &quot;SELECT mpa.id AS _id,mpa.product_id AS _parent,mpa.* FROM mlq_product_attr mpa&quot;,
+        &quot;index&quot; : &quot;b2b&quot;,
+        &quot;type&quot; : &quot;mlq_product_attr&quot;
+    }
+}
+
+GET /b2b/mlq_product_attr/_mapping
+GET /b2b/mlq_product_attr/_search
+
+GET /b2b/mlq_goods/_mapping
+
+GET /b2b/mlq_product/_mapping
+
+PUT /b2b/mlq_goods/_mapping
+{
+  &quot;mlq_goods&quot;: {
+    &quot;properties&quot;: {
+      &quot;title&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;store&quot;: true,
+        &quot;analyzer&quot;: &quot;ik_max_word&quot;
+      },
+      &quot;category&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;store&quot;: true,
+        &quot;analyzer&quot;: &quot;ik_max_word&quot;
+      }
+    }
+  }
+}
+
+PUT /_river/mlq_goods/_meta
+{
+  &quot;type&quot; : &quot;jdbc&quot;,
+    &quot;jdbc&quot; : {
+        &quot;url&quot; : &quot;jdbc:mysql://localhost:3306/b2b&quot;,
+        &quot;user&quot; : &quot;root&quot;,
+        &quot;password&quot; : &quot;111111&quot;,
+        &quot;sql&quot; : &quot;SELECT mg.id as _id,tranCat(mg.cat_code) category,mg.* from mlq_goods mg&quot;,
+        &quot;index&quot; : &quot;b2b&quot;,
+        &quot;type&quot; : &quot;mlq_goods&quot;
+    }
+}
+
+
+PUT /b2b
+{
+  &quot;settings&quot;: {
+    &quot;number_of_shards&quot;: 1
+    , &quot;number_of_replicas&quot;: 1
+  }
+}
+
+GET /b2b/mlq_goods/_search
+{
+  &quot;from&quot;: 0,
+  &quot;size&quot;: 5
+}
+
+GET /b2b/mlq_goods/_search
+{
+  &quot;query&quot;: {
+    &quot;has_child&quot;: {
+      &quot;type&quot;: &quot;mlq_product&quot;,
+      &quot;query&quot;: {
+        &quot;term&quot;: {
+          &quot;addr&quot;: {
+            &quot;value&quot;: &quot;华中地区&quot;
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+  &quot;from&quot;: 1,
+  &quot;size&quot;: 3, 
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;addr&quot;: &quot;华中地区&quot;
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+ &quot;query&quot;: {
+   &quot;term&quot;: {
+     &quot;addr&quot;: {
+        &quot;value&quot;: &quot;华中地区&quot;
+      }
+   }
+ } 
+} 
+
+
+GET /b2b/mlq_product_attr/_mapping
+
+GET /b2b/mlq_goods/_search
+
+GET /b2b/mlq_goods/_search
+{
+  &quot;query&quot;: {
+    &quot;term&quot;: {
+      &quot;category&quot;: {
+        &quot;value&quot;: &quot;改性&quot;
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_goods/_search
+{
+  &quot;query&quot;: {
+    &quot;filtered&quot;: {
+      &quot;query&quot;: {
+          &quot;has_child&quot;: {
+          &quot;type&quot;: &quot;mlq_product&quot;,
+          &quot;query&quot;: {
+            &quot;term&quot;: {
+              &quot;addr&quot;: {
+                &quot;value&quot;: &quot;华中地区&quot;
+              }
+            }
+          }
+        }
+      }, 
+      &quot;filter&quot;: {
+        &quot;term&quot;: {
+          &quot;category&quot;: &quot;改性&quot;
+        }
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+  &quot;query&quot;: {
+    &quot;filtered&quot;: {
+      &quot;query&quot;: {
+          &quot;has_parent&quot;: {
+          &quot;parent_type&quot;: &quot;mlq_goods&quot;,
+          &quot;query&quot;: {
+            &quot;term&quot;: {
+              &quot;id&quot;: &quot;20150914JPCi4n8&quot;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /b2b/mlq_product/_search
+{
+  &quot;query&quot;: {
+    &quot;filtered&quot;: {
+      &quot;query&quot;: {
+        &quot;has_parent&quot;: {
+          &quot;parent_type&quot;: &quot;mlq_goods&quot;,
+          &quot;query&quot;: {
+            &quot;term&quot;: {
+              &quot;id&quot;: &quot;20150915y2W535n&quot;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+GET /twitter/tweet/_mapping
+
+
+
+
+
+GET /twitter/tweet/_search
+{
+  &quot;query&quot;: {
+    &quot;filtered&quot;: {
+      &quot;query&quot;: {
+        &quot;term&quot;: {
+          &quot;author&quot;: &quot;John&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+
+<h2 id="2015-12-29-snippets">2015-12-29 snippets</h2>
+
+<pre><code class="language-json">GET /b2b/mlq_goods/_search
+{
+  &quot;fields&quot;: [
+    &quot;id&quot;
+  ],
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;cat_code&quot;: &quot;20150914w7L7oG2&quot;
+    }
+  },
+  &quot;aggs&quot;: {
+    &quot;district&quot;: {
+      &quot;terms&quot;: {
+        &quot;field&quot;: &quot;brand_id&quot;,
+        &quot;size&quot;: 0
+      },
+      &quot;aggs&quot;: {
+        &quot;tops&quot;: {
+          &quot;top_hits&quot;: {
+            &quot;_source&quot;: {
+              &quot;include&quot;: [
+                &quot;brand_id&quot;,
+                &quot;brand_name&quot;
+              ]
+            },
+            &quot;size&quot;: 1
+          }
+        }
+      }
+    },
+    &quot;to-product&quot;: {
+      &quot;children&quot;: {
+        &quot;type&quot;: &quot;mlq_product&quot;
+      },
+      &quot;aggs&quot;: {
+        &quot;top-names&quot;: {
+          &quot;terms&quot;: {
+            &quot;field&quot;: &quot;id&quot;,
+            &quot;size&quot;: 0
+          },
+          &quot;aggs&quot;: {
+            &quot;tops&quot;: {
+              &quot;top_hits&quot;: {
+                &quot;_source&quot;: {
+                  &quot;include&quot;: [
+                    &quot;id&quot;,
+                    &quot;product_name&quot;
+                  ]
+                },
+                &quot;size&quot;: 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+</code></pre>
+
+<h3 id="and-查询"><code>AND</code>查询</h3>
+
+<ul>
+<li>
+<code>json
+GET /b2b/mlq_goods/_search
+{
+&quot;query&quot;: {
+&quot;bool&quot;: {
+  &quot;must&quot;: [
+    {&quot;match&quot;: { &quot;cat_code&quot;: &quot;20150914w7L7oG2&quot;}},
+    {&quot;match&quot;: { &quot;brand_id&quot;: &quot;20150914C4ie5oO&quot;}}
+  ]
+}
+}
+}
+</code></li>
+</ul>
+
+<h3 id="range-查询"><code>Range</code>查询</h3>
+
+<ul>
+<li>
+<code>json
+GET /b2b/mlq_goods/_search
+{
+&quot;query&quot;: {
+&quot;filtered&quot;: {
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  },
+  &quot;filter&quot;: {
+    &quot;has_child&quot;: {
+      &quot;type&quot;: &quot;mlq_product&quot;,
+      &quot;query&quot;: {
+        &quot;range&quot;: {
+          &quot;mlq_product.product_price&quot;: {
+            &quot;gte&quot;: 3600,
+            &quot;lte&quot;: 4000
+          }
+        }
+      }
+    }
+  }
+}
+}
+}
+</code></li>
+</ul>
+
+<h3 id="多条件查询">多条件查询</h3>
+
+<ol>
+<li>筛选
+<code>json
+POST /b2b/mlq_goods/_search
+{
+&quot;from&quot;: 0,
+&quot;size&quot;: 10,
+&quot;query&quot;: {
+&quot;bool&quot;: {
+  &quot;must&quot;: [
+    {
+      &quot;bool&quot;: {
+      &quot;should&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;brand_name&quot;: &quot;宁波博盈&quot;
+          }
+        },
+        {
+          &quot;match&quot;: {
+            &quot;title&quot;: &quot;宁波博盈&quot;
+          }
+        },
+        {
+          &quot;match&quot;: {
+            &quot;new_seller_nick&quot;: &quot;宁波博盈&quot;
+          }
+        }
+      ]
+      }
+    },
+    {
+      &quot;match&quot;: {
+        &quot;cat_code&quot;: &quot;20150914w7L7oG2&quot;
+      }
+    },
+    {
+      &quot;match&quot;: {
+        &quot;new_seller_nick&quot;: &quot;宁波博盈石油化工有限公司&quot;
+      }
+    },
+    {
+      &quot;term&quot;: {
+        &quot;brand_name_noa&quot;: &quot;泰普克&quot;
+      }
+    },
+    {
+      &quot;has_child&quot;: {
+        &quot;type&quot;: &quot;mlq_product&quot;,
+        &quot;query&quot;: {
+          &quot;range&quot;: {
+            &quot;mlq_product.product_price&quot;: {
+              &quot;from&quot;: 1000.0,
+              &quot;to&quot;: 3000.0
+            }
+          }
+        }
+      }
+    },
+    {
+      &quot;has_child&quot;: {
+        &quot;type&quot;: &quot;mlq_product&quot;,
+        &quot;query&quot;: {
+          &quot;term&quot;: {
+            &quot;mlq_product.product_name_noa&quot;: &quot;70#&quot;
+          }
+        }
+      }
+    },
+    {
+      &quot;has_child&quot;: {
+        &quot;type&quot;: &quot;mlq_product&quot;,
+        &quot;query&quot;: {
+          &quot;match&quot;: {
+            &quot;repository_region&quot;: &quot;华东&quot;
+          }
+        }
+      }
+    }
+  ]
+}
+}
+}
+</code></li>
+</ol>
+
+<h3 id="父子查询">父子查询</h3>
+
+<blockquote>
+<p>父:mlq_goods - 子:mlq_product</p>
+</blockquote>
+
+<ol>
+<li>查询子
+<code>json
+POST /b2b/mlq_product/_search
+{
+&quot;query&quot;: {
+    &quot;has_parent&quot;: {
+        //父类型
+        &quot;parent_type&quot;: &quot;mlq_goods&quot;,
+        &quot;query&quot;: {
+            &quot;term&quot;: {
+               //父id
+               &quot;id&quot;: {
+                  &quot;value&quot;: &quot;20151127y344nRq&quot;
+               }
+            }
+        }
+    }
+}
+}
+</code></li>
+<li>查询父
+<code>json
+POST /b2b/mlq_goods/_search
+{
+&quot;query&quot;: {
+  &quot;has_child&quot;: {
+     //子类型
+     &quot;type&quot;: &quot;mlq_product&quot;,
+     &quot;query&quot;: {
+        &quot;term&quot;: {
+           //子id
+           &quot;id&quot;: {
+              &quot;value&quot;: &quot;20151127c3De6K2&quot;
+           }
+        }
+     }
+  }
+}
+}
+</code></li>
+</ol>
+
+<h3 id="2016年1月24日">2016年1月24日</h3>
+
+<ol>
+<li>加权
+<code>
+POST /b2b/mlq_goods/_search
+{
+&quot;query&quot;: {
+  &quot;function_score&quot;: {
+     &quot;query&quot;: {
+        &quot;match&quot;: {
+           &quot;cat_code&quot;: &quot;20150914q0asfEw&quot;
+        }
+     },
+     &quot;functions&quot;: [
+        {
+           &quot;boost_factor&quot;: 20
+        }
+     ]
+  }
+}
+}
+</code></li>
+<li>商品,单品 <code>weight</code> 相加 得到 <code>score</code>
+<code>json
+POST /b2b/mlq_goods/_search
+{
+&quot;query&quot;: {
+  &quot;function_score&quot;: {
+     &quot;query&quot;: {
+        &quot;has_child&quot;: {
+           &quot;type&quot;: &quot;mlq_product&quot;,
+           &quot;score_type&quot;: &quot;sum&quot;,
+           &quot;query&quot;: {
+              &quot;function_score&quot;: {
+                 &quot;functions&quot;: [
+                    {
+                       &quot;script_score&quot;: {
+                          &quot;script&quot;: &quot;doc['mlq_product.weight'].value&quot;
+                       }
+                    }
+                 ],
+                 &quot;query&quot;: {
+                    &quot;match&quot;: {
+                       &quot;repository_region_noa&quot;: &quot;甘肃&quot;
+                    }
+                 },
+                 &quot;boost_mode&quot;: &quot;replace&quot;
+              }
+           }
+        }
+     },
+     &quot;functions&quot;: [
+        {
+           &quot;script_score&quot;: {
+              &quot;script&quot;: &quot;doc['mlq_goods.weight'].value&quot;
+           }
+        }
+     ],
+     &quot;boost_mode&quot;: &quot;sum&quot;
+  }
+}
+}
+</code></li>
+<li>商品,单品,店铺 <code>weight</code> 相加 得到 score
+<code>json
+POST /b2b/mlq_goods/_search
+{
+&quot;query&quot;: {
+  &quot;function_score&quot;: {
+     &quot;query&quot;: {
+        &quot;bool&quot;: {
+           &quot;must&quot;: [
+              {
+                 &quot;has_child&quot;: {
+                    &quot;type&quot;: &quot;mlq_product&quot;,
+                    &quot;score_type&quot;: &quot;sum&quot;,
+                    &quot;query&quot;: {
+                       &quot;function_score&quot;: {
+                          &quot;functions&quot;: [
+                             {
+                                &quot;script_score&quot;: {
+                                   &quot;script&quot;: &quot;doc['mlq_product.weight'].value&quot;
+                                }
+                             }
+                          ],
+                          &quot;query&quot;: {
+                             &quot;match&quot;: {
+                                &quot;repository_region_noa&quot;: &quot;甘肃&quot;
+                             }
+                          },
+                          &quot;boost_mode&quot;: &quot;replace&quot;
+                       }
+                    }
+                 }
+              },
+              {
+                 &quot;has_parent&quot;: {
+                    &quot;parent_type&quot;: &quot;mlq_shop_info&quot;,
+                    &quot;score_type&quot;: &quot;score&quot;,
+                    &quot;query&quot;: {
+                       &quot;function_score&quot;: {
+                          &quot;functions&quot;: [
+                             {
+                                &quot;script_score&quot;: {
+                                   &quot;script&quot;: &quot;doc['mlq_shop_info.weight'].value&quot;
+                                }
+                             }
+                          ],
+                          &quot;query&quot;: {
+                             &quot;match_all&quot;: {}
+                          },
+                          &quot;boost_mode&quot;: &quot;replace&quot;
+                       }
+                    }
+                 }
+              }
+           ]
+        }
+     },
+     &quot;functions&quot;: [
+        {
+           &quot;script_score&quot;: {
+              &quot;script&quot;: &quot;doc['mlq_goods.weight'].value&quot;
+           }
+        }
+     ],
+     &quot;score_mode&quot;: &quot;sum&quot;,
+     &quot;boost_mode&quot;: &quot;sum&quot;
+  }
+}
+}
+</code></li>
+<li>查询,得分,聚合
+<code>json
+{
+&quot;from&quot;: 0,
+&quot;size&quot;: 10,
+&quot;query&quot;: {
+  &quot;function_score&quot;: {
+     &quot;query&quot;: {
+        &quot;bool&quot;: {
+           &quot;must&quot;: [
+              {
+                 &quot;match&quot;: {
+                    &quot;cat_code&quot;: &quot;201509140qX823u&quot;
+                 }
+              },
+              {
+                 &quot;term&quot;: {
+                    &quot;goods_status&quot;: &quot;c&quot;
+                 }
+              },
+              {
+                 &quot;has_child&quot;: {
+                    &quot;type&quot;: &quot;mlq_product&quot;,
+                    &quot;query&quot;: {
+                       &quot;range&quot;: {
+                          &quot;mlq_product.product_price&quot;: {
+                             &quot;from&quot;: 1000,
+                             &quot;to&quot;: 3000
+                          }
+                       }
+                    }
+                 }
+              },
+              {
+                 &quot;has_child&quot;: {
+                    &quot;type&quot;: &quot;mlq_product&quot;,
+                    &quot;score_type&quot;: &quot;max&quot;,
+                    &quot;query&quot;: {
+                       &quot;function_score&quot;: {
+                          &quot;functions&quot;: [
+                             {
+                                &quot;script_score&quot;: {
+                                   &quot;script&quot;: &quot;doc['mlq_product.weight'].value&quot;
+                                }
+                             }
+                          ],
+                          &quot;query&quot;: {
+                             &quot;match_all&quot;: {}
+                          },
+                          &quot;boost_mode&quot;: &quot;replace&quot;
+                       }
+                    }
+                 }
+              },
+              {
+                 &quot;has_parent&quot;: {
+                    &quot;parent_type&quot;: &quot;mlq_shop_info&quot;,
+                    &quot;score_type&quot;: &quot;score&quot;,
+                    &quot;query&quot;: {
+                       &quot;function_score&quot;: {
+                          &quot;functions&quot;: [
+                             {
+                                &quot;script_score&quot;: {
+                                   &quot;script&quot;: &quot;doc['mlq_shop_info.weight'].value&quot;
+                                }
+                             }
+                          ],
+                          &quot;query&quot;: {
+                             &quot;match_all&quot;: {}
+                          },
+                          &quot;boost_mode&quot;: &quot;replace&quot;
+                       }
+                    }
+                 }
+              }
+           ]
+        }
+     },
+     &quot;functions&quot;: [
+        {
+           &quot;script_score&quot;: {
+              &quot;script&quot;: &quot;doc['mlq_goods.weight'].value&quot;
+           }
+        }
+     ],
+     &quot;score_mode&quot;: &quot;sum&quot;,
+     &quot;boost_mode&quot;: &quot;sum&quot;
+  }
+},
+&quot;aggs&quot;: {
+  &quot;brand_names&quot;: {
+     &quot;terms&quot;: {
+        &quot;field&quot;: &quot;brand_name_noa&quot;,
+        &quot;size&quot;: 10
+     }
+  },
+  &quot;seller_nicks&quot;: {
+     &quot;terms&quot;: {
+        &quot;field&quot;: &quot;new_seller_nick_noa&quot;,
+        &quot;size&quot;: 10
+     }
+  },
+  &quot;product_names&quot;: {
+     &quot;children&quot;: {
+        &quot;type&quot;: &quot;mlq_product&quot;
+     },
+     &quot;aggs&quot;: {
+        &quot;tops&quot;: {
+           &quot;terms&quot;: {
+              &quot;field&quot;: &quot;product_name_noa&quot;,
+              &quot;size&quot;: 10
+           }
+        }
+     }
+  }
+}
+}
+</code></li>
+</ol>
+
+<h3 id="2016-01-26">2016-01-26</h3>
+
+<ol>
+<li><code>script</code>更新 <code>weight</code>
+<code>json
+POST /b2b/mlq_shop_info/2015091404A3ol8/_update
+{
+&quot;script&quot;: &quot;weight = ctx._source.weight; if (weight == null) {ctx._source.weight=0 }; ctx._source.weight+=count;&quot;,
+&quot;params&quot;: {
+  &quot;count&quot;: 7
+}
+}
+</code></li>
+</ol>
+
+		</div>
+		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/java/es/elasticsearch-jdbc-importer/" rel="prev"><span>«Previous</span><p>elasticsearch-jdbc-importer</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/java/es/es-book-note/" rel="next"><span>Next»</span><p>es 基础</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

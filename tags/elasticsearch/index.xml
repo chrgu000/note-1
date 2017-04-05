@@ -10,10 +10,10 @@
     
     <item>
       <title>Elasticsearch</title>
-      <link>/post/elasticsearch/</link>
+      <link>/post/java/es/elasticsearch/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/elasticsearch/</guid>
+      <guid>/post/java/es/elasticsearch/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -699,10 +699,10 @@ output {
     
     <item>
       <title>elasticsearch-jdbc-importer</title>
-      <link>/post/elasticsearch-jdbc-importer/</link>
+      <link>/post/java/es/elasticsearch-jdbc-importer/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/elasticsearch-jdbc-importer/</guid>
+      <guid>/post/java/es/elasticsearch-jdbc-importer/</guid>
       <description>
 
 &lt;h1 id=&#34;elasticsearch-jdbc-importer&#34;&gt;elasticsearch-jdbc-importer&lt;/h1&gt;
@@ -848,10 +848,10 @@ org.xbib.tools.JDBCImporter
     
     <item>
       <title>es 代码片段</title>
-      <link>/post/es-snippet/</link>
+      <link>/post/java/es/es-snippet/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/es-snippet/</guid>
+      <guid>/post/java/es/es-snippet/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -1735,10 +1735,10 @@ POST /b2b/mlq_shop_info/2015091404A3ol8/_update
     
     <item>
       <title>es 基础</title>
-      <link>/post/es-book-note/</link>
+      <link>/post/java/es/es-book-note/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/es-book-note/</guid>
+      <guid>/post/java/es/es-book-note/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -1953,10 +1953,10 @@ POST /b2b/mlq_shop_info/2015091404A3ol8/_update
     
     <item>
       <title>es 插件安装</title>
-      <link>/post/escha_jian_an_zhuang/</link>
+      <link>/post/java/es/escha_jian_an_zhuang/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/escha_jian_an_zhuang/</guid>
+      <guid>/post/java/es/escha_jian_an_zhuang/</guid>
       <description>
 
 &lt;p&gt;include::content/post/base.adoc[]
@@ -2034,10 +2034,10 @@ http.host: &amp;quot;192.168.137.107&amp;quot;
     
     <item>
       <title>es 问题</title>
-      <link>/post/es-issues/</link>
+      <link>/post/java/es/es-issues/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/es-issues/</guid>
+      <guid>/post/java/es/es-issues/</guid>
       <description>
 
 &lt;h1 id=&#34;es-issues&#34;&gt;ES-issues&lt;/h1&gt;

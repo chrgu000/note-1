@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日常积累 点点滴滴</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="日常积累 点点滴滴" />
+<meta property="og:description" content="Contents1. 一点 一点1.1. js1.2. tomcat1.3. 密码1.4. 工具1.5. 科学上网mycat 管理入口1. 一点 一点1.1. jsjquery-aop[jquery-aop]: https://github.com/gonzalocasas/jquery-aop
+demo
+// 导入 aop.js jquery9.min.js//(function(){function T(){this.init();_this = this;};T.prototype = {init: function(){$(&#39;*[data-save]&#39;).each(function(){$(this).bind(&#39;click&#39;,{flag:$(this)},_this.save);});$(&#39;*[data-delete]&#39;).each(function(){$(this).bind(&#39;click&#39;,{flag:$(this)},_this.delete);});},save: function(event){var data = event.data.flag;console.log(data.html());},delete: function(event){var data = event." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/well/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">日常积累 点点滴滴</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_一点_一点">1. 一点 一点</a>
+<ul class="sectlevel2">
+<li><a href="#_js">1.1. js</a></li>
+<li><a href="#__code_tomcat_code">1.2. <code>tomcat</code></a></li>
+<li><a href="#_密码">1.3. 密码</a></li>
+<li><a href="#_工具">1.4. 工具</a></li>
+<li><a href="#_科学上网">1.5. 科学上网</a></li>
+</ul>
+</li>
+<li><a href="#_mycat_管理入口">mycat 管理入口</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_一点_一点">1. 一点 一点</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_js">1.1. js</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>jquery-aop</strong>
+[jquery-aop]: <a href="https://github.com/gonzalocasas/jquery-aop" class="bare">https://github.com/gonzalocasas/jquery-aop</a></p>
+</li>
+<li>
+<p><strong>demo</strong></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript" data-lang="javascript">// 导入 aop.js jquery9.min.js
+//
+(function(){
+    function T(){
+        this.init();
+        _this = this;
+    };
+    T.prototype = {
+        init: function(){
+            $('*[data-save]').each(function(){
+                $(this).bind('click',{flag:$(this)},_this.save);
+            });
+            $('*[data-delete]').each(function(){
+                $(this).bind('click',{flag:$(this)},_this.delete);
+            });
+        },
+        save: function(event){
+            var data = event.data.flag;
+            console.log(data.html());
+        },
+        delete: function(event){
+            var data = event.data.flag;
+            console.log(data.html());
+        }
+    };
+    //前置
+    jQuery.aop.before( {target: T, method: 'save'},
+        function() {
+            console.log('before sava!');
+        }
+    );
+    //后置
+    jQuery.aop.after( {target: T, method: 'delete'},
+        function() {
+            console.log('after delete!');
+        }
+    );
+    window["t"] = new T();
+})();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_tomcat_code">1.2. <code>tomcat</code></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Context</code> 配置</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;Context path="/" docBase="/usr/tomcat/apache-tomcat-7.0.62/webapps/b2b" debug="0" reloadable="true"/&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_密码">1.3. 密码</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">道客巴巴 </dt>
+<dd>
+<p>帐户名: dishui_git<br>
+密码: 142857dg</p>
+</dd>
+<dt class="hdlist1">豆瓣FM </dt>
+<dd>
+<p>帐户名: zhoukai_mx<br>
+密码: 142857</p>
+</dd>
+<dt class="hdlist1">DockerHub </dt>
+<dd>
+<p>帐户名: dishuigit
+密码: 142857hub</p>
+</dd>
+<dt class="hdlist1">阿里云 </dt>
+<dd>
+<p>帐户名: dishuiyun
+密码: 142857git</p>
+</dd>
+<dt class="hdlist1">[[无忧加速服务|http://payment.jiegenet.com/user.html]] </dt>
+<dd>
+<p>帐户名: dishuivpn
+密码: 123456</p>
+</dd>
+<dt class="hdlist1">see-world </dt>
+<dd>
+<p>帐户名: <a href="mailto:dishui_git@126.com">dishui_git@126.com</a>
+密码: 123456vpn</p>
+</dd>
+<dt class="hdlist1">跑跑卡丁车 </dt>
+<dd>
+<p>zm55554  密码 nic1980</p>
+</dd>
+<dt class="hdlist1">Golang中国 </dt>
+<dd>
+<p>dishui  密码 123456go</p>
+</dd>
+<dt class="hdlist1">优才网 </dt>
+<dd>
+<p><a href="mailto:dishui_git@126.com">dishui_git@126.com</a>  密码 123456youcai</p>
+</dd>
+<dt class="hdlist1">Rancher </dt>
+<dd>
+<p>jinzhaoluhua 密码 %jinzhaoluhua%</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_工具">1.4. 工具</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">UML </dt>
+<dd>
+<p>系统架构建模与管理: SPARX EA<br>
+业务架构建模与管理: ADONIS</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_科学上网">1.5. 科学上网</h3>
+<div class="paragraph">
+<p>[[科学上网|http://www.jianshu.com/p/458a9bfa98d7]]</p>
+</div>
+<div class="paragraph">
+<p>协同过滤</p>
+</div>
+<div class="paragraph">
+<p>CHANGE MASTER TO MASTER_HOST='mysqlMaster',MASTER_USER='repluser',MASTER_PASSWORD='replpass',MASTER_LOG_FILE='master-bin.000007',MASTER_LOG_POS=410;</p>
+</div>
+<div class="paragraph">
+<p>GRANT ALL PRIVILEGES ON <strong>.</strong> TO 'root'@'172.17.%.%' IDENTIFIED BY '123456' WITH GRANT OPTION;</p>
+</div>
+<div class="paragraph">
+<p>网络与信息安全管理组织机构设置及工作职责
+一、网站运行安全保障措施
+1、网站服务器和其他计算机之间设置防火墙,做好安全策略,拒绝外来的恶意攻击，保障网站正常运行。
+2、在网站的服务器及工作站上均安装了相应的防病毒软件，对计算机病毒、有害电子邮件有整套的防范措施，防止有害信息对网站系统的干扰和破坏。
+3、做好访问日志的留存。网站具有保存六个月以上的系统运行日志和用户使用日志记录功能，内容包括IP地址及使用情况，主页维护者、对应的IP地址情况等。
+4、网站提供集中式权限管理，针对不同的应用系统、终端、操作人员，由网站系统管理员设置共享数据库信息的访问权限，并设置相应的密码及口令。不同的操作人员设定不同的用户名，且定期更换，严禁操作人员泄漏自己的口令。对操作人员的权限严格按照岗位职责设定，并由网站系统管理员定期检查操作人员权限。
+二、信息安全保密管理制度
+1、严格按照“谁主管、谁负责”、“谁主办、谁负责”的原则，落实责任制，明确责任人和职责，细化工作措施和流程，建立完善管理制度和实施办法，确保使用网络和提供信息服务的安全。
+2、网站信息内容更新全部由网站工作人员完成或管理,工作人员素质高、专业水平好,有强烈的责任心和责任感。网站相关信息发布之前有一定的审核程序。工作人员采集信息将严格遵守国家的有关法律、法规和相关规定。
+3、遵守对网站服务信息监视，保存、清除和备份的制度。开展对网络有害信息的清理整治工作，对违法犯罪案件，报告并协助公安机关查处。
+4、所有信息都及时做备份。按照国家有关规定，网站将保存6个月内系统运行日志和用户使用日志记录。
+5、制定并遵守安全教育和培训制度。加大宣传教育力度，增强用户网络安全意识，自觉遵守互联网管理有关法律、法规，不泄密、不制作和传播有害信息，不链接有害信息或网页。
+三、用户信息安全管理制度
+1、尊重并保护用户的个人隐私，在与用户签署的隐私政策和网站服务条款以及其他公布的准则规定的情况下，未经用户授权不得公布与用户个人身份有关的资料，除非有法律或程序要求。
+2、严格遵守网站用户帐号使用登记和操作权限管理制度，对用户信息专人管理，严格保密，未经允许不得向他人泄露。</p>
+</div>
+<div class="paragraph">
+<p>网络与信息安全管理人员配备情况及相应资质</p>
+</div>
+<div class="paragraph">
+<p>姓名：尚冬雷</p>
+</div>
+<div class="paragraph">
+<p>职位：技术部经理</p>
+</div>
+<div class="paragraph">
+<p>工作内容：</p>
+</div>
+<div class="paragraph">
+<p>全面掌握网络部署，制定和主要负责监控网络设备环境的相关事项；
+及时发现并安排解决网络故障，优化网络结构</p>
+</div>
+<div class="paragraph">
+<p>直属上级：总经理</p>
+</div>
+<div class="paragraph">
+<p>人员学历：本科</p>
+</div>
+<div class="paragraph">
+<p>相应资质：全国计算机等级B级证书</p>
+</div>
+<div class="paragraph">
+<p>姓名：周凯</p>
+</div>
+<div class="paragraph">
+<p>职位：开发工程师</p>
+</div>
+<div class="paragraph">
+<p>工作内容：全面掌握网络部署，监控网络设备环境；及时排除网络故障，优化网络结构</p>
+</div>
+<div class="paragraph">
+<p>直属上级：技术部经理</p>
+</div>
+<div class="paragraph">
+<p>人员学历：本科</p>
+</div>
+<div class="paragraph">
+<p>相应资质：全国计算机等级B级证书</p>
+</div>
+<div class="paragraph">
+<p>[[<a href="http://192.168.137.16:8088/test.html" class="bare">http://192.168.137.16:8088/test.html</a>]]</p>
+</div>
+<div class="paragraph">
+<p>&lt;div id="player-container"&gt;&lt;/div&gt;
+&lt;script&gt;
+asciinema.player.js.CreatePlayer('player-container', './test.json', { width: 81, height: 20 });
+&lt;/script&gt;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dom" data-lang="dom">asldkfj</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The time is now. Get a move on.</p>
+</div>
+<div class="paragraph">
+<p>The time is now. Get a move on.</p>
+</div>
+<div class="paragraph">
+<p>asdf</p>
+</div>
+<div class="paragraph">
+<div class="title">mysql-slave</div>
+<p>asciinema::slave["xxxer2","/src/records/mysql-slave.json","95","25"]</p>
+</div>
+<div class="paragraph">
+<p>/usr/lib/ruby/gems/2.2.0/gems/gollum-4.0.1/lib/gollum/public/gollum/javascript</p>
+</div>
+<div class="paragraph">
+<p>/usr/lib/ruby/gems/2.2.0/gems/gollum-4.0.1/lib/gollum/templates</p>
+</div>
+<div class="paragraph">
+<p>/usr/lib/ruby/gems/2.2.0/gems/asciidoctor-1.5.4/lib/asciidoctor</p>
+</div>
+<div class="paragraph">
+<p>See man:gittutorial[7] to get started.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* * * * /usr/bin/rsync -a /records/ /records_win/</p>
+</li>
+<li>
+<p>* * * * sleep 10; /usr/bin/rsync -a /records/ /records_win/</p>
+</li>
+<li>
+<p>* * * * sleep 20; /usr/bin/rsync -a /records/ /records_win/</p>
+</li>
+<li>
+<p>* * * * sleep 30; /usr/bin/rsync -a /records/ /records_win/</p>
+</li>
+<li>
+<p>* * * * sleep 40; /usr/bin/rsync -a /records/ /records_win/</p>
+</li>
+<li>
+<p>* * * * sleep 50; /usr/bin/rsync -a /records/ /records_win/</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>File: master-bin.000007
+         Position: 120</p>
+</div>
+<div class="paragraph">
+<p>SHOW SLAVE STATUS\G;</p>
+</div>
+<div class="paragraph">
+<p>SHOW STATUS LIKE 'Slave_running'</p>
+</div>
+<div class="paragraph">
+<p>CHANGE MASTER TO MASTER_HOST='mysqlMaster',MASTER_USER='repluser',MASTER_PASSWORD='replpass',MASTER_LOG_FILE='master-bin.000006',MASTER_LOG_POS=410;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE <code>user</code> (
+  <code>id</code> int(11) NOT NULL AUTO_INCREMENT,
+  <code>name</code> varchar(20) DEFAULT NULL,
+  PRIMARY KEY (<code>id</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_mycat_管理入口" class="sect0">mycat 管理入口</h1>
+<div class="paragraph">
+<p>mysql -utest -ptest -P9066 -h172.18.0.5</p>
+</div>
+<div class="paragraph">
+<p>rsconf = {
+           _id: "rs0",
+           members: [
+                      {
+                       _id: 0,
+                       host: "localhost:27017"
+                      }
+                    ]
+         }</p>
+</div>
+<div class="paragraph">
+<p>@startuml
+&lt;Diagram&gt;
+  &lt;ID&gt;JAVA&lt;/ID&gt;
+  &lt;OriginalElement&gt;com.eyeieye.koto.dao.cache.file.ImgCacheStoreConfig&lt;/OriginalElement&gt;
+  &lt;nodes&gt;
+    &lt;node x="139.0" y="0.0"&gt;org.springframework.beans.factory.DisposableBean&lt;/node&gt;
+    &lt;node x="0.0" y="0.0"&gt;org.springframework.beans.factory.InitializingBean&lt;/node&gt;
+    &lt;node x="51.25" y="80.0"&gt;com.eyeieye.koto.dao.cache.file.ImgCacheStoreConfig&lt;/node&gt;
+  &lt;/nodes&gt;
+  &lt;notes /&gt;
+  &lt;edges&gt;
+    &lt;edge source="com.eyeieye.koto.dao.cache.file.ImgCacheStoreConfig" target="org.springframework.beans.factory.DisposableBean"&gt;
+      &lt;point x="39.75" y="-15.0" /&gt;
+      &lt;point x="170.5" y="55.0" /&gt;
+      &lt;point x="202.0" y="55.0" /&gt;
+      &lt;point x="0.0" y="15.0" /&gt;
+    &lt;/edge&gt;
+    &lt;edge source="com.eyeieye.koto.dao.cache.file.ImgCacheStoreConfig" target="org.springframework.beans.factory.InitializingBean"&gt;
+      &lt;point x="-39.75" y="-15.0" /&gt;
+      &lt;point x="91.0" y="55.0" /&gt;
+      &lt;point x="59.5" y="55.0" /&gt;
+      &lt;point x="0.0" y="15.0" /&gt;
+    &lt;/edge&gt;
+  &lt;/edges&gt;
+  &lt;settings layout="Hierarchic Group" zoom="1.0" x="132.5" y="55.0" /&gt;
+  &lt;SelectedNodes /&gt;
+  &lt;Categories /&gt;
+  &lt;SCOPE&gt;All&lt;/SCOPE&gt;
+  &lt;VISIBILITY&gt;private&lt;/VISIBILITY&gt;
+&lt;/Diagram&gt;
+@enduml</p>
+</div>
+<div class="paragraph">
+<p>2016-9-26   没有送</p>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/app/template/" rel="prev"><span>«Previous</span><p>接口模板</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/mathematics/machine-learn/" rel="next"><span>Next»</span><p>机器学习</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>
