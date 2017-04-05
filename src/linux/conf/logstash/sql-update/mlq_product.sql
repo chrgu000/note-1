@@ -8,6 +8,7 @@ FROM
   FROM
     mlq_product
   WHERE gmt_modify > :sql_last_value
+  OR gmt_create > :sql_last_value
   ) mp_tmp,
   (SELECT
     mpa.product_id,
@@ -91,7 +92,8 @@ FROM
       id
     FROM
       mlq_product
-    WHERE gmt_modify > :sql_last_value)
+    WHERE gmt_modify > :sql_last_value
+    OR gmt_create > :sql_last_value)
   GROUP BY mpa.product_id) mpa_tmp
 WHERE mp_tmp.id = mpa_tmp.product_id
 
