@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scala高级特性</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Scala高级特性" />
+<meta property="og:description" content="Scala高级特性1. 高阶函数1.1. 概念1.2. 作为值的函数1.3. 匿名函数1.4. 将方法转换成函数1.5. 柯里化1.6. 例子2. 隐式转换和隐式参数2.1. 概念2.2. 作用2.3. 隐式转换函数2.4. 隐式转换例子1. 高阶函数1.1. 概念Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。
+1.2. 作为值的函数可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。
+定义函数时格式：val 变量名 =(输入参数类型和个数)&#8658;函数实现和返回值类型和个数“=”表示将函数赋给一个变量“&#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数
+1.3. 匿名函数在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数
+由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些
+还记得神奇的下划线吗？这才是终极方式
+1.4. 将方法转换成函数在Scala中，方法和函数是不一样的，最本质的区别是函数可以做为参数传递到方法中但是方法可以被转换成函数，神奇的下划线又出场了" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" />
+
+
+<meta property="og:updated_time" content="2017-04-07T14:47:38&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
+										<h1 class="mr-header-title">工作笔记</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Scala高级特性</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-04-07 14:47:38 &#43;0000 UTC">April 07, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/scala" rel="category">scala</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Scala高级特性</div>
+<ul class="sectlevel1">
+<li><a href="#_高阶函数">1. 高阶函数</a>
+<ul class="sectlevel2">
+<li><a href="#_概念">1.1. 概念</a></li>
+<li><a href="#_作为值的函数">1.2. 作为值的函数</a></li>
+<li><a href="#_匿名函数">1.3. 匿名函数</a></li>
+<li><a href="#_将方法转换成函数">1.4. 将方法转换成函数</a></li>
+<li><a href="#_柯里化">1.5. 柯里化</a></li>
+<li><a href="#_例子">1.6. 例子</a></li>
+</ul>
+</li>
+<li><a href="#_隐式转换和隐式参数">2. 隐式转换和隐式参数</a>
+<ul class="sectlevel2">
+<li><a href="#_概念_2">2.1. 概念</a></li>
+<li><a href="#_作用">2.2. 作用</a></li>
+<li><a href="#_隐式转换函数">2.3. 隐式转换函数</a></li>
+<li><a href="#_隐式转换例子">2.4. 隐式转换例子</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_高阶函数">1. 高阶函数</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_概念">1.1. 概念</h3>
+<div class="paragraph">
+<p>Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_作为值的函数">1.2. 作为值的函数</h3>
+<div class="paragraph">
+<p>可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_145546.png" alt="2017 04 07 145546">
+</div>
+</div>
+<div class="paragraph">
+<p>定义函数时格式：val 变量名 =(输入参数类型和个数)&#8658;函数实现和返回值类型和个数
+“=”表示将函数赋给一个变量
+“&#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_匿名函数">1.3. 匿名函数</h3>
+<div class="paragraph">
+<p>在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_145555.png" alt="2017 04 07 145555">
+</div>
+</div>
+<div class="paragraph">
+<p>由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_145603.png" alt="2017 04 07 145603">
+</div>
+</div>
+<div class="paragraph">
+<p>还记得神奇的下划线吗？这才是终极方式</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_145612.png" alt="2017 04 07 145612">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_将方法转换成函数">1.4. 将方法转换成函数</h3>
+<div class="paragraph">
+<p>在Scala中，方法和函数是不一样的，最本质的区别是函数可以做为参数传递到方法中
+但是方法可以被转换成函数，神奇的下划线又出场了</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_145620.png" alt="2017 04 07 145620">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_柯里化">1.5. 柯里化</h3>
+<div class="paragraph">
+<p>柯里化指的是将原来接受两个参数的方法变成新的接受一个参数的方法的过程</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_145627.png" alt="2017 04 07 145627">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_例子">1.6. 例子</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object FunDemo {
+  def main(args: Array[String]) {
+    def f2(x: Int) = x * 2
+    val f3 = (x: Int) =&gt; x * 3
+    val f4: (Int) =&gt; Int = { x =&gt; x * 4 }
+    val f4a: (Int) =&gt; Int = _ * 4
+    val f5 = (_: Int) * 5
+    val list = List(1, 2, 3, 4, 5)
+    var new_list: List[Int] = null
+    //第一种：最直观的方式 (Int) =&gt; Int
+    //new_list = list.map((x: Int) =&gt; x * 3)
+
+    //第二种：由于map方法知道你会传入一个类型为(Int) =&gt; Int的函数，你可以简写
+    //new_list = list.map((x) =&gt; x * 3)
+
+    //第三种：对于只有一个参数的函数，你可以省去参数外围的()
+    //new_list = list.map(x =&gt; x * 3)
+
+    //第四种：(终极方式)如果参数在=&gt;右侧只出现一次，可以使用_
+    new_list = list.map(_ * 3)
+
+    new_list.foreach(println(_))
+
+    var a = Array(1,2,3)
+    a.map(_* 3)
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_隐式转换和隐式参数">2. 隐式转换和隐式参数</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_概念_2">2.1. 概念</h3>
+<div class="paragraph">
+<p>隐式转换和隐式参数是Scala中两个非常强大的功能，利用隐式转换和隐式参数，你可以提供优雅的类库，对类库的使用者隐匿掉那些枯燥乏味的细节。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_作用">2.2. 作用</h3>
+<div class="paragraph">
+<p>隐式的对类的方法进行增强，丰富现有类库的功能</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_隐式转换函数">2.3. 隐式转换函数</h3>
+<div class="paragraph">
+<p>是指那种以implicit关键字声明的带有单个参数的函数</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_隐式转换例子">2.4. 隐式转换例子</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>//隐式的增强File类的方法
+class RichFile(val from: File) {
+  def read = Source.fromFile(from.getPath).mkString
+}
+
+object RichFile {
+  //隐式转换方法
+  implicit def file2RichFile(from: File) = new RichFile(from)
+
+}
+
+object MainApp{
+  def main(args: Array[String]): Unit = {
+    //导入隐式转换
+    import RichFile._
+    //import RichFile.file2RichFile
+    println(new File("c://words.txt").read)
+
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>import java.awt.GridLayout
+
+object ImplicitContext {
+
+  //implicit def girl2Ordered(g : Girl) = new Ordered[Girl]{
+  //  override def compare(that: Girl): Int = if (g.faceValue &gt; that.faceValue) 1 else -1
+  //}
+
+  implicit object OrderingGirl extends Ordering[Girl] {
+    override def compare(x: Girl, y: Girl): Int = if (x.faceValue &gt; y.faceValue) 1 else -1
+  }
+
+}
+
+class Girl(var name: String, var faceValue: Double) {
+  override def toString: String = s"name : $name, faveValue : $faceValue"
+}
+
+//class MissRight[T &lt;% Ordered[T]](f: T, s: T){
+//  def choose() = if(f &gt; s) f else s
+//}
+//class MissRight[T](f: T, s: T){
+//  def choose()(implicit ord: T =&gt; Ordered[T]) = if (f &gt; s) f else s
+//}
+
+class MissRight[T: Ordering](val f: T, val s: T) {
+  def choose()(implicit ord: Ordering[T]) = if (ord.gt(f, s)) f else s
+}
+
+object MissRight {
+  def main(args: Array[String]) {
+    import ImplicitContext.OrderingGirl
+    val g1 = new Girl("yuihatano", 99)
+    val g2 = new Girl("jzmb", 98)
+    val mr = new MissRight(g1, g2)
+    val result = mr.choose()
+    println(result)
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/" rel="prev"><span>«Previous</span><p>Scala实战</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/" rel="next"><span>Next»</span><p>Scala Actor编程</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+
+
+
+</body>
+</html>

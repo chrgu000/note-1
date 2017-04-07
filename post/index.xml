@@ -6,8 +6,529 @@
     <description>Recent content in Post-rsses on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 05 Apr 2017 09:47:03 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Apr 2017 15:06:47 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Scala实战</title>
+      <link>/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Fri, 07 Apr 2017 15:06:47 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Scala实战&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_scala实战&#34;&gt;1. Scala实战&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_项目概述&#34;&gt;2. 项目概述&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_需求&#34;&gt;2.1. 需求&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_akka简介&#34;&gt;2.2. Akka简介&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_项目实现&#34;&gt;3. 项目实现&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_架构图&#34;&gt;3.1. 架构图&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_重要类介绍&#34;&gt;3.2. 重要类介绍&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_actorsystem&#34;&gt;3.2.1. ActorSystem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_actor&#34;&gt;3.2.2. Actor&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_master类&#34;&gt;3.3. Master类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_worker类&#34;&gt;3.4. Worker类&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_scala实战&#34;&gt;1. Scala实战&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_项目概述&#34;&gt;2. 项目概述&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_需求&#34;&gt;2.1. 需求&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;目前大多数的分布式架构底层通信都是通过RPC实现的，RPC框架非常多，比如前我们学过的Hadoop项目的RPC通信框架，但是Hadoop在设计之初就是为了运行长达数小时的批量而设计的，在某些极端的情况下，任务提交的延迟很高，所有Hadoop的RPC显得有些笨重。
+
+Spark 的RPC是通过Akka类库实现的，Akka用Scala语言开发，基于Actor并发模型实现，Akka具有高可靠、高性能、可扩展等特点，使用Akka可以轻松实现分布式RPC功能。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_akka简介&#34;&gt;2.2. Akka简介&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Akka基于Actor模型，提供了一个用于构建可扩展的（Scalable）、弹性的（Resilient）、快速响应的（Responsive）应用程序的平台。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Actor模型&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;在计算机科学领域，Actor模型是一个并行计算（Concurrent Computation）模型，它把actor作为并行计算的基本元素来对待：为响应一个接收到的消息，一个actor能够自己做出一些决策，如创建更多的actor，或发送更多的消息，或者确定如何去响应接收到的下一个消息。&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_151513.png&#34; alt=&#34;2017 04 07 151513&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Actor&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是Akka中最核心的概念，它是一个封装了状态和行为的对象，Actor之间可以通过交换消息的方式进行通信，每个Actor都有自己的收件箱（Mailbox）。通过Actor能够简化锁及线程管理，可以非常容易地开发出正确地并发程序和并行系统，Actor具有如下特性：&lt;/p&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;提供了一种高级抽象，能够简化在并发（Concurrency）/并行（Parallelism）应用场景下的编程开发&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提供了异步非阻塞的、高性能的事件驱动编程模型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;超级轻量级事件处理（每GB堆内存几百万Actor）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_项目实现&#34;&gt;3. 项目实现&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_架构图&#34;&gt;3.1. 架构图&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_151523.png&#34; alt=&#34;2017 04 07 151523&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_重要类介绍&#34;&gt;3.2. 重要类介绍&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_actorsystem&#34;&gt;3.2.1. ActorSystem&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在 &lt;strong&gt;Akka&lt;/strong&gt; 中， &lt;strong&gt;ActorSystem&lt;/strong&gt; 是一个重量级的结构，他需要分配多个线程，所以在实际应用中， &lt;strong&gt;ActorSystem&lt;/strong&gt; 通常是一个单例对象，我们可以使用这个 &lt;strong&gt;ActorSystem&lt;/strong&gt; 创建很多 &lt;strong&gt;Actor&lt;/strong&gt; 。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_actor&#34;&gt;3.2.2. Actor&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Akka中，Actor负责通信，在Actor中有一些重要的生命周期方法。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;preStart()&lt;/strong&gt; 方法：该方法在 &lt;strong&gt;Actor&lt;/strong&gt; 对象构造方法执行后执行，整个 &lt;strong&gt;Actor&lt;/strong&gt; 生命周期中仅执行一次。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;receive()&lt;/strong&gt; 方法：该方法在 &lt;strong&gt;Actor&lt;/strong&gt; 的 &lt;strong&gt;preStart&lt;/strong&gt; 方法执行完成后执行，用于接收消息，会被反复执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_master类&#34;&gt;3.3. Master类&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import scala.concurrent.duration._
+import akka.actor.{Props, ActorSystem, Actor}
+import akka.actor.Actor.Receive
+import com.typesafe.config.ConfigFactory
+
+import scala.collection.mutable
+
+/**
+  * Master为整个集群中的主节点
+  * Master继承了Actor
+  */
+class Master extends Actor{
+
+  //保存WorkerID和Work信息的map
+  val idToWorker = new mutable.HashMap[String, WorkerInfo]
+  //保存所有Worker信息的Set
+  val workers = new mutable.HashSet[WorkerInfo]
+  //Worker超时时间
+  val WORKER_TIMEOUT = 10 * 1000
+  //重新receive方法
+
+  //导入隐式转换，用于启动定时器
+  import context.dispatcher
+
+  //构造方法执行完执行一次
+  override def preStart(): Unit = {
+    //启动定时器，定时执行
+    context.system.scheduler.schedule(0 millis, WORKER_TIMEOUT millis, self, CheckOfTimeOutWorker)
+  }
+
+  //该方法会被反复执行，用于接收消息，通过case class模式匹配接收消息
+  override def receive: Receive = {
+    //Worker向Master发送的注册消息
+    case RegisterWorker(id, workerHost, memory, cores) =&amp;gt; {
+      if(!idToWorker.contains(id)) {
+        val worker = new WorkerInfo(id, workerHost, memory, cores)
+        workers.add(worker)
+        idToWorker(id) = worker
+        sender ! RegisteredWorker(&#34;192.168.10.1&#34;)
+      }
+    }
+
+    //Worker向Master发送的心跳消息
+    case HeartBeat(workerId) =&amp;gt; {
+      val workerInfo = idToWorker(workerId)
+      workerInfo.lastHeartbeat = System.currentTimeMillis()
+    }
+
+    //Master自己向自己发送的定期检查超时Worker的消息
+    case CheckOfTimeOutWorker =&amp;gt; {
+      val currentTime = System.currentTimeMillis()
+      val toRemove = workers.filter(w =&amp;gt; currentTime - w.lastHeartbeat &amp;gt;WORKER_TIMEOUT).toArray
+      for(worker &amp;lt;- toRemove){
+        workers -= worker
+        idToWorker.remove(worker.id)
+      }
+      println(&#34;worker size: &#34;+ workers.size)
+    }
+  }
+}
+
+object Master {
+  //程序执行入口
+  def main(args: Array[String]) {
+
+    val host = &#34;192.168.10.1&#34;
+    val port = 8888
+    //创建ActorSystem的必要参数
+    val configStr =
+      s&#34;&#34;&#34;
+         |akka.actor.provider = &#34;akka.remote.RemoteActorRefProvider&#34;
+         |akka.remote.netty.tcp.hostname = &#34;$host&#34;
+         |akka.remote.netty.tcp.port = &#34;$port&#34;
+&#34;&#34;&#34;.stripMargin
+    val config = ConfigFactory.parseString(configStr)
+    //ActorSystem是单例的，用来创建Actor
+    val actorSystem = ActorSystem.create(&#34;MasterActorSystem&#34;, config)
+    //启动Actor，Master会被实例化，生命周期方法会被调用
+    actorSystem.actorOf(Props[Master], &#34;Master&#34;)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_worker类&#34;&gt;3.4. Worker类&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import java.util.UUID
+import scala.concurrent.duration._
+import akka.actor.{ActorSelection, Props, ActorSystem, Actor}
+import akka.actor.Actor.Receive
+import com.typesafe.config.ConfigFactory
+
+/**
+  * Worker为整个集群的从节点
+  * Worker继承了Actor
+  */
+class Worker extends Actor{
+
+  //Worker端持有Master端的引用（代理对象）
+  var master: ActorSelection = null
+  //生成一个UUID，作为Worker的标识
+  val id = UUID.randomUUID().toString
+
+  //构造方法执行完执行一次
+  override def preStart(): Unit = {
+    //Worker向MasterActorSystem发送建立连接请求
+    master = context.system.actorSelection(&#34;akka.tcp://MasterActorSystem@192.168.10.1:8888/user/Master&#34;)
+    //Worker向Master发送注册消息
+    master ! RegisterWorker(id, &#34;192.168.10.1&#34;, 10240, 8)
+  }
+
+  //该方法会被反复执行，用于接收消息，通过case class模式匹配接收消息
+  override def receive: Receive = {
+    //Master向Worker的反馈信息
+    case RegisteredWorker(masterUrl) =&amp;gt; {
+      import context.dispatcher
+      //启动定时任务，向Master发送心跳
+      context.system.scheduler.schedule(0 millis, 5000 millis, self, SendHeartBeat)
+    }
+
+    case SendHeartBeat =&amp;gt; {
+      println(&#34;worker send heartbeat&#34;)
+      master ! HeartBeat(id)
+    }
+  }
+}
+
+object Worker {
+  def main(args: Array[String]) {
+    val clientPort = 2552
+    //创建WorkerActorSystem的必要参数
+    val configStr =
+      s&#34;&#34;&#34;
+         |akka.actor.provider = &#34;akka.remote.RemoteActorRefProvider&#34;
+         |akka.remote.netty.tcp.port = $clientPort
+&#34;&#34;&#34;.stripMargin
+    val config = ConfigFactory.parseString(configStr)
+    val actorSystem = ActorSystem(&#34;WorkerActorSystem&#34;, config)
+    //启动Actor，Master会被实例化，生命周期方法会被调用
+    actorSystem.actorOf(Props[Worker], &#34;Worker&#34;)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scala高级特性</title>
+      <link>/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Fri, 07 Apr 2017 14:47:38 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Scala高级特性&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_高阶函数&#34;&gt;1. 高阶函数&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_概念&#34;&gt;1.1. 概念&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_作为值的函数&#34;&gt;1.2. 作为值的函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_匿名函数&#34;&gt;1.3. 匿名函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_将方法转换成函数&#34;&gt;1.4. 将方法转换成函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_柯里化&#34;&gt;1.5. 柯里化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_例子&#34;&gt;1.6. 例子&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_隐式转换和隐式参数&#34;&gt;2. 隐式转换和隐式参数&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_概念_2&#34;&gt;2.1. 概念&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_作用&#34;&gt;2.2. 作用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_隐式转换函数&#34;&gt;2.3. 隐式转换函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_隐式转换例子&#34;&gt;2.4. 隐式转换例子&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_高阶函数&#34;&gt;1. 高阶函数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_概念&#34;&gt;1.1. 概念&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_作为值的函数&#34;&gt;1.2. 作为值的函数&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_145546.png&#34; alt=&#34;2017 04 07 145546&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;定义函数时格式：val 变量名 =(输入参数类型和个数)&amp;#8658;函数实现和返回值类型和个数
+“=”表示将函数赋给一个变量
+“&amp;#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_匿名函数&#34;&gt;1.3. 匿名函数&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_145555.png&#34; alt=&#34;2017 04 07 145555&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_145603.png&#34; alt=&#34;2017 04 07 145603&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;还记得神奇的下划线吗？这才是终极方式&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_145612.png&#34; alt=&#34;2017 04 07 145612&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_将方法转换成函数&#34;&gt;1.4. 将方法转换成函数&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在Scala中，方法和函数是不一样的，最本质的区别是函数可以做为参数传递到方法中
+但是方法可以被转换成函数，神奇的下划线又出场了&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_145620.png&#34; alt=&#34;2017 04 07 145620&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_柯里化&#34;&gt;1.5. 柯里化&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;柯里化指的是将原来接受两个参数的方法变成新的接受一个参数的方法的过程&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-04-07_145627.png&#34; alt=&#34;2017 04 07 145627&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_例子&#34;&gt;1.6. 例子&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object FunDemo {
+  def main(args: Array[String]) {
+    def f2(x: Int) = x * 2
+    val f3 = (x: Int) =&amp;gt; x * 3
+    val f4: (Int) =&amp;gt; Int = { x =&amp;gt; x * 4 }
+    val f4a: (Int) =&amp;gt; Int = _ * 4
+    val f5 = (_: Int) * 5
+    val list = List(1, 2, 3, 4, 5)
+    var new_list: List[Int] = null
+    //第一种：最直观的方式 (Int) =&amp;gt; Int
+    //new_list = list.map((x: Int) =&amp;gt; x * 3)
+
+    //第二种：由于map方法知道你会传入一个类型为(Int) =&amp;gt; Int的函数，你可以简写
+    //new_list = list.map((x) =&amp;gt; x * 3)
+
+    //第三种：对于只有一个参数的函数，你可以省去参数外围的()
+    //new_list = list.map(x =&amp;gt; x * 3)
+
+    //第四种：(终极方式)如果参数在=&amp;gt;右侧只出现一次，可以使用_
+    new_list = list.map(_ * 3)
+
+    new_list.foreach(println(_))
+
+    var a = Array(1,2,3)
+    a.map(_* 3)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_隐式转换和隐式参数&#34;&gt;2. 隐式转换和隐式参数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_概念_2&#34;&gt;2.1. 概念&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;隐式转换和隐式参数是Scala中两个非常强大的功能，利用隐式转换和隐式参数，你可以提供优雅的类库，对类库的使用者隐匿掉那些枯燥乏味的细节。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_作用&#34;&gt;2.2. 作用&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;隐式的对类的方法进行增强，丰富现有类库的功能&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_隐式转换函数&#34;&gt;2.3. 隐式转换函数&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;是指那种以implicit关键字声明的带有单个参数的函数&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_隐式转换例子&#34;&gt;2.4. 隐式转换例子&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//隐式的增强File类的方法
+class RichFile(val from: File) {
+  def read = Source.fromFile(from.getPath).mkString
+}
+
+object RichFile {
+  //隐式转换方法
+  implicit def file2RichFile(from: File) = new RichFile(from)
+
+}
+
+object MainApp{
+  def main(args: Array[String]): Unit = {
+    //导入隐式转换
+    import RichFile._
+    //import RichFile.file2RichFile
+    println(new File(&#34;c://words.txt&#34;).read)
+
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import java.awt.GridLayout
+
+object ImplicitContext {
+
+  //implicit def girl2Ordered(g : Girl) = new Ordered[Girl]{
+  //  override def compare(that: Girl): Int = if (g.faceValue &amp;gt; that.faceValue) 1 else -1
+  //}
+
+  implicit object OrderingGirl extends Ordering[Girl] {
+    override def compare(x: Girl, y: Girl): Int = if (x.faceValue &amp;gt; y.faceValue) 1 else -1
+  }
+
+}
+
+class Girl(var name: String, var faceValue: Double) {
+  override def toString: String = s&#34;name : $name, faveValue : $faceValue&#34;
+}
+
+//class MissRight[T &amp;lt;% Ordered[T]](f: T, s: T){
+//  def choose() = if(f &amp;gt; s) f else s
+//}
+//class MissRight[T](f: T, s: T){
+//  def choose()(implicit ord: T =&amp;gt; Ordered[T]) = if (f &amp;gt; s) f else s
+//}
+
+class MissRight[T: Ordering](val f: T, val s: T) {
+  def choose()(implicit ord: Ordering[T]) = if (ord.gt(f, s)) f else s
+}
+
+object MissRight {
+  def main(args: Array[String]) {
+    import ImplicitContext.OrderingGirl
+    val g1 = new Girl(&#34;yuihatano&#34;, 99)
+    val g2 = new Girl(&#34;jzmb&#34;, 98)
+    val mr = new MissRight(g1, g2)
+    val result = mr.choose()
+    println(result)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Scala Actor编程</title>
@@ -99,10 +620,10 @@
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor1 extends Actor{
-//重新act方法
-def act(){
-for(i &amp;lt;- 1 to 10){
-println(&#34;actor-1 &#34;+ i)
+  //重新act方法
+  def act(){
+    for(i &amp;lt;- 1 to 10){
+      println(&#34;actor-1 &#34;+ i)
       Thread.sleep(2000)
     }
   }
@@ -112,10 +633,10 @@ println(&#34;actor-1 &#34;+ i)
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor2 extends Actor{
-//重新act方法
-def act(){
-for(i &amp;lt;- 1 to 10){
-println(&#34;actor-2 &#34;+ i)
+  //重新act方法
+  def act(){
+    for(i &amp;lt;- 1 to 10){
+      println(&#34;actor-2 &#34;+ i)
       Thread.sleep(2000)
     }
   }
@@ -125,8 +646,8 @@ println(&#34;actor-2 &#34;+ i)
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ActorTest extends App{
-//启动Actor
-MyActor1.start()
+  //启动Actor
+  MyActor1.start()
   MyActor2.start()
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -142,18 +663,18 @@ MyActor1.start()
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class MyActor extends Actor {
 
-override def act(): Unit = {
-while (true) {
+  override def act(): Unit = {
+    while (true) {
       receive {
-case &#34;start&#34;=&amp;gt; {
-println(&#34;starting ...&#34;)
+        case &#34;start&#34;=&amp;gt; {
+          println(&#34;starting ...&#34;)
           Thread.sleep(5000)
-println(&#34;started&#34;)
+          println(&#34;started&#34;)
         }
-case &#34;stop&#34;=&amp;gt; {
-println(&#34;stopping ...&#34;)
+        case &#34;stop&#34;=&amp;gt; {
+          println(&#34;stopping ...&#34;)
           Thread.sleep(5000)
-println(&#34;stopped ...&#34;)
+          println(&#34;stopped ...&#34;)
         }
       }
     }
@@ -185,7 +706,7 @@ println(&#34;stopped ...&#34;)
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class YourActor extends Actor {
 
-override def act(): Unit = {
+  override def act(): Unit = {
     loop {
       react {
         case &#34;start&#34;=&amp;gt; {
@@ -238,7 +759,7 @@ override def act(): Unit = {
         }
         case AsyncMsg(id, msg) =&amp;gt; {
           println(id + &#34;,async &#34;+ msg)
-            Thread.sleep(5000)
+          Thread.sleep(5000)
         }
       }
     }
@@ -282,7 +803,7 @@ case class ReplyMsg(id : Int, msg: String)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Task extends Actor {
 
-override def act(): Unit = {
+  override def act(): Unit = {
     loop {
       react {
         case SubmitTask(fileName) =&amp;gt; {
@@ -304,29 +825,29 @@ override def act(): Unit = {
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object WorkCount {
-def main(args: Array[String]) {
-val files = Array(&#34;c://words.txt&#34;, &#34;c://words.log&#34;)
+  def main(args: Array[String]) {
+    val files = Array(&#34;c://words.txt&#34;, &#34;c://words.log&#34;)
 
-val replaySet = new mutable.HashSet[Future[Any]]
-val resultList = new mutable.ListBuffer[ResultTask]
+    val replaySet = new mutable.HashSet[Future[Any]]
+    val resultList = new mutable.ListBuffer[ResultTask]
 
-for(f &amp;lt;- files) {
-val t = new Task
-val replay = t.start() !! SubmitTask(f)
+    for(f &amp;lt;- files) {
+      val t = new Task
+      val replay = t.start() !! SubmitTask(f)
       replaySet += replay
     }
 
-while(replaySet.size &amp;gt;0){
-val toCumpute = replaySet.filter(_.isSet)
-for(r &amp;lt;- toCumpute){
-val result = r.apply()
+    while(replaySet.size &amp;gt;0){
+      val toCumpute = replaySet.filter(_.isSet)
+      for(r &amp;lt;- toCumpute){
+        val result = r.apply()
         resultList += result.asInstanceOf[ResultTask]
         replaySet.remove(r)
       }
       Thread.sleep(100)
     }
-val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&amp;gt; x.foldLeft(0)(_ + _._2))
-println(finalResult)
+    val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&amp;gt; x.foldLeft(0)(_ + _._2))
+    println(finalResult)
   }
 }
 
@@ -7526,559 +8047,6 @@ load data local inpath &#39;/root/data.am&#39; into table beauty partition (nati
 select nation, avg(size) from beauties group by nation order by avg(size);&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>hadoop-shell</title>
-      <link>/post/bigdata/hadoop/hadoop-shell/</link>
-      <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bigdata/hadoop/hadoop-shell/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;hadoop-shell&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_hdfs&#34;&gt;1. hdfs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_hdfs&#34;&gt;1. hdfs&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;列表&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -ls /&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;上传文件&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -put /test.ee /&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;查看文件内容&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -cat /test.ee&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;下载文件&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -get /test.ee /&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;创建目录&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop fs -mkdir -p /wordcount/input&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>hadoop2.4.1集群搭建</title>
-      <link>/post/bigdata/hadoop/hadoop2/</link>
-      <pubDate>Sun, 12 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bigdata/hadoop/hadoop2/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;hadoop&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#__strong_centos_strong_安装&#34;&gt;1. &lt;strong&gt;CentOS&lt;/strong&gt; 安装&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_准备linux环境&#34;&gt;1.1. 准备Linux环境&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_安装_strong_jdk_strong&#34;&gt;1.2. 安装 &lt;strong&gt;JDK&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_安装_strong_hadoop2_4_1_strong&#34;&gt;1.3. 安装 &lt;strong&gt;hadoop2.4.1&lt;/strong&gt;&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_将_strong_hadoop_strong_添加到环境变量&#34;&gt;1.3.1. 将 &lt;strong&gt;hadoop&lt;/strong&gt; 添加到环境变量&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_格式化_strong_namenode_strong_是对_strong_namenode_strong_进行初始化&#34;&gt;1.3.2. 格式化 &lt;strong&gt;namenode&lt;/strong&gt;（是对 &lt;strong&gt;namenode&lt;/strong&gt; 进行初始化）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_启动_strong_hadoop_strong&#34;&gt;1.3.3. 启动 &lt;strong&gt;hadoop&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_验证是否启动成功&#34;&gt;1.3.4. 验证是否启动成功&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_配置ssh免登陆&#34;&gt;1.4. 配置ssh免登陆&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_docker_方式&#34;&gt;2. docker 方式&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_compose&#34;&gt;2.1. compose&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_example&#34;&gt;3. Example&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_wordcount&#34;&gt;3.1. wordcount&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_hdfs_文件上传流程&#34;&gt;4. hdfs 文件上传流程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;5. 参考&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;__strong_centos_strong_安装&#34;&gt;1. &lt;strong&gt;CentOS&lt;/strong&gt; 安装&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_准备linux环境&#34;&gt;1.1. 准备Linux环境&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;先将虚拟机的网络模式选为NAT&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;修改主机名&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vi /etc/sysconfig/network
-
-NETWORKING=yes
-HOSTNAME=mini1    ###&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;修改IP&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vim /etc/sysconfig/network-scripts/ifcfg-eth0
-
-DEVICE=&#34;eth0&#34;
-BOOTPROTO=&#34;static&#34;               ###
-HWADDR=&#34;00:0C:29:3C:BF:E7&#34;
-IPV6INIT=&#34;yes&#34;
-NM_CONTROLLED=&#34;yes&#34;
-ONBOOT=&#34;yes&#34;
-TYPE=&#34;Ethernet&#34;
-UUID=&#34;ce22eeca-ecde-4536-8cc2-ef0dc36d4a8c&#34;
-IPADDR=&#34;192.168.1.101&#34;           ###
-NETMASK=&#34;255.255.255.0&#34;          ###
-GATEWAY=&#34;192.168.1.1&#34;            ###&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;修改主机名和IP的映射关系&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vim /etc/hosts
-
-192.168.1.101   itcast&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;关闭防火墙&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#查看防火墙状态
-service iptables status
-#关闭防火墙
-service iptables stop
-#查看防火墙开机启动状态
-chkconfig iptables --list
-#关闭防火墙开机启动
-chkconfig iptables off&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;修改sudo&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;su root
-vim /etc/sudoers
-给hadoop用户添加执行的权限&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_安装_strong_jdk_strong&#34;&gt;1.2. 安装 &lt;strong&gt;JDK&lt;/strong&gt;&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;上传 &lt;strong&gt;jdk-7u_65-i585.tar.gz&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;解压 &lt;strong&gt;jdk&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#创建文件夹
-mkdir /home/hadoop/app
-#解压
-tar -zxvf jdk-7u55-linux-i586.tar.gz -C /home/hadoop/app&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将 &lt;strong&gt;java&lt;/strong&gt; 添加到环境变量中&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vim /etc/profile
-#在文件最后添加
-export JAVA_HOME=/home/hadoop/app/jdk-7u_65-i585
-export PATH=$PATH:$JAVA_HOME/bin
-
-#刷新配置
-source /etc/profile&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_安装_strong_hadoop2_4_1_strong&#34;&gt;1.3. 安装 &lt;strong&gt;hadoop2.4.1&lt;/strong&gt;&lt;/h3&gt;
-&lt;div class=&#34;admonitionblock tip&#34;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&#34;icon&#34;&gt;
-&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&#34;content&#34;&gt;
-先上传 hadoop 的安装包到服务器上去 /home/hadoop/&lt;br&gt;
-注意：hadoop2.x 的配置文件 $HADOOP_HOME/etc/hadoop&lt;br&gt;
-伪分布式需要修改5个配置文件
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;配置 hadoop&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;hadoop-env.sh&lt;/div&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vim hadoop-env.sh
-#第27行
-export JAVA_HOME=/usr/java/jdk1.7.0_65&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;core-site.xml&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;!-- 指定HADOOP所使用的文件系统schema（URI），HDFS的老大（NameNode）的地址 --&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;fs.defaultFS&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;hdfs://weekend-1206-01:9000&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;
-&amp;lt;!-- 指定hadoop运行时产生文件的存储目录 --&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;hadoop.tmp.dir&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;/home/hadoop/hadoop-2.4.1/tmp&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;hdfs-site.xml&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;!-- 指定HDFS副本的数量 --&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;dfs.replication&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;1&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;
-
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;dfs.secondary.http.address&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;192.168.1.152:50090&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;mapred-site.xml&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mv mapred-site.xml.template mapred-site.xml
-vim mapred-site.xml
-&amp;lt;!-- 指定mr运行在yarn上 --&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;mapreduce.framework.name&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;yarn&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;yarn-site.xml&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;!-- 指定YARN的老大（ResourceManager）的地址 --&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.resourcemanager.hostname&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;weekend-1206-01&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;
-&amp;lt;!-- reducer获取数据的方式 --&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.nodemanager.aux-services&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;mapreduce_shuffle&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_将_strong_hadoop_strong_添加到环境变量&#34;&gt;1.3.1. 将 &lt;strong&gt;hadoop&lt;/strong&gt; 添加到环境变量&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vim /etc/proflie
-
-export JAVA_HOME=/usr/java/jdk1.7.0_65
-export HADOOP_HOME=/itcast/hadoop-2.4.1
-export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-
-source /etc/profile&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_格式化_strong_namenode_strong_是对_strong_namenode_strong_进行初始化&#34;&gt;1.3.2. 格式化 &lt;strong&gt;namenode&lt;/strong&gt;（是对 &lt;strong&gt;namenode&lt;/strong&gt; 进行初始化）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hdfs namenode -format
-或
-hadoop namenode -format&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_启动_strong_hadoop_strong&#34;&gt;1.3.3. 启动 &lt;strong&gt;hadoop&lt;/strong&gt;&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 先启动HDFS
-sbin/start-dfs.sh
-
-# 再启动YARN
-sbin/start-yarn.sh
-
-# 启动 namenode
-sbin/hadoop-daemon.sh start namenode
-
-# 启动 dataNode
-sbin/hadoop-daemon.sh start datanode&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_验证是否启动成功&#34;&gt;1.3.4. 验证是否启动成功&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# jps
-27408 NameNode
-28218 Jps
-27643 SecondaryNameNode
-28066 NodeManager
-27803 ResourceManager
-27512 DataNode&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;http://192.168.1.101:50070 （HDFS管理界面）
-http://192.168.1.101:8088 （MR管理界面）&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_配置ssh免登陆&#34;&gt;1.4. 配置ssh免登陆&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#生成ssh免登陆密钥
-#进入到我的home目录
-cd ~/.ssh
-
-ssh-keygen -t rsa （四个回车）
-# 执行完这个命令后，会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
-# 将公钥拷贝到要免密登陆的目标机器上
-ssh-copy-id localhost
-# ssh免登陆：
-# 生成key:
-ssh-keygen
-# 复制从A复制到B上:
-ssh-copy-id B
-# 验证：
-ssh localhost/exit，ps -e|grep ssh
-ssh A  #在B中执行&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_docker_方式&#34;&gt;2. docker 方式&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_compose&#34;&gt;2.1. compose&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;hadoop.yml&lt;/div&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
-services:
-  mini1:
-    image: dishui.io:5000/sequenceiq/hadoop-docker:2.4.1
-    container_name: mini1
-    environment:
-      - &#34;HOSTNAME=mini1&#34;
-    ports:
-      - &#34;50070:50070&#34;
-      - &#34;8088:8088&#34;
-    volumes:
-      - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
-      - ./yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
-      - ./hadoop.sh:/etc/profile.d/hadoop.sh
-    command: /etc/bootstrap.sh -d
-    networks:
-      - hadoop
-  mini2:
-    image: dishui.io:5000/sequenceiq/hadoop-docker:2.4.1
-    container_name: mini2
-    environment:
-      - &#34;HOSTNAME=mini1&#34;
-    volumes:
-      - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
-      - ./yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
-      - ./hadoop.sh:/etc/profile.d/hadoop.sh
-    command: /usr/sbin/sshd -d
-    networks:
-      - hadoop
-
-networks:
-  hadoop:
-    driver: bridge&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;core-site.xml&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
-  &amp;lt;property&amp;gt;
-      &amp;lt;name&amp;gt;fs.defaultFS&amp;lt;/name&amp;gt;
-      &amp;lt;value&amp;gt;hdfs://mini1:9000&amp;lt;/value&amp;gt;
-  &amp;lt;/property&amp;gt;
-  &amp;lt;property&amp;gt;
-      &amp;lt;name&amp;gt;hadoop.tmp.dir&amp;lt;/name&amp;gt;
-      &amp;lt;value&amp;gt;/hadoop-2.4.1/tmp&amp;lt;/value&amp;gt;
-  &amp;lt;/property&amp;gt;
-&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ps: &lt;code&gt;cd $HADOOP_PREFIX&lt;/code&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;hadoop.sh&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export PATH=$HADOOP_PREFIX/bin:HADOOP_PREFIX/sbin:$PATH&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_example&#34;&gt;3. Example&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_wordcount&#34;&gt;3.1. wordcount&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;input&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;a.txt&lt;/div&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;a
-b
-abc
-ef
-efg
-abc
-ef
-h
-aakk
-ef
-h&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;上传到 &lt;strong&gt;HDFS&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 目录不存在,创建目录 ( `hadoop fs -mkdir -p /wordcount/input` )
-hadoop fs -put /a.txt /wordcount/input&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.4.1.jar&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_hdfs_文件上传流程&#34;&gt;4. hdfs 文件上传流程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/post/bigdata/hadoop/hadoop-upload.svg&#34; alt=&#34;hadoop upload&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_参考&#34;&gt;5. 参考&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/kiwenlau/hadoop-cluster-docker&#34;&gt;hadoop-cluster-docker&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

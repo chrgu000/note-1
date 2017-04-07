@@ -181,10 +181,10 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>object MyActor1 extends Actor{
-//重新act方法
-def act(){
-for(i &lt;- 1 to 10){
-println("actor-1 "+ i)
+  //重新act方法
+  def act(){
+    for(i &lt;- 1 to 10){
+      println("actor-1 "+ i)
       Thread.sleep(2000)
     }
   }
@@ -194,10 +194,10 @@ println("actor-1 "+ i)
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>object MyActor2 extends Actor{
-//重新act方法
-def act(){
-for(i &lt;- 1 to 10){
-println("actor-2 "+ i)
+  //重新act方法
+  def act(){
+    for(i &lt;- 1 to 10){
+      println("actor-2 "+ i)
       Thread.sleep(2000)
     }
   }
@@ -207,8 +207,8 @@ println("actor-2 "+ i)
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>object ActorTest extends App{
-//启动Actor
-MyActor1.start()
+  //启动Actor
+  MyActor1.start()
   MyActor2.start()
 }</code></pre>
 </div>
@@ -224,18 +224,18 @@ MyActor1.start()
 <div class="content">
 <pre class="highlightjs highlight"><code>class MyActor extends Actor {
 
-override def act(): Unit = {
-while (true) {
+  override def act(): Unit = {
+    while (true) {
       receive {
-case "start"=&gt; {
-println("starting ...")
+        case "start"=&gt; {
+          println("starting ...")
           Thread.sleep(5000)
-println("started")
+          println("started")
         }
-case "stop"=&gt; {
-println("stopping ...")
+        case "stop"=&gt; {
+          println("stopping ...")
           Thread.sleep(5000)
-println("stopped ...")
+          println("stopped ...")
         }
       }
     }
@@ -267,7 +267,7 @@ println("stopped ...")
 <div class="content">
 <pre class="highlightjs highlight"><code>class YourActor extends Actor {
 
-override def act(): Unit = {
+  override def act(): Unit = {
     loop {
       react {
         case "start"=&gt; {
@@ -320,7 +320,7 @@ override def act(): Unit = {
         }
         case AsyncMsg(id, msg) =&gt; {
           println(id + ",async "+ msg)
-            Thread.sleep(5000)
+          Thread.sleep(5000)
         }
       }
     }
@@ -364,7 +364,7 @@ case class ReplyMsg(id : Int, msg: String)</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code>class Task extends Actor {
 
-override def act(): Unit = {
+  override def act(): Unit = {
     loop {
       react {
         case SubmitTask(fileName) =&gt; {
@@ -386,29 +386,29 @@ override def act(): Unit = {
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>object WorkCount {
-def main(args: Array[String]) {
-val files = Array("c://words.txt", "c://words.log")
+  def main(args: Array[String]) {
+    val files = Array("c://words.txt", "c://words.log")
 
-val replaySet = new mutable.HashSet[Future[Any]]
-val resultList = new mutable.ListBuffer[ResultTask]
+    val replaySet = new mutable.HashSet[Future[Any]]
+    val resultList = new mutable.ListBuffer[ResultTask]
 
-for(f &lt;- files) {
-val t = new Task
-val replay = t.start() !! SubmitTask(f)
+    for(f &lt;- files) {
+      val t = new Task
+      val replay = t.start() !! SubmitTask(f)
       replaySet += replay
     }
 
-while(replaySet.size &gt;0){
-val toCumpute = replaySet.filter(_.isSet)
-for(r &lt;- toCumpute){
-val result = r.apply()
+    while(replaySet.size &gt;0){
+      val toCumpute = replaySet.filter(_.isSet)
+      for(r &lt;- toCumpute){
+        val result = r.apply()
         resultList += result.asInstanceOf[ResultTask]
         replaySet.remove(r)
       }
       Thread.sleep(100)
     }
-val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&gt; x.foldLeft(0)(_ + _._2))
-println(finalResult)
+    val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&gt; x.foldLeft(0)(_ + _._2))
+    println(finalResult)
   }
 }
 
@@ -440,6 +440,10 @@ case class ResultTask(result: Map[String, Int])</code></pre>
 	
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="prev"><span>«Previous</span><p>Scala高级特性</p></a>
+		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
