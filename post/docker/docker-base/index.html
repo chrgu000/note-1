@@ -407,7 +407,7 @@ CoreOS 开机启动创建volume</p>
         [Service]
         User=root
         ExecStart=/opt/bin/docker-volume-netshare cifs --username dishui --password dishui --domain storage
-        ExecStartPost=/usr/bin/docker volume create -d cifs --name 192.168.137.2/note-hugo
+        ExecStartPost=/usr/bin/docker volume create -d cifs --name 192.168.137.2/dishui
         LimitNOFILE=40000
         TimeoutStartSec=0
 

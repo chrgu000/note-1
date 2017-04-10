@@ -1711,6 +1711,36 @@ lib/spark-examples-1.5.2-hadoop2.2.0.jar \
 10</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>cd $SPARK_HOME</p>
+</div>
+<div class="paragraph">
+<p>bin/spark-shell --master spark://master:7077</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; log4j.properties &lt;&lt;_EOF_
+# Set everything to be logged to the console
+log4j.rootCategory=ERROR, console
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.target=System.err
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n</p>
+</div>
+<h1 id="_settings_to_quiet_third_party_logs_that_are_too_verbose" class="sect0">Settings to quiet third party logs that are too verbose</h1>
+<div class="paragraph">
+<p>log4j.logger.org.spark-project.jetty=WARN
+log4j.logger.org.spark-project.jetty.util.component.AbstractLifeCycle=ERROR
+log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
+log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
+log4j.logger.org.apache.parquet=ERROR
+log4j.logger.parquet=ERROR</p>
+</div>
+<h1 id="_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support" class="sect0">SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support</h1>
+<div class="paragraph">
+<p>log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
+log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
+<em>EOF</em></p>
+</div>
 
 		</div>
 		

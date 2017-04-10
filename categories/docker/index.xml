@@ -885,18 +885,14 @@ services:
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;查看仓库 镜像列表&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;https://192.168.137.15:5000/v2/_catalog&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://192.168.137.15:5000/v2/_catalog&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v2/_catalog&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;查看 &lt;code&gt;tag&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -1456,7 +1452,7 @@ CoreOS 开机启动创建volume&lt;/p&gt;
         [Service]
         User=root
         ExecStart=/opt/bin/docker-volume-netshare cifs --username dishui --password dishui --domain storage
-        ExecStartPost=/usr/bin/docker volume create -d cifs --name 192.168.137.2/note-hugo
+        ExecStartPost=/usr/bin/docker volume create -d cifs --name 192.168.137.2/dishui
         LimitNOFILE=40000
         TimeoutStartSec=0
 

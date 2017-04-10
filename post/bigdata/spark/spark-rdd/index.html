@@ -3,18 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asciinema</title>
+<title>spark-rdd</title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="Asciinema" />
-<meta property="og:description" content="Contents1. 配置 asciidoctor 解析 Asciinema1.1. 测试2. Tmp1. 配置 asciidoctor 解析 Asciinema添加 GistBlockMacro 到 asciidoctor-1.5.5\lib 下
-替换 asciidoctor-1.5.5\bin 目录下的 asciidoctor
-#!/usr/bin/env rubyrequire &#39;rubygems&#39; unless defined? Gemif File.exist?(asciidoctor = (File.expand_path &#39;../../lib/asciidoctor&#39;, __FILE__))require asciidoctorelserequire &#39;asciidoctor&#39;end# 解析require &#39;asciidoctor/extensions&#39;require &#39;asciidoctor/GistBlockMacro&#39;Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? &#39;html&#39;end#require &#39;asciidoctor/cli&#39;invoker = Asciidoctor::Cli::Invoker.new ARGVGC." />
+<meta property="og:title" content="spark-rdd" />
+<meta property="og:description" content="spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey1. mapPartitionsWithIndex把每个partition中的分区号和对应的值拿出来val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; &#34;[partID:&#34; &#43; index &#43; &#34;, val: &#34; &#43; x &#43; &#34;]&#34;).iterator}2. aggregate3. aggregateByKey" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/linux/asciinema/" />
+<meta property="og:url" content="/post/bigdata/spark/spark-rdd/" />
 
 
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-04-08T18:42:52&#43;00:00"/>
 
 
 
@@ -83,102 +81,49 @@
 <div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="entry-header clearfix">
-			<h1 class="entry-title">Asciinema</h1>
+			<h1 class="entry-title">spark-rdd</h1>
 			<p class="mr-meta entry-meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<time class="entry-meta-date updated" datetime="2017-04-08 18:42:52 &#43;0000 UTC">April 08, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/spark" rel="category">spark</a></span>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
 			
 			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
+<div id="toctitle">spark rdd</div>
 <ul class="sectlevel1">
-<li><a href="#_配置_asciidoctor_解析_asciinema">1. 配置 asciidoctor 解析 Asciinema</a>
-<ul class="sectlevel2">
-<li><a href="#_测试">1.1. 测试</a></li>
-</ul>
-</li>
-<li><a href="#_tmp">2. Tmp</a></li>
+<li><a href="#_mappartitionswithindex">1. mapPartitionsWithIndex</a></li>
+<li><a href="#_aggregate">2. aggregate</a></li>
+<li><a href="#_aggregatebykey">3. aggregateByKey</a></li>
 </ul>
 </div>
 <div class="sect1">
-<h2 id="_配置_asciidoctor_解析_asciinema">1. 配置 asciidoctor 解析 Asciinema</h2>
+<h2 id="_mappartitionswithindex">1. mapPartitionsWithIndex</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>添加 <a href="/post/my/GistBlockMacro.rb">GistBlockMacro</a> 到 <code>asciidoctor-1.5.5\lib</code> 下</p>
-</li>
-<li>
-<p>替换 <code>asciidoctor-1.5.5\bin</code> 目录下的 <code>asciidoctor</code></p>
+<asciinema-player src="/src/records/spark/2017-04-10.json" cols="95" rows="22" speed="2"></asciinema-player>
 <div class="listingblock">
+<div class="title">把每个partition中的分区号和对应的值拿出来</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>#!/usr/bin/env ruby
-
-require 'rubygems' unless defined? Gem
-
-if File.exist?(asciidoctor = (File.expand_path '../../lib/asciidoctor', __FILE__))
-  require asciidoctor
-else
-  require 'asciidoctor'
-end
-# 解析
-require 'asciidoctor/extensions'
-require 'asciidoctor/GistBlockMacro'
-Asciidoctor::Extensions.register do
-    block_macro GistBlockMacro if document.basebackend? 'html'
-end
-#
-require 'asciidoctor/cli'
-
-invoker = Asciidoctor::Cli::Invoker.new ARGV
-GC.start
-invoker.invoke!
-exit invoker.code</code></pre>
+<pre class="highlightjs highlight"><code>val func = (index: Int, iter: Iterator[(Int)]) =&gt; {
+  iter.toList.map(x =&gt; "[partID:" +  index + ", val: " + x + "]").iterator
+}</code></pre>
 </div>
-</div>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="_测试">1.1. 测试</h3>
-<asciinema-player src="/src/records/h1.json" cols="95" rows="22" speed="2"></asciinema-player>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tmp">2. Tmp</h2>
+<h2 id="_aggregate">2. aggregate</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>ssh root@196.168.1.34</p>
+<asciinema-player src="/src/records/spark/aggregate.json" cols="95" rows="22" speed="2"></asciinema-player>
 </div>
-<div class="paragraph">
-<p>ssh-keygen &amp;&amp; \
-ssh-copy-id root@196.168.1.34</p>
 </div>
-<div class="paragraph">
-<p>docker exec -it spark-master /bin/bash</p>
-</div>
-<div class="paragraph">
-<p>cd $SPARK_HOME</p>
-</div>
-<div class="paragraph">
-<p>bin/spark-shell --master spark://master:7077</p>
-</div>
-<div class="paragraph">
-<p>asciinema rec -c bash /dishui/content/src/records/spark/aggregateByKey.json</p>
-</div>
-<div class="paragraph">
-<p>ssh root@196.168.1.34</p>
-</div>
-<div class="paragraph">
-<p>docker exec -it spark-master /bin/bash</p>
-</div>
-<div class="paragraph">
-<p>cd $SPARK_HOME \
-&amp;&amp; bin/spark-shell --master spark://master:7077</p>
-</div>
+<div class="sect1">
+<h2 id="_aggregatebykey">3. aggregateByKey</h2>
+<div class="sectionbody">
+<asciinema-player src="/src/records/spark/aggregateByKey.json" cols="95" rows="22" speed="2"></asciinema-player>
 </div>
 </div>
 
@@ -202,13 +147,9 @@ ssh-copy-id root@196.168.1.34</p>
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/work/app-tables/" rel="prev"><span>«Previous</span><p>App 表设计</p></a>
-		</div>
-		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/java/btrace/" rel="next"><span>Next»</span><p>Btrace</p></a>
+			<a href="/post/bigdata/spark/spark-%E5%9F%BA%E7%A1%80/" rel="next"><span>Next»</span><p>spark-基础</p></a>
 		</div>
 		
 	</nav>
