@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -37,8 +38,6 @@
 <!--[if lt IE 9]>
 	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
-
-<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -81,6 +80,53 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/jesery/" rel="bookmark">jesery</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Jesery1. Jesery@Path ,定义路径。
+@GET、@POST、@PUT等，定义提交请求的方法。
+@Consumes，定义接收请求的参数格式，是JSON、XML，还是form表单。
+@Produces，定义输出的格式，输出XML、JSON等格式。
+@XmlRootElement、@XmlElement、@XmlAttribute定义根元素、元素、属性，使用这些注解可以自定义xml的输出格式。
+@FormParam、@QueryParam、@PathParam，获取单个参数的三种方式：分别是从表单获取参数、从url问号之后获取参数、获取路径参数。还可以直接将POJO作为方法参数，根据接收的参数格式自动封装bean，比如底部代码中的formJson(Member member)方法。
+@Context，从容器的上下文获取HttpServletRequest、HttpServletResponse等对象。
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/kubernetes/demo/k8s-cmd/" rel="bookmark">k8s基础命令</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 启动服务1. 启动服务sudo systemctl start etcdsudo systemctl start dockersudo systemctl start kube-apiserversudo systemctl start kube-controller-managersudo systemctl start kube-schedulersudo systemctl start kubeletsudo systemctl start kube-proxy
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -171,12 +217,12 @@ $ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						参考 [[https://github.com/codepiano/lunr.js/tree/master/test]]
-[[http://gohugo.io/templates/partials/]]
-[[https://github.com/spf13/hugo]]
-[[https://discuss.gohugo.io/t/live-hugo-site-search-with-lunr-js/2857]]
-[[https://runkit.com/npm/lunr-locale-chinese#]]
-[[https://www.google.com/?gfe_rd=ssl&amp;ei=EQCbVs7yMOOD8Qe8xJqYBA#q=lunrjs+nodejieba]]
+						参考 https://github.com/codepiano/lunr.js/tree/master/test
+http://gohugo.io/templates/partials/
+https://github.com/spf13/hugo
+https://discuss.gohugo.io/t/live-hugo-site-search-with-lunr-js/2857
+https://runkit.com/npm/lunr-locale-chinese#
+https://www.google.com/?gfe_rd=ssl&amp;ei=EQCbVs7yMOOD8Qe8xJqYBA#q=lunrjs+nodejieba
 
 					</div>
 				</div>
@@ -268,59 +314,13 @@ $ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mycat/" rel="bookmark">mycat</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. `mysql`一主一从2. centos-java dockerfile3. Mycat4. 主从数据库 授权1. `mysql`一主一从master-cnf
-[mysqld]# 表明不区分大小写lower_case_table_names=1# 字符编码character_set_server=utf8max_allowed_packet=4M# 开启二进制日志log-bin=master-binlog-bin-index=master-bin.index# 1-2^32 必须唯一server-id=1innodb_file_per_table=1+ slave-cnf
-[mysqld]lower_case_table_names=1character_set_server=utf8max_allowed_packet=4M# 开启中继日志relay-log=relay-logrelay-log-index=relay-log.index# 1-2^32 必须唯一server-id=11innodb_file_per_table=12. centos-java dockerfileFROM centosMAINTAINER dishui_git@126.comENV TZ "Asia/Shanghai"ADD jdk-7u79-linux-x64.rpm /tmpRUN mkdir -p /usr/java &amp;&amp; \rpm -ivh jdk-7u79-linux-x64.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mycat/mycat-command-line/" rel="bookmark">mycat命令</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. MyCAT 命令行监控1.1. KILL @@CONNECTION1. MyCAT 命令行监控用mysql命令行连接 mysql –utest –ptest –P9066 -h172.17.0.4
-mysql –utest –ptest –P8066 -h172.17.0.4 (jdbc连接)
-SHOW @@HELP 可显示所有相关管理命令
-SHOW @@BACKEND 显示后端物理库连接信息，包括当前连接数，端口
-mysql&gt; show @@backend\G;*************************** 1. row ***************************processor: Processor0id: 12mysqlId: 5host: mysqlSlaveport: 3306l_port: 34828net_in: 3389net_out: 861life: 2661closed: falseborrowed: falseSEND_QUEUE: 0schema: testdbcharset: latin1:8txlevel: 0autocommit: true*************************** 2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/page/11/">«</a>
 	
-	<span class="page-numbers current">12/20</span>
+	<span class="page-numbers current">12/21</span>
 	
 	<a class="page-numbers" href="/page/13/">»</a>
 	
@@ -369,6 +369,8 @@ mysql –utest –ptest –P8066 -h172.17.0.4 (jdbc连接)
 		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
 		
 		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
+		
+		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
 		
 		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
 		
@@ -435,7 +437,8 @@ mysql –utest –ptest –P8066 -h172.17.0.4 (jdbc连接)
 		navClass: "menu--collapse",
 	});
 </script>
-
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 
 </body>

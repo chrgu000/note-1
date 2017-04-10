@@ -33,6 +33,7 @@ relay-log = relay-log选择一个唯一的 server-id" />
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -42,8 +43,6 @@ relay-log = relay-log选择一个唯一的 server-id" />
 <!--[if lt IE 9]>
 	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
-
-<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -192,8 +191,8 @@ slave: IO_Thread, SQL_Thread</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>mysql-master
-asciinema::slave["mysql2","/src/records/mysql-master.json","95","25"]</p>
+<p>mysql-master</p>
+<asciinema-player src="/src/records/mysql-master.json" cols="95" rows="25" speed="2"></asciinema-player>
 </li>
 <li>
 <p>安装 <code>mysql</code> 源</p>
@@ -338,8 +337,8 @@ mysql&gt; SHOW BINLOG EVENTS IN 'master-bin.000001';</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>mysql-slave
-asciinema::slave["mysql1","/src/records/mysql-slave.json","95","25"]</p>
+<p>mysql-slave</p>
+<asciinema-player src="/src/records/mysql-slave.json" cols="95" rows="25" speed="2"></asciinema-player>
 </li>
 </ol>
 </div>
@@ -665,7 +664,8 @@ rm -f auto.cnf
 		navClass: "menu--collapse",
 	});
 </script>
-
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 
 </body>

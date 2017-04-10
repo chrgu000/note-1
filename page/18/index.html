@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -37,8 +38,6 @@
 <!--[if lt IE 9]>
 	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
-
-<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -81,6 +80,55 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/app/cservice/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						客服管理动态URLhttp://app.mailiqing.com/app/cservice/dynamic?start=1&amp;limit=10
+支持格式JSON
+HTTP请求方式GET Content-Type: application/json;charset=UTF-8
+携带参数说明start : 起始页limit : 每页显示个数是否需要登录是
+成功{"list": [{"imgs": [ "http://116.90.81.68:80/koto/img/58216823e4b05f43ef7356df.img_300_300.img" ], # 图片地址"clist": [], # 评论列表"likeCount": 0, # 点赞数量"collectionCount": 0, # 收藏数量"inDate": "2016-09-26 17:52:27.0", # 时间"mood": "呵呵", # 动态详情"userImage": "", # 用户头像"
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/app/goods/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						商品模块商品列表统一接口URLhttp://app.mailiqing.com/app/goods/search
+支持格式JSON
+HTTP请求方式POST
+Content-Type: application/json;charset=UTF-8
+是否需要登录否
+携带参数说明{"from":0, # 起始页数"searchKey":"", # 搜索框"catId":"", # 管理类目id"brandName":"", # 品牌"productName":"", # 型号"region":"", # 出库地"sellerNick":"", # 供应商"priceFrom":"", # 起始价格"priceTo":"", # 结束价格"category":"", # 商品类目"shopId":"", # 店铺id"shopCat":"", # 店铺类目"sort":0 # 价格排序 0:升序 1:降序}成功参照 搜索 返回数据格式
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -291,55 +339,13 @@
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/README/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						《Go编程基础》 借用《Go Web编程》一书中的话，出本套教程并不代表我自身的能力有多强，而是我愿意将自己在学习过程中积累到的知识分享给大家，并结合自己遇到的一些坑爹经历来讲解如何处理各种奇葩问题，从而更好地帮助广大的和潜在的 Go 语言爱好者。
-基本信息  教程讲师：无闻 教程简介：《Go编程基础》是一套针对 Google 出品的 Go 语言的视频语音教程，主要面向 Go 语言新手级别的学习者。 开发环境：Go 语言 1.0.3-1.5.* 版本 开发工具：Sublime Text 2-3 开发系统：Windows 7 64 位 其它说明：每堂课都会建立一个文件（例如：lecture1.md）作为课堂笔记。课堂笔记中里面包含了该堂课所涵盖的知识点以及知识点开始讲解的时间点，方便学习者快速定位要了解的部分，节省不必要浪费的时间。此外，如果教程中因口误或其它原因使学习者产生迷惑的部分，同样会在课堂笔记中进行补充说明。 收录网站：  优才网 皆学问 网易云课堂 51CTO 学院  课程下载：  百度网盘（提取码：mgom）   捐赠作者 如果您觉得本套教程确实不错，并认为作者的努力值得肯定，可以通过 支付宝 为作者提供小额捐助，以资鼓励。
-教程大纲    课时数 课时标题 在线播放     第 1 课 Go开发环境搭建 土豆网 优才网 网易云课堂   第 2 课 Go基础知识 土豆网 优才网 网易云课堂   第 3 课 类型与变量 土豆网 优才网 网易云课堂   第 4 课 常量与运算符 土豆网 优才网 网易云课堂   第 5 课 控制语句 土豆网 优才网 网易云课堂   第 6 课 数组array 土豆网 优才网 网易云课堂   第 7 课 切片slice 土豆网 优才网 网易云课堂   第 8 课 map 土豆网 优才网 网易云课堂   第 9 课 函数function 土豆网 优才网 网易云课堂   第 10 课 结构struct 土豆网 优才网 网易云课堂   第 11 课 方法method 土豆网 优才网 网易云课堂   第 12 课 接口interface 土豆网 优才网 网易云课堂   第 13 课 反射reflection 土豆网 优才网 网易云课堂   第 14 课 并发concurrency 土豆网 优才网 网易云课堂   第 15 课 项目与坑 土豆网 优才网 网易云课堂    相关资源  教程资源  《Go Web基础》 《Go名库讲解》  QQ 交流群  Martini&amp;Macaron 交流群：371440803 Golang Web 开发：245386165 Go Web 交流：259316004  学习网站  Golang 友团 Go 语言学习园地 Golang 中国  辅助站点  Go Walker：在线 Go 项目 API 文档   授权许可 除特别声明外，本套教程中的内容使用CC BY-SA 3.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture1/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 1 课：Go 开发环境搭建 基本信息  课程时长：20:02 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] Go 基本介绍 [04:10] 安装 Go 语言 [05:00] Go 环境变量与工作目录 [07:27] Go 命令简介 [11:06] godoc 建立本地文档 [15:40] Sublime Text 安装与配置 [18:05] &quot;Hello world!&quot;  补充说明  如果对安装 Sublime Text 部分不是很理解，完整教程请参考 博文  相关链接  Go 在谷歌：以软件工程为目的的语言设计 go-wiki Go Walker Go Language Resources Golang 相关 QQ 群 Go 源码安装：参考链接 Go 标准包安装：下载地址 CHM手册 其它 IDE 安装方案：参考链接 下载 Sublime Text：官方网站 安装 gosublime（破解版可能无法安装）：安装指令 Sublime Text 2 入门及技巧 Go 初学者常问的问题 FAQ  课程链接  第 2 课：Go 基础知识  
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/page/17/">«</a>
 	
-	<span class="page-numbers current">18/20</span>
+	<span class="page-numbers current">18/21</span>
 	
 	<a class="page-numbers" href="/page/19/">»</a>
 	
@@ -388,6 +394,8 @@
 		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
 		
 		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
+		
+		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
 		
 		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
 		
@@ -454,7 +462,8 @@
 		navClass: "menu--collapse",
 	});
 </script>
-
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 
 </body>

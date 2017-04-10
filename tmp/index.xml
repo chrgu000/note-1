@@ -1612,6 +1612,26 @@ services:
 &lt;p&gt;2017-04-07_151513.png
 2017-04-07_151523.png&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master spark://master:7077 \
+--executor-memory 512M \
+--total-executor-cores 1 \
+lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;/bin/spark-submit \&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;--class org.apache.spark.examples.SparkPi \
+--master spark://master:7077 \
+--executor-memory 512M \
+--total-executor-cores 2 \
+/usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     

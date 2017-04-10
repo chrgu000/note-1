@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -42,8 +43,6 @@
 <!--[if lt IE 9]>
 	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
-
-<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -1692,6 +1691,26 @@ services:
 <p>2017-04-07_151513.png
 2017-04-07_151523.png</p>
 </div>
+<div class="paragraph">
+<p>bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master spark://master:7077 \
+--executor-memory 512M \
+--total-executor-cores 1 \
+lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10</p>
+</div>
+<div class="literalblock">
+<div class="title">/bin/spark-submit \</div>
+<div class="content">
+<pre>--class org.apache.spark.examples.SparkPi \
+--master spark://master:7077 \
+--executor-memory 512M \
+--total-executor-cores 2 \
+/usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10</pre>
+</div>
+</div>
 
 		</div>
 		
@@ -1756,7 +1775,8 @@ services:
 		navClass: "menu--collapse",
 	});
 </script>
-
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 
 </body>

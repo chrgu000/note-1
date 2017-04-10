@@ -7,8 +7,9 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="Asciinema" />
-<meta property="og:description" content="Contents1. 测试1. 测试mysql-masterasciinema::slave[&#34;h1&#34;,&#34;/src/records/h1.json&#34;,&#34;95&#34;,&#34;25&#34;]
-1.a public void setAttributes(Attributes attributes) {this.options.put(ATTRIBUTES, attributes.map());}2.b public void setAttributes(Attributes attributes) {this.options.put(ATTRIBUTES, attributes.map());}&lt;section&gt;&lt;title&gt;Section Title&lt;/title&gt; (1)&lt;/section&gt;" />
+<meta property="og:description" content="Contents1. 配置 asciidoctor 解析 Asciinema1.1. 测试1. 配置 asciidoctor 解析 Asciinema添加 GistBlockMacro 到 asciidoctor-1.5.5\lib 下
+替换 asciidoctor-1.5.5\bin 目录下的 asciidoctor
+#!/usr/bin/env rubyrequire &#39;rubygems&#39; unless defined? Gemif File.exist?(asciidoctor = (File.expand_path &#39;../../lib/asciidoctor&#39;, __FILE__))require asciidoctorelserequire &#39;asciidoctor&#39;end# 解析require &#39;asciidoctor/extensions&#39;require &#39;asciidoctor/GistBlockMacro&#39;Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? &#39;html&#39;end#require &#39;asciidoctor/cli&#39;invoker = Asciidoctor::Cli::Invoker.new ARGVGC.startinvoker." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/asciinema/" />
 
@@ -30,6 +31,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
 
@@ -39,8 +41,6 @@
 <!--[if lt IE 9]>
 	<script src="/js/css3-mediaqueries.js"></script>
 <![endif]-->
-
-<script data-main="/js/app.js" src="/js/require.js"></script>
 
 </head>
 <body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -93,16 +93,56 @@
 			
 			<div id="toc" class="toc">
 <div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_配置_asciidoctor_解析_asciinema">1. 配置 asciidoctor 解析 Asciinema</a>
 <ul class="sectlevel2">
-<li><a href="#_测试">1. 测试</a></li>
+<li><a href="#_测试">1.1. 测试</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_测试">1. 测试</h3>
-<div class="paragraph">
-<div class="title">mysql-master</div>
-<p>asciinema::slave["h1","/src/records/h1.json","95","25"]</p>
+<div class="sect1">
+<h2 id="_配置_asciidoctor_解析_asciinema">1. 配置 asciidoctor 解析 Asciinema</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>添加 <a href="/post/my/GistBlockMacro.rb">GistBlockMacro</a> 到 <code>asciidoctor-1.5.5\lib</code> 下</p>
+</li>
+<li>
+<p>替换 <code>asciidoctor-1.5.5\bin</code> 目录下的 <code>asciidoctor</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#!/usr/bin/env ruby
+
+require 'rubygems' unless defined? Gem
+
+if File.exist?(asciidoctor = (File.expand_path '../../lib/asciidoctor', __FILE__))
+  require asciidoctor
+else
+  require 'asciidoctor'
+end
+# 解析
+require 'asciidoctor/extensions'
+require 'asciidoctor/GistBlockMacro'
+Asciidoctor::Extensions.register do
+    block_macro GistBlockMacro if document.basebackend? 'html'
+end
+#
+require 'asciidoctor/cli'
+
+invoker = Asciidoctor::Cli::Invoker.new ARGV
+GC.start
+invoker.invoke!
+exit invoker.code</code></pre>
 </div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_测试">1.1. 测试</h3>
+<asciinema-player src="/src/records/h1.json" cols="95" rows="22" speed="2"></asciinema-player>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">1.a </dt>
@@ -132,6 +172,8 @@
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;section&gt;
   &lt;title&gt;Section Title&lt;/title&gt; <i class="conum" data-value="1"></i><b>(1)</b>
 &lt;/section&gt;</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -199,7 +241,8 @@
 		navClass: "menu--collapse",
 	});
 </script>
-
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
 
 
 </body>

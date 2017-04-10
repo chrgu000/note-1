@@ -8,13 +8,8 @@ class GistBlockMacro < Asciidoctor::Extensions::BlockMacroProcessor
   named :asciinema
 
   def process parent, target, attrs
-    title_html = (attrs.has_key? 'title') ?
-        %(<div class="title">#{attrs['title']}</div>\n) : nil
 
-    html = %(
-#{title_html}
-<div name="#{attrs[2]}|#{attrs[3]}|#{attrs[4]}" class="asciinema-add-player" id="#{attrs[1]}" ></div>)
-
+    html = %(<asciinema-player src="#{attrs[1]}" cols="#{attrs[2]}" rows="#{attrs[3]}" speed="#{attrs[4]}"></asciinema-player>)
     create_pass_block parent, html, attrs, subs: nil
   end
 end

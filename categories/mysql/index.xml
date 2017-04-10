@@ -736,8 +736,8 @@ slave: IO_Thread, SQL_Thread&lt;/p&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;mysql-master
-asciinema::slave[&#34;mysql2&#34;,&#34;/src/records/mysql-master.json&#34;,&#34;95&#34;,&#34;25&#34;]&lt;/p&gt;
+&lt;p&gt;mysql-master&lt;/p&gt;
+&lt;asciinema-player src=&#34;/src/records/mysql-master.json&#34; cols=&#34;95&#34; rows=&#34;25&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;安装 &lt;code&gt;mysql&lt;/code&gt; 源&lt;/p&gt;
@@ -882,8 +882,8 @@ mysql&amp;gt; SHOW BINLOG EVENTS IN &#39;master-bin.000001&#39;;&lt;/code&gt;&lt
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;mysql-slave
-asciinema::slave[&#34;mysql1&#34;,&#34;/src/records/mysql-slave.json&#34;,&#34;95&#34;,&#34;25&#34;]&lt;/p&gt;
+&lt;p&gt;mysql-slave&lt;/p&gt;
+&lt;asciinema-player src=&#34;/src/records/mysql-slave.json&#34; cols=&#34;95&#34; rows=&#34;25&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

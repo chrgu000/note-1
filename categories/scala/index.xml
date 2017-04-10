@@ -317,7 +317,12 @@ object Worker {
 &lt;li&gt;&lt;a href=&#34;#_概念_2&#34;&gt;2.1. 概念&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_作用&#34;&gt;2.2. 作用&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_隐式转换函数&#34;&gt;2.3. 隐式转换函数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_隐式转换例子&#34;&gt;2.4. 隐式转换例子&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_隐式转换例子&#34;&gt;2.4. 隐式转换例子&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_隐式转换变量值&#34;&gt;2.4.1. 隐式转换变量值&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_隐式转换方法&#34;&gt;2.4.2. 隐式转换方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -521,6 +526,22 @@ object MissRight {
     println(result)
   }
 }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_隐式转换变量值&#34;&gt;2.4.1. 隐式转换变量值&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/svg/scala-implic.svg&#34; alt=&#34;scala implic&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_隐式转换方法&#34;&gt;2.4.2. 隐式转换方法&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/svg/scala-implic2.svg&#34; alt=&#34;scala implic2&#34;&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

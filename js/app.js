@@ -6,7 +6,7 @@ require.config({
     'jquery-bigautocomplete':'jquery.bigautocomplete',
     'pin':'jquery.pin',
     'highlight':'highlight.min',
-    'jquery-scrollUp':'jquery.scrollUp'
+    'jquery-scrollUp':'jquery.scrollUp',
   },
   shim:{
     'jquery-bigautocomplete':{
@@ -17,7 +17,7 @@ require.config({
     },
     'jquery-scrollUp':{
       deps: ['jquery']
-    },
+    }
   }
 });
 
@@ -30,7 +30,7 @@ require([
   'highlight',
   'domReady',
   'text!/js/example_index.json',
-  'jquery-scrollUp'
+  'jquery-scrollUp',
   ], function ($, lunr, _ , _, hljs, domReady, indexDump, _) {
 
   var indexDump = JSON.parse(indexDump)
@@ -75,6 +75,7 @@ require([
             type: 'background',
           }
         });
+
   });
 
   $('#side-toc').find('a').each(function(){
@@ -89,5 +90,6 @@ require([
       }
     });
   });
+
 
 })
