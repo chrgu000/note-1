@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="sublime tabTrigger" />
-<meta property="og:description" content="Contents1. quml2. qdot3. bash4. bash session5. table6. bash session7. a8. javasAsciidoctor1. stem2. quote3. img4. src5. c6. c11. quml&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml$1@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;&lt;/snippet&gt;
+<meta property="og:description" content="Contents1. quml2. qdot3. bash4. bash session5. table6. asciinema7. a8. javasAsciidoctor1. stem2. quote3. img4. src5. c6. c11. quml&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml$1@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;&lt;/snippet&gt;
 2. qdot&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml@startdot$1@enddot@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;qdot&lt;/tabTrigger&gt;&lt;/snippet&gt;
 3. bash&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[
 $1]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;bash&lt;/tabTrigger&gt;&lt;/snippet&gt;" />
@@ -100,7 +100,7 @@
 <li><a href="#_bash">3. bash</a></li>
 <li><a href="#_bash_session">4. bash session</a></li>
 <li><a href="#_table">5. table</a></li>
-<li><a href="#_bash_session_2">6. bash session</a></li>
+<li><a href="#_asciinema">6. asciinema</a></li>
 <li><a href="#_a">7. a</a></li>
 <li><a href="#_javas">8. javas</a></li>
 <li><a href="#_asciidoctor">Asciidoctor</a>
@@ -197,11 +197,13 @@ $1
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">$1</p></td>
-<td class="tableblock halign-center valign-top"></td>
+<th class="tableblock halign-right valign-top">$1</th>
+<th class="tableblock halign-center valign-top">$2</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-right valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
@@ -216,15 +218,14 @@ $1
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bash_session_2">6. bash session</h2>
+<h2 id="_asciinema">6. asciinema</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>&lt;snippet&gt;
     &lt;content&gt;&lt;![CDATA[
-.$1
-asciinema::slave["$2","$3","95","25"]
+asciinema::slave["/src/records/$1","95","22","2"]
 ]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;asciinema&lt;/tabTrigger&gt;
+    &lt;tabTrigger&gt;asc&lt;/tabTrigger&gt;
 &lt;/snippet&gt;</p>
 </div>
 </div>

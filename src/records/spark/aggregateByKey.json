@@ -9,7 +9,7 @@
       "\r\nscala> "
     ],
     [
-      1.963912,
+      0.963912,
       "val pairRDD"
     ],
     [
@@ -25,15 +25,15 @@
       " (\"mouse\", 2)), 2)"
     ],
     [
-      1.974534,
+      0.974534,
       "\r\n"
     ],
     [
-      2.767311,
+      0.767311,
       "pairRDD: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[0] at parallelize at <console>:21\r\n\r\nscala> "
     ],
     [
-      6.266094,
+      0.266094,
       "de"
     ],
     [

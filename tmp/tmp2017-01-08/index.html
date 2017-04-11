@@ -1741,6 +1741,61 @@ log4j.logger.parquet=ERROR</p>
 log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
 <em>EOF</em></p>
 </div>
+<div class="paragraph">
+<p>'2017-04-11 00:26:06'
+'2017-04-11 23:26:06'</p>
+</div>
+<div class="paragraph">
+<p>SELECT zpl.* FROM zh_plan_launch zpl WHERE zpl.state = '01' AND zpl.table_date &gt;= '2017-04-10 00:26:06' AND zpl.table_date &#8656; '2017-04-10 23:26:06'</p>
+</div>
+<div class="paragraph">
+<p>SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = '01' AND zpl.table_date &gt;= '2017-04-10 00:26:06' AND zpl.table_date &#8656; '2017-04-10 23:26:06') AND zspl.project_name = zsgc.project_name AND zsgc.make_time = '2017-04-10' AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = '4' GROUP BY zspl.reservoir_code</p>
+</div>
+<div class="paragraph">
+<p>SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = '01' AND zpl.table_date &gt;= '2017-04-10 00:26:06' AND zpl.table_date &#8656; '2017-04-10 23:26:06') AND zspl.project_name = zsgc.project_name AND zsgc.make_time = '2017-04-10 AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = '4'</p>
+</div>
+<div class="paragraph">
+<p>SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = '01' AND zpl.table_date &gt;= '2017-04-10 00:26:06' AND zpl.table_date &#8656; '2017-04-10 23:26:06') AND zspl.project_name = zsgc.project_name AND zsgc.make_time = '2017-04-10' AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = '4&#8217;GROUP BY id</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+  zpl.*
+FROM
+  zh_plan_launch zpl
+WHERE zpl.state = '01'
+  AND zpl.plan_code IN
+  (SELECT
+    zspl.plan_code
+  FROM
+    zh_sub_plan_launch zspl,
+    zh_send_goods_check zsgc
+  WHERE zspl.plan_code IN
+    (SELECT
+      plan_code
+    FROM
+      zh_plan_launch zpl
+    WHERE zpl.state = '01'
+      AND zpl.table_date &gt;= ?
+      AND zpl.table_date &#8656; ?)
+    AND zspl.project_name = zsgc.project_name
+    AND zsgc.make_time = ?
+    AND zspl.goods_code = zsgc.goods_name
+    AND zsgc.status = '4'
+    AND zspl.plan_code NOT IN
+    (SELECT DISTINCT
+      (zspl.plan_code)
+    FROM
+      zh_sub_plan_launch zspl
+    WHERE zspl.plan_code IN
+      (SELECT
+        plan_code
+      FROM
+        zh_plan_launch zpl
+      WHERE zpl.state = '01'
+        AND zpl.table_date &gt;= ?
+        AND zpl.table_date &#8656; ?))
+  GROUP BY zspl.plan_code)</p>
+</div>
 
 		</div>
 		
