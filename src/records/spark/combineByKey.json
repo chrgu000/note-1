@@ -479,7 +479,7 @@
       "res4: org.apache.spark.rdd.RDD[(String, Int)] = MapPartitionsRDD[12] at map at <console>:22\r\n\r\nscala> "
     ],
     [
-      34.156228,
+      1.156228,
       "r"
     ],
     [
@@ -569,34 +569,6 @@
     [
       0.964324,
       "res5: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[13] at combineByKey at <console>:24\r\n\r\nscala> "
-    ],
-    [
-      2.709038,
-      "Stopping spark context.\r\n"
-    ],
-    [
-      1.004421,
-      "root@master:/usr/local/spark-1.5.2# exit\r\n"
-    ],
-    [
-      0.02333,
-      "\u001b]0;root@localhost:~\u0007[root@localhost ~]# "
-    ],
-    [
-      0.499676,
-      "logout\r\n"
-    ],
-    [
-      0.081771,
-      "Connection to 196.168.1.34 closed.\r\r\n"
-    ],
-    [
-      0.025415,
-      "\u001b]0;@d2d9acf07561:/dishui/content/src/records/spark\u0007"
-    ],
-    [
-      0.000463,
-      "[root@d2d9acf07561 spark]# "
     ]
   ]
 }

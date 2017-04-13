@@ -267,7 +267,7 @@ image::/src/img/$1[]
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$SELECTION&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;

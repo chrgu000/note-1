@@ -86,6 +86,26 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/jetty/" rel="bookmark">Jetty</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Jetty1. Jetty1.1. 代码内启动 web1.1.1. Jetty pom 依赖1.1.2. Jetty 测试文件2. 参考1. Jetty1.1. 代码内启动 web1.1.1. Jetty pom 依赖&lt;properties&gt;&lt;jetty-version&gt;9.2.19.v20160908&lt;/jetty-version&gt;&lt;/properties&gt;&lt;dependencies&gt;&lt;dependency&gt;&lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;&lt;artifactId&gt;jetty-webapp&lt;/artifactId&gt;&lt;version&gt;${jetty-version}&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;&lt;artifactId&gt;jetty-jsp&lt;/artifactId&gt;&lt;version&gt;${jetty-version}&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;&lt;artifactId&gt;apache-jstl&lt;/artifactId&gt; (1)&lt;version&gt;${jetty-version}&lt;/version&gt;&lt;/dependency&gt;&lt;/dependencies&gt;1如果没有,会引起 The absolute uri: http://java.sun.com/jsp/jstl/core cannot be resolved1.1.2. Jetty 测试文件import org.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/java/jmeter/" rel="bookmark">Jmeter</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -284,26 +304,6 @@ maven maven设置  仓库设置 ‪C:\Users\dishui\.m2\settings.xml xml &lt;mirr
 						Contents1. Mysql 查询1.1. MySQL拼音首字母查询2. Mysql-table3. 复制一条数据4. 根据 某一列的值 if else5. Mysql 子查询优化6. Issues7. 参考1. Mysql 查询1.1. MySQL拼音首字母查询英文26个字母中除了i,u,v三个字母不能成为汉语拼音的首字母外，其它的字母都可以。如果我们需要查询结果集中以A或者其它字母开头的汉语，实现方法如下
 SELECT*FROMmlq_shop_infoWHERE CONV(HEX(LEFT(CONVERT(shop_name USING gbk), 1)),16,10) BETWEEN 45253AND 45760参考
 字母起值止值A
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mysqlcuo_wu/" rel="bookmark">Mysql错误</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 Mysql错误 MySQL Daemon failed to start.  bash #查看mysql日志 less /var/log/mysqld.log  unknown variable 'default-character-set=utf8'  用character_set_server=utf8来取代 default-character-set=utf8   Cannot load from mysql.proc. The table is probably corrupted # use mysql; # ALTER TABLE `proc` MODIFY COLUMN `comment` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL AFTER `sql_mode`;  
 					</div>
 				</div>
 			</div>

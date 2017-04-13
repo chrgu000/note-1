@@ -1679,43 +1679,135 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
 &lt;p&gt;SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = &#39;01&#39; AND zpl.table_date &amp;gt;= &#39;2017-04-10 00:26:06&#39; AND zpl.table_date &amp;#8656; &#39;2017-04-10 23:26:06&#39;) AND zspl.project_name = zsgc.project_name AND zsgc.make_time = &#39;2017-04-10&#39; AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = &#39;4&amp;#8217;GROUP BY id&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  zpl.*
-FROM
-  zh_plan_launch zpl
-WHERE zpl.state = &#39;01&#39;
-  AND zpl.plan_code IN
-  (SELECT
-    zspl.plan_code
-  FROM
-    zh_sub_plan_launch zspl,
-    zh_send_goods_check zsgc
-  WHERE zspl.plan_code IN
-    (SELECT
-      plan_code
-    FROM
-      zh_plan_launch zpl
-    WHERE zpl.state = &#39;01&#39;
-      AND zpl.table_date &amp;gt;= ?
-      AND zpl.table_date &amp;#8656; ?)
-    AND zspl.project_name = zsgc.project_name
-    AND zsgc.make_time = ?
-    AND zspl.goods_code = zsgc.goods_name
-    AND zsgc.status = &#39;4&#39;
-    AND zspl.plan_code NOT IN
-    (SELECT DISTINCT
-      (zspl.plan_code)
-    FROM
-      zh_sub_plan_launch zspl
-    WHERE zspl.plan_code IN
-      (SELECT
-        plan_code
-      FROM
-        zh_plan_launch zpl
-      WHERE zpl.state = &#39;01&#39;
-        AND zpl.table_date &amp;gt;= ?
-        AND zpl.table_date &amp;#8656; ?))
-  GROUP BY zspl.plan_code)&lt;/p&gt;
+&lt;p&gt;&#34;SELECT &#34;&lt;br&gt;
+&#34;  zpl.* &#34;&lt;br&gt;
+&#34;FROM &#34;&lt;br&gt;
+&#34;  zh_plan_launch zpl &#34;&lt;br&gt;
+&#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+&#34;  AND zpl.plan_code IN &#34;&lt;br&gt;
+&#34;  (SELECT &#34;&lt;br&gt;
+&#34;    zspl.plan_code &#34;&lt;br&gt;
+&#34;  FROM &#34;&lt;br&gt;
+&#34;    zh_sub_plan_launch zspl, &#34;&lt;br&gt;
+&#34;    zh_send_goods_check zsgc &#34;&lt;br&gt;
+&#34;  WHERE zspl.plan_code IN &#34;&lt;br&gt;
+&#34;    (SELECT &#34;&lt;br&gt;
+&#34;      plan_code &#34;&lt;br&gt;
+&#34;    FROM &#34;&lt;br&gt;
+&#34;      zh_plan_launch zpl &#34;&lt;br&gt;
+&#34;    WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+&#34;      AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
+&#34;      AND zpl.table_date &amp;#8656; ?) &#34;&lt;br&gt;
+&#34;    AND zspl.project_name = zsgc.project_name &#34;&lt;br&gt;
+&#34;    AND zsgc.make_time = ? &#34;&lt;br&gt;
+&#34;    AND zspl.goods_code = zsgc.goods_name &#34;&lt;br&gt;
+&#34;    AND zsgc.status = &#39;4&#39; &#34;&lt;br&gt;
+&#34;    AND zspl.plan_code NOT IN &#34;&lt;br&gt;
+&#34;    (SELECT DISTINCT &#34;&lt;br&gt;
+&#34;      (zspl.plan_code) &#34;&lt;br&gt;
+&#34;    FROM &#34;&lt;br&gt;
+&#34;      zh_sub_plan_launch zspl &#34;&lt;br&gt;
+&#34;    WHERE zspl.plan_code IN &#34;&lt;br&gt;
+&#34;      (SELECT &#34;&lt;br&gt;
+&#34;        plan_code &#34;&lt;br&gt;
+&#34;      FROM &#34;&lt;br&gt;
+&#34;        zh_plan_launch zpl &#34;&lt;br&gt;
+&#34;      WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+&#34;        AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
+&#34;        AND zpl.table_date &amp;#8656; ?)) &#34;&lt;br&gt;
+&#34;  GROUP BY zspl.plan_code) &#34;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;String subPlanLanchSql = &#34;SELECT zspl.* &#34;&lt;br&gt;
+        &#34;FROM zh_sub_plan_launch zspl, &#34;&lt;br&gt;
+        &#34;zh_send_goods_check zsgc &#34;&lt;br&gt;
+        &#34;WHERE zspl.plan_code IN &#34;&lt;br&gt;
+        &#34;(SELECT plan_code &#34;&lt;br&gt;
+        &#34;FROM zh_plan_launch zpl &#34;&lt;br&gt;
+        &#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+        &#34;AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
+        &#34;AND zpl.table_date &amp;#8656; ?) &#34;&lt;br&gt;
+        &#34;AND zspl.project_name = zsgc.project_name &#34;&lt;br&gt;
+        &#34;AND zsgc.make_time = ? &#34;+
+        &#34;AND zspl.goods_code = zsgc.goods_name &#34;+
+        &#34;AND zsgc.status  = &#39;4&#39;&#34;&lt;br&gt;
+        &#34;GROUP BY id&#34;;
+    String difPlanLanchSql = &#34;SELECT &#34;&lt;br&gt;
+        &#34;  zpl.* &#34;&lt;br&gt;
+        &#34;FROM &#34;&lt;br&gt;
+        &#34;  zh_plan_launch zpl &#34;&lt;br&gt;
+        &#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+        &#34;  AND zpl.plan_code IN &#34;&lt;br&gt;
+        &#34;  (SELECT &#34;&lt;br&gt;
+        &#34;    zspl.plan_code &#34;&lt;br&gt;
+        &#34;  FROM &#34;&lt;br&gt;
+        &#34;    zh_sub_plan_launch zspl, &#34;&lt;br&gt;
+        &#34;    zh_send_goods_check zsgc &#34;&lt;br&gt;
+        &#34;  WHERE zspl.plan_code IN &#34;&lt;br&gt;
+        &#34;    (SELECT &#34;&lt;br&gt;
+        &#34;      plan_code &#34;&lt;br&gt;
+        &#34;    FROM &#34;&lt;br&gt;
+        &#34;      zh_plan_launch zpl &#34;&lt;br&gt;
+        &#34;    WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+        &#34;      AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
+        &#34;      AND zpl.table_date &amp;#8656; ?) &#34;&lt;br&gt;
+        &#34;    AND zspl.project_name = zsgc.project_name &#34;&lt;br&gt;
+        &#34;    AND zsgc.make_time = ? &#34;&lt;br&gt;
+        &#34;    AND zspl.goods_code = zsgc.goods_name &#34;&lt;br&gt;
+        &#34;    AND zsgc.status = &#39;4&#39; &#34;&lt;br&gt;
+        &#34;    AND zspl.plan_code IN &#34;&lt;br&gt;
+        &#34;    (SELECT DISTINCT &#34;&lt;br&gt;
+        &#34;      (zspl.plan_code) &#34;&lt;br&gt;
+        &#34;    FROM &#34;&lt;br&gt;
+        &#34;      zh_sub_plan_launch zspl &#34;&lt;br&gt;
+        &#34;    WHERE zspl.plan_code IN &#34;&lt;br&gt;
+        &#34;      (SELECT &#34;&lt;br&gt;
+        &#34;        plan_code &#34;&lt;br&gt;
+        &#34;      FROM &#34;&lt;br&gt;
+        &#34;        zh_plan_launch zpl &#34;&lt;br&gt;
+        &#34;      WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+        &#34;        AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
+        &#34;        AND zpl.table_date &amp;#8656; ?)) &#34;&lt;br&gt;
+        &#34;  GROUP BY zspl.plan_code) &#34;;
+    String planLanchSql = &#34;SELECT zpl.* &#34;&lt;br&gt;
+        &#34;FROM zh_plan_launch zpl &#34;&lt;br&gt;
+        &#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
+        &#34;AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
+        &#34;AND zpl.table_date &amp;#8656; ? &#34;;
+    String reservoirCodeSql = subPlanLanchSql + &#34; ,zspl.reservoir_code&#34;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;    Object[] args1 = new Object[]{DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd(),DateUtil2.getDate()};
+    Object[] args2 = new Object[]{DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd()};
+    Object[] args3 = new Object[]{DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd(),DateUtil2.getDate(),DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd()};
+    List&amp;lt;?&amp;gt; subPlanLanchs = deliveryPlanService.integratePlan(subPlanLanchSql, args1, new SubPlanLaunchModel());
+    List&amp;lt;?&amp;gt; diffPlanLanchs = deliveryPlanService.integratePlan(difPlanLanchSql, args3, new PlanLaunchModel());
+//    List&amp;lt;?&amp;gt; planLanchs =  deliveryPlanService.integratePlan(planLanchSql, args2, new PlanLaunchModel());
+    List&amp;lt;?&amp;gt; reservoirs = deliveryPlanService.integratePlan(reservoirCodeSql, args1,new SubPlanLaunchModel());&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; word.txt &amp;lt;&amp;lt;_EOF_
+hello tom
+hello xixi
+hello xxxxooo
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val rdd1 = sc.textFile(&#34;hdfs://master:9000/word/&#34;).flatMap(&lt;em&gt;.split(&#34; &#34;)).map&lt;/em&gt;, 1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;scala&amp;gt; sc.textFile(&#34;hdfs://master:8020/word/&#34;)
+res2: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[9] at textFile at &amp;lt;console&amp;gt;:22&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;scala&amp;gt; sc.textFile(&#34;hdfs://master:8020/word/&#34;).collect
+res3: Array[String] = Array(hello tom, hello xixi, hello xxxxooo, hello tom, hello xixi, hello xxxxooo, hello tom, hello xixi, hello xxxxooo)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;scala&amp;gt; val rdd1 = sc.textFile(&#34;hdfs://master:8020/word/&#34;).flatMap(_.split(&#34; &#34;)).collect
+rdd1: Array[String] = Array(hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo)&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

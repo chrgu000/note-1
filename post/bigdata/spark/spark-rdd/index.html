@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="spark-rdd" />
-<meta property="og:description" content="spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys values1. mapPartitionsWithIndexmap是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; &#34;[partID:&#34; &#43; index &#43; &#34;, val: &#34; &#43; x &#43; &#34;]&#34;).iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregatedef func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {iter." />
+<meta property="og:description" content="spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexmap是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; &#34;[partID:&#34; &#43; index &#43; &#34;, val: &#34; &#43; x &#43; &#34;]&#34;).iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregatedef func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {iter." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/spark/spark-rdd/" />
 
@@ -105,6 +105,7 @@
 <li><a href="#_foldbykey">8. foldByKey</a></li>
 <li><a href="#_foreachpartition">9. foreachPartition</a></li>
 <li><a href="#_keys_values">10. keys values</a></li>
+<li><a href="#_tmp">tmp</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -308,6 +309,22 @@ rdd2.values.collect</code></pre>
 </div>
 </div>
 </div>
+<h1 id="_tmp" class="sect0">tmp</h1>
+<div class="listingblock">
+<div class="content">
+<pre>ssh root@196.168.1.34
+
+docker exec -it spark-master /bin/bash
+
+cd $SPARK_HOME \
+&amp;&amp; bin/spark-shell --master spark://master:7077</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(1,(CompactBuffer(b, b),CompactBuffer(c, c))),
+(3,(CompactBuffer(b),CompactBuffer(c))),
+(2,(CompactBuffer(b),CompactBuffer(c)))</p>
+</div>
 
 		</div>
 		
@@ -328,6 +345,10 @@ rdd2.values.collect</code></pre>
 	
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/spark/spark-rdd-api/" rel="prev"><span>«Previous</span><p>Zhen He spark rdd api</p></a>
+		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
