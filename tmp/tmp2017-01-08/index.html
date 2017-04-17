@@ -1888,6 +1888,41 @@ res3: Array[String] = Array(hello tom, hello xixi, hello xxxxooo, hello tom, hel
 <p>scala&gt; val rdd1 = sc.textFile("hdfs://master:8020/word/").flatMap(_.split(" ")).collect
 rdd1: Array[String] = Array(hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo)</p>
 </div>
+<div class="paragraph">
+<p>" SELECT "<br>
+"   * "<br>
+" FROM "<br>
+"   (SELECT "<br>
+"     *, "<br>
+"     DATE_FORMAT(zas.out_date, '%Y-%m-%d') AS dat, "<br>
+"     (SELECT "<br>
+"       SUM(zasc.goods_count) "<br>
+"     FROM "<br>
+"       zh_asphalt_storage_count zasc "<br>
+"     WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count, "<br>
+"     (SELECT "<br>
+"       zra.abbreviation "<br>
+"     FROM "<br>
+"       zh_reservoir_area zra "<br>
+"     WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation "<br>
+"   FROM "<br>
+"     zh_out_bound_order zas "<br>
+"   ORDER BY zas.out_date DESC) AS tmp1 "<br>
+" GROUP BY tmp1.Storage_area,tmp1.dat "<br>
+" HAVING 1 = 1 "</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+  *,
+  (SELECT
+    SUM(zasc.goods_count)
+  FROM
+    zh_asphalt_storage_count zasc
+  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count
+FROM
+  zh_out_bound_order AS zas
+WHERE DATE_FORMAT(zas.out_date, '%Y-%m-%d') = '2017-04-13'</p>
+</div>
 
 		</div>
 		

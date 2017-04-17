@@ -6,8 +6,574 @@
     <description>Recent content in Post-rsses on 工作笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 13 Apr 2017 14:04:07 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Apr 2017 16:33:02 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SparkSql</title>
+      <link>/post/bigdata/spark/spark-sql/</link>
+      <pubDate>Mon, 17 Apr 2017 16:33:02 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-sql/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;SparkSql&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_sql&#34;&gt;1. Spark SQL&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_为什么要学习spark_sql&#34;&gt;1.1. 为什么要学习Spark SQL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_dataframes&#34;&gt;1.2. DataFrames&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_什么是dataframes&#34;&gt;1.2.1. 什么是DataFrames&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_创建dataframes&#34;&gt;1.2.2. 创建DataFrames&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_dataframe常用操作&#34;&gt;1.3. DataFrame常用操作&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_dsl风格语法&#34;&gt;1.3.1. DSL风格语法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sql风格语法&#34;&gt;1.3.2. SQL风格语法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_以编程方式执行spark_sql查询&#34;&gt;2. 以编程方式执行Spark SQL查询&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_编写spark_sql查询程序&#34;&gt;2.1. 编写Spark SQL查询程序&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_通过反射推断schema&#34;&gt;2.1.1. 通过反射推断Schema&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_通过structtype直接指定schema&#34;&gt;2.1.2. 通过StructType直接指定Schema&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_数据源&#34;&gt;3. 数据源&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jdbc&#34;&gt;3.1. JDBC&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_将数据写入到mysql中_打jar包方式&#34;&gt;3.1.1. 将数据写入到MySQL中（打jar包方式）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_sql&#34;&gt;1. Spark SQL&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Spark SQL是Spark用来处理结构化数据的一个模块，它提供了一个编程抽象叫做DataFrame并且作为分布式SQL查询引擎的作用。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_为什么要学习spark_sql&#34;&gt;1.1. 为什么要学习Spark SQL&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;我们已经学习了Hive，它是将Hive SQL转换成MapReduce然后提交到集群上执行，大大简化了编写MapReduce的程序的复杂性，由于MapReduce这种计算模型执行效率比较慢。所有Spark SQL的应运而生，它是将Spark SQL转换成RDD，然后提交到集群执行，执行效率非常快！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;易整合&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164810.png&#34; alt=&#34;2017 04 17 164810&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;统一的数据访问方式&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164822.png&#34; alt=&#34;2017 04 17 164822&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;兼容Hive&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164830.png&#34; alt=&#34;2017 04 17 164830&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;标准的数据连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164839.png&#34; alt=&#34;2017 04 17 164839&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_dataframes&#34;&gt;1.2. DataFrames&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_什么是dataframes&#34;&gt;1.2.1. 什么是DataFrames&lt;/h4&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;与RDD类似，DataFrame也是一个分布式数据容器。然而DataFrame更像传统数据库的二维表格，除了数据以外，还记录数据的结构信息，即schema。同时，与Hive类似，DataFrame也支持嵌套数据类型（struct、array和map）。从API易用性的角度上 看，DataFrame API提供的是一套高层的关系操作，比函数式的RDD API要更加友好，门槛更低。由于与R和Pandas的DataFrame类似，Spark DataFrame很好地继承了传统单机数据分析的开发体验。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164848.png&#34; alt=&#34;2017 04 17 164848&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_创建dataframes&#34;&gt;1.2.2. 创建DataFrames&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在SparkSQL中SQLContext是创建DataFrames和执行SQL的入口，在spark-1.5.2中已经内置了一个sqlContext&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164857.png&#34; alt=&#34;2017 04 17 164857&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;在本地创建一个文件，有三列，分别是id、name、age，用空格分隔，然后上传到hdfs上&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /person.txt &amp;lt;&amp;lt;_EOF_
+1,a,23
+2,hello,34
+3,xxxx,12
+_EOF_
+
+hdfs dfs -put /person.txt /&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在spark shell执行下面命令，读取数据，将每一行的数据使用列分隔符分割&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd $SPARK_HOME &amp;amp;&amp;amp; bin/spark-shell --master spark://master:7077
+
+val lineRDD = sc.textFile(&#34;hdfs://master:8020/person.txt&#34;).map(_.split(&#34;,&#34;))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定义case class（相当于表的schema）&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;case class Person(id:Int, name:String, age:Int)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将RDD和case class关联&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;val personRDD = lineRDD.map(x =&amp;gt; Person(x(0).toInt, x(1), x(2).toInt))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将RDD转换成DataFrame&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;val personDF = personRDD.toDF&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对DataFrame进行处理&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;personDF.show&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164909.png&#34; alt=&#34;2017 04 17 164909&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_dataframe常用操作&#34;&gt;1.3. DataFrame常用操作&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_dsl风格语法&#34;&gt;1.3.1. DSL风格语法&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//查看DataFrame中的内容
+personDF.show
+
+//查看DataFrame部分列中的内容
+personDF.select(personDF.col(&#34;name&#34;)).show
+personDF.select(col(&#34;name&#34;), col(&#34;age&#34;)).show
+personDF.select(&#34;name&#34;).show
+
+//打印DataFrame的Schema信息
+personDF.printSchema
+
+//查询所有的name和age，并将age+1
+personDF.select(col(&#34;id&#34;), col(&#34;name&#34;), col(&#34;age&#34;) + 1).show
+personDF.select(personDF(&#34;id&#34;), personDF(&#34;name&#34;), personDF(&#34;age&#34;) + 1).show
+
+image::{img}/img/spark/2017-04-17_164916.png[]
+---
+
+//过滤age大于等于18的
+personDF.filter(col(&#34;age&#34;) &amp;gt;= 18).show
+
+image::{img}/img/spark/2017-04-17_164924.png[]
+---
+
+//按年龄进行分组并统计相同年龄的人数
+personDF.groupBy(&#34;age&#34;).count().show()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164930.png&#34; alt=&#34;2017 04 17 164930&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_sql风格语法&#34;&gt;1.3.2. SQL风格语法&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;如果想使用SQL风格的语法，需要将DataFrame注册成表&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;personDF.registerTempTable(&#34;t_person&#34;)
+//查询年龄最大的前两名
+sqlContext.sql(&#34;select * from t_person order by age desc limit 2&#34;).show&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164936.png&#34; alt=&#34;2017 04 17 164936&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//显示表的Schema信息
+sqlContext.sql(&#34;desc t_person&#34;).show&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164943.png&#34; alt=&#34;2017 04 17 164943&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_以编程方式执行spark_sql查询&#34;&gt;2. 以编程方式执行Spark SQL查询&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_编写spark_sql查询程序&#34;&gt;2.1. 编写Spark SQL查询程序&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;前面我们学习了如何在Spark Shell中使用SQL完成查询，现在我们来实现在自定义的程序中编写Spark SQL查询程序。首先在maven项目的pom.xml中添加Spark SQL的依赖&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+&amp;lt;groupId&amp;gt;org.apache.spark&amp;lt;/groupId&amp;gt;
+&amp;lt;artifactId&amp;gt;spark-sql_2.10&amp;lt;/artifactId&amp;gt;
+&amp;lt;version&amp;gt;1.5.2&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_通过反射推断schema&#34;&gt;2.1.1. 通过反射推断Schema&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SQLContext
+
+object InferringSchema {
+def main(args: Array[String]) {
+
+//创建SparkConf()并设置App名称
+val conf = new SparkConf().setAppName(&#34;SQL-1&#34;)
+//SQLContext要依赖SparkContext
+val sc = new SparkContext(conf)
+//创建SQLContext
+val sqlContext = new SQLContext(sc)
+
+//从指定的地址创建RDD
+val lineRDD = sc.textFile(args(0)).map(_.split(&#34;&#34;))
+
+//创建case class
+    //将RDD和case class关联
+val personRDD = lineRDD.map(x =&amp;gt;Person(x(0).toInt, x(1), x(2).toInt))
+//导入隐式转换，如果不导入无法将RDD转换成DataFrame
+    //将RDD转换成DataFrame
+import sqlContext.implicits._
+val personDF = personRDD.toDF
+//注册表
+personDF.registerTempTable(&#34;t_person&#34;)
+//传入SQL
+val df = sqlContext.sql(&#34;select * from t_person order by age desc limit 2&#34;)
+//将结果以JSON的方式存储到指定位置
+df.write.json(args(1))
+//停止Spark Context
+sc.stop()
+  }
+}
+//case class一定要放到外面
+case class Person(id: Int, name: String, age: Int)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;将程序打成jar包，上传到spark集群，提交Spark任务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-submit \
+--class cn.itcast.spark.sql.InferringSchema \
+--master spark://node1.itcast.cn:7077 \
+/root/spark-mvn-1.0-SNAPSHOT.jar \
+hdfs://node1.itcast.cn:9000/person.txt \
+hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查看运行结果&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hdfs dfs -cat  hdfs://node1.itcast.cn:9000/out/part-r-*&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_164952.png&#34; alt=&#34;2017 04 17 164952&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_通过structtype直接指定schema&#34;&gt;2.1.2. 通过StructType直接指定Schema&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import org.apache.spark.sql.{Row, SQLContext}
+import org.apache.spark.sql.types._
+import org.apache.spark.{SparkContext, SparkConf}
+
+object SpecifyingSchema {
+def main(args: Array[String]) {
+//创建SparkConf()并设置App名称
+val conf = new SparkConf().setAppName(&#34;SQL-2&#34;)
+//SQLContext要依赖SparkContext
+val sc = new SparkContext(conf)
+//创建SQLContext
+val sqlContext = new SQLContext(sc)
+//从指定的地址创建RDD
+val personRDD = sc.textFile(args(0)).map(_.split(&#34;&#34;))
+//通过StructType直接指定每个字段的schema
+val schema = StructType(
+List(
+StructField(&#34;id&#34;, IntegerType, true),
+StructField(&#34;name&#34;, StringType, true),
+StructField(&#34;age&#34;, IntegerType, true)
+      )
+    )
+//将RDD映射到rowRDD
+val rowRDD = personRDD.map(p =&amp;gt;Row(p(0).toInt, p(1).trim, p(2).toInt))
+//将schema信息应用到rowRDD上
+val personDataFrame = sqlContext.createDataFrame(rowRDD, schema)
+//注册表
+personDataFrame.registerTempTable(&#34;t_person&#34;)
+//执行SQL
+val df = sqlContext.sql(&#34;select * from t_person order by age desc limit 4&#34;)
+//将结果以JSON的方式存储到指定位置
+df.write.json(args(1))
+//停止Spark Context
+sc.stop()
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;将程序打成jar包，上传到spark集群，提交Spark任务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-submit \
+--class cn.itcast.spark.sql.InferringSchema \
+--master spark://node1.itcast.cn:7077 \
+/root/spark-mvn-1.0-SNAPSHOT.jar \
+hdfs://node1.itcast.cn:9000/person.txt \
+hdfs://node1.itcast.cn:9000/out1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查看结果&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hdfs dfs -cat  hdfs://node1.itcast.cn:9000/out1/part-r-*&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_165001.png&#34; alt=&#34;2017 04 17 165001&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_数据源&#34;&gt;3. 数据源&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_jdbc&#34;&gt;3.1. JDBC&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Spark SQL可以通过JDBC从关系型数据库中读取数据的方式创建DataFrame，通过对DataFrame一系列的计算后，还可以将数据再写回关系型数据库中。
+==== 从MySQL中加载数据（Spark Shell方式）
+. 启动Spark Shell，必须指定mysql连接驱动jar包&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-shell \
+--master spark://node1.itcast.cn:7077 \
+--jars /usr/local/spark-1.5.2-bin-hadoop2.6/mysql-connector-java-5.1.35-bin.jar \
+--driver-class-path /usr/local/spark-1.5.2-bin-hadoop2.6/mysql-connector-java-5.1.35-bin.jar&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;从mysql中加载数据&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;val jdbcDF = sqlContext.read.format(&#34;jdbc&#34;).options(Map(&#34;url&#34; -&amp;gt;&#34;jdbc:mysql://192.168.10.1:3306/bigdata&#34;, &#34;driver&#34; -&amp;gt;&#34;com.mysql.jdbc.Driver&#34;, &#34;dbtable&#34; -&amp;gt;&#34;person&#34;, &#34;user&#34; -&amp;gt;&#34;root&#34;, &#34;password&#34; -&amp;gt;&#34;123456&#34;)).load()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行查询&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;jdbcDF.show()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-04-17_165008.png&#34; alt=&#34;2017 04 17 165008&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_将数据写入到mysql中_打jar包方式&#34;&gt;3.1.1. 将数据写入到MySQL中（打jar包方式）&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;编写Spark SQL程序&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import java.util.Properties
+import org.apache.spark.sql.{SQLContext, Row}
+import org.apache.spark.sql.types.{StringType, IntegerType, StructField, StructType}
+import org.apache.spark.{SparkConf, SparkContext}
+
+object JdbcRDD {
+def main(args: Array[String]) {
+val conf = new SparkConf().setAppName(&#34;MySQL-Demo&#34;)
+val sc = new SparkContext(conf)
+val sqlContext = new SQLContext(sc)
+//通过并行化创建RDD
+val personRDD = sc.parallelize(Array(&#34;1 tom 5&#34;, &#34;2 jerry 3&#34;, &#34;3 kitty 6&#34;)).map(_.split(&#34;&#34;))
+//通过StructType直接指定每个字段的schema
+val schema = StructType(
+List(
+StructField(&#34;id&#34;, IntegerType, true),
+StructField(&#34;name&#34;, StringType, true),
+StructField(&#34;age&#34;, IntegerType, true)
+      )
+    )
+//将RDD映射到rowRDD
+val rowRDD = personRDD.map(p =&amp;gt;Row(p(0).toInt, p(1).trim, p(2).toInt))
+//将schema信息应用到rowRDD上
+val personDataFrame = sqlContext.createDataFrame(rowRDD, schema)
+//创建Properties存储数据库相关属性
+val prop = new Properties()
+    prop.put(&#34;user&#34;, &#34;root&#34;)
+    prop.put(&#34;password&#34;, &#34;123456&#34;)
+//将数据追加到数据库
+personDataFrame.write.mode(&#34;append&#34;).jdbc(&#34;jdbc:mysql://192.168.10.1:3306/bigdata&#34;, &#34;bigdata.person&#34;, prop)
+//停止SparkContext
+sc.stop()
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用maven将程序打包&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将Jar包提交到spark集群&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-submit \
+--class cn.itcast.spark.sql.JdbcRDD \
+--master spark://node1.itcast.cn:7077 \
+--jars /usr/local/spark-1.5.2-bin-hadoop2.6/mysql-connector-java-5.1.35-bin.jar \
+--driver-class-path /usr/local/spark-1.5.2-bin-hadoop2.6/mysql-connector-java-5.1.35-bin.jar \
+/root/spark-mvn-1.0-SNAPSHOT.jar&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Zhen He spark rdd api</title>
@@ -8749,19 +9315,6 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>hadoop-docker</title>
-      <link>/post/bigdata/hadoop/docker/hadoop-docker/</link>
-      <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bigdata/hadoop/docker/hadoop-docker/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/HariSekhon/Dockerfiles&#34; class=&#34;bare&#34;&gt;https://github.com/HariSekhon/Dockerfiles&lt;/a&gt;
-&lt;a href=&#34;https://hub.docker.com/r/harisekhon&#34; class=&#34;bare&#34;&gt;https://hub.docker.com/r/harisekhon&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

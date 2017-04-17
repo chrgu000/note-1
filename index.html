@@ -12,7 +12,7 @@
 <meta property="og:url" content="/" />
 
 
-<meta property="og:updated_time" content="2017-04-13T14:04:07&#43;00:00"/>
+<meta property="og:updated_time" content="2017-04-17T16:33:02&#43;00:00"/>
 
 
 
@@ -80,6 +80,28 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-sql/" rel="bookmark">SparkSql</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-17 16:33:02 &#43;0000 UTC">April 17, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql1. Spark SQL1.1. 为什么要学习Spark SQL1.2. DataFrames1.2.1. 什么是DataFrames1.2.2. 创建DataFrames1.3. DataFrame常用操作1.3.1. DSL风格语法1.3.2. SQL风格语法2. 以编程方式执行Spark SQL查询2.1. 编写Spark SQL查询程序2.1.1. 通过反射推断Schema2.1.2. 通过StructType直接指定Schema3. 数据源3.1. JDBC3.1.1. 将数据写入到MySQL中（打jar包方式）1. Spark SQLSpark SQL是Spark用来处理结构化数据的一个模块，它提供了一个编程抽象叫做DataFrame并且作为分布式SQL查询引擎的作用。
+1.1. 为什么要学习Spark SQL我们已经学习了Hive，它是将Hive SQL转换成MapReduce然后提交到集群上执行，大大简化了编写MapReduce的程序的复杂性，由于MapReduce这种计算模型执行效率比较慢。所有Spark SQL的应运而生，它是将Spark SQL转换成RDD，然后提交到集群执行，执行效率非常快！
+易整合
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -282,26 +304,6 @@ tar -zxvf spark-1.5.2-bin-hadoop2.6.tgz -C /usr/local1.1.3. 配置Spark
 Consumer 消息消费者，向kafka broker取消息的客户端
 Topic 咋们可以理解为一个队列。
 Consumer Group （CG）这是 kafka 用来实现一个 topic 消息的广播（发给所有的 consumer ）和单播（发给任意一个 consumer ）的手段。一个 topic 可以有多个 CG 。topic 的消息会复制（不是真的复制，是概念上的）到所有的 CG ，但每个 partion 只会把消息发给该 CG 中的一个 consumer 。如果需要实现广播，只要每个 consumer 有一个独立的 CG 就可以了。要实现单播只要所有的 consumer 在同一个 CG 。用 CG 还可以将 consumer 进行自由的分组而不需要多次发送消息到不同的 topic 。
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/storm/kafka/" rel="bookmark">Kafka集群安装部署、Kafka生产者、Kafka消费者</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群Kafka生产者Java APIKafka消费者Java APIKafka是什么　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA + STORM +REDIS[disc]　* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性JMS是什么1.
 					</div>
 				</div>
 			</div>

@@ -86,6 +86,27 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/virtualbox/" rel="bookmark">virtualbox错误</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 include::content/post/base.adoc[] :toc-title: Contents VirtualBox Tip VBox中出现UUID have already exists解决方法  进入到VBoxManage.exe所在目录
+# 参数:虚拟vdi硬盘路径 VBoxManage.exe internalcommands sethduuid G:\VirtualMachine\CentOS-WEB\CentOS-WEB-01.vdi   通信问题  host-only模式下  主机ping通虚拟机 √ 虚拟机ping主机 ✘  关闭win10防火墙    修改硬盘大小 #7d91f211-d3e4-4185-bd9a-314c9b39856d #修改成40G VBoxManage modifyhd uuid –-resize 40960  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/windows/" rel="bookmark">win 端口转发</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -279,30 +300,6 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 [[https://www.mongodb.com/download-center?jmp=docs#community]]
 配置
 # ${MONGO_PATH} --&gt; /root/opt/sof/mongodb-linux-i686-3.2.7ln -s ${MONGO_PATH}/bin/mongod /usr/bin/mongodln -s ${MONGO_PATH}/bin/mongo /usr/bin/mongo/etc/mongod.conf systemLog:destination: filepath: "/var/log/mongodb/mongod.log" #日志路径logAppend: truestorage:dbPath: "/home/vagrant/opt/mongd/db"processManagement: #后台运行fork: truenet:bindIp: 0.0.0.0 #绑定所有网卡port: 27017启动
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/quanceng/" rel="bookmark">圈层模块</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 圈层1.1. 发布动态1. 圈层1.1. 发布动态URLhttp://116.90.81.68/app/app_user_mood/insert.shtml
-支持格式POST JSON
-HTTP请求方式Content-Type: application/json;charset=UTF-8
-携带参数说明{"user_id": "201512116eSr5i4", # 用户id"user_name": "20160928TyWUN1L", # 用户名"mood": "兆华", # 动态详情"img": "img/asdlfjl13345431231.img" # 图片 多张用 | 拼接}是否需要登录是
-成功{"state":1}失败{"
 					</div>
 				</div>
 			</div>

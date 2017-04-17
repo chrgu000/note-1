@@ -1809,6 +1809,41 @@ res3: Array[String] = Array(hello tom, hello xixi, hello xxxxooo, hello tom, hel
 &lt;p&gt;scala&amp;gt; val rdd1 = sc.textFile(&#34;hdfs://master:8020/word/&#34;).flatMap(_.split(&#34; &#34;)).collect
 rdd1: Array[String] = Array(hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo)&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34; SELECT &#34;&lt;br&gt;
+&#34;   * &#34;&lt;br&gt;
+&#34; FROM &#34;&lt;br&gt;
+&#34;   (SELECT &#34;&lt;br&gt;
+&#34;     *, &#34;&lt;br&gt;
+&#34;     DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) AS dat, &#34;&lt;br&gt;
+&#34;     (SELECT &#34;&lt;br&gt;
+&#34;       SUM(zasc.goods_count) &#34;&lt;br&gt;
+&#34;     FROM &#34;&lt;br&gt;
+&#34;       zh_asphalt_storage_count zasc &#34;&lt;br&gt;
+&#34;     WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count, &#34;&lt;br&gt;
+&#34;     (SELECT &#34;&lt;br&gt;
+&#34;       zra.abbreviation &#34;&lt;br&gt;
+&#34;     FROM &#34;&lt;br&gt;
+&#34;       zh_reservoir_area zra &#34;&lt;br&gt;
+&#34;     WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation &#34;&lt;br&gt;
+&#34;   FROM &#34;&lt;br&gt;
+&#34;     zh_out_bound_order zas &#34;&lt;br&gt;
+&#34;   ORDER BY zas.out_date DESC) AS tmp1 &#34;&lt;br&gt;
+&#34; GROUP BY tmp1.Storage_area,tmp1.dat &#34;&lt;br&gt;
+&#34; HAVING 1 = 1 &#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT
+  *,
+  (SELECT
+    SUM(zasc.goods_count)
+  FROM
+    zh_asphalt_storage_count zasc
+  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count
+FROM
+  zh_out_bound_order AS zas
+WHERE DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) = &#39;2017-04-13&#39;&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     

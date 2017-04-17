@@ -90,6 +90,26 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/storm/kafka/" rel="bookmark">Kafka集群安装部署、Kafka生产者、Kafka消费者</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群Kafka生产者Java APIKafka消费者Java APIKafka是什么　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA + STORM +REDIS[disc]　* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性JMS是什么1.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" rel="bookmark">Storm目录树、任务提交、消息容错</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -279,31 +299,6 @@ mysql.ymlversion: '2'services:mysql:image: dishui.io:5000/mysql:5.5.52conta
 配置 HIVE_HOME 环境变量 vi conf/hive-env.sh 配置其中的 $hadoop_home
 配置元数据库信息 vi hive-site.xml
 &lt;configuration&gt;&lt;property&gt;&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;&lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;&lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;&lt;/property&gt;&lt;property&gt;&lt;name&gt;javax.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/hadoop-shell/" rel="bookmark">hadoop-shell</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-13 00:00:00 &#43;0000 UTC">March 13, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hadoop-shell1. hdfs1. hdfs列表
-hadoop fs -ls /上传文件
-hadoop fs -put /test.ee /查看文件内容
-hadoop fs -cat /test.ee下载文件
-hadoop fs -get /test.ee /创建目录
-hadoop fs -mkdir -p /wordcount/input
 					</div>
 				</div>
 			</div>
