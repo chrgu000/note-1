@@ -54,8 +54,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
-										<h1 class="mr-header-title">工作笔记</h1>
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -1867,10 +1867,10 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
 </div>
 </div>
 <div class="paragraph">
-<p>cat &gt; word.txt &lt;&lt;_EOF_
-hello tom
-hello xixi
-hello xxxxooo
+<p>cat &gt; /person.txt &lt;&lt;_EOF_
+1,a,23
+2,hello,34
+3,xxxx,12
 <em>EOF</em></p>
 </div>
 <div class="paragraph">
@@ -1912,16 +1912,28 @@ rdd1: Array[String] = Array(hello, tom, hello, xixi, hello, xxxxooo, hello, tom,
 " HAVING 1 = 1 "</p>
 </div>
 <div class="paragraph">
-<p>SELECT
-  *,
-  (SELECT
-    SUM(zasc.goods_count)
-  FROM
-    zh_asphalt_storage_count zasc
-  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count
-FROM
-  zh_out_bound_order AS zas
-WHERE DATE_FORMAT(zas.out_date, '%Y-%m-%d') = '2017-04-13'</p>
+<p>" SELECT "<br>
+"   *, "<br>
+"   (SELECT "<br>
+"     SUM(zasc.goods_count) "<br>
+"   FROM "<br>
+"     zh_asphalt_storage_count zasc "<br>
+"   WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count "<br>
+" FROM "<br>
+"   zh_out_bound_order AS zas "<br>
+" WHERE DATE_FORMAT(zas.out_date, '%Y-%m-%d') = '2017-04-13' "<br></p>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit \
+--class StreamingWordCount \
+--master spark://master:7077 \
+/streaming-1.0-SNAPSHOT.jar \
+worker \
+10010 \
+hdfs://master:8020/nc</p>
+</div>
+<div class="paragraph">
+<p>netsh interface portproxy add v4tov4 listenport=3333 connectaddress=192.168.137.15 connectport=6066</p>
 </div>
 
 		</div>
@@ -1977,7 +1989,7 @@ WHERE DATE_FORMAT(zas.out_date, '%Y-%m-%d') = '2017-04-13'</p>
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

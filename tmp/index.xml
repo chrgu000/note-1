@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tmp-rsses on 工作笔记</title>
+    <title>Tmp-rsses on 零零散散</title>
     <link>/tmp/index.xml</link>
-    <description>Recent content in Tmp-rsses on 工作笔记</description>
+    <description>Recent content in Tmp-rsses on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/tmp/index.xml" rel="self" type="application/rss+xml" />
@@ -1788,10 +1788,10 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt; word.txt &amp;lt;&amp;lt;_EOF_
-hello tom
-hello xixi
-hello xxxxooo
+&lt;p&gt;cat &amp;gt; /person.txt &amp;lt;&amp;lt;_EOF_
+1,a,23
+2,hello,34
+3,xxxx,12
 &lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -1833,16 +1833,28 @@ rdd1: Array[String] = Array(hello, tom, hello, xixi, hello, xxxxooo, hello, tom,
 &#34; HAVING 1 = 1 &#34;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  *,
-  (SELECT
-    SUM(zasc.goods_count)
-  FROM
-    zh_asphalt_storage_count zasc
-  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count
-FROM
-  zh_out_bound_order AS zas
-WHERE DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) = &#39;2017-04-13&#39;&lt;/p&gt;
+&lt;p&gt;&#34; SELECT &#34;&lt;br&gt;
+&#34;   *, &#34;&lt;br&gt;
+&#34;   (SELECT &#34;&lt;br&gt;
+&#34;     SUM(zasc.goods_count) &#34;&lt;br&gt;
+&#34;   FROM &#34;&lt;br&gt;
+&#34;     zh_asphalt_storage_count zasc &#34;&lt;br&gt;
+&#34;   WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count &#34;&lt;br&gt;
+&#34; FROM &#34;&lt;br&gt;
+&#34;   zh_out_bound_order AS zas &#34;&lt;br&gt;
+&#34; WHERE DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) = &#39;2017-04-13&#39; &#34;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;bin/spark-submit \
+--class StreamingWordCount \
+--master spark://master:7077 \
+/streaming-1.0-SNAPSHOT.jar \
+worker \
+10010 \
+hdfs://master:8020/nc&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;netsh interface portproxy add v4tov4 listenport=3333 connectaddress=192.168.137.15 connectport=6066&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

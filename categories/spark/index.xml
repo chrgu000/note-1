@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>工作笔记</title>
+    <title>零零散散</title>
     <link>/categories/spark/index.xml</link>
-    <description>Recent content on 工作笔记</description>
+    <description>Recent content on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SparkStreaming</title>
+      <link>/post/bigdata/spark/spark-streaming/</link>
+      <pubDate>Tue, 18 Apr 2017 13:02:08 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-streaming/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;stream&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_tmp&#34;&gt;1. tmp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_tmp&#34;&gt;1. tmp&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//监听 6066
+nc -lk 6066&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>SparkSql</title>

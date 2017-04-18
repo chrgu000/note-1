@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post-rsses on 工作笔记</title>
+    <title>Post-rsses on 零零散散</title>
     <link>/post/index.xml</link>
-    <description>Recent content in Post-rsses on 工作笔记</description>
+    <description>Recent content in Post-rsses on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Apr 2017 16:33:02 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Apr 2017 13:02:08 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SparkStreaming</title>
+      <link>/post/bigdata/spark/spark-streaming/</link>
+      <pubDate>Tue, 18 Apr 2017 13:02:08 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-streaming/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;stream&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_tmp&#34;&gt;1. tmp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_tmp&#34;&gt;1. tmp&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//监听 6066
+nc -lk 6066&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>SparkSql</title>
@@ -9285,34 +9311,6 @@ Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是�
    Strom用来计算数据。
    Redis是个内存数据库，用来保存数据。&lt;/pre&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>CentOS7</title>
-      <link>/post/linux/CentOS7/</link>
-      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/linux/CentOS7/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;CentOS7&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_centos7&#34;&gt;1. CentOS7&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_安装_docker&#34;&gt;1.1. 安装 docker&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_centos7&#34;&gt;1. CentOS7&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_安装_docker&#34;&gt;1.1. 安装 docker&lt;/h3&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

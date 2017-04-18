@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>工作笔记</title>
+<title>零零散散</title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="工作笔记" />
+<meta property="og:title" content="零零散散" />
 <meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
@@ -49,8 +49,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="工作笔记" rel="home">
-										<h1 class="mr-header-title">工作笔记</h1>
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -80,6 +80,29 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/vim/" rel="bookmark">vim编辑器</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents vim编辑器 ####vim模式：
+编辑模式(命令模式) 输入模式 末行模式  模式转换： 编辑--&gt;输入： i: 在当前光标所在字符的前面，转为输入模式； a: 在当前光标所在字符的后面，转为输入模式； o: 在当前光标所在行的下方，新建一行，并转为输入模式； -- I：在当前光标所在行的行首，转换为输入模式 A：在当前光标所在行的行尾，转换为输入模式 O：在当前光标所在行的上方，新建一行，并转为输入模式； 输入--&gt;编辑： ESC 编辑--&gt;末行： ： 末行--&gt;编辑： ESC, ESC  一、打开文件  vim /path/to/somefile
+ vim +# :打开文件，并定位于第#行 vim +：打开文件，定位至最后一行 vim +/PATTERN : 打开文件，定位至第一次被PATTERN匹配到的行的行首 默认处于编辑模式  二、关闭文件 1、末行模式关闭文件 :q 退出 :wq 保存并退出 :q! 不保存并退出 :w 保存 :w! 强行保存 :wq --&gt; :x 2、编辑模式下退出 ZZ: 保存并退出  三、移动光标(编辑模式)  1、逐字符移动：
+    h: 左 l: 右 j: 下 k: 上 #h: 移动#个字符；    2、以单词为单位移动
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -282,29 +305,6 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/koto/" rel="bookmark">图片服务器</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. mongo1.1. mongo 安装1.2. ImageMagick2. Koto 图片服务器1. mongo1.1. mongo 安装下载
-[[https://www.mongodb.com/download-center?jmp=docs#community]]
-配置
-# ${MONGO_PATH} --&gt; /root/opt/sof/mongodb-linux-i686-3.2.7ln -s ${MONGO_PATH}/bin/mongod /usr/bin/mongodln -s ${MONGO_PATH}/bin/mongo /usr/bin/mongo/etc/mongod.conf systemLog:destination: filepath: "/var/log/mongodb/mongod.log" #日志路径logAppend: truestorage:dbPath: "/home/vagrant/opt/mongd/db"processManagement: #后台运行fork: truenet:bindIp: 0.0.0.0 #绑定所有网卡port: 27017启动
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
@@ -418,7 +418,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 工作笔记. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>
