@@ -9,6 +9,314 @@
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>采集日志服务 nginx log</title>
+      <link>/post/bigdata/spark/nginx-log/</link>
+      <pubDate>Thu, 20 Apr 2017 16:38:02 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/nginx-log/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;log&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_方式&#34;&gt;1. Docker 方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装&#34;&gt;2. 安装&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装依赖&#34;&gt;2.1. 安装依赖&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_上传luajit_2_0_4_tar_gz并安装luajit&#34;&gt;2.2. 上传LuaJIT-2.0.4.tar.gz并安装LuaJIT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_设置环境变量&#34;&gt;2.3. 设置环境变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_创建modules保存nginx的模块&#34;&gt;2.4. 创建modules保存nginx的模块&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_上传openresty_1_9_7_3_tar_gz和依赖的模块lua_nginx_module_0_10_0_tar_ngx_devel_kit_0_2_19_tar_ngx_devel_kit_0_2_19_tar_echo_nginx_module_0_58_tar_gz&#34;&gt;2.5. 上传openresty-1.9.7.3.tar.gz和依赖的模块lua-nginx-module-0.10.0.tar、ngx_devel_kit-0.2.19.tar、ngx_devel_kit-0.2.19.tar、echo-nginx-module-0.58.tar.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_将依赖的模块直接解压到_usr_local_nginx_modules目录即可_不需要编译安装&#34;&gt;2.6. 将依赖的模块直接解压到/usr/local/nginx/modules目录即可，不需要编译安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编译安装openresty&#34;&gt;2.7. 编译安装openresty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_上传nginx&#34;&gt;2.8. 上传nginx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编译nginx并支持其他模块&#34;&gt;2.9. 编译nginx并支持其他模块&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_修改nginx配置文件&#34;&gt;2.10. 修改nginx配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_在nginx所在的服务器上添加一个ma_js&#34;&gt;2.11. 在nginx所在的服务器上添加一个ma.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_在要统计的页面添加js&#34;&gt;2.12. 在要统计的页面添加js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker_方式&#34;&gt;1. Docker 方式&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker pull registry.cn-hangzhou.aliyuncs.com/dishui/nginx-log:1.0
+docker run -d -p 80:80 registry.cn-hangzhou.aliyuncs.com/dishui/nginx-log:1.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;访问 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;/tmp/a/&#34; class=&#34;bare&#34;&gt;/tmp/a/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_安装&#34;&gt;2. 安装&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_安装依赖&#34;&gt;2.1. 安装依赖&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;yum -y install gcc perl pcre-devel openssl openssl-devel&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_上传luajit_2_0_4_tar_gz并安装luajit&#34;&gt;2.2. 上传LuaJIT-2.0.4.tar.gz并安装LuaJIT&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf LuaJIT-2.0.4.tar.gz -C /usr/local/src/
+cd /usr/local/src/LuaJIT-2.0.4/
+make &amp;amp;&amp;amp; make install PREFIX=/usr/local/luajit&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_设置环境变量&#34;&gt;2.3. 设置环境变量&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export LUAJIT_LIB=/usr/local/luajit/lib
+export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_创建modules保存nginx的模块&#34;&gt;2.4. 创建modules保存nginx的模块&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mkdir -p /usr/local/nginx/modules&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_上传openresty_1_9_7_3_tar_gz和依赖的模块lua_nginx_module_0_10_0_tar_ngx_devel_kit_0_2_19_tar_ngx_devel_kit_0_2_19_tar_echo_nginx_module_0_58_tar_gz&#34;&gt;2.5. 上传openresty-1.9.7.3.tar.gz和依赖的模块lua-nginx-module-0.10.0.tar、ngx_devel_kit-0.2.19.tar、ngx_devel_kit-0.2.19.tar、echo-nginx-module-0.58.tar.gz&lt;/h3&gt;
+
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_将依赖的模块直接解压到_usr_local_nginx_modules目录即可_不需要编译安装&#34;&gt;2.6. 将依赖的模块直接解压到/usr/local/nginx/modules目录即可，不需要编译安装&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf lua-nginx-module-0.10.0.tar.gz -C /usr/local/nginx/modules/
+tar -zxvf set-misc-nginx-module-0.29.tar.gz -C /usr/local/nginx/modules/
+tar -zxvf ngx_devel_kit-0.2.19.tar.gz -C /usr/local/nginx/modules/
+tar -zxvf echo-nginx-module-0.58.tar.gz -C /usr/local/nginx/modules/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　
+=== 解压openresty-1.9.7.3.tar.gz&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf openresty-1.9.7.3.tar.gz -C /usr/local/src/
+cd /usr/local/src/openresty-1.9.7.3/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_编译安装openresty&#34;&gt;2.7. 编译安装openresty&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;./configure --prefix=/usr/local/openresty --with-luajit &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_上传nginx&#34;&gt;2.8. 上传nginx&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf nginx-1.8.1.tar.gz -C /usr/local/src/
+cd /usr/local/src/nginx-1.8.1/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_编译nginx并支持其他模块&#34;&gt;2.9. 编译nginx并支持其他模块&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;　　./configure --prefix=/usr/local/nginx \
+　　  --with-ld-opt=&#34;-Wl,-rpath,/usr/local/luajit/lib&#34; \
+　　    --add-module=/usr/local/nginx/modules/ngx_devel_kit-0.2.19 \
+　　    --add-module=/usr/local/nginx/modules/lua-nginx-module-0.10.0 \
+　　    --add-module=/usr/local/nginx/modules/set-misc-nginx-module-0.29 \
+　　    --add-module=/usr/local/nginx/modules/echo-nginx-module-0.58
+　　make -j2
+　　make install&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_修改nginx配置文件&#34;&gt;2.10. 修改nginx配置文件&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;worker_processes  2;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+log_format tick &#34;$msec^A$remote_addr^A$u_domain^A$u_url^A$u_title^A$u_referrer^A$u_sh^A$u_sw^A$u_cd^A$u_lang^A$http_user_agent^A$u_utrace^A$u_account&#34;;
+
+    access_log  logs/access.log  tick;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  localhost;
+        location /1.gif {
+            #伪装成gif文件
+            default_type image/gif;
+            #本身关闭access_log，通过subrequest记录log
+            access_log off;
+
+            access_by_lua &#34;
+                -- 用户跟踪cookie名为__utrace
+                local uid = ngx.var.cookie___utrace
+                if not uid then
+                    -- 如果没有则生成一个跟踪cookie，算法为md5(时间戳+IP+客户端信息)
+                    uid = ngx.md5(ngx.now() .. ngx.var.remote_addr .. ngx.var.http_user_agent)
+                end
+                ngx.header[&#39;Set-Cookie&#39;] = {&#39;__utrace=&#39; .. uid .. &#39;; path=/&#39;}
+                if ngx.var.arg_domain then
+                -- 通过subrequest到/i-log记录日志，将参数和用户跟踪cookie带过去
+                    ngx.location.capture(&#39;/i-log?&#39; .. ngx.var.args .. &#39;&amp;amp;utrace=&#39; .. uid)
+                end
+            &#34;;
+
+            #此请求不缓存
+            add_header Expires &#34;Fri, 01 Jan 1980 00:00:00 GMT&#34;;
+            add_header Pragma &#34;no-cache&#34;;
+            add_header Cache-Control &#34;no-cache, max-age=0, must-revalidate&#34;;
+
+            #返回一个1×1的空gif图片
+            empty_gif;
+        }
+
+        location /i-log {
+            #内部location，不允许外部直接访问
+            internal;
+
+            #设置变量，注意需要unescape
+            set_unescape_uri $u_domain $arg_domain;
+            set_unescape_uri $u_url $arg_url;
+            set_unescape_uri $u_title $arg_title;
+            set_unescape_uri $u_referrer $arg_referrer;
+            set_unescape_uri $u_sh $arg_sh;
+            set_unescape_uri $u_sw $arg_sw;
+            set_unescape_uri $u_cd $arg_cd;
+            set_unescape_uri $u_lang $arg_lang;
+            set_unescape_uri $u_utrace $arg_utrace;
+            set_unescape_uri $u_account $arg_account;
+
+            #打开日志
+            log_subrequest on;
+            #记录日志到ma.log，实际应用中最好加buffer，格式为tick
+            access_log /var/nginx_logs/ma.log tick;
+
+            #输出空字符串
+            echo &#39;&#39;;
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_在nginx所在的服务器上添加一个ma_js&#34;&gt;2.11. 在nginx所在的服务器上添加一个ma.js&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;(function () {
+    var params = {};
+    //Document对象数据
+    if(document) {
+        params.domain = document.domain || &#39;&#39;;
+        params.url = document.URL || &#39;&#39;;
+        params.title = document.title || &#39;&#39;;
+        params.referrer = document.referrer || &#39;&#39;;
+    }
+    //Window对象数据
+    if(window &amp;amp;&amp;amp; window.screen) {
+        params.sh = window.screen.height || 0;
+        params.sw = window.screen.width || 0;
+        params.cd = window.screen.colorDepth || 0;
+    }
+    //navigator对象数据
+    if(navigator) {
+        params.lang = navigator.language || &#39;&#39;;
+    }
+    //解析_maq配置
+    // if(_maq) {
+    //     for(var i in _maq) {
+    //         switch(_maq[i][0]) {
+    //             case &#39;_setAccount&#39;:
+    //                 params.account = _maq[i][1];
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //     }
+    // }
+    //拼接参数串
+    var args = &#39;&#39;;
+    for(var i in params) {
+        if(args != &#39;&#39;) {
+            args += &#39;&amp;amp;&#39;;
+        }
+        args += i + &#39;=&#39; + encodeURIComponent(params[i]);
+    }
+
+    //通过Image对象请求后端脚本
+    var img = new Image(1, 1);
+    img.src = &#39;http://flow.itcast.zx/log.gif?&#39; + args;
+})();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_在要统计的页面添加js&#34;&gt;2.12. 在要统计的页面添加js&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;script type=&#34;text/javascript&#34;&amp;gt;
+    var _maq = _maq || [];
+    _maq.push([&#39;_setAccount&#39;, &#39;zx5352&#39;]);
+
+    (function() {
+        var ma = document.createElement(&#39;script&#39;);
+        ma.type = &#39;text/javascript&#39;;
+        ma.async = true;
+        ma.src = &#39;http://flow.itcast.zx/ma.js&#39;;
+        var s = document.getElementsByTagName(&#39;script&#39;)[0];
+        s.parentNode.insertBefore(ma, s);
+    })();
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;　　&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>SparkStreaming</title>
       <link>/post/bigdata/spark/spark-streaming/</link>
       <pubDate>Tue, 18 Apr 2017 13:02:08 +0000</pubDate>
@@ -18,6 +326,11 @@
 &lt;div id=&#34;toctitle&#34;&gt;stream&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_tmp&#34;&gt;1. tmp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sprakstreaming_demo&#34;&gt;2. SprakStreaming Demo&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_streamingwordcount&#34;&gt;2.1. StreamingWordCount&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -28,6 +341,39 @@
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//监听 6066
 nc -lk 6066&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sprakstreaming_demo&#34;&gt;2. SprakStreaming Demo&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_streamingwordcount&#34;&gt;2.1. StreamingWordCount&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;环境:&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;名称&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;下载地址&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;hadoop2.6&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://pan.baidu.com/s/1nvJkKeH&#34;&gt;密码：roxm&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;StreamingWordCount&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://git.oschina.net/dishui/bigdata/tree/heartbeat02&#34;&gt;bigdata&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

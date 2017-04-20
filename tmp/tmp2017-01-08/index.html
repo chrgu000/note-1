@@ -1935,6 +1935,97 @@ hdfs://master:8020/nc</p>
 <div class="paragraph">
 <p>netsh interface portproxy add v4tov4 listenport=3333 connectaddress=192.168.137.15 connectport=6066</p>
 </div>
+<div class="paragraph">
+<p>101.40.208.232:22</p>
+</div>
+<div class="paragraph">
+<p>docker run --name shadow -d -p 80:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k 111111 -m aes-256-cfb</p>
+</div>
+<div class="paragraph">
+<p>101.40.208.232
+80
+111111</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>环境:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">版本</th>
+<th class="tableblock halign-left valign-top">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hadoop2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://pan.baidu.com/s/1nvJkKeH">密码：roxm</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf -g 'daemon off;'</p>
+</div>
+<div class="paragraph">
+<p>(function () {
+    var params = {};
+    //Document对象数据
+    if(document) {
+        params.domain = document.domain || '';
+        params.url = document.URL || '';
+        params.title = document.title || '';
+        params.referrer = document.referrer || '';
+    }
+    //Window对象数据
+    if(window &amp;&amp; window.screen) {
+        params.sh = window.screen.height || 0;
+        params.sw = window.screen.width || 0;
+        params.cd = window.screen.colorDepth || 0;
+    }
+    //navigator对象数据
+    if(navigator) {
+        params.lang = navigator.language || '';
+    }
+    //解析_maq配置
+    if(_maq) {
+        for(var i in _maq) {
+            switch(_maq[i][0]) {
+                case '_setAccount':
+                    params.account = _maq[i][1];
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    //拼接参数串
+    var args = '';
+    for(var i in params) {
+        if(args != '') {
+            args += '&amp;';
+        }
+        args += i + '=' + encodeURIComponent(params[i]);
+    }</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    //通过Image对象请求后端脚本
+    var img = new Image(1, 1);
+    img.src = '192.168.137.15/log.gif?' + args;
+})();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>docker pull wurstmeister/kafka</p>
+</div>
+</div>
+</div>
 
 		</div>
 		
@@ -1957,7 +2048,7 @@ hdfs://master:8020/nc</p>
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/src/records_bak/test/" rel="prev"><span>«Previous</span><p></p></a>
+			<a href="/tmp/a/" rel="prev"><span>«Previous</span><p></p></a>
 		</div>
 		
 		

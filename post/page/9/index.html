@@ -90,6 +90,29 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/maven/" rel="bookmark">Maven</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 include::content/post/base.adoc[] :toc-title: Contents
+maven maven设置  仓库设置 ‪C:\Users\dishui\.m2\settings.xml xml &lt;mirrors&gt; &lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;/mirrors&gt;    **导出jar包到默认目录 targed/dependency **
+在eclipse中，选择项目的pom.xml文件， 点击右键菜单中的RunAs, 在弹出的Configuration窗口中， 在Goals输入 dependency:copy-dependencies后，点击运行
+  导入本地jar mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/mongod/" rel="bookmark">Mongod</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -293,26 +316,6 @@ nginx 平台为：rhel 6.4/CentOS-6.5 32bit
   Interface 生成出来的类实现的接口列表  org.springframework.aop.SpringProxy org.springframework.aop.framework.Advised package.user_interfaces(用户自定义实现的接口) CgLib :    BeanDefination
  解析applicationContext.xml   instantiateBean : bean实例化
   设置接口 public static Set&lt;Class&gt; getAllInterfacesForClassAsSet(Class clazz, ClassLoader classLoader) { Assert.notNull(clazz, &quot;Class must not be null&quot;); if (clazz.isInterface() &amp;&amp; isVisible(clazz, classLoader)) { return Collections.singleton(clazz); } Set&lt;Class&gt; interfaces = new LinkedHashSet&lt;Class&gt;(); while (clazz != null) { Class&lt;?&gt;[] ifcs = clazz.getInterfaces(); for (Class&lt;?&gt; ifc : ifcs) { interfaces.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/spring-conf/" rel="bookmark">Spring 配置文件</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. applicationContext.xml1. applicationContext.xml== spring-mvc-back.xml```xml:/src/conf/spring/spring-mvc-back.xml```== spring-mvc-front.xml```xml:/src/conf/spring/spring-mvc-front.xml```== 注解```xml:/src/conf/spring/conf/anotation.xml```== ibatis```xml:/src/conf/spring/conf/ibatis.xml```== jdbc```xml:/src/conf/spring/conf/jdbc.xml```== property```xml:/src/conf/spring/conf/property.xml```== 事务```xml:/src/conf/spring/conf/transaction.xml```
 					</div>
 				</div>
 			</div>

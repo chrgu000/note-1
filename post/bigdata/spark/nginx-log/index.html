@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>采集日志服务 nginx log</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="采集日志服务 nginx log" />
+<meta property="og:description" content="log1. Docker 方式2. 安装2.1. 安装依赖2.2. 上传LuaJIT-2.0.4.tar.gz并安装LuaJIT2.3. 设置环境变量2.4. 创建modules保存nginx的模块2.5. 上传openresty-1.9.7.3.tar.gz和依赖的模块lua-nginx-module-0.10.0.tar、ngx_devel_kit-0.2.19.tar、ngx_devel_kit-0.2.19.tar、echo-nginx-module-0.58.tar.gz2.6. 将依赖的模块直接解压到/usr/local/nginx/modules目录即可，不需要编译安装2.7. 编译安装openresty2.8. 上传nginx2.9. 编译nginx并支持其他模块2.10. 修改nginx配置文件2.11. 在nginx所在的服务器上添加一个ma.js2.12. 在要统计的页面添加js1. Docker 方式docker pull registry.cn-hangzhou.aliyuncs.com/dishui/nginx-log:1.0docker run -d -p 80:80 registry.cn-hangzhou.aliyuncs.com/dishui/nginx-log:1.0访问 /tmp/a/
+2. 安装2.1. 安装依赖yum -y install gcc perl pcre-devel openssl openssl-devel2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/spark/nginx-log/" />
+
+
+<meta property="og:updated_time" content="2017-04-20T16:38:02&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">采集日志服务 nginx log</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-04-20 16:38:02 &#43;0000 UTC">April 20, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/spark" rel="category">spark</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">log</div>
+<ul class="sectlevel1">
+<li><a href="#_docker_方式">1. Docker 方式</a></li>
+<li><a href="#_安装">2. 安装</a>
+<ul class="sectlevel2">
+<li><a href="#_安装依赖">2.1. 安装依赖</a></li>
+<li><a href="#_上传luajit_2_0_4_tar_gz并安装luajit">2.2. 上传LuaJIT-2.0.4.tar.gz并安装LuaJIT</a></li>
+<li><a href="#_设置环境变量">2.3. 设置环境变量</a></li>
+<li><a href="#_创建modules保存nginx的模块">2.4. 创建modules保存nginx的模块</a></li>
+<li><a href="#_上传openresty_1_9_7_3_tar_gz和依赖的模块lua_nginx_module_0_10_0_tar_ngx_devel_kit_0_2_19_tar_ngx_devel_kit_0_2_19_tar_echo_nginx_module_0_58_tar_gz">2.5. 上传openresty-1.9.7.3.tar.gz和依赖的模块lua-nginx-module-0.10.0.tar、ngx_devel_kit-0.2.19.tar、ngx_devel_kit-0.2.19.tar、echo-nginx-module-0.58.tar.gz</a></li>
+<li><a href="#_将依赖的模块直接解压到_usr_local_nginx_modules目录即可_不需要编译安装">2.6. 将依赖的模块直接解压到/usr/local/nginx/modules目录即可，不需要编译安装</a></li>
+<li><a href="#_编译安装openresty">2.7. 编译安装openresty</a></li>
+<li><a href="#_上传nginx">2.8. 上传nginx</a></li>
+<li><a href="#_编译nginx并支持其他模块">2.9. 编译nginx并支持其他模块</a></li>
+<li><a href="#_修改nginx配置文件">2.10. 修改nginx配置文件</a></li>
+<li><a href="#_在nginx所在的服务器上添加一个ma_js">2.11. 在nginx所在的服务器上添加一个ma.js</a></li>
+<li><a href="#_在要统计的页面添加js">2.12. 在要统计的页面添加js</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_docker_方式">1. Docker 方式</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>docker pull registry.cn-hangzhou.aliyuncs.com/dishui/nginx-log:1.0
+docker run -d -p 80:80 registry.cn-hangzhou.aliyuncs.com/dishui/nginx-log:1.0</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">访问 </dt>
+<dd>
+<p><a href="/tmp/a/" class="bare">/tmp/a/</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_安装">2. 安装</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_安装依赖">2.1. 安装依赖</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>yum -y install gcc perl pcre-devel openssl openssl-devel</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_上传luajit_2_0_4_tar_gz并安装luajit">2.2. 上传LuaJIT-2.0.4.tar.gz并安装LuaJIT</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf LuaJIT-2.0.4.tar.gz -C /usr/local/src/
+cd /usr/local/src/LuaJIT-2.0.4/
+make &amp;&amp; make install PREFIX=/usr/local/luajit</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_设置环境变量">2.3. 设置环境变量</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>export LUAJIT_LIB=/usr/local/luajit/lib
+export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_创建modules保存nginx的模块">2.4. 创建modules保存nginx的模块</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mkdir -p /usr/local/nginx/modules</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_上传openresty_1_9_7_3_tar_gz和依赖的模块lua_nginx_module_0_10_0_tar_ngx_devel_kit_0_2_19_tar_ngx_devel_kit_0_2_19_tar_echo_nginx_module_0_58_tar_gz">2.5. 上传openresty-1.9.7.3.tar.gz和依赖的模块lua-nginx-module-0.10.0.tar、ngx_devel_kit-0.2.19.tar、ngx_devel_kit-0.2.19.tar、echo-nginx-module-0.58.tar.gz</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_将依赖的模块直接解压到_usr_local_nginx_modules目录即可_不需要编译安装">2.6. 将依赖的模块直接解压到/usr/local/nginx/modules目录即可，不需要编译安装</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf lua-nginx-module-0.10.0.tar.gz -C /usr/local/nginx/modules/
+tar -zxvf set-misc-nginx-module-0.29.tar.gz -C /usr/local/nginx/modules/
+tar -zxvf ngx_devel_kit-0.2.19.tar.gz -C /usr/local/nginx/modules/
+tar -zxvf echo-nginx-module-0.58.tar.gz -C /usr/local/nginx/modules/</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>　　
+=== 解压openresty-1.9.7.3.tar.gz</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf openresty-1.9.7.3.tar.gz -C /usr/local/src/
+cd /usr/local/src/openresty-1.9.7.3/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_编译安装openresty">2.7. 编译安装openresty</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>./configure --prefix=/usr/local/openresty --with-luajit &amp;&amp; make &amp;&amp; make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_上传nginx">2.8. 上传nginx</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf nginx-1.8.1.tar.gz -C /usr/local/src/
+cd /usr/local/src/nginx-1.8.1/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_编译nginx并支持其他模块">2.9. 编译nginx并支持其他模块</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>　　./configure --prefix=/usr/local/nginx \
+　　  --with-ld-opt="-Wl,-rpath,/usr/local/luajit/lib" \
+　　    --add-module=/usr/local/nginx/modules/ngx_devel_kit-0.2.19 \
+　　    --add-module=/usr/local/nginx/modules/lua-nginx-module-0.10.0 \
+　　    --add-module=/usr/local/nginx/modules/set-misc-nginx-module-0.29 \
+　　    --add-module=/usr/local/nginx/modules/echo-nginx-module-0.58
+　　make -j2
+　　make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_修改nginx配置文件">2.10. 修改nginx配置文件</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>worker_processes  2;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+log_format tick "$msec^A$remote_addr^A$u_domain^A$u_url^A$u_title^A$u_referrer^A$u_sh^A$u_sw^A$u_cd^A$u_lang^A$http_user_agent^A$u_utrace^A$u_account";
+
+    access_log  logs/access.log  tick;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  localhost;
+        location /1.gif {
+            #伪装成gif文件
+            default_type image/gif;
+            #本身关闭access_log，通过subrequest记录log
+            access_log off;
+
+            access_by_lua "
+                -- 用户跟踪cookie名为__utrace
+                local uid = ngx.var.cookie___utrace
+                if not uid then
+                    -- 如果没有则生成一个跟踪cookie，算法为md5(时间戳+IP+客户端信息)
+                    uid = ngx.md5(ngx.now() .. ngx.var.remote_addr .. ngx.var.http_user_agent)
+                end
+                ngx.header['Set-Cookie'] = {'__utrace=' .. uid .. '; path=/'}
+                if ngx.var.arg_domain then
+                -- 通过subrequest到/i-log记录日志，将参数和用户跟踪cookie带过去
+                    ngx.location.capture('/i-log?' .. ngx.var.args .. '&amp;utrace=' .. uid)
+                end
+            ";
+
+            #此请求不缓存
+            add_header Expires "Fri, 01 Jan 1980 00:00:00 GMT";
+            add_header Pragma "no-cache";
+            add_header Cache-Control "no-cache, max-age=0, must-revalidate";
+
+            #返回一个1×1的空gif图片
+            empty_gif;
+        }
+
+        location /i-log {
+            #内部location，不允许外部直接访问
+            internal;
+
+            #设置变量，注意需要unescape
+            set_unescape_uri $u_domain $arg_domain;
+            set_unescape_uri $u_url $arg_url;
+            set_unescape_uri $u_title $arg_title;
+            set_unescape_uri $u_referrer $arg_referrer;
+            set_unescape_uri $u_sh $arg_sh;
+            set_unescape_uri $u_sw $arg_sw;
+            set_unescape_uri $u_cd $arg_cd;
+            set_unescape_uri $u_lang $arg_lang;
+            set_unescape_uri $u_utrace $arg_utrace;
+            set_unescape_uri $u_account $arg_account;
+
+            #打开日志
+            log_subrequest on;
+            #记录日志到ma.log，实际应用中最好加buffer，格式为tick
+            access_log /var/nginx_logs/ma.log tick;
+
+            #输出空字符串
+            echo '';
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_在nginx所在的服务器上添加一个ma_js">2.11. 在nginx所在的服务器上添加一个ma.js</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>(function () {
+    var params = {};
+    //Document对象数据
+    if(document) {
+        params.domain = document.domain || '';
+        params.url = document.URL || '';
+        params.title = document.title || '';
+        params.referrer = document.referrer || '';
+    }
+    //Window对象数据
+    if(window &amp;&amp; window.screen) {
+        params.sh = window.screen.height || 0;
+        params.sw = window.screen.width || 0;
+        params.cd = window.screen.colorDepth || 0;
+    }
+    //navigator对象数据
+    if(navigator) {
+        params.lang = navigator.language || '';
+    }
+    //解析_maq配置
+    // if(_maq) {
+    //     for(var i in _maq) {
+    //         switch(_maq[i][0]) {
+    //             case '_setAccount':
+    //                 params.account = _maq[i][1];
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //     }
+    // }
+    //拼接参数串
+    var args = '';
+    for(var i in params) {
+        if(args != '') {
+            args += '&amp;';
+        }
+        args += i + '=' + encodeURIComponent(params[i]);
+    }
+
+    //通过Image对象请求后端脚本
+    var img = new Image(1, 1);
+    img.src = 'http://flow.itcast.zx/log.gif?' + args;
+})();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_在要统计的页面添加js">2.12. 在要统计的页面添加js</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;script type="text/javascript"&gt;
+    var _maq = _maq || [];
+    _maq.push(['_setAccount', 'zx5352']);
+
+    (function() {
+        var ma = document.createElement('script');
+        ma.type = 'text/javascript';
+        ma.async = true;
+        ma.src = 'http://flow.itcast.zx/ma.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ma, s);
+    })();
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>　　</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/spark-streaming/" rel="next"><span>Next»</span><p>SparkStreaming</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <form class="search-form" role="search" >
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </form>
+    <div id="side-toc" class="entry-content">
+    
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

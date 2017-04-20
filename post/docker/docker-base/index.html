@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="docker 基础命令" />
-<meta property="og:description" content="docker-base1. 阿里云加速2. 使用2.1. 列出本地镜像2.2. 启动 docker3. 操作 Docker3.1. build3.2. run3.3. log3.4. 删除镜像3.5. 批量删除镜像3.6. 删除容器3.7. 关闭所有容器3.8. 进入一个容器的交互模式3.9. 挂载目录3.10. 载入镜像3.11. 查看 docker 网络3.12. 容器生成镜像3.13. 从主机到容器3.14. 从容器到主机3.15. 删除不是 dishui.io 开头的镜像3.16. list 镜像3.17. list 容器4. 修改 Docker 镜像的存储位置4.1. 备份fstab文件4.2. 停止 docker ， 用 rsync 同步 /var/lib/docker 到新位置 如果 rsync 没有安装4." />
+<meta property="og:description" content="docker-base1. 阿里云加速2. Dockerfile 参考3. 使用3.1. 列出本地镜像3.2. 启动 docker4. 操作 Docker4.1. build4.2. run4.3. log4.4. 删除镜像4.5. 批量删除镜像4.6. 删除容器4.7. 关闭所有容器4.8. 进入一个容器的交互模式4.9. 挂载目录4.10. 载入镜像4.11. 查看 docker 网络4.12. 容器生成镜像4.13. 从主机到容器4.14. 从容器到主机4.15. 删除不是 dishui.io 开头的镜像4.16. list 镜像4.17. list 容器5. 修改 Docker 镜像的存储位置5.1. 备份fstab文件5.2. 停止 docker ， 用 rsync 同步 /var/lib/docker 到新位置 如果 rsync 没有安装5." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/docker/docker-base/" />
 
@@ -96,43 +96,44 @@
 <div id="toctitle">docker-base</div>
 <ul class="sectlevel2">
 <li><a href="#_阿里云加速">1. 阿里云加速</a></li>
-<li><a href="#_使用">2. 使用</a>
+<li><a href="#_dockerfile_参考">2. Dockerfile 参考</a></li>
+<li><a href="#_使用">3. 使用</a>
 <ul class="sectlevel3">
-<li><a href="#_列出本地镜像">2.1. 列出本地镜像</a></li>
-<li><a href="#_启动_code_docker_code">2.2. 启动 <code>docker</code></a></li>
+<li><a href="#_列出本地镜像">3.1. 列出本地镜像</a></li>
+<li><a href="#_启动_code_docker_code">3.2. 启动 <code>docker</code></a></li>
 </ul>
 </li>
-<li><a href="#_操作_code_docker_code">3. 操作 <code>Docker</code></a>
+<li><a href="#_操作_code_docker_code">4. 操作 <code>Docker</code></a>
 <ul class="sectlevel3">
-<li><a href="#__code_build_code">3.1. <code>build</code></a></li>
-<li><a href="#__code_run_code">3.2. <code>run</code></a></li>
-<li><a href="#__code_log_code">3.3. <code>log</code></a></li>
-<li><a href="#_删除镜像">3.4. 删除镜像</a></li>
-<li><a href="#_批量删除镜像">3.5. 批量删除镜像</a></li>
-<li><a href="#_删除容器">3.6. 删除容器</a></li>
-<li><a href="#_关闭所有容器">3.7. 关闭所有容器</a></li>
-<li><a href="#_进入一个容器的交互模式">3.8. 进入一个容器的交互模式</a></li>
-<li><a href="#_挂载目录">3.9. 挂载目录</a></li>
-<li><a href="#_载入镜像">3.10. 载入镜像</a></li>
-<li><a href="#_查看_code_docker_code_网络">3.11. 查看 <code>docker</code> 网络</a></li>
-<li><a href="#_容器生成镜像">3.12. 容器生成镜像</a></li>
-<li><a href="#_从主机到容器">3.13. 从主机到容器</a></li>
-<li><a href="#_从容器到主机">3.14. 从容器到主机</a></li>
-<li><a href="#_删除不是_code_dishui_io_code_开头的镜像">3.15. 删除不是 <code>dishui.io</code> 开头的镜像</a></li>
-<li><a href="#_list_镜像">3.16. list 镜像</a></li>
-<li><a href="#_list_容器">3.17. list 容器</a></li>
+<li><a href="#__code_build_code">4.1. <code>build</code></a></li>
+<li><a href="#__code_run_code">4.2. <code>run</code></a></li>
+<li><a href="#__code_log_code">4.3. <code>log</code></a></li>
+<li><a href="#_删除镜像">4.4. 删除镜像</a></li>
+<li><a href="#_批量删除镜像">4.5. 批量删除镜像</a></li>
+<li><a href="#_删除容器">4.6. 删除容器</a></li>
+<li><a href="#_关闭所有容器">4.7. 关闭所有容器</a></li>
+<li><a href="#_进入一个容器的交互模式">4.8. 进入一个容器的交互模式</a></li>
+<li><a href="#_挂载目录">4.9. 挂载目录</a></li>
+<li><a href="#_载入镜像">4.10. 载入镜像</a></li>
+<li><a href="#_查看_code_docker_code_网络">4.11. 查看 <code>docker</code> 网络</a></li>
+<li><a href="#_容器生成镜像">4.12. 容器生成镜像</a></li>
+<li><a href="#_从主机到容器">4.13. 从主机到容器</a></li>
+<li><a href="#_从容器到主机">4.14. 从容器到主机</a></li>
+<li><a href="#_删除不是_code_dishui_io_code_开头的镜像">4.15. 删除不是 <code>dishui.io</code> 开头的镜像</a></li>
+<li><a href="#_list_镜像">4.16. list 镜像</a></li>
+<li><a href="#_list_容器">4.17. list 容器</a></li>
 </ul>
 </li>
-<li><a href="#_修改_code_docker_code_镜像的存储位置">4. 修改 <code>Docker</code> 镜像的存储位置</a>
+<li><a href="#_修改_code_docker_code_镜像的存储位置">5. 修改 <code>Docker</code> 镜像的存储位置</a>
 <ul class="sectlevel3">
-<li><a href="#_备份fstab文件">4.1. 备份fstab文件</a></li>
-<li><a href="#_停止_code_docker_code_用_code_rsync_code_同步_code_var_lib_docker_code_到新位置_如果_code_rsync_code_没有安装">4.2. 停止 <code>docker</code> ， 用 <code>rsync</code> 同步 <code>/var/lib/docker</code> 到新位置 如果 <code>rsync</code> 没有安装</a></li>
-<li><a href="#_停止_code_docker_code">4.3. 停止 <code>docker</code></a></li>
-<li><a href="#_同步数据">4.4. 同步数据</a></li>
-<li><a href="#_修改_code_fstab_code">4.5. 修改 <code>fstab</code></a></li>
+<li><a href="#_备份fstab文件">5.1. 备份fstab文件</a></li>
+<li><a href="#_停止_code_docker_code_用_code_rsync_code_同步_code_var_lib_docker_code_到新位置_如果_code_rsync_code_没有安装">5.2. 停止 <code>docker</code> ， 用 <code>rsync</code> 同步 <code>/var/lib/docker</code> 到新位置 如果 <code>rsync</code> 没有安装</a></li>
+<li><a href="#_停止_code_docker_code">5.3. 停止 <code>docker</code></a></li>
+<li><a href="#_同步数据">5.4. 同步数据</a></li>
+<li><a href="#_修改_code_fstab_code">5.5. 修改 <code>fstab</code></a></li>
 </ul>
 </li>
-<li><a href="#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker">5. Mount AWS EFS, NFS or CIFS/Samba volumes in Docker</a></li>
+<li><a href="#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker">6. Mount AWS EFS, NFS or CIFS/Samba volumes in Docker</a></li>
 </ul>
 </div>
 <div class="sect2">
@@ -144,9 +145,15 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_使用">2. 使用</h3>
+<h3 id="_dockerfile_参考">2. Dockerfile 参考</h3>
+<div class="paragraph">
+<p><a href="https://docs.docker.com/engine/reference/builder/" class="bare">https://docs.docker.com/engine/reference/builder/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_使用">3. 使用</h3>
 <div class="sect3">
-<h4 id="_列出本地镜像">2.1. 列出本地镜像</h4>
+<h4 id="_列出本地镜像">3.1. 列出本地镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images</code></pre>
@@ -154,7 +161,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_启动_code_docker_code">2.2. 启动 <code>docker</code></h4>
+<h4 id="_启动_code_docker_code">3.2. 启动 <code>docker</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker run -t -i ubuntu:14.04 /bin/bash</code></pre>
@@ -163,9 +170,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_操作_code_docker_code">3. 操作 <code>Docker</code></h3>
+<h3 id="_操作_code_docker_code">4. 操作 <code>Docker</code></h3>
 <div class="sect3">
-<h4 id="__code_build_code">3.1. <code>build</code></h4>
+<h4 id="__code_build_code">4.1. <code>build</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker build -t csphere/centos:7.1 .</code></pre>
@@ -173,7 +180,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_run_code">3.2. <code>run</code></h4>
+<h4 id="__code_run_code">4.2. <code>run</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>-it 前台,交互模式</code></pre>
@@ -181,7 +188,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_log_code">3.3. <code>log</code></h4>
+<h4 id="__code_log_code">4.3. <code>log</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker logs -f &lt;ID&gt;</code></pre>
@@ -189,7 +196,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除镜像">3.4. 删除镜像</h4>
+<h4 id="_删除镜像">4.4. 删除镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker rmi [-f] &lt;ID&gt;</code></pre>
@@ -197,7 +204,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_批量删除镜像">3.5. 批量删除镜像</h4>
+<h4 id="_批量删除镜像">4.5. 批量删除镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>docker images | awk '{if($1 ~ "^zookeeper"&amp;&amp;$2 != "1.4" ){print $1":"$2}}' | xargs docker rmi</code></pre>
@@ -210,7 +217,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除容器">3.6. 删除容器</h4>
+<h4 id="_删除容器">4.6. 删除容器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">=删除所有容器
@@ -219,7 +226,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_关闭所有容器">3.7. 关闭所有容器</h4>
+<h4 id="_关闭所有容器">4.7. 关闭所有容器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker stop $(docker ps -a -q)</code></pre>
@@ -227,7 +234,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_进入一个容器的交互模式">3.8. 进入一个容器的交互模式</h4>
+<h4 id="_进入一个容器的交互模式">4.8. 进入一个容器的交互模式</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker exec -it &lt;CONTAINER Name&gt; /bin/bash</code></pre>
@@ -235,7 +242,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_挂载目录">3.9. 挂载目录</h4>
+<h4 id="_挂载目录">4.9. 挂载目录</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker run -it -v /src/webapp:/opt/webapp ubuntu:14.04 /bin/bash</code></pre>
@@ -243,7 +250,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_载入镜像">3.10. 载入镜像</h4>
+<h4 id="_载入镜像">4.10. 载入镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker load &lt; ubuntu_14.04.tar</code></pre>
@@ -251,7 +258,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_查看_code_docker_code_网络">3.11. 查看 <code>docker</code> 网络</h4>
+<h4 id="_查看_code_docker_code_网络">4.11. 查看 <code>docker</code> 网络</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>docker network ls</code></pre>
@@ -259,7 +266,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_容器生成镜像">3.12. 容器生成镜像</h4>
+<h4 id="_容器生成镜像">4.12. 容器生成镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker commit 614122c0aabb aoct/apache2</code></pre>
@@ -267,7 +274,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_从主机到容器">3.13. 从主机到容器</h4>
+<h4 id="_从主机到容器">4.13. 从主机到容器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo docker cp ./default.conf nginx:/etc/nginx/conf.d/suffusedDomain.conf</code></pre>
@@ -275,7 +282,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_从容器到主机">3.14. 从容器到主机</h4>
+<h4 id="_从容器到主机">4.14. 从容器到主机</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">sudo docker cp centos7:/tmp/docker-compose-Linux-x86_64 ./docker-compose-Linux-x86_64</code></pre>
@@ -283,7 +290,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_删除不是_code_dishui_io_code_开头的镜像">3.15. 删除不是 <code>dishui.io</code> 开头的镜像</h4>
+<h4 id="_删除不是_code_dishui_io_code_开头的镜像">4.15. 删除不是 <code>dishui.io</code> 开头的镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images | awk '{if($1 ~ "&lt;none&gt;" &amp;&amp; NR != 1){print $3}}' | xargs docker rmi</code></pre>
@@ -291,7 +298,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_list_镜像">3.16. list 镜像</h4>
+<h4 id="_list_镜像">4.16. list 镜像</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images --format "{{.ID}}: {{.Repository}}:{{.Tag}}"</code></pre>
@@ -299,7 +306,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_list_容器">3.17. list 容器</h4>
+<h4 id="_list_容器">4.17. list 容器</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker ps --format "{{.ID}}: {{.Names}}"</code></pre>
@@ -308,9 +315,9 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_修改_code_docker_code_镜像的存储位置">4. 修改 <code>Docker</code> 镜像的存储位置</h3>
+<h3 id="_修改_code_docker_code_镜像的存储位置">5. 修改 <code>Docker</code> 镜像的存储位置</h3>
 <div class="sect3">
-<h4 id="_备份fstab文件">4.1. 备份fstab文件</h4>
+<h4 id="_备份fstab文件">5.1. 备份fstab文件</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">cp /etc/fstab /etc/fstab.$(date +%Y-%m-%d)</code></pre>
@@ -318,7 +325,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_停止_code_docker_code_用_code_rsync_code_同步_code_var_lib_docker_code_到新位置_如果_code_rsync_code_没有安装">4.2. 停止 <code>docker</code> ， 用 <code>rsync</code> 同步 <code>/var/lib/docker</code> 到新位置 如果 <code>rsync</code> 没有安装</h4>
+<h4 id="_停止_code_docker_code_用_code_rsync_code_同步_code_var_lib_docker_code_到新位置_如果_code_rsync_code_没有安装">5.2. 停止 <code>docker</code> ， 用 <code>rsync</code> 同步 <code>/var/lib/docker</code> 到新位置 如果 <code>rsync</code> 没有安装</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">yum -y install rsync</code></pre>
@@ -326,7 +333,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_停止_code_docker_code">4.3. 停止 <code>docker</code></h4>
+<h4 id="_停止_code_docker_code">5.3. 停止 <code>docker</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">service docker stop</code></pre>
@@ -334,7 +341,7 @@ docker rm $(docker ps -a -q)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_同步数据">4.4. 同步数据</h4>
+<h4 id="_同步数据">5.4. 同步数据</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">=在数据分区中建立要挂载的目录
@@ -345,7 +352,7 @@ rsync -aXS /var/lib/docker/.  /data/docker/</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_修改_code_fstab_code">4.5. 修改 <code>fstab</code></h4>
+<h4 id="_修改_code_fstab_code">5.5. 修改 <code>fstab</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">=vi /etc/fstab
@@ -355,7 +362,7 @@ rsync -aXS /var/lib/docker/.  /data/docker/</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker">5. Mount AWS EFS, NFS or CIFS/Samba volumes in Docker</h3>
+<h3 id="_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker">6. Mount AWS EFS, NFS or CIFS/Samba volumes in Docker</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

@@ -86,6 +86,31 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/es/es-book-note/" rel="bookmark">es 基础</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents
+ES-book-note 1、基本查询  词条查询
+   json { &quot;query&quot;:{ &quot;term&quot;:{ &quot;title&quot;:{ &quot;value&quot;:&quot;crime&quot; } } } }    多词条查询
+   json { &quot;query&quot;:{ &quot;terms&quot;:{ //novel,book 字段 &quot;tags&quot;:[&quot;novel&quot;,&quot;book&quot;], //至少一条需要匹配 &quot;minimum_match&quot;:1 } } }    match_all 查询
+   json { &quot;query&quot;:{ &quot;match_all&quot;:{ } } }    常用词查询
+   json { &quot;query&quot;:{ &quot;common&quot;:{ &quot;title&quot;:{ &quot;query&quot;:&quot;crime and punishment&quot;, &quot;cutoff_frequncy&quot;:0.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/java/es/escha_jian_an_zhuang/" rel="bookmark">es 插件安装</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -294,29 +319,6 @@ asdf
 						 include::content/post/base.adoc[] :toc-title: Contents httpd.conf  打开httpd配置文件 bash //首先备份一下 /etc/httpd/conf/httpd.conf    apache 显示文件树
 # httpd.conf &lt;Directory &quot;/var/www/icons&quot;&gt; Options Indexes MultiViews #这个地方是控制是否在浏览器上显示树状目录,把Indexes MultiViews改成MultiViews就不能树状显示目录了。 AllowOverride None Order allow,deny Allow from all &lt;/Directory&gt;  配置虚拟主机
 ServerName 210.14.137.119 &lt;VirtualHost *:7080&gt; ServerName 210.14.137.119 DocumentRoot /var/www/html/ &lt;Directory /var/www/html/&gt; AddHandler cgi-script .cgi Options +Indexes +ExecCGI DirectoryIndex index.cgi AllowOverride Limit FileInfo Indexes Order deny,allow Allow from all &lt;/Directory&gt; Alias /rpm &quot;/usr/local/src/rpm&quot; &lt;Directory /usr/local/src/rpm&gt; Options Indexes FollowSymLinks MultiViews AllowOverride None Order allow,deny allow from all &lt;/Directory&gt; &lt;/VirtualHost&gt;   
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/java/" rel="bookmark">java</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 引入2. jsp分页3. 分页样式4. 根据ID查询5. Java json 样品6. java ajax7. JSTL Fn8. 字符替换9. 参考1. 引入文件
-//支持EL表达式&lt;%@ page isELIgnored="false"%&gt;//支持C标签&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;//fn函数&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %&gt;/program/company/goods/base_script.jsp+ 日志
-private static Logger logger = Logger.getLogger(Clazz clazz);2. jsp分页+ 分页查询
-Mlq_goods_prop mg = new Mlq_goods_prop();Mlq_goodsInfo mgi = new Mlq_goodsInfo();//1:UrlString url = "
 					</div>
 				</div>
 			</div>
