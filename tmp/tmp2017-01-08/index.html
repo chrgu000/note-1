@@ -2024,6 +2024,34 @@ hdfs://master:8020/nc</p>
 <div class="paragraph">
 <p>docker pull wurstmeister/kafka</p>
 </div>
+<div class="paragraph">
+<p>if [[ -z "$a" ]]; then
+  echo "a"
+else
+  echo "b"
+fi</p>
+</div>
+<div class="paragraph">
+<p>input {
+  file {
+    path &#8658; "/var/nginx_logs/*.log"
+    discover_interval &#8658; 5
+    start_position &#8658; "beginning"
+  }
+}</p>
+</div>
+<div class="paragraph">
+<p>output {
+  kafka {
+    topic_id &#8658; "tracklog"
+    codec &#8658; plain {
+      format &#8658; "%{message}"
+      charset &#8658; "UTF-8"
+    }
+    bootstrap_servers &#8658; "kafka:9092,kafka2:9092"
+  }
+}</p>
+</div>
 </div>
 </div>
 
