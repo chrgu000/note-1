@@ -71,6 +71,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -2051,6 +2053,61 @@ fi</p>
     bootstrap_servers &#8658; "kafka:9092,kafka2:9092"
   }
 }</p>
+</div>
+<div class="paragraph">
+<p>INSERT INTO zh_asphalt_repertory (id,reservoir_code,storage_code,goods_code,goods_count,goods_batch,order_no,order_type,type,occur_date,goods_model)VALUES('a54a38c44cb4417aa975c3581879e41a','002','TKH-ZHIQU2','003','-4351.72','null','20170422389','03','00','2017-04-22 00:00:00','70#')</p>
+</div>
+<div class="paragraph">
+<p>UPDATE <code>wuliu</code>.<code>zh_contract_info</code> SET <code>execute_state</code> = '01' WHERE <code>contract_code</code> IN('35900000-17-MY0635-0006&#8212;&#8203;03','35900000-17-MY0635-0006&#8212;&#8203;05','35900000-17-MY0635-0006&#8212;&#8203;04');</p>
+</div>
+<div class="paragraph">
+<p>UPDATE
+  <code>wuliu</code>.<code>zh_contract_info</code>
+SET
+  <code>execute_state</code> = '01'
+WHERE <code>contract_code</code> IN (
+    '35900000-17-MY0635-0006&#8212;&#8203;03',
+    '35900000-17-MY0635-0006&#8212;&#8203;05',
+    '35900000-17-MY0635-0006&#8212;&#8203;04'
+  ) ;</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+  *,
+  zas.Storage_area,
+  zas.project_name,
+  DATE_FORMAT(zas.out_date, '%Y-%m-%d') AS dat,
+  (SELECT
+    SUM(zasc.goods_count)
+  FROM
+    zh_asphalt_storage_count zasc
+  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count,
+  (SELECT
+    zra.abbreviation
+  FROM
+    zh_reservoir_area zra
+  WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation
+FROM
+  zh_out_bound_order zas
+WHERE 1 = 1
+GROUP BY dat,zas.Storage_area
+ORDER BY zas.out_date DESC</p>
+</div>
+<div class="paragraph">
+<p>" SELECT "+
+"   zas.Storage_area, "+
+"   zas.goods_code, "+
+"   zas.model, "+
+"   zas.category, "+
+"   DATE_FORMAT(zas.out_date, '%Y-%m-%d') AS dat, "+
+"   SUMSELECT "+ "     SUM(zasc.goods_count) "+ "   FROM "+ "     zh_asphalt_storage_count zasc "+ "   WHERE zasc.asphalt_number = zas.out_order_no AS goods_count "+
+" FROM "+
+"   zh_out_bound_order zas "+
+" WHERE 1 = 1 "+
+" AND DATE_FORMAT(zas.out_date, '%Y-%m-%d') = '2017-03-02' "+
+" AND zas.category = '00' "+
+" AND zas.Storage_area = '002' "+
+" GROUP BY zas.goods_code "</p>
 </div>
 </div>
 </div>

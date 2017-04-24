@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  es:
+    image: dishui.io:5000/dishuigit/elastic:1.2
+    container_name: es
+    ports:
+      - "9200:9200"
+    networks:
+      - hadoop
+  logstash:
+    image: dishui.io:5000/logstash:5
+    container_name: logstash
+    command: "-f /flow-kafka-to-es.conf"
+    volumes:
+      - ./game_logs:/var/game_logs/
+      - ./conf/flow-kafka-to-es.conf:/flow-kafka-to-es.conf
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true

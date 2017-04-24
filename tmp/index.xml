@@ -2078,6 +2078,61 @@ fi&lt;/p&gt;
   }
 }&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INSERT INTO zh_asphalt_repertory (id,reservoir_code,storage_code,goods_code,goods_count,goods_batch,order_no,order_type,type,occur_date,goods_model)VALUES(&#39;a54a38c44cb4417aa975c3581879e41a&#39;,&#39;002&#39;,&#39;TKH-ZHIQU2&#39;,&#39;003&#39;,&#39;-4351.72&#39;,&#39;null&#39;,&#39;20170422389&#39;,&#39;03&#39;,&#39;00&#39;,&#39;2017-04-22 00:00:00&#39;,&#39;70#&#39;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;UPDATE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_contract_info&lt;/code&gt; SET &lt;code&gt;execute_state&lt;/code&gt; = &#39;01&#39; WHERE &lt;code&gt;contract_code&lt;/code&gt; IN(&#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;03&#39;,&#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;05&#39;,&#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;04&#39;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;UPDATE
+  &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_contract_info&lt;/code&gt;
+SET
+  &lt;code&gt;execute_state&lt;/code&gt; = &#39;01&#39;
+WHERE &lt;code&gt;contract_code&lt;/code&gt; IN (
+    &#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;03&#39;,
+    &#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;05&#39;,
+    &#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;04&#39;
+  ) ;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT
+  *,
+  zas.Storage_area,
+  zas.project_name,
+  DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) AS dat,
+  (SELECT
+    SUM(zasc.goods_count)
+  FROM
+    zh_asphalt_storage_count zasc
+  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count,
+  (SELECT
+    zra.abbreviation
+  FROM
+    zh_reservoir_area zra
+  WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation
+FROM
+  zh_out_bound_order zas
+WHERE 1 = 1
+GROUP BY dat,zas.Storage_area
+ORDER BY zas.out_date DESC&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34; SELECT &#34;+
+&#34;   zas.Storage_area, &#34;+
+&#34;   zas.goods_code, &#34;+
+&#34;   zas.model, &#34;+
+&#34;   zas.category, &#34;+
+&#34;   DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) AS dat, &#34;+
+&#34;   SUMSELECT &#34;+ &#34;     SUM(zasc.goods_count) &#34;+ &#34;   FROM &#34;+ &#34;     zh_asphalt_storage_count zasc &#34;+ &#34;   WHERE zasc.asphalt_number = zas.out_order_no AS goods_count &#34;+
+&#34; FROM &#34;+
+&#34;   zh_out_bound_order zas &#34;+
+&#34; WHERE 1 = 1 &#34;+
+&#34; AND DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) = &#39;2017-03-02&#39; &#34;+
+&#34; AND zas.category = &#39;00&#39; &#34;+
+&#34; AND zas.Storage_area = &#39;002&#39; &#34;+
+&#34; GROUP BY zas.goods_code &#34;&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -2115,6 +2170,71 @@ fi&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_material_outbound&lt;/code&gt; ADD COLUMN &lt;code&gt;goods_name&lt;/code&gt; VARCHAR(30) NULL COMMENT &#39;商品名称&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度管理&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度指令&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan_add.jsp
+/plandispatch/planInstructions!addStorageNotice.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;合同管理(zh_contract_info)&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;采购合同管理&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/contractmanagement/purchasercontract/purchase_contractinfo.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;提货通知单(zh_storage_out_notice)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度管理&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;发货计划整合&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/deliveryplan/delivery_plan.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>
