@@ -9,6 +9,31 @@
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>spark-源码</title>
+      <link>/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Wed, 26 Apr 2017 15:43:39 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark-基础&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_sparkcontext&#34;&gt;1. SparkContext&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sparkcontext&#34;&gt;1. SparkContext&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/post/bigdata/spark/uml/sparkContext.svg&#34; alt=&#34;sparkContext&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>采集日志服务 nginx log</title>
       <link>/post/bigdata/spark/nginx-log/</link>
       <pubDate>Thu, 20 Apr 2017 16:38:02 +0000</pubDate>

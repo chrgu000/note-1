@@ -1,6 +1,15 @@
 version: "2"
 
 services:
+  logstash-file:
+    image: dishui.io:5000/logstash:2.4
+    container_name: logstash-file
+    command: "-f /flow.conf"
+    volumes:
+      - ./game_logs:/var/game_logs/
+      - ./conf/flow-file-to-kafka.conf:/flow.conf
+    networks:
+      - hadoop
   es:
     image: dishui.io:5000/dishuigit/elastic:1.2
     container_name: es
@@ -8,13 +17,13 @@ services:
       - "9200:9200"
     networks:
       - hadoop
-  logstash:
-    image: dishui.io:5000/logstash:5
-    container_name: logstash
-    command: "-f /flow-kafka-to-es.conf"
+  logstash-es:
+    image: dishui.io:5000/logstash:2.4
+    container_name: logstash-es
+    command: "-f /flow.conf"
     volumes:
       - ./game_logs:/var/game_logs/
-      - ./conf/flow-kafka-to-es.conf:/flow-kafka-to-es.conf
+      - ./conf/flow-kafka-to-es.conf:/flow.conf
     networks:
       - hadoop
 networks:

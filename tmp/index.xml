@@ -6,7 +6,167 @@
     <description>Recent content in Tmp-rsses on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <lastBuildDate>Wed, 26 Apr 2017 13:25:36 +0000</lastBuildDate>
     <atom:link href="/tmp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>wuliu项目</title>
+      <link>/tmp/wuliuxiugai/</link>
+      <pubDate>Wed, 26 Apr 2017 13:25:36 +0000</pubDate>
+      
+      <guid>/tmp/wuliuxiugai/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan_launch&lt;/code&gt; ADD COLUMN &lt;code&gt;reservoir_code&lt;/code&gt; VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER &lt;code&gt;create_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan&lt;/code&gt; ADD COLUMN &lt;code&gt;reservoir_code&lt;/code&gt; VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER &lt;code&gt;create_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan_launch&lt;/code&gt; ADD COLUMN &lt;code&gt;user_id&lt;/code&gt; VARCHAR(50) NULL COMMENT &#39;登录人&#39; AFTER &lt;code&gt;plan_memo&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan&lt;/code&gt; CHANGE &lt;code&gt;table_date&lt;/code&gt; &lt;code&gt;table_date&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;release_time&lt;/code&gt; &lt;code&gt;release_time&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;check_time&lt;/code&gt; &lt;code&gt;check_time&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;change_date&lt;/code&gt; &lt;code&gt;change_date&lt;/code&gt; DATETIME NULL COMMENT &#39;变更时间&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan&lt;/code&gt; CHANGE &lt;code&gt;plan_date&lt;/code&gt; &lt;code&gt;plan_date&lt;/code&gt; DATE NULL;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan&lt;/code&gt; ADD COLUMN &lt;code&gt;user_id&lt;/code&gt; VARCHAR(20) NULL COMMENT &#39;登陆人&#39; AFTER &lt;code&gt;plan_memo&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu2&lt;/code&gt;.&lt;code&gt;zh_asphalt_storage&lt;/code&gt; ADD COLUMN &lt;code&gt;category&lt;/code&gt; VARCHAR(50) NULL COMMENT &#39;类目&#39; AFTER &lt;code&gt;Name_commodity&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_out_bound_order&lt;/code&gt; ADD COLUMN &lt;code&gt;category&lt;/code&gt; VARCHAR(20) NULL COMMENT &#39;类目&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_material_outbound&lt;/code&gt; ADD COLUMN &lt;code&gt;goods_name&lt;/code&gt; VARCHAR(30) NULL COMMENT &#39;商品名称&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度管理&lt;/p&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度指令&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan_add.jsp
+/plandispatch/planInstructions!addStorageNotice.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;合同管理(zh_contract_info)&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;采购合同管理&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/contractmanagement/purchasercontract/purchase_contractinfo.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;提货通知单(zh_storage_out_notice)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度管理&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;发货计划整合&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/deliveryplan/delivery_plan.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;发货申请审批&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/sendoutgoodscheck/sendgoods_check_manage.jsp
+/sendgoodscheckaction/sendgoodscheck!findSendGoodsCheckData.action
+zh_send_goods_check&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;仓储管理&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;库存&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;库存结余调整信息(zh_balance_table)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/storagemanagement/repertory/repertorysurplus/repertory_surplus.jsp
+/zhbalancetable/zhBalanceTableAction!queryAll.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;合同管理(zh_contract_info)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;contractInfo/contract!queryContractInfoForPage.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;POST /task?id=1 HTTP/1.1
+Host: example.org
+Content-Type: application/json; charset=utf-8
+Content-Length: 137
+
+{
+  &#34;status&#34;: &#34;ok&#34;,
+  &#34;extended&#34;: true,
+  &#34;results&#34;: [
+    {&#34;value&#34;: 0, &#34;type&#34;: &#34;int64&#34;},
+    {&#34;value&#34;: 1.0e+3, &#34;type&#34;: &#34;decimal&#34;}
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title></title>
@@ -2133,108 +2293,56 @@ ORDER BY zas.out_date DESC&lt;/p&gt;
 &#34; AND zas.Storage_area = &#39;002&#39; &#34;+
 &#34; GROUP BY zas.goods_code &#34;&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/tmp/wuliuxiugai/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/tmp/wuliuxiugai/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan_launch&lt;/code&gt; ADD COLUMN &lt;code&gt;reservoir_code&lt;/code&gt; VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER &lt;code&gt;create_date&lt;/code&gt;;&lt;/p&gt;
-&lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan&lt;/code&gt; ADD COLUMN &lt;code&gt;reservoir_code&lt;/code&gt; VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER &lt;code&gt;create_date&lt;/code&gt;;&lt;/p&gt;
+&lt;p&gt;hi 陈经理:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan_launch&lt;/code&gt; ADD COLUMN &lt;code&gt;user_id&lt;/code&gt; VARCHAR(50) NULL COMMENT &#39;登录人&#39; AFTER &lt;code&gt;plan_memo&lt;/code&gt;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan&lt;/code&gt; CHANGE &lt;code&gt;table_date&lt;/code&gt; &lt;code&gt;table_date&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;release_time&lt;/code&gt; &lt;code&gt;release_time&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;check_time&lt;/code&gt; &lt;code&gt;check_time&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;change_date&lt;/code&gt; &lt;code&gt;change_date&lt;/code&gt; DATETIME NULL COMMENT &#39;变更时间&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan&lt;/code&gt; CHANGE &lt;code&gt;plan_date&lt;/code&gt; &lt;code&gt;plan_date&lt;/code&gt; DATE NULL;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan&lt;/code&gt; ADD COLUMN &lt;code&gt;user_id&lt;/code&gt; VARCHAR(20) NULL COMMENT &#39;登陆人&#39; AFTER &lt;code&gt;plan_memo&lt;/code&gt;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu2&lt;/code&gt;.&lt;code&gt;zh_asphalt_storage&lt;/code&gt; ADD COLUMN &lt;code&gt;category&lt;/code&gt; VARCHAR(50) NULL COMMENT &#39;类目&#39; AFTER &lt;code&gt;Name_commodity&lt;/code&gt;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_out_bound_order&lt;/code&gt; ADD COLUMN &lt;code&gt;category&lt;/code&gt; VARCHAR(20) NULL COMMENT &#39;类目&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_material_outbound&lt;/code&gt; ADD COLUMN &lt;code&gt;goods_name&lt;/code&gt; VARCHAR(30) NULL COMMENT &#39;商品名称&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;计划调度管理&lt;/p&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;计划调度指令&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan.jsp&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;服务器系统
+CentOS-7-x86_64-Minimal-1611.iso&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;添加&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan_add.jsp
-/plandispatch/planInstructions!addStorageNotice.action&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;大物流正式服务器,配置双网卡(内,外网)
+大物流测试服务器,配置双网卡(内,外网)
+其余的服务器,配置内网网卡
+服务器之间走内网通信&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;合同管理(zh_contract_info)&lt;/p&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;采购合同管理&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;WebRoot/web/contractmanagement/purchasercontract/purchase_contractinfo.jsp&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;提货通知单(zh_storage_out_notice)&lt;/p&gt;
+&lt;p&gt;谢谢&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;计划调度管理&lt;/p&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;发货计划整合&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;WebRoot/web/plandispatch/deliveryplan/delivery_plan.jsp&lt;/pre&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo &#34;4|2016年2月1日,星期一,10:04:14|10.117.45.20|DongKe小雨|法师|女|7|0|588/800000000&#34; &amp;gt; game_logs/1.log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo &#34;4|2016年2月1日,星期一,10:04:16|10.168.8.103|潮流哥|法师|男|9|0|517/800000000&#34; &amp;gt;&amp;gt; game_logs/1.log
+echo &#34;4|2016年2月1日,星期一,10:04:16|10.168.8.103|潮流锅|武士|男|9|0|779/800000000&#34; &amp;gt;&amp;gt; game_logs/1.log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;A&amp;#8592;-] : RequestCreated
+deactivate A
+[&amp;#8592; A: Done
+deactivate A&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Schedules tasks for multiple types of clusters by acting through a SchedulerBackend.
+It can also work with a local setup by using a LocalBackend and setting isLocal to true.
+It handles common logic, like determining a scheduling order across jobs, waking up to launch speculative tasks, etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Clients should first call initialize() and start(), then submit task sets through the
+runTasks method.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;THREADING: SchedulerBackends and task-submitting clients can call this class from multiple
+threads, so it needs locks in public API methods to maintain its state. In addition, some
+SchedulerBackends synchronize on themselves when they want to send events here, and then
+acquire a lock on us, so we need to make sure that we don&amp;#8217;t try to lock the backend while
+we are holding a lock on ourselves.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>

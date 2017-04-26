@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+<title>wuliu项目</title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="" />
+<meta property="og:title" content="wuliu项目" />
 <meta property="og:description" content="ALTER TABLE zh_sub_plan_launch ADD COLUMN reservoir_code VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER create_date;
 ALTER TABLE zh_sub_plan ADD COLUMN reservoir_code VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER create_date;
 ALTER TABLE zh_plan_launch ADD COLUMN user_id VARCHAR(50) NULL COMMENT &#39;登录人&#39; AFTER plan_memo;
@@ -16,7 +16,7 @@
 <meta property="og:url" content="/tmp/wuliuxiugai/" />
 
 
-
+<meta property="og:updated_time" content="2017-04-26T13:25:36&#43;00:00"/>
 
 
 
@@ -29,7 +29,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -87,10 +88,10 @@
 <div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="entry-header clearfix">
-			<h1 class="entry-title"></h1>
+			<h1 class="entry-title">wuliu项目</h1>
 			<p class="mr-meta entry-meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+				<time class="entry-meta-date updated" datetime="2017-04-26 13:25:36 &#43;0000 UTC">April 26, 2017</time>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
@@ -122,12 +123,12 @@
 <div class="paragraph">
 <p>ALTER TABLE <code>wuliu</code>.<code>zh_material_outbound</code> ADD COLUMN <code>goods_name</code> VARCHAR(30) NULL COMMENT '商品名称' AFTER <code>out_date</code>;</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="ulist disc">
+<ul class="disc">
 <li>
 <p>计划调度管理</p>
-<div class="ulist">
-<ul>
+<div class="ulist disc">
+<ul class="disc">
 <li>
 <p>计划调度指令</p>
 <div class="listingblock">
@@ -185,11 +186,76 @@
 </ul>
 </div>
 </li>
+<li>
+<p>发货申请审批</p>
+<div class="listingblock">
+<div class="content">
+<pre>WebRoot/web/sendoutgoodscheck/sendgoods_check_manage.jsp
+/sendgoodscheckaction/sendgoodscheck!findSendGoodsCheckData.action
+zh_send_goods_check</pre>
+</div>
+</div>
+</li>
+<li>
+<p>仓储管理</p>
+<div class="ulist">
+<ul>
+<li>
+<p>库存</p>
+<div class="ulist">
+<ul>
+<li>
+<p>库存结余调整信息(zh_balance_table)</p>
+<div class="listingblock">
+<div class="content">
+<pre>WebRoot/web/storagemanagement/repertory/repertorysurplus/repertory_surplus.jsp
+/zhbalancetable/zhBalanceTableAction!queryAll.action</pre>
+</div>
+</div>
+</li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>合同管理(zh_contract_info)</p>
+<div class="listingblock">
+<div class="content">
+<pre>contractInfo/contract!queryContractInfoForPage.action</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /task?id=1 HTTP/1.1
+Host: example.org
+Content-Type: application/json; charset=utf-8
+Content-Length: 137
+
+{
+  "status": "ok",
+  "extended": true,
+  "results": [
+    {"value": 0, "type": "int64"},
+    {"value": 1.0e+3, "type": "decimal"}
+  ]
+}</code></pre>
+</div>
 </div>
 
 		</div>
 		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/wuliu/" rel="tag">wuliu</a></li>
+		
+	</ul>
+</div>
 	</article>
 	
 <div class="mr-author-box clearfix">
@@ -209,9 +275,13 @@
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/tmp/tmp2017-01-08/" rel="prev"><span>«Previous</span><p></p></a>
+			<a href="/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/" rel="prev"><span>«Previous</span><p>spark-源码</p></a>
 		</div>
 		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/nginx-log/" rel="next"><span>Next»</span><p>采集日志服务 nginx log</p></a>
+		</div>
 		
 	</nav>
 

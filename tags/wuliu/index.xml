@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零散散</title>
+    <link>/tags/wuliu/index.xml</link>
+    <description>Recent content on 零零散散</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/wuliu/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>wuliu项目</title>
+      <link>/tmp/wuliuxiugai/</link>
+      <pubDate>Wed, 26 Apr 2017 13:25:36 +0000</pubDate>
+      
+      <guid>/tmp/wuliuxiugai/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan_launch&lt;/code&gt; ADD COLUMN &lt;code&gt;reservoir_code&lt;/code&gt; VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER &lt;code&gt;create_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan&lt;/code&gt; ADD COLUMN &lt;code&gt;reservoir_code&lt;/code&gt; VARCHAR(255) NULL COMMENT &#39;所属库区&#39; AFTER &lt;code&gt;create_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan_launch&lt;/code&gt; ADD COLUMN &lt;code&gt;user_id&lt;/code&gt; VARCHAR(50) NULL COMMENT &#39;登录人&#39; AFTER &lt;code&gt;plan_memo&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan&lt;/code&gt; CHANGE &lt;code&gt;table_date&lt;/code&gt; &lt;code&gt;table_date&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;release_time&lt;/code&gt; &lt;code&gt;release_time&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;check_time&lt;/code&gt; &lt;code&gt;check_time&lt;/code&gt; DATETIME NULL, CHANGE &lt;code&gt;change_date&lt;/code&gt; &lt;code&gt;change_date&lt;/code&gt; DATETIME NULL COMMENT &#39;变更时间&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_sub_plan&lt;/code&gt; CHANGE &lt;code&gt;plan_date&lt;/code&gt; &lt;code&gt;plan_date&lt;/code&gt; DATE NULL;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;zh_plan&lt;/code&gt; ADD COLUMN &lt;code&gt;user_id&lt;/code&gt; VARCHAR(20) NULL COMMENT &#39;登陆人&#39; AFTER &lt;code&gt;plan_memo&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu2&lt;/code&gt;.&lt;code&gt;zh_asphalt_storage&lt;/code&gt; ADD COLUMN &lt;code&gt;category&lt;/code&gt; VARCHAR(50) NULL COMMENT &#39;类目&#39; AFTER &lt;code&gt;Name_commodity&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_out_bound_order&lt;/code&gt; ADD COLUMN &lt;code&gt;category&lt;/code&gt; VARCHAR(20) NULL COMMENT &#39;类目&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_material_outbound&lt;/code&gt; ADD COLUMN &lt;code&gt;goods_name&lt;/code&gt; VARCHAR(30) NULL COMMENT &#39;商品名称&#39; AFTER &lt;code&gt;out_date&lt;/code&gt;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度管理&lt;/p&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度指令&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/planinstructions/plan_add.jsp
+/plandispatch/planInstructions!addStorageNotice.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;合同管理(zh_contract_info)&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;采购合同管理&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/contractmanagement/purchasercontract/purchase_contractinfo.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;提货通知单(zh_storage_out_notice)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;计划调度管理&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;发货计划整合&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/plandispatch/deliveryplan/delivery_plan.jsp&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;发货申请审批&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/sendoutgoodscheck/sendgoods_check_manage.jsp
+/sendgoodscheckaction/sendgoodscheck!findSendGoodsCheckData.action
+zh_send_goods_check&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;仓储管理&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;库存&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;库存结余调整信息(zh_balance_table)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;WebRoot/web/storagemanagement/repertory/repertorysurplus/repertory_surplus.jsp
+/zhbalancetable/zhBalanceTableAction!queryAll.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;合同管理(zh_contract_info)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;contractInfo/contract!queryContractInfoForPage.action&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;POST /task?id=1 HTTP/1.1
+Host: example.org
+Content-Type: application/json; charset=utf-8
+Content-Length: 137
+
+{
+  &#34;status&#34;: &#34;ok&#34;,
+  &#34;extended&#34;: true,
+  &#34;results&#34;: [
+    {&#34;value&#34;: 0, &#34;type&#34;: &#34;int64&#34;},
+    {&#34;value&#34;: 1.0e+3, &#34;type&#34;: &#34;decimal&#34;}
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
