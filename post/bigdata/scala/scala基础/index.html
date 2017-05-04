@@ -187,6 +187,12 @@
 </li>
 <li><a href="#_单机版_wordcount">5. 单机版 wordcount</a></li>
 <li><a href="#_参考">6. 参考</a></li>
+<li><a href="#_sbt_idea搭建阅读spark源码">7. SBT+IDEA搭建阅读Spark源码</a>
+<ul class="sectlevel2">
+<li><a href="#_配置sbt">7.1. 配置SBT</a></li>
+<li><a href="#_idea">7.2. IDEA</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -1411,7 +1417,74 @@ lines.flatMap(_.split(" ")) <i class="conum" data-value="1"></i><b>(1)</b>
 <li>
 <p><a href="http://www.scalatest.org/quick_start">Scala单元测试</a></p>
 </li>
+<li>
+<p><a href="http://guozhongxin.com/pages/2014/10/15/spark_source_code.html" class="bare">http://guozhongxin.com/pages/2014/10/15/spark_source_code.html</a></p>
+</li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sbt_idea搭建阅读spark源码">7. SBT+IDEA搭建阅读Spark源码</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_配置sbt">7.1. 配置SBT</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>下载+
+<a href="http://www.scala-sbt.org/download.html">sbt-0.13.15</a></p>
+</li>
+<li>
+<p>windows下配置环境变量</p>
+</li>
+<li>
+<p>阿里云仓库配置文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ ~/.sbt/repositories
+[repositories]
+  public: http://maven.aliyun.com/nexus/content/groups/public/
+  typesafe:http://dl.bintray.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+  ivy-sbt-plugin:http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+  sonatype-oss-releases
+
+  sonatype-oss-snapshots</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>指定仓库</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>sbt -Dsbt.override.build.repos=true -Dsbt.repository.config=C:\Users\dishui\.sbt\repositories</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_idea">7.2. IDEA</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/spark/2017-05-04_112358.png" alt="2017 05 04 112358">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/spark/2017-05-04_112513.png" alt="2017 05 04 112513">
+</div>
+</div>
+<hr>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>-XX:MaxPermSize=384M
+-Dsbt.override.build.repos=true
+-Dsbt.repository.config=C:\Users\dishui\.sbt\repositories</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
