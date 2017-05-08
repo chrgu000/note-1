@@ -3,7 +3,12 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-04-26T15:43:39+00:00</lastmod>
+    <lastmod>2017-05-05T15:39:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tmp/tmp2017-01-08/</loc>
+    <lastmod>2017-05-05T15:39:55+00:00</lastmod>
   </url>
   
   <url>
@@ -1017,18 +1022,6 @@
   
   <url>
     <loc>/src/java/alter-page/</loc>
-  </url>
-  
-  <url>
-    <loc>/src/records_bak/test/</loc>
-  </url>
-  
-  <url>
-    <loc>/tmp/a/</loc>
-  </url>
-  
-  <url>
-    <loc>/tmp/tmp2017-01-08/</loc>
   </url>
   
 </urlset>

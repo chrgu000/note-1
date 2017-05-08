@@ -21,7 +21,8 @@
 &lt;li&gt;&lt;a href=&#34;#_windows&#34;&gt;2. Windows&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_win10_端口转发&#34;&gt;2.1. win10 端口转发&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#__code_windows_code_环境变量&#34;&gt;2.2. &lt;code&gt;windows&lt;/code&gt; 环境变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__strong_windows_strong_环境变量&#34;&gt;2.2. &lt;strong&gt;Windows&lt;/strong&gt; 环境变量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_mklink_code_创建链接设置环境变量&#34;&gt;2.3. &lt;code&gt;mklink&lt;/code&gt; 创建链接设置环境变量&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -58,7 +59,7 @@ https://github.com/dishuiGit/codes.git/trunk/Spring-test&lt;/code&gt;&lt;/pre&gt
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;# 查看
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 查看
 netsh interface portproxy show all
 #add
 netsh interface portproxy add v4tov4 listenport=9200 connectaddress=192.168.137.164 connectport=9200
@@ -70,7 +71,7 @@ http://aofengblog.blog.163.com/blog/static/631702120148573851740/&lt;/code&gt;&l
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;__code_windows_code_环境变量&#34;&gt;2.2. &lt;code&gt;windows&lt;/code&gt; 环境变量&lt;/h3&gt;
+&lt;h3 id=&#34;__strong_windows_strong_环境变量&#34;&gt;2.2. &lt;strong&gt;Windows&lt;/strong&gt; 环境变量&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
@@ -80,8 +81,46 @@ http://aofengblog.blog.163.com/blog/static/631702120148573851740/&lt;/code&gt;&l
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;path=%path%;D:\env\apache-ant-1.9.4\bin;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;path=%path%;D:\env\apache-ant-1.9.4\bin;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__code_mklink_code_创建链接设置环境变量&#34;&gt;2.3. &lt;code&gt;mklink&lt;/code&gt; 创建链接设置环境变量&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;创建符号链接。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MKLINK [[/D] | [/H] | [/J]] Link Target&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;/D      创建目录符号链接。默认为文件
+        符号链接。
+/H      创建硬链接而非符号链接。
+/J      创建目录联接。
+Link    指定新的符号链接名称。
+Target  指定新链接引用的路径
+        (相对或绝对)。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mklink D:\env\bin\dot.exe D:\env\graphviz-2.38\release\bin\dot.exe
+mklink /D D:\env\bin\graphviz-bin\ D:\env\graphviz-2.38\release\bin\&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/kilosnow/article/details/7179705&#34;&gt;windows7中的mklink命令&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

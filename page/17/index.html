@@ -142,8 +142,18 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 服务器 vlan1. 服务器 vlan@startuml@startdotdigraph foo {_N1 [style=box,label="S5500(三层交换机)"];_N21 [style="rounded,filled", shape=ellipse,label="Vlan10(外)"];_N2 [style="rounded,filled", shape=ellipse,label="Vlan20(内)"];_N4 [style="rounded,filled", shape=ellipse,label="Vlan30(内)"];_N5 [shape=box,label="Web1"];_N6 [shape=box,label="Web2"];_N7 [shape=box,label="Image1"];_N8 [shape=box,label="Image2"];_N9 [shape=box,label="DB1"];_N10 [shape=box,label="DB(主)"];_N11 [shape=box,label="DB(从)"];_N12 [shape=box,label="LVS(主)"];_N13 [shape=box,label="LVS(备)"];
-_N1 -&gt; _N2;_N1 -&gt; _N21;_N1 -&gt; _N4;_N2 -&gt; _N5;_N2 -&gt; _N6;_N2 -&gt; _N7;_N2 -&gt; _N8;_N4 -&gt; _N9;_N4 -&gt; _N10;_N4 -&gt; _N11;_N21 -&gt; _N12;_N21 -&gt; _N13;_V10 [style="
+						Contents1. 服务器 vlan1. 服务器 vlan参考 浅谈web架构之架构设计
+图片服务器架构演进
+物理机(2)IBM x3650M4 2U 机架式服务器一颗E5-2609v2 2.5GHz/16GB（4*8GB）/2x1TB 7.2K SAS 2.5"/Raid 5/四端口千兆网卡/双冗余550W
+软件运行环境Linux coreos01 4.9.0-coreos + Tomcat7.0.62 + Mysql5.5 + Redis3.2 + ElasticSearch1.4
+物理机1(虚拟机)
+主机名
+IP
+操作系统
+处理器
+内存
+运行软件
+coreos01
 					</div>
 				</div>
 			</div>
@@ -428,6 +438,8 @@
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
 		
 			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
+		
+			<a href="/tags/tmp" class="tag-link" title="tmp" style="font-size: 12px;">tmp</a>
 		
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		

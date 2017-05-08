@@ -3,20 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+<title>tmp</title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="" />
-<meta property="og:description" content="SELECT zspl.*FROM zh_sub_plan_launch zsplWHERE zspl.plan_code IN(SELECT plan_codeFROM zh_plan_launch zplWHERE zpl.state = &#39;01&#39;AND zpl.table_date &gt;= ?AND zpl.table_date &#8656; ?)
-SELECT *FROM zh_plan zpWHERE plan_code = ?
-SELECT * FROM zh_plan zp WHERE plan_code = &#39;20170116101801016&#39;
-$(this).find(&#39;[name=&#34;zhPlanCode&#34;]&#39;)$(this).find(&#39;[name=&#34;projectName&#34;]&#39;)$(this).find(&#39;[name=&#34;reservoiCode&#34;]&#39;)$(this).find(&#39;select[name=&#34;goodsCode&#34;]&#39;)$(this).find(&#39;[name=&#34;pickMode&#34;]&#39;)$(this).find(&#39;[name=&#34;shipmentAddress&#34;]&#39;)$(this).find(&#39;[name=&#34;shipmentsCount&#34;]&#39;)$(this).find(&#39;[name=&#34;receivingAddress&#34;]&#39;)$(this).find(&#39;[name=&#34;receivingUnit&#34;]&#39;)$(this).find(&#39;[name=&#34;consignee&#34;]&#39;)$(this).find(&#39;[name=&#34;receivingPhone&#34;]&#39;)$(this).find(&#39;[name=&#34;memo&#34;]&#39;)$(this).find(&#39;[name=&#34;contractCode&#34;]&#39;)
-SELECT plan.plan_name,sub.*,obo.number,sub.shipments_count) - (obo.number AS w_count,gi.goods_name,gi.brand,gi.model,ra.abbreviation FROM zh_plan plan,zh_sub_plan sub LEFT JOIN zh_out_bound_order obo ON sub." />
+<meta property="og:title" content="tmp" />
+<meta property="og:description" content="ContentsSettings to quiet third party logs that are too verboseSPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive supportSELECTtranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,(SELECTbrand_nameFROMmlq_brandWHERE id = brand_id) brand_name,(SELECTbrand_nameFROMmlq_brandWHERE id = brand_id) brand_name_noa,(SELECTmsi.shop_nameFROMmlq_shop_info msiWHERE msi.id = mg.shop_id) new_seller_nick,(SELECTmsi.shop_nameFROMmlq_shop_info msiWHERE msi." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/tmp/tmp2017-01-08/" />
 
 
-
+<meta property="og:updated_time" content="2017-05-05T15:39:55&#43;00:00"/>
 
 
 
@@ -88,15 +84,103 @@
 <div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="entry-header clearfix">
-			<h1 class="entry-title"></h1>
+			<h1 class="entry-title">tmp</h1>
 			<p class="mr-meta entry-meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+				<time class="entry-meta-date updated" datetime="2017-05-05 15:39:55 &#43;0000 UTC">May 05, 2017</time>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
 			
-			<div class="paragraph">
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_settings_to_quiet_third_party_logs_that_are_too_verbose">Settings to quiet third party logs that are too verbose</a></li>
+<li><a href="#_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support">SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>SELECT
+  tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,
+  (SELECT
+    brand_name
+  FROM
+    mlq_brand
+  WHERE id = brand_id) brand_name,
+  (SELECT
+    brand_name
+  FROM
+    mlq_brand
+  WHERE id = brand_id) brand_name_noa,
+  (SELECT
+    msi.shop_name
+  FROM
+    mlq_shop_info msi
+  WHERE msi.id = mg.shop_id) new_seller_nick,
+  (SELECT
+    msi.shop_name
+  FROM
+    mlq_shop_info msi
+  WHERE msi.id = mg.shop_id) new_seller_nick_noa,
+  mg.*
+FROM
+  mlq_goods mg
+WHERE mg.gmt_modify &gt; '2017-05-08 10:53:51'
+OR mg.gmt_create &gt; '2017-05-08 10:53:51'</p>
+</div>
+<div class="paragraph">
+<p>mklink D:\env\bin\dot.exe D:\env\graphviz-2.38\release\bin\dot.exe</p>
+</div>
+<div class="paragraph">
+<p>%graphvizdot%\bin;%SBT_HOME%\bin;D:\env\code\bin;C:\msys64\mingw64\bin;d:\env\Ruby22\bin;D:\env\cwRsync\bin;%GOROOT%\bin;C:\ProgramData\Oracle\Java\javapath;%MAVEN_HOME%\bin;%JAVA_HOME%\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;D:\HashiCorp\Vagrant\bin;C:\Program Files (x86)\MySQL\MySQL Server 5.5\bin</p>
+</div>
+<div class="paragraph">
+<p>sssssssss</p>
+</div>
+<div class="paragraph">
+<p>gem install asciidoctor-diagram</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.graphviz.org/Download_windows.php" class="bare">http://www.graphviz.org/Download_windows.php</a>
+images_dir = parent.attr('plantimgdir')</p>
+</div>
+<div class="paragraph">
+<p>#{parent.attr('plantimgdir')}/</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'erd' executable in PATH; add it to the PATH or specify its location using the 'erd' document attribute
+[Person]
+*name
+height
+weight
++birth_location_id
+
+[Location]
+*id
+city
+state
+country
+
+Person *--1 Location</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/diagram-classes4.png" alt="diagram classes4" width="1108" height="839">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/diagram-classes25.svg" alt="diagram classes25" width="314" height="325">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/ditaa-diagram.png" alt="ditaa diagram" width="540" height="280">
+</div>
+</div>
+<div class="paragraph">
 <p>SELECT zspl.*
 FROM zh_sub_plan_launch zspl
 WHERE zspl.plan_code IN
@@ -108,7 +192,7 @@ AND zpl.table_date &#8656; ?)</p>
 </div>
 <div class="paragraph">
 <p>SELECT *
-FROM zh_plan zp
+FROM zh_plan zp阿三地方
 WHERE plan_code = ?</p>
 </div>
 <div class="paragraph">
@@ -1594,41 +1678,65 @@ AND zsgc.status  = '4'</p>
 2017-03-28_163804
 2017-03-28_163811</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
 </div>
 <div class="paragraph">
 <p>docker run -d -p 8888:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k 111111 -m aes-256-cfb</p>
@@ -1807,7 +1915,7 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
         "(SELECT plan_code "<br>
         "FROM zh_plan_launch zpl "<br>
         "WHERE zpl.state = '01' "<br>
-        "AND zpl.table_date &gt;= ? "<br>
+        <span class="menuseq"><span class="menu">AND zpl.table_date</span>&#160;&#9656; <span class="menuitem">= ?</span></span><br>
         "AND zpl.table_date &#8656; ?) "<br>
         "AND zspl.project_name = zsgc.project_name "<br>
         "AND zsgc.make_time = ? "+
@@ -1854,7 +1962,7 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
     String planLanchSql = "SELECT zpl.* "<br>
         "FROM zh_plan_launch zpl "<br>
         "WHERE zpl.state = '01' "<br>
-        "AND zpl.table_date &gt;= ? "<br>
+        <span class="menuseq"><span class="menu">AND zpl.table_date</span>&#160;&#9656; <span class="menuitem">= ?</span></span><br>
         "AND zpl.table_date &#8656; ? ";
     String reservoirCodeSql = subPlanLanchSql + " ,zspl.reservoir_code";</p>
 </div>
@@ -2182,6 +2290,13 @@ sonatype-oss-releases</p>
 
 		</div>
 		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/tmp/" rel="tag">tmp</a></li>
+		
+	</ul>
+</div>
 	</article>
 	
 <div class="mr-author-box clearfix">
@@ -2200,10 +2315,10 @@ sonatype-oss-releases</p>
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/tmp/a/" rel="prev"><span>«Previous</span><p></p></a>
-		</div>
 		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/" rel="next"><span>Next»</span><p>spark-源码</p></a>
+		</div>
 		
 	</nav>
 

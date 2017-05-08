@@ -7,8 +7,18 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="架构" />
-<meta property="og:description" content="Contents1. 服务器 vlan1. 服务器 vlan@startuml@startdotdigraph foo {_N1 [style=box,label=&#34;S5500(三层交换机)&#34;];_N21 [style=&#34;rounded,filled&#34;, shape=ellipse,label=&#34;Vlan10(外)&#34;];_N2 [style=&#34;rounded,filled&#34;, shape=ellipse,label=&#34;Vlan20(内)&#34;];_N4 [style=&#34;rounded,filled&#34;, shape=ellipse,label=&#34;Vlan30(内)&#34;];_N5 [shape=box,label=&#34;Web1&#34;];_N6 [shape=box,label=&#34;Web2&#34;];_N7 [shape=box,label=&#34;Image1&#34;];_N8 [shape=box,label=&#34;Image2&#34;];_N9 [shape=box,label=&#34;DB1&#34;];_N10 [shape=box,label=&#34;DB(主)&#34;];_N11 [shape=box,label=&#34;DB(从)&#34;];_N12 [shape=box,label=&#34;LVS(主)&#34;];_N13 [shape=box,label=&#34;LVS(备)&#34;];
-_N1 -&gt; _N2;_N1 -&gt; _N21;_N1 -&gt; _N4;_N2 -&gt; _N5;_N2 -&gt; _N6;_N2 -&gt; _N7;_N2 -&gt; _N8;_N4 -&gt; _N9;_N4 -&gt; _N10;_N4 -&gt; _N11;_N21 -&gt; _N12;_N21 -&gt; _N13;_V10 [style=&#34;" />
+<meta property="og:description" content="Contents1. 服务器 vlan1. 服务器 vlan参考 浅谈web架构之架构设计
+图片服务器架构演进
+物理机(2)IBM x3650M4 2U 机架式服务器一颗E5-2609v2 2.5GHz/16GB（4*8GB）/2x1TB 7.2K SAS 2.5&#34;/Raid 5/四端口千兆网卡/双冗余550W
+软件运行环境Linux coreos01 4.9.0-coreos &#43; Tomcat7.0.62 &#43; Mysql5.5 &#43; Redis3.2 &#43; ElasticSearch1.4
+物理机1(虚拟机)
+主机名
+IP
+操作系统
+处理器
+内存
+运行软件
+coreos01" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/work/arch/" />
 
@@ -101,54 +111,9 @@
 </div>
 <div class="sect2">
 <h3 id="_服务器_vlan">1. 服务器 vlan</h3>
-<div class="paragraph">
-<p>@startuml
-@startdot
-digraph foo {
-  _N1 [style=box,label="S5500(三层交换机)"];
-  _N21 [style="rounded,filled", shape=ellipse,label="Vlan10(外)"];
-  _N2 [style="rounded,filled", shape=ellipse,label="Vlan20(内)"];
-  _N4 [style="rounded,filled", shape=ellipse,label="Vlan30(内)"];
-  _N5 [shape=box,label="Web1"];
-  _N6 [shape=box,label="Web2"];
-  _N7 [shape=box,label="Image1"];
-  _N8 [shape=box,label="Image2"];
-  _N9 [shape=box,label="DB1"];
-  _N10 [shape=box,label="DB(主)"];
-  _N11 [shape=box,label="DB(从)"];
-  _N12 [shape=box,label="LVS(主)"];
-  _N13 [shape=box,label="LVS(备)"];</p>
-</div>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>_N1 -&gt; _N2;
-_N1 -&gt; _N21;
-_N1 -&gt; _N4;
-_N2 -&gt; _N5;
-_N2 -&gt; _N6;
-_N2 -&gt; _N7;
-_N2 -&gt; _N8;
-_N4 -&gt; _N9;
-_N4 -&gt; _N10;
-_N4 -&gt; _N11;
-_N21 -&gt; _N12;
-_N21 -&gt; _N13;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>_V10 [style="rounded,filled", shape=ellipse,label="Vlan10(外)"];
-_V20 [style="rounded,filled", shape=ellipse,label="Vlan20(内)"];
-_V30 [style="rounded,filled", shape=ellipse,label="Vlan30(内)"];</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  _V10 -&gt; _V20
-  _V20 -&gt; _V30
-}
-@enddot
-@enduml</pre>
+<img src="/src/img/plantuml/app-arch-1.png" alt="app arch 1" width="1091" height="251">
 </div>
 </div>
 <div class="dlist">

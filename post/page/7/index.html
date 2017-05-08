@@ -164,7 +164,7 @@
 					<div class="mr-excerpt">
 						Contents1. 配置 asciidoctor 解析 Asciinema1.1. 测试2. Tmp1. 配置 asciidoctor 解析 Asciinema添加 GistBlockMacro 到 asciidoctor-1.5.5\lib 下
 替换 asciidoctor-1.5.5\bin 目录下的 asciidoctor
-#!/usr/bin/env rubyrequire 'rubygems' unless defined? Gemif File.exist?(asciidoctor = (File.expand_path '../../lib/asciidoctor', __FILE__))require asciidoctorelserequire 'asciidoctor'end# 解析require 'asciidoctor/extensions'require 'asciidoctor/GistBlockMacro'Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? 'html'end#require 'asciidoctor/cli'invoker = Asciidoctor::Cli::Invoker.new ARGVGC.
+#!/usr/bin/env rubyrequire 'rubygems' unless defined? Gemif File.exist?(asciidoctor = (File.expand_path '../../lib/asciidoctor', __FILE__))require asciidoctorelserequire 'asciidoctor'end# 解析require 'asciidoctor-diagram'require 'asciidoctor/extensions'require 'asciidoctor/GistBlockMacro'Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? 'html'end#require 'asciidoctor/cli'invoker = Asciidoctor::Cli::Invoker.
 					</div>
 				</div>
 			</div>
@@ -395,6 +395,8 @@ $ sudo vi /etc/coreos/update.confGROUP=stableREBOOT_STRATEGY=reboot升级
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
 		
 			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
+		
+			<a href="/tags/tmp" class="tag-link" title="tmp" style="font-size: 12px;">tmp</a>
 		
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		

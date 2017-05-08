@@ -9,7 +9,7 @@
 <meta property="og:title" content="Asciinema" />
 <meta property="og:description" content="Contents1. 配置 asciidoctor 解析 Asciinema1.1. 测试2. Tmp1. 配置 asciidoctor 解析 Asciinema添加 GistBlockMacro 到 asciidoctor-1.5.5\lib 下
 替换 asciidoctor-1.5.5\bin 目录下的 asciidoctor
-#!/usr/bin/env rubyrequire &#39;rubygems&#39; unless defined? Gemif File.exist?(asciidoctor = (File.expand_path &#39;../../lib/asciidoctor&#39;, __FILE__))require asciidoctorelserequire &#39;asciidoctor&#39;end# 解析require &#39;asciidoctor/extensions&#39;require &#39;asciidoctor/GistBlockMacro&#39;Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? &#39;html&#39;end#require &#39;asciidoctor/cli&#39;invoker = Asciidoctor::Cli::Invoker.new ARGVGC." />
+#!/usr/bin/env rubyrequire &#39;rubygems&#39; unless defined? Gemif File.exist?(asciidoctor = (File.expand_path &#39;../../lib/asciidoctor&#39;, __FILE__))require asciidoctorelserequire &#39;asciidoctor&#39;end# 解析require &#39;asciidoctor-diagram&#39;require &#39;asciidoctor/extensions&#39;require &#39;asciidoctor/GistBlockMacro&#39;Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? &#39;html&#39;end#require &#39;asciidoctor/cli&#39;invoker = Asciidoctor::Cli::Invoker." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/asciinema/" />
 
@@ -127,6 +127,7 @@ else
   require 'asciidoctor'
 end
 # 解析
+require 'asciidoctor-diagram'
 require 'asciidoctor/extensions'
 require 'asciidoctor/GistBlockMacro'
 Asciidoctor::Extensions.register do

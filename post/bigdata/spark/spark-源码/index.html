@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="spark-源码" />
-<meta property="og:description" content="spark-基础1. SparkContext1. SparkContext" />
+<meta property="og:description" content="spark-基础1. SparkContext2. job的提交和运行1. SparkContext2. job的提交和运行" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/" />
 
@@ -99,6 +99,7 @@
 <div id="toctitle">spark-基础</div>
 <ul class="sectlevel1">
 <li><a href="#_sparkcontext">1. SparkContext</a></li>
+<li><a href="#_job的提交和运行">2. job的提交和运行</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -107,6 +108,22 @@
 <div class="imageblock">
 <div class="content">
 <img src="/post/bigdata/spark/uml/sparkContext.svg" alt="sparkContext">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_job的提交和运行">2. job的提交和运行</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/spark-job-1.svg" alt="spark job 1" width="1112" height="947">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/spark-job-2.svg" alt="spark job 2" width="1575" height="714">
 </div>
 </div>
 </div>
@@ -131,6 +148,10 @@
 	
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/tmp/tmp2017-01-08/" rel="prev"><span>«Previous</span><p>tmp</p></a>
+		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
