@@ -21,6 +21,124 @@
 &lt;li&gt;&lt;a href=&#34;#_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support&#34;&gt;SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;上传日志文件到hdfs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;日志预处理,日志点击流
+.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;command.1=sh log_click.sh ${HADOOP_PRE} ${FILE_NAME}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop fs -rm -r /data/weblog/preprocess/valid_output/2017-05-12&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop fs -ls /data/weblog/preprocess/valid_output/2017-05-12&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/apt/sources.list &amp;lt;&amp;lt;_EOF_
+deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty main restricted universe multiverse
+deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-security main restricted universe multiverse
+deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-updates main restricted universe multiverse
+deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-proposed main restricted universe multiverse
+deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-backports main restricted universe multiverse
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty main restricted universe multiverse
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-security main restricted universe multiverse
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-updates main restricted universe multiverse
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-proposed main restricted universe multiverse
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-backports main restricted universe multiverse
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/apt/sources.list &amp;lt;&amp;lt;_EOF_
+deb &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy main contrib non-free
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy main contrib non-free
+deb &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy-updates main contrib non-free
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy-updates main contrib non-free
+deb &lt;a href=&#34;http://mirrors.aliyun.com/debian-security&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian-security&lt;/a&gt; wheezy/updates main contrib non-free
+deb-src &lt;a href=&#34;http://mirrors.aliyun.com/debian-security&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian-security&lt;/a&gt; wheezy/updates main contrib non-free
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker exec hadoop-master /bin/sh -c &#39;echo 1&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/usr/bin/docker exec hadoop-master /usr/local/hadoop/bin/hadoop jar hadoop-demo-1.0-SNAPSHOT.jar wordcount /wordcount/input /wordcount/output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.2-sources.jar org.apache.hadoop.examples.WordCount /wordcount/input /wordcount/output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;相当于一个yarn集群的客户端
+需要在此封装我们的mr程序的相关运行参数
+指定jar包,最后提交给yarn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;将job中配置的相关参数,以及job所用的java类所在的jar包,提交给yarn去运行&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;type&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;运营场景
+决策场景&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;调度&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;数据仓库&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;数据建模&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;业务场景接口&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ImmutableListMultimap&amp;lt;String, ?&amp;gt; cktmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)ckList, multiTypeFunction);
+ImmutableListMultimap&amp;lt;String, ?&amp;gt; sctmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)scList, multiTypeFunction);
+ImmutableListMultimap&amp;lt;String, ?&amp;gt; dgtmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)dgList, multiTypeFunction);
+ImmutableListMultimap&amp;lt;String, ?&amp;gt; pdtmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)pdList, multiTypeFunction);
+ImmutableListMultimap&amp;lt;String, ?&amp;gt; kctmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)kcList, multiTypeFunction);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;builder.put(&#34;rk&#34;, rktmp.asMap());
+builder.put(&#34;ck&#34;, cktmp.asMap());
+builder.put(&#34;sc&#34;, sctmp.asMap());
+builder.put(&#34;dg&#34;, dgtmp.asMap());
+builder.put(&#34;pd&#34;, pdtmp.asMap());
+builder.put(&#34;kc&#34;, kctmp.asMap());&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;*id {lable:&#34;varchar(32) NOT NULL&#34;}
+reservoir_code {lable:&#34;varchar(32) DEFAULT NULL&#34;}
+abbreviation {lable:&#34;varchar(64) DEFAULT NULL&#34;}
+reservoir_name {lable:&#34;varchar(256) DEFAULT NULL&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;id {lable:&#34;varchar(32) NOT NULL&#34;}
+storage_code {lable:&#34;varchar(32) DEFAULT NULL&#34;}
+storage_name {lable:&#34;varchar(128) DEFAULT NULL&#34;}
+reservoir_code {lable:&#34;varchar(32) DEFAULT NULL&#34;}
+storage_capacity {lable:&#34;double(8,0) DEFAULT NULL&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;SELECT   *,   (SELECT     zra.abbreviation   FROM     zh_reservoir_area zra   WHERE zra.reservoir_code = zar.reservoir_code) AS abbreviation,   (SELECT     zs.storage_capacity   FROM     zh_storage zs   WHERE zs.reservoir_code = zar.reservoir_code     AND zs.storage_code = zar.storage_code GROUP BY zar.reservoir_code) AS storageCapacity FROM   zh_asphalt_repertory zar GROUP BY zar.reservoir_code,   zar.storage_code HAVING 1=1 AND zar.type = &#39;00&#39; ORDER BY abbreviation&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cabal sandbox hc-pkg&amp;#8201;&amp;#8212;&amp;#8201;unregister base&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;SELECT
   tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,
@@ -60,6 +178,9 @@ OR mg.gmt_create &amp;gt; &#39;2017-05-08 10:53:51&#39;&lt;/p&gt;
 &lt;p&gt;sssssssss&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;WebRoot/web/storagemanagement/repertory/asphalt_count_jxc.jsp&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;gem install asciidoctor-diagram&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -69,27 +190,17 @@ images_dir = parent.attr(&#39;plantimgdir&#39;)&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;#{parent.attr(&#39;plantimgdir&#39;)}/&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;#title {label: &#34;大物流仓库库存表关系&#34;, size: &#34;20&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Failed to generate image: Could not find the &#39;erd&#39; executable in PATH; add it to the PATH or specify its location using the &#39;erd&#39; document attribute
-[Person]
-*name
-height
-weight
-+birth_location_id
-
-[Location]
-*id
-city
-state
-country
-
-Person *--1 Location&lt;/pre&gt;
+&lt;img src=&#34;/src/img/plantuml/erd-1.png&#34; alt=&#34;erd 1&#34; width=&#34;1768&#34; height=&#34;723&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/diagram-classes4.png&#34; alt=&#34;diagram classes4&#34; width=&#34;1108&#34; height=&#34;839&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/diagram-classes4.png&#34; alt=&#34;diagram classes4&#34; width=&#34;317&#34; height=&#34;949&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;

@@ -7,7 +7,12 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="tmp" />
-<meta property="og:description" content="ContentsSettings to quiet third party logs that are too verboseSPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive supportSELECTtranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,(SELECTbrand_nameFROMmlq_brandWHERE id = brand_id) brand_name,(SELECTbrand_nameFROMmlq_brandWHERE id = brand_id) brand_name_noa,(SELECTmsi.shop_nameFROMmlq_shop_info msiWHERE msi.id = mg.shop_id) new_seller_nick,(SELECTmsi.shop_nameFROMmlq_shop_info msiWHERE msi." />
+<meta property="og:description" content="ContentsSettings to quiet third party logs that are too verboseSPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support上传日志文件到hdfs
+日志预处理,日志点击流.
+command.1=sh log_click.sh ${HADOOP_PRE} ${FILE_NAME}
+hadoop fs -rm -r /data/weblog/preprocess/valid_output/2017-05-12
+hadoop fs -ls /data/weblog/preprocess/valid_output/2017-05-12
+cat &gt; /etc/apt/sources.list &lt;&lt;_EOF_deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiversedeb http://mirrors." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/tmp/tmp2017-01-08/" />
 
@@ -99,6 +104,124 @@
 <li><a href="#_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support">SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support</a></li>
 </ul>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>上传日志文件到hdfs</p>
+</li>
+<li>
+<p>日志预处理,日志点击流
+.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>command.1=sh log_click.sh ${HADOOP_PRE} ${FILE_NAME}</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -rm -r /data/weblog/preprocess/valid_output/2017-05-12</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -ls /data/weblog/preprocess/valid_output/2017-05-12</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/apt/sources.list &lt;&lt;_EOF_
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-proposed main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-proposed main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main restricted universe multiverse
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/apt/sources.list &lt;&lt;_EOF_
+deb <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy main contrib non-free
+deb-src <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy main contrib non-free
+deb <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy-updates main contrib non-free
+deb-src <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy-updates main contrib non-free
+deb <a href="http://mirrors.aliyun.com/debian-security" class="bare">http://mirrors.aliyun.com/debian-security</a> wheezy/updates main contrib non-free
+deb-src <a href="http://mirrors.aliyun.com/debian-security" class="bare">http://mirrors.aliyun.com/debian-security</a> wheezy/updates main contrib non-free
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>docker exec hadoop-master /bin/sh -c 'echo 1'</p>
+</div>
+<div class="paragraph">
+<p>/usr/bin/docker exec hadoop-master /usr/local/hadoop/bin/hadoop jar hadoop-demo-1.0-SNAPSHOT.jar wordcount /wordcount/input /wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.2-sources.jar org.apache.hadoop.examples.WordCount /wordcount/input /wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>相当于一个yarn集群的客户端
+需要在此封装我们的mr程序的相关运行参数
+指定jar包,最后提交给yarn</p>
+</div>
+<div class="paragraph">
+<p>将job中配置的相关参数,以及job所用的java类所在的jar包,提交给yarn去运行</p>
+</div>
+<div class="paragraph">
+<p>type</p>
+</div>
+<div class="paragraph">
+<p>运营场景
+决策场景</p>
+</div>
+<div class="paragraph">
+<p>调度</p>
+</div>
+<div class="paragraph">
+<p>数据仓库</p>
+</div>
+<div class="paragraph">
+<p>数据建模</p>
+</div>
+<div class="paragraph">
+<p>业务场景接口</p>
+</div>
+<div class="paragraph">
+<p>ImmutableListMultimap&lt;String, ?&gt; cktmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)ckList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; sctmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)scList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; dgtmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)dgList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; pdtmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)pdList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; kctmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)kcList, multiTypeFunction);</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>builder.put("rk", rktmp.asMap());
+builder.put("ck", cktmp.asMap());
+builder.put("sc", sctmp.asMap());
+builder.put("dg", dgtmp.asMap());
+builder.put("pd", pdtmp.asMap());
+builder.put("kc", kctmp.asMap());</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>*id {lable:"varchar(32) NOT NULL"}
+reservoir_code {lable:"varchar(32) DEFAULT NULL"}
+abbreviation {lable:"varchar(64) DEFAULT NULL"}
+reservoir_name {lable:"varchar(256) DEFAULT NULL"}</p>
+</div>
+<div class="paragraph">
+<p>id {lable:"varchar(32) NOT NULL"}
+storage_code {lable:"varchar(32) DEFAULT NULL"}
+storage_name {lable:"varchar(128) DEFAULT NULL"}
+reservoir_code {lable:"varchar(32) DEFAULT NULL"}
+storage_capacity {lable:"double(8,0) DEFAULT NULL"}</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SELECT   *,   (SELECT     zra.abbreviation   FROM     zh_reservoir_area zra   WHERE zra.reservoir_code = zar.reservoir_code) AS abbreviation,   (SELECT     zs.storage_capacity   FROM     zh_storage zs   WHERE zs.reservoir_code = zar.reservoir_code     AND zs.storage_code = zar.storage_code GROUP BY zar.reservoir_code) AS storageCapacity FROM   zh_asphalt_repertory zar GROUP BY zar.reservoir_code,   zar.storage_code HAVING 1=1 AND zar.type = '00' ORDER BY abbreviation</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>cabal sandbox hc-pkg&#8201;&#8212;&#8201;unregister base</p>
+</div>
 <div class="paragraph">
 <p>SELECT
   tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,
@@ -138,6 +261,9 @@ OR mg.gmt_create &gt; '2017-05-08 10:53:51'</p>
 <p>sssssssss</p>
 </div>
 <div class="paragraph">
+<p>WebRoot/web/storagemanagement/repertory/asphalt_count_jxc.jsp</p>
+</div>
+<div class="paragraph">
 <p>gem install asciidoctor-diagram</p>
 </div>
 <div class="paragraph">
@@ -147,27 +273,17 @@ images_dir = parent.attr('plantimgdir')</p>
 <div class="paragraph">
 <p>#{parent.attr('plantimgdir')}/</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>#title {label: "大物流仓库库存表关系", size: "20"}</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: Could not find the 'erd' executable in PATH; add it to the PATH or specify its location using the 'erd' document attribute
-[Person]
-*name
-height
-weight
-+birth_location_id
-
-[Location]
-*id
-city
-state
-country
-
-Person *--1 Location</pre>
+<img src="/src/img/plantuml/erd-1.png" alt="erd 1" width="1768" height="723">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="/src/img/plantuml/diagram-classes4.png" alt="diagram classes4" width="1108" height="839">
+<img src="/src/img/plantuml/diagram-classes4.png" alt="diagram classes4" width="317" height="949">
 </div>
 </div>
 <div class="imageblock">

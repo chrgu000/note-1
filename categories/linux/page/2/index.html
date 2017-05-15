@@ -126,7 +126,11 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 shell 获取当前目录   bash DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &amp;&amp; pwd )&quot;   
+						Contents1. shell1.1. 获取当前目录1. shell1.1. 获取当前目录+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"变量
+for var in $@doecho "$var"docker tag $var dishui.io:5000/$vardocker push dishui.io:5000/$vardocker rmi dishui.io:5000/$vardone参考
+Shell $0, $#, $*, $@, $?, $$和命令行参数
+
 					</div>
 				</div>
 			</div>

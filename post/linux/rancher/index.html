@@ -427,6 +427,38 @@ docker rmi dishui.io:5000/$1</code></pre>
 </div>
 </div>
 </dd>
+<dt class="hdlist1"><code>pull.sh</code> </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#!/bin/bash
+
+for var in $@
+do
+  echo "$var"
+  docker pull dishui.io:5000/$var
+  docker tag dishui.io:5000/$var $var
+  docker rmi dishui.io:5000/$var
+done</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>push.sh</code> </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#!/bin/bash
+
+for var in $@
+do
+    echo "$var"
+    docker tag $var dishui.io:5000/$var
+    docker push dishui.io:5000/$var
+    docker rmi dishui.io:5000/$var
+done</code></pre>
+</div>
+</div>
+</dd>
 </dl>
 </div>
 </div>

@@ -545,12 +545,29 @@ hadoop fs -put /a.txt /wordcount/input</code></pre>
 </div>
 </div>
 </li>
-</ol>
-</div>
+<li>
+<p><a href="https://git.oschina.net/dishui/bigdata/tree/heartbeat02/">WordCount 代码</a></p>
+</li>
+<li>
+<p>上传打包好的jar</p>
+</li>
+<li>
+<p>执行</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.4.1.jar</code></pre>
+<pre class="highlightjs highlight"><code>hadoop jar hadoop-demo-1.0-SNAPSHOT.jar wordcount.WordCountDriver /wordcount/input/ /wordcount/output/</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>查看输出结果</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>hadoop fs -cat /wordcount/output/part-r-00000</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

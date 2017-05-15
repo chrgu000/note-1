@@ -7,7 +7,11 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="shell" />
-<meta property="og:description" content=" shell 获取当前目录   bash DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &amp;&amp; pwd )&quot;   " />
+<meta property="og:description" content="Contents1. shell1.1. 获取当前目录1. shell1.1. 获取当前目录&#43;
+DIR=&#34;$( cd &#34;$( dirname &#34;${BASH_SOURCE[0]}&#34; )&#34; &amp;&amp; pwd )&#34;变量
+for var in $@doecho &#34;$var&#34;docker tag $var dishui.io:5000/$vardocker push dishui.io:5000/$vardocker rmi dishui.io:5000/$vardone参考
+Shell $0, $#, $*, $@, $?, $$和命令行参数
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/shell/" />
 
@@ -95,20 +99,56 @@
 		</header>
 		<div class="entry-content clearfix">
 			
-			
-
-<!-- toc -->
-
-<h1 id="shell">shell</h1>
-
-<h3 id="获取当前目录">获取当前目录</h3>
-
-<ul>
-<li>
-<code>bash
-DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &amp;&amp; pwd )&quot;
-</code></li>
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_shell">1. shell</a>
+<ul class="sectlevel2">
+<li><a href="#_获取当前目录">1.1. 获取当前目录</a></li>
 </ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_shell">1. shell</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_获取当前目录">1.1. 获取当前目录</h3>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>变量</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>for var in $@
+do
+  echo "$var"
+  docker tag $var dishui.io:5000/$var
+  docker push dishui.io:5000/$var
+  docker rmi dishui.io:5000/$var
+done</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>参考</p>
+<div class="paragraph">
+<p><a href="http://c.biancheng.net/cpp/view/2739.html">Shell $0, $#, $*, $@, $?, $$和命令行参数</a></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 
 		</div>
 		
