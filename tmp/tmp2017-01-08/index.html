@@ -3,21 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>tmp</title>
+<title></title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="tmp" />
-<meta property="og:description" content="ContentsSettings to quiet third party logs that are too verboseSPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support上传日志文件到hdfs
-日志预处理,日志点击流.
-command.1=sh log_click.sh ${HADOOP_PRE} ${FILE_NAME}
-hadoop fs -rm -r /data/weblog/preprocess/valid_output/2017-05-12
-hadoop fs -ls /data/weblog/preprocess/valid_output/2017-05-12
-cat &gt; /etc/apt/sources.list &lt;&lt;_EOF_deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiversedeb http://mirrors." />
+<meta property="og:title" content="" />
+<meta property="og:description" content="description = &#34;&#34;date = &#34;2017-05-05T15:39:55&#34;categories = []tags = [&#34;tmp&#34;]thumbnail = &#34;&#34;title = &#34;tmp&#34;
+&#43;
+今:借朗锐科服务器(AQR-2181)一台
+/web/bpm/setting/sendgoods_check_update.jsp
+/bpm/jbpmAction!submitJbpm.action&#34;,transacTask_taskid,&#34;&#34;,name,type,idea,&#34;&#34;
+version: &#39;2&#39;services:mysql5.5:image: dishui.io:5000/asosso/mysql:5.5.52container_name: mysqlenvironment:MYSQL_ROOT_PASSWORD: &#39;111111&#39;ports:- &#39;3307:3306&#39;networks:- hadoopzoo1:image: dishui.io:5000/zookeeper:3.4restart: alwaysports:- 2181:2181environment:ZOO_MY_ID: 1ZOO_SERVERS: server.1=zoo1:2888:3888networks:- hadoopnetworks:hadoop:external: true
+set hive." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/tmp/tmp2017-01-08/" />
 
 
-<meta property="og:updated_time" content="2017-05-05T15:39:55&#43;00:00"/>
+
 
 
 
@@ -89,20 +90,390 @@
 <div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="entry-header clearfix">
-			<h1 class="entry-title">tmp</h1>
+			<h1 class="entry-title"></h1>
 			<p class="mr-meta entry-meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-05-05 15:39:55 &#43;0000 UTC">May 05, 2017</time>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
 			</p>
 		</header>
 		<div class="entry-content clearfix">
 			
-			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_settings_to_quiet_third_party_logs_that_are_too_verbose">Settings to quiet third party logs that are too verbose</a></li>
-<li><a href="#_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support">SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support</a></li>
-</ul>
+			<div class="paragraph">
+<p>description = ""
+date = "2017-05-05T15:39:55"
+categories = [
+]
+tags = [
+    "tmp"
+]
+thumbnail = ""
+title = "tmp"</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="paragraph">
+<p>今:
+  借朗锐科服务器(AQR-2181)一台</p>
+</div>
+<div class="paragraph">
+<p>/web/bpm/setting/sendgoods_check_update.jsp</p>
+</div>
+<div class="paragraph">
+<p>/bpm/jbpmAction!submitJbpm.action",transacTask_taskid,"",name,type,idea,""</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  mysql5.5:
+    image: dishui.io:5000/asosso/mysql:5.5.52
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: '111111'
+    ports:
+      - '3307:3306'
+    networks:
+      - hadoop
+  zoo1:
+    image: dishui.io:5000/zookeeper:3.4
+    restart: always
+    ports:
+      - 2181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true</p>
+</div>
+<div class="paragraph">
+<p>set hive.support.concurrency = true;
+set hive.enforce.bucketing = true;
+set hive.exec.dynamic.partition.mode = nonstrict;
+set hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
+set hive.compactor.initiator.on = true;
+set hive.compactor.worker.threads = 1;
+set hive.zookeeper.quorum = zoo1;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE college(clg_id int,clg_name string,clg_loc string) clustered by (clg_id) into 5 buckets stored as orc TBLPROPERTIES('transactional'='true');</p>
+</div>
+<div class="paragraph">
+<p>INSERT INTO table college values(1,'nec','nlr'),(2,'vit','vlr'),(3,'srm','chen'),(4,'lpu','del'),(5,'stanford','uk'),(6,'JNTUA','atp'),(7,'cambridge','us');</p>
+</div>
+<div class="paragraph">
+<p>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+    &lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+    &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;
+  &lt;/property&gt;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+  &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+  &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+  &lt;value&gt;root&lt;/value&gt;
+  &lt;description&gt;username to use against metastore database&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+    &lt;value&gt;111111&lt;/value&gt;
+    &lt;description&gt;password to use against metastore database&lt;/description&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.support.concurrency&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.enforce.bucketing&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.exec.dynamic.partition.mode&lt;/name&gt;
+    &lt;value&gt;nonstrict&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.txn.manager&lt;/name&gt;
+    &lt;value&gt;org.apache.hadoop.hive.ql.lockmgr.DbTxnManager&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.compactor.initiator.on&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.compactor.worker.threads&lt;/name&gt;
+    &lt;value&gt;1&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.zookeeper.quorum&lt;/name&gt;
+    &lt;value&gt;zoo1&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>hive.support.concurrency –true
+hive.zookeeper.quorum - 192.168.2.233 (自己添加)
+hive.enforce.bucketing – true (Hive 2.0之后不需要设置)
+hive.exec.dynamic.partition.mode – nonstrict
+hive.txn.manager – org.apache.hadoop.hive.ql.lockmgr.DbTxnManager
+hive.compactor.initiator.on – true
+hive.compactor.worker.threads – 5</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;hive.support.concurrency&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.enforce.bucketing&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.exec.dynamic.partition.mode&lt;/name&gt;
+  &lt;value&gt;nonstrict&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.txn.manager&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hive.ql.lockmgr.DbTxnManager&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.compactor.initiator.on&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.compactor.worker.threads&lt;/name&gt;
+  &lt;value&gt;5&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE users (
+  id int,
+  name string
+)
+CLUSTERED BY (id) INTO 2 BUCKETS STORED AS ORC
+TBLPROPERTIES ("transactional"="true",
+"compactor.mapreduce.map.memory.mb"="400",
+"compactorthreshold.hive.compactor.delta.num.threshold"="2",
+"compactorthreshold.hive.compactor.delta.pct.threshold"="0.5"
+);</p>
+</div>
+<div class="paragraph">
+<p>INSERT INTO TABLE users VALUES (1,'11'), (2,'22');
+INSERT INTO TABLE users VALUES (3,'xx'), (4,'yy');
+INSERT INTO TABLE users VALUES (5,'xx1'), (6,'yy2');</p>
+</div>
+<div class="paragraph">
+<p>hive --service metastore</p>
+</div>
+<div class="paragraph">
+<p>ALTER TABLE users COMPACT 'minor';
+show compactions;</p>
+</div>
+<div class="paragraph">
+<p>drop table if exists ods_weblog_origin;
+drop table if exists ods_weblog_origin;
+drop table if exists ods_weblog_origin;</p>
+</div>
+<div class="paragraph">
+<p>drop table if exists mytable;
+drop table if exists pageview;
+drop table if exists student;
+drop table if exists student_p;
+drop table if exists trade_detail;</p>
+</div>
+<div class="paragraph">
+<p>drop table if exists ods_click_pageviews;
+create table ods_click_pageviews(
+Session string,
+remote_addr string,
+user string,
+time_local string,
+request string,
+visit_step string,
+page_staylong string,
+http_referer string,
+http_user_agent string,
+body_bytes_sent string,
+status string)
+partitioned by (datestr string)
+row format delimited
+fields terminated by '\001';</p>
+</div>
+<div class="paragraph">
+<p>后台启动hiveserver
+nohup hiveserver2 1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;</p>
+</div>
+<div class="paragraph">
+<p>asciinema rec -c bash 1.json</p>
+</div>
+<div class="paragraph">
+<p>ssh root@196.168.1.34</p>
+</div>
+<div class="paragraph">
+<p>docker exec -it hadoop-master /bin/bash
+docker exec -it hadoop-slave1 /bin/bash</p>
+</div>
+<div class="paragraph">
+<p>连接hive
+beeline -u jdbc:hive2://hadoop-master:10000 -n root</p>
+</div>
+<div class="paragraph">
+<p>beeline -u jdbc:hive2://hadoop-master:10000/default -n root</p>
+</div>
+<div class="paragraph">
+<p>!connect jdbc:hive2://hadoop-master:10000 root</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists mytable3(sid int, sname string) row format delimited fields terminated by '\005' stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create external table if not exists pageview(pageid int,page_url string comment 'The page URL') row format delimited fields terminated by ',' location 'hdfs://hadoop-master:9000/user/hive/warehouse/';</p>
+</div>
+<div class="paragraph">
+<p>create table student_p(Sno int,Sname string,Sex string,Sage int,Sdept string) partitioned by(part string) row format delimited fields terminated by ',' stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create table student(id INT,age INT,name STRING) partitioned by(stat_date STRING) clustered by(id) sorted by(age) into 2 buckets row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicCN</p>
+</div>
+<div class="paragraph">
+<p>持续化构建,部署
+版本管理
+编译
+数据库
+反向代理
+大物流
+禅道</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/releases/download/v0.1.0-fonts/KaiGenGothicCN-Bold-Italic.ttf" class="bare">https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/releases/download/v0.1.0-fonts/KaiGenGothicCN-Bold-Italic.ttf</a></p>
+</div>
+<div class="paragraph">
+<p>rancher stop wuliu-dev/wuliu &amp;&amp;
+rancher exec wuliu-dev/ant rm -rf /svn-data/code/tky/WebRoot/WEB-INF/classes &amp;&amp;
+rancher exec wuliu-dev/svn svn up /svn-data/code/tky/ &amp;&amp;
+rancher exec wuliu-dev/ant /apache-ant-1.9.7/bin/ant -f /svn-data/code/tky/build.xml &amp;&amp;
+rancher restart wuliu-dev/wuliu</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/web.conf:/etc/nginx/conf.d/default.conf</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/server.xml:/apache-tomcat-7.0.62/conf/server.xml
+/home/wuliu/opt/src/version2/data/svn/code/tky/WebRoot:/apache-tomcat-7.0.62/webapps/wuliu
+/home/wuliu/opt/src/version2/data/tmp:/tmp</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/cnf/mysql/mysql-m.cnf:/etc/mysql/conf.d/mysqld.cnf</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/data/svn:/svn-data
+/home/wuliu/opt/src/version2/data/ecj-4.4.jar:/apache-ant-1.9.7/lib/ecj-4.4.jar
+/home/wuliu/opt/src/version2/data/servlet-api-2.5.jar:/apache-ant-1.9.7/lib/servlet-api-2.5.jar
+/home/wuliu/opt/src/version2/data/wuliu:/wuliu</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/data/svn:/svn-data</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/data/start.sh:/start.sh
+/home/wuliu/opt/src/version2/data/zbox:/opt/zbox</p>
+</div>
+<div class="paragraph">
+<p>svn co svn://196.168.1.33/wuliu/code/tky</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/root/.jenkins:/root/.jenkins</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mailiqing.com:5000/jenkins:1.0</p>
+</div>
+<div class="paragraph">
+<p>svn switch --relocate</p>
+</div>
+<div class="paragraph">
+<p>mailiqing-app-stable /root/.jenkins/workspace/mailiqing-increment/stable/app
+mailiqing-app-dev /root/.jenkins/workspace/mailiqing-increment/dev/app-dev</p>
+</div>
+<div class="paragraph">
+<p>wuliu /root/.jenkins/workspace/mailiqing-increment/wuliu-production/tky</p>
+</div>
+<div class="paragraph">
+<p>mailiqing-pc /root/.jenkins/workspace/mailiqing-increment/b2b</p>
+</div>
+<div class="paragraph">
+<p>docker-engine-1.13.1-1.el7.centos.x86_64.rpm</p>
+</div>
+<div class="paragraph">
+<p>svnserve --daemon --foreground --root /svn/</p>
+</div>
+<div class="paragraph">
+<p><a href="http://196.168.1.33:8080/v2-beta" class="bare">http://196.168.1.33:8080/v2-beta</a></p>
+</div>
+<div class="paragraph">
+<p>8EA989955618FC869A2B</p>
+</div>
+<div class="paragraph">
+<p>44UVu61SzCzuNoxsHuAxqEtoE5G6gy4Td4do7Fyz</p>
+</div>
+<div class="paragraph">
+<p>rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2 rancher/server:v1.5.5</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash</p>
+</div>
+<div class="paragraph">
+<p>for var in $@
+do
+    echo "$var"
+    docker pull $var
+    docker tag $var mailiqing.com:5000/$var
+    docker push mailiqing.com:5000/$var
+    docker rmi mailiqing.com:5000/$var
+done</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash</p>
+</div>
+<div class="paragraph">
+<p>for var in $@
+do
+  echo "$var"
+  docker pull mailiqing.com:5000/$var
+  docker tag mailiqing.com:5000/$var $var
+  docker rmi mailiqing.com:5000/$var
+done</p>
+</div>
+<div class="paragraph">
+<p>tee /etc/docker/daemon.json &lt;&#8592;'EOF'
+{
+  "registry-mirrors": ["http://0821f5e0.m.daocloud.io"]
+}
+EOF</p>
+</div>
+<div class="paragraph">
+<p>systemctl daemon-reload &amp;&amp; systemctl restart docker</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2406,13 +2777,6 @@ sonatype-oss-releases</p>
 
 		</div>
 		
-<div class="entry-tags clearfix">
-	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
-	<ul>
-		<li><a href="/tags/tmp/" rel="tag">tmp</a></li>
-		
-	</ul>
-</div>
 	</article>
 	
 <div class="mr-author-box clearfix">
@@ -2431,9 +2795,13 @@ sonatype-oss-releases</p>
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/tmp/graphv/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/" rel="next"><span>Next»</span><p>spark-源码</p></a>
+			<a href="/tmp/wuliuxiugai/" rel="next"><span>Next»</span><p></p></a>
 		</div>
 		
 	</nav>
@@ -2444,16 +2812,16 @@ sonatype-oss-releases</p>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

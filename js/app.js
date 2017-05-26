@@ -38,25 +38,16 @@ require([
   window.idx = lunr.Index.load(indexDump)
   console.timeEnd('load')
 
-
-  $('input').bind('keyup', function () {
-    if ($(this).val() < 2) return;
-      var query = $(this).val();
-    var resultstmp = idx.search(query);
-    var newresultstmp = resultstmp.map(function (raw) {
-      return {
-        title: raw.ref
-      }
-    });
-
-    $("#lanren").bigAutocomplete({
-      width:262,
-      data: newresultstmp,
-      callback:function(data){
-        console.log(data);
-      }
-    });
+  $("#lanren").bigAutocomplete({
+    width:314,
+    // data: newresultstmp,
+    callback:function(data){
+      console.log(data);
+      window.location.href=data.title;
+    },
+    idx: idx
   });
+
 
   $('#side-toc').append($('#toc'));
 
@@ -69,13 +60,13 @@ require([
     });
     //回到顶端
     $.scrollUp({
-          animation: 'fade',
-          scrollImg: {
-            active: true,
-            type: 'background',
-          }
-        });
-
+      animation: 'fade',
+      scrollImg: {
+        active: true,
+        type: 'background',
+      }
+    });
+    $("#lanren").focus();
   });
 
   $('#side-toc').find('a').each(function(){

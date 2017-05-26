@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2017-04-05T09:47:03&#43;00:00"/>
+<meta property="og:updated_time" content="2017-04-07T14:47:38&#43;00:00"/>
 
 
 
@@ -87,6 +87,32 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="bookmark">Scala高级特性</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-07 14:47:38 &#43;0000 UTC">April 07, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Scala高级特性1. 高阶函数1.1. 概念1.2. 作为值的函数1.3. 匿名函数1.4. 将方法转换成函数1.5. 柯里化1.6. 例子2. 隐式转换和隐式参数2.1. 概念2.2. 作用2.3. 隐式转换函数2.4. 隐式转换例子2.4.1. 隐式转换变量值2.4.2. 隐式转换方法1. 高阶函数1.1. 概念Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。
+1.2. 作为值的函数可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。
+定义函数时格式：val 变量名 =(输入参数类型和个数)&#8658;函数实现和返回值类型和个数“=”表示将函数赋给一个变量“&#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数
+1.3. 匿名函数在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数
+由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些
+还记得神奇的下划线吗？这才是终极方式
+1.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -283,39 +309,13 @@ groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realt
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/hbase/" rel="bookmark">hbase</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-22 00:00:00 &#43;0000 UTC">March 22, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hbase1. 安装2. HBase 性能优化1. 安装上传首先确保用户是 hadoop ，用工具将 hbase 安装包 hbase-0.99.2-bin.tar.gz 上传到 /home/hadoop 下，确保 hbase-0.99.2-bin.tar.gz 的用户是 hadoop，如果不是，执行 chown 命令
-解压
-su – hadooptar –zxvf hbase-0.99.2-bin.tar.gz重命名
-mv hbase-0.99.2hbase修改环境变量
-在master机器上执行下面命令：
-su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbaseexport PATH=$PATH:$HBASE_HOME/bin执行命令：source /etc/profilesu – hadoop在其他机器上执行上述操作。
-修改配置文件
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/post/">«</a>
 	
-	<span class="page-numbers current">2/21</span>
+	<span class="page-numbers current">2/22</span>
 	
 	<a class="page-numbers" href="/post/page/3/">»</a>
 	
@@ -326,15 +326,15 @@ su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbase
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -404,8 +404,6 @@ su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbase
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
 		
 			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
-		
-			<a href="/tags/tmp" class="tag-link" title="tmp" style="font-size: 12px;">tmp</a>
 		
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		

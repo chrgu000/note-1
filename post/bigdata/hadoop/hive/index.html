@@ -7,13 +7,12 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hive" />
-<meta property="og:description" content="hive1. Hive只在一个节点上安装即可1. Hive只在一个节点上安装即可上传tar包
+<meta property="og:description" content="hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions1. Hive只在一个节点上安装即可上传tar包
 解压
 tar -zxvf hive-1.2.1.tar.gz -C /hadoop/安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）
 mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- &#34;MYSQL_ROOT_PASSWORD=111111&#34;ports:- &#34;3306:3306&#34;networks:- hadoopnetworks:hadoop:external: true配置 hive
 配置 HIVE_HOME 环境变量 vi conf/hive-env.sh 配置其中的 $hadoop_home
-配置元数据库信息 vi hive-site.xml
-&lt;configuration&gt;&lt;property&gt;&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;&lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;&lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;&lt;/property&gt;&lt;property&gt;&lt;name&gt;javax." />
+配置元数据库信息 vi hive-site.xml" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/hadoop/hive/" />
 
@@ -105,6 +104,11 @@ mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.
 <div id="toctitle">hive</div>
 <ul class="sectlevel1">
 <li><a href="#_hive只在一个节点上安装即可">1. Hive只在一个节点上安装即可</a></li>
+<li><a href="#_hive_参考">2. hive 参考</a>
+<ul class="sectlevel2">
+<li><a href="#_transactions">2.1. transactions</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -255,6 +259,21 @@ select nation, avg(size) from beauties group by nation order by avg(size);</code
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_hive_参考">2. hive 参考</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_transactions">2.1. transactions</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://acadgild.com/blog/transactions-in-hive/" class="bare">https://acadgild.com/blog/transactions-in-hive/</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 
 		</div>
 		
@@ -293,16 +312,16 @@ select nation, avg(size) from beauties group by nation order by avg(size);</code
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

@@ -6,2318 +6,366 @@
     <description>Recent content on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 05 May 2017 15:39:55 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 May 2017 09:06:35 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>tmp</title>
-      <link>/tmp/tmp2017-01-08/</link>
-      <pubDate>Fri, 05 May 2017 15:39:55 +0000</pubDate>
+      <title>文档</title>
+      <link>/post/work/wuliu/jiaojie/</link>
+      <pubDate>Mon, 15 May 2017 09:06:35 +0000</pubDate>
       
-      <guid>/tmp/tmp2017-01-08/</guid>
+      <guid>/post/work/wuliu/jiaojie/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
-&lt;ul class=&#34;sectlevel0&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_settings_to_quiet_third_party_logs_that_are_too_verbose&#34;&gt;Settings to quiet third party logs that are too verbose&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support&#34;&gt;SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support&lt;/a&gt;&lt;/li&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_测试服务器&#34;&gt;1. 测试服务器&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_安装&#34;&gt;1.1. Docker 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher_安装&#34;&gt;1.2. Rancher 安装&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_registry_server&#34;&gt;1.2.1. registry server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_registry_client端&#34;&gt;1.2.2. registry client端&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_下载_strong_rancher_strong_所需镜像并_strong_push_strong_到_strong_docker_registry_strong&#34;&gt;1.2.3. 下载 &lt;strong&gt;Rancher&lt;/strong&gt; 所需镜像并 &lt;strong&gt;Push&lt;/strong&gt; 到 &lt;strong&gt;Docker Registry&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher_启动&#34;&gt;1.3. Rancher 启动&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_应用&#34;&gt;1.4. 应用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1.5. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_测试服务器&#34;&gt;1. 测试服务器&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;环境:&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3334%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;名称&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;版本&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;下载地址&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker version 1.13.1&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://store.docker.com/editions/community/docker-ce-server-centos?tab=description&#34;&gt;docker&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Rancher&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;1.5&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/rancher/rancher/tree/v1.5&#34;&gt;rancher 1.5&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker Compose&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;docker-compose version 1.8.1, build 878cff1&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/docker/compose/releases/download/1.8.1/docker-compose-Linux-x86_64&#34;&gt;docker-compose&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_docker_安装&#34;&gt;1.1. Docker 安装&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;上传日志文件到hdfs&lt;/p&gt;
+&lt;p&gt;配置 &lt;code&gt;yum&lt;/code&gt; 源&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /etc/yum.repos.d/docker-main.repo &amp;lt;&amp;lt;_EOF_
+[docker-main-repo]
+name=Docker main Repository
+baseurl=http://mirrors.aliyun.com/docker-engine/yum/repo/main/centos/7
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/docker-engine/yum/gpg
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;日志预处理,日志点击流
-.&lt;/p&gt;
+&lt;p&gt;安装 &lt;code&gt;docker&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yum install -y docker-engine-1.12.1-1.el7.centos&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;command.1=sh log_click.sh ${HADOOP_PRE} ${FILE_NAME}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop fs -rm -r /data/weblog/preprocess/valid_output/2017-05-12&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop fs -ls /data/weblog/preprocess/valid_output/2017-05-12&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt; /etc/apt/sources.list &amp;lt;&amp;lt;_EOF_
-deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty main restricted universe multiverse
-deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-security main restricted universe multiverse
-deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-updates main restricted universe multiverse
-deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-proposed main restricted universe multiverse
-deb &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-backports main restricted universe multiverse
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty main restricted universe multiverse
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-security main restricted universe multiverse
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-updates main restricted universe multiverse
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-proposed main restricted universe multiverse
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/ubuntu/&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/ubuntu/&lt;/a&gt; trusty-backports main restricted universe multiverse
-&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt; /etc/apt/sources.list &amp;lt;&amp;lt;_EOF_
-deb &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy main contrib non-free
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy main contrib non-free
-deb &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy-updates main contrib non-free
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/debian&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian&lt;/a&gt; wheezy-updates main contrib non-free
-deb &lt;a href=&#34;http://mirrors.aliyun.com/debian-security&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian-security&lt;/a&gt; wheezy/updates main contrib non-free
-deb-src &lt;a href=&#34;http://mirrors.aliyun.com/debian-security&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/debian-security&lt;/a&gt; wheezy/updates main contrib non-free
-&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker exec hadoop-master /bin/sh -c &#39;echo 1&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;/usr/bin/docker exec hadoop-master /usr/local/hadoop/bin/hadoop jar hadoop-demo-1.0-SNAPSHOT.jar wordcount /wordcount/input /wordcount/output&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.2-sources.jar org.apache.hadoop.examples.WordCount /wordcount/input /wordcount/output&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;相当于一个yarn集群的客户端
-需要在此封装我们的mr程序的相关运行参数
-指定jar包,最后提交给yarn&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;将job中配置的相关参数,以及job所用的java类所在的jar包,提交给yarn去运行&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;type&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;运营场景
-决策场景&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;调度&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;数据仓库&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;数据建模&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;业务场景接口&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ImmutableListMultimap&amp;lt;String, ?&amp;gt; cktmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)ckList, multiTypeFunction);
-ImmutableListMultimap&amp;lt;String, ?&amp;gt; sctmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)scList, multiTypeFunction);
-ImmutableListMultimap&amp;lt;String, ?&amp;gt; dgtmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)dgList, multiTypeFunction);
-ImmutableListMultimap&amp;lt;String, ?&amp;gt; pdtmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)pdList, multiTypeFunction);
-ImmutableListMultimap&amp;lt;String, ?&amp;gt; kctmp = Multimaps.index((List&amp;lt;ZhAsphaltRepertoryModel&amp;gt;)kcList, multiTypeFunction);&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;关闭防火墙&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;builder.put(&#34;rk&#34;, rktmp.asMap());
-builder.put(&#34;ck&#34;, cktmp.asMap());
-builder.put(&#34;sc&#34;, sctmp.asMap());
-builder.put(&#34;dg&#34;, dgtmp.asMap());
-builder.put(&#34;pd&#34;, pdtmp.asMap());
-builder.put(&#34;kc&#34;, kctmp.asMap());&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;systemctl status firewalld.service #查看firewall状态
+
+systemctl stop firewalld.service #停止firewall
+
+systemctl disable firewalld.service #停止firewall开机启动&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;*id {lable:&#34;varchar(32) NOT NULL&#34;}
-reservoir_code {lable:&#34;varchar(32) DEFAULT NULL&#34;}
-abbreviation {lable:&#34;varchar(64) DEFAULT NULL&#34;}
-reservoir_name {lable:&#34;varchar(256) DEFAULT NULL&#34;}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;id {lable:&#34;varchar(32) NOT NULL&#34;}
-storage_code {lable:&#34;varchar(32) DEFAULT NULL&#34;}
-storage_name {lable:&#34;varchar(128) DEFAULT NULL&#34;}
-reservoir_code {lable:&#34;varchar(32) DEFAULT NULL&#34;}
-storage_capacity {lable:&#34;double(8,0) DEFAULT NULL&#34;}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;SELECT   *,   (SELECT     zra.abbreviation   FROM     zh_reservoir_area zra   WHERE zra.reservoir_code = zar.reservoir_code) AS abbreviation,   (SELECT     zs.storage_capacity   FROM     zh_storage zs   WHERE zs.reservoir_code = zar.reservoir_code     AND zs.storage_code = zar.storage_code GROUP BY zar.reservoir_code) AS storageCapacity FROM   zh_asphalt_repertory zar GROUP BY zar.reservoir_code,   zar.storage_code HAVING 1=1 AND zar.type = &#39;00&#39; ORDER BY abbreviation&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;systemctl enable docker # 开机启动
+systemctl start docker # 启动&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cabal sandbox hc-pkg&amp;#8201;&amp;#8212;&amp;#8201;unregister base&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,
-  (SELECT
-    brand_name
-  FROM
-    mlq_brand
-  WHERE id = brand_id) brand_name,
-  (SELECT
-    brand_name
-  FROM
-    mlq_brand
-  WHERE id = brand_id) brand_name_noa,
-  (SELECT
-    msi.shop_name
-  FROM
-    mlq_shop_info msi
-  WHERE msi.id = mg.shop_id) new_seller_nick,
-  (SELECT
-    msi.shop_name
-  FROM
-    mlq_shop_info msi
-  WHERE msi.id = mg.shop_id) new_seller_nick_noa,
-  mg.*
-FROM
-  mlq_goods mg
-WHERE mg.gmt_modify &amp;gt; &#39;2017-05-08 10:53:51&#39;
-OR mg.gmt_create &amp;gt; &#39;2017-05-08 10:53:51&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;mklink D:\env\bin\dot.exe D:\env\graphviz-2.38\release\bin\dot.exe&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;%graphvizdot%\bin;%SBT_HOME%\bin;D:\env\code\bin;C:\msys64\mingw64\bin;d:\env\Ruby22\bin;D:\env\cwRsync\bin;%GOROOT%\bin;C:\ProgramData\Oracle\Java\javapath;%MAVEN_HOME%\bin;%JAVA_HOME%\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;D:\HashiCorp\Vagrant\bin;C:\Program Files (x86)\MySQL\MySQL Server 5.5\bin&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sssssssss&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;WebRoot/web/storagemanagement/repertory/asphalt_count_jxc.jsp&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;gem install asciidoctor-diagram&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.graphviz.org/Download_windows.php&#34; class=&#34;bare&#34;&gt;http://www.graphviz.org/Download_windows.php&lt;/a&gt;
-images_dir = parent.attr(&#39;plantimgdir&#39;)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#{parent.attr(&#39;plantimgdir&#39;)}/&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#title {label: &#34;大物流仓库库存表关系&#34;, size: &#34;20&#34;}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何使用Docker加速器&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/erd-1.png&#34; alt=&#34;erd 1&#34; width=&#34;1768&#34; height=&#34;723&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/diagram-classes4.png&#34; alt=&#34;diagram classes4&#34; width=&#34;317&#34; height=&#34;949&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/diagram-classes25.svg&#34; alt=&#34;diagram classes25&#34; width=&#34;314&#34; height=&#34;325&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/ditaa-diagram.png&#34; alt=&#34;ditaa diagram&#34; width=&#34;540&#34; height=&#34;280&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zspl.*
-FROM zh_sub_plan_launch zspl
-WHERE zspl.plan_code IN
-(SELECT plan_code
-FROM zh_plan_launch zpl
-WHERE zpl.state = &#39;01&#39;
-AND zpl.table_date &amp;gt;= ?
-AND zpl.table_date &amp;#8656; ?)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT *
-FROM zh_plan zp阿三地方
-WHERE plan_code = ?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT * FROM zh_plan zp WHERE plan_code = &#39;20170116101801016&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$(this).find(&#39;&lt;strong&gt;[name=&#34;zhPlanCode&#34;]&#39;)
-$(this).find(&#39;&lt;/strong&gt;[name=&#34;projectName&#34;]&#39;)
-$(this).find(&#39;&lt;strong&gt;[name=&#34;reservoiCode&#34;]&#39;)
-$(this).find(&#39;select[name=&#34;goodsCode&#34;]&#39;)
-$(this).find(&#39;&lt;/strong&gt;[name=&#34;pickMode&#34;]&#39;)
-$(this).find(&#39;&lt;strong&gt;[name=&#34;shipmentAddress&#34;]&#39;)
-$(this).find(&#39;&lt;/strong&gt;[name=&#34;shipmentsCount&#34;]&#39;)
-$(this).find(&#39;&lt;strong&gt;[name=&#34;receivingAddress&#34;]&#39;)
-$(this).find(&#39;&lt;/strong&gt;[name=&#34;receivingUnit&#34;]&#39;)
-$(this).find(&#39;&lt;strong&gt;[name=&#34;consignee&#34;]&#39;)
-$(this).find(&#39;&lt;/strong&gt;[name=&#34;receivingPhone&#34;]&#39;)
-$(this).find(&#39;&lt;strong&gt;[name=&#34;memo&#34;]&#39;)
-$(this).find(&#39;&lt;/strong&gt;[name=&#34;contractCode&#34;]&#39;)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT plan.plan_name,sub.*,obo.number,sub.shipments_count) - (obo.number AS w_count,gi.goods_name,gi.brand,gi.model,ra.abbreviation FROM zh_plan plan,zh_sub_plan sub LEFT JOIN zh_out_bound_order obo ON sub.zh_plan_code = obo.zh_plan_code LEFT JOIN zh_goods_info gi ON sub.goods_code = gi.goods_code LEFT JOIN zh_reservoir_area ra ON sub.shipment_address = ra.reservoir_code WHERE plan.plan_code = sub.plan_code AND plan.plan_code = &#39;20170116154403004&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -it --rm --volume-driver=cifs -v 192.168.137.2/note-hugo:/hugo ansible/centos7-ansible:1.7 /bin/bash&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;服务器升级:
-1. Rancher(docker容器管理平台)升级
-	1.1 rancher/server:v1.2 升级到 v1.3.1
-	1.2 rancher/agent:v1.1.1 升级到 v1.1.3
-2. CI/CD 持续集成和持续交付
-	1.1 Ansible 批量部署操作
-	1.2 Jenkins与Ansible结合实现一键部署重启
-Bug修复:
-发货申请审批:
-	1. 审批中的记录-审批状态显示错误-请改为审批中
-	2. 查询条件-执行状态下拉值请和审核状态一致
-	3. 直销合同新增审批-先保存之后修改时点提交则审批流名称则变为招标合同
-	4. 直销合同发货审批流-赊销大于5000万时少了一步营销中心总经理审批
-	5. 招标合同货物审批通过后-审批状态依然显示为待审核-没有变为已审核&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;优点：&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;1、光佳团队策划流程很到位&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;①活动人员安排：  尽管时间很紧，人员变动比较频繁，整体掌控很到位&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;②活动提前预热：  通过微信、圈子传播能够在短期内报名数60，很到位&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;③活动效果预估：  直播活动预估3万+，最终5万+&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;④活动成本预估：  赚到钱是硬道理&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;⑤活动互动效果：  笪总、美女主持人穿插广告、互动营销、红包形式的互动，提高了互动性&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;⑥活动效果公布：  通过微信、纸质形式通知效果很好&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;2、笪总团队线下配合很到位&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;①线下接待、让嘉宾没有陌生感、得到尊重感，有共同话题才是硬道理&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;②笪总的主持游刃有余，沥青届的老炮&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;改善：&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;1、直播体验需要提高：&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;1）直播网络稳定性、系统稳定性要提高，导致直播卡顿&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;反省：① 时间维度不够充裕：&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;中午13点到下午17点，共4个小时，时间比较紧凑，配置的设备比较多，容易影响直播效果的因素太多&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;② 技术人员切入不够早：&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;设备问题包括硬件、软件两方面，需要在启动项目时，尽早切入，以备不时之需，工作要交给擅长的人                       去做&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;2）嘉宾直播气氛需要提高&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;反省：① 房间不够大：&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;需要针对不同级别的嘉宾或者企业要有不同的配置，特别针对500强的企业要做的更加符合企业的气质&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;② 观众需要一定量级：&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;对于传统嘉宾来讲更有气氛，需要有人捧场，需要有人鼓掌，才有分享的激情&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;2、活动数据收集差&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;1）5万9的观众，如何收集起来？目前没有方法，即时有，也不够准确；&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;建议：app作为统一报名入口，但需要开发，需要周期&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;3、直播还能做什么？&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;1）广告营销：直播2小时，可以穿插广告（在直播屏幕上，不同时间段穿插广告）&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;2）延长营销：直播仅仅2个小时，如何能够让2个小时的营销效果时间延长，个人认为可以将直播经典内容沉淀下来&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;可以分段营销，在不同的地点、平台均可以&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;3）直播专场：此次是学术界的直播，后期可以做专场，譬如采购、销售、大客户比如中石化、中海油、京博等等&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;建议：提前准备听众&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;优点:
-	运营部在人员少,资源少,时间紧的情况下办好一场很精彩的直播.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;改善:
-	直播环境准备:
-		1. 电脑
-			笔记本和台式机都要准备,做好一比一测试,如果其中一台电脑有问题,可以用另一台电脑做备用
-		2. 直播过程中可以插播公司广告,公司宣传片,充分利用直播平台
-		3. 需要准备足够多的观众,烘托现场气氛&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  mp_tmp.product_name AS product_name_noa,
-  mp_tmp.&lt;strong&gt;,
-  mpa_tmp.&lt;/strong&gt;
-FROM
-  (SELECT
-    *
-  FROM
-    mlq_product
-  WHERE gmt_modify &amp;gt; &#39;2016-07-22&#39;
-  ) mp_tmp,
-  (SELECT
-    mpa.product_id,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;销售地区&#39;
-        THEN IFNULL(
-          tranAddr (mpa.attr_value, &#39;-&#39;),
-          CAST(mpa.attr_value AS CHAR(50))
-        )
-        ELSE NULL
-      END
-    ) sale_region,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;出库地区&#39;
-        THEN IFNULL(
-          tranAddr (mpa.attr_value, &#39;-&#39;),
-          CAST(mpa.attr_value AS CHAR(50))
-        )
-        ELSE NULL
-      END
-    ) repository_region,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;出库地区&#39;
-        THEN IFNULL(
-          tranAddr (mpa.attr_value, &#39;-&#39;),
-          CAST(mpa.attr_value AS CHAR(50))
-        )
-        ELSE NULL
-      END
-    ) repository_region_noa,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;最小起订量&#39;
-        THEN mpa.attr_value
-        ELSE 0
-      END
-    ) min_quantity,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;库存量&#39;
-        THEN mpa.attr_value
-        ELSE 0
-      END
-    ) stock_quantity,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;单位&#39;
-        THEN mpa.attr_value
-        ELSE &#39;吨&#39;
-      END
-    ) unit,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;交货天数&#39;
-        THEN mpa.attr_value
-        ELSE 7
-      END
-    ) delivery_day,
-    MAX(
-      CASE
-        mpa.attr_name
-        WHEN &#39;包装类型&#39;
-        THEN mpa.attr_value
-        ELSE &#39;散装&#39;
-      END
-    ) package_type
-  FROM
-    mlq_product_attr mpa
-  WHERE mpa.product_id IN
-    (SELECT
-      id
-    FROM
-      mlq_product
-    WHERE gmt_modify &amp;gt; &#39;2016-07-22&#39;)
-  GROUP BY mpa.product_id) mpa_tmp
-WHERE mp_tmp.id = mpa_tmp.product_id&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;大物流服务器重新规划部署:
-1. CoreOS 系统安装
-2. Docker 环境配置
-3. Rancher Client 环境配置
-4. nginx 反向代理 搭建
-5. 大物流数据迁移
-  5.1 Web 数据迁移
-  5.2 数据库迁移&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Mai沥青 PC 端 Bug 修复
-大物流 PC 端 Bug 修复&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker create --volumes-from rancher-server \
- --name rancher-data rancher/server:1.2&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -d --volumes-from rancher-data \
-  -p 9090:8080 rancher/server:stable&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;jw.name(&#34;bool&#34;);
-jw.beginObject();
-jw.name(&#34;must&#34;);
-jw.beginArray();
-jw.beginObject();
-jw.name(&#34;match&#34;);
-jw.beginObject();
-jw.name(&#34;cat_code&#34;);
-jw.value(&#34;20150914q0asfEw&#34;);
-jw.endObject();
-jw.endObject();
-jw.beginObject();
-jw.name(&#34;match&#34;);
-jw.beginObject();
-jw.name(&#34;goods_status&#34;);
-jw.value(&#34;c&#34;);
-jw.endObject();
-jw.endObject();
-jw.endArray();
-jw.endObject();&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -d --name=httpd -p 8088:80 --volume-driver=cifs -v 192.168.137.2/note-hugo/public:/usr/local/apache2/htdocs/ httpd:2.2.32-alpine&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;供应商：&amp;lt;input name=&#34;new_seller_nick&#34; type=&#34;text&#34; value=&#34;${param.new_seller_nick }&#34;/&amp;gt;&amp;lt;/span&amp;gt;
-商品名称：&amp;lt;input name=&#34;title&#34; type=&#34;text&#34; value=&#34;${param.title }&#34;/&amp;gt;&amp;lt;/span&amp;gt;
-商品编号：&amp;lt;input name=&#34;id&#34; type=&#34;text&#34;/&amp;gt;&amp;lt;/span&amp;gt;
-品牌：&amp;lt;select name=&#34;brand_id&#34; id=&#34;brand_id&#34;&amp;gt;&amp;lt;/select&amp;gt;&amp;lt;/span&amp;gt;
-管理类目：&amp;lt;select name=&#34;cat_code&#34; id=&#34;first_category&#34;&amp;gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;server {
-    listen       9090;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;    error_log /var/log/nginx/rancher-error.log
-    access_log /var/log/nginx/rancher-access.log
-    location / {
-        proxy_redirect          off;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header REMOTE-HOST $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://192.168.1.129:9090;
-    }
-}&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -d --volumes-from rancher-data -p 9090:8080 --name rancher-server rancher/server:stable&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -d -p 192.168.1.129:8080:8080 --name rancher-server rancher/server:stable&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;dishui.io:5000/nginx:stable&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;syslog-address               tcp://192.168.137.20:514&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt;&amp;gt; /opt/logio/docker-entrypoint.sh &amp;lt;&amp;lt;EOF
-if [ &#34;$2&#34; = &#39;rsyslogd&#39; ]; then
-  rsyslogd -n
-fi
-EOF&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt; /etc/nginx/conf.d/default.conf &amp;lt;&amp;lt;EOF
-server {
-    listen       80;
-    access_log /var/log/nginx/test.log;
-    location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mkdir -p /etc/docker
+tee /etc/docker/daemon.json &amp;lt;&amp;lt;-&#39;EOF&#39;
+{
+  &#34;registry-mirrors&#34;: [&#34;https://7xefeire.mirror.aliyuncs.com&#34;]
 }
-EOF&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://192.168.1.129:8080/v2-beta/schemas&#34; class=&#34;bare&#34;&gt;http://192.168.1.129:8080/v2-beta/schemas&lt;/a&gt;
-9FFE6681FF339A1A747D
-m2E45BeYUxzr7FSAeNvhiR4R18hQL1n7nCdNQnqi&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SYSLOG_SERVER=192.168.137.20
-SYSLOG_PORT=514
-SYSLOG_PROTO=tcp&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;-e &#39;SYSLOG_SERVER=192.168.137.20&#39;-e &#39;SYSLOG_PORT=514&#39;-e &#39;SYSLOG_PROTO=tcp&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$ModLoad imfile
-$InputFilePollInterval 10
-$WorkDirectory /var/spool/rsyslog
-$PrivDropToGroup adm&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$template BiglogFormatTomcat,&#34;%msg%\n&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$InputFileName /apache-tomcat-7.0.62/logs/localhost_access_log.2017-02-21.txt
-$InputFileTag access-log
-$InputFileStateFile stat-access-log
-$InputFileSeverity info
-$InputFilePersistStateInterval 25000
-$InputRunFileMonitor&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;if $programname == &#39;access-log&#39; then @192.168.137.20:514;BiglogFormatTomcat
-if $programname == &#39;access-log&#39; then ~&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;FROM wuliu/tomcat:1.0&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;ENV SYSLOG_SERVER 192.168.137.20
-ENV SYSLOG_PORT 514
-ENV SYSLOG_PROTO tcp&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;COPY ./tomcat.conf /etc/supervisord.conf.d/tomcat.conf
-RUN yum -y install epel-release \
-       &amp;amp;&amp;amp; yum -y install python-pip \
-       &amp;amp;&amp;amp; pip install supervisor-logging \
-       &amp;amp;&amp;amp; yum remove epel-release python-pip -y \
-       &amp;amp;&amp;amp; yum clean all&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;echo &#34;30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&#34; &amp;gt;&amp;gt; /var/spool/cron/root&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  zra.reservoir_code,
-  zra.abbreviation,
-  zs.storage_code,
-  zs.storage_capacity,
-  CAST(rk.model70_rk AS CHAR) AS model70_rk,
-  CAST(rk.model90_rk AS CHAR) AS model90_rk,
-  CAST(ck.model70_ck AS CHAR) AS model70_ck,
-  CAST(ck.model90_ck AS CHAR) AS model90_ck,
-  CAST(ck.modelIC_ck AS CHAR) AS modelIC_ck,
-  CAST(ck.modelID_ck AS CHAR) AS modelID_ck,
-  CAST(ck.modelgt_ck AS CHAR) AS modelgt_ck,
-  CAST(ck.modelgz_ck AS CHAR) AS modelgz_ck,
-  CAST(sc.modelIC_sc AS CHAR) AS modelIC_sc,
-  CAST(sc.modelID_sc AS CHAR) AS modelID_sc,
-  CAST(sc.modelgt_sc AS CHAR) AS modelgt_sc,
-  CAST(sc.modelgz_sc AS CHAR) AS modelgz_sc,
-  CAST(kc.model70_kc AS CHAR) AS model70_kc,
-  CAST(kc.model90_kc AS CHAR) AS model90_kc,
-  CAST(kc.modelIC_kc AS CHAR) AS modelIC_kc,
-  CAST(kc.modelID_kc AS CHAR) AS modelID_kc,
-  CAST(kc.modelgt_kc AS CHAR) AS modelgt_kc,
-  CAST(kc.modelgz_kc AS CHAR) AS modelgz_kc,
-  CAST(pd.model70_pd AS CHAR) AS model70_pd,
-  CAST(pd.model90_pd AS CHAR) AS model90_pd,
-  CAST(pd.modelIC_pd AS CHAR) AS modelIC_pd,
-  CAST(pd.modelID_pd AS CHAR) AS modelID_pd,
-  CAST(pd.modelgt_pd AS CHAR) AS modelgt_pd,
-  pd.modelgz_pd,
-  pd.model_yk,
-  (SELECT
-    ait.temp
-  FROM
-    zh_asphalt_inventory_table ait,
-    zh_goods_info gi
-  WHERE ait.tank = zs.storage_code
-    AND ait.storage_area = zs.reservoir_code
-    AND ait.goods_code = gi.goods_code) AS temp
-FROM
-  zh_storage zs
-  LEFT JOIN zh_reservoir_area zra
-    ON zs.reservoir_code = zra.reservoir_code
-  LEFT JOIN
-    (SELECT
-      zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;70#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model70_rk,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;90#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model90_rk
-    FROM
-      zh_asphalt_repertory zar,
-      zh_goods_info gi
-    WHERE zar.goods_code = gi.goods_code
-      AND zar.order_type IN (&#39;00&#39;)
-      AND zar.type = &#39;00&#39;
-    GROUP BY zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model) rk
-    ON zs.reservoir_code = rk.reservoir_code
-    AND zs.storage_code = rk.storage_code
-  LEFT JOIN
-    (SELECT
-      zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;70#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model70_ck,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;90#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model90_ck,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-C&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelIC_ck,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-D&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelID_ck,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高弹&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgt_ck,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高粘&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgz_ck
-    FROM
-      zh_asphalt_repertory zar,
-      zh_goods_info gi
-    WHERE zar.goods_code = gi.goods_code
-      AND zar.order_type IN (&#39;01&#39;, &#39;02&#39;)
-      AND zar.type = &#39;00&#39;
-    GROUP BY zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model) ck
-    ON zs.reservoir_code = ck.reservoir_code
-    AND zs.storage_code = ck.storage_code
-  LEFT JOIN
-    (SELECT
-      zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-C&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelIC_sc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-D&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelID_sc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高弹&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgt_sc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高粘&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgz_sc
-    FROM
-      zh_asphalt_repertory zar,
-      zh_goods_info gi
-    WHERE zar.goods_code = gi.goods_code
-      AND zar.order_type IN (&#39;02&#39;)
-      AND zar.type = &#39;00&#39;
-    GROUP BY zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model) sc
-    ON zs.reservoir_code = sc.reservoir_code
-    AND zs.storage_code = sc.storage_code
-  LEFT JOIN
-    (SELECT
-      zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;70#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model70_kc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;90#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model90_kc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-C&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelIC_kc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-D&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelID_kc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高弹&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgt_kc,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高粘&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgz_kc
-    FROM
-      zh_asphalt_repertory zar,
-      zh_goods_info gi
-    WHERE zar.goods_code = gi.goods_code
-      AND zar.order_type IN (&#39;00&#39;, &#39;01&#39;, &#39;02&#39;)
-      AND zar.type = &#39;00&#39;
-    GROUP BY zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model) kc
-    ON zs.reservoir_code = kc.reservoir_code
-    AND zs.storage_code = kc.storage_code
-  LEFT JOIN
-    (SELECT
-      zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model,
-      SUM(zar.goods_count) AS model_yk,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;70#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model70_pd,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;90#&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS model90_pd,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-C&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelIC_pd,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;I-D&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelID_pd,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高弹&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgt_pd,
-      (
-        CASE
-          WHEN zar.goods_model = &#39;高粘&#39;
-          THEN SUM(zar.goods_count)
-          ELSE &#39;&#39;
-        END
-      ) AS modelgz_pd
-    FROM
-      zh_asphalt_repertory zar,
-      zh_goods_info gi
-    WHERE zar.goods_code = gi.goods_code
-      AND zar.order_type IN (&#39;05&#39;)
-      AND zar.type = &#39;00&#39;
-    GROUP BY zar.storage_code,
-      zar.reservoir_code,
-      zar.goods_model) pd
-    ON zs.reservoir_code = pd.reservoir_code
-    AND zs.storage_code = pd.storage_code
-WHERE 1 = 1
-GROUP BY zs.storage_code,
-  zs.reservoir_code
-ORDER BY zra.abbreviation DESC&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;WHERE zs.storage_code = &#39;TKH-03&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;00入库单
-01出库单
-02生产单
-03结余调整单
-04倒灌单
-05盘点单号&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;库区  名称  入库的型号(70 90等)
-  储罐 罐号 库容&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT&#34;&lt;br&gt;
-&#34;  zar.reservoir_code,&#34;&lt;br&gt;
-&#34;  zar.storage_code,&#34;&lt;br&gt;
-&#34;  zar.goods_model,&#34;&lt;br&gt;
-&#34;  zar.order_type&#34;&lt;br&gt;
-&#34; FROM&#34;&lt;br&gt;
-&#34;  zh_asphalt_repertory zar&#34;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT  zar.reservoir_code,  zar.storage_code,  zar.goods_model,  zar.order_typeFROM  zh_asphalt_repertory zar&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;{title:&#39;入库数量（吨）&#39;,colspan:2},
-{title:&#39;出库数量（吨）&#39;,colspan:6},
-{title:&#39;生产数量（吨）&#39;,colspan:4},
-{title:&#39;库存数量（吨）&#39;,colspan:6},
-{title:&#39;盘点数量（吨）&#39;,colspan:6},&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT &#34;&lt;br&gt;
-&#34;   *&#34;&lt;br&gt;
-&#34; FROM&#34;&lt;br&gt;
-&#34;   zh_asphalt_repertory zar&#34;&lt;br&gt;
-&#34; GROUP BY zar.reservoir_code,zar.storage_code&#34;&lt;br&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT *&#34;+
-&#34; FROM zh_asphalt_repertory zar&#34;+
-&#34; WHERE zar.reservoir_code = &#39;001&#39;&#34;+
-&#34; AND zar.storage_code = &#39;T1003&#39;&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;{id=18b0cef136694001a0849fcb1cee3a7f, reservoirCode=002, orderNo=20170222-A, orderType=00, occurDate=Wed Feb 22 00:00:00 CST 2017, storageCode=TKH-07, goodsCount=500.0000, goodsCode=077, type=00, createDate=Wed Feb 22 16:03:12 CST 2017, goodsModel=70, goodsBatch=, model70rk=500.0000}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  *,
-  (SELECT
-    zra.abbreviation
-  FROM
-    zh_reservoir_area zra
-  WHERE zra.reservoir_code = zar.reservoir_code) AS abbreviation,
-  (SELECT
-    zs.storage_capacity
-  FROM
-    zh_storage zs
-  WHERE zs.reservoir_code = zar.reservoir_code
-    AND zs.storage_code = zar.storage_code) AS storage_capacity
-FROM
-  zh_asphalt_repertory zar
-GROUP BY zar.reservoir_code,
-  zar.storage_code&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;HAVING 1=1
-AND zar.reservoir_code = &#39;001&#39;
-AND zar.storage_code = &#39;T1003&#39;
-AND zar.occur_date = &#39;2017-01-17&#39;
-ORDER BY abbreviation&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;LIMIT 0, 10&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;周凯(男) 29岁 洛阳师范-生物技术 本科生 现在北京金兆路华电子商务担任Java开发工程师&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;工作经验:
-2013-2014 地点:郑州  OA,ERP系统开发
-2015-~    地点:北京   电商系统开发&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;喜欢全栈&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;电商系统开发:
-  二次开发系统,搜索模块由Lucene迁移到ElasticSearch
-  同步Mysql数据到ElasticSearch
-  ElasticSearch权重设计&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;服务器部署:
-  CoreOS+Docker
-  Rancher
-  Jenkins+Ansible+Docker
-  实现自动化部署&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;喜欢研究技术
-希望通过Leader课程,系统的学习&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT zas.category&#34;+
-&#34; FROM zh_asphalt_storage zas&#34;+
-&#34; GROUP BY zas.category&#34;+
-&#34; HAVING zas.category IS NOT NULL&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT *&#34;+
-&#34; FROM zh_asphalt_storage zas&#34;+
-&#34; WHERE zas.category = &#39;01&#39;&#34;+
-&#34; GROUP BY zas.model&#34;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;String categorySql =
-        &#34; SELECT *&#34;+
-        &#34; FROM zh_asphalt_storage zas&#34;+
-        &#34; WHERE zas.category = &#39;01&#39;&#34;+
-        &#34; GROUP BY zas.model&#34;;&lt;/pre&gt;
+EOF
+systemctl daemon-reload
+systemctl restart docker&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;AsphaltStorageServiceImpl&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT &#34;+
-&#34;   *,&#34;+
-&#34;   zas.instruct_type,&#34;+
-&#34;   zas.Net_profit_loss,&#34;+
-&#34;   zas.Storage_area,&#34;+
-&#34;   DATE_FORMAT(zas.in_date, &#39;%Y-%m-%d&#39;) AS dat,&#34;+
-&#34;   (SELECT &#34;+
-&#34;     SUM(zasc.goods_count) &#34;+
-&#34;   FROM&#34;+
-&#34;     zh_asphalt_storage_count zasc &#34;+
-&#34;   WHERE zasc.asphalt_number = zas.asphalt_number) AS goods_count,&#34;+
-&#34;   (SELECT &#34;+
-&#34;     zra.abbreviation &#34;+
-&#34;   FROM&#34;+
-&#34;     zh_reservoir_area zra &#34;+
-&#34;   WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation &#34;+
-&#34; FROM&#34;+
-&#34;   zh_asphalt_storage zas &#34;+
-&#34; ORDER BY zas.in_date DESC&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  Storage_area
-FROM
-  zh_sr_productin
-WHERE 1=1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT&#34;&lt;br&gt;
-&#34;  *, DATE_FORMAT(storage_date, &#39;%Y-%m-%d&#39;) AS dat2&#34;&lt;br&gt;
-&#34; FROM&#34;&lt;br&gt;
-&#34;   zh_sr_productin&#34;&lt;br&gt;
-&#34; WHERE Storage_area = ?&#34;&lt;br&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
- *, DATE_FORMAT(out_date, &#39;%Y-%m-%d&#39;) AS dat2
-FROM
-  zh_material_outbound
-WHERE Storage_area = &#39;001&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT&#34;&lt;br&gt;
-                &#34;  *, DATE_FORMAT(storage_date, &#39;%Y-%m-%d&#39;) AS dat2&#34;&lt;br&gt;
-                &#34; FROM&#34;&lt;br&gt;
-                &#34;   zh_material_outbound&#34;&lt;br&gt;
-                &#34; WHERE Storage_area = ?&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT&#34;+
-&#34;   zmo.model,&#34;+
-&#34;   zmo.number,&#34;+
-&#34;   DATE_FORMAT(zmo.out_date, &#39;%Y-%m-%d&#39;) AS dat2,&#34;+
-&#34;   (SELECT&#34;+
-&#34;     zra.abbreviation&#34;+
-&#34;   FROM&#34;+
-&#34;     zh_reservoir_area zra&#34;+
-&#34;   WHERE zra.reservoir_code = zmo.Storage_area) Storage_area&#34;+
-&#34; FROM&#34;+
-&#34;   zh_material_outbound zmo&#34;+
-&#34; WHERE zmo.Storage_area = ?&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
- zar.reservoir_code,
- zar.storage_code,
- zar.goods_model,
- zar.order_type
-FROM
- zh_asphalt_repertory zar
-WHERE zar.order_type =
-GROUP BY zar.goods_model&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;jquery.bigautocomplete.js&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;echo &#34;public&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
-echo &#34;themes/mainroad/static/js/app.js&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
-echo &#34;themes/mainroad/static/js/jquery.bigautocomplete.js&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
-echo &#34;config.toml&#34; &amp;gt;&amp;gt; .gitignore &amp;amp;&amp;amp; \
-echo &#34;content/post/base.adoc&#34; &amp;gt;&amp;gt; .gitignore&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;baseurl = &#34;http://dishui.oschina.io/note-hugo/&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;version: &#39;2&#39;
-services:
-  zoo1:
-    image: zookeeper
-    restart: always
-    ports:
-      - 2181:2181
-    environment:
-      ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zoo1:2888:3888
-07.阿里开源分布式框架dubbo&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;9df8e09ee259
-cadc21522a4a
-e3eb53c850a3
-0ec18fcb5f14
-dcfb02a0f0c0
-1ae259b410a4
-9a0db3e1e5fa
-a299de9d8b43
-2354e58c407f&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT&#34;&lt;br&gt;
-&#34;   dat.*,&#34;&lt;br&gt;
-&#34;   SUM(dat.rksl) AS count_rk,&#34;&lt;br&gt;
-&#34;   SUM(dat.cksl) AS count_ck,&#34;&lt;br&gt;
-&#34;   (SELECT&#34;&lt;br&gt;
-&#34;     SUM(zar.goods_count)&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_asphalt_repertory zar&#34;&lt;br&gt;
-&#34;   WHERE dat.goods_code = zar.goods_code&#34;&lt;br&gt;
-&#34;     AND TYPE = &#39;01&#39;) AS count_kc,&#34;&lt;br&gt;
-&#34;   SUM(dat.scsl) AS count_sc,&#34;&lt;br&gt;
-&#34;   SUM(dat.pdsl) AS count_pdf&#34;&lt;br&gt;
-&#34; FROM&#34;&lt;br&gt;
-&#34;   (SELECT&#34;&lt;br&gt;
-&#34;     DATE_FORMAT(sp.storage_date, &#39;%Y-%m-%d&#39;) AS storage_date,&#34;&lt;br&gt;
-&#34;     sp.Storage_area,&#34;&lt;br&gt;
-&#34;     sp.reservoir_code,&#34;&lt;br&gt;
-&#34;     sp.goods_code,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     sp.brand,&#34;&lt;br&gt;
-&#34;     sp.model,&#34;&lt;br&gt;
-&#34;     sp.specifications,&#34;&lt;br&gt;
-&#34;     sp.Inventory_quantity AS rksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS cksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS scsl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS pdsl&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_sr_productin sp,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi&#34;&lt;br&gt;
-&#34;   WHERE sp.goods_code = gi.goods_code&#34;&lt;br&gt;
-&#34;   UNION&#34;&lt;br&gt;
-&#34;   ALL&#34;&lt;br&gt;
-&#34;   SELECT&#34;&lt;br&gt;
-&#34;     mo.start_date,&#34;&lt;br&gt;
-&#34;     mo.Storage_area,&#34;&lt;br&gt;
-&#34;     ra.abbreviation,&#34;&lt;br&gt;
-&#34;     mo.goods_code,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     mo.brand,&#34;&lt;br&gt;
-&#34;     mo.model,&#34;&lt;br&gt;
-&#34;     mo.specifications,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     mo.number,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     &#39;&#39;&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_material_outbound mo,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi,&#34;&lt;br&gt;
-&#34;     zh_reservoir_area ra&#34;&lt;br&gt;
-&#34;   WHERE mo.Storage_area = ra.reservoir_code&#34;&lt;br&gt;
-&#34;     AND mo.goods_code = gi.goods_code&#34;&lt;br&gt;
-&#34;   UNION&#34;&lt;br&gt;
-&#34;   ALL&#34;&lt;br&gt;
-&#34;   SELECT&#34;&lt;br&gt;
-&#34;     DATE_FORMAT(zps.start_time, &#39;%Y-%m-%d&#39;),&#34;&lt;br&gt;
-&#34;     pp.Storage_area,&#34;&lt;br&gt;
-&#34;     pp.reservoir_code,&#34;&lt;br&gt;
-&#34;     zps.Name_commodity,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     zps.brand,&#34;&lt;br&gt;
-&#34;     zps.model,&#34;&lt;br&gt;
-&#34;     zps.specifications,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     zps.Production_quantity,&#34;&lt;br&gt;
-&#34;     &#39;&#39;&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_production_subsidiary zps,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi,&#34;&lt;br&gt;
-&#34;     zh_production_processing pp&#34;&lt;br&gt;
-&#34;   WHERE pp.Production_order = zps.production_order&#34;&lt;br&gt;
-&#34;     AND zps.goods_code = gi.goods_code&#34;&lt;br&gt;
-&#34;   UNION&#34;&lt;br&gt;
-&#34;   ALL&#34;&lt;br&gt;
-&#34;   SELECT&#34;&lt;br&gt;
-&#34;     DATE_FORMAT(ait.&lt;code&gt;data&lt;/code&gt;, &#39;%Y-%m-%d&#39;),&#34;&lt;br&gt;
-&#34;     ra.abbreviation,&#34;&lt;br&gt;
-&#34;     ait.storage_area,&#34;&lt;br&gt;
-&#34;     ait.accessories_name,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     ait.brand,&#34;&lt;br&gt;
-&#34;     ait.model,&#34;&lt;br&gt;
-&#34;     ait.specifications,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     &#39;&#39;,&#34;&lt;br&gt;
-&#34;     ait.inventory_number&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_additive_inventory_table ait,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi,&#34;&lt;br&gt;
-&#34;     zh_reservoir_area ra&#34;&lt;br&gt;
-&#34;   WHERE ait.storage_area = ra.reservoir_code&#34;&lt;br&gt;
-&#34;     AND gi.goods_code = ait.accessories_name) dat&#34;&lt;br&gt;
-&#34; WHERE 1 = 1&#34;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;向 namenode 请求上传文件 /a/sss.txt&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;响应,可以上传&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;rpc 请求上传第一个 block(0-128M), 请求返回 datanode&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;返回 (datanode1,datanode2,datanode3)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;请求建立 block 传输通道 channel
-5.1. 请求建立通道
-5.2. 请求建立通道
-6.1. 应答成功
-6.2. 应答成功&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;请求建立通道&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;考虑因素: 空间/距离&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;上传数据时, datanode 的选择策略
-1. 第一个副本先考虑跟 client 离最近的 (同机架)
-2. 第二个副本再考虑跨机架挑选一个 datanode, 增加副本的可靠性
-3. 第三个副本就在第一个副本同机架另外挑选一台 datanode 存放&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  dat.*,
-  SUM(dat.rksl) AS count_rk,
-  SUM(dat.cksl) AS count_ck,
-  (SELECT
-    SUM(zar.goods_count)
-  FROM
-    zh_asphalt_repertory zar
-  WHERE dat.goods_code = zar.goods_code
-    AND TYPE = &#39;01&#39;) AS count_kc,
-  SUM(dat.scsl) AS count_sc,
-  SUM(dat.pdsl) AS count_pdf
-FROM
-  (SELECT
-    DATE_FORMAT(sp.storage_date, &#39;%Y-%m-%d&#39;) AS storage_date,
-    sp.Storage_area,
-    sp.reservoir_code,
-    sp.goods_code,
-    gi.goods_name,
-    sp.brand,
-    sp.model,
-    sp.specifications,
-    sp.Inventory_quantity AS rksl,
-    &#39;&#39; AS cksl,
-    &#39;&#39; AS scsl,
-    &#39;&#39; AS pdsl
-  FROM
-    zh_sr_productin sp,
-    zh_goods_info gi
-  WHERE sp.goods_code = gi.goods_code
-  UNION
-  ALL
-  SELECT
-    mo.start_date,
-    mo.Storage_area,
-    ra.abbreviation,
-    mo.goods_code,
-    gi.goods_name,
-    mo.brand,
-    mo.model,
-    mo.specifications,
-    &#39;&#39; AS rksl,
-    mo.number AS cksl,
-    &#39;&#39; AS scsl,
-    &#39;&#39; AS pdsl
-  FROM
-    zh_material_outbound mo,
-    zh_goods_info gi,
-    zh_reservoir_area ra
-  WHERE mo.Storage_area = ra.reservoir_code
-    AND mo.goods_code = gi.goods_code
-  UNION
-  ALL
-  SELECT
-    DATE_FORMAT(zps.start_time, &#39;%Y-%m-%d&#39;),
-    pp.Storage_area,
-    pp.reservoir_code,
-    zps.Name_commodity,
-    gi.goods_name,
-    zps.brand,
-    zps.model,
-    zps.specifications,
-    &#39;&#39; AS rksl,
-    &#39;&#39; AS cksl,
-    zps.Production_quantity AS scsl,
-    &#39;&#39; AS pdsl
-  FROM
-    zh_production_subsidiary zps,
-    zh_goods_info gi,
-    zh_production_processing pp
-  WHERE pp.Production_order = zps.production_order
-    AND zps.goods_code = gi.goods_code
-  UNION
-  ALL
-  SELECT
-    DATE_FORMAT(ait.&lt;code&gt;data&lt;/code&gt;, &#39;%Y-%m-%d&#39;),
-    ra.abbreviation,
-    ait.storage_area,
-    ait.accessories_name,
-    gi.goods_name,
-    ait.brand,
-    ait.model,
-    ait.specifications,
-    &#39;&#39; AS rksl,
-    &#39;&#39; AS cksl,
-    &#39;&#39; AS scsl,
-    ait.inventory_number AS pdsl
-  FROM
-    zh_additive_inventory_table ait,
-    zh_goods_info gi,
-    zh_reservoir_area ra
-  WHERE ait.storage_area = ra.reservoir_code
-    AND gi.goods_code = ait.accessories_name) dat
-WHERE 1 = 1
-GROUP BY dat.goods_code
-ORDER BY dat.storage_date DESC&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT&#34;&lt;br&gt;
-&#34;   dat.*,&#34;&lt;br&gt;
-&#34;   SUM(dat.rksl) AS count_rk,&#34;&lt;br&gt;
-&#34;   SUM(dat.cksl) AS count_ck,&#34;&lt;br&gt;
-&#34;   (SELECT&#34;&lt;br&gt;
-&#34;     SUM(zar.goods_count)&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_asphalt_repertory zar&#34;&lt;br&gt;
-&#34;   WHERE dat.goods_code = zar.goods_code&#34;&lt;br&gt;
-&#34;     AND TYPE = &#39;01&#39;) AS count_kc,&#34;&lt;br&gt;
-&#34;   SUM(dat.scsl) AS count_sc,&#34;&lt;br&gt;
-&#34;   SUM(dat.pdsl) AS count_pdf&#34;&lt;br&gt;
-&#34; FROM&#34;&lt;br&gt;
-&#34;   (SELECT&#34;&lt;br&gt;
-&#34;     DATE_FORMAT(sp.storage_date, &#39;%Y-%m-%d&#39;) AS storage_date,&#34;&lt;br&gt;
-&#34;     sp.Storage_area,&#34;&lt;br&gt;
-&#34;     sp.reservoir_code,&#34;&lt;br&gt;
-&#34;     sp.goods_code,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     sp.brand,&#34;&lt;br&gt;
-&#34;     sp.model,&#34;&lt;br&gt;
-&#34;     sp.specifications,&#34;&lt;br&gt;
-&#34;     sp.Inventory_quantity AS rksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS cksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS scsl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS pdsl&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_sr_productin sp,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi&#34;&lt;br&gt;
-&#34;   WHERE sp.goods_code = gi.goods_code&#34;&lt;br&gt;
-&#34;   UNION&#34;&lt;br&gt;
-&#34;   ALL&#34;&lt;br&gt;
-&#34;   SELECT&#34;&lt;br&gt;
-&#34;     mo.start_date,&#34;&lt;br&gt;
-&#34;     ra.abbreviation AS Storage_area,&#34;&lt;br&gt;
-&#34;     mo.Storage_area AS reservoir_code,&#34;&lt;br&gt;
-&#34;     mo.goods_code,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     mo.brand,&#34;&lt;br&gt;
-&#34;     mo.model,&#34;&lt;br&gt;
-&#34;     mo.specifications,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS rksl,&#34;&lt;br&gt;
-&#34;     mo.number AS cksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS scsl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS pdsl&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_material_outbound mo,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi,&#34;&lt;br&gt;
-&#34;     zh_reservoir_area ra&#34;&lt;br&gt;
-&#34;   WHERE mo.Storage_area = ra.reservoir_code&#34;&lt;br&gt;
-&#34;     AND mo.goods_code = gi.goods_code&#34;&lt;br&gt;
-&#34;   UNION&#34;&lt;br&gt;
-&#34;   ALL&#34;&lt;br&gt;
-&#34;   SELECT&#34;&lt;br&gt;
-&#34;     DATE_FORMAT(zps.start_time, &#39;%Y-%m-%d&#39;),&#34;&lt;br&gt;
-&#34;     pp.Storage_area,&#34;&lt;br&gt;
-&#34;     pp.reservoir_code,&#34;&lt;br&gt;
-&#34;     zps.goods_code,&#34;&lt;br&gt;
-&#34;     zps.Name_commodity AS goods_name,&#34;&lt;br&gt;
-&#34;     zps.brand,&#34;&lt;br&gt;
-&#34;     zps.model,&#34;&lt;br&gt;
-&#34;     zps.specifications,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS rksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS cksl,&#34;&lt;br&gt;
-&#34;     zps.Production_quantity AS scsl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS pdsl&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_production_subsidiary zps,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi,&#34;&lt;br&gt;
-&#34;     zh_production_processing pp&#34;&lt;br&gt;
-&#34;   WHERE pp.Production_order = zps.production_order&#34;&lt;br&gt;
-&#34;     AND zps.goods_code = gi.goods_code&#34;&lt;br&gt;
-&#34;   UNION&#34;&lt;br&gt;
-&#34;   ALL&#34;&lt;br&gt;
-&#34;   SELECT&#34;&lt;br&gt;
-&#34;     DATE_FORMAT(ait.&lt;code&gt;data&lt;/code&gt;, &#39;%Y-%m-%d&#39;),&#34;&lt;br&gt;
-&#34;     ra.abbreviation,&#34;&lt;br&gt;
-&#34;     ait.storage_area,&#34;&lt;br&gt;
-&#34;     ait.accessories_name AS goods_code,&#34;&lt;br&gt;
-&#34;     gi.goods_name,&#34;&lt;br&gt;
-&#34;     ait.brand,&#34;&lt;br&gt;
-&#34;     ait.model,&#34;&lt;br&gt;
-&#34;     ait.specifications,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS rksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS cksl,&#34;&lt;br&gt;
-&#34;     &#39;&#39; AS scsl,&#34;&lt;br&gt;
-&#34;     ait.inventory_number AS pdsl&#34;&lt;br&gt;
-&#34;   FROM&#34;&lt;br&gt;
-&#34;     zh_additive_inventory_table ait,&#34;&lt;br&gt;
-&#34;     zh_goods_info gi,&#34;&lt;br&gt;
-&#34;     zh_reservoir_area ra&#34;&lt;br&gt;
-&#34;   WHERE ait.storage_area = ra.reservoir_code&#34;&lt;br&gt;
-&#34;     AND gi.goods_code = ait.accessories_name) dat&#34;&lt;br&gt;
-&#34; GROUP BY dat.reservoir_code,&#34;&lt;br&gt;
-&#34;   dat.goods_code&#34;&lt;br&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;GRANT ALL PRIVILEGES ON &lt;strong&gt;.&lt;/strong&gt; TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;
-mysql&amp;gt; flush privileges;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -it --rm \
-  --net=hadoop \
-  --volume-driver=cifs \
-  -v 192.168.137.2/hadoop:/hadoop \
-  --hostname hadoop-master \
-  kiwenlau/hadoop:1.0&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&amp;lt;configuration&amp;gt;
-  &amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&amp;lt;/value&amp;gt;
-    &amp;lt;description&amp;gt;JDBC connect string for a JDBC metastore&amp;lt;/description&amp;gt;
-  &amp;lt;/property&amp;gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_rancher_安装&#34;&gt;1.2. Rancher 安装&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_registry_server&#34;&gt;1.2.1. registry server&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;生成自签名证书&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;&amp;lt;property&amp;gt;
-  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionDriverName&amp;lt;/name&amp;gt;
-  &amp;lt;value&amp;gt;com.mysql.jdbc.Driver&amp;lt;/value&amp;gt;
-  &amp;lt;description&amp;gt;Driver class name for a JDBC metastore&amp;lt;/description&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cd ~/
+
+mkdir registry &amp;amp;&amp;amp; cd registry &amp;amp;&amp;amp; mkdir certs &amp;amp;&amp;amp; cd certs
+
+openssl req -x509 -days 3650 -subj &#39;/CN=mailiqing.com/&#39; -nodes -newkey rsa:2048 -keyout registry.key -out registry.crt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+CN=mailiqing.com 这里是域名
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;拉取 &lt;strong&gt;registry:2.5&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;&amp;lt;property&amp;gt;
-  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionUserName&amp;lt;/name&amp;gt;
-  &amp;lt;value&amp;gt;root&amp;lt;/value&amp;gt;
-  &amp;lt;description&amp;gt;username to use against metastore database&amp;lt;/description&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker pull registry:2.5&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动 &lt;code&gt;registry server&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;registry.yml&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;  &amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;javax.jdo.option.ConnectionPassword&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;111111&amp;lt;/value&amp;gt;
-    &amp;lt;description&amp;gt;password to use against metastore database&amp;lt;/description&amp;gt;
-  &amp;lt;/property&amp;gt;
-&amp;lt;/configuration&amp;gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;create database shizhan03;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;use shizhan03;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;create table t_sz01(id int,name string);&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;drop table t_sz01;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;create table t_sz01(id int,name string) row format delimited fields terminated by &#39;,&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;vi /sz.dat&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;1,zhangsan
-2,lisi
-3,fengjie
-4,chunge
-5,shizi
-6,koukjj&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop fs -put /sz.dat /user/hive/warehouse/shizhan03.db/t_sz01&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select * from t_sz01;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select count(1) from t_sz01;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select id,name from t_sz01 where id&amp;gt;3;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;show tables;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;create exte&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sed -i &#39;s/dishui.oschina.io\/note-hugo/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.toml&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;git checkout&amp;#8201;&amp;#8212;&amp;#8201;themes/mainroad/static/js/app.js content/post/base.adoc config.toml&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;lt;&amp;lt;&amp;lt; &#39;FLUME_CLASSPATH=&#34;/opt/flume/lib&#34;&#39; &amp;gt; flume-env.sh&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;curl &lt;a href=&#34;https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py&#34; class=&#34;bare&#34;&gt;https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py&lt;/a&gt; | sudo tee /opt/bin/delete_docker_registry_image &amp;gt;/dev/null&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sudo chmod a+x /opt/bin/delete_docker_registry_image&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;export REGISTRY_DATA_DIR=/home/core/registry/docker/registry/v2&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;{
-    &#34;server&#34;:&#34;0.0.0.0&#34;,
-    &#34;server_port&#34;:8888,
-    &#34;local_address&#34;: &#34;127.0.0.1&#34;,
-    &#34;local_port&#34;:1080,
-    &#34;password&#34;:&#34;111111&#34;,
-    &#34;timeout&#34;:300,
-    &#34;method&#34;:&#34;aes-256-cfb&#34;,
-    &#34;fast_open&#34;: false,
-    &#34;workers&#34;: 1
-}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zspl.*
-FROM zh_sub_plan_launch zspl,
-zh_send_goods_check zsgc
-WHERE zspl.plan_code IN
-(SELECT plan_code
-FROM zh_plan_launch zpl
-WHERE zpl.state = &#39;01&#39;
-AND zpl.table_date &amp;gt;= &#39;2017-03-24 14:44:19&#39;
-AND zpl.table_date &amp;#8656; &#39;2017-03-24 23:44:25&#39;)
-AND zspl.project_name = zsgc.project_name
-AND zsgc.make_time = &#39;2017-03-24&#39;
-AND zsgc.status  = &#39;4&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;storm jar examples/storm-starter/storm-starter-topologies-0.9.6.jar org.apache.storm.starter.WordCountTopology wordcount&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;2017-03-28_163004
-2017-03-28_163014
-2017-03-28_163023
-2017-03-28_163035
-2017-03-28_163042
-2017-03-28_163050
-2017-03-28_163058
-2017-03-28_163734
-2017-03-28_163743
-2017-03-28_163751
-2017-03-28_163757
-2017-03-28_163804
-2017-03-28_163811&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/storm/.png&#34; alt=&#34;.png&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run -d -p 8888:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k 111111 -m aes-256-cfb&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;/v2/tutum/influxdb/manifests/0.9&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = &#39;01&#39; AND zpl.table_date &amp;gt;= &#39;2017-03-29 00:35:07&#39; AND zpl.table_date &amp;#8656; &#39;2017-03-29 23:35:14&#39;) AND zspl.project_name = zsgc.project_name AND zsgc.make_time = &#39;2017-03-29&#39; AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = &#39;4&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hi 陈经理:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;大物流服务器配置(高-中-低),在附件的三个sheet里,请下载查看&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;谢谢&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;version: &#39;2&#39;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+
 services:
-  registry2:
-    image: dishui.io:5000/registry:2.5
-    container_name: registry2
+  registry-v2:
+    image: registry:2.5
+    container_name: registry-v2
     ports:
       - &#34;5000:5000&#34;
     environment:
       REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry.crt
       REGISTRY_HTTP_TLS_KEY: /certs/registry.key
     volumes:
-      - /home/core/registrydata:/var/lib/registry
-      - /home/core/registry/certs:/certs&lt;/p&gt;
+      - /home/wuliu/registry-data:/var/lib/registry
+      - /home/wuliu/registry/certs:/certs&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;2017-04-01_104025
-2017-04-01_104135
-2017-04-01_104143
-2017-04-01_104152
-2017-04-01_104159
-2017-04-01_104213&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;val lines = List(&#34;hello tom hello jerry&#34;,&#34;hello tom kitty hello hello&#34;)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;lines.flatMap(&lt;em&gt;.split(&#34; &#34;)).map&lt;/em&gt;,1.groupBy(&lt;em&gt;._1).map(t &amp;#8658; (t._1,t._2.size)).toList.sortBy(&lt;/em&gt;._2)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;io.dishui.test.construct&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;2017-04-07_145546.png
-2017-04-07_145555.png
-2017-04-07_145603.png
-2017-04-07_145612.png
-2017-04-07_145620.png
-2017-04-07_145627.png&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;2017-04-07_151513.png
-2017-04-07_151523.png&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;bin/spark-submit \
---class org.apache.spark.examples.SparkPi \
---master spark://master:7077 \
---executor-memory 512M \
---total-executor-cores 1 \
-lib/spark-examples-1.5.2-hadoop2.2.0.jar \
-10&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;/bin/spark-submit \&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;--class org.apache.spark.examples.SparkPi \
---master spark://master:7077 \
---executor-memory 512M \
---total-executor-cores 2 \
-/usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar \
-10&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker-compose -f registry.yml up&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cd $SPARK_HOME&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;bin/spark-shell --master spark://master:7077&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt; log4j.properties &amp;lt;&amp;lt;_EOF_
-# Set everything to be logged to the console
-log4j.rootCategory=ERROR, console
-log4j.appender.console=org.apache.log4j.ConsoleAppender
-log4j.appender.console.target=System.err
-log4j.appender.console.layout=org.apache.log4j.PatternLayout
-log4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_settings_to_quiet_third_party_logs_that_are_too_verbose&#34; class=&#34;sect0&#34;&gt;Settings to quiet third party logs that are too verbose&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;log4j.logger.org.spark-project.jetty=WARN
-log4j.logger.org.spark-project.jetty.util.component.AbstractLifeCycle=ERROR
-log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
-log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
-log4j.logger.org.apache.parquet=ERROR
-log4j.logger.parquet=ERROR&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support&#34; class=&#34;sect0&#34;&gt;SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
-log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
-&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#39;2017-04-11 00:26:06&#39;
-&#39;2017-04-11 23:26:06&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zpl.* FROM zh_plan_launch zpl WHERE zpl.state = &#39;01&#39; AND zpl.table_date &amp;gt;= &#39;2017-04-10 00:26:06&#39; AND zpl.table_date &amp;#8656; &#39;2017-04-10 23:26:06&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = &#39;01&#39; AND zpl.table_date &amp;gt;= &#39;2017-04-10 00:26:06&#39; AND zpl.table_date &amp;#8656; &#39;2017-04-10 23:26:06&#39;) AND zspl.project_name = zsgc.project_name AND zsgc.make_time = &#39;2017-04-10&#39; AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = &#39;4&#39; GROUP BY zspl.reservoir_code&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = &#39;01&#39; AND zpl.table_date &amp;gt;= &#39;2017-04-10 00:26:06&#39; AND zpl.table_date &amp;#8656; &#39;2017-04-10 23:26:06&#39;) AND zspl.project_name = zsgc.project_name AND zsgc.make_time = &#39;2017-04-10 AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = &#39;4&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT zspl.* FROM zh_sub_plan_launch zspl, zh_send_goods_check zsgc WHERE zspl.plan_code IN (SELECT plan_code FROM zh_plan_launch zpl WHERE zpl.state = &#39;01&#39; AND zpl.table_date &amp;gt;= &#39;2017-04-10 00:26:06&#39; AND zpl.table_date &amp;#8656; &#39;2017-04-10 23:26:06&#39;) AND zspl.project_name = zsgc.project_name AND zsgc.make_time = &#39;2017-04-10&#39; AND zspl.goods_code = zsgc.goods_name AND zsgc.status  = &#39;4&amp;#8217;GROUP BY id&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34;SELECT &#34;&lt;br&gt;
-&#34;  zpl.* &#34;&lt;br&gt;
-&#34;FROM &#34;&lt;br&gt;
-&#34;  zh_plan_launch zpl &#34;&lt;br&gt;
-&#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-&#34;  AND zpl.plan_code IN &#34;&lt;br&gt;
-&#34;  (SELECT &#34;&lt;br&gt;
-&#34;    zspl.plan_code &#34;&lt;br&gt;
-&#34;  FROM &#34;&lt;br&gt;
-&#34;    zh_sub_plan_launch zspl, &#34;&lt;br&gt;
-&#34;    zh_send_goods_check zsgc &#34;&lt;br&gt;
-&#34;  WHERE zspl.plan_code IN &#34;&lt;br&gt;
-&#34;    (SELECT &#34;&lt;br&gt;
-&#34;      plan_code &#34;&lt;br&gt;
-&#34;    FROM &#34;&lt;br&gt;
-&#34;      zh_plan_launch zpl &#34;&lt;br&gt;
-&#34;    WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-&#34;      AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
-&#34;      AND zpl.table_date &amp;#8656; ?) &#34;&lt;br&gt;
-&#34;    AND zspl.project_name = zsgc.project_name &#34;&lt;br&gt;
-&#34;    AND zsgc.make_time = ? &#34;&lt;br&gt;
-&#34;    AND zspl.goods_code = zsgc.goods_name &#34;&lt;br&gt;
-&#34;    AND zsgc.status = &#39;4&#39; &#34;&lt;br&gt;
-&#34;    AND zspl.plan_code NOT IN &#34;&lt;br&gt;
-&#34;    (SELECT DISTINCT &#34;&lt;br&gt;
-&#34;      (zspl.plan_code) &#34;&lt;br&gt;
-&#34;    FROM &#34;&lt;br&gt;
-&#34;      zh_sub_plan_launch zspl &#34;&lt;br&gt;
-&#34;    WHERE zspl.plan_code IN &#34;&lt;br&gt;
-&#34;      (SELECT &#34;&lt;br&gt;
-&#34;        plan_code &#34;&lt;br&gt;
-&#34;      FROM &#34;&lt;br&gt;
-&#34;        zh_plan_launch zpl &#34;&lt;br&gt;
-&#34;      WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-&#34;        AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
-&#34;        AND zpl.table_date &amp;#8656; ?)) &#34;&lt;br&gt;
-&#34;  GROUP BY zspl.plan_code) &#34;&lt;br&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;String subPlanLanchSql = &#34;SELECT zspl.* &#34;&lt;br&gt;
-        &#34;FROM zh_sub_plan_launch zspl, &#34;&lt;br&gt;
-        &#34;zh_send_goods_check zsgc &#34;&lt;br&gt;
-        &#34;WHERE zspl.plan_code IN &#34;&lt;br&gt;
-        &#34;(SELECT plan_code &#34;&lt;br&gt;
-        &#34;FROM zh_plan_launch zpl &#34;&lt;br&gt;
-        &#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-        &lt;span class=&#34;menuseq&#34;&gt;&lt;span class=&#34;menu&#34;&gt;AND zpl.table_date&lt;/span&gt;&amp;#160;&amp;#9656; &lt;span class=&#34;menuitem&#34;&gt;= ?&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
-        &#34;AND zpl.table_date &amp;#8656; ?) &#34;&lt;br&gt;
-        &#34;AND zspl.project_name = zsgc.project_name &#34;&lt;br&gt;
-        &#34;AND zsgc.make_time = ? &#34;+
-        &#34;AND zspl.goods_code = zsgc.goods_name &#34;+
-        &#34;AND zsgc.status  = &#39;4&#39;&#34;&lt;br&gt;
-        &#34;GROUP BY id&#34;;
-    String difPlanLanchSql = &#34;SELECT &#34;&lt;br&gt;
-        &#34;  zpl.* &#34;&lt;br&gt;
-        &#34;FROM &#34;&lt;br&gt;
-        &#34;  zh_plan_launch zpl &#34;&lt;br&gt;
-        &#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-        &#34;  AND zpl.plan_code IN &#34;&lt;br&gt;
-        &#34;  (SELECT &#34;&lt;br&gt;
-        &#34;    zspl.plan_code &#34;&lt;br&gt;
-        &#34;  FROM &#34;&lt;br&gt;
-        &#34;    zh_sub_plan_launch zspl, &#34;&lt;br&gt;
-        &#34;    zh_send_goods_check zsgc &#34;&lt;br&gt;
-        &#34;  WHERE zspl.plan_code IN &#34;&lt;br&gt;
-        &#34;    (SELECT &#34;&lt;br&gt;
-        &#34;      plan_code &#34;&lt;br&gt;
-        &#34;    FROM &#34;&lt;br&gt;
-        &#34;      zh_plan_launch zpl &#34;&lt;br&gt;
-        &#34;    WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-        &#34;      AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
-        &#34;      AND zpl.table_date &amp;#8656; ?) &#34;&lt;br&gt;
-        &#34;    AND zspl.project_name = zsgc.project_name &#34;&lt;br&gt;
-        &#34;    AND zsgc.make_time = ? &#34;&lt;br&gt;
-        &#34;    AND zspl.goods_code = zsgc.goods_name &#34;&lt;br&gt;
-        &#34;    AND zsgc.status = &#39;4&#39; &#34;&lt;br&gt;
-        &#34;    AND zspl.plan_code IN &#34;&lt;br&gt;
-        &#34;    (SELECT DISTINCT &#34;&lt;br&gt;
-        &#34;      (zspl.plan_code) &#34;&lt;br&gt;
-        &#34;    FROM &#34;&lt;br&gt;
-        &#34;      zh_sub_plan_launch zspl &#34;&lt;br&gt;
-        &#34;    WHERE zspl.plan_code IN &#34;&lt;br&gt;
-        &#34;      (SELECT &#34;&lt;br&gt;
-        &#34;        plan_code &#34;&lt;br&gt;
-        &#34;      FROM &#34;&lt;br&gt;
-        &#34;        zh_plan_launch zpl &#34;&lt;br&gt;
-        &#34;      WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-        &#34;        AND zpl.table_date &amp;gt;= ? &#34;&lt;br&gt;
-        &#34;        AND zpl.table_date &amp;#8656; ?)) &#34;&lt;br&gt;
-        &#34;  GROUP BY zspl.plan_code) &#34;;
-    String planLanchSql = &#34;SELECT zpl.* &#34;&lt;br&gt;
-        &#34;FROM zh_plan_launch zpl &#34;&lt;br&gt;
-        &#34;WHERE zpl.state = &#39;01&#39; &#34;&lt;br&gt;
-        &lt;span class=&#34;menuseq&#34;&gt;&lt;span class=&#34;menu&#34;&gt;AND zpl.table_date&lt;/span&gt;&amp;#160;&amp;#9656; &lt;span class=&#34;menuitem&#34;&gt;= ?&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
-        &#34;AND zpl.table_date &amp;#8656; ? &#34;;
-    String reservoirCodeSql = subPlanLanchSql + &#34; ,zspl.reservoir_code&#34;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;    Object[] args1 = new Object[]{DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd(),DateUtil2.getDate()};
-    Object[] args2 = new Object[]{DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd()};
-    Object[] args3 = new Object[]{DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd(),DateUtil2.getDate(),DateUtil2.getCurDayStart(),DateUtil2.getCurDayEnd()};
-    List&amp;lt;?&amp;gt; subPlanLanchs = deliveryPlanService.integratePlan(subPlanLanchSql, args1, new SubPlanLaunchModel());
-    List&amp;lt;?&amp;gt; diffPlanLanchs = deliveryPlanService.integratePlan(difPlanLanchSql, args3, new PlanLaunchModel());
-//    List&amp;lt;?&amp;gt; planLanchs =  deliveryPlanService.integratePlan(planLanchSql, args2, new PlanLaunchModel());
-    List&amp;lt;?&amp;gt; reservoirs = deliveryPlanService.integratePlan(reservoirCodeSql, args1,new SubPlanLaunchModel());&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat &amp;gt; /person.txt &amp;lt;&amp;lt;_EOF_
-1,a,23
-2,hello,34
-3,xxxx,12
-&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;val rdd1 = sc.textFile(&#34;hdfs://master:9000/word/&#34;).flatMap(&lt;em&gt;.split(&#34; &#34;)).map&lt;/em&gt;, 1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;scala&amp;gt; sc.textFile(&#34;hdfs://master:8020/word/&#34;)
-res2: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[9] at textFile at &amp;lt;console&amp;gt;:22&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;scala&amp;gt; sc.textFile(&#34;hdfs://master:8020/word/&#34;).collect
-res3: Array[String] = Array(hello tom, hello xixi, hello xxxxooo, hello tom, hello xixi, hello xxxxooo, hello tom, hello xixi, hello xxxxooo)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;scala&amp;gt; val rdd1 = sc.textFile(&#34;hdfs://master:8020/word/&#34;).flatMap(_.split(&#34; &#34;)).collect
-rdd1: Array[String] = Array(hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo, hello, tom, hello, xixi, hello, xxxxooo)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT &#34;&lt;br&gt;
-&#34;   * &#34;&lt;br&gt;
-&#34; FROM &#34;&lt;br&gt;
-&#34;   (SELECT &#34;&lt;br&gt;
-&#34;     *, &#34;&lt;br&gt;
-&#34;     DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) AS dat, &#34;&lt;br&gt;
-&#34;     (SELECT &#34;&lt;br&gt;
-&#34;       SUM(zasc.goods_count) &#34;&lt;br&gt;
-&#34;     FROM &#34;&lt;br&gt;
-&#34;       zh_asphalt_storage_count zasc &#34;&lt;br&gt;
-&#34;     WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count, &#34;&lt;br&gt;
-&#34;     (SELECT &#34;&lt;br&gt;
-&#34;       zra.abbreviation &#34;&lt;br&gt;
-&#34;     FROM &#34;&lt;br&gt;
-&#34;       zh_reservoir_area zra &#34;&lt;br&gt;
-&#34;     WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation &#34;&lt;br&gt;
-&#34;   FROM &#34;&lt;br&gt;
-&#34;     zh_out_bound_order zas &#34;&lt;br&gt;
-&#34;   ORDER BY zas.out_date DESC) AS tmp1 &#34;&lt;br&gt;
-&#34; GROUP BY tmp1.Storage_area,tmp1.dat &#34;&lt;br&gt;
-&#34; HAVING 1 = 1 &#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT &#34;&lt;br&gt;
-&#34;   *, &#34;&lt;br&gt;
-&#34;   (SELECT &#34;&lt;br&gt;
-&#34;     SUM(zasc.goods_count) &#34;&lt;br&gt;
-&#34;   FROM &#34;&lt;br&gt;
-&#34;     zh_asphalt_storage_count zasc &#34;&lt;br&gt;
-&#34;   WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count &#34;&lt;br&gt;
-&#34; FROM &#34;&lt;br&gt;
-&#34;   zh_out_bound_order AS zas &#34;&lt;br&gt;
-&#34; WHERE DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) = &#39;2017-04-13&#39; &#34;&lt;br&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;bin/spark-submit \
---class StreamingWordCount \
---master spark://master:7077 \
-/streaming-1.0-SNAPSHOT.jar \
-worker \
-10010 \
-hdfs://master:8020/nc&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;netsh interface portproxy add v4tov4 listenport=3333 connectaddress=192.168.137.15 connectport=6066&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;101.40.208.232:22&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker run --name shadow -d -p 80:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k 111111 -m aes-256-cfb&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;101.40.208.232
-80
-111111&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;exampleblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;环境:&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
-&lt;colgroup&gt;
-&lt;col style=&#34;width: 50%;&#34;&gt;
-&lt;col style=&#34;width: 50%;&#34;&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;版本&lt;/th&gt;
-&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;地址&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;hadoop2.6&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://pan.baidu.com/s/1nvJkKeH&#34;&gt;密码：roxm&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf -g &#39;daemon off;&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;(function () {
-    var params = {};
-    //Document对象数据
-    if(document) {
-        params.domain = document.domain || &#39;&#39;;
-        params.url = document.URL || &#39;&#39;;
-        params.title = document.title || &#39;&#39;;
-        params.referrer = document.referrer || &#39;&#39;;
-    }
-    //Window对象数据
-    if(window &amp;amp;&amp;amp; window.screen) {
-        params.sh = window.screen.height || 0;
-        params.sw = window.screen.width || 0;
-        params.cd = window.screen.colorDepth || 0;
-    }
-    //navigator对象数据
-    if(navigator) {
-        params.lang = navigator.language || &#39;&#39;;
-    }
-    //解析_maq配置
-    if(_maq) {
-        for(var i in _maq) {
-            switch(_maq[i][0]) {
-                case &#39;_setAccount&#39;:
-                    params.account = _maq[i][1];
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    //拼接参数串
-    var args = &#39;&#39;;
-    for(var i in params) {
-        if(args != &#39;&#39;) {
-            args += &#39;&amp;amp;&#39;;
-        }
-        args += i + &#39;=&#39; + encodeURIComponent(params[i]);
-    }&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;    //通过Image对象请求后端脚本
-    var img = new Image(1, 1);
-    img.src = &#39;192.168.137.15/log.gif?&#39; + args;
-})();&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;docker pull wurstmeister/kafka&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;if [[ -z &#34;$a&#34; ]]; then
-  echo &#34;a&#34;
-else
-  echo &#34;b&#34;
-fi&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;input {
-  file {
-    path &amp;#8658; &#34;/var/nginx_logs/*.log&#34;
-    discover_interval &amp;#8658; 5
-    start_position &amp;#8658; &#34;beginning&#34;
-  }
-}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;output {
-  kafka {
-    topic_id &amp;#8658; &#34;tracklog&#34;
-    codec &amp;#8658; plain {
-      format &amp;#8658; &#34;%{message}&#34;
-      charset &amp;#8658; &#34;UTF-8&#34;
-    }
-    bootstrap_servers &amp;#8658; &#34;kafka:9092,kafka2:9092&#34;
-  }
-}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;INSERT INTO zh_asphalt_repertory (id,reservoir_code,storage_code,goods_code,goods_count,goods_batch,order_no,order_type,type,occur_date,goods_model)VALUES(&#39;a54a38c44cb4417aa975c3581879e41a&#39;,&#39;002&#39;,&#39;TKH-ZHIQU2&#39;,&#39;003&#39;,&#39;-4351.72&#39;,&#39;null&#39;,&#39;20170422389&#39;,&#39;03&#39;,&#39;00&#39;,&#39;2017-04-22 00:00:00&#39;,&#39;70#&#39;)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;UPDATE &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_contract_info&lt;/code&gt; SET &lt;code&gt;execute_state&lt;/code&gt; = &#39;01&#39; WHERE &lt;code&gt;contract_code&lt;/code&gt; IN(&#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;03&#39;,&#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;05&#39;,&#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;04&#39;);&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;UPDATE
-  &lt;code&gt;wuliu&lt;/code&gt;.&lt;code&gt;zh_contract_info&lt;/code&gt;
-SET
-  &lt;code&gt;execute_state&lt;/code&gt; = &#39;01&#39;
-WHERE &lt;code&gt;contract_code&lt;/code&gt; IN (
-    &#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;03&#39;,
-    &#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;05&#39;,
-    &#39;35900000-17-MY0635-0006&amp;#8212;&amp;#8203;04&#39;
-  ) ;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SELECT
-  *,
-  zas.Storage_area,
-  zas.project_name,
-  DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) AS dat,
-  (SELECT
-    SUM(zasc.goods_count)
-  FROM
-    zh_asphalt_storage_count zasc
-  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count,
-  (SELECT
-    zra.abbreviation
-  FROM
-    zh_reservoir_area zra
-  WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation
-FROM
-  zh_out_bound_order zas
-WHERE 1 = 1
-GROUP BY dat,zas.Storage_area
-ORDER BY zas.out_date DESC&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&#34; SELECT &#34;+
-&#34;   zas.Storage_area, &#34;+
-&#34;   zas.goods_code, &#34;+
-&#34;   zas.model, &#34;+
-&#34;   zas.category, &#34;+
-&#34;   DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) AS dat, &#34;+
-&#34;   SUMSELECT &#34;+ &#34;     SUM(zasc.goods_count) &#34;+ &#34;   FROM &#34;+ &#34;     zh_asphalt_storage_count zasc &#34;+ &#34;   WHERE zasc.asphalt_number = zas.out_order_no AS goods_count &#34;+
-&#34; FROM &#34;+
-&#34;   zh_out_bound_order zas &#34;+
-&#34; WHERE 1 = 1 &#34;+
-&#34; AND DATE_FORMAT(zas.out_date, &#39;%Y-%m-%d&#39;) = &#39;2017-03-02&#39; &#34;+
-&#34; AND zas.category = &#39;00&#39; &#34;+
-&#34; AND zas.Storage_area = &#39;002&#39; &#34;+
-&#34; GROUP BY zas.goods_code &#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hi 陈经理:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;服务器系统
-CentOS-7-x86_64-Minimal-1611.iso&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;大物流正式服务器,配置双网卡(内,外网)
-大物流测试服务器,配置双网卡(内,外网)
-其余的服务器,配置内网网卡
-服务器之间走内网通信&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;谢谢&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;echo &#34;4|2016年2月1日,星期一,10:04:14|10.117.45.20|DongKe小雨|法师|女|7|0|588/800000000&#34; &amp;gt; game_logs/1.log&lt;/p&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_registry_client端&#34;&gt;1.2.2. registry client端&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;registry-cert.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#!/bin/bash
+
+DOMAIN=mailiqing.com:5000
+
+mkdir -p /etc/docker/certs.d/$DOMAIN
+
+cat &amp;gt; /etc/docker/certs.d/$DOMAIN/registry.crt &amp;lt;&amp;lt;_EOF_ &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+-----BEGIN CERTIFICATE-----
+MIIDAzCCAeugAwIBAgIJAMsKmEFPgZmQMA0GCSqGSIb3DQEBCwUAMBgxFjAUBgNV
+BAMMDW1haWxpcWluZy5jb20wHhcNMTcwNTE1MDMxODU0WhcNMjcwNTEzMDMxODU0
+WjAYMRYwFAYDVQQDDA1tYWlsaXFpbmcuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAuurO4pKcIDgjQ3JMojee+JCvXj3pHqT5PLm+YO6UCTayOKqK
+Jh9Ykfs6NOo73VZXzLc0EPH+bNgNUbX6X7y5iYV/iBu+Yt9gxrSYr3UF8/LbtLGk
+mExWEe+JLVkJQna2mqXGsEq4UdUkQa/5de1ts5go5Uhzq79QYKdgduneh0wwmBjX
+rX2UYB36lBobMGDLnC6mVwavJprpxWpsr5t2L4nH02vLg44vJDz9grzm3EHQ1cOn
+pYsKRbFGptNmwX+/f7kt+jItOsIG+Om3CoM614Y2rzAGT0zfv/3jiyDLLyXiwvnc
+ABqrD9+BriEJd3nfkdF5gNtGn3CPHuq0EGOWkwIDAQABo1AwTjAdBgNVHQ4EFgQU
+jr05uLk9epuxBdo7x5gRjT/zfGwwHwYDVR0jBBgwFoAUjr05uLk9epuxBdo7x5gR
+jT/zfGwwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEArLB0Nbk5153a
+MqWHoLAVnFmVpkKDU4vOr+jw71xKNPlv5/cwppTWO1AagbZoQdyaprspVOvca0E1
+zrNigjuGkVSkb03rE61Kz6v2U0kJ/DTKhDQmvUHf5PqWpfyeZlnu4a+EyHeTPwpI
+U45htOenShJ7QEEfAZ0SxHq0gpu38CeSUIxY2xYXxSDjMSFEmGlekbNKpBO64V/E
+pqBUxAMaTMRczMh9JohN2yFpMcbbUCr87DAIExHJZIeyrYBorBf+sas3DDgbWalv
+CbJ3Q+lRb0nB7tYZerazeshBh3rVmE9eZq5idEVvdmXAIqdV3uZV0mhx0Rw+j2e3
+gHprA9NIog==
+-----END CERTIFICATE-----
+_EOF_
+
+echo 196.168.1.33 mailiqing.com &amp;gt;&amp;gt; /etc/hosts&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;echo &#34;4|2016年2月1日,星期一,10:04:16|10.168.8.103|潮流哥|法师|男|9|0|517/800000000&#34; &amp;gt;&amp;gt; game_logs/1.log
-echo &#34;4|2016年2月1日,星期一,10:04:16|10.168.8.103|潮流锅|武士|男|9|0|779/800000000&#34; &amp;gt;&amp;gt; game_logs/1.log&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;A&amp;#8592;-] : RequestCreated
-deactivate A
-[&amp;#8592; A: Done
-deactivate A&lt;/p&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;内容对应 &lt;code&gt;registry server&lt;/code&gt; 的 &lt;code&gt;registry.crt&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Schedules tasks for multiple types of clusters by acting through a SchedulerBackend.
-It can also work with a local setup by using a LocalBackend and setting isLocal to true.
-It handles common logic, like determining a scheduling order across jobs, waking up to launch speculative tasks, etc.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Clients should first call initialize() and start(), then submit task sets through the
-runTasks method.&lt;/p&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_下载_strong_rancher_strong_所需镜像并_strong_push_strong_到_strong_docker_registry_strong&#34;&gt;1.2.3. 下载 &lt;strong&gt;Rancher&lt;/strong&gt; 所需镜像并 &lt;strong&gt;Push&lt;/strong&gt; 到 &lt;strong&gt;Docker Registry&lt;/strong&gt;&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;脚本&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;push.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#!/bin/bash
+
+for var in $@
+do
+    echo &#34;$var&#34;
+    docker pull $var
+    docker tag $var mailiqing.com:5000/$var
+    docker push mailiqing.com:5000/$var
+    docker rmi mailiqing.com:5000/$var
+done&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;THREADING: SchedulerBackends and task-submitting clients can call this class from multiple
-threads, so it needs locks in public API methods to maintain its state. In addition, some
-SchedulerBackends synchronize on themselves when they want to send events here, and then
-acquire a lock on us, so we need to make sure that we don&amp;#8217;t try to lock the backend while
-we are holding a lock on ourselves.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.mailiqing.com/program/admin/mlqcategory/admin_goods/goodsList.jsp?menu_id=20150914j018W0M&#34; class=&#34;bare&#34;&gt;http://www.mailiqing.com/program/admin/mlqcategory/admin_goods/goodsList.jsp?menu_id=20150914j018W0M&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运行&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sh push.sh rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2 rancher/server:v1.5.5&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#local
-public: &lt;a href=&#34;http://maven.aliyun.com/nexus/content/groups/public/#这个maven&#34; class=&#34;bare&#34;&gt;http://maven.aliyun.com/nexus/content/groups/public/#这个maven&lt;/a&gt;
-typesafe:http://dl.bintray.com/typesafe/ivy-releases/ , [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly#这个ivy
-ivy-sbt-plugin:http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]#这个ivy
-sonatype-oss-releases&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sonatype-oss-snapshots&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_rancher_启动&#34;&gt;1.3. Rancher 启动&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;启动 &lt;strong&gt;rancher/server&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -d --name rancher-server --restart=unless-stopped -p 8080:8080 rancher/server:v1.5.5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;rancher&lt;/strong&gt; 管理界面地址&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;进销存报表
-采购执行报表
-销售执行报表&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://196.168.1.33:8080&#34;&gt;Rancher UI&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加主机&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/work/wuliu/2017-05-16_171531.png&#34; alt=&#34;2017 05 16 171531&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;拉去 &lt;strong&gt;agent&lt;/strong&gt; 所需的镜像&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;pull.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash
+
+for var in $@
+do
+  echo &#34;$var&#34;
+  docker pull mailiqing.com:5000/$var
+  docker tag mailiqing.com:5000/$var $var
+  docker rmi mailiqing.com:5000/$var
+done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sh pull.sh rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 http://196.168.1.33:8080/v1/scripts/99136B97757188B5A670:1483142400000:TWiSTaoo3CPJZLWtS6NxPGyUU&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_应用&#34;&gt;1.4. 应用&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/work/wuliu/2017-05-16_171915.png&#34; alt=&#34;2017 05 16 171915&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;1.5. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://git.oschina.net/dishui/dockerfiles&#34;&gt;测试服务器 dockerfiles&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://store.docker.com/&#34;&gt;docker store&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://dev.aliyun.com/search.html&#34;&gt;阿里云 镜像&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
