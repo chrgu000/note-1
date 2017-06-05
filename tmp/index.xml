@@ -669,6 +669,511 @@ title = &#34;tmp&#34;&lt;/p&gt;
 &lt;p&gt;+&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select count(*) from test;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt;&amp;gt; /etc/profile &amp;lt;&amp;lt;_EOF_
+export JAVA_HOME=/usr/local/jdk1.7.0_71
+export HADOOP_HOME=/usr/local/hadoop-2.6.5
+export SPARK_HOME=/usr/local/spark-1.5.3
+export HIVE_HOME=/usr/local/apache-hive-1.2.1-bin
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/sbin:$HIVE_HOME/bin
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;root@hadoop-master:/usr/local/spark-1.5.3# sbin/start-all.sh
+starting org.apache.spark.deploy.master.Master, logging to
+/usr/local/spark-1.5.3/sbin/../logs/spark&amp;#8212;&amp;#8203;org.apache.spark.deploy.master.Master-1-hadoop-master.out&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop-master: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-master.out
+hadoop-slave3: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-slave3.out
+hadoop-slave1: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-slave1.out&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;FROM kiwenlau/hadoop-hive-spark:1.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;COPY spark-1.5.3.tar.gz /
+COPY hive-site.xml /apache-hive-1.2.1-bin/conf/
+COPY yarn-site.xml /usr/local/hadoop/etc/hadoop/
+ENV SPARK_HOME=/usr/local/spark-1.5.3
+ENV PATH=&#34;$SPARK_HOME/bin:${PATH}&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;RUN tar -zxf spark-1.5.3.tar.gz -C /usr/local \
+    &amp;amp;&amp;amp; rm -f /spark-1.5.3.tar.gz&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionDriverName&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;com.mysql.jdbc.Driver&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionUserName&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;root&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionPassword&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;111111&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.yarn.jars&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;hdfs://hadoop-master:9000/spark-assembly-1.5.3.jar&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;hive.execution.engine&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;spark&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.enentLog.enabled&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.enentLog.dir&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;hdfs://master:9000/hive-spark-log&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.serializer&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;org.apache.spark.serializer.KryoSerializer&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.executor.memeory&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;512m&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.driver.memeory&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;512m&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;spark.executor.extraJavaOptions&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;-XX:+PrintGCDetails -Dkey=value -Dnumbers=&#34;one two three&#34;&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;set hive.execution.engine=spark;
+set spark.master=spark://hadoop-master:7077;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://hadoop-master:9000/hive-spark-log;
+set spark.executor.memory=512m;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;set hive.execution.engine=spark;
+set spark.master=spark://master:7077;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
+set spark.executor.memory=512m;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;set spark.master=yarn-client;
+set hive.execution.engine=spark;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
+set spark.executor.memory=1g;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;set spark.master=yarn-cluster;
+set hive.execution.engine=spark;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
+set spark.executor.memory=1g;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table test2(ts BIGINT,line STRING);
+select count(*) from test;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;bin/spark-submit --class org.apache.spark.examples.SparkPi \
+    --master yarn \
+    --deploy-mode cluster \
+    --driver-memory 1g \
+    --executor-memory 1g \
+    --executor-cores 1 \
+    --queue thequeue \
+    lib/spark-examples*.jar \
+    10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -it --rm --dns 192.168.123.123 alpine:3.5 /bin/sh&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mkdir -p /etc/dnsmasq.d&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/dnsmasq.conf &amp;lt;&amp;lt;_EOF_
+cache-size=10000
+resolv-file=/etc/dnsmasq-resolv.conf
+addn-hosts=/etc/dnsmasq.hosts
+log-queries
+log-facility=/var/log/dnsmasq.log
+local-ttl=600
+conf-dir=/etc/dnsmasq.d
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/dnsmasq.conf &amp;lt;&amp;lt;_EOF_
+log-queries
+log-facility=/var/log/dnsmasq.log
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/dnsmasq-resolv.conf &amp;lt;&amp;lt;_EOF_
+nameserver 114.114.114.114
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /usr/lib/systemd/system/flanneld.service &amp;lt;&amp;lt;_EOF_&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;After=network.target
+After=network-online.target docker.service
+Description=flannel&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ExecStart=/root/bin/flanneld \
+-iface=eth1 \
+-etcd-endpoints=http://196.168.1.34:2379&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;WantedBy=multi-user.target
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt;&amp;gt; /etc/hosts &amp;lt;&amp;lt;_EOF_
+192.168.123.123 master
+192.168.123.124 slave1
+192.168.123.125 slave2
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker rm -f hadoop-slave2 hadoop-slave1 hadoop-master&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -d -v /root/dishui/data/conf/dnsmasq.hosts:/etc/hosts -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --name dns-server andyshinn/dnsmasq:2.75&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;resolv-file=/etc/resolv.dnsmasq&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/dnsmasq.conf &amp;lt;&amp;lt;_EOF_
+addn-hosts=/etc/dnsmasqhosts
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;dns: 172.17.80.3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;#!/bin/bash&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DOMAIN=dishui.io:5000&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mkdir -p /etc/docker/certs.d/$DOMAIN&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/docker/certs.d/$DOMAIN/registry.crt &amp;lt;&amp;lt;_EOF_
+-----BEGIN CERTIFICATE-----
+MIIC+zCCAeOgAwIBAgIJAOxktzjYRccOMA0GCSqGSIb3DQEBCwUAMBQxEjAQBgNV
+BAMMCWRpc2h1aS5pbzAeFw0xNjA4MjcxMjQ5MTBaFw0yNjA4MjUxMjQ5MTBaMBQx
+EjAQBgNVBAMMCWRpc2h1aS5pbzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBAMlDw1mAzZG5OX4leFytRLjzvQWZzpNXGQ9T290nLVK2/4v5lKHdJkF9gva6
+ljpEJ362AxBmXw9ZWRKuDXaWtst5r6Xz1hyrHdaQ3/TP3SeBCpVMj+P2XM0mjo6r
+J2eo8u7YTQoTcjZz0iSTprVvPLsutyKPTxT+Mj2wSvf29R4NyGTQ1XGM1eyt4xEM
+xwf3VpHqw2UvhdpYT2mnv/SGqQu39n9fSABRlKnfNMx/jaTnE04p1lHQpvW1aJcj
+unS9zxsDDsWuwO8U+/WQhVtfNLLecuShcgiIibE14VxKWIPe3X/pcYmF25oPJVL+
+VtnlCaqlhvu3PkgDFBI8n7PAoVUCAwEAAaNQME4wHQYDVR0OBBYEFCgHv8jqKSHV
+KXEnz87Y/48Dp7PXMB8GA1UdIwQYMBaAFCgHv8jqKSHVKXEnz87Y/48Dp7PXMAwG
+A1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAHGhcUFIqVxMgZ7jY0y/o4DK
+gIELCes6O3ruVQNnyK2wHpqsfV0PG3Mcn4UDwk5iqSXrAULi677dUzeZ1BLI2HHi
+XJLdmEj9KLq38ktrLAPjhFUKoUhWCehtEuR0JMj/wjSdRN/5/yI5Ki1+Rk42M2Ld
+CD5j9+kuk4wtCy4wxi4CRQZQEHn4FyjXdVMJZJ2nn5QwFkjZzhvW9ze9RbrZ3dii
+HAES9laZx3AwKjmMi/wjY3qNoqlpho61DMrTD872xy57/ajh86YV3yb4+78D/aUl
+5I4JUvkqcayVlxVDmpU0sppq5M4u8t/iiB8TvGmi2utG0j4xSLGKSM03WL+rWdA=
+-----END CERTIFICATE-----
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo 196.168.1.86 dishui.io &amp;gt;&amp;gt; /etc/hosts&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;UPDATE &lt;code&gt;jbpm4_task&lt;/code&gt; SET &lt;code&gt;STATE_&lt;/code&gt; = &#39;close&#39; WHERE &lt;code&gt;DBID_&lt;/code&gt; in (&#39;690315&#39;, &#39;550562&#39;, &#39;550562&#39;, &#39;420663&#39;, &#39;330248&#39;, &#39;300013&#39;, &#39;280089&#39;, &#39;200085&#39;, &#39;160036&#39;, &#39;150096&#39;, &#39;150083&#39;, &#39;150012&#39;, &#39;140007&#39;, &#39;120035&#39;, &#39;110035&#39;, &#39;60215&#39;, &#39;90121&#39;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#39;260080&#39;, &#39;260070&#39;, &#39;150036&#39;, &#39;130051&#39;, &#39;130108&#39;, &#39;130034&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#39;150036&#39;, &#39;130051&#39;, &#39;130108&#39;, &#39;130034&#39;, &#39;130036&#39;, &#39;130038&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#39;690315&#39;, &#39;550562&#39;, &#39;550562&#39;, &#39;420663&#39;, &#39;330248&#39;, &#39;300013&#39;, &#39;280089&#39;, &#39;200085&#39;, &#39;160036&#39;, &#39;150096&#39;, &#39;150083&#39;, &#39;150012&#39;, &#39;140007&#39;, &#39;120035&#39;, &#39;110035&#39;, &#39;60215&#39;, &#39;90121&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;发货申请审批 + 合同类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;未审核最上面&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;检索  项目名称 销售公司 客户名称 申请人&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;String projectName = request.getParameter(&#34;projectName&#34;);
+String sellCompanyOutName = request.getParameter(&#34;sellCompanyOutName&#34;);
+String customName = request.getParameter(&#34;customName&#34;);
+String documentMaker = request.getParameter(&#34;documentMaker&#34;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;projectName
+sellCompanyOutName
+customName
+documentMaker&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;import org.casic.javaframework.web.sendoutgoodscheck.service;
+ //判断如果办理类型是完成的情况
+if(context.getAttribute(&#34;transactType&#34;).equals(&#34;2&#34;)){
+  ISendGoodsCheckService service =(ISendGoodsCheckService)applicationContext.getBean(&#34;sendGoodsCheckService&#34;);
+  String id=context.getAttribute(&#34;bussinessNo&#34;);
+  String wfmId= context.getAttribute(&#34;transactIdea&#34;);
+  service.passShenpi(3,wfmId,id);
+}
+if(context.getAttribute(&#34;transactType&#34;).equals(&#34;4&#34;)){
+  ISendGoodsCheckService service =(ISendGoodsCheckService)applicationContext.getBean(&#34;sendGoodsCheckService&#34;);
+  String id=context.getAttribute(&#34;bussinessNo&#34;);
+  String wfmId= context.getAttribute(&#34;transactIdea&#34;);
+  service.passShenpi(5,wfmId,id);
+}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;if(ObjUtils.notEmpty(projectName)) whereStr.append(&#34; and project_name like &#39;%&#34;projectName&#34;%&#39;&#34;);
+if(ObjUtils.notEmpty(sellCompanyOutName)) whereStr.append(&#34; and sell_company_out_name like &#39;%&#34;sellCompanyOutName&#34;%&#39;&#34;);
+if(ObjUtils.notEmpty(customName)) whereStr.append(&#34; and custom_name like &#39;%&#34;customName&#34;%&#39;&#34;);
+if(ObjUtils.notEmpty(documentMaker)) whereStr.append(&#34; and document_maker like &#39;%&#34;documentMaker&#34;%&#39;&#34;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;VirtualBox - Error In supR3HardenedWinReSpawn&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;html&amp;gt;&amp;lt;b&amp;gt;NtCreateFile(\Device\VBoxDrvStub) failed: 0xc0000034 STATUS_OBJECT_NAME_NOT_FOUND (0 retries) (rc=-101)&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;Make sure the kernel module has been loaded successfully.&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;!--EOM-&amp;#8594;where: supR3HardenedWinReSpawn
+what:  3
+VERR_OPEN_FAILED (-101) - File/Device open failed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Driver is probably stuck stopping/starting. Try &#39;sc.exe query vboxdrv&#39; to get more information about its state. Rebooting may actually help.&amp;lt;/html&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;OK&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup flanneld -iface=eno1 -etcd-endpoints=http://196.168.1.34:2379 &amp;amp;
+nohup flanneld -iface=eth1 -etcd-endpoints=http://196.168.1.34:2379 &amp;amp;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Error (Couldn&#39;t bring up network: failed to find plugin &#34;rancher-bridge&#34; in path [/opt/cni/bin /var/lib/cni/bin /usr/local/sbin /usr/sbin /sbin /usr/local/bi&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-e CATTLE_AGENT_IP=&amp;lt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sudo docker run --rm --privileged -e CATTLE_AGENT_IP=192.168.1.55 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 &lt;a href=&#34;http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw&#34; class=&#34;bare&#34;&gt;http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sudo docker run --rm --privileged -e CATTLE_AGENT_IP=192.168.1.54 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 &lt;a href=&#34;http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw&#34; class=&#34;bare&#34;&gt;http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nmcli connection modify docker0 connection.zone trusted
+systemctl stop NetworkManager.service
+firewall-cmd --permanent --zone=trusted --change-interface=docker0
+systemctl start NetworkManager.service
+nmcli connection modify docker0 connection.zone trusted
+systemctl restart docker.service&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;关闭 selinux&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sed -i &#39;s#SELINUX=enforcing#SELINUX=disabled#&#39; /etc/selinux/config&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/etc/yum.repos.d/Local-rpm.repo&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum install -y yum-plugin-downloadonly
+yum install docker-engine-1.12.1-1.el7.centos --downloadonly --downloaddir=/var/www/html/data/yum-repo/
+createrepo -p -d -o /var/www/html/data/yum-repo/ /var/www/html/data/yum-repo/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;systemctl start httpd&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/yum.repos.d/CentOS-Base.repo &amp;lt;&amp;lt;_EOF_&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;name=Local-rpm
+baseurl=http://jzlh.com/data/yum-repo
+enabled=1
+gpgcheck=0
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum install -y docker-engine-1.12.1-1.el7.centos&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo 196.168.1.34 hadoop-34 &amp;gt;&amp;gt; /etc/hosts
+echo 196.168.1.35 spark-35 &amp;gt;&amp;gt; /etc/hosts&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo 192.168.1.54 pro-54 &amp;gt;&amp;gt; /etc/hosts
+echo 192.168.1.55 jzlh.com &amp;gt;&amp;gt; /etc/hosts
+echo 192.168.1.53 pro-53 &amp;gt;&amp;gt; /etc/hosts
+echo 192.168.1.52 pro-52 &amp;gt;&amp;gt; /etc/hosts
+echo 192.168.1.51 pro-51 &amp;gt;&amp;gt; /etc/hosts&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo pro-53 &amp;gt;&amp;gt; /etc/hostname
+echo pro-52 &amp;gt;&amp;gt; /etc/hostname
+echo pro-51 &amp;gt;&amp;gt; /etc/hostname&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;export HIVE_HOME=/apache-hive-1.2.1-bin/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;load data inpath &#39;$click_pvout/$day_01&#39; into table $ods_click_pageviews partition(datestr=&#39;$day_01&#39;)&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;set hive.execution.engine=spark;
+set spark.master=spark://192.168.123.90:7077;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://hadoop-master:9000/spark-hive-log;
+set spark.executor.memory=512m;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;/make-distribution.sh --name spark-hive-1.5 --tgz -Phadoop-2.6 -Phive -Phive-thriftserver -Pyarn&lt;/div&gt;
+&lt;p&gt;FROM registry.cn-hangzhou.aliyuncs.com/dishui/java:1.0
+ENV MAVEN_HOME=&#34;/usr/local/apache-maven-3.0.5&#34;
+ENV PATH=&#34;${MAVEN_HOME}/bin:${PATH}&#34;
+COPY ./apache-maven-3.0.5.tar /
+RUN tar -xf /apache-maven-3.0.5.tar -C /usr/local/ \
+  &amp;amp;&amp;amp; rm -f /apache-maven-3.0.5.tar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn -DskipTests clean package -Phive -Phive-thriftserver&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;60.208.6.156 - - [18/Sep/2013:06:49:48 +0000] &#34;GET /wp-content/uploads/2013/07/rcassandra.png HTTP/1.0&#34; 200 185524 &#34;http://cos.name/category/software/packages/&#34; &#34;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;private String remoteAddr;
+private String remoteUser;
+private String timeLocal;
+private String request;
+private String status;
+private String bodyBytesSent;
+private String httpReferer;
+private String httpUserAgent;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;60.208.6.156
+- -&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34;GET /wp-content/uploads/2013/07/rcassandra.png HTTP/1.0&#34;
+200
+185524
+&#34;http://cos.name/category/software/packages/&#34;
+&#34;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;background-color: lightsteelblue;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;tableblock frame-all grid-all spread&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select a.month as month,a.day as day,a.hour as hour,count(1) as pvs from shizhan.ods_weblog_detail a
+where a.datestr=2017-05-27 group by a.month,a.day,a.hour;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mount -t cifs --verbose -o user=dishui,password=dishui,vers=2.1,sec=krb5 //192.168.123.199/dishui /root/dishui/mount/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;z%5ge303Np!h&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;iDc@5bG8tah5!
+sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://mysql:3306/wuliu3 \
+  --username root \
+  --password 111111 \
+  --table zh_goods_info   \
+  --m 1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sqoop export \
+  --driver com.mysql.jdbc.Driver \
+  --connect &#34;jdbc:mysql://mysql:3306/shizhan&#34; \
+  --username root \
+  --password 111111 \
+  --table &#34;dw_pvs_hour1&#34; \
+  --fields-terminated-by &#39;\001&#39; \
+  --export-dir /user/hive/warehouse/shizhan.db/dw_pvs_hour/datestr=2017-05-27&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -itd \
+  --net=hadoop \
+  --name sqoop \
+  --hostname sqoop \
+  kiwenlau/hadoop-sqoop:1.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT a.&lt;strong&gt;,b.&lt;/strong&gt;
+FROM ods_origin_weblog a LATERAL VIEW parse_url_tuple(regexp_replace(http_referer, &#34;\&#34;&#34;, &#34;&#34;), &#39;HOST&#39;, &#39;PATH&#39;,&#39;QUERY&#39;, &#39;QUERY:id&#39;) b as host, path, query, query_id;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT
+a.valid,a.remote_addr,a.remote_user,a.time_local,
+a.request,a.status,a.body_bytes_sent,a.http_referer,
+a.http_user_agent,b.ref_host,b.ref_path,b.ref_query,b.ref_query_id
+FROM ods_weblog_origin a LATERAL VIEW parse_url_tuple(regexp_replace(http_referer, &#34;\&#34;&#34;, &#34;&#34;), &#39;HOST&#39;, &#39;PATH&#39;,&#39;QUERY&#39;, &#39;QUERY:id&#39;) b as ref_host, ref_path, ref_query, ref_query_id;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop fs -rm -r /data/weblog/preprocess/output/2017-05-25 /data/weblog/preprocess/valid_output/2017-05-25 /data/weblog/preprocess/click_pv_out/2017-05-25 /data/weblog/preprocess/click_visit_out/2017-05-25&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar /weblog.jar cn.itcast.bigdata.hive.mr.ClickStreamThree /data/weblog/preprocess/output/2017-05-25 /data/weblog/preprocess/click_pv_out/2017-05-25&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;${HADOOP_PRE}/hadoop jar /${FILE_NAME} $click_pv_class $log_pre_output/$day_01 $click_pvout/$day_01
+fi&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;今:
   借朗锐科服务器(AQR-2181)一台&lt;/p&gt;
 &lt;/div&gt;
@@ -2854,16 +3359,29 @@ services:
 lib/spark-examples-1.5.2-hadoop2.2.0.jar \
 10&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master yarn \
+--deploy-mode client \
+--executor-memory 512M \
+--total-executor-cores 1 \
+lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class=&#34;literalblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;/bin/spark-submit \&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre&gt;--class org.apache.spark.examples.SparkPi \
 --master spark://master:7077 \
---executor-memory 512M \
+--executor-memory 1g \
 --total-executor-cores 2 \
 /usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar \
 10&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://master:7077 --executor-memory 1g --total-executor-cores 2 /usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar 1&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;cd $SPARK_HOME&lt;/p&gt;

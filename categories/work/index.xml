@@ -29,7 +29,11 @@
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_rancher_启动&#34;&gt;1.3. Rancher 启动&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_应用&#34;&gt;1.4. 应用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1.5. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_正式服务器&#34;&gt;2. 正式服务器&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2.1. 参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -76,7 +80,34 @@
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;配置 &lt;code&gt;yum&lt;/code&gt; 源&lt;/p&gt;
+&lt;p&gt;配置docker 本地 yum 仓库&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yum install -y yum-plugin-downloadonly # yum下载软件包插件
+mkdir -p /var/www/html/data/yum-repo/ # yum 仓库目录
+yum install docker-engine-1.12.1-1.el7.centos --downloadonly --downloaddir=/var/www/html/data/yum-repo/ # 下载 docker 依赖到仓库
+createrepo -p -d -o /var/www/html/data/yum-repo/ /var/www/html/data/yum-repo/ # 生成 yum 仓库信息
+
+systemctl start httpd # 启动 apache (如果没有 yum install -y httpd 安装)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置 内网 &lt;code&gt;yum&lt;/code&gt; 源&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /etc/yum.repos.d/CentOS-Base.repo &amp;lt;&amp;lt;_EOF_
+[Local-rpm]
+name=Local-rpm
+baseurl=http://jzlh.com/data/yum-repo
+enabled=1
+gpgcheck=0
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置 远程 &lt;code&gt;yum&lt;/code&gt; 源&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /etc/yum.repos.d/docker-main.repo &amp;lt;&amp;lt;_EOF_
@@ -193,8 +224,27 @@ services:
       REGISTRY_HTTP_TLS_KEY: /certs/registry.key
     volumes:
       - /home/wuliu/registry-data:/var/lib/registry
-      - /home/wuliu/registry/certs:/certs&lt;/code&gt;&lt;/pre&gt;
+      - /home/wuliu/registry/certs:/certs
+  registry-web: &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    image: konradkleine/docker-registry-frontend:v2
+    container_name: registry-web
+    ports:
+      - &#34;8082:80&#34;
+    environment:
+      ENV_DOCKER_REGISTRY_HOST: jzlh.com
+      ENV_DOCKER_REGISTRY_PORT: 5000
+      ENV_DOCKER_REGISTRY_USE_SSL: 1
+    extra_hosts:
+      - &#34;jzlh.com:192.168.1.55&#34;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;web界面查看镜像列表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -329,12 +379,7 @@ done&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sh pull.sh rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 http://196.168.1.33:8080/v1/scripts/99136B97757188B5A670:1483142400000:TWiSTaoo3CPJZLWtS6NxPGyUU&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo docker run --rm --privileged -e CATTLE_AGENT_IP=192.168.1.55 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -350,8 +395,61 @@ done&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;hr&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_正式服务器&#34;&gt;2. 正式服务器&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 25%;&#34;&gt;
+&lt;col style=&#34;width: 25%;&#34;&gt;
+&lt;col style=&#34;width: 25%;&#34;&gt;
+&lt;col style=&#34;width: 25%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;主机名&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;IP(外网)&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;IP(内网)&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;pro-54&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;116.90.81.78&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.1.54&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;正式服务器&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;jzlh&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;116.90.81.79&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.1.55&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;监控(部署)服务器&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;pro-51&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.1.51&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;正式服务器&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;pro-52&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.1.52&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;正式服务器&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;pro-53&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.1.53&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;正式服务器&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_参考&#34;&gt;1.5. 参考&lt;/h3&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;2.1. 参考&lt;/h3&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;

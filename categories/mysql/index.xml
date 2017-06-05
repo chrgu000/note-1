@@ -1154,89 +1154,158 @@ rm -f auto.cnf
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/linux/mysql1/</guid>
-      <description>
-
-&lt;p&gt;include::content/post/base.adoc[]
-:toc-title: Contents
-&lt;!-- toc --&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;mysql&#34;&gt;mysql&lt;/h1&gt;
-
-&lt;h3 id=&#34;linux安装mysql设置&#34;&gt;linux安装mysql设置&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;/usr/bin/mysqladmin -u root password &#39;123&#39;&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;设置mysql用户名/密码&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mysql&lt;/code&gt;状态/开启/停止
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;service mysqld status&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;service mysqld start&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;service mysqld stop&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;任意主机以用户root和密码mypwd连接到mysql服务器
-&lt;code&gt;
-mysql&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123&#39; WITH GRANT OPTION;
-mysql&amp;gt; flush privileges;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;IP为&lt;code&gt;192.168.1.102&lt;/code&gt;的主机以用户myuser和密码mypwd连接到mysql服务器
-&lt;code&gt;
-mysql&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;myuser&#39;@&#39;192.168.1.102&#39; IDENTIFIED BY &#39;mypwd&#39; WITH GRANT OPTION;
-mysql&amp;gt; flush privileges;
-&lt;/code&gt;&lt;/li&gt;
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_mysql&#34;&gt;1. mysql&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_linux安装mysql设置&#34;&gt;1.1. linux安装mysql设置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_mysql_备份_还原&#34;&gt;1.2. Mysql 备份/还原&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_mysql数据库操作&#34;&gt;1.3. mysql数据库操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_终端shell连接数据库乱码&#34;&gt;1.4. 终端shell连接数据库乱码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_数据库编码&#34;&gt;1.5. 数据库编码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__strong_mysql_strong_修改密码&#34;&gt;1.6. &lt;strong&gt;mysql&lt;/strong&gt; 修改密码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_mysql_新增_删除用户和权限分配&#34;&gt;1.7. mysql 新增、删除用户和权限分配&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_存储过程&#34;&gt;1.8. 存储过程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看&#34;&gt;1.9. 查看&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__strong_mysql_strong_备份数据库&#34;&gt;1.10. &lt;strong&gt;mysql&lt;/strong&gt; 备份数据库&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;mysql-备份-还原&#34;&gt;Mysql 备份/还原&lt;/h3&gt;
-
-&lt;p&gt;1、 导出结构不导出数据&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;mysqldump -d 数据库名 -uroot -p &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;2、导出数据不导出结构&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;mysqldump -t 数据库名 -uroot -p &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;3、 导出数据和表结构&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;mysqldump 数据库名 -uroot -p &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;4、导出特定表的结构&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;mysqldump -uroot -p -B数据库名 --table 表名 &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;5、 source 还原&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt;source d:\wcnc_db.sql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;6、windows下导入数据库&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql -uroot -p111111 -Dmailiqing&amp;lt;c:\Users\dishui\Desktop\tmp\mailiqing2016-01-20.sql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;mysql数据库操作&#34;&gt;mysql数据库操作&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;创建数据库(编码utf8)&lt;/strong&gt;
-&lt;code&gt;bash
-CREATE DATABASE `mailiqing` CHARACTER SET utf8; 
-&lt;/code&gt;&lt;/li&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_mysql&#34;&gt;1. mysql&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_linux安装mysql设置&#34;&gt;1.1. linux安装mysql设置&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/usr/bin/mysqladmin -u root password &#39;123&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;设置mysql用户名/密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;mysql&lt;/code&gt; 状态/开启/停止&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service mysqld status&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service mysqld start&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;service mysqld stop&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;任意主机以用户root和密码mypwd连接到mysql服务器&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123&#39; WITH GRANT OPTION;
+mysql&amp;gt; flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IP为`192.168.1.102`的主机以用户myuser和密码mypwd连接到mysql服务器&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;myuser&#39;@&#39;192.168.1.102&#39; IDENTIFIED BY &#39;mypwd&#39; WITH GRANT OPTION;
+mysql&amp;gt; flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h3 id=&#34;终端shell连接数据库乱码&#34;&gt;终端shell连接数据库乱码&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql -uroot -h192.168.1.123 -p --default-character-set=utf8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;数据库编码&#34;&gt;数据库编码&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;查看mysql编码
-&lt;code&gt;bash
-show variables like &#39;character%&#39;;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_mysql_备份_还原&#34;&gt;1.2. Mysql 备份/还原&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;导出结构不导出数据&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;code&gt;mysqldump -d 数据库名 -uroot -p &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;导出数据不导出结构&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;code&gt;mysqldump -t 数据库名 -uroot -p &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;导出数据和表结构&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;code&gt;mysqldump 数据库名 -uroot -p &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;导出特定表的结构&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;code&gt;mysqldump -uroot -p -B数据库名 --table 表名 &amp;gt; xxx.sql&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;source 还原&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql&amp;gt;source d:\wcnc_db.sql&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;windows下导入数据库&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql -uroot -p111111 -Dmailiqing&amp;lt;c:\Users\dishui\Desktop\tmp\mailiqing2016-01-20.sql&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_mysql数据库操作&#34;&gt;1.3. mysql数据库操作&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;创建数据库(编码utf8)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;CREATE DATABASE `mailiqing` CHARACTER SET utf8;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_终端shell连接数据库乱码&#34;&gt;1.4. 终端shell连接数据库乱码&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql -uroot -h192.168.1.123 -p --default-character-set=utf8&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_数据库编码&#34;&gt;1.5. 数据库编码&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看mysql编码&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;show variables like &#39;character%&#39;;
 +--------------------------+----------------------------+
 | Variable_name            | Value                      |
 +--------------------------+----------------------------+
@@ -1250,127 +1319,188 @@ show variables like &#39;character%&#39;;
 | character_sets_dir       | /usr/share/mysql/charsets/ |
 +--------------------------+----------------------------+
 --查看数据库编码
-SHOW VARIABLES LIKE &#39;character_set_database&#39;; 
-&lt;/code&gt;&lt;/li&gt;
+SHOW VARIABLES LIKE &#39;character_set_database&#39;;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h3 id=&#34;mysql-修改密码&#34;&gt;&lt;code&gt;mysql&lt;/code&gt;修改密码&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;关闭&lt;code&gt;mysql&lt;/code&gt;服务&lt;/strong&gt;
-&lt;code&gt;bash
-service mysqld stop
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;安全方式连接&lt;code&gt;mysql&lt;/code&gt;&lt;/strong&gt;
-&lt;code&gt;bash
-mysqld_safe --skip-grant-tables
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;进入数据库&lt;/strong&gt;
-&lt;code&gt;bash
-mysql
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__strong_mysql_strong_修改密码&#34;&gt;1.6. &lt;strong&gt;mysql&lt;/strong&gt; 修改密码&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;关闭 &lt;strong&gt;mysql&lt;/strong&gt; 服务&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;service mysqld stop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;安全方式连接`mysql`&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysqld_safe --skip-grant-tables&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;进入数据库&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysql
 #
 use mysql;
 #
-select * from user;                     
-Empty set (0.00 sec)
+select * from user;
+    Empty set (0.00 sec)
 #
 INSERT INTO mysql.user (Host,User,Password) VALUES(&#39;%&#39;,&#39;root&#39;, PASSWORD(&#39;luhua123&#39;));
 #
-update user set password=password(&#39;luhua123&#39;) where user=&#39;root&#39;; 
+update user set password=password(&#39;luhua123&#39;) where user=&#39;root&#39;;
 #
 flush privileges;
 #
-exit;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;杀死&lt;code&gt;mysql&lt;/code&gt;进程&lt;/strong&gt;
-&lt;code&gt;bash
-service mysqld stop
-&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;mysql-新增-删除用户和权限分配&#34;&gt;mysql 新增、删除用户和权限分配&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;新增用户
-&lt;code&gt;sql
---
-insert into mysql.user(Host,User,Password) values(&amp;quot;localhost&amp;quot;,&amp;quot;lionbule&amp;quot;,password(&amp;quot;hello1234&amp;quot;));
---
-flush privileges;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;修改用户密码
-&lt;code&gt;sql
---
-update mysql.user set password=password(&#39;new password&#39;) where User=&amp;quot;lionbule&amp;quot; and Host=&amp;quot;localhost&amp;quot;;
---
-flush privileges;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;删除用户
-&lt;code&gt;sql
---
-DELETE FROM user WHERE User=&amp;quot;lionbule&amp;quot; and Host=&amp;quot;localhost&amp;quot;;
---
-flush privileges;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;权限分配
-
-&lt;ol&gt;
-&lt;li&gt;grant用法
-&lt;code&gt;
-权限：
-常用总结, ALL/ALTER/CREATE/DROP/SELECT/UPDATE/DELETE
-数据库：
-*.*                    表示所有库的所有表
-test.*                表示test库的所有表
-test.test_table  表示test库的test_table表     
-用户名：
-mysql账户名
-登陆主机：
-允许登陆mysql server的客户端ip
-&#39;%&#39;表示所有ip
-&#39;localhost&#39; 表示本机
-&#39;192.168.10.2&#39; 特定IP
-密码：
-账户对应的登陆密码
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;例子
-&lt;code&gt;sql
-grant all  on test.* to lionbule@&#39;%&#39; identified by &#39;hello1234&#39;;
-flush privileges;
-&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;存储过程&#34;&gt;存储过程&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;查看存储过程
-&lt;code&gt;sql
-SHOW CREATE PROCEDURE `mailiqing`.`product_call`; 
-&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;查看&#34;&gt;查看&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;数据库编码
-&lt;code&gt;sql
-SHOW VARIABLES LIKE &#39;character_set_database&#39;;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;改变数据库编码
-&lt;code&gt;sql
-ALTER DATABASE `mailiqing` CHARACTER SET utf8; 
-&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;mysql-备份数据库&#34;&gt;&lt;code&gt;mysql&lt;/code&gt;备份数据库&lt;/h3&gt;
-
-&lt;ul&gt;
+exit;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
 &lt;li&gt;
-&lt;code&gt;sql
-mysqldump mailiqing -uroot -h192.168.1.123 -p --default-character-set=utf8 --ignore-table=mailiqing.ti_normal_asphaltpara &amp;gt; data.sql
-&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;杀死`mysql`进程&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;service mysqld stop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_mysql_新增_删除用户和权限分配&#34;&gt;1.7. mysql 新增、删除用户和权限分配&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;新增用户&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;--
+insert into mysql.user(Host,User,Password) values(&#34;localhost&#34;,&#34;lionbule&#34;,password(&#34;hello1234&#34;));
+--
+flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改用户密码&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;--
+update mysql.user set password=password(&#39;new password&#39;) where User=&#34;lionbule&#34; and Host=&#34;localhost&#34;;
+--
+flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除用户&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;--
+DELETE FROM user WHERE User=&#34;lionbule&#34; and Host=&#34;localhost&#34;;
+--
+flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;权限分配 &lt;strong&gt;grant&lt;/strong&gt; 用法&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;权限：
+    常用总结, ALL/ALTER/CREATE/DROP/SELECT/UPDATE/DELETE
+数据库：
+     *.*                    表示所有库的所有表
+     test.*                表示test库的所有表
+     test.test_table  表示test库的test_table表
+用户名：
+     mysql账户名
+登陆主机：
+     允许登陆mysql server的客户端ip
+     &#39;%&#39;表示所有ip
+     &#39;localhost&#39; 表示本机
+     &#39;192.168.10.2&#39; 特定IP
+密码：
+      账户对应的登陆密码&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;例子 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;grant all  on test.* to lionbule@&#39;%&#39; identified by &#39;hello1234&#39;;
+flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_存储过程&#34;&gt;1.8. 存储过程&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看存储过程&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;SHOW CREATE PROCEDURE `mailiqing`.`product_call`;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_查看&#34;&gt;1.9. 查看&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;数据库编码&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;SHOW VARIABLES LIKE &#39;character_set_database&#39;;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;改变数据库编码&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ALTER DATABASE `mailiqing` CHARACTER SET utf8;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__strong_mysql_strong_备份数据库&#34;&gt;1.10. &lt;strong&gt;mysql&lt;/strong&gt; 备份数据库&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt; mysqldump mailiqing -uroot -h192.168.1.123 -p --default-character-set=utf8 --ignore-table=mailiqing.ti_normal_asphaltpara &amp;gt; data.sql&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     

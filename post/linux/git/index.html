@@ -7,11 +7,11 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="git基础命令" />
-<meta property="og:description" content="git1. git1.1. 命令1.1.1. 远程分支1.2. 本地目录(存在文件),上传到码云1.2.1. 综合使用1. git1.1. 命令1.1.1. 远程分支查看远程分支
+<meta property="og:description" content="git1. git1.1. 命令1.1.1. 远程分支1.2. 本地目录(存在文件),上传到码云1.2.1. 综合使用1.2.2. Q &amp; A1. git1.1. 命令1.1.1. 远程分支查看远程分支
 $ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
 git remote add origin git@git.oschina.net:dishui/local_b2b.gitpush 本地分支到远程分支(如果没有,会自动创建)
-git push origin production:production设置远程分支
-git remote set-url origin git@github.com:dishuiGit/SublimeNote.git添加" />
+git push origin bigdata #bigdata 分支名称设置远程分支
+git remote set-url origin git@github." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/git/" />
 
@@ -109,6 +109,7 @@ git remote set-url origin git@github.com:dishuiGit/SublimeNote.git添加" /
 <li><a href="#_本地目录_存在文件_上传到码云">1.2. 本地目录(存在文件),上传到码云</a>
 <ul class="sectlevel3">
 <li><a href="#_综合使用">1.2.1. 综合使用</a></li>
+<li><a href="#_q_a">1.2.2. Q &amp; A</a></li>
 </ul>
 </li>
 </ul>
@@ -146,7 +147,7 @@ origin  git@git.oschina.net:dishui/local_b2b.git (push)</code></pre>
 <p>push 本地分支到远程分支(如果没有,会自动创建)</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>git push origin production:production</code></pre>
+<pre class="highlightjs highlight"><code>git push origin bigdata #bigdata 分支名称</code></pre>
 </div>
 </div>
 </li>
@@ -213,6 +214,35 @@ git push</code></pre>
 <p>[[python-git|http://gitpython.readthedocs.io/en/stable/]]</p>
 </dd>
 </dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_q_a">1.2.2. Q &amp; A</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>error: src refspec bigdata does not match any.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[root@localhost dockerfiles]# git push origin bigdata
+error: src refspec bigdata does not match any.
+error: 无法推送一些引用到 'git@git.oschina.net:dishui/dockerfiles.git'</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">解决</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>git push origin master:bigdata</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

@@ -170,7 +170,13 @@ relay-log = relay-log选择一个唯一的 server-id
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents mysql linux安装mysql设置  /usr/bin/mysqladmin -u root password '123'  设置mysql用户名/密码  mysql状态/开启/停止  service mysqld status service mysqld start service mysqld stop  任意主机以用户root和密码mypwd连接到mysql服务器  mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123' WITH GRANT OPTION; mysql&gt; flush privileges;  IP为192.168.1.102的主机以用户myuser和密码mypwd连接到mysql服务器  mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.1.102' IDENTIFIED BY 'mypwd' WITH GRANT OPTION; mysql&gt; flush privileges;   Mysql 备份/还原 1、 导出结构不导出数据
+						Contents1. mysql1.1. linux安装mysql设置1.2. Mysql 备份/还原1.3. mysql数据库操作1.4. 终端shell连接数据库乱码1.5. 数据库编码1.6. mysql 修改密码1.7. mysql 新增、删除用户和权限分配1.8. 存储过程1.9. 查看1.10. mysql 备份数据库1. mysql1.1. linux安装mysql设置/usr/bin/mysqladmin -u root password '123'
+设置mysql用户名/密码
+mysql 状态/开启/停止
+service mysqld status
+service mysqld start
+service mysqld stop
+任意主机以用户root和密码mypwd连接到mysql服务器
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,7 @@
 <meta property="og:url" content="/categories/hadoop/" />
 
 
-<meta property="og:updated_time" content="2017-03-22T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-06-04T19:56:49&#43;00:00"/>
 
 
 
@@ -87,6 +87,38 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/hadoop/hive-on-spark/" rel="bookmark">hive on spark</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-06-04 19:56:49 &#43;0000 UTC">June 04, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						hive on spark1. 环境2. vagrant 配置文件3. 配置3.1. Hadoop配置文件3.2. Spark配置文件3.3. Hive配置文件4. 启动1. 环境名称版本下载地址Docker
+Docker version 17.04.0-ce, build 4845c56
+https://www.docker.com/
+VirtualBox
+4.3.12
+https://www.virtualbox.org/
+Vagrant
+Vagrant 1.8.1
+https://www.vagrantup.com/downloads.html
+etcd
+3.1.8
+etcd-v3.1.8-linux-amd64.tar.gz
+flanneld
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -195,6 +227,36 @@ tar -zxvf hive-1.2.1.tar.gz -C /hadoop/安装mysql数据库（切换到root
 mysql.ymlversion: '2'services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- "MYSQL_ROOT_PASSWORD=111111"ports:- "3306:3306"networks:- hadoopnetworks:hadoop:external: true配置 hive
 配置 HIVE_HOME 环境变量 vi conf/hive-env.sh 配置其中的 $hadoop_home
 配置元数据库信息 vi hive-site.xml
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/hadoop/log-analysis/" rel="bookmark">log</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-16 00:00:00 &#43;0000 UTC">March 16, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						日志分析1. 点击流数据模型1.1. 点击流模型生成2. 整体技术流程及架构2.1. 数据处理流程3. Flume日志采集系统搭建4. 模块开发——数据预处理1. 点击流数据模型点击流概念点击流这个概念更注重用户浏览网站的整个流程，网站日志中记录的用户点击就像是图上的“点”，而点击流更像是将这些“点”串起来形成的“线”。也可以把“点”认为是网站的Page，而“线”则是访问网站的Session。所以点击流数据是由网站日志中整理得到的，它可以比网站日志包含更多的信息，从而使基于点击流数据统计得到的结果更加丰富和高效。1.1. 点击流模型生成　点击流数据在具体操作上是由散点状的点击日志数据梳理所得，从而，点击数据在数据建模时应该存在两张模型表（Pageviews和visits）：. 用于生成点击流的访问日志表时间戳IP地址CookieSession请求URLReferal2012-01-01 12:31:12
+101.0.0.1
+User01
+S001
+/a/&#8230;&#8203;
+somesite.com
+2012-01-01 12:31:16
+201.0.0.2
+User02
+S002
+/a/&#8230;&#8203;
 					</div>
 				</div>
 			</div>

@@ -7,14 +7,13 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="文档" />
-<meta property="og:description" content="Contents1. 测试服务器1.1. Docker 安装1.2. Rancher 安装1.2.1. registry server1.2.2. registry client端1.2.3. 下载 Rancher 所需镜像并 Push 到 Docker Registry1.3. Rancher 启动1.4. 应用1.5. 参考1. 测试服务器环境:
+<meta property="og:description" content="Contents1. 测试服务器1.1. Docker 安装1.2. Rancher 安装1.2.1. registry server1.2.2. registry client端1.2.3. 下载 Rancher 所需镜像并 Push 到 Docker Registry1.3. Rancher 启动1.4. 应用2. 正式服务器2.1. 参考1. 测试服务器环境:
 名称版本下载地址Docker
 Docker version 1.13.1
 docker
 Rancher
 1.5
-rancher 1.5
-Docker Compose" />
+rancher 1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/work/wuliu/jiaojie/" />
 
@@ -117,7 +116,11 @@
 </li>
 <li><a href="#_rancher_启动">1.3. Rancher 启动</a></li>
 <li><a href="#_应用">1.4. 应用</a></li>
-<li><a href="#_参考">1.5. 参考</a></li>
+</ul>
+</li>
+<li><a href="#_正式服务器">2. 正式服务器</a>
+<ul class="sectlevel2">
+<li><a href="#_参考">2.1. 参考</a></li>
 </ul>
 </li>
 </ul>
@@ -164,7 +167,34 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>配置 <code>yum</code> 源</p>
+<p>配置docker 本地 yum 仓库</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">yum install -y yum-plugin-downloadonly # yum下载软件包插件
+mkdir -p /var/www/html/data/yum-repo/ # yum 仓库目录
+yum install docker-engine-1.12.1-1.el7.centos --downloadonly --downloaddir=/var/www/html/data/yum-repo/ # 下载 docker 依赖到仓库
+createrepo -p -d -o /var/www/html/data/yum-repo/ /var/www/html/data/yum-repo/ # 生成 yum 仓库信息
+
+systemctl start httpd # 启动 apache (如果没有 yum install -y httpd 安装)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>配置 内网 <code>yum</code> 源</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cat &gt; /etc/yum.repos.d/CentOS-Base.repo &lt;&lt;_EOF_
+[Local-rpm]
+name=Local-rpm
+baseurl=http://jzlh.com/data/yum-repo
+enabled=1
+gpgcheck=0
+_EOF_</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>配置 远程 <code>yum</code> 源</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>cat &gt; /etc/yum.repos.d/docker-main.repo &lt;&lt;_EOF_
@@ -281,8 +311,27 @@ services:
       REGISTRY_HTTP_TLS_KEY: /certs/registry.key
     volumes:
       - /home/wuliu/registry-data:/var/lib/registry
-      - /home/wuliu/registry/certs:/certs</code></pre>
+      - /home/wuliu/registry/certs:/certs
+  registry-web: <i class="conum" data-value="1"></i><b>(1)</b>
+    image: konradkleine/docker-registry-frontend:v2
+    container_name: registry-web
+    ports:
+      - "8082:80"
+    environment:
+      ENV_DOCKER_REGISTRY_HOST: jzlh.com
+      ENV_DOCKER_REGISTRY_PORT: 5000
+      ENV_DOCKER_REGISTRY_USE_SSL: 1
+    extra_hosts:
+      - "jzlh.com:192.168.1.55"</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>web界面查看镜像列表</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -417,12 +466,7 @@ done</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>sh pull.sh rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 http://196.168.1.33:8080/v1/scripts/99136B97757188B5A670:1483142400000:TWiSTaoo3CPJZLWtS6NxPGyUU</code></pre>
+<pre class="highlightjs highlight"><code>sudo docker run --rm --privileged -e CATTLE_AGENT_IP=192.168.1.55 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw</code></pre>
 </div>
 </div>
 </li>
@@ -438,8 +482,61 @@ done</code></pre>
 </div>
 <hr>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_正式服务器">2. 正式服务器</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">主机名</th>
+<th class="tableblock halign-left valign-top">IP(外网)</th>
+<th class="tableblock halign-left valign-top">IP(内网)</th>
+<th class="tableblock halign-left valign-top">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pro-54</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">116.90.81.78</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.54</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">正式服务器</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jzlh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">116.90.81.79</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.55</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">监控(部署)服务器</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pro-51</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.51</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">正式服务器</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pro-52</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.52</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">正式服务器</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pro-53</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.1.53</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">正式服务器</p></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
-<h3 id="_参考">1.5. 参考</h3>
+<h3 id="_参考">2.1. 参考</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -476,6 +573,10 @@ done</code></pre>
 	
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/docker/etcd-flanneld/" rel="prev"><span>«Previous</span><p>etcd flanneld</p></a>
+		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">

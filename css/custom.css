@@ -40,7 +40,7 @@ b.conum * {
 }
 
 div .arabic {
-    margin-left: 23px;
+    margin-left: 15px;
 }
 
 div.arabic tr{
@@ -228,4 +228,8 @@ span.icon>.fa {
     right: 20px;
     width: 38px;    /* Width of image */
     height: 38px;   /* Height of image */
+}
+
+.tableblock > thead{
+    background-color: lightsteelblue;
 }

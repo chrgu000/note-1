@@ -7,8 +7,10 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="临时文件" />
-<meta property="og:description" content="ContentsServer definitionsaddress of a MySQL server.This will keep MaxScale aware of the state of the servers.MySQL Monitor documentation:Service definitionsReadConnRoute documentation:ReadWriteSplit documentation:This service enables the use of the MaxAdmin interfaceMaxScale administration guide:Listener definitions for the servicesGRANT ALL PRIVILEGES ON . TO &#39;mlq&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;flush privileges;
-GRANT ALL PRIVILEGES ON . TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;111111&#39; WITH GRANT OPTION;" />
+<meta property="og:description" content="ContentsServer definitionsaddress of a MySQL server.This will keep MaxScale aware of the state of the servers.MySQL Monitor documentation:Service definitionsReadConnRoute documentation:ReadWriteSplit documentation:This service enables the use of the MaxAdmin interfaceMaxScale administration guide:Listener definitions for the servicesecho 172.17.80.3 hadoop-slave1 &gt;&gt; /etc/hostsecho 172.17.80.4 hadoop-slave2 &gt;&gt; /etc/hosts
+cat &gt; /usr/lib/systemd/system/etcd.service &lt;&lt;_EOF_
+Description=etcdAfter=network.targetAfter=network-online.target
+ExecStart=/root/bin/etcd \--name my-etcd-1 \--data-dir ~/etcd-data \--listen-client-urls http://0." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/work/tmp2016-10-26/" />
 
@@ -107,6 +109,80 @@
 <li><a href="#_maxscale_administration_guide">MaxScale administration guide:</a></li>
 <li><a href="#_listener_definitions_for_the_services">Listener definitions for the services</a></li>
 </ul>
+</div>
+<div class="paragraph">
+<p>echo 172.17.80.3 hadoop-slave1 &gt;&gt; /etc/hosts
+echo 172.17.80.4 hadoop-slave2 &gt;&gt; /etc/hosts</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /usr/lib/systemd/system/etcd.service &lt;&lt;_EOF_</p>
+</div>
+<div class="paragraph">
+<p>Description=etcd
+After=network.target
+After=network-online.target</p>
+</div>
+<div class="paragraph">
+<p>ExecStart=/root/bin/etcd \
+  --name my-etcd-1 \
+  --data-dir ~/etcd-data \
+  --listen-client-urls <a href="http://0.0.0.0:2379" class="bare">http://0.0.0.0:2379</a> \
+  --advertise-client-urls <a href="http://0.0.0.0:2379" class="bare">http://0.0.0.0:2379</a> \
+  --listen-peer-urls <a href="http://0.0.0.0:2380" class="bare">http://0.0.0.0:2380</a> \
+  --initial-advertise-peer-urls <a href="http://0.0.0.0:2380" class="bare">http://0.0.0.0:2380</a></p>
+</div>
+<div class="paragraph">
+<p>WantedBy=multi-user.target
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /usr/lib/systemd/system/flanneld.service &lt;&lt;_EOF_</p>
+</div>
+<div class="paragraph">
+<p>After=network.target
+After=network-online.target
+Description=flannel</p>
+</div>
+<div class="paragraph">
+<p>ExecStart=/root/bin/flanneld \
+-iface=eth1 \
+-etcd-endpoints=http://192.168.123.123:2379</p>
+</div>
+<div class="paragraph">
+<p>WantedBy=multi-user.target
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>172.17.0.0/16 dev flannel0  proto kernel  scope link  src 172.17.25.0</p>
+</div>
+<div class="paragraph">
+<p>ip route add 172.17.0.0/16 via 172.17.25.0 dev flannel0</p>
+</div>
+<div class="paragraph">
+<p>SELECT *, (SELECT (SELECT dit.value FROM bc_sys_dicitem dit WHERE zcs.type = dit.key AND dit.diccode = 9) AS type_name FROM zh_contract_sell zcs WHERE zcs.contract_code = zsgc.contract_code) AS type_name FROM zh_send_goods_check AS zsgc
+nohup etcd \
+  --name my-etcd-1 \
+  --data-dir ~/etcd-data \
+  --listen-client-urls <a href="http://0.0.0.0:2379" class="bare">http://0.0.0.0:2379</a> \
+  --advertise-client-urls <a href="http://0.0.0.0:2379" class="bare">http://0.0.0.0:2379</a> \
+  --listen-peer-urls <a href="http://0.0.0.0:2380" class="bare">http://0.0.0.0:2380</a> \
+  --initial-advertise-peer-urls <a href="http://0.0.0.0:2380" class="bare">http://0.0.0.0:2380</a> &amp;</p>
+</div>
+<div class="paragraph">
+<p>nohup flanneld -iface=enp4s0f0 -etcd-endpoints=http://192.168.123.124:2379 &amp;
+nohup flanneld -iface=eth1 -etcd-endpoints=http://192.168.123.124:2379 &amp;</p>
+</div>
+<div class="paragraph">
+<p>OPTIONS='--selinux-enabled --bip=172.17.59.1/24 --ip-masq=true --mtu=1472'</p>
+</div>
+<div class="paragraph">
+<p>--selinux-enabled --bip=172.17.84.1/24 --ip-masq=true --mtu=1472</p>
+</div>
+<div class="paragraph">
+<p>systemctl daemon-reload &amp;&amp; systemctl restart docker</p>
+</div>
+<div class="paragraph">
+<p>etcd -initial-advertise-peer-urls <a href="http://&lt;当前节点IP&gt;:2380" class="bare">http://&lt;当前节点IP&gt;:2380</a> -listen-peer-urls <a href="http://&lt;当前节点IP&gt;:2380" class="bare">http://&lt;当前节点IP&gt;:2380</a> -listen-client-urls <a href="http://&lt;当前节点IP&gt;:2379,http://&lt;当前节点IP&gt;:2379" class="bare">http://&lt;当前节点IP&gt;:2379,http://&lt;当前节点IP&gt;:2379</a> -advertise-client-urls <a href="http://&lt;当前节点IP&gt;:2379" class="bare">http://&lt;当前节点IP&gt;:2379</a>  -discovery &lt;刚刚获得的Discovery地址&gt; &amp;</p>
 </div>
 <div class="paragraph">
 <p>GRANT ALL PRIVILEGES ON <strong>.</strong> TO 'mlq'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;
