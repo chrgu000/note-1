@@ -89,6 +89,32 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-%E5%9F%BA%E7%A1%80/" rel="bookmark">spark-基础</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-08 18:42:52 &#43;0000 UTC">April 08, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark-基础1. Spark集群安装1.1. 安装1.1.1. 机器部署1.1.2. 下载Spark安装包1.1.3. 配置Spark1.2. 执行第一个spark程序1.3. 启动Spark Shell1.3.1. 启动spark shell1.3.2. 在spark shell中编写WordCount程序1.4. 在IDEA中编写WordCount程序1. Spark集群安装1.1. 安装1.1.1. 机器部署准备两台以上Linux服务器，安装好JDK1.7
+1.1.2. 下载Spark安装包下载
+http://www.apache.org/dyn/closer.lua/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz
+上传解压安装包
+上传 spark-1.5.2-bin-hadoop2.6.tgz 安装包到Linux上
+解压安装包到指定位置
+tar -zxvf spark-1.5.2-bin-hadoop2.6.tgz -C /usr/local1.1.3. 配置Spark进入到Spark安装目录
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/" rel="bookmark">spark参考</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -107,6 +133,7 @@
 spark hive
 building-spark
 https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation
+https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;search=y
 
 					</div>
 				</div>
@@ -291,28 +318,6 @@
 关闭防火墙
 chkconfig iptables off &amp;&amp; setenforce 0创建用户
 groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime创建工作目录并赋权
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/storm/storm/" rel="bookmark">storm</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-26 00:00:00 &#43;0000 UTC">March 26, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						storm 简介1. 离线计算是什么？2. 流式计算是什么3. 离线计算与实时计算的区别4. Storm是什么？5. Storm与Hadoop的区别6. Storm应用场景及行业案例6.1. 典型案列7. Storm核心组件（重要）8. Storm编程模型（重要）9. 流式计算一般架构图（重要）1. 离线计算是什么？ 离线计算：批量获取数据、批量传输数据、周期性批量计算数据、数据展示代表技术：Sqoop批量导入数据、HDFS批量存储数据、MapReduce批量计算数据、Hive批量计算数据、***任务调度1，hivesql2、调度平台3、Hadoop集群运维4、数据清洗（脚本语言）5、元数据管理6、数据稽查7、数据仓库模型架构2. 流式计算是什么流式计算：数据实时产生、数据实时传输、数据实时计算、实时展示代表技术：Flume实时获取数据、Kafka/metaq实时数据存储、Storm/JStorm实时数据计算、Redis实时结果缓存、持久化存储(mysql)。一句话总结：将源源不断产生的数据实时收集并实时计算，尽可能快的得到计算结果
-3. 离线计算与实时计算的区别最大的区别：实时收集、实时计算、实时展示
-4. Storm是什么？Flume实时采集，低延迟Kafka消息队列，低延迟Storm实时计算，低延迟Redis实时存储，低延迟Storm用来实时处理数据，特点：低延迟、高可用、分布式、可扩展、数据不丢失。提供简单容易理解的接口，便于开发。海量数据？数据类型很多，产生数据的终端很多，处理数据能力增强5. Storm与Hadoop的区别 Storm用于实时计算，Hadoop用于离线计算。 Storm处理的数据保存在内存中，源源不断；Hadoop处理的数据保存在文件系统中，一批一批。 Storm的数据通过网络传输进来；Hadoop的数据保存在磁盘中。 Storm与Hadoop的编程模型相似Job：任务名称JobTracker：项目经理TaskTracker：开发组长、产品经理Child:负责开发的人员Mapper/Reduce:开发人员中的两种角色，一种是服务器开发、一种是客户端开发Topology:任务名称Nimbus:项目经理Supervisor:开组长、产品经理Worker:开人员Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是客户端开发6.
 					</div>
 				</div>
 			</div>

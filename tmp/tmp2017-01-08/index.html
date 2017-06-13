@@ -9,10 +9,9 @@
 <meta property="og:title" content="" />
 <meta property="og:description" content="description = &#34;&#34;date = &#34;2017-05-05T15:39:55&#34;categories = []tags = [&#34;tmp&#34;]thumbnail = &#34;&#34;title = &#34;tmp&#34;
 &#43;
-select count(*) from test;
-cat &gt;&gt; /etc/profile &lt;&lt;_EOF_export JAVA_HOME=/usr/local/jdk1.7.0_71export HADOOP_HOME=/usr/local/hadoop-2.6.5export SPARK_HOME=/usr/local/spark-1.5.3export HIVE_HOME=/usr/local/apache-hive-1.2.1-binexport PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/sbin:$HIVE_HOME/binEOF
-root@hadoop-master:/usr/local/spark-1.5.3# sbin/start-all.shstarting org.apache.spark.deploy.master.Master, logging to/usr/local/spark-1.5.3/sbin/../logs/spark&#8212;&#8203;org.apache.spark.deploy.master.Master-1-hadoop-master.out
-hadoop-master: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-master.outhadoop-slave3: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-slave3.outhadoop-slave1: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1." />
+sqoop import \--driver com.mysql.jdbc.Driver \--connect jdbc:mysql://196.168.1.66:3306/wuliu \--username root \--password 111111 \--table zh_track_201702 \--hive-import \--hive-table zh_track_201703 \--m 4
+export HADOOP_COMMON_HOME=/usr/local/hadoopexport HADOOP_MAPRED_HOME=/usr/local/hadoopexport HIVE_HOME=/usr/local/apache-hive-2.1.1-bin
+/usr/local/spark-1.5.3/bin/spark-submit --properties-file /tmp/spark-submit.2641174306145842738.properties --class org.apache.hive.spark.client.RemoteDriver /usr/local/apache-hive-1.2.1-bin/lib/hive-exec-2.1.1.jar --remote-host master --remote-port 33195 --conf hive.spark.client.connect.timeout=1000 --conf hive." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/tmp/tmp2017-01-08/" />
 
@@ -112,7 +111,251 @@ title = "tmp"</p>
 <p>+</p>
 </div>
 <div class="paragraph">
+<p>sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://196.168.1.66:3306/wuliu \
+  --username root \
+  --password 111111 \
+  --table zh_track_201702 \
+  --hive-import \
+  --hive-table zh_track_201703 \
+  --m 4</p>
+</div>
+<div class="paragraph">
+<p>export HADOOP_COMMON_HOME=/usr/local/hadoop
+export HADOOP_MAPRED_HOME=/usr/local/hadoop
+export HIVE_HOME=/usr/local/apache-hive-2.1.1-bin</p>
+</div>
+<div class="paragraph">
+<p>/usr/local/spark-1.5.3/bin/spark-submit --properties-file /tmp/spark-submit.2641174306145842738.properties --class org.apache.hive.spark.client.RemoteDriver /usr/local/apache-hive-1.2.1-bin/lib/hive-exec-2.1.1.jar --remote-host master --remote-port 33195 --conf hive.spark.client.connect.timeout=1000 --conf hive.spark.client.server.connect.timeout=90000 --conf hive.spark.client.channel.log.level=null --conf hive.spark.client.rpc.max.size=52428800 --conf hive.spark.client.rpc.threads=8 --conf hive.spark.client.secret.bits=256 --conf hive.spark.client.rpc.server.address=null</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists mytable(sid int,name string)
+row format delimited fields terminated by '\005'
+stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists pageview(
+    pageid int,
+    page_url string comment 'The page URL'
+)
+row format delimited fields terminated by ','
+location 'hdfs://master:9000/user/hive/warehouse/';</p>
+</div>
+<div class="paragraph">
+<p>创建分区表invites</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists invites(
+    id int,
+    name string
+) partitioned by (ds string)
+row format delimited fields terminated by ','
+lines terminated by '\n'
+stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists student(
+  id INT,
+  age INT,
+  name STRING
+) partitioned by(stat_date STRING)
+clustered by(id) sorted by(age) into 2 buckets
+row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>create table student_p(
+  Sno int,
+  Sname string,
+  Sex string,
+  Sage int,
+  Sdept string
+) partitioned by(part string)
+row format delimited fields terminated by ','
+stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>创建带桶的表student</p>
+</div>
+<div class="paragraph">
+<p>set mapreduce.map.memory.mb=4096;
+set mapreduce.reduce.memory.mb=5120;</p>
+</div>
+<div class="paragraph">
+<p>asciinema rec -c bash /dishui/content/src/records/hive/cluster.json</p>
+</div>
+<div class="paragraph">
+<p>ssh 192.168.123.123</p>
+</div>
+<div class="paragraph">
+<p>$HIVE_HOME/bin/beeline -u jdbc:hive2://master:10000 -n root</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #测试数据
+cat &gt; sz.data &lt;&lt;_EOF_
+1,a
+2,b
+3,cdd
+4,rrt
+5,eex
+6,iio
+7,haha
+8,lslls
+_EOF_</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>select avg(s.Grade) from sc s group by s.Cno;</p>
+</div>
+<div class="paragraph">
+<p>asciinema rec -c bash /dishui/content/src/records/hive/practice.json</p>
+</div>
+<div class="paragraph">
+<p>ssh 196.168.1.31</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #创建表student
+create table student(
+  Sno int,
+  Sname string,
+  Sex string,
+  Sage int,
+  Sdept string
+)
+row format delimited fields terminated by ','stored as textfile;
+ #创建表course
+create table course(
+  Cno int,
+  Cname string
+)
+row format delimited fields terminated by ',' stored as textfile;
+ #创建表sc
+create table sc(
+  Sno int,
+  Cno int,
+  Grade int
+)
+row format delimited fields terminated by ',' stored as textfile;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #测试数据
+load data local inpath '/root/dishui/data/test/students.txt' overwrite into table student;
+load data local inpath '/root/dishui/data/test/sc.txt' overwrite into table sc;
+load data local inpath '/root/dishui/data/test/course.txt' overwrite into table course;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>load data local inpath '/root/sz.data' into table t_p;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #创建分桶表t_pp
+create table t_pp(id string,name string)
+clustered by (id)
+sorted by (id)
+into 4 buckets
+row format delimited fields terminated by ',';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>insert into table t_pp
+select id,name from t_p;</p>
+</div>
+<div class="paragraph">
+<p>set hive.enforce.bucketing = true;
+set mapreduce.job.reduces = 4;</p>
+</div>
+<div class="paragraph">
+<p>insert into table t_pp
+select id,name from t_p distribute by (id) sort by (id);</p>
+</div>
+<div class="paragraph">
+<p>truncate table t_pp</p>
+</div>
+<div class="paragraph">
+<p>#如果distribute和sort的字段一样可以直接用cluster
+insert into table t_pp
+select id,name from t_p cluster by (id);</p>
+</div>
+<div class="paragraph">
+<p>#查看分区数据
+dfs -cat /user/hive/warehouse/t_pp/000000_0;</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/profile.d/bigdata.sh &lt;&lt;_EOF_
+export JAVA_HOME=/usr/local/jdk1.7.0_79
+export HADOOP_HOME=/usr/local/hadoop
+export SPARK_HOME=/usr/local/spark-1.5.3
+export HIVE_HOME=/usr/local/apache-hive-1.2.1-bin
+export PATH=\$PATH:\$JAVA_HOME/bin:\$HADOOP_HOME/bin:\$SPARK_HOME/bin:\$HADOOP_HOME/sbin:\$SPARK_HOME/sbin:\$HIVE_HOME/bin
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p><a href="http://blog.csdn.net/cheersu/article/details/8191743" class="bare">http://blog.csdn.net/cheersu/article/details/8191743</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://196.168.1.31:9200/_sql?sql=SELECT" class="bare">http://196.168.1.31:9200/_sql?sql=SELECT</a> * FROM b2b/ti_procurement</p>
+</div>
+<div class="paragraph">
+<p>ENTRYPOINT ["sh","-c","/docker-entrypoint.sh"]</p>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --executor-memory 512M --total-executor-cores 1 lib/spark-examples-*.jar 10</p>
+</div>
+<div class="paragraph">
+<p>spark.master                     yarn-cluster
+spark.home                       /usr/local/spark-1.5.3
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://hadoop-master:9000/hive-spark-log
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.executor.memory            512m
+spark.driver.memory              512m
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"</p>
+</div>
+<div class="paragraph">
+<p>export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_DIST_CLASSPATH=$($HADOOP_HOME/bin/hadoop classpath)
+export SPARK_MASTER_IP=hadoop-master
+export SPARK_MASTER_PORT=7077</p>
+</div>
+<div class="paragraph">
 <p>select count(*) from test;</p>
+</div>
+<div class="paragraph">
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+cat &gt; /root/dnsmasq.hosts &lt;&lt;_EOF_
+172.17.76.3 hadoop-master
+172.17.76.4 hadoop-slave1
+172.17.76.2 mysql
+172.17.87.2 hadoop-slave2</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>cat &gt; /root/dishui/data/conf/dnsmasq.hosts <a href="#_EOF_
+172.17.80.5 hadoop-master
+172.17.80.4 hadoop-slave1
+172.17.80.2 mariadb
+172.17.80.6 mysql
+172.17.17.2 hadoop-slave2">[_EOF_
+172.17.80.5 hadoop-master
+172.17.80.4 hadoop-slave1
+172.17.80.2 mariadb
+172.17.80.6 mysql
+172.17.17.2 hadoop-slave2]</a>&gt;&gt;&gt;&gt;&gt; Stashed changes
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>dfs.datanode.address</p>
 </div>
 <div class="paragraph">
 <p>cat &gt;&gt; /etc/profile &lt;&lt;_EOF_
@@ -222,7 +465,7 @@ set spark.executor.memory=512m;
 set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
 </div>
 <div class="paragraph">
-<p>set spark.master=yarn-client;
+<p>set spark.master=yarn-cluster;
 set hive.execution.engine=spark;
 set spark.eventLog.enabled=true;
 set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
@@ -239,7 +482,7 @@ set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
 </div>
 <div class="paragraph">
 <p>create table test2(ts BIGINT,line STRING);
-select count(*) from test;</p>
+select count(*) from test2;</p>
 </div>
 <div class="paragraph">
 <p>bin/spark-submit --class org.apache.spark.examples.SparkPi \
@@ -515,7 +758,6 @@ set spark.executor.memory=512m;
 set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
 </div>
 <div class="paragraph">
-<div class="title">/make-distribution.sh --name spark-hive-1.5 --tgz -Phadoop-2.6 -Phive -Phive-thriftserver -Pyarn</div>
 <p>FROM registry.cn-hangzhou.aliyuncs.com/dishui/java:1.0
 ENV MAVEN_HOME="/usr/local/apache-maven-3.0.5"
 ENV PATH="${MAVEN_HOME}/bin:${PATH}"
@@ -2841,18 +3083,18 @@ log4j.appender.console.target=System.err
 log4j.appender.console.layout=org.apache.log4j.PatternLayout
 log4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n</p>
 </div>
-<h1 id="_settings_to_quiet_third_party_logs_that_are_too_verbose" class="sect0">Settings to quiet third party logs that are too verbose</h1>
 <div class="paragraph">
-<p>log4j.logger.org.spark-project.jetty=WARN
+<p># Settings to quiet third party logs that are too verbose
+log4j.logger.org.spark-project.jetty=WARN
 log4j.logger.org.spark-project.jetty.util.component.AbstractLifeCycle=ERROR
 log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
 log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
 log4j.logger.org.apache.parquet=ERROR
 log4j.logger.parquet=ERROR</p>
 </div>
-<h1 id="_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support" class="sect0">SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support</h1>
 <div class="paragraph">
-<p>log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
+<p># SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support
+log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
 log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
 <em>EOF</em></p>
 </div>
@@ -3061,8 +3303,8 @@ hdfs://master:8020/nc</p>
 80
 111111</p>
 </div>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p>环境:</p>
 </div>
@@ -3288,8 +3530,6 @@ sonatype-oss-releases</p>
 <p>进销存报表
 采购执行报表
 销售执行报表</p>
-</div>
-</div>
 </div>
 
 		</div>

@@ -221,12 +221,10 @@ su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbase
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions1. Hive只在一个节点上安装即可上传tar包
+						hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions3. Q &amp; A3.1. beeline 连接 hiveserver 报错3.2. java.lang.OutOfMemoryError: Java heap space with hive3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space1. Hive只在一个节点上安装即可上传tar包
 解压
 tar -zxvf hive-1.2.1.tar.gz -C /hadoop/安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）
 mysql.ymlversion: '2'services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- "MYSQL_ROOT_PASSWORD=111111"ports:- "3306:3306"networks:- hadoopnetworks:hadoop:external: true配置 hive
-配置 HIVE_HOME 环境变量 vi conf/hive-env.sh 配置其中的 $hadoop_home
-配置元数据库信息 vi hive-site.xml
 					</div>
 				</div>
 			</div>

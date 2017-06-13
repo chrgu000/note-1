@@ -737,7 +737,7 @@ slave: IO_Thread, SQL_Thread&lt;/p&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;mysql-master&lt;/p&gt;
-&lt;asciinema-player src=&#34;/src/records/mysql-master.json&#34; cols=&#34;95&#34; rows=&#34;25&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/mysql-master.json&#34; cols=&#34;95&#34; rows=&#34;25&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;安装 &lt;code&gt;mysql&lt;/code&gt; 源&lt;/p&gt;
@@ -883,7 +883,7 @@ mysql&amp;gt; SHOW BINLOG EVENTS IN &#39;master-bin.000001&#39;;&lt;/code&gt;&lt
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;mysql-slave&lt;/p&gt;
-&lt;asciinema-player src=&#34;/src/records/mysql-slave.json&#34; cols=&#34;95&#34; rows=&#34;25&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/mysql-slave.json&#34; cols=&#34;95&#34; rows=&#34;25&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

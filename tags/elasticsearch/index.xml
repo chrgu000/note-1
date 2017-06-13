@@ -9,6 +9,374 @@
     <atom:link href="/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>elasticsearch</title>
+      <link>/post/work/es/</link>
+      <pubDate>Wed, 07 Jun 2017 09:02:42 +0000</pubDate>
+      
+      <guid>/post/work/es/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装es&#34;&gt;1. 安装ES&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_logstash&#34;&gt;2. logstash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;3. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_安装es&#34;&gt;1. 安装ES&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Dockerfile &lt;a href=&#34;https://git.oschina.net/dishui/dockerfiles/tree/master/es?dir=1&amp;amp;filepath=es&amp;amp;oid=e8ff05c2c87b776b3f757bbe96ac074baad681fb&amp;amp;sha=05594af12d130d68723126075580426c3496c6cf&#34;&gt;地址&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;FROM centos:7
+MAINTAINER dishui_git@126.com
+ENV LANG en_US.utf8
+ENV JAVA_HOME /usr/local/java/jdk1.7.0_79
+COPY docker-entrypoint.sh es1.7.tar.gz jdk-7u79-linux-x64.rpm /
+COPY es.conf /etc/supervisord.conf.d/es.conf
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    &amp;amp;&amp;amp; curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
+    &amp;amp;&amp;amp; rpm -ivh /jdk-7u79-linux-x64.rpm --prefix=/usr/local/java \
+    &amp;amp;&amp;amp; yum install python-setuptools -y \
+    &amp;amp;&amp;amp; easy_install -i http://pypi.doubanio.com/simple supervisor \
+    &amp;amp;&amp;amp; echo_supervisord_conf &amp;gt; /etc/supervisord.conf \
+    &amp;amp;&amp;amp; mkdir -p /etc/supervisord.conf.d \
+    &amp;amp;&amp;amp; echo -e &#34;[include]\nfiles = /etc/supervisord.conf.d/*.conf&#34; &amp;gt;&amp;gt; /etc/supervisord.conf \
+    &amp;amp;&amp;amp; tar -zxf /es1.7.tar.gz \
+    &amp;amp;&amp;amp; cd /elasticsearch-1.7.1 \
+    &amp;amp;&amp;amp; ./bin/plugin -u https://github.com/NLPchina/elasticsearch-sql/releases/download/1.4.9/elasticsearch-sql-1.4.9.zip --install sql \
+    &amp;amp;&amp;amp; rm -rf /elasticsearch-1.7.1/logs \
+    &amp;amp;&amp;amp; rm -f /es1.7.tar.gz \
+    &amp;amp;&amp;amp; rm -f /jdk-7u79-linux-x64.rpm
+EXPOSE 9200 9300
+ENTRYPOINT [&#34;sh&#34;,&#34;/docker-entrypoint.sh&#34;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;基于 &lt;strong&gt;centos7&lt;/strong&gt; 镜像安装 &lt;strong&gt;jdk1.7.0_79&lt;/strong&gt; 和 &lt;strong&gt;supervisord&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;构建&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 在 Dockerfile 所在目录执行
+docker build -t mailiqing.com:5000/es:1.7 .&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&#34;http://ES_URL:9200/_plugin/head/&#34; class=&#34;bare&#34;&gt;http://ES_URL:9200/_plugin/head/&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+ES_URL:  &lt;strong&gt;ES&lt;/strong&gt; 服务器的 &lt;strong&gt;IP&lt;/strong&gt; 地址
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加映射&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/work/2017-06-09_100922.png&#34; alt=&#34;2017 06 09 100922&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mapping 映射&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;PUT /b2b &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+{
+   &#34;mappings&#34;: {
+      &#34;resources_single&#34;: { &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+         &#34;properties&#34;: {
+            &#34;rs_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34; &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+            },
+            &#34;chuku_3&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_state&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_area&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_create&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34; &lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+            },
+            &#34;rs_modify&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            }
+         }
+      },
+      &#34;ti_procurement&#34;: {
+         &#34;properties&#34;: {
+            &#34;rsrv_str3&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rsrv_str4&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rsrv_str5&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;remark&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;delivery_date_start&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;delivery_date_end&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;in_date&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;update_date&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;procur_f_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            }
+         }
+      }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;索引 &amp;#8658; 数据库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;文档 &amp;#8658; 表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;使用 &lt;strong&gt;ik&lt;/strong&gt; 分词器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;日期格式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_logstash&#34;&gt;2. logstash&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;增量更新&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;update.yml&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;input {
+  jdbc {
+    type =&amp;gt; &#34;procurement&#34;
+    jdbc_connection_string =&amp;gt; &#34;jdbc:mysql://mysql:3306/mailiqing&#34; &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    jdbc_user =&amp;gt; &#34;root&#34; &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    jdbc_password =&amp;gt; &#34;111111&#34; &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    jdbc_driver_library =&amp;gt; &#34;/logstash/mysql-connector-java-5.1.33.jar&#34;
+    jdbc_driver_class =&amp;gt; &#34;com.mysql.jdbc.Driver&#34;
+    jdbc_paging_enabled =&amp;gt; &#34;true&#34;
+    jdbc_page_size =&amp;gt; &#34;50000&#34;
+    schedule =&amp;gt; &#34;* * * * *&#34;
+    use_column_value =&amp;gt; true
+    tracking_column =&amp;gt; update_date &lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+    statement_filepath =&amp;gt; &#34;/logstash/sql-update/ti_procurement.sql&#34; &lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+  }
+  jdbc {
+    type =&amp;gt; &#34;resources&#34;
+    jdbc_connection_string =&amp;gt; &#34;jdbc:mysql://mysql:3306/mailiqing&#34;
+    jdbc_user =&amp;gt; &#34;root&#34;
+    jdbc_password =&amp;gt; &#34;111111&#34;
+    jdbc_driver_library =&amp;gt; &#34;/logstash/mysql-connector-java-5.1.33.jar&#34;
+    jdbc_driver_class =&amp;gt; &#34;com.mysql.jdbc.Driver&#34;
+    jdbc_paging_enabled =&amp;gt; &#34;true&#34;
+    jdbc_page_size =&amp;gt; &#34;50000&#34;
+    schedule =&amp;gt; &#34;* * * * *&#34;
+    use_column_value =&amp;gt; true
+    tracking_column =&amp;gt; rs_modify
+    statement_filepath =&amp;gt; &#34;/logstash/sql-update/resources_single.sql&#34;
+  }
+}
+output {
+  if [type] == &#34;procurement&#34; {
+    elasticsearch {
+      hosts =&amp;gt; &#34;es:9200&#34; &lt;i class=&#34;conum&#34; data-value=&#34;6&#34;&gt;&lt;/i&gt;&lt;b&gt;(6)&lt;/b&gt;
+      index =&amp;gt; &#34;b2b&#34; &lt;i class=&#34;conum&#34; data-value=&#34;7&#34;&gt;&lt;/i&gt;&lt;b&gt;(7)&lt;/b&gt;
+      document_type =&amp;gt; &#34;ti_procurement&#34; &lt;i class=&#34;conum&#34; data-value=&#34;8&#34;&gt;&lt;/i&gt;&lt;b&gt;(8)&lt;/b&gt;
+      document_id =&amp;gt; &#34;%{procur_f_id}&#34;
+    }
+  }
+  else if [type] == &#34;resources&#34; {
+    elasticsearch {
+      hosts =&amp;gt; &#34;es:9200&#34;
+      index =&amp;gt; &#34;b2b&#34;
+      document_type =&amp;gt; &#34;resources_single&#34;
+      document_id =&amp;gt; &#34;%{id}&#34;
+    }
+  }
+  stdout { codec =&amp;gt; rubydebug }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;mysql 地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;mysql 用户名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;mysql 密码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;以某一列的值做增量更新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;sql语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;6&#34;&gt;&lt;/i&gt;&lt;b&gt;6&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;es 地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;7&#34;&gt;&lt;/i&gt;&lt;b&gt;7&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;索引&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;8&#34;&gt;&lt;/i&gt;&lt;b&gt;8&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;文档&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ti_procurement.sql&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;SELECT
+  *
+FROM
+  ti_procurement tp
+WHERE tp.update_date &amp;gt; :sql_last_value&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;resources_single.sql&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;SELECT
+  *
+FROM
+  resources_single rs
+WHERE rs.rs_modify &amp;gt; :sql_last_value&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运行&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;logstash -f update.yml&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;3. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://dockone.io/article/101&#34;&gt;Docker 参考&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://wiki.jikexueyuan.com/project/elasticsearch-definitive-guide-cn/&#34;&gt;Elasticsearch 权威指南（中文版）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/NLPchina/elasticsearch-sql&#34; class=&#34;bare&#34;&gt;https://github.com/NLPchina/elasticsearch-sql&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/guide/en/elasticsearch/reference/2.4/index.html&#34; class=&#34;bare&#34;&gt;https://www.elastic.co/guide/en/elasticsearch/reference/2.4/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/guide/en/logstash/2.4/index.html&#34; class=&#34;bare&#34;&gt;https://www.elastic.co/guide/en/logstash/2.4/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Elasticsearch</title>
       <link>/post/java/es/elasticsearch/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>

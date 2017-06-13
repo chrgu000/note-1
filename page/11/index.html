@@ -89,6 +89,49 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/alpine/" rel="bookmark">alpine</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. gollum 安装2. 安装软件2.1. 安装 PlantUML1. gollum 安装安装ruby
+sudo apk --update add ruby ruby-nokogiri ruby-rdoc build-base ruby-dev icu-dev zlib-dev git安装gollum
+sudo gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/sudo gem install gollum github-markdown asciidoctor pygments.rb --no-ri --no-rdoc局域网访问慢
+sudo vi /usr/lib/ruby/2.2.0/webrick/config.rb#第 36 行：:DoNotReverseLookup =&gt; nil,:DoNotReverseLookup =&gt; true开机自启动(Adding a custom service to rc-service)
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/awk/" rel="bookmark">awk</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. AWK1.1. 去除重复行1.2. ps 查询进程1. AWK1.1. 去除重复行awk '!a[$0]++' test-ins-2.txtcat arg.txt | awk -F '.' '{if($NF ~ "java"){print $0}}' | xargs -I t dirname t | awk '!a[$0]++' | xargs -I s ls s | awk '{print $1}' | awk -F'.' '{if($1 ~ /\$/){print $1}}'1.2. ps 查询进程ps -ef|grep varnish | awk '{if($1 ~ "
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/work/app/bug/" rel="bookmark">bug</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -257,64 +300,6 @@ ES-book-note 1、基本查询  词条查询
 将mysql-connector-java-5.1.33.jar放到$JAVA_HOME/jre/lib/ext路径下
 asdf
   asdfsd
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/esb/" rel="bookmark">esb</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Mule1.1. Example1. Mule[[Mule ESB 社区版 企业版 资源下载 包含3.5和3.6|http://www.cnblogs.com/taven/p/5436349.html]]
-下载 [[https://www.mulesoft.com/ty/dl/studio]]
-[[https://www.mulesoft.com/ty/dl/studio]]
-1.1. Example[[https://docs.mulesoft.com/mule-user-guide/v/3.4/hello-world-example]]
-[[https://docs.mulesoft.com/mule-user-guide/v/3.4/mule-examples]]
-[[https://www.mulesoft.com/exchange#!/?types=example&amp;sortBy=rating]]
-[[https://docs.mulesoft.com/mule-fundamentals/v/3.6/mule-message-tutorial]]
-Esb + MQ监控工具
-this element must have all attributes for one of sets:[path] or [address] or [ref]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/freemarker/" rel="bookmark">freemarker</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						freemarker list (长度,遍历,下标,嵌套,排序)1. freemarker获取list的size ：
-JavaArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
-Freemaker${list?size}
-list的遍历：
-&lt;#list animals as being&gt;&lt;tr&gt;&lt;td&gt;${being.name}${being.price}&lt;td&gt;&lt;/tr&gt;&lt;/#list&gt;
-遍历MAP
- &lt;#list map?keys as k&gt;&lt;option value="${k}"&gt;${map[k]}&lt;/option&gt;&lt;/#list&gt;4.list遍历中的下标序号：
-_index是list的一个属性&lt;#list list as a&gt;${a_index}&lt;/#list&gt;
-5.取LIST中第i个元素的值${list[i]}嵌套时前面要有括号，如下，将字符串变成list，然后取第i个元素的值${(str?split(","))[i]}
-list的嵌套：&lt;#list jsskList as jsskVO&gt;&lt;#list kcList as kcVO&gt;&lt;#if kcVO.
 					</div>
 				</div>
 			</div>

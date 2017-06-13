@@ -540,6 +540,7 @@ MapReduce实现复杂查询逻辑开发难度太大</p>
 </div>
 <div class="sect4">
 <h5 id="_具体实例">具体实例</h5>
+<asciinema-player src="/src/records/hive/create.json" cols="95" rows="22" speed="2" size="big" theme="monokai"></asciinema-player>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -938,15 +939,28 @@ FROM table_reference
 </div>
 </div>
 </dd>
+<dt class="hdlist1">注 </dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>order by</strong>  会对输入做全局排序，因此只有一个 <strong>reducer</strong> ，会导致当输入规模较大时，需要较长的计算时间。</p>
+</li>
+<li>
+<p><strong>sort by</strong> 不是全局排序，其在数据进入 <strong>reducer</strong> 前完成排序。因此，如果用 <strong>sort by</strong> 进行排序，并且设置 <strong>mapred.reduce.tasks&gt;1</strong> ，则s <strong>ort by</strong> 只保证每个 <strong>reducer</strong> 的输出有序，不保证全局有序。</p>
+</li>
+<li>
+<p><strong>distribute by</strong> 根据 <strong>distribute by</strong> 指定的内容将数据分到同一个 <strong>reducer</strong> 。</p>
+</li>
+<li>
+<p><strong>Cluster by</strong>  除了具有 <strong>Distribute by</strong>  的功能外，还会对该字段进行排序。因此，常常认为 <strong>cluster by = distribute by + sort by</strong></p>
+</li>
+</ol>
+</div>
+</dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>注：
-. order by 会对输入做全局排序，因此只有一个reducer，会导致当输入规模较大时，需要较长的计算时间。
-. sort by不是全局排序，其在数据进入reducer前完成排序。因此，如果用sort by进行排序，并且设置mapred.reduce.tasks&gt;1，则sort by只保证每个reducer的输出有序，不保证全局有序。
-. distribute by根据distribute by指定的内容将数据分到同一个reducer。
-. Cluster by 除了具有Distribute by的功能外，还会对该字段进行排序。因此，常常认为cluster by = distribute by + sort by</p>
-</div>
+<asciinema-player src="/src/records/hive/cluster.json" cols="95" rows="22" speed="2" size="big" theme="monokai"></asciinema-player>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">具体实例</dt>

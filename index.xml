@@ -6,8 +6,376 @@
     <description>Recent content on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 04 Jun 2017 19:56:49 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jun 2017 09:02:42 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>elasticsearch</title>
+      <link>/post/work/es/</link>
+      <pubDate>Wed, 07 Jun 2017 09:02:42 +0000</pubDate>
+      
+      <guid>/post/work/es/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装es&#34;&gt;1. 安装ES&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_logstash&#34;&gt;2. logstash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;3. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_安装es&#34;&gt;1. 安装ES&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Dockerfile &lt;a href=&#34;https://git.oschina.net/dishui/dockerfiles/tree/master/es?dir=1&amp;amp;filepath=es&amp;amp;oid=e8ff05c2c87b776b3f757bbe96ac074baad681fb&amp;amp;sha=05594af12d130d68723126075580426c3496c6cf&#34;&gt;地址&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;FROM centos:7
+MAINTAINER dishui_git@126.com
+ENV LANG en_US.utf8
+ENV JAVA_HOME /usr/local/java/jdk1.7.0_79
+COPY docker-entrypoint.sh es1.7.tar.gz jdk-7u79-linux-x64.rpm /
+COPY es.conf /etc/supervisord.conf.d/es.conf
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    &amp;amp;&amp;amp; curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
+    &amp;amp;&amp;amp; rpm -ivh /jdk-7u79-linux-x64.rpm --prefix=/usr/local/java \
+    &amp;amp;&amp;amp; yum install python-setuptools -y \
+    &amp;amp;&amp;amp; easy_install -i http://pypi.doubanio.com/simple supervisor \
+    &amp;amp;&amp;amp; echo_supervisord_conf &amp;gt; /etc/supervisord.conf \
+    &amp;amp;&amp;amp; mkdir -p /etc/supervisord.conf.d \
+    &amp;amp;&amp;amp; echo -e &#34;[include]\nfiles = /etc/supervisord.conf.d/*.conf&#34; &amp;gt;&amp;gt; /etc/supervisord.conf \
+    &amp;amp;&amp;amp; tar -zxf /es1.7.tar.gz \
+    &amp;amp;&amp;amp; cd /elasticsearch-1.7.1 \
+    &amp;amp;&amp;amp; ./bin/plugin -u https://github.com/NLPchina/elasticsearch-sql/releases/download/1.4.9/elasticsearch-sql-1.4.9.zip --install sql \
+    &amp;amp;&amp;amp; rm -rf /elasticsearch-1.7.1/logs \
+    &amp;amp;&amp;amp; rm -f /es1.7.tar.gz \
+    &amp;amp;&amp;amp; rm -f /jdk-7u79-linux-x64.rpm
+EXPOSE 9200 9300
+ENTRYPOINT [&#34;sh&#34;,&#34;/docker-entrypoint.sh&#34;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;基于 &lt;strong&gt;centos7&lt;/strong&gt; 镜像安装 &lt;strong&gt;jdk1.7.0_79&lt;/strong&gt; 和 &lt;strong&gt;supervisord&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;构建&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 在 Dockerfile 所在目录执行
+docker build -t mailiqing.com:5000/es:1.7 .&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&#34;http://ES_URL:9200/_plugin/head/&#34; class=&#34;bare&#34;&gt;http://ES_URL:9200/_plugin/head/&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+ES_URL:  &lt;strong&gt;ES&lt;/strong&gt; 服务器的 &lt;strong&gt;IP&lt;/strong&gt; 地址
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加映射&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/work/2017-06-09_100922.png&#34; alt=&#34;2017 06 09 100922&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mapping 映射&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;PUT /b2b &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+{
+   &#34;mappings&#34;: {
+      &#34;resources_single&#34;: { &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+         &#34;properties&#34;: {
+            &#34;rs_name&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34; &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+            },
+            &#34;chuku_3&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_state&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_area&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rs_create&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34; &lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+            },
+            &#34;rs_modify&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            }
+         }
+      },
+      &#34;ti_procurement&#34;: {
+         &#34;properties&#34;: {
+            &#34;rsrv_str3&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rsrv_str4&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;rsrv_str5&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;remark&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;store&#34;: true,
+               &#34;analyzer&#34;: &#34;ik&#34;
+            },
+            &#34;delivery_date_start&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;delivery_date_end&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;in_date&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;update_date&#34;: {
+               &#34;type&#34;: &#34;date&#34;,
+               &#34;format&#34;: &#34;date_time&#34;
+            },
+            &#34;procur_f_id&#34;: {
+               &#34;type&#34;: &#34;string&#34;,
+               &#34;index&#34;: &#34;not_analyzed&#34;,
+               &#34;store&#34;: true
+            }
+         }
+      }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;索引 &amp;#8658; 数据库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;文档 &amp;#8658; 表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;使用 &lt;strong&gt;ik&lt;/strong&gt; 分词器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;日期格式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_logstash&#34;&gt;2. logstash&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;增量更新&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;update.yml&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;input {
+  jdbc {
+    type =&amp;gt; &#34;procurement&#34;
+    jdbc_connection_string =&amp;gt; &#34;jdbc:mysql://mysql:3306/mailiqing&#34; &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    jdbc_user =&amp;gt; &#34;root&#34; &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    jdbc_password =&amp;gt; &#34;111111&#34; &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    jdbc_driver_library =&amp;gt; &#34;/logstash/mysql-connector-java-5.1.33.jar&#34;
+    jdbc_driver_class =&amp;gt; &#34;com.mysql.jdbc.Driver&#34;
+    jdbc_paging_enabled =&amp;gt; &#34;true&#34;
+    jdbc_page_size =&amp;gt; &#34;50000&#34;
+    schedule =&amp;gt; &#34;* * * * *&#34;
+    use_column_value =&amp;gt; true
+    tracking_column =&amp;gt; update_date &lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+    statement_filepath =&amp;gt; &#34;/logstash/sql-update/ti_procurement.sql&#34; &lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+  }
+  jdbc {
+    type =&amp;gt; &#34;resources&#34;
+    jdbc_connection_string =&amp;gt; &#34;jdbc:mysql://mysql:3306/mailiqing&#34;
+    jdbc_user =&amp;gt; &#34;root&#34;
+    jdbc_password =&amp;gt; &#34;111111&#34;
+    jdbc_driver_library =&amp;gt; &#34;/logstash/mysql-connector-java-5.1.33.jar&#34;
+    jdbc_driver_class =&amp;gt; &#34;com.mysql.jdbc.Driver&#34;
+    jdbc_paging_enabled =&amp;gt; &#34;true&#34;
+    jdbc_page_size =&amp;gt; &#34;50000&#34;
+    schedule =&amp;gt; &#34;* * * * *&#34;
+    use_column_value =&amp;gt; true
+    tracking_column =&amp;gt; rs_modify
+    statement_filepath =&amp;gt; &#34;/logstash/sql-update/resources_single.sql&#34;
+  }
+}
+output {
+  if [type] == &#34;procurement&#34; {
+    elasticsearch {
+      hosts =&amp;gt; &#34;es:9200&#34; &lt;i class=&#34;conum&#34; data-value=&#34;6&#34;&gt;&lt;/i&gt;&lt;b&gt;(6)&lt;/b&gt;
+      index =&amp;gt; &#34;b2b&#34; &lt;i class=&#34;conum&#34; data-value=&#34;7&#34;&gt;&lt;/i&gt;&lt;b&gt;(7)&lt;/b&gt;
+      document_type =&amp;gt; &#34;ti_procurement&#34; &lt;i class=&#34;conum&#34; data-value=&#34;8&#34;&gt;&lt;/i&gt;&lt;b&gt;(8)&lt;/b&gt;
+      document_id =&amp;gt; &#34;%{procur_f_id}&#34;
+    }
+  }
+  else if [type] == &#34;resources&#34; {
+    elasticsearch {
+      hosts =&amp;gt; &#34;es:9200&#34;
+      index =&amp;gt; &#34;b2b&#34;
+      document_type =&amp;gt; &#34;resources_single&#34;
+      document_id =&amp;gt; &#34;%{id}&#34;
+    }
+  }
+  stdout { codec =&amp;gt; rubydebug }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;mysql 地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;mysql 用户名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;mysql 密码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;以某一列的值做增量更新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;sql语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;6&#34;&gt;&lt;/i&gt;&lt;b&gt;6&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;es 地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;7&#34;&gt;&lt;/i&gt;&lt;b&gt;7&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;索引&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;8&#34;&gt;&lt;/i&gt;&lt;b&gt;8&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;文档&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ti_procurement.sql&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;SELECT
+  *
+FROM
+  ti_procurement tp
+WHERE tp.update_date &amp;gt; :sql_last_value&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;resources_single.sql&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;SELECT
+  *
+FROM
+  resources_single rs
+WHERE rs.rs_modify &amp;gt; :sql_last_value&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运行&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;logstash -f update.yml&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;3. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://dockone.io/article/101&#34;&gt;Docker 参考&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://wiki.jikexueyuan.com/project/elasticsearch-definitive-guide-cn/&#34;&gt;Elasticsearch 权威指南（中文版）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/NLPchina/elasticsearch-sql&#34; class=&#34;bare&#34;&gt;https://github.com/NLPchina/elasticsearch-sql&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/guide/en/elasticsearch/reference/2.4/index.html&#34; class=&#34;bare&#34;&gt;https://www.elastic.co/guide/en/elasticsearch/reference/2.4/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/guide/en/logstash/2.4/index.html&#34; class=&#34;bare&#34;&gt;https://www.elastic.co/guide/en/logstash/2.4/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>hive on spark</title>
@@ -364,7 +732,9 @@ slave2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;vi $HIVE_HOME/conf/hive-site.xml&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34;?&amp;gt;
+&amp;lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&amp;gt;
+&amp;lt;configuration&amp;gt;
     &amp;lt;property&amp;gt;
       &amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
       &amp;lt;value&amp;gt;jdbc:mysql://master:3308/hive?createDatabaseIfNotExist=true&amp;lt;/value&amp;gt;
@@ -700,6 +1070,10 @@ EnvironmentFile=-/etc/sysconfig/docker
 ExecStart=/usr/bin/dockerd $DOCKER_OPTS&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;EnvironmentFile=-/run/flannel/subnet.env
+ExecStart=/usr/bin/dockerd --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU}&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mk-docker-opts.sh -c
@@ -784,6 +1158,7 @@ ifconfig docker0 ${FLANNEL_SUBNET}&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2.1. 参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_操作命令&#34;&gt;3. Docker 操作命令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -828,7 +1203,7 @@ ifconfig docker0 ${FLANNEL_SUBNET}&lt;/p&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;配置docker 本地 yum 仓库&lt;/p&gt;
+&lt;p&gt;配置 本地 yum 仓库&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yum install -y yum-plugin-downloadonly # yum下载软件包插件
@@ -1212,6 +1587,12 @@ done&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker_操作命令&#34;&gt;3. Docker 操作命令&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;asciinema-player src=&#34;/src/records/docker.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -6247,7 +6628,7 @@ res12: Array[(Int, Long)] = Array((100,0), (101,5), (102,10), (103,15), (104,1),
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_mappartitionswithindex&#34;&gt;1. mapPartitionsWithIndex&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/2017-04-10.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/2017-04-10.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;map是对每个元素操作, mapPartitions是对其中的每个partition操作
@@ -6265,7 +6646,7 @@ rdd1.mapPartitionsWithIndex(func).collect&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_aggregate&#34;&gt;2. aggregate&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/aggregate.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/aggregate.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;def func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {
@@ -6303,7 +6684,7 @@ rdd5.aggregate(&#34;&#34;)((x,y) =&amp;gt; math.min(x.length, y.length).toString
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_aggregatebykey&#34;&gt;3. aggregateByKey&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/aggregateByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/aggregateByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;val pairRDD = sc.parallelize(List( (&#34;cat&#34;,2), (&#34;cat&#34;, 5), (&#34;mouse&#34;, 4),(&#34;cat&#34;, 12), (&#34;dog&#34;, 12), (&#34;mouse&#34;, 2)), 2)
@@ -6345,7 +6726,7 @@ rdd.collectAsMap&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_combinebykey&#34;&gt;5. combineByKey&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/combineByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/combineByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;和reduceByKey是相同的效果
@@ -7028,6 +7409,9 @@ hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&#34;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&#34; class=&#34;bare&#34;&gt;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&#34; class=&#34;bare&#34;&gt;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7569,338 +7953,6 @@ object MissRight {
 &lt;div class=&#34;content&#34;&gt;
 &lt;img src=&#34;/src/svg/scala-implic2.svg&#34; alt=&#34;scala implic2&#34;&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Scala Actor编程</title>
-      <link>/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Wed, 05 Apr 2017 09:47:03 +0000</pubDate>
-      
-      <guid>/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Scala Actor编程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_scala_actor编程&#34;&gt;1. Scala Actor编程&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_什么是scala_actor&#34;&gt;1.1. 什么是Scala Actor&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_概念&#34;&gt;1.1.1. 概念&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_传统java并发编程与scala_actor编程的区别&#34;&gt;1.1.2. 传统java并发编程与Scala Actor编程的区别&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_actor方法执行顺序&#34;&gt;1.1.3. Actor方法执行顺序&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_发送消息的方式&#34;&gt;1.1.4. 发送消息的方式&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_actor实战&#34;&gt;1.2. Actor实战&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_第一个例子&#34;&gt;1.2.1. 第一个例子&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_第二个例子_可以不断地接收消息&#34;&gt;1.2.2. 第二个例子（可以不断地接收消息）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_第三个例子_react方式会复用线程_比receive更高效&#34;&gt;1.2.3. 第三个例子（react方式会复用线程，比receive更高效）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_第四个例子_结合case_class发送消息&#34;&gt;1.2.4. 第四个例子（结合case class发送消息）&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_练习&#34;&gt;1.3. 练习&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_scala_actor编程&#34;&gt;1. Scala Actor编程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_什么是scala_actor&#34;&gt;1.1. 什么是Scala Actor&lt;/h3&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_概念&#34;&gt;1.1.1. 概念&lt;/h4&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Scala中的Actor能够实现并行编程的强大功能，它是基于事件模型的并发机制，Scala是运用消息（message）的发送、接收来实现多线程的。使用Scala能够更容易地实现多线程应用的开发。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_传统java并发编程与scala_actor编程的区别&#34;&gt;1.1.2. 传统java并发编程与Scala Actor编程的区别&lt;/h4&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-05_095545.png&#34; alt=&#34;2017 04 05 095545&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;对于Java，我们都知道它的多线程实现需要对共享资源（变量、对象等）使用synchronized 关键字进行代码块同步、对象锁互斥等等。而且，常常一大块的try…catch语句块中加上wait方法、notify方法、notifyAll方法是让人很头疼的。原因就在于Java中多数使用的是可变状态的对象资源，对这些资源进行共享来实现多线程编程的话，控制好资源竞争与防止对象状态被意外修改是非常重要的，而对象状态的不变性也是较难以保证的。 而在Scala中，我们可以通过复制不可变状态的资源（即对象，Scala中一切都是对象，连函数、方法也是）的一个副本，再基于Actor的消息发送、接收机制进行并行编程&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_actor方法执行顺序&#34;&gt;1.1.3. Actor方法执行顺序&lt;/h4&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;首先调用start()方法启动Actor&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;调用start()方法后其act()方法会被执行&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;向Actor发送消息&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_发送消息的方式&#34;&gt;1.1.4. 发送消息的方式&lt;/h4&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;!
-发送异步消息，没有返回值。
-!?
-发送同步消息，等待返回值。
-!!
-发送异步消息，返回值是 Future[Any]。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_actor实战&#34;&gt;1.2. Actor实战&lt;/h3&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第一个例子&#34;&gt;1.2.1. 第一个例子&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor1 extends Actor{
-  //重新act方法
-  def act(){
-    for(i &amp;lt;- 1 to 10){
-      println(&#34;actor-1 &#34;+ i)
-      Thread.sleep(2000)
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor2 extends Actor{
-  //重新act方法
-  def act(){
-    for(i &amp;lt;- 1 to 10){
-      println(&#34;actor-2 &#34;+ i)
-      Thread.sleep(2000)
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ActorTest extends App{
-  //启动Actor
-  MyActor1.start()
-  MyActor2.start()
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说明：上面分别调用了两个单例对象的start()方法，他们的act()方法会被执行，相同与在java中开启了两个线程，线程的run()方法会被执行
-注意：这两个Actor是并行执行的，act()方法中的for循环执行完成后actor程序就退出了&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第二个例子_可以不断地接收消息&#34;&gt;1.2.2. 第二个例子（可以不断地接收消息）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class MyActor extends Actor {
-
-  override def act(): Unit = {
-    while (true) {
-      receive {
-        case &#34;start&#34;=&amp;gt; {
-          println(&#34;starting ...&#34;)
-          Thread.sleep(5000)
-          println(&#34;started&#34;)
-        }
-        case &#34;stop&#34;=&amp;gt; {
-          println(&#34;stopping ...&#34;)
-          Thread.sleep(5000)
-          println(&#34;stopped ...&#34;)
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor {
-  def main(args: Array[String]) {
-    val actor = new MyActor
-    actor.start()
-    actor ! &#34;start&#34;
-    actor ! &#34;stop&#34;
-    println(&#34;消息发送完成！&#34;)
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说明：在act()方法中加入了while (true) 循环，就可以不停的接收消息
-注意：发送start消息和stop的消息是异步的，但是Actor接收到消息执行的过程是同步的按顺序执行&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第三个例子_react方式会复用线程_比receive更高效&#34;&gt;1.2.3. 第三个例子（react方式会复用线程，比receive更高效）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class YourActor extends Actor {
-
-  override def act(): Unit = {
-    loop {
-      react {
-        case &#34;start&#34;=&amp;gt; {
-          println(&#34;starting ...&#34;)
-          Thread.sleep(5000)
-          println(&#34;started&#34;)
-        }
-        case &#34;stop&#34;=&amp;gt; {
-          println(&#34;stopping ...&#34;)
-          Thread.sleep(8000)
-          println(&#34;stopped ...&#34;)
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object YourActor {
-  def main(args: Array[String]) {
-    val actor = new YourActor
-    actor.start()
-    actor ! &#34;start&#34;
-    actor ! &#34;stop&#34;
-    println(&#34;消息发送完成！&#34;)
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说明：?react 如果要反复执行消息处理，react外层要用loop，不能用while&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第四个例子_结合case_class发送消息&#34;&gt;1.2.4. 第四个例子（结合case class发送消息）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class AppleActor extends Actor {
-
-  def act(): Unit = {
-    while (true) {
-      receive {
-        case &#34;start&#34;=&amp;gt;println(&#34;starting ...&#34;)
-        case SyncMsg(id, msg) =&amp;gt; {
-          println(id + &#34;,sync &#34;+ msg)
-          Thread.sleep(5000)
-          sender ! ReplyMsg(3,&#34;finished&#34;)
-        }
-        case AsyncMsg(id, msg) =&amp;gt; {
-          println(id + &#34;,async &#34;+ msg)
-          Thread.sleep(5000)
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object AppleActor {
-  def main(args: Array[String]) {
-    val a = new AppleActor
-    a.start()
-    //异步消息
-    a ! AsyncMsg(1, &#34;hello actor&#34;)
-    println(&#34;异步消息发送完成&#34;)
-    //同步消息
-    //val content = a.!?(1000, SyncMsg(2, &#34;hello actor&#34;))
-    //println(content)
-    val reply = a !! SyncMsg(2, &#34;hello actor&#34;)
-    println(reply.isSet)
-    //println(&#34;123&#34;)
-    val c = reply.apply()
-    println(reply.isSet)
-    println(c)
-  }
-}
-case class SyncMsg(id : Int, msg: String)
-case class AsyncMsg(id : Int, msg: String)
-case class ReplyMsg(id : Int, msg: String)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_练习&#34;&gt;1.3. 练习&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;用actor并发编程写一个单机版的WorldCount，将多个文件作为输入，计算完成后将多个任务汇总，得到最终的结果&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Task extends Actor {
-
-  override def act(): Unit = {
-    loop {
-      react {
-        case SubmitTask(fileName) =&amp;gt; {
-          val contents = Source.fromFile(new File(fileName)).mkString
-          val arr = contents.split(&#34;\r\n&#34;)
-          val result = arr.flatMap(_.split(&#34;&#34;)).map((_, 1)).groupBy(_._1).mapValues(_.length)
-          //val result = arr.flatMap(_.split(&#34;&#34;)).map((_, 1)).groupBy(_._1).mapValues(_.foldLeft(0)(_ + _._2))
-          sender ! ResultTask(result)
-        }
-        case StopTask =&amp;gt; {
-          exit()
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object WorkCount {
-  def main(args: Array[String]) {
-    val files = Array(&#34;c://words.txt&#34;, &#34;c://words.log&#34;)
-
-    val replaySet = new mutable.HashSet[Future[Any]]
-    val resultList = new mutable.ListBuffer[ResultTask]
-
-    for(f &amp;lt;- files) {
-      val t = new Task
-      val replay = t.start() !! SubmitTask(f)
-      replaySet += replay
-    }
-
-    while(replaySet.size &amp;gt;0){
-      val toCumpute = replaySet.filter(_.isSet)
-      for(r &amp;lt;- toCumpute){
-        val result = r.apply()
-        resultList += result.asInstanceOf[ResultTask]
-        replaySet.remove(r)
-      }
-      Thread.sleep(100)
-    }
-    val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&amp;gt; x.foldLeft(0)(_ + _._2))
-    println(finalResult)
-  }
-}
-
-case class SubmitTask(fileName: String)
-case object StopTask
-case class ResultTask(result: Map[String, Int])&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

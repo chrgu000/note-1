@@ -4858,7 +4858,7 @@ res12: Array[(Int, Long)] = Array((100,0), (101,5), (102,10), (103,15), (104,1),
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_mappartitionswithindex&#34;&gt;1. mapPartitionsWithIndex&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/2017-04-10.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/2017-04-10.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;map是对每个元素操作, mapPartitions是对其中的每个partition操作
@@ -4876,7 +4876,7 @@ rdd1.mapPartitionsWithIndex(func).collect&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_aggregate&#34;&gt;2. aggregate&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/aggregate.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/aggregate.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;def func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {
@@ -4914,7 +4914,7 @@ rdd5.aggregate(&#34;&#34;)((x,y) =&amp;gt; math.min(x.length, y.length).toString
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_aggregatebykey&#34;&gt;3. aggregateByKey&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/aggregateByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/aggregateByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;val pairRDD = sc.parallelize(List( (&#34;cat&#34;,2), (&#34;cat&#34;, 5), (&#34;mouse&#34;, 4),(&#34;cat&#34;, 12), (&#34;dog&#34;, 12), (&#34;mouse&#34;, 2)), 2)
@@ -4956,7 +4956,7 @@ rdd.collectAsMap&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_combinebykey&#34;&gt;5. combineByKey&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;asciinema-player src=&#34;/src/records/spark/combineByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34;&gt;&lt;/asciinema-player&gt;
+&lt;asciinema-player src=&#34;/src/records/spark/combineByKey.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;和reduceByKey是相同的效果
@@ -5638,6 +5638,9 @@ hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&#34;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&#34; class=&#34;bare&#34;&gt;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&#34; class=&#34;bare&#34;&gt;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

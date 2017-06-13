@@ -1,0 +1,4 @@
+jdk: jdk-7u79-linux-x64.tar.gz
+hadoop: hadoop-2.7.2.tar.gz
+spark: spark-1.5.3.tar.gz
+hive: apache-hive-2.1.1-bin.tar.gz

@@ -456,7 +456,9 @@ slave2</code></pre>
 <p><code>vi $HIVE_HOME/conf/hive-site.xml</code></p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>&lt;configuration&gt;
+<pre class="highlightjs highlight"><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;
+&lt;configuration&gt;
     &lt;property&gt;
       &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
       &lt;value&gt;jdbc:mysql://master:3308/hive?createDatabaseIfNotExist=true&lt;/value&gt;
@@ -641,6 +643,10 @@ select count(*) from test;</code></pre>
 	
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/es/" rel="prev"><span>«Previous</span><p>elasticsearch</p></a>
+		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">

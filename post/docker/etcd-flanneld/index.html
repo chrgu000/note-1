@@ -265,6 +265,10 @@ EnvironmentFile=-/etc/sysconfig/docker
 ExecStart=/usr/bin/dockerd $DOCKER_OPTS</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>EnvironmentFile=-/run/flannel/subnet.env
+ExecStart=/usr/bin/dockerd --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU}</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>mk-docker-opts.sh -c

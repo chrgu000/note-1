@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>elasticsearch</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="elasticsearch" />
+<meta property="og:description" content="Contents1. 安装ES2. logstash3. 参考1. 安装ESDockerfile 地址
+FROM centos:7MAINTAINER dishui_git@126.comENV LANG en_US.utf8ENV JAVA_HOME /usr/local/java/jdk1.7.0_79COPY docker-entrypoint.sh es1.7.tar.gz jdk-7u79-linux-x64.rpm /COPY es.conf /etc/supervisord.conf.d/es.confRUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \&amp;&amp; curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \&amp;&amp; rpm -ivh /jdk-7u79-linux-x64.rpm --prefix=/usr/local/java \&amp;&amp; yum install python-setuptools -y \&amp;&amp; easy_install -i http://pypi.doubanio.com/simple supervisor \&amp;&amp; echo_supervisord_conf &gt; /etc/supervisord.conf \&amp;&amp; mkdir -p /etc/supervisord.conf.d \&amp;&amp; echo -e &#34;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/es/" />
+
+
+<meta property="og:updated_time" content="2017-06-07T09:02:42&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">elasticsearch</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-06-07 09:02:42 &#43;0000 UTC">June 07, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_安装es">1. 安装ES</a></li>
+<li><a href="#_logstash">2. logstash</a></li>
+<li><a href="#_参考">3. 参考</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_安装es">1. 安装ES</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Dockerfile <a href="https://git.oschina.net/dishui/dockerfiles/tree/master/es?dir=1&amp;filepath=es&amp;oid=e8ff05c2c87b776b3f757bbe96ac074baad681fb&amp;sha=05594af12d130d68723126075580426c3496c6cf">地址</a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>FROM centos:7
+MAINTAINER dishui_git@126.com
+ENV LANG en_US.utf8
+ENV JAVA_HOME /usr/local/java/jdk1.7.0_79
+COPY docker-entrypoint.sh es1.7.tar.gz jdk-7u79-linux-x64.rpm /
+COPY es.conf /etc/supervisord.conf.d/es.conf
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    &amp;&amp; curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
+    &amp;&amp; rpm -ivh /jdk-7u79-linux-x64.rpm --prefix=/usr/local/java \
+    &amp;&amp; yum install python-setuptools -y \
+    &amp;&amp; easy_install -i http://pypi.doubanio.com/simple supervisor \
+    &amp;&amp; echo_supervisord_conf &gt; /etc/supervisord.conf \
+    &amp;&amp; mkdir -p /etc/supervisord.conf.d \
+    &amp;&amp; echo -e "[include]\nfiles = /etc/supervisord.conf.d/*.conf" &gt;&gt; /etc/supervisord.conf \
+    &amp;&amp; tar -zxf /es1.7.tar.gz \
+    &amp;&amp; cd /elasticsearch-1.7.1 \
+    &amp;&amp; ./bin/plugin -u https://github.com/NLPchina/elasticsearch-sql/releases/download/1.4.9/elasticsearch-sql-1.4.9.zip --install sql \
+    &amp;&amp; rm -rf /elasticsearch-1.7.1/logs \
+    &amp;&amp; rm -f /es1.7.tar.gz \
+    &amp;&amp; rm -f /jdk-7u79-linux-x64.rpm
+EXPOSE 9200 9300
+ENTRYPOINT ["sh","/docker-entrypoint.sh"]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>基于 <strong>centos7</strong> 镜像安装 <strong>jdk1.7.0_79</strong> 和 <strong>supervisord</strong></td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>构建</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 在 Dockerfile 所在目录执行
+docker build -t mailiqing.com:5000/es:1.7 .</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>访问 <a href="http://ES_URL:9200/_plugin/head/" class="bare">http://ES_URL:9200/_plugin/head/</a></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+ES_URL:  <strong>ES</strong> 服务器的 <strong>IP</strong> 地址
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>添加映射</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/work/2017-06-09_100922.png" alt="2017 06 09 100922">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>mapping 映射</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /b2b <i class="conum" data-value="1"></i><b>(1)</b>
+{
+   "mappings": {
+      "resources_single": { <i class="conum" data-value="2"></i><b>(2)</b>
+         "properties": {
+            "rs_name": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik" <i class="conum" data-value="3"></i><b>(3)</b>
+            },
+            "chuku_3": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "rs_state": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "rs_area": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "rs_create": {
+               "type": "date",
+               "format": "date_time" <i class="conum" data-value="4"></i><b>(4)</b>
+            },
+            "rs_modify": {
+               "type": "date",
+               "format": "date_time"
+            },
+            "id": {
+               "type": "string",
+               "index": "not_analyzed",
+               "store": true
+            }
+         }
+      },
+      "ti_procurement": {
+         "properties": {
+            "rsrv_str3": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "rsrv_str4": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "rsrv_str5": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "remark": {
+               "type": "string",
+               "store": true,
+               "analyzer": "ik"
+            },
+            "delivery_date_start": {
+               "type": "date",
+               "format": "date_time"
+            },
+            "delivery_date_end": {
+               "type": "date",
+               "format": "date_time"
+            },
+            "in_date": {
+               "type": "date",
+               "format": "date_time"
+            },
+            "update_date": {
+               "type": "date",
+               "format": "date_time"
+            },
+            "procur_f_id": {
+               "type": "string",
+               "index": "not_analyzed",
+               "store": true
+            }
+         }
+      }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>索引 &#8658; 数据库</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>文档 &#8658; 表</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>使用 <strong>ik</strong> 分词器</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>日期格式</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logstash">2. logstash</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>增量更新</p>
+<div class="listingblock">
+<div class="title">update.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>input {
+  jdbc {
+    type =&gt; "procurement"
+    jdbc_connection_string =&gt; "jdbc:mysql://mysql:3306/mailiqing" <i class="conum" data-value="1"></i><b>(1)</b>
+    jdbc_user =&gt; "root" <i class="conum" data-value="2"></i><b>(2)</b>
+    jdbc_password =&gt; "111111" <i class="conum" data-value="3"></i><b>(3)</b>
+    jdbc_driver_library =&gt; "/logstash/mysql-connector-java-5.1.33.jar"
+    jdbc_driver_class =&gt; "com.mysql.jdbc.Driver"
+    jdbc_paging_enabled =&gt; "true"
+    jdbc_page_size =&gt; "50000"
+    schedule =&gt; "* * * * *"
+    use_column_value =&gt; true
+    tracking_column =&gt; update_date <i class="conum" data-value="4"></i><b>(4)</b>
+    statement_filepath =&gt; "/logstash/sql-update/ti_procurement.sql" <i class="conum" data-value="5"></i><b>(5)</b>
+  }
+  jdbc {
+    type =&gt; "resources"
+    jdbc_connection_string =&gt; "jdbc:mysql://mysql:3306/mailiqing"
+    jdbc_user =&gt; "root"
+    jdbc_password =&gt; "111111"
+    jdbc_driver_library =&gt; "/logstash/mysql-connector-java-5.1.33.jar"
+    jdbc_driver_class =&gt; "com.mysql.jdbc.Driver"
+    jdbc_paging_enabled =&gt; "true"
+    jdbc_page_size =&gt; "50000"
+    schedule =&gt; "* * * * *"
+    use_column_value =&gt; true
+    tracking_column =&gt; rs_modify
+    statement_filepath =&gt; "/logstash/sql-update/resources_single.sql"
+  }
+}
+output {
+  if [type] == "procurement" {
+    elasticsearch {
+      hosts =&gt; "es:9200" <i class="conum" data-value="6"></i><b>(6)</b>
+      index =&gt; "b2b" <i class="conum" data-value="7"></i><b>(7)</b>
+      document_type =&gt; "ti_procurement" <i class="conum" data-value="8"></i><b>(8)</b>
+      document_id =&gt; "%{procur_f_id}"
+    }
+  }
+  else if [type] == "resources" {
+    elasticsearch {
+      hosts =&gt; "es:9200"
+      index =&gt; "b2b"
+      document_type =&gt; "resources_single"
+      document_id =&gt; "%{id}"
+    }
+  }
+  stdout { codec =&gt; rubydebug }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>mysql 地址</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>mysql 用户名</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>mysql 密码</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>以某一列的值做增量更新</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>sql语句</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>es 地址</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>索引</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>文档</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>ti_procurement.sql</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SELECT
+  *
+FROM
+  ti_procurement tp
+WHERE tp.update_date &gt; :sql_last_value</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>resources_single.sql</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SELECT
+  *
+FROM
+  resources_single rs
+WHERE rs.rs_modify &gt; :sql_last_value</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>运行</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>logstash -f update.yml</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_参考">3. 参考</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://dockone.io/article/101">Docker 参考</a></p>
+</li>
+<li>
+<p><a href="http://wiki.jikexueyuan.com/project/elasticsearch-definitive-guide-cn/">Elasticsearch 权威指南（中文版）</a></p>
+</li>
+<li>
+<p><a href="https://github.com/NLPchina/elasticsearch-sql" class="bare">https://github.com/NLPchina/elasticsearch-sql</a></p>
+</li>
+<li>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/2.4/index.html" class="bare">https://www.elastic.co/guide/en/elasticsearch/reference/2.4/index.html</a></p>
+</li>
+<li>
+<p><a href="https://www.elastic.co/guide/en/logstash/2.4/index.html" class="bare">https://www.elastic.co/guide/en/logstash/2.4/index.html</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+		</div>
+		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/hadoop/hive-on-spark/" rel="next"><span>Next»</span><p>hive on spark</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>
