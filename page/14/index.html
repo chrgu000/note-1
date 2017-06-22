@@ -89,6 +89,50 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/mariadb/" rel="bookmark">mariadb</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Mariadb1.1. CentOS 7 (64-bit)1.2. 配置文件1.3. 初始化数据1.4. 启动 Mariadb1.5. 设置ROOT密码1.6. 登陆mysql1.7. 授权root远程登录1. Mariadb1.1. CentOS 7 (64-bit)# vi /etc/yum.repos.d/[mariadb]name = MariaDBbaseurl = http://yum.mariadb.org/10.0/centos7-amd64gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDBgpgcheck=1参考脚本目录
+/usr/share/mysql
+全局配置文件 (Global)
+/etc/my.cnf
+1.2. 配置文件[client]#password = your_passwordport = 3306socket = /var/lib/mysql/mysql.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/maxscale/" rel="bookmark">maxsclae</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 1.41.1. 登录 MaxScale 管理器1. 1.41.1. 登录 MaxScale 管理器maxadmin --user=admin --password=mariadbMaxScale&gt; list serversServers.-------------------+-----------------+-------+-------------+--------------------Server | Address | Port | Connections | Status-------------------+-----------------+-------+-------------+--------------------server1 | mysql-m | 3306 | 0 | Master, Runningserver2 | mysql-s1 | 3306 | 0 | Slave, Runningserver3 | mysql-s2 | 3306 | 0 | Slave, Running-------------------+-----------------+-------+-------------+--------------------
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/java/mockito/" rel="bookmark">mockito 单元测试</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -269,59 +313,13 @@ Shell $0, $#, $*, $@, $?, $$和命令行参数
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/ssh/" rel="bookmark">ssh</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 安装2. 25个必须记住的SSH命令3. ssh-copy-id1. 安装CentOS7 64 系统
-yum install openssh-server -y启动 ssh
-# /usr/sbin/sshdCould not load host key: /etc/ssh/ssh_host_rsa_keyCould not load host key: /etc/ssh/ssh_host_ecdsa_keyCould not load host key: /etc/ssh/ssh_host_ed25519_key解决办法
-ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key # 重新建立 ssh_host_dsa_key 文件ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key # 重新建立 ssh_host_rsa_key 文件2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/editor/snippets/" rel="bookmark">sublime tabTrigger</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. quml2. qdot3. bash4. bash session5. table6. asciinema7. a8. javasAsciidoctor1. stem2. quote3. img4. src5. c6. c11. quml&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml$1@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;&lt;/snippet&gt;
-2. qdot&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml@startdot$1@enddot@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;qdot&lt;/tabTrigger&gt;&lt;/snippet&gt;
-3. bash&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[
-$1]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;bash&lt;/tabTrigger&gt;&lt;/snippet&gt;
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/page/13/">«</a>
 	
-	<span class="page-numbers current">14/22</span>
+	<span class="page-numbers current">14/26</span>
 	
 	<a class="page-numbers" href="/page/15/">»</a>
 	

@@ -9,6 +9,118 @@
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>spark hive</title>
+      <link>/post/bigdata/spark/spark-hive/</link>
+      <pubDate>Sat, 17 Jun 2017 14:11:22 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-hive/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark hive&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_hive&#34;&gt;1. spark hive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_hive&#34;&gt;1. spark hive&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;$SPARK_HOME/conf/hive-site.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+    &amp;lt;property&amp;gt;
+      &amp;lt;name&amp;gt;hive.metastore.uris&amp;lt;/name&amp;gt;
+      &amp;lt;value&amp;gt;thrift://master:9083&amp;lt;/value&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;show tables&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;select count(*) from zh_track&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;SELECT COUNT(*) FROM zh_track z GROUP BY z.box_no&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;SELECT z.box_no, COUNT(*) AS num FROM zh_track z GROUP BY z.box_no ORDER BY num DESC limit 10&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_pp(id string,name string)
+clustered by (id)
+sorted by (id)
+into 4 buckets
+row format delimited fields terminated by &#39;,&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;insert into table t_pp
+select id,name from t_p distribute by (id) sort by (id);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;drop table t_pp&#34;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_pp(id string,name string)
+partitioned by (ds string)
+row format delimited fields terminated by &#39;,&#39;
+stored as textfile;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;insert into table t_pp partition(ds=&#39;2017-06-18&#39;)
+select id,name from t_p&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select * from t_partitioned where ds=&#39;2017-06-18&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val selectSql = &#34;select * from t_partitioned where ds=&#39;2017-06-18&#39;&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val t_partitioned =
+  s&#34;&#34;&#34;
+     |create table t_partitioned(id string,name string)
+     |partitioned by (ds string)
+     |row format delimited fields terminated by &#39;,&#39;
+     |stored as textfile
+   &#34;&#34;&#34;.stripMargin
+val insertSql =
+  s&#34;&#34;&#34;
+     |insert into table t_partitioned partition(ds=&#39;2017-06-18&#39;)
+     |select id,name from t_p
+   &#34;&#34;&#34;.stripMargin&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=master \
+  --hiveconf hive.metastore.uris=thrift://master:9083 \
+  --master spark://master:7077&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;beeline -u jdbc:hive2://master:10000 -n root&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INFO hive.metastore: Connected to metastore&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>spark-源码</title>
       <link>/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/</link>
       <pubDate>Wed, 26 Apr 2017 15:43:39 +0000</pubDate>

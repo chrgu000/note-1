@@ -6,8 +6,368 @@
     <description>Recent content in Post-rsses on 零零散散</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 07 Jun 2017 09:02:42 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Jun 2017 13:03:08 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>快学Scala</title>
+      <link>/post/bigdata/scala/%E5%BF%AB%E5%AD%A6Scala/</link>
+      <pubDate>Wed, 21 Jun 2017 13:03:08 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/%E5%BF%AB%E5%AD%A6Scala/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;scala&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_类&#34;&gt;1. 类&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__strong_bean_strong_属性&#34;&gt;1.1. &lt;strong&gt;Bean&lt;/strong&gt; 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_辅助构造器&#34;&gt;1.2. 辅助构造器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_主构造器&#34;&gt;1.3. 主构造器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_带函数参数的函数&#34;&gt;2. 带函数参数的函数&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参数_类型_推导&#34;&gt;2.1. 参数(类型)推导&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_类&#34;&gt;1. 类&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__strong_bean_strong_属性&#34;&gt;1.1. &lt;strong&gt;Bean&lt;/strong&gt; 属性&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-21_130203.png&#34; alt=&#34;2017 06 21 130203&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_辅助构造器&#34;&gt;1.2. 辅助构造器&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;辅助构造器的名称为this (在Java或C、中，构造器的名称和类名相同—当
+你修改类名时就不那么方便了。)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每一个辅助构造器都必须以一个对先前已定义的其他辅助构造器或主构造器的
+调用开始&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;辅助构造器类&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Person{
+  private var name = &#34;&#34;
+  private var age = 0
+
+  def this(name:String){ // 一个辅助构造器
+    this() // 调用主构造器
+    this.name = name
+  }
+
+  def this(name:String, age: Int){ // 另一个辅助构造器
+    this(name) // 调用前一个辅助构造器
+    this.age = age
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;三种方式构建对象&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;    val p1 = new Person // 主构造器
+    val p2 = new Person(&#34;Spark&#34;) // 第一个辅助构造器
+    val p3 = new Person(&#34;Spark&#34;,42) // 第二个辅助构造器&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_主构造器&#34;&gt;1.3. 主构造器&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;主构造器的参数直接放置在类名之后&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主构造器会执行类定义中的所有语句。例如在以下类中:&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Person2(val name:String,val age:Int){
+  println(&#34;Person2&#34;) &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+  def description = name + &#34; is &#34; + age + &#34; years old &#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;println语句是主构造器的一部分。每当有对象被构造出来时，上述代码就会被执行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;针对主构造器参数生成的字段和方法&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-21_144831.png&#34; alt=&#34;2017 06 21 144831&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_带函数参数的函数&#34;&gt;2. 带函数参数的函数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在本节中，你将会看到如何实现接受另一个函数作为参数的函数。以下是一个示例&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;def valueAtOneQuarter(f: (Double) =&amp;gt; Double) = f(0.25)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;    注意。这里的参数可以是任何接受Double并返Double的函数。valueAtOneQuarter
+函数将计算那个函数在D.25位置的值。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例如
+    valueAtOneQuarter(ceil _) // 1.0
+    valueAtOneQuarter(sqrt _) // 0.5 (因为 0.5 * 0.5 = 0.25)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;valueAtOneQuarter类型是什么呢?它是一个带有单个参数的函数，因为它的类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(参数类型) &amp;#8658; 结果类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;结果类型很显然是Double,而参数类型已经在函数头部以(Double) &amp;#8658; Double给出
+了。因此，valueAtOneQuarter的类型为:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;((Double) &amp;#8658; Double) &amp;#8658; Double&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;由于valueAtOneQuarter是一个接受函数参数的函数，因此它被称做高阶函数
+高阶函数也可以产出另一个函数。以下是一个简单示例:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;def mulBy(factor: Double) = (x: Double) &amp;#8658; factor * x&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mulBy函数有一个类型为Double的参数，返回一个类型为(Double) &amp;#8658; Double 的函数&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(Double) &amp;#8658; ((Double) &amp;#8658; Double)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参数_类型_推导&#34;&gt;2.1. 参数(类型)推导&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;当你将一个匿名函数传递给另一个函数或方法时。Scala会尽可能帮助你推断出类
+型信息。举例来说，你不需要将代码写成:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;valueAtOneQuarter((x: Double) &amp;#8658; 3 * x)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;由于valueAtOneQuarter方法知道你会传入一个类型为(Double) &amp;#8658; Double的函数 你可以简单地写成:
+    valueAtOneQuarter((x) &amp;#8658; 3 * x)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;作为额外奖励，对于只有一个参数的函数，你可以略去参数外围的()
+    valueAtOneQuarter(x &amp;#8658; 3 * x)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;这样更好了。如果参数在 &amp;#8658; 右侧只出现一次，你可以用一替换掉它:
+    valueAtOneQuarter(3 * _)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;请注意这些简写方式仅在参数类型已知的情况下有效
+    val fun = 3 * _ // 错误: 无法推断出类型
+    val fun = 3 * (_: Double) // OK
+    val fun: (Double) &amp;#8658; Double = 3 * _ // OK, 因为我们给出了fun的类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;  def mulBy(factor: Double) = (x: Double) =&amp;gt; factor * x
+考虑如下调用
+  val triple = mulBy(3)
+  val half = mulBy(0.5)
+  println(triple(14) + &#34; &#34; + half(14)) // 42 7&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; *mulBy* 的首次调用将参数变量 *factor* 设为3。该变量在 *(x:Double) =&amp;gt; factor*x*  函
+数的函数体内被引用，该函数被存人 *triple* .然后参数变量 *factor* 从运行时的栈上
+被弹出。
+接下来， *mulBy* 再次被调用，这次 *factor* 被设为了0.5。该变量在 *(x:Double) =&amp;gt; factor*x* 数的函数体内被引用。该函数被存入 *half*
+每一个返回的函数都有自己的factor设置。
+这样一个函数被称做闭包(closure)闭包由代码和代码用到的任何非局部变量定义构成
+这些函数实际上是以类的对象方式实现的，该类有一个实例变量factor和一个包含了函数体的apply方法。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_131426.png&#34; alt=&#34;2017 06 22 131426&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_131515.png&#34; alt=&#34;2017 06 22 131515&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_132227.png&#34; alt=&#34;2017 06 22 132227&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_132310.png.png&#34; alt=&#34;2017 06 22 132310.png&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://twitter.github.io/scala_school/zh_cn/index.html&#34; class=&#34;bare&#34;&gt;http://twitter.github.io/scala_school/zh_cn/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>spark hive</title>
+      <link>/post/bigdata/spark/spark-hive/</link>
+      <pubDate>Sat, 17 Jun 2017 14:11:22 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-hive/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark hive&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_hive&#34;&gt;1. spark hive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_hive&#34;&gt;1. spark hive&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;$SPARK_HOME/conf/hive-site.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+    &amp;lt;property&amp;gt;
+      &amp;lt;name&amp;gt;hive.metastore.uris&amp;lt;/name&amp;gt;
+      &amp;lt;value&amp;gt;thrift://master:9083&amp;lt;/value&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;show tables&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;select count(*) from zh_track&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;SELECT COUNT(*) FROM zh_track z GROUP BY z.box_no&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;SELECT z.box_no, COUNT(*) AS num FROM zh_track z GROUP BY z.box_no ORDER BY num DESC limit 10&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_pp(id string,name string)
+clustered by (id)
+sorted by (id)
+into 4 buckets
+row format delimited fields terminated by &#39;,&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;insert into table t_pp
+select id,name from t_p distribute by (id) sort by (id);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;drop table t_pp&#34;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_pp(id string,name string)
+partitioned by (ds string)
+row format delimited fields terminated by &#39;,&#39;
+stored as textfile;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;insert into table t_pp partition(ds=&#39;2017-06-18&#39;)
+select id,name from t_p&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select * from t_partitioned where ds=&#39;2017-06-18&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val selectSql = &#34;select * from t_partitioned where ds=&#39;2017-06-18&#39;&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val t_partitioned =
+  s&#34;&#34;&#34;
+     |create table t_partitioned(id string,name string)
+     |partitioned by (ds string)
+     |row format delimited fields terminated by &#39;,&#39;
+     |stored as textfile
+   &#34;&#34;&#34;.stripMargin
+val insertSql =
+  s&#34;&#34;&#34;
+     |insert into table t_partitioned partition(ds=&#39;2017-06-18&#39;)
+     |select id,name from t_p
+   &#34;&#34;&#34;.stripMargin&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=master \
+  --hiveconf hive.metastore.uris=thrift://master:9083 \
+  --master spark://master:7077&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;beeline -u jdbc:hive2://master:10000 -n root&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INFO hive.metastore: Connected to metastore&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>elasticsearch</title>
@@ -1159,6 +1519,12 @@ ifconfig docker0 ${FLANNEL_SUBNET}&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_docker_操作命令&#34;&gt;3. Docker 操作命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_ansible&#34;&gt;4. Ansible&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;5. Q &amp;amp; A&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher&#34;&gt;5.1. Rancher&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -1593,6 +1959,59 @@ done&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;_docker_操作命令&#34;&gt;3. Docker 操作命令&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;asciinema-player src=&#34;/src/records/docker.json&#34; cols=&#34;95&#34; rows=&#34;22&#34; speed=&#34;2&#34; size=&#34;big&#34; theme=&#34;monokai&#34;&gt;&lt;/asciinema-player&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_ansible&#34;&gt;4. Ansible&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置免登录&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#生成 ssh 密钥
+ssh-keygen
+#拷贝公钥到目标主机
+ssh-copy-id 196.168.1.34&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行命令&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ansible-playbook -i hosts rancher.yml&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_q_a&#34;&gt;5. Q &amp;amp; A&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_rancher&#34;&gt;5.1. Rancher&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;WARNING: IPv4 forwarding is disabled. Networking will not work.&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 临时设置端口转发(重启失效)
+sysctl net.ipv4.ip_forward=1
+# 重启后生效
+vi /usr/lib/sysctl.d/50-default.conf
+
+net.ipv4.ip_forward = 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -7516,595 +7935,6 @@ object Worker {
     actorSystem.actorOf(Props[Worker], &#34;Worker&#34;)
   }
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Scala高级特性</title>
-      <link>/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</link>
-      <pubDate>Fri, 07 Apr 2017 14:47:38 +0000</pubDate>
-      
-      <guid>/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Scala高级特性&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_高阶函数&#34;&gt;1. 高阶函数&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_概念&#34;&gt;1.1. 概念&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_作为值的函数&#34;&gt;1.2. 作为值的函数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_匿名函数&#34;&gt;1.3. 匿名函数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_将方法转换成函数&#34;&gt;1.4. 将方法转换成函数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_柯里化&#34;&gt;1.5. 柯里化&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_例子&#34;&gt;1.6. 例子&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_隐式转换和隐式参数&#34;&gt;2. 隐式转换和隐式参数&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_概念_2&#34;&gt;2.1. 概念&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_作用&#34;&gt;2.2. 作用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_隐式转换函数&#34;&gt;2.3. 隐式转换函数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_隐式转换例子&#34;&gt;2.4. 隐式转换例子&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_隐式转换变量值&#34;&gt;2.4.1. 隐式转换变量值&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_隐式转换方法&#34;&gt;2.4.2. 隐式转换方法&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_高阶函数&#34;&gt;1. 高阶函数&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_概念&#34;&gt;1.1. 概念&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_作为值的函数&#34;&gt;1.2. 作为值的函数&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-07_145546.png&#34; alt=&#34;2017 04 07 145546&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;定义函数时格式：val 变量名 =(输入参数类型和个数)&amp;#8658;函数实现和返回值类型和个数
-“=”表示将函数赋给一个变量
-“&amp;#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_匿名函数&#34;&gt;1.3. 匿名函数&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-07_145555.png&#34; alt=&#34;2017 04 07 145555&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-07_145603.png&#34; alt=&#34;2017 04 07 145603&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;还记得神奇的下划线吗？这才是终极方式&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-07_145612.png&#34; alt=&#34;2017 04 07 145612&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_将方法转换成函数&#34;&gt;1.4. 将方法转换成函数&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;在Scala中，方法和函数是不一样的，最本质的区别是函数可以做为参数传递到方法中
-但是方法可以被转换成函数，神奇的下划线又出场了&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-07_145620.png&#34; alt=&#34;2017 04 07 145620&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_柯里化&#34;&gt;1.5. 柯里化&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;柯里化指的是将原来接受两个参数的方法变成新的接受一个参数的方法的过程&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-07_145627.png&#34; alt=&#34;2017 04 07 145627&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_例子&#34;&gt;1.6. 例子&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object FunDemo {
-  def main(args: Array[String]) {
-    def f2(x: Int) = x * 2
-    val f3 = (x: Int) =&amp;gt; x * 3
-    val f4: (Int) =&amp;gt; Int = { x =&amp;gt; x * 4 }
-    val f4a: (Int) =&amp;gt; Int = _ * 4
-    val f5 = (_: Int) * 5
-    val list = List(1, 2, 3, 4, 5)
-    var new_list: List[Int] = null
-    //第一种：最直观的方式 (Int) =&amp;gt; Int
-    //new_list = list.map((x: Int) =&amp;gt; x * 3)
-
-    //第二种：由于map方法知道你会传入一个类型为(Int) =&amp;gt; Int的函数，你可以简写
-    //new_list = list.map((x) =&amp;gt; x * 3)
-
-    //第三种：对于只有一个参数的函数，你可以省去参数外围的()
-    //new_list = list.map(x =&amp;gt; x * 3)
-
-    //第四种：(终极方式)如果参数在=&amp;gt;右侧只出现一次，可以使用_
-    new_list = list.map(_ * 3)
-
-    new_list.foreach(println(_))
-
-    var a = Array(1,2,3)
-    a.map(_* 3)
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_隐式转换和隐式参数&#34;&gt;2. 隐式转换和隐式参数&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_概念_2&#34;&gt;2.1. 概念&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;隐式转换和隐式参数是Scala中两个非常强大的功能，利用隐式转换和隐式参数，你可以提供优雅的类库，对类库的使用者隐匿掉那些枯燥乏味的细节。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_作用&#34;&gt;2.2. 作用&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;隐式的对类的方法进行增强，丰富现有类库的功能&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_隐式转换函数&#34;&gt;2.3. 隐式转换函数&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;是指那种以implicit关键字声明的带有单个参数的函数&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_隐式转换例子&#34;&gt;2.4. 隐式转换例子&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;//隐式的增强File类的方法
-class RichFile(val from: File) {
-  def read = Source.fromFile(from.getPath).mkString
-}
-
-object RichFile {
-  //隐式转换方法
-  implicit def file2RichFile(from: File) = new RichFile(from)
-
-}
-
-object MainApp{
-  def main(args: Array[String]): Unit = {
-    //导入隐式转换
-    import RichFile._
-    //import RichFile.file2RichFile
-    println(new File(&#34;c://words.txt&#34;).read)
-
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;import java.awt.GridLayout
-
-object ImplicitContext {
-
-  //implicit def girl2Ordered(g : Girl) = new Ordered[Girl]{
-  //  override def compare(that: Girl): Int = if (g.faceValue &amp;gt; that.faceValue) 1 else -1
-  //}
-
-  implicit object OrderingGirl extends Ordering[Girl] {
-    override def compare(x: Girl, y: Girl): Int = if (x.faceValue &amp;gt; y.faceValue) 1 else -1
-  }
-
-}
-
-class Girl(var name: String, var faceValue: Double) {
-  override def toString: String = s&#34;name : $name, faveValue : $faceValue&#34;
-}
-
-//class MissRight[T &amp;lt;% Ordered[T]](f: T, s: T){
-//  def choose() = if(f &amp;gt; s) f else s
-//}
-//class MissRight[T](f: T, s: T){
-//  def choose()(implicit ord: T =&amp;gt; Ordered[T]) = if (f &amp;gt; s) f else s
-//}
-
-class MissRight[T: Ordering](val f: T, val s: T) {
-  def choose()(implicit ord: Ordering[T]) = if (ord.gt(f, s)) f else s
-}
-
-object MissRight {
-  def main(args: Array[String]) {
-    import ImplicitContext.OrderingGirl
-    val g1 = new Girl(&#34;yuihatano&#34;, 99)
-    val g2 = new Girl(&#34;jzmb&#34;, 98)
-    val mr = new MissRight(g1, g2)
-    val result = mr.choose()
-    println(result)
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_隐式转换变量值&#34;&gt;2.4.1. 隐式转换变量值&lt;/h4&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/svg/scala-implic.svg&#34; alt=&#34;scala implic&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_隐式转换方法&#34;&gt;2.4.2. 隐式转换方法&lt;/h4&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/svg/scala-implic2.svg&#34; alt=&#34;scala implic2&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Scala Actor编程</title>
-      <link>/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Wed, 05 Apr 2017 09:47:03 +0000</pubDate>
-      
-      <guid>/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Scala Actor编程&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_scala_actor编程&#34;&gt;1. Scala Actor编程&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_什么是scala_actor&#34;&gt;1.1. 什么是Scala Actor&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_概念&#34;&gt;1.1.1. 概念&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_传统java并发编程与scala_actor编程的区别&#34;&gt;1.1.2. 传统java并发编程与Scala Actor编程的区别&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_actor方法执行顺序&#34;&gt;1.1.3. Actor方法执行顺序&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_发送消息的方式&#34;&gt;1.1.4. 发送消息的方式&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_actor实战&#34;&gt;1.2. Actor实战&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_第一个例子&#34;&gt;1.2.1. 第一个例子&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_第二个例子_可以不断地接收消息&#34;&gt;1.2.2. 第二个例子（可以不断地接收消息）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_第三个例子_react方式会复用线程_比receive更高效&#34;&gt;1.2.3. 第三个例子（react方式会复用线程，比receive更高效）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_第四个例子_结合case_class发送消息&#34;&gt;1.2.4. 第四个例子（结合case class发送消息）&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_练习&#34;&gt;1.3. 练习&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_scala_actor编程&#34;&gt;1. Scala Actor编程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_什么是scala_actor&#34;&gt;1.1. 什么是Scala Actor&lt;/h3&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_概念&#34;&gt;1.1.1. 概念&lt;/h4&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Scala中的Actor能够实现并行编程的强大功能，它是基于事件模型的并发机制，Scala是运用消息（message）的发送、接收来实现多线程的。使用Scala能够更容易地实现多线程应用的开发。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_传统java并发编程与scala_actor编程的区别&#34;&gt;1.1.2. 传统java并发编程与Scala Actor编程的区别&lt;/h4&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/scala/2017-04-05_095545.png&#34; alt=&#34;2017 04 05 095545&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;对于Java，我们都知道它的多线程实现需要对共享资源（变量、对象等）使用synchronized 关键字进行代码块同步、对象锁互斥等等。而且，常常一大块的try…catch语句块中加上wait方法、notify方法、notifyAll方法是让人很头疼的。原因就在于Java中多数使用的是可变状态的对象资源，对这些资源进行共享来实现多线程编程的话，控制好资源竞争与防止对象状态被意外修改是非常重要的，而对象状态的不变性也是较难以保证的。 而在Scala中，我们可以通过复制不可变状态的资源（即对象，Scala中一切都是对象，连函数、方法也是）的一个副本，再基于Actor的消息发送、接收机制进行并行编程&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_actor方法执行顺序&#34;&gt;1.1.3. Actor方法执行顺序&lt;/h4&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;首先调用start()方法启动Actor&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;调用start()方法后其act()方法会被执行&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;向Actor发送消息&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_发送消息的方式&#34;&gt;1.1.4. 发送消息的方式&lt;/h4&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;!
-发送异步消息，没有返回值。
-!?
-发送同步消息，等待返回值。
-!!
-发送异步消息，返回值是 Future[Any]。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_actor实战&#34;&gt;1.2. Actor实战&lt;/h3&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第一个例子&#34;&gt;1.2.1. 第一个例子&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor1 extends Actor{
-  //重新act方法
-  def act(){
-    for(i &amp;lt;- 1 to 10){
-      println(&#34;actor-1 &#34;+ i)
-      Thread.sleep(2000)
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor2 extends Actor{
-  //重新act方法
-  def act(){
-    for(i &amp;lt;- 1 to 10){
-      println(&#34;actor-2 &#34;+ i)
-      Thread.sleep(2000)
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object ActorTest extends App{
-  //启动Actor
-  MyActor1.start()
-  MyActor2.start()
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说明：上面分别调用了两个单例对象的start()方法，他们的act()方法会被执行，相同与在java中开启了两个线程，线程的run()方法会被执行
-注意：这两个Actor是并行执行的，act()方法中的for循环执行完成后actor程序就退出了&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第二个例子_可以不断地接收消息&#34;&gt;1.2.2. 第二个例子（可以不断地接收消息）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class MyActor extends Actor {
-
-  override def act(): Unit = {
-    while (true) {
-      receive {
-        case &#34;start&#34;=&amp;gt; {
-          println(&#34;starting ...&#34;)
-          Thread.sleep(5000)
-          println(&#34;started&#34;)
-        }
-        case &#34;stop&#34;=&amp;gt; {
-          println(&#34;stopping ...&#34;)
-          Thread.sleep(5000)
-          println(&#34;stopped ...&#34;)
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object MyActor {
-  def main(args: Array[String]) {
-    val actor = new MyActor
-    actor.start()
-    actor ! &#34;start&#34;
-    actor ! &#34;stop&#34;
-    println(&#34;消息发送完成！&#34;)
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说明：在act()方法中加入了while (true) 循环，就可以不停的接收消息
-注意：发送start消息和stop的消息是异步的，但是Actor接收到消息执行的过程是同步的按顺序执行&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第三个例子_react方式会复用线程_比receive更高效&#34;&gt;1.2.3. 第三个例子（react方式会复用线程，比receive更高效）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class YourActor extends Actor {
-
-  override def act(): Unit = {
-    loop {
-      react {
-        case &#34;start&#34;=&amp;gt; {
-          println(&#34;starting ...&#34;)
-          Thread.sleep(5000)
-          println(&#34;started&#34;)
-        }
-        case &#34;stop&#34;=&amp;gt; {
-          println(&#34;stopping ...&#34;)
-          Thread.sleep(8000)
-          println(&#34;stopped ...&#34;)
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object YourActor {
-  def main(args: Array[String]) {
-    val actor = new YourActor
-    actor.start()
-    actor ! &#34;start&#34;
-    actor ! &#34;stop&#34;
-    println(&#34;消息发送完成！&#34;)
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;说明：?react 如果要反复执行消息处理，react外层要用loop，不能用while&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_第四个例子_结合case_class发送消息&#34;&gt;1.2.4. 第四个例子（结合case class发送消息）&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class AppleActor extends Actor {
-
-  def act(): Unit = {
-    while (true) {
-      receive {
-        case &#34;start&#34;=&amp;gt;println(&#34;starting ...&#34;)
-        case SyncMsg(id, msg) =&amp;gt; {
-          println(id + &#34;,sync &#34;+ msg)
-          Thread.sleep(5000)
-          sender ! ReplyMsg(3,&#34;finished&#34;)
-        }
-        case AsyncMsg(id, msg) =&amp;gt; {
-          println(id + &#34;,async &#34;+ msg)
-          Thread.sleep(5000)
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object AppleActor {
-  def main(args: Array[String]) {
-    val a = new AppleActor
-    a.start()
-    //异步消息
-    a ! AsyncMsg(1, &#34;hello actor&#34;)
-    println(&#34;异步消息发送完成&#34;)
-    //同步消息
-    //val content = a.!?(1000, SyncMsg(2, &#34;hello actor&#34;))
-    //println(content)
-    val reply = a !! SyncMsg(2, &#34;hello actor&#34;)
-    println(reply.isSet)
-    //println(&#34;123&#34;)
-    val c = reply.apply()
-    println(reply.isSet)
-    println(c)
-  }
-}
-case class SyncMsg(id : Int, msg: String)
-case class AsyncMsg(id : Int, msg: String)
-case class ReplyMsg(id : Int, msg: String)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_练习&#34;&gt;1.3. 练习&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;用actor并发编程写一个单机版的WorldCount，将多个文件作为输入，计算完成后将多个任务汇总，得到最终的结果&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Task extends Actor {
-
-  override def act(): Unit = {
-    loop {
-      react {
-        case SubmitTask(fileName) =&amp;gt; {
-          val contents = Source.fromFile(new File(fileName)).mkString
-          val arr = contents.split(&#34;\r\n&#34;)
-          val result = arr.flatMap(_.split(&#34;&#34;)).map((_, 1)).groupBy(_._1).mapValues(_.length)
-          //val result = arr.flatMap(_.split(&#34;&#34;)).map((_, 1)).groupBy(_._1).mapValues(_.foldLeft(0)(_ + _._2))
-          sender ! ResultTask(result)
-        }
-        case StopTask =&amp;gt; {
-          exit()
-        }
-      }
-    }
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;object WorkCount {
-  def main(args: Array[String]) {
-    val files = Array(&#34;c://words.txt&#34;, &#34;c://words.log&#34;)
-
-    val replaySet = new mutable.HashSet[Future[Any]]
-    val resultList = new mutable.ListBuffer[ResultTask]
-
-    for(f &amp;lt;- files) {
-      val t = new Task
-      val replay = t.start() !! SubmitTask(f)
-      replaySet += replay
-    }
-
-    while(replaySet.size &amp;gt;0){
-      val toCumpute = replaySet.filter(_.isSet)
-      for(r &amp;lt;- toCumpute){
-        val result = r.apply()
-        resultList += result.asInstanceOf[ResultTask]
-        replaySet.remove(r)
-      }
-      Thread.sleep(100)
-    }
-    val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&amp;gt; x.foldLeft(0)(_ + _._2))
-    println(finalResult)
-  }
-}
-
-case class SubmitTask(fileName: String)
-case object StopTask
-case class ResultTask(result: Map[String, Int])&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

@@ -669,6 +669,48 @@ title = &#34;tmp&#34;&lt;/p&gt;
 &lt;p&gt;+&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -i -X POST \
+  --url &lt;a href=&#34;http://196.168.1.31:8001/apis/&#34; class=&#34;bare&#34;&gt;http://196.168.1.31:8001/apis/&lt;/a&gt; \
+  --data &#39;name=koto-api&#39; \
+  --data &#39;hosts=koto.com&#39; \
+  --data &#39;upstream_url=http://koto&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -i -X GET \
+  --url &lt;a href=&#34;http://196.168.1.31:8000/&#34; class=&#34;bare&#34;&gt;http://196.168.1.31:8000/&lt;/a&gt; \
+  --header &#39;Host: koto.com&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table if not exists student(
+ id INT,
+ age INT,
+ name STRING
+) partitioned by(stat_date STRING)
+clustered by(id) sorted by(age) into 2 buckets
+row format delimited fields terminated by &#39;,&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;properties&amp;gt;
+    &amp;lt;sbt.project.name&amp;gt;examples&amp;lt;/sbt.project.name&amp;gt;
+    &amp;lt;scala.binary.version&amp;gt;2.10.6&amp;lt;/scala.binary.version&amp;gt;
+    &amp;lt;project.version&amp;gt;1.6.1&amp;lt;/project.version&amp;gt;
+&amp;lt;/properties&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;/svn.exe co &lt;a href=&#34;https://github.com/dishuiGit/codes.git/trunk/Spring-test&#34; class=&#34;bare&#34;&gt;https://github.com/dishuiGit/codes.git/trunk/Spring-test&lt;/a&gt; /d/IdeaProject/spark-examples-1.6.1&lt;/div&gt;
+&lt;p&gt;svn.exe co &lt;a href=&#34;https://github.com/apache/spark.git/trunk/examples&#34; class=&#34;bare&#34;&gt;https://github.com/apache/spark.git/trunk/examples&lt;/a&gt; /d/IdeaProject/spark-examples-1.6.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;svn.exe co &lt;a href=&#34;https://github.com/apache/spark.git/branches/branch-1.6/examples&#34; class=&#34;bare&#34;&gt;https://github.com/apache/spark.git/branches/branch-1.6/examples&lt;/a&gt; /d/IdeaProject/bigdata/spark-examples-1.6&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/e/Program\ Files/TortoiseSVN/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;tcpdump -i eno1 -nn &#39;host 196.168.1.31&#39;
+tcpdump -i eno1 -nn &#39;src 196.168.1.31&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;sqoop import \
   --driver com.mysql.jdbc.Driver \
   --connect jdbc:mysql://196.168.1.66:3306/wuliu \

@@ -9,9 +9,9 @@
 <meta property="og:title" content="" />
 <meta property="og:description" content="description = &#34;&#34;date = &#34;2017-05-05T15:39:55&#34;categories = []tags = [&#34;tmp&#34;]thumbnail = &#34;&#34;title = &#34;tmp&#34;
 &#43;
-sqoop import \--driver com.mysql.jdbc.Driver \--connect jdbc:mysql://196.168.1.66:3306/wuliu \--username root \--password 111111 \--table zh_track_201702 \--hive-import \--hive-table zh_track_201703 \--m 4
-export HADOOP_COMMON_HOME=/usr/local/hadoopexport HADOOP_MAPRED_HOME=/usr/local/hadoopexport HIVE_HOME=/usr/local/apache-hive-2.1.1-bin
-/usr/local/spark-1.5.3/bin/spark-submit --properties-file /tmp/spark-submit.2641174306145842738.properties --class org.apache.hive.spark.client.RemoteDriver /usr/local/apache-hive-1.2.1-bin/lib/hive-exec-2.1.1.jar --remote-host master --remote-port 33195 --conf hive.spark.client.connect.timeout=1000 --conf hive." />
+curl -i -X POST \--url http://196.168.1.31:8001/apis/ \--data &#39;name=koto-api&#39; \--data &#39;hosts=koto.com&#39; \--data &#39;upstream_url=http://koto&#39;
+curl -i -X GET \--url http://196.168.1.31:8000/ \--header &#39;Host: koto.com&#39;
+create table if not exists student(id INT,age INT,name STRING) partitioned by(stat_date STRING)clustered by(id) sorted by(age) into 2 bucketsrow format delimited fields terminated by &#39;,&#39;;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/tmp/tmp2017-01-08/" />
 
@@ -109,6 +109,48 @@ title = "tmp"</p>
 </div>
 <div class="paragraph">
 <p>+</p>
+</div>
+<div class="paragraph">
+<p>curl -i -X POST \
+  --url <a href="http://196.168.1.31:8001/apis/" class="bare">http://196.168.1.31:8001/apis/</a> \
+  --data 'name=koto-api' \
+  --data 'hosts=koto.com' \
+  --data 'upstream_url=http://koto'</p>
+</div>
+<div class="paragraph">
+<p>curl -i -X GET \
+  --url <a href="http://196.168.1.31:8000/" class="bare">http://196.168.1.31:8000/</a> \
+  --header 'Host: koto.com'</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists student(
+ id INT,
+ age INT,
+ name STRING
+) partitioned by(stat_date STRING)
+clustered by(id) sorted by(age) into 2 buckets
+row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>&lt;properties&gt;
+    &lt;sbt.project.name&gt;examples&lt;/sbt.project.name&gt;
+    &lt;scala.binary.version&gt;2.10.6&lt;/scala.binary.version&gt;
+    &lt;project.version&gt;1.6.1&lt;/project.version&gt;
+&lt;/properties&gt;</p>
+</div>
+<div class="paragraph">
+<div class="title">/svn.exe co <a href="https://github.com/dishuiGit/codes.git/trunk/Spring-test" class="bare">https://github.com/dishuiGit/codes.git/trunk/Spring-test</a> /d/IdeaProject/spark-examples-1.6.1</div>
+<p>svn.exe co <a href="https://github.com/apache/spark.git/trunk/examples" class="bare">https://github.com/apache/spark.git/trunk/examples</a> /d/IdeaProject/spark-examples-1.6.1</p>
+</div>
+<div class="paragraph">
+<p>svn.exe co <a href="https://github.com/apache/spark.git/branches/branch-1.6/examples" class="bare">https://github.com/apache/spark.git/branches/branch-1.6/examples</a> /d/IdeaProject/bigdata/spark-examples-1.6</p>
+</div>
+<div class="paragraph">
+<p>/e/Program\ Files/TortoiseSVN/</p>
+</div>
+<div class="paragraph">
+<p>tcpdump -i eno1 -nn 'host 196.168.1.31'
+tcpdump -i eno1 -nn 'src 196.168.1.31'</p>
 </div>
 <div class="paragraph">
 <p>sqoop import \

@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="CentOS7" />
-<meta property="og:description" content="CentOS71. CentOS71.1. 挂载 linux 目录2. CentOS7使用firewalld打开关闭防火墙与端口1. CentOS71.1. 挂载 linux 目录安装 cifs-utils
+<meta property="og:description" content="CentOS71. CentOS71.1. 挂载 linux 目录2. CentOS7使用firewalld打开关闭防火墙与端口2.1. 内网访问外网1. CentOS71.1. 挂载 linux 目录安装 cifs-utils
 yum install -y cifs-utils挂载
 mount -t cifs --verbose -o user=dishui,pass=dishui //192.168.123.199/dishui /root/dishui/mount/2. CentOS7使用firewalld打开关闭防火墙与端口firewalld的基本使用
 #启动：systemctl start firewalld#查看状态：systemctl status firewalld#停止：systemctl disable firewalld#禁用：systemctl stop firewalldsystemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。" />
@@ -106,7 +106,11 @@ mount -t cifs --verbose -o user=dishui,pass=dishui //192.168.123.199/dishui /roo
 <li><a href="#_挂载_linux_目录">1.1. 挂载 linux 目录</a></li>
 </ul>
 </li>
-<li><a href="#_centos7使用firewalld打开关闭防火墙与端口">2. CentOS7使用firewalld打开关闭防火墙与端口</a></li>
+<li><a href="#_centos7使用firewalld打开关闭防火墙与端口">2. CentOS7使用firewalld打开关闭防火墙与端口</a>
+<ul class="sectlevel2">
+<li><a href="#_内网访问外网">2.1. 内网访问外网</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -220,6 +224,12 @@ firewall-cmd --zone= public --remove-port=80/tcp --permanent</code></pre>
 </div>
 </li>
 </ol>
+</div>
+<div class="sect2">
+<h3 id="_内网访问外网">2.1. 内网访问外网</h3>
+<div class="paragraph">
+<p><a href="http://blog.chinaunix.net/uid-30185720-id-4928427.html" class="bare">http://blog.chinaunix.net/uid-30185720-id-4928427.html</a></p>
+</div>
 </div>
 </div>
 </div>

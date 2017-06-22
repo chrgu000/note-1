@@ -89,6 +89,52 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/ssh/" rel="bookmark">ssh</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 安装2. 25个必须记住的SSH命令3. ssh-copy-id1. 安装CentOS7 64 系统
+yum install openssh-server -y启动 ssh
+# /usr/sbin/sshdCould not load host key: /etc/ssh/ssh_host_rsa_keyCould not load host key: /etc/ssh/ssh_host_ecdsa_keyCould not load host key: /etc/ssh/ssh_host_ed25519_key解决办法
+ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key # 重新建立 ssh_host_dsa_key 文件ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key # 重新建立 ssh_host_rsa_key 文件2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/editor/snippets/" rel="bookmark">sublime tabTrigger</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. quml2. qdot3. bash4. bash session5. table6. asciinema7. a8. javasAsciidoctor1. stem2. quote3. img4. src5. c6. c11. quml&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml$1@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;&lt;/snippet&gt;
+2. qdot&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml@startdot$1@enddot@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;qdot&lt;/tabTrigger&gt;&lt;/snippet&gt;
+3. bash&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[
+$1]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;bash&lt;/tabTrigger&gt;&lt;/snippet&gt;
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/editor/sublime/" rel="bookmark">sublime 配置</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -146,7 +192,7 @@ Preferences-&#8594;Key Bindings-User`
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并1. svn`svn`安装
+						Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并7. Svn 检出 github 目录1. svn`svn`安装
 yum -y install subversionyum -y install mod_dav_svn创建`SVN`根目录
 mkdir -p $HOME/svn/创建repo1库
 svnadmin create $HOME/svn/repo12. `SVN`配置用户密码`passwd`配置
@@ -270,57 +316,13 @@ Preferences-&#8594;Key Bindings-User`
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/vim/" rel="bookmark">vim编辑器</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents vim编辑器 ####vim模式：
-编辑模式(命令模式) 输入模式 末行模式  模式转换： 编辑--&gt;输入： i: 在当前光标所在字符的前面，转为输入模式； a: 在当前光标所在字符的后面，转为输入模式； o: 在当前光标所在行的下方，新建一行，并转为输入模式； -- I：在当前光标所在行的行首，转换为输入模式 A：在当前光标所在行的行尾，转换为输入模式 O：在当前光标所在行的上方，新建一行，并转为输入模式； 输入--&gt;编辑： ESC 编辑--&gt;末行： ： 末行--&gt;编辑： ESC, ESC  一、打开文件  vim /path/to/somefile
- vim +# :打开文件，并定位于第#行 vim +：打开文件，定位至最后一行 vim +/PATTERN : 打开文件，定位至第一次被PATTERN匹配到的行的行首 默认处于编辑模式  二、关闭文件 1、末行模式关闭文件 :q 退出 :wq 保存并退出 :q! 不保存并退出 :w 保存 :w! 强行保存 :wq --&gt; :x 2、编辑模式下退出 ZZ: 保存并退出  三、移动光标(编辑模式)  1、逐字符移动：
-    h: 左 l: 右 j: 下 k: 上 #h: 移动#个字符；    2、以单词为单位移动
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/virtualbox/" rel="bookmark">virtualbox错误</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 include::content/post/base.adoc[] :toc-title: Contents VirtualBox Tip VBox中出现UUID have already exists解决方法  进入到VBoxManage.exe所在目录
-# 参数:虚拟vdi硬盘路径 VBoxManage.exe internalcommands sethduuid G:\VirtualMachine\CentOS-WEB\CentOS-WEB-01.vdi   通信问题  host-only模式下  主机ping通虚拟机 √ 虚拟机ping主机 ✘  关闭win10防火墙    修改硬盘大小 #7d91f211-d3e4-4185-bd9a-314c9b39856d #修改成40G VBoxManage modifyhd uuid –-resize 40960  
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/page/14/">«</a>
 	
-	<span class="page-numbers current">15/22</span>
+	<span class="page-numbers current">15/26</span>
 	
 	<a class="page-numbers" href="/page/16/">»</a>
 	

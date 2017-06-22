@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="svn 安装与配置" />
-<meta property="og:description" content="Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并1. svn`svn`安装
+<meta property="og:description" content="Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并7. Svn 检出 github 目录1. svn`svn`安装
 yum -y install subversionyum -y install mod_dav_svn创建`SVN`根目录
 mkdir -p $HOME/svn/创建repo1库
 svnadmin create $HOME/svn/repo12. `SVN`配置用户密码`passwd`配置
@@ -108,6 +108,7 @@
 <li><a href="#_项目自动发布">4. 项目自动发布</a></li>
 <li><a href="#__code_svn_code_命令">5. <code>Svn</code> 命令</a></li>
 <li><a href="#_测试分支和主分支合并">6. 测试分支和主分支合并</a></li>
+<li><a href="#_svn_检出_github_目录">7. Svn 检出 github 目录</a></li>
 </ul>
 </div>
 <div class="sect2">
@@ -372,6 +373,38 @@ svn diff --summarize -r $FROM:$END | awk '{if($1 != "D"){print $2}}' | awk -F '.
 
 cd $STABLE &amp;&amp; \
 cat update.txt | awk '{gsub("\\\\","/");print $0}' | xargs -I tmp sh merge.sh tmp $2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_svn_检出_github_目录">7. Svn 检出 github 目录</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>先用命令看看github的分支</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>svn ls https://github.com/apache/spark.git
+
+branches/
+tags/
+trunk/
+
+svn ls https://github.com/apache/spark.git/branches</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>检出指定分支下的文件夹到目录</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 检出spark1.6分支下的examples目录
+svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/spark-examples-1.6</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

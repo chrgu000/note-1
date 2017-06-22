@@ -93,6 +93,48 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/asciinema/" rel="bookmark">Asciinema</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 配置 asciidoctor 解析 Asciinema1.1. 测试2. Tmp1. 配置 asciidoctor 解析 Asciinema添加 GistBlockMacro 到 asciidoctor-1.5.5\lib 下
+替换 asciidoctor-1.5.5\bin 目录下的 asciidoctor
+#!/usr/bin/env rubyrequire 'rubygems' unless defined? Gemif File.exist?(asciidoctor = (File.expand_path '../../lib/asciidoctor', __FILE__))require asciidoctorelserequire 'asciidoctor'end# 解析require 'asciidoctor-diagram'require 'asciidoctor/extensions'require 'asciidoctor/GistBlockMacro'Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? 'html'end#require 'asciidoctor/cli'invoker = Asciidoctor::Cli::Invoker.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/btrace/" rel="bookmark">Btrace</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Btrace1.1. windows git btrace 环境1.1.1. 配置2. 参考3. Q &amp; A1. Btrace1.1. windows git btrace 环境1.1.1. 配置添加环境变量 $ vi /etc/profile.d/btrace.sh# btraceexport JAVA_HOME=/d/env/jdk/jdk1.7.0_71export BTRACE_HOME=/e/data/btrace-bin-1.3.8.1export PATH="$BTRACE_HOME/bin:$JAVA_HOME/jre/bin$PATH"# vagrantexport COREOS=/e/vagrant/CoreOS测试代码 $ btrace `jps | awk '{if($2=="AppMain"){print $1}}'` BTraceFiled.java (1) (2)1btrace &lt;PID&gt; 测试类2jps 查看 pid2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/ji_chu_she_zhi/" rel="bookmark">CentOS基础设置</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -272,59 +314,13 @@ YouMeek
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/js/js-html/" rel="bookmark">JS 面向对象</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. base1.1. JS 面向对象1.2. 弹框页面1. base1.1. JS 面向对象js
-$(function(){function T(){//this.a = 'a';_this = this;//初始化this.init();};T.prototype = {init: function(){$('*[data-jump]').each(function(){$(this).bind('click',{flag:$(this)},_this.jump);});$('*[data-modify]').each(function(){$(this).bind('click',{flag:$(this)},_this.modify);});},save: function(event){var data = event.data.flag;console.log(data.html());},modify: function(event){var data = event.data.flag;var id = data.attr('data-id');var flag = data.attr('data-modify');switch(flag){case 'edit':window.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jackson/" rel="bookmark">Jackson</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Jackson1.1. 参考1. Jackson注解
-说明
-java@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")private Date inDate;
-输出日期格式
-1.1. 参考[[Jackson-Annotations | https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/post/page/7/">«</a>
 	
-	<span class="page-numbers current">8/22</span>
+	<span class="page-numbers current">8/26</span>
 	
 	<a class="page-numbers" href="/post/page/9/">»</a>
 	

@@ -89,6 +89,51 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/es/escha_jian_an_zhuang/" rel="bookmark">es 插件安装</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 include::content/post/base.adoc[] :toc-title: Contents ES插件 插件列表  inquisitor 分词 paramedic bigdesk kopf segmentspy marvel  ps: ES-Path /root/opt/elasticsearch-1.7.1
+安装head   bash bin/plugin install head   安装Marvel   bash bin/plugin install elasticsearch/marvel/latest   ES错误 启动Marve错误 marvel.agent.exporter: error connecting to [[0:0:0:0:0:0:0:0]:9200] [No route to host]   解决方法:
+#vim elasticsearch.yml #添加 network.host: 192.168.137.107 # http端口 http.port: 9200 http.host: &quot;192.168.137.107&quot;   找不到mysql驱动  驱动包不兼容  更换驱动包  驱动包路径错误  放置在$JAVA_HOME/jre/lib/ext/下   
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/es/es-issues/" rel="bookmark">es 问题</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						ES-issues Doc更新出错  error json { &quot;error&quot;: &quot;ElasticsearchIllegalArgumentException[failed to execute script]; nested: ScriptException[scripts of type [inline], operation [update] and lang [groovy] are disabled]; &quot;, &quot;status&quot;: 400 }  fix bash #vim ${ES_HOME}/config/elasticsearch.yml #添加 script.disable_dynamic: false   jdbc-importer错误  ERROR  java.sql.SQLException: No suitable driver found for jdbc:mysql://192.168.137.1:3306/mailiqing  Fix
+将mysql-connector-java-5.1.33.jar放到$JAVA_HOME/jre/lib/ext路径下
+asdf
+  asdfsd
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/work/esb/" rel="bookmark">esb</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -280,60 +325,13 @@ ServerName 210.14.137.119 &lt;VirtualHost *:7080&gt; ServerName 210.14.137.119 D
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/java-class/" rel="bookmark">java class</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. BaseDao.java1. BaseDao.java== BaseDaoImpl.java```java:/src/java/BaseDaoImpl.java```== BaseService.java```java:/src/java/BaseService.java```
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/framework/" rel="bookmark">java 框架</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Restful1.1. Jersey1.2. RestEasy1.3. Jackson-doc1.4. 图片服务1.5. BeanMapper2. Httpcomponents2.1. 参考1. Restful1.1. Jersey[[Jersey|https://jersey.java.net/]]
-[[Jersey Demo|https://github.com/waylau/RestDemo]]
-1.2. RestEasy[[Jboss|resteasyhttp://resteasy.jboss.org/docs.html]]
-1.3. Jackson-doc[[https://github.com/FasterXML/jackson-docs]]
-[[http://www.studytrails.com/java/json/java-jackson-introduction.jsp]]
-[[Jesery|/jesery]]
-1.4. 图片服务[[zimg | http://zimg.buaa.us/]]
-[[tfs | http://code.taobao.org/p/tfs/src/]]
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/page/11/">«</a>
 	
-	<span class="page-numbers current">12/22</span>
+	<span class="page-numbers current">12/26</span>
 	
 	<a class="page-numbers" href="/page/13/">»</a>
 	
