@@ -1,424 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>工作笔记</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="工作笔记" />
-<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://dishui.oschina.io/note-hugo/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/atom-one-dark.css">
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="http://dishui.oschina.io/note-hugo/css/jquery.tocify.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="http://dishui.oschina.io/note-hugo/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="http://dishui.oschina.io/note-hugo/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-<script data-main="http://dishui.oschina.io/note-hugo/js/app.js" src="http://dishui.oschina.io/note-hugo/js/require.js"></script>
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="http://dishui.oschina.io/note-hugo/" title="工作笔记" rel="home">
-										<h1 class="mr-header-title">工作笔记</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-		
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-	<div id="main-content" class="mr-loop mr-content" role="main">
-		
-		
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/mysqlcuo_wu/" rel="bookmark">Mysql错误</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 Mysql错误 MySQL Daemon failed to start.  bash #查看mysql日志 less /var/log/mysqld.log  unknown variable 'default-character-set=utf8'  用character_set_server=utf8来取代 default-character-set=utf8   Cannot load from mysql.proc. The table is probably corrupted # use mysql; # ALTER TABLE `proc` MODIFY COLUMN `comment` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL AFTER `sql_mode`;  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/nfsjian_1/" rel="bookmark">NFS配置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents
-NFS配置 ####一、 系统环境
-系统平台：CentOS 6.5 NFS Server IP：192.168.137.101 防火墙已关闭/iptables: Firewall is not running.  ####二、 安装NFS服务
- 查看系统是否已安装NFS(系统默认安装)  bash [root@c1 tmp]# rpm -qa|grep nfs nfs-utils-lib-1.1.5-6.el6.i686 nfs4-acl-tools-0.3.3-6.el6.i686 nfs-utils-1.2.3-39.el6.i686    ####三、 NFS服务器的配置
-NFS服务器的配置相对比较简单，只需要在相应的配置文件中进行设置，然后启动NFS服务器即可。
-NFS的常用目录
-/etc/exports NFS服务的主要配置文件 /usr/sbin/exportfs NFS服务的管理命令 /usr/sbin/showmount 客户端的查看命令 /var/lib/nfs/etab 记录NFS分享出来的目录的完整权限设定值 /var/lib/nfs/xtab 记录曾经登录过的客户端信息  NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。
-/etc/exports文件内容格式：
-&lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]  a. 输出目录：
-输出目录是指NFS系统中需要共享给客户机使用的目录；  b. 客户端：
-客户端是指网络中可以访问这个NFS输出目录的计算机
-客户端常用的指定方式
-指定ip地址的主机：192.168.0.200 指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0 指定域名的主机：david.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/nagios/" rel="bookmark">Nagios</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Nagios1.1. 马哥 Nagios基础和入门配置1. Nagios1.1. 马哥 Nagios基础和入门配置安装依赖 yum grouplist #查看 Development Tools 是否安装yum -y install httpd php mysql-devel php-mysql添加nagios运行所需要的用户和组
-groupadd nagcmduseradd -G nagcmd nagios把apache加入到nagcmd组,以便于在通过web Interface操作nagios时有足够的权限
-usermod -a -G nagcmd apache编译安装nagios
-date 0710103216 # 0710-月份 1031-时间 16-年./configure --help #查看帮助.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/nginx/" rel="bookmark">Nginx 安装配置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents
-nginx 平台为：rhel 6.4/CentOS-6.5 32bit
-一、安装Nginx： 1、解决依赖关系 # 方法1 yum groupinstall &quot;Development Tools&quot; &quot;Server Platform Deveopment&quot; yum install openssl-devel pcre-devel # 方法2 #安装make yum -y install gcc automake autoconf libtool make #安装g++ yum -y install gcc gcc-c++ #安装pcre yum install openssl-devel pcre-devel  2、安装  首先添加用户nginx，实现以之运行nginx服务进程：
-# groupadd -r nginx # useradd -r -g nginx nginx  接着开始编译和安装：
-# ./configure \ --prefix=/usr \ --sbin-path=/usr/sbin/nginx \ --conf-path=/etc/nginx/nginx.conf \ --error-log-path=/var/log/nginx/error.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/rancher/" rel="bookmark">Rancher</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Rancher1. rancher/storage-nfs1.1. 配置CoreOS nfs service1.2. 启动 Rancher Server1.2.1. docker 方式启动1.2.2. compose 方式启动1.2.3. Rancher NFS 配置1.3. maxscale-mysql2. 镜像2.1. push rancher相关镜像到 registry2.2. rancher-agent 拉取镜像2.3. 参考3. Rancher Cli API1. rancher/storage-nfs1.1. 配置CoreOS nfs serviceimage 安装 sudo vi /var/lib/coreos-install/user_datavagrant 安装 # sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data#cloud-configcoreos:units:- name: "
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/linux/redis/" rel="bookmark">Redis</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Redis1.1. 命令1.2. 配置文件1.3. Codis1.4. 参考1. Redis1.1. 命令删除所有 key
-redis-cli keys "*" | xargs redis-cli del1.2. 配置文件redis.conf# appendfsync always#每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用appendfsync everysec#每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐# appendfsync no #完全依赖os，性能最好,持久化没保证1.3. Codisgolang 版本
-go1.6.linux-amd64.tar.gz环境变量
-# vi ~/.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/iocxml_md/" rel="bookmark">Spring IOC</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						IOC_xml Spring IoC  由spring管理,生成的类
-  Interface 生成出来的类实现的接口列表  org.springframework.aop.SpringProxy org.springframework.aop.framework.Advised package.user_interfaces(用户自定义实现的接口) CgLib :    BeanDefination
- 解析applicationContext.xml   instantiateBean : bean实例化
-  设置接口 public static Set&lt;Class&gt; getAllInterfacesForClassAsSet(Class clazz, ClassLoader classLoader) { Assert.notNull(clazz, &quot;Class must not be null&quot;); if (clazz.isInterface() &amp;&amp; isVisible(clazz, classLoader)) { return Collections.singleton(clazz); } Set&lt;Class&gt; interfaces = new LinkedHashSet&lt;Class&gt;(); while (clazz != null) { Class&lt;?&gt;[] ifcs = clazz.getInterfaces(); for (Class&lt;?&gt; ifc : ifcs) { interfaces.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/spring-conf/" rel="bookmark">Spring 配置文件</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. applicationContext.xml1. applicationContext.xml== spring-mvc-back.xml```xml:/src/conf/spring/spring-mvc-back.xml```== spring-mvc-front.xml```xml:/src/conf/spring/spring-mvc-front.xml```== 注解```xml:/src/conf/spring/conf/anotation.xml```== ibatis```xml:/src/conf/spring/conf/ibatis.xml```== jdbc```xml:/src/conf/spring/conf/jdbc.xml```== property```xml:/src/conf/spring/conf/property.xml```== 事务```xml:/src/conf/spring/conf/transaction.xml```
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/mvcxml_md/" rel="bookmark">SpringMVC</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						MVC_xml springmvc.xml &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd &quot;&gt; &lt;!-- 配置式开发开始=========================================== --&gt; &lt;!-- 处理器 映射器 &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt; --&gt; &lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt; &lt;!-- 集中管理Url --&gt; &lt;property name=&quot;mappings&quot;&gt; &lt;props&gt; &lt;prop key=&quot;/items1.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items2.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items3.action &quot;&gt;items1Controller&lt;/prop&gt; &lt;/props&gt; &lt;/property&gt; &lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现Controller接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现HttpRequestHandler接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 视图解释器 jspViewResolver 默认支持 jstl --&gt; &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt; &lt;!
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="http://dishui.oschina.io/note-hugo/post/vagrant/" rel="bookmark">Vagrant常用命令</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Vagrant常用命令  添加box bash #到vagrant所在目录 cd D:\vagrant\CentOS # vagrant box add ubuntu-14.04 trusty-server-cloudimg-amd64-vagrant-disk1.box  初始化 cmd #打开目录 cd D:\vagrant\work #如果你添加的box名称不是base，那么需要在初始化的时候指定名称，例如 vagrant init ubuntu14.04  启动虚拟机  vagrant up  ssh到虚拟机  vagrant ssh  重启虚拟机（重新载入配置文件）  vagrant reload  打包分发  vagrant package   Vagrantfile  配置文件 ruby Vagrant.configure(2) do |config| config.vm.define &quot;u1&quot; do |u1| u1.vm.box = &quot;ubuntu-14.04-1&quot; u1.vm.hostname = &quot;u1&quot; u1.vm.network &quot;private_network&quot;, ip: &quot;192.168.137.11&quot; end config.vm.define &quot;u2&quot; do |u2| u2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-
-		
-<div class="mr-loop-pagination clearfix">
-	
-	<a class="page-numbers" href="/note-hugo/6/">«</a>
-	
-	<span class="page-numbers current">7/18</span>
-	
-	<a class="page-numbers" href="/note-hugo/8/">»</a>
-	
-</div>
-
-	</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-	
-<div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
-		<label>
-			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
-		</label>
-		
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-	</form>
-</div>
-
-	
-	
-
-
-<div class="mr-widget widget_categories">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
-	<ul>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/bug">Bug</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/docker">Docker</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/go">Go</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/hadoop">Hadoop</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/java">Java</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/js">Js</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/linux">Linux</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/mailiqng-app">Mailiqng-App</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/mysql">Mysql</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/virtualbox">Virtualbox</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/work">Work</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/zookeeper">Zookeeper</a></li>
-		
-		<li class="cat-item"><a href="http://dishui.oschina.io/note-hugo/categories/%e9%ab%98%e6%95%b0">高数</a></li>
-		
-	</ul>
-</div>
-
-
-
-    
-
-
-<div class="mr-widget widget_tag_cloud">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
-	<div class="tagcloud">
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
-		
-			<a href="http://dishui.oschina.io/note-hugo/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
-		
-	</div>
-</div>
-
-
-
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 工作笔记. Based on <a href="//wordpress.org/themes/mh-magazine-lite/" target="_blank" rel="nofollow noopener noreferrer">MH Magazine lite</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-
-
-
-</body>
-</html>
