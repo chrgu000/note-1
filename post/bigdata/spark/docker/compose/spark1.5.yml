@@ -12,8 +12,7 @@ services:
       - "8080:8080"
       - "8081:8081"
       - "50070:50070"
-    networks:
-      - hadoop
+    network_mode: "bridge"
   worker:
     image: dishui.io:5000/singularities/spark:1.5
     command: start-spark worker master
@@ -24,9 +23,4 @@ services:
       SPARK_WORKER_MEMORY: 1g
     links:
       - master
-    networks:
-      - hadoop
-networks:
-  hadoop:
-    external: true
-    # driver: bridge
+    network_mode: "bridge"

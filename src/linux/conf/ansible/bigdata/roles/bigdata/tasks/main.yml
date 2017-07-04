@@ -1,0 +1,46 @@
+---
+
+- name: Copy JDK
+  copy:
+    src: /root/tar/{{ jdk }}
+    dest: /tmp/{{ jdk }}
+
+- unarchive:
+    src: /tmp/{{ jdk }}
+    dest: /usr/local/
+    remote_src: True
+
+- name: Copy Hadoop
+  copy:
+    src: /root/tar/{{ hadoop }}
+    dest: /tmp/{{ hadoop }}
+
+- unarchive:
+    src: /tmp/{{ hadoop }}
+    dest: /usr/local/
+    remote_src: True
+
+- name: Copy Spark
+  copy:
+    src: /root/tar/{{ spark }}
+    dest: /tmp/{{ spark }}
+
+- unarchive:
+    src: /tmp/{{ spark }}
+    dest: /usr/local/
+    remote_src: True
+
+- name: Copy Hive
+  copy:
+    src: /root/tar/{{ hive }}
+    dest: /tmp/{{ hive }}
+
+- unarchive:
+    src: /tmp/{{ hive }}
+    dest: /usr/local/
+    remote_src: True
+
+- name: Copy profile
+  copy:
+    src: /etc/profile.d/bigdata.sh
+    dest: /etc/profile.d/

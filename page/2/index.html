@@ -12,7 +12,7 @@
 <meta property="og:url" content="/" />
 
 
-<meta property="og:updated_time" content="2017-04-04T15:25:28&#43;00:00"/>
+<meta property="og:updated_time" content="2017-04-17T16:33:02&#43;00:00"/>
 
 
 
@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -66,6 +67,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -80,6 +83,204 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-sql/" rel="bookmark">SparkSql</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-17 16:33:02 &#43;0000 UTC">April 17, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql1. Spark SQL1.1. 为什么要学习Spark SQL1.2. DataFrames1.2.1. 什么是DataFrames1.2.2. 创建DataFrames1.3. DataFrame常用操作1.3.1. DSL风格语法1.3.2. SQL风格语法2. 以编程方式执行Spark SQL查询2.1. 编写Spark SQL查询程序2.1.1. 通过反射推断Schema2.1.2. 通过StructType直接指定Schema3. 数据源3.1. JDBC3.1.1. 将数据写入到MySQL中（打jar包方式）1. Spark SQLSpark SQL是Spark用来处理结构化数据的一个模块，它提供了一个编程抽象叫做DataFrame并且作为分布式SQL查询引擎的作用。
+1.1. 为什么要学习Spark SQL我们已经学习了Hive，它是将Hive SQL转换成MapReduce然后提交到集群上执行，大大简化了编写MapReduce的程序的复杂性，由于MapReduce这种计算模型执行效率比较慢。所有Spark SQL的应运而生，它是将Spark SQL转换成RDD，然后提交到集群执行，执行效率非常快！
+易整合
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-rdd-api/" rel="bookmark">Zhen He spark rdd api</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-13 14:04:07 &#43;0000 UTC">April 13, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark1. part11.1. aggregate1.2. aggregateByKey [Pair]1.3. cartesian1.4. checkpoint1.5. coalesce, repartition1.6. cogroup [Pair], groupWith [Pair]1.7. collect, toArray1.8. collectAsMap [Pair]1.9. combineByKey[Pair]1.10. compute1.11. context, sparkContext1.12. count1.13. countApprox1.14. countApproxDistinct1.15. countApproxDistinctByKey [Pair]2. part22.1. countByKey [Pair]2.2. countByKeyApprox [Pair]2.3. countByValue2.4. countByValueApprox2.5. dependencies2.6. distinct2.7. first2.8. filter2.9. filterByRange [Ordered]2.10. filterWith (deprecated)2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-rdd/" rel="bookmark">spark-rdd</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-08 18:42:52 &#43;0000 UTC">April 08, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexmap是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; "[partID:" + index + ", val: " + x + "]").iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregatedef func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {iter.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-%E5%9F%BA%E7%A1%80/" rel="bookmark">spark-基础</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-08 18:42:52 &#43;0000 UTC">April 08, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark-基础1. Spark集群安装1.1. 安装1.1.1. 机器部署1.1.2. 下载Spark安装包1.1.3. 配置Spark1.2. 执行第一个spark程序1.3. 启动Spark Shell1.3.1. 启动spark shell1.3.2. 在spark shell中编写WordCount程序1.4. 在IDEA中编写WordCount程序1. Spark集群安装1.1. 安装1.1.1. 机器部署准备两台以上Linux服务器，安装好JDK1.7
+1.1.2. 下载Spark安装包下载
+http://www.apache.org/dyn/closer.lua/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz
+上传解压安装包
+上传 spark-1.5.2-bin-hadoop2.6.tgz 安装包到Linux上
+解压安装包到指定位置
+tar -zxvf spark-1.5.2-bin-hadoop2.6.tgz -C /usr/local1.1.3. 配置Spark进入到Spark安装目录
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/" rel="bookmark">spark参考</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-08 18:42:52 &#43;0000 UTC">April 08, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark1. RDD1. RDDSparkRDDAPIExamples
+https://zhuanlan.zhihu.com/p/21483985
+http://tech.meituan.com/spark-tuning-basic.html
+https://www.zhihu.com/question/23655827?rf=27642986
+Apache Spark源码走读
+spark 1.5.1 docs
+spark hive
+building-spark
+https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation
+https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;search=y
+张包峰
+高彦杰的博客
+赛赛的网络日志
+Spark运行调试方法与学习资源汇总
+https://stackoverflow.com/questions/tagged/apache-spark
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/" rel="bookmark">Scala实战</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-07 15:06:47 &#43;0000 UTC">April 07, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Scala实战1. Scala实战2. 项目概述2.1. 需求2.2. Akka简介3. 项目实现3.1. 架构图3.2. 重要类介绍3.2.1. ActorSystem3.2.2. Actor3.3. Master类3.4. Worker类1. Scala实战2. 项目概述2.1. 需求目前大多数的分布式架构底层通信都是通过RPC实现的，RPC框架非常多，比如前我们学过的Hadoop项目的RPC通信框架，但是Hadoop在设计之初就是为了运行长达数小时的批量而设计的，在某些极端的情况下，任务提交的延迟很高，所有Hadoop的RPC显得有些笨重。Spark 的RPC是通过Akka类库实现的，Akka用Scala语言开发，基于Actor并发模型实现，Akka具有高可靠、高性能、可扩展等特点，使用Akka可以轻松实现分布式RPC功能。2.2. Akka简介Akka基于Actor模型，提供了一个用于构建可扩展的（Scalable）、弹性的（Resilient）、快速响应的（Responsive）应用程序的平台。
+Actor模型在计算机科学领域，Actor模型是一个并行计算（Concurrent Computation）模型，它把actor作为并行计算的基本元素来对待：为响应一个接收到的消息，一个actor能够自己做出一些决策，如创建更多的actor，或发送更多的消息，或者确定如何去响应接收到的下一个消息。
+Actor是Akka中最核心的概念，它是一个封装了状态和行为的对象，Actor之间可以通过交换消息的方式进行通信，每个Actor都有自己的收件箱（Mailbox）。通过Actor能够简化锁及线程管理，可以非常容易地开发出正确地并发程序和并行系统，Actor具有如下特性：
+提供了一种高级抽象，能够简化在并发（Concurrency）/并行（Parallelism）应用场景下的编程开发
+提供了异步非阻塞的、高性能的事件驱动编程模型
+超级轻量级事件处理（每GB堆内存几百万Actor）
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="bookmark">Scala高级特性</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-07 14:47:38 &#43;0000 UTC">April 07, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Scala高级特性1. 高阶函数1.1. 概念1.2. 作为值的函数1.3. 匿名函数1.4. 将方法转换成函数1.5. 柯里化1.6. 例子2. 隐式转换和隐式参数2.1. 概念2.2. 作用2.3. 隐式转换函数2.4. 隐式转换例子2.4.1. 隐式转换变量值2.4.2. 隐式转换方法1. 高阶函数1.1. 概念Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。
+1.2. 作为值的函数可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。
+定义函数时格式：val 变量名 =(输入参数类型和个数)&#8658;函数实现和返回值类型和个数“=”表示将函数赋给一个变量“&#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数
+1.3. 匿名函数在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数
+由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些
+还记得神奇的下划线吗？这才是终极方式
+1.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/" rel="bookmark">Scala Actor编程</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-04-05 09:47:03 &#43;0000 UTC">April 05, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Scala Actor编程1. Scala Actor编程1.1. 什么是Scala Actor1.1.1. 概念1.1.2. 传统java并发编程与Scala Actor编程的区别1.1.3. Actor方法执行顺序1.1.4. 发送消息的方式1.2. Actor实战1.2.1. 第一个例子1.2.2. 第二个例子（可以不断地接收消息）1.2.3. 第三个例子（react方式会复用线程，比receive更高效）1.2.4. 第四个例子（结合case class发送消息）1.3. 练习1. Scala Actor编程1.1. 什么是Scala Actor1.1.1. 概念Scala中的Actor能够实现并行编程的强大功能，它是基于事件模型的并发机制，Scala是运用消息（message）的发送、接收来实现多线程的。使用Scala能够更容易地实现多线程应用的开发。
+1.1.2. 传统java并发编程与Scala Actor编程的区别对于Java，我们都知道它的多线程实现需要对共享资源（变量、对象等）使用synchronized 关键字进行代码块同步、对象锁互斥等等。而且，常常一大块的try…catch语句块中加上wait方法、notify方法、notifyAll方法是让人很头疼的。原因就在于Java中多数使用的是可变状态的对象资源，对这些资源进行共享来实现多线程编程的话，控制好资源竞争与防止对象状态被意外修改是非常重要的，而对象状态的不变性也是较难以保证的。 而在Scala中，我们可以通过复制不可变状态的资源（即对象，Scala中一切都是对象，连函数、方法也是）的一个副本，再基于Actor的消息发送、接收机制进行并行编程
+1.1.3. Actor方法执行顺序首先调用start()方法启动Actor
+调用start()方法后其act()方法会被执行
+向Actor发送消息
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -125,186 +326,13 @@
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/storm/kafka/" rel="bookmark">Kafka集群安装部署、Kafka生产者、Kafka消费者</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群Kafka生产者Java APIKafka消费者Java APIKafka是什么　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA + STORM +REDIS[disc]　* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性JMS是什么1.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" rel="bookmark">Storm目录树、任务提交、消息容错</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Storm1. Storm程序的并发机制1.1. 概念1.2. 配置并行度2. Storm通信机制3. Worker进程间通信4. Worker进程间通信分析5. Worker进程间技术(Netty、ZeroMQ)5.1. Netty5.2. ZeroMQ6. Worker 内部通信技术(Disruptor)6.1. Disruptor的来历6.2. Disruptor是什么6.3. Disruptor主要特点7. Storm组件本地目录树8. Storm zookeeper目录树9. Storm 任务提交的过程10. Storm 消息容错机制10.1. 总体介绍10.2. 基本实现10.3. 可靠性配置1. Storm程序的并发机制1.1. 概念Workers (JVMs)在一个物理节点上可以运行一个或多个独立的JVM 进程。一个Topology可以包含一个或多个worker(并行的跑在不同的物理机上), 所以worker process就是执行一个topology的子集, 并且worker只能对应于一个topology
-Executors (threads)在一个worker JVM进程中运行着多个Java线程。一个executor线程可以执行一个或多个tasks。但一般默认每个executor只执行一个task。一个worker可以包含一个或多个executor, 每个component (spout或bolt)至少对应于一个executor, 所以可以说executor执行一个compenent的子集, 同时一个executor只能对应于一个component。
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="bookmark">storm集群部署,单词计数,Stream Grouping</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						storm1. 集群部署的基本流程2. 集群部署的基础环境准备3. Storm集群部署4. Storm常用操作命令5. Storm集群的进程及日志熟悉6. Storm源码下载及目录熟悉7. Storm单词技术案例（重点掌握）1. 集群部署的基本流程集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群注意：所有的集群上都需要配置hostsvi /etc/hosts192.168.239.128 storm01 zk01 hadoop01192.168.239.129 storm02 zk02 hadoop02192.168.239.130 storm03 zk03 hadoop032. 集群部署的基础环境准备安装前的准备工作（zk集群已经部署完毕）
-关闭防火墙
-chkconfig iptables off &amp;&amp; setenforce 0创建用户
-groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime创建工作目录并赋权
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/storm/storm/" rel="bookmark">storm</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-26 00:00:00 &#43;0000 UTC">March 26, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						storm 简介1. 离线计算是什么？2. 流式计算是什么3. 离线计算与实时计算的区别4. Storm是什么？5. Storm与Hadoop的区别6. Storm应用场景及行业案例6.1. 典型案列7. Storm核心组件（重要）8. Storm编程模型（重要）9. 流式计算一般架构图（重要）1. 离线计算是什么？ 离线计算：批量获取数据、批量传输数据、周期性批量计算数据、数据展示代表技术：Sqoop批量导入数据、HDFS批量存储数据、MapReduce批量计算数据、Hive批量计算数据、***任务调度1，hivesql2、调度平台3、Hadoop集群运维4、数据清洗（脚本语言）5、元数据管理6、数据稽查7、数据仓库模型架构2. 流式计算是什么流式计算：数据实时产生、数据实时传输、数据实时计算、实时展示代表技术：Flume实时获取数据、Kafka/metaq实时数据存储、Storm/JStorm实时数据计算、Redis实时结果缓存、持久化存储(mysql)。一句话总结：将源源不断产生的数据实时收集并实时计算，尽可能快的得到计算结果
-3. 离线计算与实时计算的区别最大的区别：实时收集、实时计算、实时展示
-4. Storm是什么？Flume实时采集，低延迟Kafka消息队列，低延迟Storm实时计算，低延迟Redis实时存储，低延迟Storm用来实时处理数据，特点：低延迟、高可用、分布式、可扩展、数据不丢失。提供简单容易理解的接口，便于开发。海量数据？数据类型很多，产生数据的终端很多，处理数据能力增强5. Storm与Hadoop的区别 Storm用于实时计算，Hadoop用于离线计算。 Storm处理的数据保存在内存中，源源不断；Hadoop处理的数据保存在文件系统中，一批一批。 Storm的数据通过网络传输进来；Hadoop的数据保存在磁盘中。 Storm与Hadoop的编程模型相似Job：任务名称JobTracker：项目经理TaskTracker：开发组长、产品经理Child:负责开发的人员Mapper/Reduce:开发人员中的两种角色，一种是服务器开发、一种是客户端开发Topology:任务名称Nimbus:项目经理Supervisor:开组长、产品经理Worker:开人员Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是客户端开发6.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/CentOS7/" rel="bookmark">CentOS7</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-23 00:00:00 &#43;0000 UTC">March 23, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						CentOS71. CentOS71.1. 安装 docker1. CentOS71.1. 安装 docker
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/docker/hadoop-docker/" rel="bookmark">hadoop-docker</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-22 00:00:00 &#43;0000 UTC">March 22, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						https://github.com/HariSekhon/Dockerfileshttps://hub.docker.com/r/harisekhon
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/hbase/" rel="bookmark">hbase</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-22 00:00:00 &#43;0000 UTC">March 22, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hbase1. 安装2. HBase 性能优化1. 安装上传首先确保用户是 hadoop ，用工具将 hbase 安装包 hbase-0.99.2-bin.tar.gz 上传到 /home/hadoop 下，确保 hbase-0.99.2-bin.tar.gz 的用户是 hadoop，如果不是，执行 chown 命令
-解压
-su – hadooptar –zxvf hbase-0.99.2-bin.tar.gz重命名
-mv hbase-0.99.2hbase修改环境变量
-在master机器上执行下面命令：
-su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbaseexport PATH=$PATH:$HBASE_HOME/bin执行命令：source /etc/profilesu – hadoop在其他机器上执行上述操作。
-修改配置文件
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/flume-sqoop/" rel="bookmark">flume-sqoop</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-17 00:00:00 &#43;0000 UTC">March 17, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						flume-sqoop1. Flume介绍1.1. 概述1.2. 运行机制1.3. Flume采集系统结构图2. Flume实战案例2.1. Flume的安装部署2.2. 采集案例2.2.1. 采集目录到HDFS2.2.2. 采集文件到HDFS2.2.3. 更多source和sink组件3. 工作流调度器azkaban3.1. 为什么需要工作流调度系统3.2. 工作流调度实现方式3.3. 常见工作流调度系统3.4. Azkaban与Oozie对比3.4.1. Azkaban介绍3.4.2. Azkaban安装部署3.4.3. Azkaban实战Command类型多job工作流flowHDFS操作任务MAPREDUCE任务HIVE脚本任务4. sqoop数据迁移4.1. sqoop安装4.2. Sqoop的数据导入4.2.1. 示例导入表表数据到HDFS导入关系表到HIVE导入到HDFS指定目录导入表数据子集增量导入4.
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/">«</a>
 	
-	<span class="page-numbers current">2/21</span>
+	<span class="page-numbers current">2/26</span>
 	
 	<a class="page-numbers" href="/page/3/">»</a>
 	
@@ -315,15 +343,15 @@ su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbase
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -397,6 +425,8 @@ su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbase
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

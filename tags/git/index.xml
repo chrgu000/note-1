@@ -561,14 +561,20 @@ git config --global alias.st status
       
       <guid>/post/linux/git/</guid>
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;div id=&#34;toctitle&#34;&gt;git&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_git&#34;&gt;1. git&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#_git&#34;&gt;1. git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_拉取git项目中的特定文件夹&#34;&gt;2. 拉取git项目中的特定文件夹&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_命令&#34;&gt;1.1. 命令&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#_命令&#34;&gt;2.1. 命令&lt;/a&gt;
 &lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_远程分支&#34;&gt;1.1.1. 远程分支&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_综合使用&#34;&gt;1.1.2. 综合使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_远程分支&#34;&gt;2.1.1. 远程分支&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地目录_存在文件_上传到码云&#34;&gt;2.2. 本地目录(存在文件),上传到码云&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_综合使用&#34;&gt;2.2.1. 综合使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;2.2.2. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -578,63 +584,69 @@ git config --global alias.st status
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_git&#34;&gt;1. git&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_拉取git项目中的特定文件夹&#34;&gt;2. 拉取git项目中的特定文件夹&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# svn list &amp;lt;repositry-url&amp;gt; 查看文件夹
+svn list https://github.com/apache/spark.git
+# 拉取git项目中的特定文件夹
+svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.6&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_命令&#34;&gt;1.1. 命令&lt;/h3&gt;
+&lt;h3 id=&#34;_命令&#34;&gt;2.1. 命令&lt;/h3&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_远程分支&#34;&gt;1.1.1. 远程分支&lt;/h4&gt;
+&lt;h4 id=&#34;_远程分支&#34;&gt;2.1.1. 远程分支&lt;/h4&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;查看远程分支&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;$ git remote -v
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ git remote -v
 origin  git@git.oschina.net:dishui/local_b2b.git (fetch)
 origin  git@git.oschina.net:dishui/local_b2b.git (push)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;添加远程分支&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git remote add origin git@git.oschina.net:dishui/local_b2b.git&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git remote add origin git@git.oschina.net:dishui/local_b2b.git&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;push 本地分支到远程分支(如果没有,会自动创建)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git push origin bigdata #bigdata 分支名称&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;设置远程分支&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git remote set-url origin git@github.com:dishuiGit/SublimeNote.git&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git remote set-url origin git@github.com:dishuiGit/SublimeNote.git&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;添加&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git add .		#添加
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git add .		#添加
 git reset .		#撤销添加&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;更新&lt;/p&gt;
 &lt;/li&gt;
@@ -642,12 +654,26 @@ git reset .		#撤销添加&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git pull origin master&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_本地目录_存在文件_上传到码云&#34;&gt;2.2. 本地目录(存在文件),上传到码云&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# cd &amp;lt;dir&amp;gt;
+git init .
+vi .gitignore # 设置不需要提交的文件
+git add . &amp;amp;&amp;amp; git commit -m &#34;msg&#34;
+git branch --set-upstream-to=origin/&amp;lt;branch&amp;gt; master # 本地分支与远程分支关联
+git pull
+git push&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_综合使用&#34;&gt;1.1.2. 综合使用&lt;/h4&gt;
+&lt;h4 id=&#34;_综合使用&#34;&gt;2.2.1. 综合使用&lt;/h4&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
@@ -657,7 +683,7 @@ git reset .		#撤销添加&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git status | awk -F &#39;:&#39; &#39;{print $2}&#39;| awk &#39;!a[$0]++&#39; | wc -l&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git status | awk -F &#39;:&#39; &#39;{print $2}&#39;| awk &#39;!a[$0]++&#39; | wc -l&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;dlist&#34;&gt;
@@ -667,6 +693,35 @@ git reset .		#撤销添加&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;[[python-git|http://gitpython.readthedocs.io/en/stable/]]&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_q_a&#34;&gt;2.2.2. Q &amp;amp; A&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;error: src refspec bigdata does not match any.&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;[root@localhost dockerfiles]# git push origin bigdata
+error: src refspec bigdata does not match any.
+error: 无法推送一些引用到 &#39;git@git.oschina.net:dishui/dockerfiles.git&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;解决&lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git push origin master:bigdata&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

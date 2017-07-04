@@ -7,9 +7,9 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="win 端口转发" />
-<meta property="og:description" content="Contents1. Git2. Windows2.1. win10 端口转发2.2. windows 环境变量1. Gitsvn 导出 git 单个目录
+<meta property="og:description" content="Contents1. Git2. Windows2.1. win10 端口转发2.2. Windows 环境变量2.3. mklink 创建链接设置环境变量1. Gitsvn 导出 git 单个目录
 # trunk 替代 branchhttps://github.com/dishuiGit/codes.git/trunk/Spring-test2. Windows2.1. win10 端口转发netsh
-# 查看netsh interface portproxy show all#addnetsh interface portproxy add v4tov4 listenport=9200 connectaddress=192.168.137.164 connectport=9200# 删除netsh interface portproxy delete v4tov4 listenport=9200 listenaddress=196.168.1.178# 例子http://aofengblog." />
+# 查看netsh interface portproxy show all#addnetsh interface portproxy add v4tov4 listenport=9200 connectaddress=192.168.137.164 connectport=9200# 删除netsh interface portproxy delete v4tov4 listenport=9200 listenaddress=196." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/windows/" />
 
@@ -27,7 +27,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -69,6 +70,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -98,7 +101,8 @@
 <li><a href="#_windows">2. Windows</a>
 <ul class="sectlevel2">
 <li><a href="#_win10_端口转发">2.1. win10 端口转发</a></li>
-<li><a href="#__code_windows_code_环境变量">2.2. <code>windows</code> 环境变量</a></li>
+<li><a href="#__strong_windows_strong_环境变量">2.2. <strong>Windows</strong> 环境变量</a></li>
+<li><a href="#__code_mklink_code_创建链接设置环境变量">2.3. <code>mklink</code> 创建链接设置环境变量</a></li>
 </ul>
 </li>
 </ul>
@@ -135,7 +139,7 @@ https://github.com/dishuiGit/codes.git/trunk/Spring-test</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># 查看
+<pre class="highlightjs highlight"><code># 查看
 netsh interface portproxy show all
 #add
 netsh interface portproxy add v4tov4 listenport=9200 connectaddress=192.168.137.164 connectport=9200
@@ -147,7 +151,7 @@ http://aofengblog.blog.163.com/blog/static/631702120148573851740/</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__code_windows_code_环境变量">2.2. <code>windows</code> 环境变量</h3>
+<h3 id="__strong_windows_strong_环境变量">2.2. <strong>Windows</strong> 环境变量</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -157,8 +161,46 @@ http://aofengblog.blog.163.com/blog/static/631702120148573851740/</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">path=%path%;D:\env\apache-ant-1.9.4\bin;</code></pre>
+<pre class="highlightjs highlight"><code>path=%path%;D:\env\apache-ant-1.9.4\bin;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_mklink_code_创建链接设置环境变量">2.3. <code>mklink</code> 创建链接设置环境变量</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>创建符号链接。</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>MKLINK [[/D] | [/H] | [/J]] Link Target</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/D      创建目录符号链接。默认为文件
+        符号链接。
+/H      创建硬链接而非符号链接。
+/J      创建目录联接。
+Link    指定新的符号链接名称。
+Target  指定新链接引用的路径
+        (相对或绝对)。</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mklink D:\env\bin\dot.exe D:\env\graphviz-2.38\release\bin\dot.exe
+mklink /D D:\env\bin\graphviz-bin\ D:\env\graphviz-2.38\release\bin\</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">参考</dt>
+<dd>
+<p><a href="http://blog.csdn.net/kilosnow/article/details/7179705">windows7中的mklink命令</a></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -208,16 +250,16 @@ http://aofengblog.blog.163.com/blog/static/631702120148573851740/</code></pre>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="docker 基础命令" />
-<meta property="og:description" content="docker-base1. 阿里云加速2. Dockerfile 参考3. 使用3.1. 列出本地镜像3.2. 启动 docker4. 操作 Docker4.1. build4.2. run4.3. log4.4. 删除镜像4.5. 批量删除镜像4.6. 删除容器4.7. 关闭所有容器4.8. 进入一个容器的交互模式4.9. 挂载目录4.10. 载入镜像4.11. 查看 docker 网络4.12. 容器生成镜像4.13. 从主机到容器4.14. 从容器到主机4.15. 删除不是 dishui.io 开头的镜像4.16. list 镜像4.17. list 容器5. 修改 Docker 镜像的存储位置5.1. 备份fstab文件5.2. 停止 docker ， 用 rsync 同步 /var/lib/docker 到新位置 如果 rsync 没有安装5." />
+<meta property="og:description" content="docker-base1. 阿里云加速2. Dockerfile 参考3. 使用3.1. 获取容器 ip3.2. list 镜像3.3. list 容器3.4. 启动 docker4. 操作 Docker4.1. build4.2. run4.3. log4.4. 删除镜像4.5. 批量删除镜像4.6. 删除容器4.7. 关闭所有容器4.8. 进入一个容器的交互模式4.9. 挂载目录4.10. 载入镜像4.11. 查看 docker 网络4.12. 容器生成镜像4.13. 从主机到容器4.14. 从容器到主机4.15. 删除不是 dishui.io 开头的镜像5. 修改 Docker 镜像的存储位置5.1. 备份fstab文件5.2. 停止 docker ， 用 rsync 同步 /var/lib/docker 到新位置 如果 rsync 没有安装5." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/docker/docker-base/" />
 
@@ -25,7 +25,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -67,6 +68,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -99,8 +102,10 @@
 <li><a href="#_dockerfile_参考">2. Dockerfile 参考</a></li>
 <li><a href="#_使用">3. 使用</a>
 <ul class="sectlevel3">
-<li><a href="#_列出本地镜像">3.1. 列出本地镜像</a></li>
-<li><a href="#_启动_code_docker_code">3.2. 启动 <code>docker</code></a></li>
+<li><a href="#_获取容器_ip">3.1. 获取容器 ip</a></li>
+<li><a href="#_list_镜像">3.2. list 镜像</a></li>
+<li><a href="#_list_容器">3.3. list 容器</a></li>
+<li><a href="#_启动_code_docker_code">3.4. 启动 <code>docker</code></a></li>
 </ul>
 </li>
 <li><a href="#_操作_code_docker_code">4. 操作 <code>Docker</code></a>
@@ -120,8 +125,6 @@
 <li><a href="#_从主机到容器">4.13. 从主机到容器</a></li>
 <li><a href="#_从容器到主机">4.14. 从容器到主机</a></li>
 <li><a href="#_删除不是_code_dishui_io_code_开头的镜像">4.15. 删除不是 <code>dishui.io</code> 开头的镜像</a></li>
-<li><a href="#_list_镜像">4.16. list 镜像</a></li>
-<li><a href="#_list_容器">4.17. list 容器</a></li>
 </ul>
 </li>
 <li><a href="#_修改_code_docker_code_镜像的存储位置">5. 修改 <code>Docker</code> 镜像的存储位置</a>
@@ -153,15 +156,33 @@
 <div class="sect2">
 <h3 id="_使用">3. 使用</h3>
 <div class="sect3">
-<h4 id="_列出本地镜像">3.1. 列出本地镜像</h4>
+<h4 id="_获取容器_ip">3.1. 获取容器 ip</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images</code></pre>
+<pre class="highlightjs highlight"><code>docker inspect --format='{{.NetworkSettings.IPAddress}} {{.Config.Hostname}}' $CONTAINER_ID
+
+docker ps --format='{{.ID}}'|xargs -I id docker inspect --format='{{.NetworkSettings.IPAddress}} {{.Config.Hostname}}' id</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_启动_code_docker_code">3.2. 启动 <code>docker</code></h4>
+<h4 id="_list_镜像">3.2. list 镜像</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images --format "{{.ID}}: {{.Repository}}:{{.Tag}}"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_list_容器">3.3. list 容器</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker ps --format "{{.ID}}: {{.Names}}"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_启动_code_docker_code">3.4. 启动 <code>docker</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker run -t -i ubuntu:14.04 /bin/bash</code></pre>
@@ -294,22 +315,6 @@ docker rm $(docker ps -a -q)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images | awk '{if($1 ~ "&lt;none&gt;" &amp;&amp; NR != 1){print $3}}' | xargs docker rmi</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_list_镜像">4.16. list 镜像</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker images --format "{{.ID}}: {{.Repository}}:{{.Tag}}"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_list_容器">4.17. list 容器</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">docker ps --format "{{.ID}}: {{.Names}}"</code></pre>
 </div>
 </div>
 </div>
@@ -471,16 +476,16 @@ CoreOS 开机启动创建volume</p>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

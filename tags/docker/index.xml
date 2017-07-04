@@ -9,6 +9,234 @@
     <atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>etcd flanneld</title>
+      <link>/post/docker/etcd-flanneld/</link>
+      <pubDate>Wed, 31 May 2017 22:53:49 +0000</pubDate>
+      
+      <guid>/post/docker/etcd-flanneld/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;etcd flanneld&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_环境&#34;&gt;1. 环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动&#34;&gt;2. 启动&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_etcd&#34;&gt;2.1. etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_flanneld&#34;&gt;2.2. flanneld&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_修改docker参数&#34;&gt;2.3. 修改Docker参数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;3. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;4. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_环境&#34;&gt;1. 环境&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3334%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;名称&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;版本&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;下载地址&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;etcd&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;3.1.8&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/coreos/etcd/releases/download/v3.1.8/etcd-v3.1.8-linux-amd64.tar.gz&#34;&gt;etcd-v3.1.8-linux-amd64.tar.gz&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;flanneld&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;v0.7.1&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/coreos/flannel/releases/download/v0.7.1/flanneld-amd64&#34;&gt;flanneld-amd64&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;mk-docker-opts.sh&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://raw.githubusercontent.com/coreos/flannel/master/dist/mk-docker-opts.sh&#34;&gt;mk-docker-opts.sh&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+etcd flanneld mk-docker-opts.sh 下载到 $HOME/bin 下
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_启动&#34;&gt;2. 启动&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_etcd&#34;&gt;2.1. etcd&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;nohup etcd \
+  --name my-etcd-1 \
+  --data-dir ~/etcd-data \
+  --listen-client-urls http://0.0.0.0:2379 \
+  --advertise-client-urls http://0.0.0.0:2379 \
+  --listen-peer-urls http://0.0.0.0:2380 \
+  --initial-advertise-peer-urls http://0.0.0.0:2380 &amp;amp;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;开机启动&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /usr/lib/systemd/system/etcd.service &amp;lt;&amp;lt;_EOF_
+[Unit]
+Description=etcd
+After=network.target
+After=network-online.target
+[Service]
+ExecStart=/root/bin/etcd \
+  --name my-etcd-1 \
+  --data-dir ~/etcd-data \
+  --listen-client-urls http://0.0.0.0:2379 \
+  --advertise-client-urls http://0.0.0.0:2379 \
+  --listen-peer-urls http://0.0.0.0:2380 \
+  --initial-advertise-peer-urls http://0.0.0.0:2380
+[Install]
+WantedBy=multi-user.target
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;添加网段 确定etcd可以使用之后，我们需要设置分配给docker网络的网段&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;etcdctl mk /coreos.com/network/config &#39;{&#34;Network&#34;:&#34;172.17.0.0/16&#34;, &#34;SubnetMin&#34;: &#34;172.17.1.0&#34;, &#34;SubnetMax&#34;: &#34;172.17.254.0&#34;}&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_flanneld&#34;&gt;2.2. flanneld&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;nohup flanneld -iface=enp4s0f0 \ &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+-etcd-endpoints=http://192.168.123.124:2379 &amp;amp; &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;-iface 网卡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;-etcd-endpoints: etcd 地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /usr/lib/systemd/system/flanneld.service &amp;lt;&amp;lt;_EOF_
+[Unit]
+After=network.target
+After=network-online.target etcd.service
+Description=flannel
+[Service]
+ExecStart=/root/bin/flanneld \
+-iface=enp4s0f0 \
+-etcd-endpoints=http://196.168.1.34:2379
+[Install]
+WantedBy=multi-user.target
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_修改docker参数&#34;&gt;2.3. 修改Docker参数&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vi /usr/lib/systemd/system/docker.service
+# 添加
+EnvironmentFile=-/etc/sysconfig/docker
+ExecStart=/usr/bin/dockerd $DOCKER_OPTS&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;EnvironmentFile=-/run/flannel/subnet.env
+ExecStart=/usr/bin/dockerd --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mk-docker-opts.sh -c
+cat /run/docker_opts.env &amp;gt; /etc/sysconfig/docker
+systemctl daemon-reload &amp;amp;&amp;amp; systemctl restart docker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl ls /coreos.com/network/subnets&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_q_a&#34;&gt;3. Q &amp;amp; A&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;重启后 两个主机 flannel ping 不通 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;路由信息丢失&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ip r # 查看路由信息
+
+# 172.17.0.0/16 dev flannel0  proto kernel  scope link  src 172.17.25.0 (例子)
+# 添加路由
+ip route add 172.17.0.0/16 via 172.17.25.0 dev flannel0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mk-docker-opts.sh -i
+source /run/flannel/subnet.env
+rm /var/run/docker.pid
+ifconfig docker0 ${FLANNEL_SUBNET}&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;4. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.jianshu.com/p/a2039a8855ec&#34;&gt;CentOS7安装etcd和flannel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>docker 基础命令</title>
       <link>/post/docker/docker-base/</link>
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
@@ -21,8 +249,10 @@
 &lt;li&gt;&lt;a href=&#34;#_dockerfile_参考&#34;&gt;2. Dockerfile 参考&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_使用&#34;&gt;3. 使用&lt;/a&gt;
 &lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_列出本地镜像&#34;&gt;3.1. 列出本地镜像&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_启动_code_docker_code&#34;&gt;3.2. 启动 &lt;code&gt;docker&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取容器_ip&#34;&gt;3.1. 获取容器 ip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_list_镜像&#34;&gt;3.2. list 镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_list_容器&#34;&gt;3.3. list 容器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动_code_docker_code&#34;&gt;3.4. 启动 &lt;code&gt;docker&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_操作_code_docker_code&#34;&gt;4. 操作 &lt;code&gt;Docker&lt;/code&gt;&lt;/a&gt;
@@ -42,8 +272,6 @@
 &lt;li&gt;&lt;a href=&#34;#_从主机到容器&#34;&gt;4.13. 从主机到容器&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_从容器到主机&#34;&gt;4.14. 从容器到主机&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_删除不是_code_dishui_io_code_开头的镜像&#34;&gt;4.15. 删除不是 &lt;code&gt;dishui.io&lt;/code&gt; 开头的镜像&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_list_镜像&#34;&gt;4.16. list 镜像&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_list_容器&#34;&gt;4.17. list 容器&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_修改_code_docker_code_镜像的存储位置&#34;&gt;5. 修改 &lt;code&gt;Docker&lt;/code&gt; 镜像的存储位置&lt;/a&gt;
@@ -75,15 +303,33 @@
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_使用&#34;&gt;3. 使用&lt;/h3&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_列出本地镜像&#34;&gt;3.1. 列出本地镜像&lt;/h4&gt;
+&lt;h4 id=&#34;_获取容器_ip&#34;&gt;3.1. 获取容器 ip&lt;/h4&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker images&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker inspect --format=&#39;{{.NetworkSettings.IPAddress}} {{.Config.Hostname}}&#39; $CONTAINER_ID
+
+docker ps --format=&#39;{{.ID}}&#39;|xargs -I id docker inspect --format=&#39;{{.NetworkSettings.IPAddress}} {{.Config.Hostname}}&#39; id&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_启动_code_docker_code&#34;&gt;3.2. 启动 &lt;code&gt;docker&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;_list_镜像&#34;&gt;3.2. list 镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker images --format &#34;{{.ID}}: {{.Repository}}:{{.Tag}}&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_list_容器&#34;&gt;3.3. list 容器&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker ps --format &#34;{{.ID}}: {{.Names}}&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_启动_code_docker_code&#34;&gt;3.4. 启动 &lt;code&gt;docker&lt;/code&gt;&lt;/h4&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -t -i ubuntu:14.04 /bin/bash&lt;/code&gt;&lt;/pre&gt;
@@ -216,22 +462,6 @@ docker rm $(docker ps -a -q)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker images | awk &#39;{if($1 ~ &#34;&amp;lt;none&amp;gt;&#34; &amp;amp;&amp;amp; NR != 1){print $3}}&#39; | xargs docker rmi&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_list_镜像&#34;&gt;4.16. list 镜像&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker images --format &#34;{{.ID}}: {{.Repository}}:{{.Tag}}&#34;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_list_容器&#34;&gt;4.17. list 容器&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker ps --format &#34;{{.ID}}: {{.Names}}&#34;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

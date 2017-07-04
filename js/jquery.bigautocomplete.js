@@ -52,14 +52,15 @@
 
 			var $this = $(this);
 
-
 			var $bigAutocompleteContent = $("#bigAutocompleteContent");
 
 			this.config = {
 			               width:$this.outerWidth() - 2,
 			               url:null,
 			               data:null,
-			               callback:null};
+			               callback:null,
+			               idx:null
+			            };
 			$.extend(this.config,param);
 			$this.data("config",this.config);
 			// console.log($this.data("config"));
@@ -70,16 +71,18 @@
 					if($bigAutocompleteContent.css("display") == "none")return;
 
 					var $nextSiblingTr = $bigAutocompleteContent.find(".ct");
+
 					if($nextSiblingTr.length <= 0){
 						$nextSiblingTr = $bigAutocompleteContent.find("tr:first");
 					}else{
 						$nextSiblingTr = $nextSiblingTr.next();
 					}
+					// console.log($nextSiblingTr);
 					$bigAutocompleteContent.find("tr").removeClass("ct");
 
 					if($nextSiblingTr.length > 0){
 						$nextSiblingTr.addClass("ct");
-						$this.val($nextSiblingTr.find("div:last").html());
+						// $this.val($nextSiblingTr.find("div:last").html());
 
 						$bigAutocompleteContent.scrollTop($nextSiblingTr[0].offsetTop - $bigAutocompleteContent.height() + $nextSiblingTr.height() );
 
@@ -118,7 +121,6 @@
 			});
 
 			$this.keyup(function(event) {
-				// console.log($this.data("config"));
 				var k = event.keyCode;
 				var ctrl = event.ctrlKey;
 				var isFunctionalKey = false;
@@ -138,6 +140,7 @@
 					var data = config.data;
 					var url = config.url;
 					var keyword_ = $.trim($this.val());
+					var idx = config.idx;
 					// console.log(data);
 					if(keyword_ == null || keyword_ == ""){
 						bigAutocomplete.hideAutocomplete();
@@ -156,6 +159,14 @@
 						$.post(url,{keyword:keyword_},function(result){
 							makeContAndShow(result.data)
 						},"json")
+					}else if(idx != null ){
+					    var results = idx.search(keyword_);
+					    var newresults = results.map(function (raw) {
+					      return {
+					        title: raw.ref
+					      }
+					    });
+					    makeContAndShow(newresults)
 					}
 
 

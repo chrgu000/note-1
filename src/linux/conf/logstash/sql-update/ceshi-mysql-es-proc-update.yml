@@ -11,7 +11,7 @@ input {
     schedule => "* * * * *"
     use_column_value => true
     tracking_column => update_date
-    statement_filepath => "/logstash-2.3.4/sql-update/ti_procurement.sql"
+    statement_filepath => "/logstash/sql-update/ti_procurement.sql"
   }
   jdbc {
     type => "resources"

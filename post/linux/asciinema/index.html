@@ -9,7 +9,7 @@
 <meta property="og:title" content="Asciinema" />
 <meta property="og:description" content="Contents1. 配置 asciidoctor 解析 Asciinema1.1. 测试2. Tmp1. 配置 asciidoctor 解析 Asciinema添加 GistBlockMacro 到 asciidoctor-1.5.5\lib 下
 替换 asciidoctor-1.5.5\bin 目录下的 asciidoctor
-#!/usr/bin/env rubyrequire &#39;rubygems&#39; unless defined? Gemif File.exist?(asciidoctor = (File.expand_path &#39;../../lib/asciidoctor&#39;, __FILE__))require asciidoctorelserequire &#39;asciidoctor&#39;end# 解析require &#39;asciidoctor/extensions&#39;require &#39;asciidoctor/GistBlockMacro&#39;Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? &#39;html&#39;end#require &#39;asciidoctor/cli&#39;invoker = Asciidoctor::Cli::Invoker.new ARGVGC." />
+#!/usr/bin/env rubyrequire &#39;rubygems&#39; unless defined? Gemif File.exist?(asciidoctor = (File.expand_path &#39;../../lib/asciidoctor&#39;, __FILE__))require asciidoctorelserequire &#39;asciidoctor&#39;end# 解析require &#39;asciidoctor-diagram&#39;require &#39;asciidoctor/extensions&#39;require &#39;asciidoctor/GistBlockMacro&#39;Asciidoctor::Extensions.register doblock_macro GistBlockMacro if document.basebackend? &#39;html&#39;end#require &#39;asciidoctor/cli&#39;invoker = Asciidoctor::Cli::Invoker." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/asciinema/" />
 
@@ -27,7 +27,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -68,6 +69,8 @@
             <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
@@ -124,6 +127,7 @@ else
   require 'asciidoctor'
 end
 # 解析
+require 'asciidoctor-diagram'
 require 'asciidoctor/extensions'
 require 'asciidoctor/GistBlockMacro'
 Asciidoctor::Extensions.register do
@@ -209,16 +213,16 @@ ssh-copy-id root@196.168.1.34</p>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

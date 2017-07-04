@@ -388,36 +388,46 @@
 &lt;li&gt;&lt;a href=&#34;#_启动集群&#34;&gt;3.6. 启动集群&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka常用操作命令&#34;&gt;4. Kafka常用操作命令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_kafka生产者java_api&#34;&gt;Kafka生产者Java API&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_kafka消费者java_api&#34;&gt;Kafka消费者Java API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka消费者java_api&#34;&gt;Kafka消费者Java API&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;h1 id=&#34;_kafka是什么&#34; class=&#34;sect0&#34;&gt;Kafka是什么&lt;/h1&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。
-　　
-　　KAFKA + STORM +REDIS
-[disc]　
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。
+KAFKA + STORM +REDIS&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;[disc]　
 * Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。
 * Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。
 * Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。
 * Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。
-* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性&lt;/pre&gt;
-&lt;/div&gt;
+* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性&lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id=&#34;_jms是什么&#34; class=&#34;sect0&#34;&gt;JMS是什么&lt;/h1&gt;
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_jms的基础&#34;&gt;1. JMS的基础&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;    JMS是什么：JMS是Java提供的一套技术规范
-　　JMS干什么用：用来异构系统 集成通信，缓解系统瓶颈，提高系统的伸缩性增强系统用户体验，使得系统模块化和组件化变得可行并更加灵活
-　　通过什么方式：生产消费者模式（生产者、服务器、消费者）&lt;/pre&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;JMS是什么：JMS是Java提供的一套技术规范
+JMS干什么用：用来异构系统 集成通信，缓解系统瓶颈，提高系统的伸缩性增强系统用户体验，使得系统模块化和组件化变得可行并更加灵活
+通过什么方式：生产消费者模式（生产者、服务器、消费者）&lt;/p&gt;
 &lt;/div&gt;
+&lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -495,11 +505,15 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_jms消息服务器_activemq&#34;&gt;4.1. JMS消息服务器 ActiveMQ&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的。
-　　主要特点：&lt;/pre&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的。&lt;/p&gt;
 &lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;主要特点：&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;ulist disc&#34;&gt;
 &lt;ul class=&#34;disc&#34;&gt;
@@ -538,11 +552,15 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_分布式消息中间件_metamorphosis&#34;&gt;4.2. 分布式消息中间件 Metamorphosis&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　Metamorphosis (MetaQ) 是一个高性能、高可用、可扩展的分布式消息中间件，类似于LinkedIn的Kafka，具有消息存储顺序写、吞吐量大和支持本地和XA事务等特性，适用于大吞吐量、顺序消息、广播和日志数据传输等场景，在淘宝和支付宝有着广泛的应用，现已开源。
-　　主要特点：&lt;/pre&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Metamorphosis (MetaQ) 是一个高性能、高可用、可扩展的分布式消息中间件，类似于LinkedIn的Kafka，具有消息存储顺序写、吞吐量大和支持本地和XA事务等特性，适用于大吞吐量、顺序消息、广播和日志数据传输等场景，在淘宝和支付宝有着广泛的应用，现已开源。&lt;/p&gt;
 &lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;主要特点：&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;ulist disc&#34;&gt;
 &lt;ul class=&#34;disc&#34;&gt;
@@ -596,16 +614,34 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_分布式消息中间件_rocketmq&#34;&gt;4.3. 分布式消息中间件 RocketMQ&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　RocketMQ 是一款分布式、队列模型的消息中间件，具有以下特点：
-* 能够保证严格的消息顺序
-* 提供丰富的消息拉取模式
-* 高效的订阅者水平扩展能力
-* 实时的消息订阅机制
-* 亿级消息堆积能力
-* Metaq3.0 版本改名，产品名称改为RocketMQ&lt;/pre&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;RocketMQ 是一款分布式、队列模型的消息中间件，具有以下特点：&lt;/p&gt;
 &lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist disc&#34;&gt;
+&lt;ul class=&#34;disc&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;能够保证严格的消息顺序&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提供丰富的消息拉取模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;高效的订阅者水平扩展能力&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实时的消息订阅机制&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;亿级消息堆积能力&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Metaq3.0 版本改名，产品名称改为RocketMQ&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
@@ -740,22 +776,38 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;ulist disc&#34;&gt;
 &lt;ul class=&#34;disc&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;关闭防火墙
-　　chkconfig iptables off  &amp;amp;&amp;amp; setenforce 0&lt;/p&gt;
+&lt;p&gt;关闭防火墙&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;chkconfig iptables off  &amp;amp;&amp;amp; setenforce 0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;创建用户
-　　groupadd realtime &amp;amp;&amp;amp;　useradd realtime　&amp;amp;&amp;amp; usermod -a -G realtime realtime&lt;/p&gt;
+&lt;p&gt;创建用户&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;groupadd realtime &amp;amp;&amp;amp;　useradd realtime　&amp;amp;&amp;amp; usermod -a -G realtime realtime&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;创建工作目录并赋权
-　　mkdir /export
-　　mkdir /export/servers
-　　chmod 755 -R /export&lt;/p&gt;
+&lt;p&gt;创建工作目录并赋权&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mkdir /export
+mkdir /export/servers
+chmod 755 -R /export&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;切换到realtime用户下
-　　su realtime&lt;/p&gt;
+&lt;p&gt;切换到realtime用户下&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;su realtime&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -766,31 +818,34 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_下载安装包&#34;&gt;3.1. 下载安装包&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://kafka.apache.org/downloads.html&#34; class=&#34;bare&#34;&gt;http://kafka.apache.org/downloads.html&lt;/a&gt;
+在linux中使用wget命令下载安装包&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　http://kafka.apache.org/downloads.html
-　　在linux中使用wget命令下载安装包
-    wget http://mirrors.hust.edu.cn/apache/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;wget http://mirrors.hust.edu.cn/apache/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_解压安装包&#34;&gt;3.2. 解压安装包&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　tar -zxvf /export/software/kafka_2.11-0.8.2.2.tgz -C /export/servers/
-　　cd /export/servers/
-　　ln -s kafka_2.11-0.8.2.2 kafka&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf /export/software/kafka_2.11-0.8.2.2.tgz -C /export/servers/
+cd /export/servers/
+ln -s kafka_2.11-0.8.2.2 kafka&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_修改配置文件&#34;&gt;3.3. 修改配置文件&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cp   /export/servers/kafka/config/server.properties
-　　/export/servers/kafka/config/server.properties.bak
-　　vi /export/servers/kafka/config/server.properties
-　　输入以下内容：&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cp /export/servers/kafka/config/server.properties /export/servers/kafka/config/server.properties.bak
+
+vi /export/servers/kafka/config/server.properties&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -801,66 +856,105 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_分发安装包&#34;&gt;3.4. 分发安装包&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　scp -r /export/servers/kafka_2.11-0.8.2.2 kafka02:/export/servers
-　　然后分别在各机器上创建软连
-　　cd /export/servers/
-　　ln -s kafka_2.11-0.8.2.2 kafka&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;scp -r /export/servers/kafka_2.11-0.8.2.2 kafka02:/export/servers&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;然后分别在各机器上创建软连&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /export/servers/
+ln -s kafka_2.11-0.8.2.2 kafka&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_再次修改配置文件_重要&#34;&gt;3.5. 再次修改配置文件（重要）&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　依次修改各服务器上配置文件的的broker.id，分别是0,1,2不得重复。&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;依次修改各服务器上配置文件的的broker.id，分别是0,1,2不得重复。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_启动集群&#34;&gt;3.6. 启动集群&lt;/h3&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;依次在各节点上启动kafka&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;　　依次在各节点上启动kafka
-　　bin/kafka-server-start.sh config/server.properties
-　　
-== Kafka常用操作命令&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-server-start.sh config/server.properties&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kafka常用操作命令&#34;&gt;4. Kafka常用操作命令&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;ulist disc&#34;&gt;
 &lt;ul class=&#34;disc&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;查看当前服务器中的所有topic
-　　bin/kafka-topics.sh --list --zookeeper zk01:2181&lt;/p&gt;
+&lt;p&gt;查看当前服务器中的所有topic&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-topics.sh --list --zookeeper zookeeper:2181&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;创建topic
-　　./kafka-topics.sh --create --zookeeper mini1:2181 --replication-factor 1 --partitions 3 --topic first&lt;/p&gt;
+&lt;p&gt;创建topic&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;./kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 3 --topic first&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;删除topic
-　　sh bin/kafka-topics.sh --delete --zookeeper zk01:2181 --topic test
-需要server.properties中设置delete.topic.enable=true否则只是标记删除或者直接重启。&lt;/p&gt;
+&lt;p&gt;删除topic&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-topics.sh --delete --zookeeper zookeeper:2181 --topic test&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;需要server.properties中设置delete.topic.enable=true否则只是标记删除或者直接重启。&lt;/p&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;通过shell命令发送消息
-　　kafka-console-producer.sh --broker-list kafka01:9092 --topic itheima&lt;/p&gt;
+&lt;p&gt;通过shell命令发送消息&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;通过shell消费消息
-　　sh bin/kafka-console-consumer.sh --zookeeper zk01:2181 --from-beginning --topic test1&lt;/p&gt;
+&lt;p&gt;通过shell消费消息&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --from-beginning --topic test1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;查看消费位置
-　　sh kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper zk01:2181 --group testGroup&lt;/p&gt;
+&lt;p&gt;查看消费位置&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper zookeeper:2181 --group testGroup&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;查看某个Topic的详情
-　　sh kafka-topics.sh --topic test --describe --zookeeper zk01:2181&lt;/p&gt;
+&lt;p&gt;查看某个Topic的详情&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;bin/kafka-topics.sh --topic test --describe --zookeeper zookeeper:2181&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -881,13 +975,21 @@ queue.take(object)    数据消费&lt;/p&gt;
 &lt;div class=&#34;literalblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre&gt;　　
-　　StreamMessage：Java 数据流消息，用标准流操作来顺序的填充和读取。
-　　MapMessage：一个Map类型的消息；名称为 string 类型，而值为 Java 的基本类型。
-　　TextMessage：普通字符串消息，包含一个String。
-　　ObjectMessage：对象消息，包含一个可序列化的Java 对象
-　　BytesMessage：二进制数组消息，包含一个byte[]。
-　　XMLMessage:  一个XML类型的消息。
+StreamMessage：Java 数据流消息，用标准流操作来顺序的填充和读取。
+MapMessage：一个Map类型的消息；名称为 string 类型，而值为 Java 的基本类型。
+TextMessage：普通字符串消息，包含一个String。
+ObjectMessage：对象消息，包含一个可序列化的Java 对象
+BytesMessage：二进制数组消息，包含一个byte[]。
+XMLMessage:  一个XML类型的消息。
 最常用的是TextMessage和ObjectMessage。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;1. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://kafka.apache.org/08/documentation/#quickstart&#34; class=&#34;bare&#34;&gt;http://kafka.apache.org/08/documentation/#quickstart&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

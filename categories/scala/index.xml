@@ -9,6 +9,262 @@
     <atom:link href="/categories/scala/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>快学Scala</title>
+      <link>/post/bigdata/scala/%E5%BF%AB%E5%AD%A6Scala/</link>
+      <pubDate>Wed, 21 Jun 2017 13:03:08 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/%E5%BF%AB%E5%AD%A6Scala/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;scala&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_类&#34;&gt;1. 类&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__strong_bean_strong_属性&#34;&gt;1.1. &lt;strong&gt;Bean&lt;/strong&gt; 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_辅助构造器&#34;&gt;1.2. 辅助构造器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_主构造器&#34;&gt;1.3. 主构造器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_带函数参数的函数&#34;&gt;2. 带函数参数的函数&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参数_类型_推导&#34;&gt;2.1. 参数(类型)推导&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_类&#34;&gt;1. 类&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__strong_bean_strong_属性&#34;&gt;1.1. &lt;strong&gt;Bean&lt;/strong&gt; 属性&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-21_130203.png&#34; alt=&#34;2017 06 21 130203&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_辅助构造器&#34;&gt;1.2. 辅助构造器&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;辅助构造器的名称为this (在Java或C、中，构造器的名称和类名相同—当
+你修改类名时就不那么方便了。)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每一个辅助构造器都必须以一个对先前已定义的其他辅助构造器或主构造器的
+调用开始&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;辅助构造器类&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Person{
+  private var name = &#34;&#34;
+  private var age = 0
+
+  def this(name:String){ // 一个辅助构造器
+    this() // 调用主构造器
+    this.name = name
+  }
+
+  def this(name:String, age: Int){ // 另一个辅助构造器
+    this(name) // 调用前一个辅助构造器
+    this.age = age
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;三种方式构建对象&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;    val p1 = new Person // 主构造器
+    val p2 = new Person(&#34;Spark&#34;) // 第一个辅助构造器
+    val p3 = new Person(&#34;Spark&#34;,42) // 第二个辅助构造器&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_主构造器&#34;&gt;1.3. 主构造器&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;主构造器的参数直接放置在类名之后&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主构造器会执行类定义中的所有语句。例如在以下类中:&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;class Person2(val name:String,val age:Int){
+  println(&#34;Person2&#34;) &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+  def description = name + &#34; is &#34; + age + &#34; years old &#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;println语句是主构造器的一部分。每当有对象被构造出来时，上述代码就会被执行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;针对主构造器参数生成的字段和方法&lt;/p&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-21_144831.png&#34; alt=&#34;2017 06 21 144831&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_带函数参数的函数&#34;&gt;2. 带函数参数的函数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在本节中，你将会看到如何实现接受另一个函数作为参数的函数。以下是一个示例&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;def valueAtOneQuarter(f: (Double) =&amp;gt; Double) = f(0.25)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;    注意。这里的参数可以是任何接受Double并返Double的函数。valueAtOneQuarter
+函数将计算那个函数在D.25位置的值。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例如
+    valueAtOneQuarter(ceil _) // 1.0
+    valueAtOneQuarter(sqrt _) // 0.5 (因为 0.5 * 0.5 = 0.25)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;valueAtOneQuarter类型是什么呢?它是一个带有单个参数的函数，因为它的类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(参数类型) &amp;#8658; 结果类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;结果类型很显然是Double,而参数类型已经在函数头部以(Double) &amp;#8658; Double给出
+了。因此，valueAtOneQuarter的类型为:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;((Double) &amp;#8658; Double) &amp;#8658; Double&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;由于valueAtOneQuarter是一个接受函数参数的函数，因此它被称做高阶函数
+高阶函数也可以产出另一个函数。以下是一个简单示例:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;def mulBy(factor: Double) = (x: Double) &amp;#8658; factor * x&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mulBy函数有一个类型为Double的参数，返回一个类型为(Double) &amp;#8658; Double 的函数&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(Double) &amp;#8658; ((Double) &amp;#8658; Double)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参数_类型_推导&#34;&gt;2.1. 参数(类型)推导&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;当你将一个匿名函数传递给另一个函数或方法时。Scala会尽可能帮助你推断出类
+型信息。举例来说，你不需要将代码写成:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;valueAtOneQuarter((x: Double) &amp;#8658; 3 * x)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;由于valueAtOneQuarter方法知道你会传入一个类型为(Double) &amp;#8658; Double的函数 你可以简单地写成:
+    valueAtOneQuarter((x) &amp;#8658; 3 * x)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;作为额外奖励，对于只有一个参数的函数，你可以略去参数外围的()
+    valueAtOneQuarter(x &amp;#8658; 3 * x)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;这样更好了。如果参数在 &amp;#8658; 右侧只出现一次，你可以用一替换掉它:
+    valueAtOneQuarter(3 * _)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;请注意这些简写方式仅在参数类型已知的情况下有效
+    val fun = 3 * _ // 错误: 无法推断出类型
+    val fun = 3 * (_: Double) // OK
+    val fun: (Double) &amp;#8658; Double = 3 * _ // OK, 因为我们给出了fun的类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;  def mulBy(factor: Double) = (x: Double) =&amp;gt; factor * x
+考虑如下调用
+  val triple = mulBy(3)
+  val half = mulBy(0.5)
+  println(triple(14) + &#34; &#34; + half(14)) // 42 7&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt; *mulBy* 的首次调用将参数变量 *factor* 设为3。该变量在 *(x:Double) =&amp;gt; factor*x*  函
+数的函数体内被引用，该函数被存人 *triple* .然后参数变量 *factor* 从运行时的栈上
+被弹出。
+接下来， *mulBy* 再次被调用，这次 *factor* 被设为了0.5。该变量在 *(x:Double) =&amp;gt; factor*x* 数的函数体内被引用。该函数被存入 *half*
+每一个返回的函数都有自己的factor设置。
+这样一个函数被称做闭包(closure)闭包由代码和代码用到的任何非局部变量定义构成
+这些函数实际上是以类的对象方式实现的，该类有一个实例变量factor和一个包含了函数体的apply方法。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_131426.png&#34; alt=&#34;2017 06 22 131426&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_131515.png&#34; alt=&#34;2017 06 22 131515&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_132227.png&#34; alt=&#34;2017 06 22 132227&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/scala/2017-06-22_132310.png.png&#34; alt=&#34;2017 06 22 132310.png&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://twitter.github.io/scala_school/zh_cn/index.html&#34; class=&#34;bare&#34;&gt;http://twitter.github.io/scala_school/zh_cn/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;def calcType(calc: Calculator) = calc match {
+  case Calculator(&#34;HP&#34;, &#34;20B&#34;) &amp;#8658; &#34;financial&#34;
+  case Calculator(&#34;HP&#34;, &#34;48G&#34;) &amp;#8658; &#34;scientific&#34;
+  case Calculator(&#34;HP&#34;, &#34;30B&#34;) &amp;#8658; &#34;business&#34;
+  case Calculator(ourBrand, ourModel) &amp;#8658; &#34;Calculator: %s %s is of unknown type&#34;.format(ourBrand, ourModel)
+}&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Scala实战</title>
       <link>/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/</link>
       <pubDate>Fri, 07 Apr 2017 15:06:47 +0000</pubDate>
@@ -979,6 +1235,13 @@ case class ResultTask(result: Map[String, Int])&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_单机版_wordcount&#34;&gt;5. 单机版 wordcount&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;6. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sbt_idea搭建阅读spark源码&#34;&gt;7. SBT+IDEA搭建阅读Spark源码&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置sbt&#34;&gt;7.1. 配置SBT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_idea&#34;&gt;7.2. IDEA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -2188,6 +2451,88 @@ lines.flatMap(_.split(&#34; &#34;)) &lt;i class=&#34;conum&#34; data-value=&#34;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt; lines.flatMap(_.split(&#34; &#34;)).map((_,1)).groupBy(_._1).mapValues(_.foldLeft(0)(_+_._2))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;6. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://hongjiang.info/scala/&#34; class=&#34;bare&#34;&gt;http://hongjiang.info/scala/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.scalatest.org/quick_start&#34;&gt;Scala单元测试&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://guozhongxin.com/pages/2014/10/15/spark_source_code.html&#34; class=&#34;bare&#34;&gt;http://guozhongxin.com/pages/2014/10/15/spark_source_code.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sbt_idea搭建阅读spark源码&#34;&gt;7. SBT+IDEA搭建阅读Spark源码&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置sbt&#34;&gt;7.1. 配置SBT&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载+
+&lt;a href=&#34;http://www.scala-sbt.org/download.html&#34;&gt;sbt-0.13.15&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;windows下配置环境变量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;阿里云仓库配置文件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ ~/.sbt/repositories
+[repositories]
+  public: http://maven.aliyun.com/nexus/content/groups/public/
+  typesafe:http://dl.bintray.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+  ivy-sbt-plugin:http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+  sonatype-oss-releases
+
+  sonatype-oss-snapshots&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;指定仓库&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sbt -Dsbt.override.build.repos=true -Dsbt.repository.config=C:\Users\dishui\.sbt\repositories&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_idea&#34;&gt;7.2. IDEA&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-05-04_112358.png&#34; alt=&#34;2017 05 04 112358&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/spark/2017-05-04_112513.png&#34; alt=&#34;2017 05 04 112513&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;-XX:MaxPermSize=384M
+-Dsbt.override.build.repos=true
+-Dsbt.repository.config=C:\Users\dishui\.sbt\repositories&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -65,6 +66,8 @@
             <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
@@ -160,6 +163,27 @@ int num = selector.select();Set&lt;SelectionKey&gt; selectionKeys = selector.se
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
 						Contents1. Btrace1.1. windows git btrace 环境1.1.1. 配置2. 参考3. Q &amp; A1. Btrace1.1. windows git btrace 环境1.1.1. 配置添加环境变量 $ vi /etc/profile.d/btrace.sh# btraceexport JAVA_HOME=/d/env/jdk/jdk1.7.0_71export BTRACE_HOME=/e/data/btrace-bin-1.3.8.1export PATH="$BTRACE_HOME/bin:$JAVA_HOME/jre/bin$PATH"# vagrantexport COREOS=/e/vagrant/CoreOS测试代码 $ btrace `jps | awk '{if($2=="AppMain"){print $1}}'` BTraceFiled.java (1) (2)1btrace &lt;PID&gt; 测试类2jps 查看 pid2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/gc/" rel="bookmark">GC日志分析</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						参考http://blog.csdn.net/yxc135/article/details/12137663
+
 					</div>
 				</div>
 			</div>
@@ -304,35 +328,6 @@ http://196.168.1.33:9080/f/d68fbbf872/
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/freemarker/" rel="bookmark">freemarker</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						freemarker list (长度,遍历,下标,嵌套,排序)1. freemarker获取list的size ：
-JavaArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
-Freemaker${list?size}
-list的遍历：
-&lt;#list animals as being&gt;&lt;tr&gt;&lt;td&gt;${being.name}${being.price}&lt;td&gt;&lt;/tr&gt;&lt;/#list&gt;
-遍历MAP
- &lt;#list map?keys as k&gt;&lt;option value="${k}"&gt;${map[k]}&lt;/option&gt;&lt;/#list&gt;4.list遍历中的下标序号：
-_index是list的一个属性&lt;#list list as a&gt;${a_index}&lt;/#list&gt;
-5.取LIST中第i个元素的值${list[i]}嵌套时前面要有括号，如下，将字符串变成list，然后取第i个元素的值${(str?split(","))[i]}
-list的嵌套：&lt;#list jsskList as jsskVO&gt;&lt;#list kcList as kcVO&gt;&lt;#if kcVO.
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
@@ -348,15 +343,15 @@ http://196.168.1.33:9080/f/d68fbbf872/
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -430,6 +425,8 @@ http://196.168.1.33:9080/f/d68fbbf872/
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

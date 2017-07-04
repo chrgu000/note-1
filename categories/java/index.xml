@@ -486,6 +486,27 @@ export COREOS=/e/vagrant/CoreOS&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>GC日志分析</title>
+      <link>/post/java/gc/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/gc/</guid>
+      <description>&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/yxc135/article/details/12137663&#34; class=&#34;bare&#34;&gt;http://blog.csdn.net/yxc135/article/details/12137663&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Intellij</title>
       <link>/post/editor/Intellij/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
@@ -1425,43 +1446,6 @@ public class Main{
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;[[mockito doc| &lt;a href=&#34;http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html&#34; class=&#34;bare&#34;&gt;http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html&lt;/a&gt;]]&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>多线程</title>
-      <link>/post/java/thread/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/java/thread/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_多线程&#34;&gt;1. 多线程&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_多线程&#34;&gt;1. 多线程&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;[[Java多线程基础 | &lt;a href=&#34;http://www.importnew.com/21136.html&#34; class=&#34;bare&#34;&gt;http://www.importnew.com/21136.html&lt;/a&gt;]]&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;[[&lt;a href=&#34;http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency&#34; class=&#34;bare&#34;&gt;http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency&lt;/a&gt;]]&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

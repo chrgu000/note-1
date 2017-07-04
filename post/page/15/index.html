@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -66,6 +67,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -90,7 +93,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/vagrant/" rel="bookmark">vagrant 错误</a>
+						<a href="/post/linux/shell/" rel="bookmark">shell</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -99,7 +102,11 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 脚本启动2. Error1. 脚本启动== alpine* Vagrantfile```rubyVagrant.configure(2) do |config|config.vm.synced_folder ".", "/vagrant", disabled: trueconfig.ssh.private_key_path = "C:/Users/dishui/.ssh/id_rsa"config.ssh.forward_agent = trueconfig.vm.define "gollum" do |gollum|gollum.vm.box = "gollum-1.0"gollum.vm.hostname = "gollum"gollum.vm.network "private_network", ip: "192.168.137.13",name: "VirtualBox Host-Only Ethernet Adapter"endconfig.vm.provider "virtualbox" do |vb|vb.memory = "512"endend# -*- mode: ruby -*-# vi: set ft=ruby :app_servers = {:rancher1 =&gt; '192.
+						Contents1. shell1.1. 获取当前目录1. shell1.1. 获取当前目录+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"变量
+for var in $@doecho "$var"docker tag $var dishui.io:5000/$vardocker push dishui.io:5000/$vardocker rmi dishui.io:5000/$vardone参考
+Shell $0, $#, $*, $@, $?, $$和命令行参数
+
 					</div>
 				</div>
 			</div>
@@ -110,7 +117,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/vim/" rel="bookmark">vim编辑器</a>
+						<a href="/post/linux/ssh/" rel="bookmark">ssh</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -119,10 +126,10 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents vim编辑器 ####vim模式：
-编辑模式(命令模式) 输入模式 末行模式  模式转换： 编辑--&gt;输入： i: 在当前光标所在字符的前面，转为输入模式； a: 在当前光标所在字符的后面，转为输入模式； o: 在当前光标所在行的下方，新建一行，并转为输入模式； -- I：在当前光标所在行的行首，转换为输入模式 A：在当前光标所在行的行尾，转换为输入模式 O：在当前光标所在行的上方，新建一行，并转为输入模式； 输入--&gt;编辑： ESC 编辑--&gt;末行： ： 末行--&gt;编辑： ESC, ESC  一、打开文件  vim /path/to/somefile
- vim +# :打开文件，并定位于第#行 vim +：打开文件，定位至最后一行 vim +/PATTERN : 打开文件，定位至第一次被PATTERN匹配到的行的行首 默认处于编辑模式  二、关闭文件 1、末行模式关闭文件 :q 退出 :wq 保存并退出 :q! 不保存并退出 :w 保存 :w! 强行保存 :wq --&gt; :x 2、编辑模式下退出 ZZ: 保存并退出  三、移动光标(编辑模式)  1、逐字符移动：
-    h: 左 l: 右 j: 下 k: 上 #h: 移动#个字符；    2、以单词为单位移动
+						Contents1. 安装2. 25个必须记住的SSH命令3. ssh-copy-id1. 安装CentOS7 64 系统
+yum install openssh-server -y启动 ssh
+# /usr/sbin/sshdCould not load host key: /etc/ssh/ssh_host_rsa_keyCould not load host key: /etc/ssh/ssh_host_ecdsa_keyCould not load host key: /etc/ssh/ssh_host_ed25519_key解决办法
+ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key # 重新建立 ssh_host_dsa_key 文件ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key # 重新建立 ssh_host_rsa_key 文件2.
 					</div>
 				</div>
 			</div>
@@ -133,7 +140,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/virtualbox/" rel="bookmark">virtualbox错误</a>
+						<a href="/post/editor/snippets/" rel="bookmark">sublime tabTrigger</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -142,8 +149,10 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 include::content/post/base.adoc[] :toc-title: Contents VirtualBox Tip VBox中出现UUID have already exists解决方法  进入到VBoxManage.exe所在目录
-# 参数:虚拟vdi硬盘路径 VBoxManage.exe internalcommands sethduuid G:\VirtualMachine\CentOS-WEB\CentOS-WEB-01.vdi   通信问题  host-only模式下  主机ping通虚拟机 √ 虚拟机ping主机 ✘  关闭win10防火墙    修改硬盘大小 #7d91f211-d3e4-4185-bd9a-314c9b39856d #修改成40G VBoxManage modifyhd uuid –-resize 40960  
+						Contents1. quml2. qdot3. bash4. bash session5. table6. asciinema7. a8. javasAsciidoctor1. stem2. quote3. img4. src5. c6. c11. quml&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml$1@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;&lt;/snippet&gt;
+2. qdot&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml@startdot$1@enddot@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;qdot&lt;/tabTrigger&gt;&lt;/snippet&gt;
+3. bash&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[
+$1]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;bash&lt;/tabTrigger&gt;&lt;/snippet&gt;
 					</div>
 				</div>
 			</div>
@@ -154,7 +163,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/windows/" rel="bookmark">win 端口转发</a>
+						<a href="/post/editor/sublime/" rel="bookmark">sublime 配置</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -163,9 +172,13 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. Git2. Windows2.1. win10 端口转发2.2. windows 环境变量1. Gitsvn 导出 git 单个目录
-# trunk 替代 branchhttps://github.com/dishuiGit/codes.git/trunk/Spring-test2. Windows2.1. win10 端口转发netsh
-# 查看netsh interface portproxy show all#addnetsh interface portproxy add v4tov4 listenport=9200 connectaddress=192.168.137.164 connectport=9200# 删除netsh interface portproxy delete v4tov4 listenport=9200 listenaddress=196.168.1.178# 例子http://aofengblog.
+						Contents1. Sublime1.1. 快捷键2. sublime 代码片段3. 自定义快捷键3.1. 参考1. Sublimevi模式
+Preferences-&#8594;Settings-User
+ "ignored_packages":["Markdown","Vintage" //如果要关闭vi模式，注释这一行]保存去除行尾空格
+MultiMarkdown-&#8594;User Setting
+ "trim_trailing_white_space_on_save": trueii 退出vi模式
+Preferences-&#8594;Key Bindings-User`
+ { "keys": ["i","i"], "command": "exit_insert_mode","context":[{ "key": "setting.command_mode", "operand": false },{ "key": "setting.is_widget", "operand": false }]},{ "
 					</div>
 				</div>
 			</div>
@@ -176,7 +189,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/yum/" rel="bookmark">yum基础操作</a>
+						<a href="/post/linux/supervisord/" rel="bookmark">supervisor</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -185,13 +198,9 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						yum 源阿里云 yum 源
-http://mirrors.aliyun.com/repo/
-备份你的原镜像文件，以免出错后可以恢复
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/
-curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repocurl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo下载新的 epel-7.repo 到 /etc/yum.repos.d/
-curl -o /etc/yum.repos.d/epel-7.repo http://mirrors.aliyun.com/repo/epel-7.repo运行 yum makecache 生成缓存
-yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@c1 ~]# sed -i 's=keepcache=0=keepcache=1=g' /etc/yum.conf[root@c1 ~]# grep keepcache /etc/yum.
+						Contents1. supervisord1.1. CentOS-6.5 开机启动脚本安装 epel 扩展源 python-pip安装 supervisor-logging清理1. supervisord在线安装
+# yum install python-setuptools# easy_install -i http://pypi.doubanio.com/simple supervisor软件安装
+#! /bin/bash# 目录 /root/opt/srcmkdir -p /root/opt &amp;&amp; \tar -zxf supervisor-4.0.0.tar.gz -C /root/opt &amp;&amp; \cd /root/opt/supervisor/elementtree-1.2.6-20050316 &amp;&amp; python setup.py install &amp;&amp; \cd /root/opt/supervisor/setuptools-20.6.7 &amp;&amp; python setup.
 					</div>
 				</div>
 			</div>
@@ -202,7 +211,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/zookeeper/" rel="bookmark">zookeeper基础</a>
+						<a href="/post/linux/svn-setup/" rel="bookmark">svn 安装与配置</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -211,11 +220,11 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. zookeeper1.1. ZooKeeper 常用四字命令：1. zookeepercreate /zk-book 123ls /zk-bookget /zk-book1.1. ZooKeeper 常用四字命令：ZooKeeper 支持某些特定的四字命令字母与其的交互。它们大多是查询命令，用来获取 ZooKeeper 服务的当前状态及相关信息。用户在客户端可以通过 telnet 或 nc 向 ZooKeeper 提交相应的命令
-来查看哪个节点被选择作为follower或者leader
-echo stat|nc 127.0.0.1 2181测试是否启动了该Server，若回复imok表示已经启动
-echo ruok|nc 127.0.0.1 2181列出未经处理的会话和临时节点。
-echo dump| nc 127.0.0.1 2181关掉server
+						Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并7. Svn 检出 github 目录1. svn`svn`安装
+yum -y install subversionyum -y install mod_dav_svn创建`SVN`根目录
+mkdir -p $HOME/svn/创建repo1库
+svnadmin create $HOME/svn/repo12. `SVN`配置用户密码`passwd`配置
+vim /root/svn/repo1/conf/passwd=xyc = 123lyf = 123权限控制`authz`配置
 					</div>
 				</div>
 			</div>
@@ -226,7 +235,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/tmp/" rel="bookmark">临时文件</a>
+						<a href="/post/linux/docker-swarm/" rel="bookmark">swarm</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -235,11 +244,15 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. Swarm2. 采购单2.1. 搜索框由于，Mai沥青平台前期访问量不大，没有部署硬件防火墙Mai沥青平台，上线时间紧张，没有划分网络，前期数据量不大，web应用与数据库没有逻辑隔离划分vLan:1. 提高安全性2. 提高性能
-网聚无线http://www.wellidc.net/世纪互联http://www.ch.21vianet.com/
-机房位置 （全国位置）北京上帝数据中心北京兆维数据中心网络接入BGP接入,上传/下载 1:1联通，移动，电信机房应急管理IDC被攻击，连接不上服务器怎么办？最慢20分钟恢复服务器断电，有什么数据保护措施？磁带保存，保存周期多长时间假如数据丢失，如何补偿，有什么补偿措施
-产品与服务机柜出租 （价格）8万左右网络带宽（价格）120/MCDN服务 （价格）60~70元
-机房位置 （全国位置）北京上帝数据中心北京兆维数据中心网络接入BGP接入,上传/下载 1:1联通，移动，电信机房应急管理IDC被攻击，连接不上服务器怎么办？最慢20分钟恢复服务器断电，有什么数据保护措施？磁带保存，保存周期多长时间产品与服务机柜出租 （价格）8万左右网络带宽（价格）120/MCDN服务 （价格）60~70元
+						Contents1. Swarm1.1. 环境1.2. docker 版本1.3. docker swarm 命令详情1.4. 创建 Swarm 集群1.4.1. 初始化1.4.2. 查看结果1.4.3. 把 agent swarm-01 添加到 swarm 集群1.4.4. 部署应用2. TMP1. Swarm1.1. 环境linux主机CoreOS Alpha 1214.0.0
+主机名
+IP
+类型
+swarm-manager
+192.168.137.16
+manager
+swarm-01
+192.
 					</div>
 				</div>
 			</div>
@@ -250,7 +263,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/tmp2016-10-26/" rel="bookmark">临时文件</a>
+						<a href="/post/work/tip/" rel="bookmark">tip</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -259,8 +272,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						ContentsServer definitionsaddress of a MySQL server.This will keep MaxScale aware of the state of the servers.MySQL Monitor documentation:Service definitionsReadConnRoute documentation:ReadWriteSplit documentation:This service enables the use of the MaxAdmin interfaceMaxScale administration guide:Listener definitions for the servicesGRANT ALL PRIVILEGES ON . TO 'mlq'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;flush privileges;
-GRANT ALL PRIVILEGES ON . TO 'root'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;
+						tip 启动虚拟机 # mysql(196.168.1.216) vmrun -T ws start &quot;/root/vmware/CentOS-mysql/CentOS-mysql.vmx&quot; nogui 启动mysql [root@Mysql ~]# service mysqld start 启动httpd/bugzilla [root@Mysql ~]# service httpd start # svn(196.168.1.224) vmrun -T ws start &quot;/root/vmware/CentOS-svn-bak/CentOS-mysql.vmx&quot; nogui 启动svn svnserve -d -r /home/svn/  终端shell连接数据库乱码 mysql -uroot -h192.168.1.123 -p --default-character-set=utf8  mysql&gt; show variables like 'char%'; +--------------------------+----------------------------+ | Variable_name | Value | +--------------------------+----------------------------+ | character_set_client | latin1 | | character_set_connection | latin1 | | character_set_database | latin1 | | character_set_filesystem | binary | | character_set_results | latin1 | | character_set_server | latin1 | | character_set_system | utf8 | | character_sets_dir | /usr/share/mysql/charsets/ | +--------------------------+----------------------------+  mysql备份数据库 +
 					</div>
 				</div>
 			</div>
@@ -271,7 +283,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/mathematics/xuxiaozhan/hanshu-qiudao/" rel="bookmark">函数求导</a>
+						<a href="/post/linux/ubuntu/" rel="bookmark">ubuntu</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -280,8 +292,12 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 四大法则2. 函数求导法则21. 四大法则\[[u(x) \pm v(x)]' = u'(x) + v'(x)\]\[[u(x)v(x)]' = u'(x)v(x) + u(x)v'(x)\]\[[\frac{u(x)}{v(x)}]' = \frac{u'(x)v(x)-u(x)v'(x)}{v^2(x)}'\]\[[\frac{1}{v(x)}]' = - \frac{v'(x)}{v^2(x)}\]\[[u \pm v]' = u' \pm v'\]\[(uv)' = u'v + uv'\]\[(\frac{u}{v})' = \frac{u'v-uv'}{v^2}\]推广
-\[[u + v + w]' = u' + v' + w'\]\[(uvw)' = u'vw + uv'w + uvw'\]\[\displaystyle \sum_{i=1}^n C_{i}u_{i})' = \sum C_{i}u_{i}'\]线性组合的导数 = 导数的线性组合
+						Contents1. 软件安装1.1. 配置samba实现文件夹共享2. 网络cat /etc/hostname环境变量
+JAVA_HOME="/home/vagrant/opt/sof/jdk1.7.0_79" #java环境变量ANT_HOME="/home/vagrant/opt/sof/apache-ant-1.9.4" #ant环境变量CLASSPATH=".:$JAVA_HOME/lib:$ANT_HOME/lib"PATH="$ANT_HOME/bin:$JAVA_HOME/bin:$PATH"主机与 ip 的映射
+cat /etc/hosts编辑 sources.list
+vi /etc/apt/sources.list更新
+apt-get update查看已安装软件列表
+dpkg -l | awk '{print $2}'ubuntu-14网易源
 					</div>
 				</div>
 			</div>
@@ -292,7 +308,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/junit/" rel="bookmark">单元测试</a>
+						<a href="/post/editor/understand/" rel="bookmark">understand</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -301,7 +317,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 单元测试2. 参考1. 单元测试2. 参考[[mockito doc| http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html]]
+						Contents1. 参考1. 参考[[understand | chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=http%3A%2F%2Fscitools.com%2Fdocuments%2Fmanuals%2Fpdf%2Funderstand.pdf]]
 
 					</div>
 				</div>
@@ -314,7 +330,7 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 	
 	<a class="page-numbers" href="/post/page/14/">«</a>
 	
-	<span class="page-numbers current">15/21</span>
+	<span class="page-numbers current">15/26</span>
 	
 	<a class="page-numbers" href="/post/page/16/">»</a>
 	
@@ -325,15 +341,15 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -407,6 +423,8 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Spark作业基本运行原理 详细原理见上图。我们使用spark-submit提交一个Spark作业之后，这个作业就会启动一个对应的Driver进程。根据你使用的部署模式（deploy-mode）不同，Driver进程可能在本地启动，也可能在集群中某个工作节点上启动。Driver进程本身会根据我们设置的参数，占有一定数量的内存和CPU core。而Driver进程要做的第一件事情，就是向集群管理器（可以是Spark Standalone集群，也可以是其他的资源管理集群，美团•大众点评使用的是YARN作为资源管理集群）申请运行Spark作业需要使用的资源，这里的资源指的就是Executor进程。YARN集群管理器会根据我们为Spark作业设置的资源参数，在各个工作节点上，启动一定数量的Executor进程，每个Executor进程都占有一定数量的内存和CPU core。
+在申请到了作业执行所需的资源之后，Driver进程就会开始调度和执行我们编写的作业代码了。Driver进程会将我们编写的Spark作业代码分拆为多个stage，每个stage执行一部分代码片段，并为每个stage创建一批task，然后将这些task分配到各个Executor进程中执行。task是最小的计算单元，负责执行一模一样的计算逻辑（也就是我们自己编写的某个代码片段），只是每个task处理的数据不同而已。一个stage的所有task都执行完毕之后，会在各个节点本地的磁盘文件中写入计算中间结果，然后Driver就会调度运行下一个stage。下一个stage的task的输入数据就是上一个stage输出的中间结果。如此循环往复，直到将我们自己编写的代码逻辑全部执行完，并且计算完所有的数据，得到我们想要的结果为止。
+Spark是根据shuffle类算子来进行stage的划分。如果我们的代码中执行了某个shuffle类算子（比如reduceByKey、join等），那么就会在该算子处，划分出一个stage界限来。可以大致理解为，shuffle算子执行之前的代码会被划分为一个stage，shuffle算子执行以及之后的代码会被划分为下一个stage。因此一个stage刚开始执行的时候，它的每个task可能都会从上一个stage的task所在的节点，去通过网络传输拉取需要自己处理的所有key，然后对拉取到的所有相同的key使用我们自己编写的算子函数执行聚合操作（比如reduceByKey()算子接收的函数）。这个过程就是shuffle。
+当我们在代码中执行了cache/persist等持久化操作时，根据我们选择的持久化级别的不同，每个task计算出来的数据也会保存到Executor进程的内存或者所在节点的磁盘文件中。
+因此Executor的内存主要分为三块：第一块是让task执行我们自己编写的代码时使用，默认是占Executor总内存的20%；第二块是让task通过shuffle过程拉取了上一个stage的task的输出后，进行聚合等操作时使用，默认也是占Executor总内存的20%；第三块是让RDD持久化时使用，默认占Executor总内存的60%。
+task的执行速度是跟每个Executor进程的CPU core数量有直接关系的。一个CPU core同一时间只能执行一个线程。而每个Executor进程上分配到的多个task，都是以每个task一条线程的方式，多线程并发运行的。如果CPU core数量比较充足，而且分配到的task数量比较合理，那么通常来说，可以比较快速和高效地执行完这些task线程。
+以上就是Spark作业的基本运行原理的说明，大家可以结合上图来理解。理解作业基本原理，是我们进行资源参数调优的基本前提。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/02.%E8%B5%84%E6%BA%90%E8%B0%83%E4%BC%98/01/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h2 id="spark作业基本运行原理">Spark作业基本运行原理</h2>
+
+<p><img src="http://tech.meituan.com/img/spark-tuning/spark-base-mech.png" alt="sprak run" /></p>
+
+<p>详细原理见上图。我们使用spark-submit提交一个Spark作业之后，这个作业就会启动一个对应的Driver进程。根据你使用的部署模式（deploy-mode）不同，Driver进程可能在本地启动，也可能在集群中某个工作节点上启动。Driver进程本身会根据我们设置的参数，占有一定数量的内存和CPU core。而Driver进程要做的第一件事情，就是向集群管理器（可以是Spark Standalone集群，也可以是其他的资源管理集群，美团•大众点评使用的是YARN作为资源管理集群）申请运行Spark作业需要使用的资源，这里的资源指的就是Executor进程。YARN集群管理器会根据我们为Spark作业设置的资源参数，在各个工作节点上，启动一定数量的Executor进程，每个Executor进程都占有一定数量的内存和CPU core。</p>
+
+<p>在申请到了作业执行所需的资源之后，Driver进程就会开始调度和执行我们编写的作业代码了。Driver进程会将我们编写的Spark作业代码分拆为多个stage，每个stage执行一部分代码片段，并为每个stage创建一批task，然后将这些task分配到各个Executor进程中执行。task是最小的计算单元，负责执行一模一样的计算逻辑（也就是我们自己编写的某个代码片段），只是每个task处理的数据不同而已。一个stage的所有task都执行完毕之后，会在各个节点本地的磁盘文件中写入计算中间结果，然后Driver就会调度运行下一个stage。下一个stage的task的输入数据就是上一个stage输出的中间结果。如此循环往复，直到将我们自己编写的代码逻辑全部执行完，并且计算完所有的数据，得到我们想要的结果为止。</p>
+
+<p>Spark是根据shuffle类算子来进行stage的划分。如果我们的代码中执行了某个shuffle类算子（比如reduceByKey、join等），那么就会在该算子处，划分出一个stage界限来。可以大致理解为，shuffle算子执行之前的代码会被划分为一个stage，shuffle算子执行以及之后的代码会被划分为下一个stage。因此一个stage刚开始执行的时候，它的每个task可能都会从上一个stage的task所在的节点，去通过网络传输拉取需要自己处理的所有key，然后对拉取到的所有相同的key使用我们自己编写的算子函数执行聚合操作（比如reduceByKey()算子接收的函数）。这个过程就是shuffle。</p>
+
+<p>当我们在代码中执行了cache/persist等持久化操作时，根据我们选择的持久化级别的不同，每个task计算出来的数据也会保存到Executor进程的内存或者所在节点的磁盘文件中。</p>
+
+<p>因此Executor的内存主要分为三块：第一块是让task执行我们自己编写的代码时使用，默认是占Executor总内存的20%；第二块是让task通过shuffle过程拉取了上一个stage的task的输出后，进行聚合等操作时使用，默认也是占Executor总内存的20%；第三块是让RDD持久化时使用，默认占Executor总内存的60%。</p>
+
+<p>task的执行速度是跟每个Executor进程的CPU core数量有直接关系的。一个CPU core同一时间只能执行一个线程。而每个Executor进程上分配到的多个task，都是以每个task一条线程的方式，多线程并发运行的。如果CPU core数量比较充足，而且分配到的task数量比较合理，那么通常来说，可以比较快速和高效地执行完这些task线程。</p>
+
+<p>以上就是Spark作业的基本运行原理的说明，大家可以结合上图来理解。理解作业基本原理，是我们进行资源参数调优的基本前提。</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/09/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/02.%E8%B5%84%E6%BA%90%E8%B0%83%E4%BC%98/02/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

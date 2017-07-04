@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hive on spark</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="hive on spark" />
+<meta property="og:description" content="hive on spark1. 环境2. vagrant 配置文件3. 配置3.1. Hadoop配置文件3.2. Spark配置文件3.3. Hive配置文件4. 启动1. 环境名称版本下载地址Docker
+Docker version 17.04.0-ce, build 4845c56
+https://www.docker.com/
+VirtualBox
+4.3.12
+https://www.virtualbox.org/
+Vagrant
+Vagrant 1.8.1
+https://www.vagrantup.com/downloads.html
+etcd
+3.1.8
+etcd-v3.1.8-linux-amd64.tar.gz
+flanneld" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/hadoop/hive-on-spark/" />
+
+
+<meta property="og:updated_time" content="2017-06-04T19:56:49&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">hive on spark</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-06-04 19:56:49 &#43;0000 UTC">June 04, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/hadoop" rel="category">hadoop</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">hive on spark</div>
+<ul class="sectlevel1">
+<li><a href="#_环境">1. 环境</a></li>
+<li><a href="#__strong_vagrant_strong_配置文件">2. <strong>vagrant</strong> 配置文件</a></li>
+<li><a href="#_配置">3. 配置</a>
+<ul class="sectlevel2">
+<li><a href="#_hadoop配置文件">3.1. Hadoop配置文件</a></li>
+<li><a href="#_spark配置文件">3.2. Spark配置文件</a></li>
+<li><a href="#_hive配置文件">3.3. Hive配置文件</a></li>
+</ul>
+</li>
+<li><a href="#_启动">4. 启动</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_环境">1. 环境</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">名称</th>
+<th class="tableblock halign-left valign-top">版本</th>
+<th class="tableblock halign-left valign-top">下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker version 17.04.0-ce, build 4845c56</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.docker.com/" class="bare">https://www.docker.com/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VirtualBox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.3.12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.virtualbox.org/" class="bare">https://www.virtualbox.org/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vagrant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vagrant 1.8.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.vagrantup.com/downloads.html" class="bare">https://www.vagrantup.com/downloads.html</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">etcd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/coreos/etcd/releases/download/v3.1.8/etcd-v3.1.8-linux-amd64.tar.gz">etcd-v3.1.8-linux-amd64.tar.gz</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flanneld</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v0.7.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/coreos/flannel/releases/download/v0.7.1/flanneld-amd64">flanneld-amd64</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mk-docker-opts.sh</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://raw.githubusercontent.com/coreos/flannel/master/dist/mk-docker-opts.sh">mk-docker-opts.sh</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JDK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java version "1.7.0_45"</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hadoop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hadoop 2.6.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://hadoop.apache.org/releases.html" class="bare">http://hadoop.apache.org/releases.html</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spark</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/apache/spark/tree/branch-1.5" class="bare">https://github.com/apache/spark/tree/branch-1.5</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hive</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hive 2.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://hive.apache.org/downloads.html" class="bare">http://hive.apache.org/downloads.html</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__strong_vagrant_strong_配置文件">2. <strong>vagrant</strong> 配置文件</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby" data-lang="ruby"># -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+app_servers = {
+    :slave1 =&gt; '192.168.123.124',
+    :slave2 =&gt; '192.168.123.125'
+}
+Vagrant.configure(2) do |config|
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.ssh.insert_key = false
+
+  app_servers.each do |app_server_name, app_server_ip|
+    config.vm.define app_server_name do |coreos|
+      coreos.vm.box = "CentOS-7"
+      coreos.vm.hostname = app_server_name.to_s
+      coreos.vm.network :public_network, ip: app_server_ip
+      coreos.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+    end
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_配置">3. 配置</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>编辑 <strong>hosts</strong> 文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cat &gt;&gt; /etc/hosts &lt;&lt;_EOF_
+192.168.123.123 master
+192.168.123.124 slave1
+192.168.123.125 slave2
+_EOF_</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>配置 <strong>master</strong> 到 <strong>slave</strong> 的免密登陆</p>
+</li>
+<li>
+<p>编译 <strong>Spark</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>docker run -it --rm -v /root/dishui/data/.m2/:/root/.m2 -v /root/dishui/spark-branch-1.5:/spark-branch-1.5 dishui.io:5000/dishui/java:1.1 /bin/bash
+
+./make-distribution.sh --name "hadoop2-without-hive" --tgz "-Pyarn,hadoop-provided,hadoop-2.4,parquet-provided"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://pan.baidu.com/s/1bE99fw">编译好的(密码：atlg)</a></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<strong>Maven</strong> 添加阿里云仓库
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;mirror&gt;
+    &lt;id&gt;alimaven&lt;/id&gt;
+    &lt;name&gt;aliyun maven&lt;/name&gt;
+    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+    &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+&lt;/mirror&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>下载解压</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxf hadoop-2.6.5.tar.gz -C /usr/local/
+tar -zxf apache-hive-2.1.1-bin.tar.gz -C /usr/local/
+tar -zxf spark-1.5.3-SNAPSHOT-bin-hadoop2-without-hive.tgz -C /usr/local/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>环境变量</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cat &gt; /etc/profile.d/bigdata.sh &lt;&lt;_EOF_
+export JAVA_HOME=/usr/local/jdk1.7.0_45
+export HADOOP_HOME=/usr/local/hadoop-2.6.5
+export SPARK_HOME=/usr/local/spark-1.5.3
+export HIVE_HOME=/usr/local/apache-hive-1.2.1-bin
+export PATH=\$PATH:\$JAVA_HOME/bin:\$HADOOP_HOME/bin:\$SPARK_HOME/bin:\$HADOOP_HOME/sbin:\$SPARK_HOME/sbin:\$HIVE_HOME/bin
+_EOF_</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_hadoop配置文件">3.1. Hadoop配置文件</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>vi $HADOOP_HOME/etc/hadoop/core-site.xml</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;fs.defaultFS&lt;/name&gt;
+        &lt;value&gt;hdfs://master:9000&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+        &lt;value&gt;/root/hdfs/&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>vi $HADOOP_HOME/etc/hadoop/hdfs-site.xml</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+        &lt;value&gt;file:///root/hdfs/namenode&lt;/value&gt;
+        &lt;description&gt;NameNode directory for namespace and transaction logs storage.&lt;/description&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+        &lt;value&gt;file:///root/hdfs/datanode&lt;/value&gt;
+        &lt;description&gt;DataNode directory&lt;/description&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.replication&lt;/name&gt;
+        &lt;value&gt;2&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>vi $HADOOP_HOME/etc/hadoop/yarn-site.xml</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.aux-services.mapreduce_shuffle.class&lt;/name&gt;
+        &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+        &lt;value&gt;master&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- Hive on spark--&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.scheduler.class&lt;/name&gt;
+        &lt;value&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>vi $HADOOP_HOME/etc/hadoop/slaves</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>slave1
+slave2</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spark配置文件">3.2. Spark配置文件</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>vi $SPARK_HOME/conf/spark-env.sh</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>export JAVA_HOME=/usr/local/jdk1.7.0_45/
+export HADOOP_HOME=/usr/local/hadoop-2.6.5
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_DIST_CLASSPATH=$($HADOOP_HOME/bin/hadoop classpath)
+export SPARK_MASTER_IP=master
+export SPARK_LOCAL_IP=master
+export SPARK_MASTER_PORT=7077</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>vi $SPARK_HOME/conf/spark-defaults.conf</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>spark.master                     yarn-cluster <i class="conum" data-value="1"></i><b>(1)</b>
+spark.home                       /usr/local/spark-1.5.3
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://master:9000/hive-spark-log <i class="conum" data-value="2"></i><b>(2)</b>
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.executor.memory            512m
+spark.driver.memory              512m
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>spark</strong> <strong>yarn</strong> 模式启动(默认: <strong>spark://master:7077</strong> )</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>在 <strong>hdfs</strong> 中要存在</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>．<code>vi $SPARK_HOME/conf/slaves</code></p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>slave1
+slave2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hive配置文件">3.3. Hive配置文件</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>vi $HIVE_HOME/conf/hive-site.xml</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;
+&lt;configuration&gt;
+    &lt;property&gt;
+      &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+      &lt;value&gt;jdbc:mysql://master:3308/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;property&gt;
+      &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+      &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;property&gt;
+      &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+      &lt;value&gt;root&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;property&gt;
+      &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+      &lt;value&gt;111111&lt;/value&gt;
+      &lt;description&gt;password to use against metastore database&lt;/description&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+       &lt;name&gt;hive.metastore.schema.verification&lt;/name&gt;
+       &lt;value&gt;false&lt;/value&gt;
+     &lt;/property&gt;
+
+    &lt;!-- hive on spark --&gt;
+    &lt;property&gt;
+      &lt;name&gt;hive.execution.engine&lt;/name&gt;
+      &lt;value&gt;spark&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;spark.enentLog.enabled&lt;/name&gt;
+      &lt;value&gt;true&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;spark.enentLog.dir&lt;/name&gt;
+      &lt;value&gt;hdfs://master:9000/hive-spark-log&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;spark.serializer&lt;/name&gt;
+      &lt;value&gt;org.apache.spark.serializer.KryoSerializer&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;spark.executor.memeory&lt;/name&gt;
+      &lt;value&gt;512m&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;spark.driver.memeory&lt;/name&gt;
+      &lt;value&gt;512m&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;spark.executor.extraJavaOptions&lt;/name&gt;
+      &lt;value&gt;-XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+拷贝 <strong>mysql-connector-java-5.1.35-bin.jar</strong> 到 <strong>$HIVE_HOME/lib</strong> 下
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_启动">4. 启动</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>启动 <strong>Hadoop</strong> 集群</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cat &gt; start-hadoop.sh &lt;&lt;_EOF_
+#!/bin/bash
+
+echo -e "\n"
+$HADOOP_HOME/sbin/start-dfs.sh
+echo -e "\n"
+$HADOOP_HOME/sbin/start-yarn.sh
+_EOF_</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>查看集群是否运行正常</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[root@master ~]# jps
+21784 Jps
+12874 Master
+5748 ResourceManager
+5593 SecondaryNameNode
+5415 NameNode</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>启动 <strong>Spark</strong> 集群</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$SPARK_HOME/sbin/start-all.sh</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>测试 <strong>Spark</strong> 集群是否运行正常</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$SPARK_HOME/bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master yarn \ <i class="conum" data-value="1"></i><b>(1)</b>
+--deploy-mode client \
+--executor-memory 512M \
+--total-executor-cores 1 \
+$SPARK_HOME/lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>yarn</strong> 模式</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>hive on spark</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>hive
+create table test(ts BIGINT,line STRING); (创建表）
+select count(*) from test;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="http://master:8088/cluster"> <strong>yarn</strong> 中查看</a></p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/es/" rel="prev"><span>«Previous</span><p>elasticsearch</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/docker/etcd-flanneld/" rel="next"><span>Next»</span><p>etcd flanneld</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

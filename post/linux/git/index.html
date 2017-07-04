@@ -7,11 +7,9 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="git基础命令" />
-<meta property="og:description" content="Contents1. git1.1. 命令1.1.1. 远程分支1.1.2. 综合使用1. git1.1. 命令1.1.1. 远程分支查看远程分支
-$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
-git remote add origin git@git.oschina.net:dishui/local_b2b.git设置远程分支
-git remote set-url origin git@github.com:dishuiGit/SublimeNote.git添加
-git add .	#添加git reset ." />
+<meta property="og:description" content="git1. git2. 拉取git项目中的特定文件夹2.1. 命令2.1.1. 远程分支2.2. 本地目录(存在文件),上传到码云2.2.1. 综合使用2.2.2. Q &amp; A1. git2. 拉取git项目中的特定文件夹# svn list &lt;repositry-url&gt; 查看文件夹svn list https://github.com/apache/spark.git# 拉取git项目中的特定文件夹svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.62.1. 命令2.1.1. 远程分支查看远程分支
+$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
+git remote add origin git@git." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/git/" />
 
@@ -29,7 +27,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -71,6 +70,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -94,14 +95,20 @@
 		<div class="entry-content clearfix">
 			
 			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
+<div id="toctitle">git</div>
 <ul class="sectlevel1">
-<li><a href="#_git">1. git</a>
+<li><a href="#_git">1. git</a></li>
+<li><a href="#_拉取git项目中的特定文件夹">2. 拉取git项目中的特定文件夹</a>
 <ul class="sectlevel2">
-<li><a href="#_命令">1.1. 命令</a>
+<li><a href="#_命令">2.1. 命令</a>
 <ul class="sectlevel3">
-<li><a href="#_远程分支">1.1.1. 远程分支</a></li>
-<li><a href="#_综合使用">1.1.2. 综合使用</a></li>
+<li><a href="#_远程分支">2.1.1. 远程分支</a></li>
+</ul>
+</li>
+<li><a href="#_本地目录_存在文件_上传到码云">2.2. 本地目录(存在文件),上传到码云</a>
+<ul class="sectlevel3">
+<li><a href="#_综合使用">2.2.1. 综合使用</a></li>
+<li><a href="#_q_a">2.2.2. Q &amp; A</a></li>
 </ul>
 </li>
 </ul>
@@ -111,63 +118,69 @@
 <div class="sect1">
 <h2 id="_git">1. git</h2>
 <div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_拉取git项目中的特定文件夹">2. 拉取git项目中的特定文件夹</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># svn list &lt;repositry-url&gt; 查看文件夹
+svn list https://github.com/apache/spark.git
+# 拉取git项目中的特定文件夹
+svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.6</code></pre>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_命令">1.1. 命令</h3>
+<h3 id="_命令">2.1. 命令</h3>
 <div class="sect3">
-<h4 id="_远程分支">1.1.1. 远程分支</h4>
+<h4 id="_远程分支">2.1.1. 远程分支</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>查看远程分支</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession">$ git remote -v
+<pre class="highlightjs highlight"><code>$ git remote -v
 origin  git@git.oschina.net:dishui/local_b2b.git (fetch)
 origin  git@git.oschina.net:dishui/local_b2b.git (push)</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>添加远程分支</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">git remote add origin git@git.oschina.net:dishui/local_b2b.git</code></pre>
+<pre class="highlightjs highlight"><code>git remote add origin git@git.oschina.net:dishui/local_b2b.git</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
+<li>
+<p>push 本地分支到远程分支(如果没有,会自动创建)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>git push origin bigdata #bigdata 分支名称</code></pre>
+</div>
+</div>
+</li>
 <li>
 <p><strong>设置远程分支</strong></p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">git remote set-url origin git@github.com:dishuiGit/SublimeNote.git</code></pre>
+<pre class="highlightjs highlight"><code>git remote set-url origin git@github.com:dishuiGit/SublimeNote.git</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>添加</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">git add .		#添加
+<pre class="highlightjs highlight"><code>git add .		#添加
 git reset .		#撤销添加</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>更新</p>
 </li>
@@ -175,12 +188,26 @@ git reset .		#撤销添加</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">git pull origin master</code></pre>
+<pre class="highlightjs highlight"><code>git pull origin master</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_本地目录_存在文件_上传到码云">2.2. 本地目录(存在文件),上传到码云</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># cd &lt;dir&gt;
+git init .
+vi .gitignore # 设置不需要提交的文件
+git add . &amp;&amp; git commit -m "msg"
+git branch --set-upstream-to=origin/&lt;branch&gt; master # 本地分支与远程分支关联
+git pull
+git push</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_综合使用">1.1.2. 综合使用</h4>
+<h4 id="_综合使用">2.2.1. 综合使用</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -190,7 +217,7 @@ git reset .		#撤销添加</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">git status | awk -F ':' '{print $2}'| awk '!a[$0]++' | wc -l</code></pre>
+<pre class="highlightjs highlight"><code>git status | awk -F ':' '{print $2}'| awk '!a[$0]++' | wc -l</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -200,6 +227,35 @@ git reset .		#撤销添加</code></pre>
 <p>[[python-git|http://gitpython.readthedocs.io/en/stable/]]</p>
 </dd>
 </dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_q_a">2.2.2. Q &amp; A</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>error: src refspec bigdata does not match any.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[root@localhost dockerfiles]# git push origin bigdata
+error: src refspec bigdata does not match any.
+error: 无法推送一些引用到 'git@git.oschina.net:dishui/dockerfiles.git'</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">解决</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>git push origin master:bigdata</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -250,16 +306,16 @@ git reset .		#撤销添加</code></pre>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="Kafka集群安装部署、Kafka生产者、Kafka消费者" />
-<meta property="og:description" content="kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群Kafka生产者Java APIKafka消费者Java APIKafka是什么　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA &#43; STORM &#43;REDIS[disc]　* Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。* Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。* Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。* Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性JMS是什么1." />
+<meta property="og:description" content="kafkaKafka是什么JMS是什么1. JMS的基础2. JMS消息传输模型3. JMS核心组件4. 常见的类JMS消息服务器4.1. JMS消息服务器 ActiveMQ4.2. 分布式消息中间件 Metamorphosis4.3. 分布式消息中间件 RocketMQ4.4. 其他MQ为什么需要消息队列（重要）1. 用户注册的一般流程2. 用户注册的并行执行3. 用户注册的最终一致Kafka核心组件Kafka集群部署1. 集群部署的基本流程2. 集群部署的基础环境准备3. Kafka集群部署3.1. 下载安装包3.2. 解压安装包3.3. 修改配置文件3.4. 分发安装包3.5. 再次修改配置文件（重要）3.6. 启动集群4. Kafka常用操作命令Kafka生产者Java APIKafka消费者Java API1. 参考Kafka是什么在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。KAFKA &#43; STORM &#43;REDIS" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/storm/kafka/" />
 
@@ -25,7 +25,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -66,6 +67,8 @@
             <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
@@ -133,36 +136,46 @@
 <li><a href="#_启动集群">3.6. 启动集群</a></li>
 </ul>
 </li>
+<li><a href="#_kafka常用操作命令">4. Kafka常用操作命令</a></li>
 </ul>
 </li>
 <li><a href="#_kafka生产者java_api">Kafka生产者Java API</a></li>
-<li><a href="#_kafka消费者java_api">Kafka消费者Java API</a></li>
+<li><a href="#_kafka消费者java_api">Kafka消费者Java API</a>
+<ul class="sectlevel1">
+<li><a href="#_参考">1. 参考</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="_kafka是什么" class="sect0">Kafka是什么</h1>
-<div class="literalblock">
-<div class="content">
-<pre>　　在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。
-　　
-　　KAFKA + STORM +REDIS
-[disc]　
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>在流式计算中，Kafka一般用来缓存数据，Storm通过消费Kafka的数据进行计算。
+KAFKA + STORM +REDIS</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>[disc]　
 * Apache Kafka是一个开源消息系统，由Scala写成。是由Apache软件基金会开发的一个开源消息系统项目。
 * Kafka最初是由LinkedIn开发，并于2011年初开源。2012年10月从Apache Incubator毕业。该项目的目标是为处理实时数据提供一个统一、高通量、低等待的平台。
 * Kafka是一个分布式消息队列：生产者、消费者的功能。它提供了类似于JMS的特性，但是在设计实现上完全不同，此外它并不是JMS规范的实现。
 * Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer,消息接受者称为Consumer,此外kafka集群有多个kafka实例组成，每个实例(server)成为broker。
-* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性</pre>
-</div>
+* 无论是kafka集群，还是producer和consumer都依赖于zookeeper集群保存一些meta信息，来保证系统可用性</p>
 </div>
 <h1 id="_jms是什么" class="sect0">JMS是什么</h1>
 <div class="sect1">
 <h2 id="_jms的基础">1. JMS的基础</h2>
 <div class="sectionbody">
-<div class="literalblock">
-<div class="content">
-<pre>    JMS是什么：JMS是Java提供的一套技术规范
-　　JMS干什么用：用来异构系统 集成通信，缓解系统瓶颈，提高系统的伸缩性增强系统用户体验，使得系统模块化和组件化变得可行并更加灵活
-　　通过什么方式：生产消费者模式（生产者、服务器、消费者）</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>JMS是什么：JMS是Java提供的一套技术规范
+JMS干什么用：用来异构系统 集成通信，缓解系统瓶颈，提高系统的伸缩性增强系统用户体验，使得系统模块化和组件化变得可行并更加灵活
+通过什么方式：生产消费者模式（生产者、服务器、消费者）</p>
 </div>
+</blockquote>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -240,11 +253,15 @@ queue.take(object)    数据消费</p>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_jms消息服务器_activemq">4.1. JMS消息服务器 ActiveMQ</h3>
-<div class="literalblock">
-<div class="content">
-<pre>　　ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的。
-　　主要特点：</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的。</p>
 </div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>主要特点：</p>
 </div>
 <div class="ulist disc">
 <ul class="disc">
@@ -283,11 +300,15 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="sect2">
 <h3 id="_分布式消息中间件_metamorphosis">4.2. 分布式消息中间件 Metamorphosis</h3>
-<div class="literalblock">
-<div class="content">
-<pre>　　Metamorphosis (MetaQ) 是一个高性能、高可用、可扩展的分布式消息中间件，类似于LinkedIn的Kafka，具有消息存储顺序写、吞吐量大和支持本地和XA事务等特性，适用于大吞吐量、顺序消息、广播和日志数据传输等场景，在淘宝和支付宝有着广泛的应用，现已开源。
-　　主要特点：</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Metamorphosis (MetaQ) 是一个高性能、高可用、可扩展的分布式消息中间件，类似于LinkedIn的Kafka，具有消息存储顺序写、吞吐量大和支持本地和XA事务等特性，适用于大吞吐量、顺序消息、广播和日志数据传输等场景，在淘宝和支付宝有着广泛的应用，现已开源。</p>
 </div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>主要特点：</p>
 </div>
 <div class="ulist disc">
 <ul class="disc">
@@ -341,16 +362,34 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="sect2">
 <h3 id="_分布式消息中间件_rocketmq">4.3. 分布式消息中间件 RocketMQ</h3>
-<div class="literalblock">
-<div class="content">
-<pre>　　RocketMQ 是一款分布式、队列模型的消息中间件，具有以下特点：
-* 能够保证严格的消息顺序
-* 提供丰富的消息拉取模式
-* 高效的订阅者水平扩展能力
-* 实时的消息订阅机制
-* 亿级消息堆积能力
-* Metaq3.0 版本改名，产品名称改为RocketMQ</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>RocketMQ 是一款分布式、队列模型的消息中间件，具有以下特点：</p>
 </div>
+</blockquote>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p>能够保证严格的消息顺序</p>
+</li>
+<li>
+<p>提供丰富的消息拉取模式</p>
+</li>
+<li>
+<p>高效的订阅者水平扩展能力</p>
+</li>
+<li>
+<p>实时的消息订阅机制</p>
+</li>
+<li>
+<p>亿级消息堆积能力</p>
+</li>
+<li>
+<p>Metaq3.0 版本改名，产品名称改为RocketMQ</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -485,22 +524,38 @@ queue.take(object)    数据消费</p>
 <div class="ulist disc">
 <ul class="disc">
 <li>
-<p>关闭防火墙
-　　chkconfig iptables off  &amp;&amp; setenforce 0</p>
+<p>关闭防火墙</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>chkconfig iptables off  &amp;&amp; setenforce 0</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>创建用户
-　　groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime</p>
+<p>创建用户</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>创建工作目录并赋权
-　　mkdir /export
-　　mkdir /export/servers
-　　chmod 755 -R /export</p>
+<p>创建工作目录并赋权</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mkdir /export
+mkdir /export/servers
+chmod 755 -R /export</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>切换到realtime用户下
-　　su realtime</p>
+<p>切换到realtime用户下</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>su realtime</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -511,31 +566,34 @@ queue.take(object)    数据消费</p>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_下载安装包">3.1. 下载安装包</h3>
-<div class="literalblock">
+<div class="paragraph">
+<p><a href="http://kafka.apache.org/downloads.html" class="bare">http://kafka.apache.org/downloads.html</a>
+在linux中使用wget命令下载安装包</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>　　http://kafka.apache.org/downloads.html
-　　在linux中使用wget命令下载安装包
-    wget http://mirrors.hust.edu.cn/apache/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz</pre>
+<pre class="highlightjs highlight"><code>wget http://mirrors.hust.edu.cn/apache/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_解压安装包">3.2. 解压安装包</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>　　tar -zxvf /export/software/kafka_2.11-0.8.2.2.tgz -C /export/servers/
-　　cd /export/servers/
-　　ln -s kafka_2.11-0.8.2.2 kafka</pre>
+<pre class="highlightjs highlight"><code>tar -zxvf /export/software/kafka_2.11-0.8.2.2.tgz -C /export/servers/
+cd /export/servers/
+ln -s kafka_2.11-0.8.2.2 kafka</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_修改配置文件">3.3. 修改配置文件</h3>
-<div class="paragraph">
-<p>cp   /export/servers/kafka/config/server.properties
-　　/export/servers/kafka/config/server.properties.bak
-　　vi /export/servers/kafka/config/server.properties
-　　输入以下内容：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cp /export/servers/kafka/config/server.properties /export/servers/kafka/config/server.properties.bak
+
+vi /export/servers/kafka/config/server.properties</code></pre>
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -546,66 +604,105 @@ queue.take(object)    数据消费</p>
 </div>
 <div class="sect2">
 <h3 id="_分发安装包">3.4. 分发安装包</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>　　scp -r /export/servers/kafka_2.11-0.8.2.2 kafka02:/export/servers
-　　然后分别在各机器上创建软连
-　　cd /export/servers/
-　　ln -s kafka_2.11-0.8.2.2 kafka</pre>
+<pre class="highlightjs highlight"><code>scp -r /export/servers/kafka_2.11-0.8.2.2 kafka02:/export/servers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>然后分别在各机器上创建软连</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd /export/servers/
+ln -s kafka_2.11-0.8.2.2 kafka</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_再次修改配置文件_重要">3.5. 再次修改配置文件（重要）</h3>
-<div class="literalblock">
-<div class="content">
-<pre>　　依次修改各服务器上配置文件的的broker.id，分别是0,1,2不得重复。</pre>
-</div>
+<div class="paragraph">
+<p>依次修改各服务器上配置文件的的broker.id，分别是0,1,2不得重复。</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_启动集群">3.6. 启动集群</h3>
-<div class="literalblock">
+<div class="paragraph">
+<p>依次在各节点上启动kafka</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>　　依次在各节点上启动kafka
-　　bin/kafka-server-start.sh config/server.properties
-　　
-== Kafka常用操作命令</pre>
+<pre class="highlightjs highlight"><code>bin/kafka-server-start.sh config/server.properties</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kafka常用操作命令">4. Kafka常用操作命令</h2>
+<div class="sectionbody">
 <div class="ulist disc">
 <ul class="disc">
 <li>
-<p>查看当前服务器中的所有topic
-　　bin/kafka-topics.sh --list --zookeeper zk01:2181</p>
+<p>查看当前服务器中的所有topic</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/kafka-topics.sh --list --zookeeper zookeeper:2181</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>创建topic
-　　./kafka-topics.sh --create --zookeeper mini1:2181 --replication-factor 1 --partitions 3 --topic first</p>
+<p>创建topic</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>./kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 3 --topic first</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>删除topic
-　　sh bin/kafka-topics.sh --delete --zookeeper zk01:2181 --topic test
-需要server.properties中设置delete.topic.enable=true否则只是标记删除或者直接重启。</p>
+<p>删除topic</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/kafka-topics.sh --delete --zookeeper zookeeper:2181 --topic test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>需要server.properties中设置delete.topic.enable=true否则只是标记删除或者直接重启。</p>
+</div>
 </li>
 <li>
-<p>通过shell命令发送消息
-　　kafka-console-producer.sh --broker-list kafka01:9092 --topic itheima</p>
+<p>通过shell命令发送消息</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>通过shell消费消息
-　　sh bin/kafka-console-consumer.sh --zookeeper zk01:2181 --from-beginning --topic test1</p>
+<p>通过shell消费消息</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --from-beginning --topic test1</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>查看消费位置
-　　sh kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper zk01:2181 --group testGroup</p>
+<p>查看消费位置</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper zookeeper:2181 --group testGroup</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>查看某个Topic的详情
-　　sh kafka-topics.sh --topic test --describe --zookeeper zk01:2181</p>
+<p>查看某个Topic的详情</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/kafka-topics.sh --topic test --describe --zookeeper zookeeper:2181</code></pre>
+</div>
+</div>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -626,13 +723,21 @@ queue.take(object)    数据消费</p>
 <div class="literalblock">
 <div class="content">
 <pre>　　
-　　StreamMessage：Java 数据流消息，用标准流操作来顺序的填充和读取。
-　　MapMessage：一个Map类型的消息；名称为 string 类型，而值为 Java 的基本类型。
-　　TextMessage：普通字符串消息，包含一个String。
-　　ObjectMessage：对象消息，包含一个可序列化的Java 对象
-　　BytesMessage：二进制数组消息，包含一个byte[]。
-　　XMLMessage:  一个XML类型的消息。
+StreamMessage：Java 数据流消息，用标准流操作来顺序的填充和读取。
+MapMessage：一个Map类型的消息；名称为 string 类型，而值为 Java 的基本类型。
+TextMessage：普通字符串消息，包含一个String。
+ObjectMessage：对象消息，包含一个可序列化的Java 对象
+BytesMessage：二进制数组消息，包含一个byte[]。
+XMLMessage:  一个XML类型的消息。
 最常用的是TextMessage和ObjectMessage。</pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_参考">1. 参考</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://kafka.apache.org/08/documentation/#quickstart" class="bare">http://kafka.apache.org/08/documentation/#quickstart</a></p>
+</div>
 </div>
 </div>
 
@@ -673,16 +778,16 @@ queue.take(object)    数据消费</p>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

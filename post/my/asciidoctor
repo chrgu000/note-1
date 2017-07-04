@@ -8,6 +8,7 @@ else
   require 'asciidoctor'
 end
 # 解析
+require 'asciidoctor-diagram'
 require 'asciidoctor/extensions'
 require 'asciidoctor/GistBlockMacro'
 Asciidoctor::Extensions.register do

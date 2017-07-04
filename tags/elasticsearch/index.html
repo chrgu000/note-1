@@ -12,7 +12,7 @@
 <meta property="og:url" content="/tags/elasticsearch/" />
 
 
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-06-07T09:02:42&#43;00:00"/>
 
 
 
@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -66,6 +67,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -84,6 +87,27 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/es/" rel="bookmark">elasticsearch</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-06-07 09:02:42 &#43;0000 UTC">June 07, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 安装ES2. logstash3. 参考1. 安装ESDockerfile 地址
+FROM centos:7MAINTAINER dishui_git@126.comENV LANG en_US.utf8ENV JAVA_HOME /usr/local/java/jdk1.7.0_79COPY docker-entrypoint.sh es1.7.tar.gz jdk-7u79-linux-x64.rpm /COPY es.conf /etc/supervisord.conf.d/es.confRUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \&amp;&amp; curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \&amp;&amp; rpm -ivh /jdk-7u79-linux-x64.rpm --prefix=/usr/local/java \&amp;&amp; yum install python-setuptools -y \&amp;&amp; easy_install -i http://pypi.doubanio.com/simple supervisor \&amp;&amp; echo_supervisord_conf &gt; /etc/supervisord.conf \&amp;&amp; mkdir -p /etc/supervisord.conf.d \&amp;&amp; echo -e "
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -225,15 +249,15 @@ asdf
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -307,6 +331,8 @@ asdf
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

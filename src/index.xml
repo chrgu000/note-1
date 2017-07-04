@@ -104,25 +104,5 @@
 &lt;/html&gt;</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>/src/records_bak/test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/src/records_bak/test/</guid>
-      <description>&lt;html&gt;
-&lt;head&gt;
-  &lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;./asciinema-player.css&#34; /&gt;
-  &lt;script src=&#34;./asciinema-player.js&#34;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div id=&#34;player-container&#34;&gt;&lt;/div&gt;
-  &lt;script&gt;
-    asciinema.player.js.CreatePlayer(&#39;player-container&#39;, &#39;./test.json&#39;, { width: 81, height: 20 });
-  &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</description>
-    </item>
-    
   </channel>
 </rss>

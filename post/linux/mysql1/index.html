@@ -7,7 +7,13 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="mysql基础操作" />
-<meta property="og:description" content="include::content/post/base.adoc[] :toc-title: Contents mysql linux安装mysql设置  /usr/bin/mysqladmin -u root password &#39;123&#39;  设置mysql用户名/密码  mysql状态/开启/停止  service mysqld status service mysqld start service mysqld stop  任意主机以用户root和密码mypwd连接到mysql服务器  mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123&#39; WITH GRANT OPTION; mysql&gt; flush privileges;  IP为192.168.1.102的主机以用户myuser和密码mypwd连接到mysql服务器  mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &#39;myuser&#39;@&#39;192.168.1.102&#39; IDENTIFIED BY &#39;mypwd&#39; WITH GRANT OPTION; mysql&gt; flush privileges;   Mysql 备份/还原 1、 导出结构不导出数据" />
+<meta property="og:description" content="Contents1. mysql1.1. linux安装mysql设置1.2. Mysql 备份/还原1.3. mysql数据库操作1.4. 终端shell连接数据库乱码1.5. 数据库编码1.6. mysql 修改密码1.7. mysql 新增、删除用户和权限分配1.8. 存储过程1.9. 查看1.10. mysql 备份数据库1. mysql1.1. linux安装mysql设置/usr/bin/mysqladmin -u root password &#39;123&#39;
+设置mysql用户名/密码
+mysql 状态/开启/停止
+service mysqld status
+service mysqld start
+service mysqld stop
+任意主机以用户root和密码mypwd连接到mysql服务器" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/mysql1/" />
 
@@ -25,7 +31,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -67,6 +74,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -92,89 +101,158 @@
 		</header>
 		<div class="entry-content clearfix">
 			
-			
-
-<p>include::content/post/base.adoc[]
-:toc-title: Contents
-<!-- toc --></p>
-
-<h1 id="mysql">mysql</h1>
-
-<h3 id="linux安装mysql设置">linux安装mysql设置</h3>
-
-<ul>
-<li><code>/usr/bin/mysqladmin -u root password '123'</code>
-
-<ul>
-<li>设置mysql用户名/密码</li>
-</ul></li>
-<li><code>mysql</code>状态/开启/停止
-
-<ul>
-<li><code>service mysqld status</code></li>
-<li><code>service mysqld start</code></li>
-<li><code>service mysqld stop</code></li>
-</ul></li>
-<li>任意主机以用户root和密码mypwd连接到mysql服务器
-<code>
-mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123' WITH GRANT OPTION;
-mysql&gt; flush privileges;
-</code></li>
-<li>IP为<code>192.168.1.102</code>的主机以用户myuser和密码mypwd连接到mysql服务器
-<code>
-mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.1.102' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
-mysql&gt; flush privileges;
-</code></li>
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_mysql">1. mysql</a>
+<ul class="sectlevel2">
+<li><a href="#_linux安装mysql设置">1.1. linux安装mysql设置</a></li>
+<li><a href="#_mysql_备份_还原">1.2. Mysql 备份/还原</a></li>
+<li><a href="#_mysql数据库操作">1.3. mysql数据库操作</a></li>
+<li><a href="#_终端shell连接数据库乱码">1.4. 终端shell连接数据库乱码</a></li>
+<li><a href="#_数据库编码">1.5. 数据库编码</a></li>
+<li><a href="#__strong_mysql_strong_修改密码">1.6. <strong>mysql</strong> 修改密码</a></li>
+<li><a href="#_mysql_新增_删除用户和权限分配">1.7. mysql 新增、删除用户和权限分配</a></li>
+<li><a href="#_存储过程">1.8. 存储过程</a></li>
+<li><a href="#_查看">1.9. 查看</a></li>
+<li><a href="#__strong_mysql_strong_备份数据库">1.10. <strong>mysql</strong> 备份数据库</a></li>
 </ul>
-
-<h3 id="mysql-备份-还原">Mysql 备份/还原</h3>
-
-<p>1、 导出结构不导出数据</p>
-
-<p><code>mysqldump -d 数据库名 -uroot -p &gt; xxx.sql</code></p>
-
-<p>2、导出数据不导出结构</p>
-
-<p><code>mysqldump -t 数据库名 -uroot -p &gt; xxx.sql</code></p>
-
-<p>3、 导出数据和表结构</p>
-
-<p><code>mysqldump 数据库名 -uroot -p &gt; xxx.sql</code></p>
-
-<p>4、导出特定表的结构</p>
-
-<p><code>mysqldump -uroot -p -B数据库名 --table 表名 &gt; xxx.sql</code></p>
-
-<p>5、 source 还原</p>
-
-<pre><code class="language-sql">mysql&gt;source d:\wcnc_db.sql
-</code></pre>
-
-<p>6、windows下导入数据库</p>
-
-<pre><code class="language-sql">mysql -uroot -p111111 -Dmailiqing&lt;c:\Users\dishui\Desktop\tmp\mailiqing2016-01-20.sql
-</code></pre>
-
-<h3 id="mysql数据库操作">mysql数据库操作</h3>
-
-<ol>
-<li><strong>创建数据库(编码utf8)</strong>
-<code>bash
-CREATE DATABASE `mailiqing` CHARACTER SET utf8; 
-</code></li>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_mysql">1. mysql</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_linux安装mysql设置">1.1. linux安装mysql设置</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>/usr/bin/mysqladmin -u root password '123'</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>设置mysql用户名/密码</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>mysql</code> 状态/开启/停止</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>service mysqld status</code></p>
+</li>
+<li>
+<p><code>service mysqld start</code></p>
+</li>
+<li>
+<p><code>service mysqld stop</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>任意主机以用户root和密码mypwd连接到mysql服务器</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123' WITH GRANT OPTION;
+mysql&gt; flush privileges;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>IP为`192.168.1.102`的主机以用户myuser和密码mypwd连接到mysql服务器</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.1.102' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
+mysql&gt; flush privileges;</code></pre>
+</div>
+</div>
+</li>
 </ol>
-
-<h3 id="终端shell连接数据库乱码">终端shell连接数据库乱码</h3>
-
-<pre><code class="language-sql">mysql -uroot -h192.168.1.123 -p --default-character-set=utf8
-</code></pre>
-
-<h3 id="数据库编码">数据库编码</h3>
-
-<ol>
-<li>查看mysql编码
-<code>bash
-show variables like 'character%';
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mysql_备份_还原">1.2. Mysql 备份/还原</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>导出结构不导出数据</p>
+<div class="paragraph">
+<p><code>mysqldump -d 数据库名 -uroot -p &gt; xxx.sql</code></p>
+</div>
+</li>
+<li>
+<p>导出数据不导出结构</p>
+<div class="paragraph">
+<p><code>mysqldump -t 数据库名 -uroot -p &gt; xxx.sql</code></p>
+</div>
+</li>
+<li>
+<p>导出数据和表结构</p>
+<div class="paragraph">
+<p><code>mysqldump 数据库名 -uroot -p &gt; xxx.sql</code></p>
+</div>
+</li>
+<li>
+<p>导出特定表的结构</p>
+<div class="paragraph">
+<p><code>mysqldump -uroot -p -B数据库名 --table 表名 &gt; xxx.sql</code></p>
+</div>
+</li>
+<li>
+<p>source 还原</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt;source d:\wcnc_db.sql</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>windows下导入数据库</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql -uroot -p111111 -Dmailiqing&lt;c:\Users\dishui\Desktop\tmp\mailiqing2016-01-20.sql</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mysql数据库操作">1.3. mysql数据库操作</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>创建数据库(编码utf8)</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>CREATE DATABASE `mailiqing` CHARACTER SET utf8;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_终端shell连接数据库乱码">1.4. 终端shell连接数据库乱码</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql -uroot -h192.168.1.123 -p --default-character-set=utf8</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_数据库编码">1.5. 数据库编码</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>查看mysql编码</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>show variables like 'character%';
 +--------------------------+----------------------------+
 | Variable_name            | Value                      |
 +--------------------------+----------------------------+
@@ -188,127 +266,188 @@ show variables like 'character%';
 | character_sets_dir       | /usr/share/mysql/charsets/ |
 +--------------------------+----------------------------+
 --查看数据库编码
-SHOW VARIABLES LIKE 'character_set_database'; 
-</code></li>
+SHOW VARIABLES LIKE 'character_set_database';</code></pre>
+</div>
+</div>
+</li>
 </ol>
-
-<h3 id="mysql-修改密码"><code>mysql</code>修改密码</h3>
-
-<ol>
-<li><strong>关闭<code>mysql</code>服务</strong>
-<code>bash
-service mysqld stop
-</code></li>
-<li><strong>安全方式连接<code>mysql</code></strong>
-<code>bash
-mysqld_safe --skip-grant-tables
-</code></li>
-<li><strong>进入数据库</strong>
-<code>bash
-mysql
+</div>
+</div>
+<div class="sect2">
+<h3 id="__strong_mysql_strong_修改密码">1.6. <strong>mysql</strong> 修改密码</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>关闭 <strong>mysql</strong> 服务</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>service mysqld stop</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>安全方式连接`mysql`</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysqld_safe --skip-grant-tables</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>进入数据库</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql
 #
 use mysql;
 #
-select * from user;                     
-Empty set (0.00 sec)
+select * from user;
+    Empty set (0.00 sec)
 #
 INSERT INTO mysql.user (Host,User,Password) VALUES('%','root', PASSWORD('luhua123'));
 #
-update user set password=password('luhua123') where user='root'; 
+update user set password=password('luhua123') where user='root';
 #
 flush privileges;
 #
-exit;
-</code></li>
-<li><strong>杀死<code>mysql</code>进程</strong>
-<code>bash
-service mysqld stop
-</code></li>
-</ol>
-
-<h3 id="mysql-新增-删除用户和权限分配">mysql 新增、删除用户和权限分配</h3>
-
-<ol>
-<li>新增用户
-<code>sql
---
-insert into mysql.user(Host,User,Password) values(&quot;localhost&quot;,&quot;lionbule&quot;,password(&quot;hello1234&quot;));
---
-flush privileges;
-</code></li>
-<li>修改用户密码
-<code>sql
---
-update mysql.user set password=password('new password') where User=&quot;lionbule&quot; and Host=&quot;localhost&quot;;
---
-flush privileges;
-</code></li>
-<li>删除用户
-<code>sql
---
-DELETE FROM user WHERE User=&quot;lionbule&quot; and Host=&quot;localhost&quot;;
---
-flush privileges;
-</code></li>
-<li>权限分配
-
-<ol>
-<li>grant用法
-<code>
-权限：
-常用总结, ALL/ALTER/CREATE/DROP/SELECT/UPDATE/DELETE
-数据库：
-*.*                    表示所有库的所有表
-test.*                表示test库的所有表
-test.test_table  表示test库的test_table表     
-用户名：
-mysql账户名
-登陆主机：
-允许登陆mysql server的客户端ip
-'%'表示所有ip
-'localhost' 表示本机
-'192.168.10.2' 特定IP
-密码：
-账户对应的登陆密码
-</code></li>
-<li>例子
-<code>sql
-grant all  on test.* to lionbule@'%' identified by 'hello1234';
-flush privileges;
-</code></li>
-</ol></li>
-</ol>
-
-<h3 id="存储过程">存储过程</h3>
-
-<ol>
-<li>查看存储过程
-<code>sql
-SHOW CREATE PROCEDURE `mailiqing`.`product_call`; 
-</code></li>
-</ol>
-
-<h3 id="查看">查看</h3>
-
-<ol>
-<li>数据库编码
-<code>sql
-SHOW VARIABLES LIKE 'character_set_database';
-</code></li>
-<li>改变数据库编码
-<code>sql
-ALTER DATABASE `mailiqing` CHARACTER SET utf8; 
-</code></li>
-</ol>
-
-<h3 id="mysql-备份数据库"><code>mysql</code>备份数据库</h3>
-
-<ul>
+exit;</code></pre>
+</div>
+</div>
+</li>
 <li>
-<code>sql
-mysqldump mailiqing -uroot -h192.168.1.123 -p --default-character-set=utf8 --ignore-table=mailiqing.ti_normal_asphaltpara &gt; data.sql
-</code></li>
-</ul>
+<p><strong>杀死`mysql`进程</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>service mysqld stop</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mysql_新增_删除用户和权限分配">1.7. mysql 新增、删除用户和权限分配</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>新增用户</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>--
+insert into mysql.user(Host,User,Password) values("localhost","lionbule",password("hello1234"));
+--
+flush privileges;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>修改用户密码</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>--
+update mysql.user set password=password('new password') where User="lionbule" and Host="localhost";
+--
+flush privileges;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>删除用户</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>--
+DELETE FROM user WHERE User="lionbule" and Host="localhost";
+--
+flush privileges;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>权限分配 <strong>grant</strong> 用法</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>权限：
+    常用总结, ALL/ALTER/CREATE/DROP/SELECT/UPDATE/DELETE
+数据库：
+     *.*                    表示所有库的所有表
+     test.*                表示test库的所有表
+     test.test_table  表示test库的test_table表
+用户名：
+     mysql账户名
+登陆主机：
+     允许登陆mysql server的客户端ip
+     '%'表示所有ip
+     'localhost' 表示本机
+     '192.168.10.2' 特定IP
+密码：
+      账户对应的登陆密码</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">例子 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>grant all  on test.* to lionbule@'%' identified by 'hello1234';
+flush privileges;</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_存储过程">1.8. 存储过程</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>查看存储过程</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">SHOW CREATE PROCEDURE `mailiqing`.`product_call`;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_查看">1.9. 查看</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>数据库编码</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SHOW VARIABLES LIKE 'character_set_database';</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>改变数据库编码</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>ALTER DATABASE `mailiqing` CHARACTER SET utf8;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__strong_mysql_strong_备份数据库">1.10. <strong>mysql</strong> 备份数据库</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code> mysqldump mailiqing -uroot -h192.168.1.123 -p --default-character-set=utf8 --ignore-table=mailiqing.ti_normal_asphaltpara &gt; data.sql</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 		</div>
 		
@@ -347,16 +486,16 @@ mysqldump mailiqing -uroot -h192.168.1.123 -p --default-character-set=utf8 --ign
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

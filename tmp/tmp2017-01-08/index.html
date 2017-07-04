@@ -7,11 +7,13 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="" />
-<meta property="og:description" content="SELECT zspl.*FROM zh_sub_plan_launch zsplWHERE zspl.plan_code IN(SELECT plan_codeFROM zh_plan_launch zplWHERE zpl.state = &#39;01&#39;AND zpl.table_date &gt;= ?AND zpl.table_date &#8656; ?)
-SELECT *FROM zh_plan zpWHERE plan_code = ?
-SELECT * FROM zh_plan zp WHERE plan_code = &#39;20170116101801016&#39;
-$(this).find(&#39;[name=&#34;zhPlanCode&#34;]&#39;)$(this).find(&#39;[name=&#34;projectName&#34;]&#39;)$(this).find(&#39;[name=&#34;reservoiCode&#34;]&#39;)$(this).find(&#39;select[name=&#34;goodsCode&#34;]&#39;)$(this).find(&#39;[name=&#34;pickMode&#34;]&#39;)$(this).find(&#39;[name=&#34;shipmentAddress&#34;]&#39;)$(this).find(&#39;[name=&#34;shipmentsCount&#34;]&#39;)$(this).find(&#39;[name=&#34;receivingAddress&#34;]&#39;)$(this).find(&#39;[name=&#34;receivingUnit&#34;]&#39;)$(this).find(&#39;[name=&#34;consignee&#34;]&#39;)$(this).find(&#39;[name=&#34;receivingPhone&#34;]&#39;)$(this).find(&#39;[name=&#34;memo&#34;]&#39;)$(this).find(&#39;[name=&#34;contractCode&#34;]&#39;)
-SELECT plan.plan_name,sub.*,obo.number,sub.shipments_count) - (obo.number AS w_count,gi.goods_name,gi.brand,gi.model,ra.abbreviation FROM zh_plan plan,zh_sub_plan sub LEFT JOIN zh_out_bound_order obo ON sub." />
+<meta property="og:description" content="description = &#34;&#34;date = &#34;2017-05-05T15:39:55&#34;categories = []tags = [&#34;tmp&#34;]thumbnail = &#34;&#34;title = &#34;tmp&#34;
+&#43;
+基本技能1. 熟悉Hadoop生态圈相关技术，如Hbase，Hive，Zookeeper，Flume，Kafka；2. 熟悉Spark运行机制，研读Spark部分内核源码；3. 熟悉（Elasticsearch、Logstash）的使用4. 熟悉Linux系统的基本操作和集群环境的搭建和部署5. 熟悉Docker的基本操作和容器管理Rancher的搭建、部署和使用6. 熟悉JavaEE的开发及常用框架使用，如：Spring、Mybatis、SpringMVC、Jesery、Hibernate、Struts2等
+Mai沥青网电商平台 2015.5-2016.3 Java工程师开发工具&amp;环境：Eclipse &#43; Linux &#43; Java &#43; Hadoop &#43; Hbase &#43; Hive &#43; Redis项目描述：采集&#43;梳理，集中运营系统中记录的用户业务使用日志数据，对数据进行分类处理，内容分析，挖掘出用户的行为轨迹，分析用户访问互联网内容的类型&#43;频率等行为习惯，分析用户使用手机APP的行为特征等，对移动客户进行用户画像，为公司营销策划和各类业务模型报表统计做数据支持；职责描述：1，参与“预处理”模块功能开发及技术支持，对运营商接口机进行数据采集，对采集数据进行粗粒度分类，并将分类数据合并到相应的目标大数据平台；2，利用zookeeper的分布式锁功能实现采集机和数据接口机的一一对应绑定及机器的故障转移切换。
+商品搜索,采用ElasticSearch根据店铺和商品的权重值,根据自定义算法实现排名.采用Logstash把店铺,商品,单品的数据从Mysql数据库中,增量导入到ElasticSearch.
+前期配合运营需求调研,技术选型
+大数据环境搭建: Hadoop &#43; Hbase &#43; Hive &#43; Flume &#43; Sqoop &#43; Azkaban" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/tmp/tmp2017-01-08/" />
 
@@ -29,7 +31,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -71,6 +74,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -94,6 +99,1472 @@
 		<div class="entry-content clearfix">
 			
 			<div class="paragraph">
+<p>description = ""
+date = "2017-05-05T15:39:55"
+categories = [
+]
+tags = [
+    "tmp"
+]
+thumbnail = ""
+title = "tmp"</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="paragraph">
+<p>基本技能
+1.  熟悉Hadoop生态圈相关技术，如Hbase，Hive，Zookeeper，Flume，Kafka；
+2.  熟悉Spark运行机制，研读Spark部分内核源码；
+3.  熟悉（Elasticsearch、Logstash）的使用
+4.  熟悉Linux系统的基本操作和集群环境的搭建和部署
+5.  熟悉Docker的基本操作和容器管理Rancher的搭建、部署和使用
+6.  熟悉JavaEE的开发及常用框架使用，如：Spring、Mybatis、SpringMVC、Jesery、Hibernate、Struts2等</p>
+</div>
+<div class="paragraph">
+<p>Mai沥青网电商平台   2015.5-2016.3   Java工程师
+开发工具&amp;环境：Eclipse + Linux + Java + Hadoop + Hbase + Hive + Redis
+项目描述：
+采集+梳理，集中运营系统中记录的用户业务使用日志数据，对数据进行分类处理，内容分析，挖掘出用户的行为轨迹，分析用户访问互联网内容的类型+频率等行为习惯，分析用户使用手机APP的行为特征等，对移动客户进行用户画像，为公司营销策划和各类业务模型报表统计做数据支持；
+职责描述：
+1，参与“预处理”模块功能开发及技术支持，对运营商接口机进行数据采集，对采集数据进行粗粒度分类，并将分类数据合并到相应的目标大数据平台；
+2，利用zookeeper的分布式锁功能实现采集机和数据接口机的一一对应绑定及机器的故障转移切换。</p>
+</div>
+<div class="paragraph">
+<p>商品搜索,采用ElasticSearch根据店铺和商品的权重值,根据自定义算法实现排名.
+采用Logstash把店铺,商品,单品的数据从Mysql数据库中,增量导入到ElasticSearch.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>前期配合运营需求调研,技术选型</p>
+</li>
+<li>
+<p>大数据环境搭建: Hadoop + Hbase + Hive + Flume + Sqoop + Azkaban</p>
+</li>
+<li>
+<p>采集日志数据到HDFS</p>
+</li>
+<li>
+<p>预处理清洗数据</p>
+</li>
+<li>
+<p>加载数据到ODS</p>
+</li>
+<li>
+<p>ETL处理数据</p>
+</li>
+<li>
+<p>Sqoop导出数据到Mysql</p>
+</li>
+<li>
+<p>Azkaban调度任务</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>兆华领先供应链管理信息系统是天津兆华领先集团的发货,物流,仓储信息系统。</p>
+</div>
+<div class="paragraph">
+<p>2015 5 4</p>
+</div>
+<div class="paragraph">
+<p>由于个人原因,提出离职申请</p>
+</div>
+<div class="paragraph">
+<p>笔记本</p>
+</div>
+<div class="paragraph">
+<p>刘艳芳</p>
+</div>
+<div class="paragraph">
+<p><a href="http://blog.csdn.net/lovehuangjiaju/article/details/49227919" class="bare">http://blog.csdn.net/lovehuangjiaju/article/details/49227919</a></p>
+</div>
+<div class="paragraph">
+<p>spark-submit --name MyApp \
+--class org.apache.spark.examples.streaming.NetworkWordCount \
+--master spark://sparkmaster:7077 \
+--conf spark.driver.extraJavaOptions="agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" \
+$SPARK_HOME/lib/spark-examples-1.6.3-hadoop2.6.0.jar hadoop-master 9999</p>
+</div>
+<div class="paragraph">
+<p>docker volume create -d nfs --name myvol -o share=192.168.137.2:/d/share/spark16</p>
+</div>
+<div class="paragraph">
+<p>docker volume create -d nfs --name myvol -o share=192.168.137.2:/d/share/spark16</p>
+</div>
+<div class="paragraph">
+<p>def withScope[U](body: &#8658; U): U = body</p>
+</div>
+<div class="paragraph">
+<p>curl -i -X POST \
+  --url <a href="http://196.168.1.31:8001/apis/" class="bare">http://196.168.1.31:8001/apis/</a> \
+  --data 'name=koto-api' \
+  --data 'hosts=koto.com' \
+  --data 'upstream_url=http://koto:8080'</p>
+</div>
+<div class="paragraph">
+<p>curl -i -X GET \
+  --url <a href="http://196.168.1.31:8000/" class="bare">http://196.168.1.31:8000/</a> \
+  --header 'Host: koto.com'</p>
+</div>
+<div class="paragraph">
+<p>create table t_pp(id string,name string)
+clustered by (id)
+sorted by (id)
+into 4 buckets
+row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists student(
+ id INT,
+ age INT,
+ name STRING
+) partitioned by(stat_date STRING)
+clustered by(id) sorted by(age) into 2 buckets
+row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>&lt;properties&gt;
+    &lt;sbt.project.name&gt;examples&lt;/sbt.project.name&gt;
+    &lt;scala.binary.version&gt;2.10.6&lt;/scala.binary.version&gt;
+    &lt;project.version&gt;1.6.1&lt;/project.version&gt;
+&lt;/properties&gt;</p>
+</div>
+<div class="paragraph">
+<div class="title">/svn.exe co <a href="https://github.com/dishuiGit/codes.git/trunk/Spring-test" class="bare">https://github.com/dishuiGit/codes.git/trunk/Spring-test</a> /d/IdeaProject/spark-examples-1.6.1</div>
+<p>svn.exe co <a href="https://github.com/apache/spark.git/trunk/examples" class="bare">https://github.com/apache/spark.git/trunk/examples</a> /d/IdeaProject/spark-examples-1.6.1</p>
+</div>
+<div class="paragraph">
+<p>svn.exe co <a href="https://github.com/apache/spark.git/branches/branch-1.6/examples" class="bare">https://github.com/apache/spark.git/branches/branch-1.6/examples</a> /d/IdeaProject/bigdata/spark-examples-1.6</p>
+</div>
+<div class="paragraph">
+<p>/e/Program\ Files/TortoiseSVN/</p>
+</div>
+<div class="paragraph">
+<p>tcpdump -i eno1 -nn 'host 196.168.1.31'
+tcpdump -i eno1 -nn 'src 196.168.1.31'</p>
+</div>
+<div class="paragraph">
+<p>sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://196.168.1.66:3306/wuliu \
+  --username root \
+  --password 111111 \
+  --table zh_track_201702 \
+  --hive-import \
+  --hive-table zh_track_201703 \
+  --m 4</p>
+</div>
+<div class="paragraph">
+<p>export HADOOP_COMMON_HOME=/usr/local/hadoop
+export HADOOP_MAPRED_HOME=/usr/local/hadoop
+export HIVE_HOME=/usr/local/apache-hive-2.1.1-bin</p>
+</div>
+<div class="paragraph">
+<p>/usr/local/spark-1.5.3/bin/spark-submit --properties-file /tmp/spark-submit.2641174306145842738.properties --class org.apache.hive.spark.client.RemoteDriver /usr/local/apache-hive-1.2.1-bin/lib/hive-exec-2.1.1.jar --remote-host master --remote-port 33195 --conf hive.spark.client.connect.timeout=1000 --conf hive.spark.client.server.connect.timeout=90000 --conf hive.spark.client.channel.log.level=null --conf hive.spark.client.rpc.max.size=52428800 --conf hive.spark.client.rpc.threads=8 --conf hive.spark.client.secret.bits=256 --conf hive.spark.client.rpc.server.address=null</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists mytable(sid int,name string)
+row format delimited fields terminated by '\005'
+stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists pageview(
+    pageid int,
+    page_url string comment 'The page URL'
+)
+row format delimited fields terminated by ','
+location 'hdfs://master:9000/user/hive/warehouse/';</p>
+</div>
+<div class="paragraph">
+<p>创建分区表invites</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists invites(
+    id int,
+    name string
+) partitioned by (ds string)
+row format delimited fields terminated by ','
+lines terminated by '\n'
+stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists student(
+  id INT,
+  age INT,
+  name STRING
+) partitioned by(stat_date STRING)
+clustered by(id) sorted by(age) into 2 buckets
+row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>create table student_p(
+  Sno int,
+  Sname string,
+  Sex string,
+  Sage int,
+  Sdept string
+) partitioned by(part string)
+row format delimited fields terminated by ','
+stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>创建带桶的表student</p>
+</div>
+<div class="paragraph">
+<p>set mapreduce.map.memory.mb=4096;
+set mapreduce.reduce.memory.mb=5120;</p>
+</div>
+<div class="paragraph">
+<p>asciinema rec -c bash /dishui/content/src/records/hive/cluster.json</p>
+</div>
+<div class="paragraph">
+<p>ssh 192.168.123.123</p>
+</div>
+<div class="paragraph">
+<p>$HIVE_HOME/bin/beeline -u jdbc:hive2://master:10000 -n root</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #测试数据
+cat &gt; sz.data &lt;&lt;_EOF_
+1,a
+2,b
+3,cdd
+4,rrt
+5,eex
+6,iio
+7,haha
+8,lslls
+_EOF_</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>select avg(s.Grade) from sc s group by s.Cno;</p>
+</div>
+<div class="paragraph">
+<p>asciinema rec -c bash /dishui/content/src/records/hive/practice.json</p>
+</div>
+<div class="paragraph">
+<p>ssh 196.168.1.31</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #创建表student
+create table student(
+  Sno int,
+  Sname string,
+  Sex string,
+  Sage int,
+  Sdept string
+)
+row format delimited fields terminated by ','stored as textfile;
+ #创建表course
+create table course(
+  Cno int,
+  Cname string
+)
+row format delimited fields terminated by ',' stored as textfile;
+ #创建表sc
+create table sc(
+  Sno int,
+  Cno int,
+  Grade int
+)
+row format delimited fields terminated by ',' stored as textfile;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #测试数据
+load data local inpath '/root/dishui/data/test/students.txt' overwrite into table student;
+load data local inpath '/root/dishui/data/test/sc.txt' overwrite into table sc;
+load data local inpath '/root/dishui/data/test/course.txt' overwrite into table course;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>load data local inpath '/root/sz.data' into table t_p;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> #创建分桶表t_pp
+create table t_pp(id string,name string)
+clustered by (id)
+sorted by (id)
+into 4 buckets
+row format delimited fields terminated by ',';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>insert into table t_pp
+select id,name from t_p;</p>
+</div>
+<div class="paragraph">
+<p>set hive.enforce.bucketing = true;
+set mapreduce.job.reduces = 4;</p>
+</div>
+<div class="paragraph">
+<p>insert into table t_pp
+select id,name from t_p distribute by (id) sort by (id);</p>
+</div>
+<div class="paragraph">
+<p>truncate table t_pp</p>
+</div>
+<div class="paragraph">
+<p>#如果distribute和sort的字段一样可以直接用cluster
+insert into table t_pp
+select id,name from t_p cluster by (id);</p>
+</div>
+<div class="paragraph">
+<p>#查看分区数据
+dfs -cat /user/hive/warehouse/t_pp/000000_0;</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/profile.d/bigdata.sh &lt;&lt;_EOF_
+export JAVA_HOME=/usr/local/jdk1.7.0_79
+export HADOOP_HOME=/usr/local/hadoop
+export SPARK_HOME=/usr/local/spark-1.5.3
+export HIVE_HOME=/usr/local/apache-hive-1.2.1-bin
+export PATH=\$PATH:\$JAVA_HOME/bin:\$HADOOP_HOME/bin:\$SPARK_HOME/bin:\$HADOOP_HOME/sbin:\$SPARK_HOME/sbin:\$HIVE_HOME/bin
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p><a href="http://blog.csdn.net/cheersu/article/details/8191743" class="bare">http://blog.csdn.net/cheersu/article/details/8191743</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://196.168.1.31:9200/_sql?sql=SELECT" class="bare">http://196.168.1.31:9200/_sql?sql=SELECT</a> * FROM b2b/ti_procurement</p>
+</div>
+<div class="paragraph">
+<p>ENTRYPOINT ["sh","-c","/docker-entrypoint.sh"]</p>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --executor-memory 512M --total-executor-cores 1 lib/spark-examples-*.jar 10</p>
+</div>
+<div class="paragraph">
+<p>spark.master                     yarn-cluster
+spark.home                       /usr/local/spark-1.5.3
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://hadoop-master:9000/hive-spark-log
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.executor.memory            512m
+spark.driver.memory              512m
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"</p>
+</div>
+<div class="paragraph">
+<p>export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_DIST_CLASSPATH=$($HADOOP_HOME/bin/hadoop classpath)
+export SPARK_MASTER_IP=hadoop-master
+export SPARK_MASTER_PORT=7077</p>
+</div>
+<div class="paragraph">
+<p>select count(*) from test;</p>
+</div>
+<div class="paragraph">
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+cat &gt; /root/dnsmasq.hosts &lt;&lt;_EOF_
+172.17.76.3 hadoop-master
+172.17.76.4 hadoop-slave1
+172.17.76.2 mysql
+172.17.87.2 hadoop-slave2</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>cat &gt; /root/dishui/data/conf/dnsmasq.hosts <a href="#_EOF_
+172.17.80.5 hadoop-master
+172.17.80.4 hadoop-slave1
+172.17.80.2 mariadb
+172.17.80.6 mysql
+172.17.17.2 hadoop-slave2">[_EOF_
+172.17.80.5 hadoop-master
+172.17.80.4 hadoop-slave1
+172.17.80.2 mariadb
+172.17.80.6 mysql
+172.17.17.2 hadoop-slave2]</a>&gt;&gt;&gt;&gt;&gt; Stashed changes
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>dfs.datanode.address</p>
+</div>
+<div class="paragraph">
+<p>cat &gt;&gt; /etc/profile &lt;&lt;_EOF_
+export JAVA_HOME=/usr/local/jdk1.7.0_71
+export HADOOP_HOME=/usr/local/hadoop-2.6.5
+export SPARK_HOME=/usr/local/spark-1.5.3
+export HIVE_HOME=/usr/local/apache-hive-1.2.1-bin
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/sbin:$HIVE_HOME/bin
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>root@hadoop-master:/usr/local/spark-1.5.3# sbin/start-all.sh
+starting org.apache.spark.deploy.master.Master, logging to
+/usr/local/spark-1.5.3/sbin/../logs/spark&#8212;&#8203;org.apache.spark.deploy.master.Master-1-hadoop-master.out</p>
+</div>
+<div class="paragraph">
+<p>hadoop-master: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-master.out
+hadoop-slave3: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-slave3.out
+hadoop-slave1: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark-1.5.3/sbin/../logs/spark-root-org.apache.spark.deploy.worker.Worker-1-hadoop-slave1.out</p>
+</div>
+<div class="paragraph">
+<p>FROM kiwenlau/hadoop-hive-spark:1.0</p>
+</div>
+<div class="paragraph">
+<p>COPY spark-1.5.3.tar.gz /
+COPY hive-site.xml /apache-hive-1.2.1-bin/conf/
+COPY yarn-site.xml /usr/local/hadoop/etc/hadoop/
+ENV SPARK_HOME=/usr/local/spark-1.5.3
+ENV PATH="$SPARK_HOME/bin:${PATH}"</p>
+</div>
+<div class="paragraph">
+<p>RUN tar -zxf spark-1.5.3.tar.gz -C /usr/local \
+    &amp;&amp; rm -f /spark-1.5.3.tar.gz</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+  &lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+  &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+  &lt;value&gt;root&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+  &lt;value&gt;111111&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.yarn.jars&lt;/name&gt;
+  &lt;value&gt;hdfs://hadoop-master:9000/spark-assembly-1.5.3.jar&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;hive.execution.engine&lt;/name&gt;
+  &lt;value&gt;spark&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.enentLog.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.enentLog.dir&lt;/name&gt;
+  &lt;value&gt;hdfs://master:9000/hive-spark-log&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.serializer&lt;/name&gt;
+  &lt;value&gt;org.apache.spark.serializer.KryoSerializer&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.executor.memeory&lt;/name&gt;
+  &lt;value&gt;512m&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.driver.memeory&lt;/name&gt;
+  &lt;value&gt;512m&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;spark.executor.extraJavaOptions&lt;/name&gt;
+  &lt;value&gt;-XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>set hive.execution.engine=spark;
+set spark.master=spark://hadoop-master:7077;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://hadoop-master:9000/hive-spark-log;
+set spark.executor.memory=512m;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
+</div>
+<div class="paragraph">
+<p>set hive.execution.engine=spark;
+set spark.master=spark://master:7077;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
+set spark.executor.memory=512m;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
+</div>
+<div class="paragraph">
+<p>set spark.master=yarn-cluster;
+set hive.execution.engine=spark;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
+set spark.executor.memory=1g;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
+</div>
+<div class="paragraph">
+<p>set spark.master=yarn-cluster;
+set hive.execution.engine=spark;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://master:9000/hive-spark-log;
+set spark.executor.memory=1g;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
+</div>
+<div class="paragraph">
+<p>create table test2(ts BIGINT,line STRING);
+select count(*) from test2;</p>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit --class org.apache.spark.examples.SparkPi \
+    --master yarn \
+    --deploy-mode cluster \
+    --driver-memory 1g \
+    --executor-memory 1g \
+    --executor-cores 1 \
+    --queue thequeue \
+    lib/spark-examples*.jar \
+    10</p>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit --class org.apache.spark.examples.streaming.NetworkWordCount \
+  --master spark://hadoop-master:7077 \
+  --driver-memory 1g \
+  --executor-memory 1g \
+  lib/spark-examples*.jar \
+  localhost 9999</p>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit --class org.apache.spark.examples.streaming.StatefulNetworkWordCount \
+  --master spark://hadoop-master:7077 \
+  --driver-memory 1g \
+  --executor-memory 1g \
+  lib/spark-examples*.jar \
+  localhost 9999</p>
+</div>
+<div class="paragraph">
+<p>docker run -it --rm --dns 192.168.123.123 alpine:3.5 /bin/sh</p>
+</div>
+<div class="paragraph">
+<p>mkdir -p /etc/dnsmasq.d</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/dnsmasq.conf &lt;&lt;_EOF_
+cache-size=10000
+resolv-file=/etc/dnsmasq-resolv.conf
+addn-hosts=/etc/dnsmasq.hosts
+log-queries
+log-facility=/var/log/dnsmasq.log
+local-ttl=600
+conf-dir=/etc/dnsmasq.d
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/dnsmasq.conf &lt;&lt;_EOF_
+log-queries
+log-facility=/var/log/dnsmasq.log
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/dnsmasq-resolv.conf &lt;&lt;_EOF_
+nameserver 114.114.114.114
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /usr/lib/systemd/system/flanneld.service &lt;&lt;_EOF_</p>
+</div>
+<div class="paragraph">
+<p>After=network.target
+After=network-online.target docker.service
+Description=flannel</p>
+</div>
+<div class="paragraph">
+<p>ExecStart=/root/bin/flanneld \
+-iface=eth1 \
+-etcd-endpoints=http://196.168.1.34:2379</p>
+</div>
+<div class="paragraph">
+<p>WantedBy=multi-user.target
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt;&gt; /etc/hosts &lt;&lt;_EOF_
+192.168.123.123 master
+192.168.123.124 slave1
+192.168.123.125 slave2
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>docker rm -f hadoop-slave2 hadoop-slave1 hadoop-master</p>
+</div>
+<div class="paragraph">
+<p>docker run -d -v /root/dishui/data/conf/dnsmasq.hosts:/etc/hosts -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --name dns-server andyshinn/dnsmasq:2.75</p>
+</div>
+<div class="paragraph">
+<p>resolv-file=/etc/resolv.dnsmasq</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/dnsmasq.conf &lt;&lt;_EOF_
+addn-hosts=/etc/dnsmasqhosts
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>dns: 172.17.80.3</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash</p>
+</div>
+<div class="paragraph">
+<p>DOMAIN=dishui.io:5000</p>
+</div>
+<div class="paragraph">
+<p>mkdir -p /etc/docker/certs.d/$DOMAIN</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/docker/certs.d/$DOMAIN/registry.crt &lt;&lt;_EOF_
+-----BEGIN CERTIFICATE-----
+MIIC+zCCAeOgAwIBAgIJAOxktzjYRccOMA0GCSqGSIb3DQEBCwUAMBQxEjAQBgNV
+BAMMCWRpc2h1aS5pbzAeFw0xNjA4MjcxMjQ5MTBaFw0yNjA4MjUxMjQ5MTBaMBQx
+EjAQBgNVBAMMCWRpc2h1aS5pbzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBAMlDw1mAzZG5OX4leFytRLjzvQWZzpNXGQ9T290nLVK2/4v5lKHdJkF9gva6
+ljpEJ362AxBmXw9ZWRKuDXaWtst5r6Xz1hyrHdaQ3/TP3SeBCpVMj+P2XM0mjo6r
+J2eo8u7YTQoTcjZz0iSTprVvPLsutyKPTxT+Mj2wSvf29R4NyGTQ1XGM1eyt4xEM
+xwf3VpHqw2UvhdpYT2mnv/SGqQu39n9fSABRlKnfNMx/jaTnE04p1lHQpvW1aJcj
+unS9zxsDDsWuwO8U+/WQhVtfNLLecuShcgiIibE14VxKWIPe3X/pcYmF25oPJVL+
+VtnlCaqlhvu3PkgDFBI8n7PAoVUCAwEAAaNQME4wHQYDVR0OBBYEFCgHv8jqKSHV
+KXEnz87Y/48Dp7PXMB8GA1UdIwQYMBaAFCgHv8jqKSHVKXEnz87Y/48Dp7PXMAwG
+A1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAHGhcUFIqVxMgZ7jY0y/o4DK
+gIELCes6O3ruVQNnyK2wHpqsfV0PG3Mcn4UDwk5iqSXrAULi677dUzeZ1BLI2HHi
+XJLdmEj9KLq38ktrLAPjhFUKoUhWCehtEuR0JMj/wjSdRN/5/yI5Ki1+Rk42M2Ld
+CD5j9+kuk4wtCy4wxi4CRQZQEHn4FyjXdVMJZJ2nn5QwFkjZzhvW9ze9RbrZ3dii
+HAES9laZx3AwKjmMi/wjY3qNoqlpho61DMrTD872xy57/ajh86YV3yb4+78D/aUl
+5I4JUvkqcayVlxVDmpU0sppq5M4u8t/iiB8TvGmi2utG0j4xSLGKSM03WL+rWdA=
+-----END CERTIFICATE-----
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>echo 196.168.1.86 dishui.io &gt;&gt; /etc/hosts</p>
+</div>
+<div class="paragraph">
+<p>UPDATE <code>jbpm4_task</code> SET <code>STATE_</code> = 'close' WHERE <code>DBID_</code> in ('690315', '550562', '550562', '420663', '330248', '300013', '280089', '200085', '160036', '150096', '150083', '150012', '140007', '120035', '110035', '60215', '90121');</p>
+</div>
+<div class="paragraph">
+<p>'260080', '260070', '150036', '130051', '130108', '130034'</p>
+</div>
+<div class="paragraph">
+<p>'150036', '130051', '130108', '130034', '130036', '130038'</p>
+</div>
+<div class="paragraph">
+<p>'690315', '550562', '550562', '420663', '330248', '300013', '280089', '200085', '160036', '150096', '150083', '150012', '140007', '120035', '110035', '60215', '90121'</p>
+</div>
+<div class="paragraph">
+<p>发货申请审批 + 合同类型</p>
+</div>
+<div class="paragraph">
+<p>未审核最上面</p>
+</div>
+<div class="paragraph">
+<p>检索  项目名称 销售公司 客户名称 申请人</p>
+</div>
+<div class="paragraph">
+<p>String projectName = request.getParameter("projectName");
+String sellCompanyOutName = request.getParameter("sellCompanyOutName");
+String customName = request.getParameter("customName");
+String documentMaker = request.getParameter("documentMaker");</p>
+</div>
+<div class="paragraph">
+<p>projectName
+sellCompanyOutName
+customName
+documentMaker</p>
+</div>
+<div class="paragraph">
+<p>import org.casic.javaframework.web.sendoutgoodscheck.service;
+ //判断如果办理类型是完成的情况
+if(context.getAttribute("transactType").equals("2")){
+  ISendGoodsCheckService service =(ISendGoodsCheckService)applicationContext.getBean("sendGoodsCheckService");
+  String id=context.getAttribute("bussinessNo");
+  String wfmId= context.getAttribute("transactIdea");
+  service.passShenpi(3,wfmId,id);
+}
+if(context.getAttribute("transactType").equals("4")){
+  ISendGoodsCheckService service =(ISendGoodsCheckService)applicationContext.getBean("sendGoodsCheckService");
+  String id=context.getAttribute("bussinessNo");
+  String wfmId= context.getAttribute("transactIdea");
+  service.passShenpi(5,wfmId,id);
+}</p>
+</div>
+<div class="paragraph">
+<p>if(ObjUtils.notEmpty(projectName)) whereStr.append(" and project_name like '%"projectName"%'");
+if(ObjUtils.notEmpty(sellCompanyOutName)) whereStr.append(" and sell_company_out_name like '%"sellCompanyOutName"%'");
+if(ObjUtils.notEmpty(customName)) whereStr.append(" and custom_name like '%"customName"%'");
+if(ObjUtils.notEmpty(documentMaker)) whereStr.append(" and document_maker like '%"documentMaker"%'");</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>VirtualBox - Error In supR3HardenedWinReSpawn</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&lt;html&gt;&lt;b&gt;NtCreateFile(\Device\VBoxDrvStub) failed: 0xc0000034 STATUS_OBJECT_NAME_NOT_FOUND (0 retries) (rc=-101)&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Make sure the kernel module has been loaded successfully.&lt;br&gt;&lt;br&gt;&lt;!--EOM-&#8594;where: supR3HardenedWinReSpawn
+what:  3
+VERR_OPEN_FAILED (-101) - File/Device open failed.</p>
+</div>
+<div class="paragraph">
+<p>Driver is probably stuck stopping/starting. Try 'sc.exe query vboxdrv' to get more information about its state. Rebooting may actually help.&lt;/html&gt;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>OK</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>nohup flanneld -iface=eno1 -etcd-endpoints=http://196.168.1.34:2379 &amp;
+nohup flanneld -iface=eth1 -etcd-endpoints=http://196.168.1.34:2379 &amp;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Error (Couldn't bring up network: failed to find plugin "rancher-bridge" in path [/opt/cni/bin /var/lib/cni/bin /usr/local/sbin /usr/sbin /sbin /usr/local/bi</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>-e CATTLE_AGENT_IP=&lt;</p>
+</div>
+<div class="paragraph">
+<p>sudo docker run --rm --privileged -e CATTLE_AGENT_IP=192.168.1.55 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 <a href="http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw" class="bare">http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw</a></p>
+</div>
+<div class="paragraph">
+<p>sudo docker run --rm --privileged -e CATTLE_AGENT_IP=192.168.1.54 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 <a href="http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw" class="bare">http://192.168.1.55:8080/v1/scripts/4E42E0DCA5755FA4E9C7:1483142400000:iFFrEd1fYz0mxK7ElC63n6X5Kw</a></p>
+</div>
+<div class="paragraph">
+<p>nmcli connection modify docker0 connection.zone trusted
+systemctl stop NetworkManager.service
+firewall-cmd --permanent --zone=trusted --change-interface=docker0
+systemctl start NetworkManager.service
+nmcli connection modify docker0 connection.zone trusted
+systemctl restart docker.service</p>
+</div>
+<div class="paragraph">
+<p>关闭 selinux</p>
+</div>
+<div class="paragraph">
+<p>sed -i 's#SELINUX=enforcing#SELINUX=disabled#' /etc/selinux/config</p>
+</div>
+<div class="paragraph">
+<p>/etc/yum.repos.d/Local-rpm.repo</p>
+</div>
+<div class="paragraph">
+<p>yum install -y yum-plugin-downloadonly
+yum install docker-engine-1.12.1-1.el7.centos --downloadonly --downloaddir=/var/www/html/data/yum-repo/
+createrepo -p -d -o /var/www/html/data/yum-repo/ /var/www/html/data/yum-repo/</p>
+</div>
+<div class="paragraph">
+<p>systemctl start httpd</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/yum.repos.d/CentOS-Base.repo &lt;&lt;_EOF_</p>
+</div>
+<div class="paragraph">
+<p>name=Local-rpm
+baseurl=http://jzlh.com/data/yum-repo
+enabled=1
+gpgcheck=0
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>yum install -y docker-engine-1.12.1-1.el7.centos</p>
+</div>
+<div class="paragraph">
+<p>echo 196.168.1.34 hadoop-34 &gt;&gt; /etc/hosts
+echo 196.168.1.35 spark-35 &gt;&gt; /etc/hosts</p>
+</div>
+<div class="paragraph">
+<p>echo 192.168.1.54 pro-54 &gt;&gt; /etc/hosts
+echo 192.168.1.55 jzlh.com &gt;&gt; /etc/hosts
+echo 192.168.1.53 pro-53 &gt;&gt; /etc/hosts
+echo 192.168.1.52 pro-52 &gt;&gt; /etc/hosts
+echo 192.168.1.51 pro-51 &gt;&gt; /etc/hosts</p>
+</div>
+<div class="paragraph">
+<p>echo pro-53 &gt;&gt; /etc/hostname
+echo pro-52 &gt;&gt; /etc/hostname
+echo pro-51 &gt;&gt; /etc/hostname</p>
+</div>
+<div class="paragraph">
+<p>export HIVE_HOME=/apache-hive-1.2.1-bin/</p>
+</div>
+<div class="paragraph">
+<p>load data inpath '$click_pvout/$day_01' into table $ods_click_pageviews partition(datestr='$day_01')"</p>
+</div>
+<div class="paragraph">
+<p>set hive.execution.engine=spark;
+set spark.master=spark://192.168.123.90:7077;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=hdfs://hadoop-master:9000/spark-hive-log;
+set spark.executor.memory=512m;
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;</p>
+</div>
+<div class="paragraph">
+<p>FROM registry.cn-hangzhou.aliyuncs.com/dishui/java:1.0
+ENV MAVEN_HOME="/usr/local/apache-maven-3.0.5"
+ENV PATH="${MAVEN_HOME}/bin:${PATH}"
+COPY ./apache-maven-3.0.5.tar /
+RUN tar -xf /apache-maven-3.0.5.tar -C /usr/local/ \
+  &amp;&amp; rm -f /apache-maven-3.0.5.tar</p>
+</div>
+<div class="paragraph">
+<p>mvn -DskipTests clean package -Phive -Phive-thriftserver</p>
+</div>
+<div class="paragraph">
+<p>60.208.6.156 - - [18/Sep/2013:06:49:48 +0000] "GET /wp-content/uploads/2013/07/rcassandra.png HTTP/1.0" 200 185524 "http://cos.name/category/software/packages/" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36"</p>
+</div>
+<div class="paragraph">
+<p>private String remoteAddr;
+private String remoteUser;
+private String timeLocal;
+private String request;
+private String status;
+private String bodyBytesSent;
+private String httpReferer;
+private String httpUserAgent;</p>
+</div>
+<div class="paragraph">
+<p>60.208.6.156
+- -</p>
+</div>
+<div class="paragraph">
+<p>"GET /wp-content/uploads/2013/07/rcassandra.png HTTP/1.0"
+200
+185524
+"http://cos.name/category/software/packages/"
+"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36"</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>background-color: lightsteelblue;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>tableblock frame-all grid-all spread</p>
+</div>
+<div class="paragraph">
+<p>select a.month as month,a.day as day,a.hour as hour,count(1) as pvs from shizhan.ods_weblog_detail a
+where a.datestr=2017-05-27 group by a.month,a.day,a.hour;</p>
+</div>
+<div class="paragraph">
+<p>mount -t cifs --verbose -o user=dishui,password=dishui,vers=2.1,sec=krb5 //192.168.123.199/dishui /root/dishui/mount/</p>
+</div>
+<div class="paragraph">
+<p>z%5ge303Np!h</p>
+</div>
+<div class="paragraph">
+<p>iDc@5bG8tah5!
+sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://mysql:3306/wuliu3 \
+  --username root \
+  --password 111111 \
+  --table zh_goods_info   \
+  --m 1</p>
+</div>
+<div class="paragraph">
+<p>sqoop export \
+  --driver com.mysql.jdbc.Driver \
+  --connect "jdbc:mysql://mysql:3306/shizhan" \
+  --username root \
+  --password 111111 \
+  --table "dw_pvs_hour1" \
+  --fields-terminated-by '\001' \
+  --export-dir /user/hive/warehouse/shizhan.db/dw_pvs_hour/datestr=2017-05-27</p>
+</div>
+<div class="paragraph">
+<p>docker run -itd \
+  --net=hadoop \
+  --name sqoop \
+  --hostname sqoop \
+  kiwenlau/hadoop-sqoop:1.0</p>
+</div>
+<div class="paragraph">
+<p>SELECT a.<strong>,b.</strong>
+FROM ods_origin_weblog a LATERAL VIEW parse_url_tuple(regexp_replace(http_referer, "\"", ""), 'HOST', 'PATH','QUERY', 'QUERY:id') b as host, path, query, query_id;</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+a.valid,a.remote_addr,a.remote_user,a.time_local,
+a.request,a.status,a.body_bytes_sent,a.http_referer,
+a.http_user_agent,b.ref_host,b.ref_path,b.ref_query,b.ref_query_id
+FROM ods_weblog_origin a LATERAL VIEW parse_url_tuple(regexp_replace(http_referer, "\"", ""), 'HOST', 'PATH','QUERY', 'QUERY:id') b as ref_host, ref_path, ref_query, ref_query_id;</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -rm -r /data/weblog/preprocess/output/2017-05-25 /data/weblog/preprocess/valid_output/2017-05-25 /data/weblog/preprocess/click_pv_out/2017-05-25 /data/weblog/preprocess/click_visit_out/2017-05-25</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar /weblog.jar cn.itcast.bigdata.hive.mr.ClickStreamThree /data/weblog/preprocess/output/2017-05-25 /data/weblog/preprocess/click_pv_out/2017-05-25</p>
+</div>
+<div class="paragraph">
+<p>${HADOOP_PRE}/hadoop jar /${FILE_NAME} $click_pv_class $log_pre_output/$day_01 $click_pvout/$day_01
+fi</p>
+</div>
+<div class="paragraph">
+<p>今:
+  借朗锐科服务器(AQR-2181)一台</p>
+</div>
+<div class="paragraph">
+<p>/web/bpm/setting/sendgoods_check_update.jsp</p>
+</div>
+<div class="paragraph">
+<p>/bpm/jbpmAction!submitJbpm.action",transacTask_taskid,"",name,type,idea,""</p>
+</div>
+<div class="paragraph">
+<p>version: '2'
+services:
+  mysql5.5:
+    image: dishui.io:5000/asosso/mysql:5.5.52
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: '111111'
+    ports:
+      - '3307:3306'
+    networks:
+      - hadoop
+  zoo1:
+    image: dishui.io:5000/zookeeper:3.4
+    restart: always
+    ports:
+      - 2181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true</p>
+</div>
+<div class="paragraph">
+<p>set hive.support.concurrency = true;
+set hive.enforce.bucketing = true;
+set hive.exec.dynamic.partition.mode = nonstrict;
+set hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
+set hive.compactor.initiator.on = true;
+set hive.compactor.worker.threads = 1;
+set hive.zookeeper.quorum = zoo1;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE college(clg_id int,clg_name string,clg_loc string) clustered by (clg_id) into 5 buckets stored as orc TBLPROPERTIES('transactional'='true');</p>
+</div>
+<div class="paragraph">
+<p>INSERT INTO table college values(1,'nec','nlr'),(2,'vit','vlr'),(3,'srm','chen'),(4,'lpu','del'),(5,'stanford','uk'),(6,'JNTUA','atp'),(7,'cambridge','us');</p>
+</div>
+<div class="paragraph">
+<p>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+    &lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+    &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;
+  &lt;/property&gt;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+  &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+  &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+  &lt;value&gt;root&lt;/value&gt;
+  &lt;description&gt;username to use against metastore database&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+    &lt;value&gt;111111&lt;/value&gt;
+    &lt;description&gt;password to use against metastore database&lt;/description&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.support.concurrency&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.enforce.bucketing&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.exec.dynamic.partition.mode&lt;/name&gt;
+    &lt;value&gt;nonstrict&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.txn.manager&lt;/name&gt;
+    &lt;value&gt;org.apache.hadoop.hive.ql.lockmgr.DbTxnManager&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.compactor.initiator.on&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.compactor.worker.threads&lt;/name&gt;
+    &lt;value&gt;1&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.zookeeper.quorum&lt;/name&gt;
+    &lt;value&gt;zoo1&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>hive.support.concurrency –true
+hive.zookeeper.quorum - 192.168.2.233 (自己添加)
+hive.enforce.bucketing – true (Hive 2.0之后不需要设置)
+hive.exec.dynamic.partition.mode – nonstrict
+hive.txn.manager – org.apache.hadoop.hive.ql.lockmgr.DbTxnManager
+hive.compactor.initiator.on – true
+hive.compactor.worker.threads – 5</p>
+</div>
+<div class="paragraph">
+<p>&lt;property&gt;
+  &lt;name&gt;hive.support.concurrency&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.enforce.bucketing&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.exec.dynamic.partition.mode&lt;/name&gt;
+  &lt;value&gt;nonstrict&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.txn.manager&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hive.ql.lockmgr.DbTxnManager&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.compactor.initiator.on&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hive.compactor.worker.threads&lt;/name&gt;
+  &lt;value&gt;5&lt;/value&gt;
+&lt;/property&gt;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE users (
+  id int,
+  name string
+)
+CLUSTERED BY (id) INTO 2 BUCKETS STORED AS ORC
+TBLPROPERTIES ("transactional"="true",
+"compactor.mapreduce.map.memory.mb"="400",
+"compactorthreshold.hive.compactor.delta.num.threshold"="2",
+"compactorthreshold.hive.compactor.delta.pct.threshold"="0.5"
+);</p>
+</div>
+<div class="paragraph">
+<p>INSERT INTO TABLE users VALUES (1,'11'), (2,'22');
+INSERT INTO TABLE users VALUES (3,'xx'), (4,'yy');
+INSERT INTO TABLE users VALUES (5,'xx1'), (6,'yy2');</p>
+</div>
+<div class="paragraph">
+<p>hive --service metastore</p>
+</div>
+<div class="paragraph">
+<p>ALTER TABLE users COMPACT 'minor';
+show compactions;</p>
+</div>
+<div class="paragraph">
+<p>drop table if exists ods_weblog_origin;
+drop table if exists ods_weblog_origin;
+drop table if exists ods_weblog_origin;</p>
+</div>
+<div class="paragraph">
+<p>drop table if exists mytable;
+drop table if exists pageview;
+drop table if exists student;
+drop table if exists student_p;
+drop table if exists trade_detail;</p>
+</div>
+<div class="paragraph">
+<p>drop table if exists ods_click_pageviews;
+create table ods_click_pageviews(
+Session string,
+remote_addr string,
+user string,
+time_local string,
+request string,
+visit_step string,
+page_staylong string,
+http_referer string,
+http_user_agent string,
+body_bytes_sent string,
+status string)
+partitioned by (datestr string)
+row format delimited
+fields terminated by '\001';</p>
+</div>
+<div class="paragraph">
+<p>后台启动hiveserver
+nohup hiveserver2 1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;</p>
+</div>
+<div class="paragraph">
+<p>asciinema rec -c bash 1.json</p>
+</div>
+<div class="paragraph">
+<p>ssh root@196.168.1.34</p>
+</div>
+<div class="paragraph">
+<p>docker exec -it hadoop-master /bin/bash
+docker exec -it hadoop-slave1 /bin/bash</p>
+</div>
+<div class="paragraph">
+<p>连接hive
+beeline -u jdbc:hive2://hadoop-master:10000 -n root</p>
+</div>
+<div class="paragraph">
+<p>beeline -u jdbc:hive2://hadoop-master:10000/default -n root</p>
+</div>
+<div class="paragraph">
+<p>!connect jdbc:hive2://hadoop-master:10000 root</p>
+</div>
+<div class="paragraph">
+<p>create table if not exists mytable3(sid int, sname string) row format delimited fields terminated by '\005' stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create external table if not exists pageview(pageid int,page_url string comment 'The page URL') row format delimited fields terminated by ',' location 'hdfs://hadoop-master:9000/user/hive/warehouse/';</p>
+</div>
+<div class="paragraph">
+<p>create table student_p(Sno int,Sname string,Sex string,Sage int,Sdept string) partitioned by(part string) row format delimited fields terminated by ',' stored as textfile;</p>
+</div>
+<div class="paragraph">
+<p>create table student(id INT,age INT,name STRING) partitioned by(stat_date STRING) clustered by(id) sorted by(age) into 2 buckets row format delimited fields terminated by ',';</p>
+</div>
+<div class="paragraph">
+<p>asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicCN</p>
+</div>
+<div class="paragraph">
+<p>持续化构建,部署
+版本管理
+编译
+数据库
+反向代理
+大物流
+禅道</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/releases/download/v0.1.0-fonts/KaiGenGothicCN-Bold-Italic.ttf" class="bare">https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/releases/download/v0.1.0-fonts/KaiGenGothicCN-Bold-Italic.ttf</a></p>
+</div>
+<div class="paragraph">
+<p>rancher stop wuliu-dev/wuliu &amp;&amp;
+rancher exec wuliu-dev/ant rm -rf /svn-data/code/tky/WebRoot/WEB-INF/classes &amp;&amp;
+rancher exec wuliu-dev/svn svn up /svn-data/code/tky/ &amp;&amp;
+rancher exec wuliu-dev/ant /apache-ant-1.9.7/bin/ant -f /svn-data/code/tky/build.xml &amp;&amp;
+rancher restart wuliu-dev/wuliu</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/web.conf:/etc/nginx/conf.d/default.conf</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/server.xml:/apache-tomcat-7.0.62/conf/server.xml
+/home/wuliu/opt/src/version2/data/svn/code/tky/WebRoot:/apache-tomcat-7.0.62/webapps/wuliu
+/home/wuliu/opt/src/version2/data/tmp:/tmp</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/cnf/mysql/mysql-m.cnf:/etc/mysql/conf.d/mysqld.cnf</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/data/svn:/svn-data
+/home/wuliu/opt/src/version2/data/ecj-4.4.jar:/apache-ant-1.9.7/lib/ecj-4.4.jar
+/home/wuliu/opt/src/version2/data/servlet-api-2.5.jar:/apache-ant-1.9.7/lib/servlet-api-2.5.jar
+/home/wuliu/opt/src/version2/data/wuliu:/wuliu</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/data/svn:/svn-data</p>
+</div>
+<div class="paragraph">
+<p>/home/wuliu/opt/src/version2/data/start.sh:/start.sh
+/home/wuliu/opt/src/version2/data/zbox:/opt/zbox</p>
+</div>
+<div class="paragraph">
+<p>svn co svn://196.168.1.33/wuliu/code/tky</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/root/.jenkins:/root/.jenkins</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mailiqing.com:5000/jenkins:1.0</p>
+</div>
+<div class="paragraph">
+<p>svn switch --relocate</p>
+</div>
+<div class="paragraph">
+<p>mailiqing-app-stable /root/.jenkins/workspace/mailiqing-increment/stable/app
+mailiqing-app-dev /root/.jenkins/workspace/mailiqing-increment/dev/app-dev</p>
+</div>
+<div class="paragraph">
+<p>wuliu /root/.jenkins/workspace/mailiqing-increment/wuliu-production/tky</p>
+</div>
+<div class="paragraph">
+<p>mailiqing-pc /root/.jenkins/workspace/mailiqing-increment/b2b</p>
+</div>
+<div class="paragraph">
+<p>docker-engine-1.13.1-1.el7.centos.x86_64.rpm</p>
+</div>
+<div class="paragraph">
+<p>svnserve --daemon --foreground --root /svn/</p>
+</div>
+<div class="paragraph">
+<p><a href="http://196.168.1.33:8080/v2-beta" class="bare">http://196.168.1.33:8080/v2-beta</a></p>
+</div>
+<div class="paragraph">
+<p>8EA989955618FC869A2B</p>
+</div>
+<div class="paragraph">
+<p>44UVu61SzCzuNoxsHuAxqEtoE5G6gy4Td4do7Fyz</p>
+</div>
+<div class="paragraph">
+<p>rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2 rancher/server:v1.5.5</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash</p>
+</div>
+<div class="paragraph">
+<p>for var in $@
+do
+    echo "$var"
+    docker pull $var
+    docker tag $var mailiqing.com:5000/$var
+    docker push mailiqing.com:5000/$var
+    docker rmi mailiqing.com:5000/$var
+done</p>
+</div>
+<div class="paragraph">
+<p>#!/bin/bash</p>
+</div>
+<div class="paragraph">
+<p>for var in $@
+do
+  echo "$var"
+  docker pull mailiqing.com:5000/$var
+  docker tag mailiqing.com:5000/$var $var
+  docker rmi mailiqing.com:5000/$var
+done</p>
+</div>
+<div class="paragraph">
+<p>tee /etc/docker/daemon.json &lt;&#8592;'EOF'
+{
+  "registry-mirrors": ["http://0821f5e0.m.daocloud.io"]
+}
+EOF</p>
+</div>
+<div class="paragraph">
+<p>systemctl daemon-reload &amp;&amp; systemctl restart docker</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>上传日志文件到hdfs</p>
+</li>
+<li>
+<p>日志预处理,日志点击流
+.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>command.1=sh log_click.sh ${HADOOP_PRE} ${FILE_NAME}</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -rm -r /data/weblog/preprocess/valid_output/2017-05-12</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -ls /data/weblog/preprocess/valid_output/2017-05-12</p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/apt/sources.list &lt;&lt;_EOF_
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-proposed main restricted universe multiverse
+deb <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-proposed main restricted universe multiverse
+deb-src <a href="http://mirrors.aliyun.com/ubuntu/" class="bare">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main restricted universe multiverse
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>cat &gt; /etc/apt/sources.list &lt;&lt;_EOF_
+deb <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy main contrib non-free
+deb-src <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy main contrib non-free
+deb <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy-updates main contrib non-free
+deb-src <a href="http://mirrors.aliyun.com/debian" class="bare">http://mirrors.aliyun.com/debian</a> wheezy-updates main contrib non-free
+deb <a href="http://mirrors.aliyun.com/debian-security" class="bare">http://mirrors.aliyun.com/debian-security</a> wheezy/updates main contrib non-free
+deb-src <a href="http://mirrors.aliyun.com/debian-security" class="bare">http://mirrors.aliyun.com/debian-security</a> wheezy/updates main contrib non-free
+<em>EOF</em></p>
+</div>
+<div class="paragraph">
+<p>docker exec hadoop-master /bin/sh -c 'echo 1'</p>
+</div>
+<div class="paragraph">
+<p>/usr/bin/docker exec hadoop-master /usr/local/hadoop/bin/hadoop jar hadoop-demo-1.0-SNAPSHOT.jar wordcount /wordcount/input /wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.2-sources.jar org.apache.hadoop.examples.WordCount /wordcount/input /wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>相当于一个yarn集群的客户端
+需要在此封装我们的mr程序的相关运行参数
+指定jar包,最后提交给yarn</p>
+</div>
+<div class="paragraph">
+<p>将job中配置的相关参数,以及job所用的java类所在的jar包,提交给yarn去运行</p>
+</div>
+<div class="paragraph">
+<p>type</p>
+</div>
+<div class="paragraph">
+<p>运营场景
+决策场景</p>
+</div>
+<div class="paragraph">
+<p>调度</p>
+</div>
+<div class="paragraph">
+<p>数据仓库</p>
+</div>
+<div class="paragraph">
+<p>数据建模</p>
+</div>
+<div class="paragraph">
+<p>业务场景接口</p>
+</div>
+<div class="paragraph">
+<p>ImmutableListMultimap&lt;String, ?&gt; cktmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)ckList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; sctmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)scList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; dgtmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)dgList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; pdtmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)pdList, multiTypeFunction);
+ImmutableListMultimap&lt;String, ?&gt; kctmp = Multimaps.index((List&lt;ZhAsphaltRepertoryModel&gt;)kcList, multiTypeFunction);</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>builder.put("rk", rktmp.asMap());
+builder.put("ck", cktmp.asMap());
+builder.put("sc", sctmp.asMap());
+builder.put("dg", dgtmp.asMap());
+builder.put("pd", pdtmp.asMap());
+builder.put("kc", kctmp.asMap());</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>*id {lable:"varchar(32) NOT NULL"}
+reservoir_code {lable:"varchar(32) DEFAULT NULL"}
+abbreviation {lable:"varchar(64) DEFAULT NULL"}
+reservoir_name {lable:"varchar(256) DEFAULT NULL"}</p>
+</div>
+<div class="paragraph">
+<p>id {lable:"varchar(32) NOT NULL"}
+storage_code {lable:"varchar(32) DEFAULT NULL"}
+storage_name {lable:"varchar(128) DEFAULT NULL"}
+reservoir_code {lable:"varchar(32) DEFAULT NULL"}
+storage_capacity {lable:"double(8,0) DEFAULT NULL"}</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SELECT   *,   (SELECT     zra.abbreviation   FROM     zh_reservoir_area zra   WHERE zra.reservoir_code = zar.reservoir_code) AS abbreviation,   (SELECT     zs.storage_capacity   FROM     zh_storage zs   WHERE zs.reservoir_code = zar.reservoir_code     AND zs.storage_code = zar.storage_code GROUP BY zar.reservoir_code) AS storageCapacity FROM   zh_asphalt_repertory zar GROUP BY zar.reservoir_code,   zar.storage_code HAVING 1=1 AND zar.type = '00' ORDER BY abbreviation</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>cabal sandbox hc-pkg&#8201;&#8212;&#8201;unregister base</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+  tranCat (LEFT(cat_code, LENGTH(cat_code) - 1)) AS category,
+  (SELECT
+    brand_name
+  FROM
+    mlq_brand
+  WHERE id = brand_id) brand_name,
+  (SELECT
+    brand_name
+  FROM
+    mlq_brand
+  WHERE id = brand_id) brand_name_noa,
+  (SELECT
+    msi.shop_name
+  FROM
+    mlq_shop_info msi
+  WHERE msi.id = mg.shop_id) new_seller_nick,
+  (SELECT
+    msi.shop_name
+  FROM
+    mlq_shop_info msi
+  WHERE msi.id = mg.shop_id) new_seller_nick_noa,
+  mg.*
+FROM
+  mlq_goods mg
+WHERE mg.gmt_modify &gt; '2017-05-08 10:53:51'
+OR mg.gmt_create &gt; '2017-05-08 10:53:51'</p>
+</div>
+<div class="paragraph">
+<p>mklink D:\env\bin\dot.exe D:\env\graphviz-2.38\release\bin\dot.exe</p>
+</div>
+<div class="paragraph">
+<p>%graphvizdot%\bin;%SBT_HOME%\bin;D:\env\code\bin;C:\msys64\mingw64\bin;d:\env\Ruby22\bin;D:\env\cwRsync\bin;%GOROOT%\bin;C:\ProgramData\Oracle\Java\javapath;%MAVEN_HOME%\bin;%JAVA_HOME%\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;D:\HashiCorp\Vagrant\bin;C:\Program Files (x86)\MySQL\MySQL Server 5.5\bin</p>
+</div>
+<div class="paragraph">
+<p>sssssssss</p>
+</div>
+<div class="paragraph">
+<p>WebRoot/web/storagemanagement/repertory/asphalt_count_jxc.jsp</p>
+</div>
+<div class="paragraph">
+<p>gem install asciidoctor-diagram</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.graphviz.org/Download_windows.php" class="bare">http://www.graphviz.org/Download_windows.php</a>
+images_dir = parent.attr('plantimgdir')</p>
+</div>
+<div class="paragraph">
+<p>#{parent.attr('plantimgdir')}/</p>
+</div>
+<div class="paragraph">
+<p>#title {label: "大物流仓库库存表关系", size: "20"}</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/erd-1.png" alt="erd 1" width="1768" height="723">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/diagram-classes4.png" alt="diagram classes4" width="317" height="949">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/diagram-classes25.svg" alt="diagram classes25" width="314" height="325">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/ditaa-diagram.png" alt="ditaa diagram" width="540" height="280">
+</div>
+</div>
+<div class="paragraph">
 <p>SELECT zspl.*
 FROM zh_sub_plan_launch zspl
 WHERE zspl.plan_code IN
@@ -105,7 +1576,7 @@ AND zpl.table_date &#8656; ?)</p>
 </div>
 <div class="paragraph">
 <p>SELECT *
-FROM zh_plan zp
+FROM zh_plan zp阿三地方
 WHERE plan_code = ?</p>
 </div>
 <div class="paragraph">
@@ -153,7 +1624,7 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>1、光佳团队策划流程很到位</pre>
+<pre>1+光佳团队策划流程很到位</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -163,7 +1634,7 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>②活动提前预热：  通过微信、圈子传播能够在短期内报名数60，很到位</pre>
+<pre>②活动提前预热：  通过微信+圈子传播能够在短期内报名数60，很到位</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -178,22 +1649,22 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>⑤活动互动效果：  笪总、美女主持人穿插广告、互动营销、红包形式的互动，提高了互动性</pre>
+<pre>⑤活动互动效果：  笪总+美女主持人穿插广告+互动营销+红包形式的互动，提高了互动性</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>⑥活动效果公布：  通过微信、纸质形式通知效果很好</pre>
+<pre>⑥活动效果公布：  通过微信+纸质形式通知效果很好</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>2、笪总团队线下配合很到位</pre>
+<pre>2+笪总团队线下配合很到位</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>①线下接待、让嘉宾没有陌生感、得到尊重感，有共同话题才是硬道理</pre>
+<pre>①线下接待+让嘉宾没有陌生感+得到尊重感，有共同话题才是硬道理</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -206,12 +1677,12 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>1、直播体验需要提高：</pre>
+<pre>1+直播体验需要提高：</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>1）直播网络稳定性、系统稳定性要提高，导致直播卡顿</pre>
+<pre>1）直播网络稳定性+系统稳定性要提高，导致直播卡顿</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -231,7 +1702,7 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>设备问题包括硬件、软件两方面，需要在启动项目时，尽早切入，以备不时之需，工作要交给擅长的人                       去做</pre>
+<pre>设备问题包括硬件+软件两方面，需要在启动项目时，尽早切入，以备不时之需，工作要交给擅长的人                       去做</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -261,7 +1732,7 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>2、活动数据收集差</pre>
+<pre>2+活动数据收集差</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -276,7 +1747,7 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>3、直播还能做什么？</pre>
+<pre>3+直播还能做什么？</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -291,12 +1762,12 @@ Bug修复:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>可以分段营销，在不同的地点、平台均可以</pre>
+<pre>可以分段营销，在不同的地点+平台均可以</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>3）直播专场：此次是学术界的直播，后期可以做专场，譬如采购、销售、大客户比如中石化、中海油、京博等等</pre>
+<pre>3）直播专场：此次是学术界的直播，后期可以做专场，譬如采购+销售+大客户比如中石化+中海油+京博等等</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -1591,41 +3062,65 @@ AND zsgc.status  = '4'</p>
 2017-03-28_163804
 2017-03-28_163811</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
 </div>
-<div class="paragraph">
-<p>image::{img}/img/storm/.png[]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/.png" alt=".png">
+</div>
 </div>
 <div class="paragraph">
 <p>docker run -d -p 8888:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k 111111 -m aes-256-cfb</p>
@@ -1700,16 +3195,29 @@ services:
 lib/spark-examples-1.5.2-hadoop2.2.0.jar \
 10</p>
 </div>
+<div class="paragraph">
+<p>bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master yarn \
+--deploy-mode client \
+--executor-memory 512M \
+--total-executor-cores 1 \
+lib/spark-examples-1.5.2-hadoop2.2.0.jar \
+10</p>
+</div>
 <div class="literalblock">
 <div class="title">/bin/spark-submit \</div>
 <div class="content">
 <pre>--class org.apache.spark.examples.SparkPi \
 --master spark://master:7077 \
---executor-memory 512M \
+--executor-memory 1g \
 --total-executor-cores 2 \
 /usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar \
 10</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://master:7077 --executor-memory 1g --total-executor-cores 2 /usr/local/spark-1.5.2/lib/spark-examples-1.5.2-hadoop2.2.0.jar 1</p>
 </div>
 <div class="paragraph">
 <p>cd $SPARK_HOME</p>
@@ -1726,18 +3234,18 @@ log4j.appender.console.target=System.err
 log4j.appender.console.layout=org.apache.log4j.PatternLayout
 log4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n</p>
 </div>
-<h1 id="_settings_to_quiet_third_party_logs_that_are_too_verbose" class="sect0">Settings to quiet third party logs that are too verbose</h1>
 <div class="paragraph">
-<p>log4j.logger.org.spark-project.jetty=WARN
+<p># Settings to quiet third party logs that are too verbose
+log4j.logger.org.spark-project.jetty=WARN
 log4j.logger.org.spark-project.jetty.util.component.AbstractLifeCycle=ERROR
 log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
 log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
 log4j.logger.org.apache.parquet=ERROR
 log4j.logger.parquet=ERROR</p>
 </div>
-<h1 id="_spark_9183_settings_to_avoid_annoying_messages_when_looking_up_nonexistent_udfs_in_sparksql_with_hive_support" class="sect0">SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support</h1>
 <div class="paragraph">
-<p>log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
+<p># SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support
+log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
 log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
 <em>EOF</em></p>
 </div>
@@ -1804,7 +3312,7 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
         "(SELECT plan_code "<br>
         "FROM zh_plan_launch zpl "<br>
         "WHERE zpl.state = '01' "<br>
-        "AND zpl.table_date &gt;= ? "<br>
+        <span class="menuseq"><span class="menu">AND zpl.table_date</span>&#160;&#9656; <span class="menuitem">= ?</span></span><br>
         "AND zpl.table_date &#8656; ?) "<br>
         "AND zspl.project_name = zsgc.project_name "<br>
         "AND zsgc.make_time = ? "+
@@ -1851,7 +3359,7 @@ log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
     String planLanchSql = "SELECT zpl.* "<br>
         "FROM zh_plan_launch zpl "<br>
         "WHERE zpl.state = '01' "<br>
-        "AND zpl.table_date &gt;= ? "<br>
+        <span class="menuseq"><span class="menu">AND zpl.table_date</span>&#160;&#9656; <span class="menuitem">= ?</span></span><br>
         "AND zpl.table_date &#8656; ? ";
     String reservoirCodeSql = subPlanLanchSql + " ,zspl.reservoir_code";</p>
 </div>
@@ -1946,8 +3454,8 @@ hdfs://master:8020/nc</p>
 80
 111111</p>
 </div>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p>环境:</p>
 </div>
@@ -2024,7 +3532,155 @@ hdfs://master:8020/nc</p>
 <div class="paragraph">
 <p>docker pull wurstmeister/kafka</p>
 </div>
+<div class="paragraph">
+<p>if [[ -z "$a" ]]; then
+  echo "a"
+else
+  echo "b"
+fi</p>
 </div>
+<div class="paragraph">
+<p>input {
+  file {
+    path &#8658; "/var/nginx_logs/*.log"
+    discover_interval &#8658; 5
+    start_position &#8658; "beginning"
+  }
+}</p>
+</div>
+<div class="paragraph">
+<p>output {
+  kafka {
+    topic_id &#8658; "tracklog"
+    codec &#8658; plain {
+      format &#8658; "%{message}"
+      charset &#8658; "UTF-8"
+    }
+    bootstrap_servers &#8658; "kafka:9092,kafka2:9092"
+  }
+}</p>
+</div>
+<div class="paragraph">
+<p>INSERT INTO zh_asphalt_repertory (id,reservoir_code,storage_code,goods_code,goods_count,goods_batch,order_no,order_type,type,occur_date,goods_model)VALUES('a54a38c44cb4417aa975c3581879e41a','002','TKH-ZHIQU2','003','-4351.72','null','20170422389','03','00','2017-04-22 00:00:00','70#')</p>
+</div>
+<div class="paragraph">
+<p>UPDATE <code>wuliu</code>.<code>zh_contract_info</code> SET <code>execute_state</code> = '01' WHERE <code>contract_code</code> IN('35900000-17-MY0635-0006&#8212;&#8203;03','35900000-17-MY0635-0006&#8212;&#8203;05','35900000-17-MY0635-0006&#8212;&#8203;04');</p>
+</div>
+<div class="paragraph">
+<p>UPDATE
+  <code>wuliu</code>.<code>zh_contract_info</code>
+SET
+  <code>execute_state</code> = '01'
+WHERE <code>contract_code</code> IN (
+    '35900000-17-MY0635-0006&#8212;&#8203;03',
+    '35900000-17-MY0635-0006&#8212;&#8203;05',
+    '35900000-17-MY0635-0006&#8212;&#8203;04'
+  ) ;</p>
+</div>
+<div class="paragraph">
+<p>SELECT
+  *,
+  zas.Storage_area,
+  zas.project_name,
+  DATE_FORMAT(zas.out_date, '%Y-%m-%d') AS dat,
+  (SELECT
+    SUM(zasc.goods_count)
+  FROM
+    zh_asphalt_storage_count zasc
+  WHERE zasc.asphalt_number = zas.out_order_no) AS goods_count,
+  (SELECT
+    zra.abbreviation
+  FROM
+    zh_reservoir_area zra
+  WHERE zra.reservoir_code = zas.Storage_area) AS abbreviation
+FROM
+  zh_out_bound_order zas
+WHERE 1 = 1
+GROUP BY dat,zas.Storage_area
+ORDER BY zas.out_date DESC</p>
+</div>
+<div class="paragraph">
+<p>" SELECT "+
+"   zas.Storage_area, "+
+"   zas.goods_code, "+
+"   zas.model, "+
+"   zas.category, "+
+"   DATE_FORMAT(zas.out_date, '%Y-%m-%d') AS dat, "+
+"   SUMSELECT "+ "     SUM(zasc.goods_count) "+ "   FROM "+ "     zh_asphalt_storage_count zasc "+ "   WHERE zasc.asphalt_number = zas.out_order_no AS goods_count "+
+" FROM "+
+"   zh_out_bound_order zas "+
+" WHERE 1 = 1 "+
+" AND DATE_FORMAT(zas.out_date, '%Y-%m-%d') = '2017-03-02' "+
+" AND zas.category = '00' "+
+" AND zas.Storage_area = '002' "+
+" GROUP BY zas.goods_code "</p>
+</div>
+<div class="paragraph">
+<p>hi 陈经理:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>服务器系统
+CentOS-7-x86_64-Minimal-1611.iso</p>
+</li>
+<li>
+<p>大物流正式服务器,配置双网卡(内,外网)
+大物流测试服务器,配置双网卡(内,外网)
+其余的服务器,配置内网网卡
+服务器之间走内网通信</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>谢谢</p>
+</div>
+<div class="paragraph">
+<p>echo "4|2016年2月1日,星期一,10:04:14|10.117.45.20|DongKe小雨|法师|女|7|0|588/800000000" &gt; game_logs/1.log</p>
+</div>
+<div class="paragraph">
+<p>echo "4|2016年2月1日,星期一,10:04:16|10.168.8.103|潮流哥|法师|男|9|0|517/800000000" &gt;&gt; game_logs/1.log
+echo "4|2016年2月1日,星期一,10:04:16|10.168.8.103|潮流锅|武士|男|9|0|779/800000000" &gt;&gt; game_logs/1.log</p>
+</div>
+<div class="paragraph">
+<p>A&#8592;-] : RequestCreated
+deactivate A
+[&#8592; A: Done
+deactivate A</p>
+</div>
+<div class="paragraph">
+<p>Schedules tasks for multiple types of clusters by acting through a SchedulerBackend.
+It can also work with a local setup by using a LocalBackend and setting isLocal to true.
+It handles common logic, like determining a scheduling order across jobs, waking up to launch speculative tasks, etc.</p>
+</div>
+<div class="paragraph">
+<p>Clients should first call initialize() and start(), then submit task sets through the
+runTasks method.</p>
+</div>
+<div class="paragraph">
+<p>THREADING: SchedulerBackends and task-submitting clients can call this class from multiple
+threads, so it needs locks in public API methods to maintain its state. In addition, some
+SchedulerBackends synchronize on themselves when they want to send events here, and then
+acquire a lock on us, so we need to make sure that we don&#8217;t try to lock the backend while
+we are holding a lock on ourselves.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.mailiqing.com/program/admin/mlqcategory/admin_goods/goodsList.jsp?menu_id=20150914j018W0M" class="bare">http://www.mailiqing.com/program/admin/mlqcategory/admin_goods/goodsList.jsp?menu_id=20150914j018W0M</a></p>
+</div>
+<div class="paragraph">
+<p>#local
+public: <a href="http://maven.aliyun.com/nexus/content/groups/public/#这个maven" class="bare">http://maven.aliyun.com/nexus/content/groups/public/#这个maven</a>
+typesafe:http://dl.bintray.com/typesafe/ivy-releases/ , [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly#这个ivy
+ivy-sbt-plugin:http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]#这个ivy
+sonatype-oss-releases</p>
+</div>
+<div class="paragraph">
+<p>sonatype-oss-snapshots</p>
+</div>
+<div class="paragraph">
+<p>进销存报表
+采购执行报表
+销售执行报表</p>
 </div>
 
 		</div>
@@ -2048,7 +3704,7 @@ hdfs://master:8020/nc</p>
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/tmp/a/" rel="prev"><span>«Previous</span><p></p></a>
+			<a href="/tmp/graphv/" rel="prev"><span>«Previous</span><p></p></a>
 		</div>
 		
 		
@@ -2064,16 +3720,16 @@ hdfs://master:8020/nc</p>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

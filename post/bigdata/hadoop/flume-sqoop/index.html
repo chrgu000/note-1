@@ -25,7 +25,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -66,6 +67,8 @@
             <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
@@ -1075,15 +1078,19 @@ command=echo 'hello'</code></pre>
 <hr>
 </li>
 <li>
-<p>启动执行该job
-image::/src/img/hadoop/flume/image015.png[]
----</p>
+<p>启动执行该job</p>
 </li>
 </ol>
 </div>
 </dd>
 </dl>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image015.png" alt="image015">
+</div>
+</div>
+<hr>
 <div class="sect4">
 <h5 id="_command类型多job工作流flow">Command类型多job工作流flow</h5>
 <div class="olist arabic">
@@ -1286,7 +1293,7 @@ export HIVE_HOME=/home/hadoop/apps/hive-1.2.1</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>$ cd $SQOOP_HOME/bin
-$ sqoop-version
+$ sqoop -version
 # 预期的输出：
 15/12/17 14:52:32 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6
 Sqoop 1.4.6 git commit id 5b34accaca7de251fc91161733f906af2eddbe83
@@ -1378,11 +1385,12 @@ Compiled by abe on Fri Aug 1 11:19:26 PDT 2015</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>$bin/sqoop import \
---connect jdbc:mysql://hdp-node-01:3306/test \
---username root \
---password root \
---table emp   \
---m 1</code></pre>
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --table emp   \
+  --m 1</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -1442,11 +1450,12 @@ Compiled by abe on Fri Aug 1 11:19:26 PDT 2015</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>bin/sqoop import \
---connect jdbc:mysql://hdp-node-01:3306/test \
---username root \
---password root \
---target-dir /queryresult \
---table emp --m 1</code></pre>
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --target-dir /queryresult \
+  --table emp --m 1</code></pre>
 </div>
 </div>
 </dd>
@@ -1494,12 +1503,13 @@ where子句的语法如下。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>bin/sqoop import \
---connect jdbc:mysql://hdp-node-01:3306/test \
---username root \
---password root \
---where "city ='sec-bad'" \
---target-dir /wherequery \
---table emp_add --m 1</code></pre>
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --where "city ='sec-bad'" \
+  --target-dir /wherequery \
+  --table emp_add --m 1</code></pre>
 </div>
 </div>
 </dd>
@@ -1508,14 +1518,15 @@ where子句的语法如下。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>bin/sqoop import \
---connect jdbc:mysql://hdp-node-01:3306/test \
---username root \
---password root \
---target-dir /wherequery2 \
---query 'select id,name,deg from emp WHERE  id&gt;1207 and $CONDITIONS' \
---split-by id \
---fields-terminated-by '\t' \
---m 1</code></pre>
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --target-dir /wherequery2 \
+  --query 'select id,name,deg from emp WHERE  id&gt;1207 and $CONDITIONS' \
+  --split-by id \
+  --fields-terminated-by '\t' \
+  --m 1</code></pre>
 </div>
 </div>
 </dd>
@@ -1575,13 +1586,14 @@ where子句的语法如下。</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>bin/sqoop import \
---connect jdbc:mysql://hdp-node-01:3306/test \
---username root \
---password root \
---table emp --m 1 \
---incremental append \
---check-column id \
---last-value 1208</code></pre>
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --table emp --m 1 \
+  --incremental append \
+  --check-column id \
+  --last-value 1208</code></pre>
 </div>
 </div>
 </dd>
@@ -1677,11 +1689,12 @@ mysql&gt; CREATE TABLE employee (
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>bin/sqoop export \
---connect jdbc:mysql://hdp-node-01:3306/test \
---username root \
---password root \
---table employee \
---export-dir /user/hadoop/emp/</code></pre>
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --table employee \
+  --export-dir /user/hadoop/emp/</code></pre>
 </div>
 </div>
 </li>
@@ -1867,16 +1880,16 @@ emp.java</p>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

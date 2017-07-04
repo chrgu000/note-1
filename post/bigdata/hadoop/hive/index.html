@@ -7,13 +7,10 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hive" />
-<meta property="og:description" content="hive1. Hive只在一个节点上安装即可1. Hive只在一个节点上安装即可上传tar包
+<meta property="og:description" content="hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions3. Q &amp; A3.1. beeline 连接 hiveserver 报错3.2. java.lang.OutOfMemoryError: Java heap space with hive3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space1. Hive只在一个节点上安装即可上传tar包
 解压
 tar -zxvf hive-1.2.1.tar.gz -C /hadoop/安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）
-mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- &#34;MYSQL_ROOT_PASSWORD=111111&#34;ports:- &#34;3306:3306&#34;networks:- hadoopnetworks:hadoop:external: true配置 hive
-配置 HIVE_HOME 环境变量 vi conf/hive-env.sh 配置其中的 $hadoop_home
-配置元数据库信息 vi hive-site.xml
-&lt;configuration&gt;&lt;property&gt;&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;&lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;&lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;&lt;/property&gt;&lt;property&gt;&lt;name&gt;javax." />
+mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- &#34;MYSQL_ROOT_PASSWORD=111111&#34;ports:- &#34;3306:3306&#34;networks:- hadoopnetworks:hadoop:external: true配置 hive" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/hadoop/hive/" />
 
@@ -31,7 +28,8 @@ mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -73,6 +71,8 @@ mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -102,6 +102,18 @@ mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.
 <div id="toctitle">hive</div>
 <ul class="sectlevel1">
 <li><a href="#_hive只在一个节点上安装即可">1. Hive只在一个节点上安装即可</a></li>
+<li><a href="#_hive_参考">2. hive 参考</a>
+<ul class="sectlevel2">
+<li><a href="#_transactions">2.1. transactions</a></li>
+</ul>
+</li>
+<li><a href="#_q_a">3. Q &amp; A</a>
+<ul class="sectlevel2">
+<li><a href="#__strong_beeline_strong_连接_strong_hiveserver_strong_报错">3.1. <strong>beeline</strong> 连接 <strong>hiveserver</strong> 报错</a></li>
+<li><a href="#_java_lang_outofmemoryerror_java_heap_space_with_hive">3.2. java.lang.OutOfMemoryError: Java heap space with hive</a></li>
+<li><a href="#_hiveserver2服务异常停止java_lang_outofmemoryerror_java_heap_space">3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -252,6 +264,96 @@ select nation, avg(size) from beauties group by nation order by avg(size);</code
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_hive_参考">2. hive 参考</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_transactions">2.1. transactions</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://acadgild.com/blog/transactions-in-hive/" class="bare">https://acadgild.com/blog/transactions-in-hive/</a></p>
+</li>
+<li>
+<p><a href="https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started">hive on spark</a></p>
+</li>
+<li>
+<p><a href="https://www.iteblog.com/archives/1493.html" class="bare">https://www.iteblog.com/archives/1493.html</a></p>
+</li>
+<li>
+<p><a href="http://lxw1234.com/archives/2015/06/269.htm" class="bare">http://lxw1234.com/archives/2015/06/269.htm</a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/breg/p/5552342.html" class="bare">http://www.cnblogs.com/breg/p/5552342.html</a></p>
+</li>
+<li>
+<p><a href="http://blog.csdn.net/u014695188/article/details/54646575" class="bare">http://blog.csdn.net/u014695188/article/details/54646575</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_q_a">3. Q &amp; A</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__strong_beeline_strong_连接_strong_hiveserver_strong_报错">3.1. <strong>beeline</strong> 连接 <strong>hiveserver</strong> 报错</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/beeline -u jdbc:hive2://master:10000 -n root
+出现
+2017-06-10T10:00:53,391  WARN [HiveServer2-Handler-Pool: Thread-57] thrift.ThriftCLIService: Error opening session:
+org.apache.hive.service.cli.HiveSQLException: Failed to open new session: java.lang.RuntimeException: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): User: root is not allowed to impersonate root</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改hadoop 配置文件 <strong>$HADOOP_HOME/etc/hadoop/core-site.xml</strong> ,加入如下配置项</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.root.hosts&lt;/name&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.root.groups&lt;/name&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>root</strong> 为用户名,如果是别的用户,替换 <strong>root</strong> 即可</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>重启 <strong>Hadoop</strong> 集群</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_lang_outofmemoryerror_java_heap_space_with_hive">3.2. java.lang.OutOfMemoryError: Java heap space with hive</h3>
+<div class="paragraph">
+<p><a href="https://stackoverflow.com/questions/29673053/java-lang-outofmemoryerror-java-heap-space-with-hive" class="bare">https://stackoverflow.com/questions/29673053/java-lang-outofmemoryerror-java-heap-space-with-hive</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hiveserver2服务异常停止java_lang_outofmemoryerror_java_heap_space">3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space</h3>
+<div class="paragraph">
+<p><a href="http://blog.csdn.net/levy_cui/article/details/53992402" class="bare">http://blog.csdn.net/levy_cui/article/details/53992402</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://aws.mannem.me/?p=1325" class="bare">http://aws.mannem.me/?p=1325</a></p>
+</div>
+<div class="paragraph">
+<p>export HADOOP_OPTS="$HADOOP_OPTS -server -verbose:gc  -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/hive"</p>
+</div>
+</div>
+</div>
+</div>
 
 		</div>
 		
@@ -279,7 +381,7 @@ select nation, avg(size) from beauties group by nation order by avg(size);</code
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/bigdata/hadoop/hadoop-shell/" rel="next"><span>Next»</span><p>hadoop-shell</p></a>
+			<a href="/post/bigdata/hadoop/log-analysis/" rel="next"><span>Next»</span><p>log</p></a>
 		</div>
 		
 	</nav>
@@ -290,16 +392,16 @@ select nation, avg(size) from beauties group by nation order by avg(size);</code
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

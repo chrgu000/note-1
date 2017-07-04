@@ -7,14 +7,14 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="linux 基础命令" />
-<meta property="og:description" content="Contents1. 命令历史的使用技巧：2. 查看 linux 系统信息3. 获取 ip 地址4. 端口查看5. 时间同步5.1. NTP 时间服务器设置5.2. 参考6. Rsync7. Centos 安装 DNS 服务器8. 查看日志1. 命令历史的使用技巧：!n:执行命令历史中的第n条命令；
+<meta property="og:description" content="Contents1. 命令历史的使用技巧：2. 查看 linux 系统信息3. 获取 ip 地址4. 端口查看5. 时间同步5.1. NTP 时间服务器设置5.2. 参考6. Rsync7. DNS 服务器8. 查看日志9. 参考10. Q &amp; A10.1. failed: Host is down1. 命令历史的使用技巧：!n:执行命令历史中的第n条命令；
 !-n:执行命令历史中的倒数第n条命令；
 !!: 执行上一条命令；
 !string:执行命令历史中最近一个以指定字符串开头的命令
 !$:引用前一个命令的最后一个参数;
 `Esc, `.
 Alt&#43;.
-2. 查看 linux 系统信息查看文件夹大小" />
+2." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/basic/" />
 
@@ -32,7 +32,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -74,6 +75,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -113,8 +116,14 @@
 </ul>
 </li>
 <li><a href="#__code_rsync_code">6. <code>Rsync</code></a></li>
-<li><a href="#_centos_安装_dns_服务器">7. Centos 安装 DNS 服务器</a></li>
+<li><a href="#_dns_服务器">7. DNS 服务器</a></li>
 <li><a href="#_查看日志">8. 查看日志</a></li>
+<li><a href="#_参考_2">9. 参考</a></li>
+<li><a href="#_q_a">10. Q &amp; A</a>
+<ul class="sectlevel2">
+<li><a href="#_failed_host_is_down">10.1. failed: Host is down</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect2">
@@ -429,29 +438,27 @@ read only = no</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_centos_安装_dns_服务器">7. Centos 安装 DNS 服务器</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">参考</dt>
-<dd>
-<p><a href="http://blog.csdn.net/charlsecharlse/article/details/17955119">CentOS下搭建DNS服务器</a></p>
-</dd>
-</dl>
+<h3 id="_dns_服务器">7. DNS 服务器</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>docker run -d -v /root/dishui/data/conf/dnsmasq.hosts:/etc/hosts -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --name dns-server andyshinn/dnsmasq:2.75 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>dnsmasq.hosts</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>//物流项目
-zone "test.wuliu.com" IN {
-        type master;
-        file "named.wuliu.com";
-        allow-update { none; };
-};
-//mailiqing项目
-zone "test.mailiqing.com" IN {
-        type master;
-        file "named.mailiqing.com";
-        allow-update { none; };
-};</code></pre>
+<pre class="highlightjs highlight"><code>cat &gt; dnsmasq.hosts &lt;&lt;_EOF_
+172.17.11.2 master
+172.17.11.3 woker
+172.17.80.4 nginx
+_EOF_</code></pre>
 </div>
 </div>
 </div>
@@ -459,6 +466,25 @@ zone "test.mailiqing.com" IN {
 <h3 id="_查看日志">8. 查看日志</h3>
 <div class="paragraph">
 <p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" class="bare">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_参考_2">9. 参考</h3>
+<div class="paragraph">
+<p><a href="http://c.biancheng.net/cpp/view/7004.html">Shell Test</a></p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_q_a">10. Q &amp; A</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_failed_host_is_down">10.1. failed: Host is down</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mount -t cifs //192.168.137.2/dishui /dishui -o username=dishui,domain=storage,password=dishui,uid=0,gid=0 -o vers=2.0</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -499,16 +525,16 @@ zone "test.mailiqing.com" IN {
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

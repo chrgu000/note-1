@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -65,6 +66,8 @@
             <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
@@ -123,11 +126,9 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. git1.1. 命令1.1.1. 远程分支1.1.2. 综合使用1. git1.1. 命令1.1.1. 远程分支查看远程分支
-$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
-git remote add origin git@git.oschina.net:dishui/local_b2b.git设置远程分支
-git remote set-url origin git@github.com:dishuiGit/SublimeNote.git添加
-git add .	#添加git reset .
+						git1. git2. 拉取git项目中的特定文件夹2.1. 命令2.1.1. 远程分支2.2. 本地目录(存在文件),上传到码云2.2.1. 综合使用2.2.2. Q &amp; A1. git2. 拉取git项目中的特定文件夹# svn list &lt;repositry-url&gt; 查看文件夹svn list https://github.com/apache/spark.git# 拉取git项目中的特定文件夹svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.62.1. 命令2.1.1. 远程分支查看远程分支
+$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
+git remote add origin git@git.
 					</div>
 				</div>
 			</div>
@@ -140,15 +141,15 @@
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -222,6 +223,8 @@
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

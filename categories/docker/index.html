@@ -12,7 +12,7 @@
 <meta property="og:url" content="/categories/docker/" />
 
 
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-05-31T22:53:49&#43;00:00"/>
 
 
 
@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -66,6 +67,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -84,6 +87,34 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/docker/etcd-flanneld/" rel="bookmark">etcd flanneld</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-05-31 22:53:49 &#43;0000 UTC">May 31, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						etcd flanneld1. 环境2. 启动2.1. etcd2.2. flanneld2.3. 修改Docker参数3. Q &amp; A4. 参考1. 环境名称版本下载地址etcd
+3.1.8
+etcd-v3.1.8-linux-amd64.tar.gz
+flanneld
+v0.7.1
+flanneld-amd64
+mk-docker-opts.sh
+mk-docker-opts.sh
+etcd flanneld mk-docker-opts.sh 下载到 $HOME/bin 下2.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -193,7 +224,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						docker-base1. 阿里云加速2. Dockerfile 参考3. 使用3.1. 列出本地镜像3.2. 启动 docker4. 操作 Docker4.1. build4.2. run4.3. log4.4. 删除镜像4.5. 批量删除镜像4.6. 删除容器4.7. 关闭所有容器4.8. 进入一个容器的交互模式4.9. 挂载目录4.10. 载入镜像4.11. 查看 docker 网络4.12. 容器生成镜像4.13. 从主机到容器4.14. 从容器到主机4.15. 删除不是 dishui.io 开头的镜像4.16. list 镜像4.17. list 容器5. 修改 Docker 镜像的存储位置5.1. 备份fstab文件5.2. 停止 docker ， 用 rsync 同步 /var/lib/docker 到新位置 如果 rsync 没有安装5.
+						docker-base1. 阿里云加速2. Dockerfile 参考3. 使用3.1. 获取容器 ip3.2. list 镜像3.3. list 容器3.4. 启动 docker4. 操作 Docker4.1. build4.2. run4.3. log4.4. 删除镜像4.5. 批量删除镜像4.6. 删除容器4.7. 关闭所有容器4.8. 进入一个容器的交互模式4.9. 挂载目录4.10. 载入镜像4.11. 查看 docker 网络4.12. 容器生成镜像4.13. 从主机到容器4.14. 从容器到主机4.15. 删除不是 dishui.io 开头的镜像5. 修改 Docker 镜像的存储位置5.1. 备份fstab文件5.2. 停止 docker ， 用 rsync 同步 /var/lib/docker 到新位置 如果 rsync 没有安装5.
 					</div>
 				</div>
 			</div>
@@ -206,15 +237,15 @@
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -288,6 +319,8 @@
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

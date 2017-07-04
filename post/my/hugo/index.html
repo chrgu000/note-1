@@ -7,8 +7,13 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hugo" />
-<meta property="og:description" content="hugo1. hugo1.1. 设置发布目录1.2. 部署1.2.1. 带项目名1.2.2. 不带项目名2. 生成 lunr 索引3. 参考1. hugo1.1. 设置发布目录# 创建 gh-pages 分支git checkout --orphan gh-pages#git worktree add public gh-pages1.2. 部署1.2.1. 带项目名http://dishui.oschina.io/note-hugo/
-hugo-local.sh#!/bin/shcd /e/note-hugo/# 替换域名echo &#34;替换域名&#34;git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.jssed -i &#39;s/dishui." />
+<meta property="og:description" content="hugo1. 环境2. hugo2.1. 设置发布目录2.2. 部署2.2.1. 带项目名2.2.2. 不带项目名3. 生成 lunr 索引4. 参考1. 环境软件下载地址Ruby
+Ruby 2.3.3 (x64)
+Asciidoctor
+gem install asciidoctor asciidoctor-diagram &lt;1&gt;
+graphviz
+graphviz version 2.38.0
+1asciidoctor-diagram plantuml图设置淘宝gem源" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/my/hugo/" />
 
@@ -26,7 +31,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -68,6 +74,8 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
         
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
@@ -93,39 +101,159 @@
 			<div id="toc" class="toc">
 <div id="toctitle">hugo</div>
 <ul class="sectlevel1">
-<li><a href="#_hugo">1. hugo</a>
+<li><a href="#_环境">1. 环境</a></li>
+<li><a href="#_hugo">2. hugo</a>
 <ul class="sectlevel2">
-<li><a href="#_设置发布目录">1.1. 设置发布目录</a></li>
-<li><a href="#_部署">1.2. 部署</a>
+<li><a href="#_设置发布目录">2.1. 设置发布目录</a></li>
+<li><a href="#_部署">2.2. 部署</a>
 <ul class="sectlevel3">
-<li><a href="#_带项目名">1.2.1. 带项目名</a></li>
-<li><a href="#_不带项目名">1.2.2. 不带项目名</a></li>
+<li><a href="#_带项目名">2.2.1. 带项目名</a></li>
+<li><a href="#_不带项目名">2.2.2. 不带项目名</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_生成_strong_lunr_strong_索引">2. 生成 <strong>lunr</strong> 索引</a></li>
-<li><a href="#_参考">3. 参考</a></li>
+<li><a href="#_生成_strong_lunr_strong_索引">3. 生成 <strong>lunr</strong> 索引</a></li>
+<li><a href="#_参考">4. 参考</a></li>
 </ul>
 </div>
 <div class="sect1">
-<h2 id="_hugo">1. hugo</h2>
+<h2 id="_环境">1. 环境</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">软件</th>
+<th class="tableblock halign-left valign-top">下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ruby</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://rubyinstaller.org/downloads/">Ruby 2.3.3 (x64)</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gem install asciidoctor asciidoctor-diagram</code>  &lt;1&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">graphviz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.graphviz.org/Download..php">graphviz version 2.38.0</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>asciidoctor-diagram plantuml图</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>设置淘宝gem源</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>环境变量</p>
+<div class="listingblock">
+<div class="content">
+<pre>Graphviz_HOME=D:\Program Files (x86)\Graphviz2.38
+Path=%Path%,%Graphviz_HOME%\bin</pre>
+</div>
+</div>
+</li>
+<li>
+<p>替换文件</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>替换 <code>asciidoctor-1.5.5\bin</code> 下的 <code>asciidoctor</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby" data-lang="ruby">#!/usr/bin/env ruby
+
+require 'rubygems' unless defined? Gem
+
+if File.exist?(asciidoctor = (File.expand_path '../../lib/asciidoctor', __FILE__))
+  require asciidoctor
+else
+  require 'asciidoctor'
+end
+# 解析
+require 'asciidoctor-diagram'
+require 'asciidoctor/extensions'
+require 'asciidoctor/GistBlockMacro'
+Asciidoctor::Extensions.register do
+    block_macro GistBlockMacro if document.basebackend? 'html'
+end
+#
+require 'asciidoctor/cli'
+
+invoker = Asciidoctor::Cli::Invoker.new ARGV
+GC.start
+invoker.invoke!
+exit invoker.code</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>修改 <code>asciidoctor-diagram-1.5.4\lib\asciidoctor-diagram</code> 下的 <code>extensions.rb</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 155行添加
+image_name2 = ("#{parent.attr('plantimgdir')}/#{source.image_name}.#{format}")
+# 187行修改
+image_attributes['target'] = image_name2</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hugo">2. hugo</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_设置发布目录">1.1. 设置发布目录</h3>
+<h3 id="_设置发布目录">2.1. 设置发布目录</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code># 创建 gh-pages 分支
 git checkout --orphan gh-pages
 #
-git worktree add public gh-pages</code></pre>
+git worktree add public gh-pages #public 是没有的目录</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_部署">1.2. 部署</h3>
+<h3 id="_部署">2.2. 部署</h3>
 <div class="sect3">
-<h4 id="_带项目名">1.2.1. 带项目名</h4>
+<h4 id="_带项目名">2.2.1. 带项目名</h4>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -171,7 +299,7 @@ cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp
 </div>
 </div>
 <div class="sect3">
-<h4 id="_不带项目名">1.2.2. 不带项目名</h4>
+<h4 id="_不带项目名">2.2.2. 不带项目名</h4>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -211,7 +339,7 @@ cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp
 </div>
 </div>
 <div class="sect1">
-<h2 id="_生成_strong_lunr_strong_索引">2. 生成 <strong>lunr</strong> 索引</h2>
+<h2 id="_生成_strong_lunr_strong_索引">3. 生成 <strong>lunr</strong> 索引</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -242,12 +370,21 @@ nodejs index_builder.js # 生成索引</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_参考">3. 参考</h2>
+<h2 id="_参考">4. 参考</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p><a href="https://gohugo.io/tutorials/github-pages-blog/">Deployment via gh-pages branch</a></p>
+</li>
+<li>
+<p><a href="https://github.com/BurntSushi/erd">erd</a></p>
+</li>
+<li>
+<p><a href="http://rouge.jneen.net/">highlight rouge</a></p>
+</li>
+<li>
+<p><a href="https://github.com/jgm/pandoc">pandoc</a></p>
 </li>
 </ol>
 </div>
@@ -298,16 +435,16 @@ nodejs index_builder.js # 生成索引</code></pre>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 <div class="mr-widget widget_search navbar-wrapper" >
-    <form class="search-form" role="search" >
+    <div class="search-form">
         <label>
             <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="search" class="search-field" placeholder="Search..." value="" name="q">
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
         </label>
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-    </form>
+    </div>
     <div id="side-toc" class="entry-content">
-    
+
     </div>
 </div>
 </aside>

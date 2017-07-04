@@ -9,6 +9,276 @@
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>spark hive</title>
+      <link>/post/bigdata/spark/spark-hive/</link>
+      <pubDate>Sat, 17 Jun 2017 14:11:22 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-hive/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark hive&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_hive&#34;&gt;1. spark hive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_hive&#34;&gt;1. spark hive&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;$SPARK_HOME/conf/hive-site.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+    &amp;lt;property&amp;gt;
+      &amp;lt;name&amp;gt;hive.metastore.uris&amp;lt;/name&amp;gt;
+      &amp;lt;value&amp;gt;thrift://master:9083&amp;lt;/value&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;show tables&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;select count(*) from zh_track&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;SELECT COUNT(*) FROM zh_track z GROUP BY z.box_no&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;SELECT z.box_no, COUNT(*) AS num FROM zh_track z GROUP BY z.box_no ORDER BY num DESC limit 10&#34;).collect.foreach(println)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_pp(id string,name string)
+clustered by (id)
+sorted by (id)
+into 4 buckets
+row format delimited fields terminated by &#39;,&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;insert into table t_pp
+select id,name from t_p distribute by (id) sort by (id);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hiveContext.sql(&#34;drop table t_pp&#34;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create table t_pp(id string,name string)
+partitioned by (ds string)
+row format delimited fields terminated by &#39;,&#39;
+stored as textfile;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;insert into table t_pp partition(ds=&#39;2017-06-18&#39;)
+select id,name from t_p&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select * from t_partitioned where ds=&#39;2017-06-18&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val selectSql = &#34;select * from t_partitioned where ds=&#39;2017-06-18&#39;&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val t_partitioned =
+  s&#34;&#34;&#34;
+     |create table t_partitioned(id string,name string)
+     |partitioned by (ds string)
+     |row format delimited fields terminated by &#39;,&#39;
+     |stored as textfile
+   &#34;&#34;&#34;.stripMargin
+val insertSql =
+  s&#34;&#34;&#34;
+     |insert into table t_partitioned partition(ds=&#39;2017-06-18&#39;)
+     |select id,name from t_p
+   &#34;&#34;&#34;.stripMargin&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=master \
+  --hiveconf hive.metastore.uris=thrift://master:9083 \
+  --master spark://master:7077&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;beeline -u jdbc:hive2://master:10000 -n root&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INFO hive.metastore: Connected to metastore&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>spark-源码</title>
+      <link>/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Wed, 26 Apr 2017 15:43:39 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark-基础&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_sparkcontext&#34;&gt;1. SparkContext&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_job的提交和运行&#34;&gt;2. job的提交和运行&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sparksteaming_源码&#34;&gt;3. SparkSteaming 源码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sparkcontext&#34;&gt;1. SparkContext&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/post/bigdata/spark/uml/sparkContext.svg&#34; alt=&#34;sparkContext&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_job的提交和运行&#34;&gt;2. job的提交和运行&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/spark-job-1.svg&#34; alt=&#34;spark job 1&#34; width=&#34;1112&#34; height=&#34;947&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/spark-job-2.svg&#34; alt=&#34;spark job 2&#34; width=&#34;1575&#34; height=&#34;714&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sparksteaming_源码&#34;&gt;3. SparkSteaming 源码&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;StreamingContext&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;new DStreamGraph&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;new AtomicInteger(0)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;new JobScheduler(this)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;new ContextWaiter&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;new StreamingJobProgressListener(this)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;new StreamingSource(this)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;NetworkAddressUtils.java&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.util.ClosureCleaner&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.DStreamGraph&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.dstream.SocketInputDStream&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.dstream.DStreamCheckpointData&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.dstream.ForEachDStream&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.dstream.DStreamCheckpointData&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.dstream.MappedDStream&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.dstream.FlatMappedDStream&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.scheduler.JobScheduler&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.scheduler.ReceiverTracker&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ssc.start()
+  org.apache.spark.streaming.scheduler.JobScheduler#start
+    org.apache.spark.util.EventLoop[JobSchedulerEvent]#start
+      org.apache.spark.streaming.scheduler.JobScheduler#processEvent&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;org.apache.spark.streaming.scheduler.JobGenerator#start
+  org.apache.spark.util.EventLoop[JobGeneratorEvent]#start
+    org.apache.spark.streaming.scheduler.JobGenerator#processEvent&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.util.RecurringTimer 58 - Started timer for JobGenerator at time 1498617282000&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.streaming.scheduler.JobGenerator 58 - Started JobGenerator at 1498617282000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Started JobScheduler&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;org.apache.spark.util.ClosureCleaner
+private def clean(func: AnyRef,
+                  checkSerializable: Boolean,
+                  cleanTransitively: Boolean,
+                  accessedFields: Map[Class[_], Set[String]]): Unit
+Helper method to clean the given closure in place. The mechanism is to traverse the hierarchy of enclosing closures and null out any references along the way that are not actually used by the starting closure, but are nevertheless included in the compiled anonymous classes. Note that it is unsafe to simply mutate the enclosing closures in place, as other code paths may depend on them. Instead, we clone each enclosing closure and set the parent pointers accordingly. By default, closures are cleaned transitively. This means we detect whether enclosing objects are actually referenced by the starting one, either directly or transitively, and, if not, sever these closures from the hierarchy. In other words, in addition to nulling out unused field references, we also null out any parent pointers that refer to enclosing objects not actually needed by the starting closure. We determine transitivity by tracing through the tree of all methods ultimately invoked by the inner closure and record all the fields referenced in the process. For instance, transitive cleaning is necessary in the following scenario: class SomethingNotSerializable { def someValue = 1 def scope(name: String)(body: =&amp;gt; Unit) = body def someMethod(): Unit = scope(&#34;one&#34;) { def x = someValue def y = 2 scope(&#34;two&#34;) { println(y + 1) } } } In this example, scope &#34;two&#34; is not serializable because it references scope &#34;one&#34;, which references SomethingNotSerializable. Note that, however, the body of scope &#34;two&#34; does not actually depend on SomethingNotSerializable. This means we can safely null out the parent pointer of a cloned scope &#34;one&#34; and set it the parent of scope &#34;two&#34;, such that scope &#34;two&#34; no longer references SomethingNotSerializable transitively.
+Parameters:
+func - the starting closure to clean
+checkSerializable - whether to verify that the closure is serializable after cleaning
+cleanTransitively - whether to clean enclosing closures transitively
+accessedFields - a map from a class to a set of its fields that are accessed by the starting closure&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;org.apache.spark.util
+private[org.apache.spark] abstract class EventLoop[E](name: String)
+extends Logging
+
+An event loop to receive events from the caller and process all events in the event thread. It will start an exclusive event thread to process all events. Note: The event queue will grow indefinitely. So subclasses should make sure onReceive can handle events in time to avoid the potential OOM.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>采集日志服务 nginx log</title>
       <link>/post/bigdata/spark/nginx-log/</link>
       <pubDate>Thu, 20 Apr 2017 16:38:02 +0000</pubDate>
@@ -5572,6 +5842,48 @@ hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&#34;http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html&#34;&gt;SparkRDDAPIExamples&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/21483985&#34; class=&#34;bare&#34;&gt;https://zhuanlan.zhihu.com/p/21483985&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://tech.meituan.com/spark-tuning-basic.html&#34; class=&#34;bare&#34;&gt;http://tech.meituan.com/spark-tuning-basic.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zhihu.com/question/23655827?rf=27642986&#34; class=&#34;bare&#34;&gt;https://www.zhihu.com/question/23655827?rf=27642986&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/hseagle/category/569175.html&#34;&gt;Apache Spark源码走读&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/1.5.1/quick-start.html&#34;&gt;spark 1.5.1 docs&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/1.5.1/sql-programming-guide.html&#34;&gt;spark hive&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/latest/building-spark.html&#34;&gt;building-spark&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&#34; class=&#34;bare&#34;&gt;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&#34; class=&#34;bare&#34;&gt;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/zbf8441372/article/category/1556747&#34;&gt;张包峰&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/gaoyanjie55&#34;&gt;高彦杰的博客&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://jerryshao.me/&#34;&gt;赛赛的网络日志&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/melodyishere/article/details/32353929&#34;&gt;Spark运行调试方法与学习资源汇总&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/tagged/apache-spark&#34; class=&#34;bare&#34;&gt;https://stackoverflow.com/questions/tagged/apache-spark&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

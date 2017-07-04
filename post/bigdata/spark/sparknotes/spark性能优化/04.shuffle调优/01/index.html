@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="shuffle 调优 调优概述 大多数Spark作业的性能主要就是消耗在了shuffle环节，因为该环节包含了大量的磁盘IO、序列化、网络数据传输等操作。因此，如果要让作业的更上一层楼，就必须要对shuffle过程进行调优。但是也必须提醒大家的是，影响一个Spark作业性能的因素，主要还是代码开发、资源参数以及数据倾斜，shuffle调优只能是在整个Spark的性能调优中站到一小部分而已。因此大家务必把握住调优的基本原则，千万不要舍本逐末。下面我们就给大家讲解shuffle的原理，以及相关参数的说明，同时给出各个参数的调优建议。
+ShuffleManager发展概述 在Spark 的源码中，负责shuffle过程的执行、计算和处理的组件主要就是ShuffleManager，也就是shuffle管理器。而随着Spark的版本的发展，ShuffleManager也在不断迭代，变得越来越先进。
+在Spark 1.2以前，默认的shuffle计算引擎是HashShuffleManager。而HashShuffleManager有着一个非常严重的弊端，就是会产生大量的中间磁盘文件，进而由大量的磁盘IO操作影响了性能。
+因此在Spark1.2以后的版本中，默认的ShuffleManager改成了SortShuffleManager。SortShuffleManager相较于HashShuffleManager来说，有了一定的改进。主要就在于，每个Task进行shuffle操作时，虽然也会产生较多的临时磁盘文件，但是最后会将所有的临时文件合并（merge）成一个磁盘文件，因此每个Task就只有一个磁盘文件。在下个stage的shuffle read task拉取自己的数据时，只要根据索引读取每个磁盘文件中的部分数据即可。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/01/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h2 id="shuffle-调优">shuffle 调优</h2>
+
+<h3 id="调优概述">调优概述</h3>
+
+<p>大多数Spark作业的性能主要就是消耗在了shuffle环节，因为该环节包含了大量的磁盘IO、序列化、网络数据传输等操作。因此，如果要让作业的更上一层楼，就必须要对shuffle过程进行调优。但是也必须提醒大家的是，影响一个Spark作业性能的因素，主要还是代码开发、资源参数以及数据倾斜，shuffle调优只能是在整个Spark的性能调优中站到一小部分而已。因此大家务必把握住调优的基本原则，千万不要舍本逐末。下面我们就给大家讲解shuffle的原理，以及相关参数的说明，同时给出各个参数的调优建议。</p>
+
+<h3 id="shufflemanager发展概述">ShuffleManager发展概述</h3>
+
+<p>在Spark 的源码中，负责shuffle过程的执行、计算和处理的组件主要就是ShuffleManager，也就是shuffle管理器。而随着Spark的版本的发展，ShuffleManager也在不断迭代，变得越来越先进。</p>
+
+<p>在Spark 1.2以前，默认的shuffle计算引擎是HashShuffleManager。而HashShuffleManager有着一个非常严重的弊端，就是会产生大量的中间磁盘文件，进而由大量的磁盘IO操作影响了性能。</p>
+
+<p>因此在Spark1.2以后的版本中，默认的ShuffleManager改成了SortShuffleManager。SortShuffleManager相较于HashShuffleManager来说，有了一定的改进。主要就在于，每个Task进行shuffle操作时，虽然也会产生较多的临时磁盘文件，但是最后会将所有的临时文件合并（merge）成一个磁盘文件，因此每个Task就只有一个磁盘文件。在下个stage的shuffle read task拉取自己的数据时，只要根据索引读取每个磁盘文件中的部分数据即可。</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/08/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/02/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

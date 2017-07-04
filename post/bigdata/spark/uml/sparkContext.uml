@@ -1,0 +1,71 @@
+@startuml
+
+autonumber
+participant SparkContext as sc
+participant SparkEnv as se
+participant TaskSchedulerImpl as ts
+participant SparkDeploySchedulerBackend as sdsb
+participant AkkaUtils as au
+participant Utils as u
+participant ActorSystem as asy
+participant DAGScheduler as dd
+
+activate sc #ffffcc
+
+sc -> sc: createSparkEnv
+activate sc #ffff99
+deactivate sc
+
+sc -> se: createDriverEnv
+activate se #ffffcc
+
+se -> se: create()
+se -> au: createActorSystem()
+activate au #ffffcc
+activate se #ffff99
+deactivate se
+deactivate se
+
+
+au -> u: startServiceOnPort()
+activate u #ffffcc
+deactivate u
+
+au -> au: doCreateActorSystem()
+activate au #ffff99
+
+
+au -> asy: apply()
+activate asy #ffffcc
+deactivate asy
+deactivate au
+
+deactivate au
+
+sc -> sc: createTaskScheduler
+activate sc #ffff99
+
+sc -> ts: new()
+activate ts #ffffcc
+deactivate ts
+
+sc -> sdsb: new()
+activate sdsb #ffffcc
+deactivate sdsb
+
+sc -> ts: initialize()
+activate ts #ffffcc
+deactivate ts
+deactivate sc
+
+sc -> dd: new()
+activate dd #ffffcc
+deactivate dd
+
+sc -> ts: start()
+activate ts #ffffcc
+deactivate ts
+
+deactivate sc
+
+@enduml

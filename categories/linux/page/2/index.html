@@ -24,7 +24,8 @@
 
 
 <link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+<link rel="stylesheet" href="/css/railscasts.css">
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
@@ -65,6 +66,8 @@
             <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
@@ -123,7 +126,11 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 shell 获取当前目录   bash DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &amp;&amp; pwd )&quot;   
+						Contents1. shell1.1. 获取当前目录1. shell1.1. 获取当前目录+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"变量
+for var in $@doecho "$var"docker tag $var dishui.io:5000/$vardocker push dishui.io:5000/$vardocker rmi dishui.io:5000/$vardone参考
+Shell $0, $#, $*, $@, $?, $$和命令行参数
+
 					</div>
 				</div>
 			</div>
@@ -188,7 +195,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并1. svn`svn`安装
+						Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并7. Svn 检出 github 目录1. svn`svn`安装
 yum -y install subversionyum -y install mod_dav_svn创建`SVN`根目录
 mkdir -p $HOME/svn/创建repo1库
 svnadmin create $HOME/svn/repo12. `SVN`配置用户密码`passwd`配置
@@ -331,15 +338,15 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	
 <div class="mr-widget widget_search navbar-wrapper" >
-	<form class="search-form" role="search" >
+	<div class="search-form" role="search" >
 		<label>
 			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="search" class="search-field" placeholder="Search..." autocomplete="off" value="" name="q">
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
 		</label>
 		
         <div id="list-container" class="bdsug" style="height: auto; display: block;">
         </div>
-	</form>
+	</div>
 </div>
 
 	
@@ -413,6 +420,8 @@ yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@
 			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
 		
 			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
 		
 			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
 		

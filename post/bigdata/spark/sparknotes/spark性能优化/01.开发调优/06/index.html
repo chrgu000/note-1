@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="原则六：使用高性能的算子 除了shuffle相关的算子有优化原则之外，其他的算子也都有着相应的优化原则。
+使用reduceByKey、aggregateByKey替代groupByKey 详情见 “原则五：使用map-side预聚合的shuffle操作”。
+使用mapParttions替代普通map mapPartitions类的算子，一次函数调用会处理一个partition所有的数据，而不是一次函数调用一条，性能相对来说高一些。但是有的时候，使用mapPartitions会出现OOM（内存溢出）的问题。因为单次函数调用就要处理掉一个partition所有的数据，如果内存不够，垃圾回收时是无法回收掉太多对象的，很可能出现OOM异常。所有使用这类操作要慎重。
+使用foreachPartitions替代foreach 原理类似于“使用mapPartitions替代map”，也是一次函数调用处理一个partition的所有数据，而不是一次函数调用处理一条数据。在实践中发现，foreachPartitions类的算子，对性能的提升还是很有帮助的。比如在foreach函数中，将RDD中所有数据写MySQL，那么如果是普通的foreach算子，就会一条数据一条数据地写，每次函数调用可能就会创建一个数据库连接，此时就势必会频繁地创建和销毁数据库连接，性能是非常低下；但是如果用foreachPartitions算子一次性处理一个partition的数据，那么对于每个partition，只要创建一个数据库连接即可，然后执行批量插入操作，此时性能是比较高的。实践中发现，对于1万条左右的数据量写MySQL，性能可以提升30%以上。
+使用filter之后进行coalesce操作 通常对一个RDD执行filter算子过滤掉RDD中较多数据后（比如30%以上的数据），建议使用coalesce算子，手动减少RDD的partition数量，将RDD中的数据压缩到更少的partition中去。因为filter之后，RDD的每个partition中都会有很多数据被过滤掉，此时如果照常进行后续的计算，其实每个task处理的partition中的数据量并不是很多，有一点资源浪费，而且此时处理的task越多，可能速度反而越慢。因此用coalesce减少partition数量，将RDD中的数据压缩到更少的partition之后，只要使用更少的task即可处理完所有的partition。在某些场景下，对于性能的提升会有一定的帮助。
+使用repartitionAndSortWithinPartitions替代repartition与sort类操作 repartitionAndSortWithinPartitions是Spark官网推荐的一个算子，官方建议，如果需要在repartition重分区之后，还要进行排序，建议直接使用repartitionAndSortWithinPartitions算子。因为该算子可以一边进行重分区的shuffle操作，一边进行排序。shuffle与sort两个操作同时进行，比先shuffle再sort来说，性能可能是要高的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/06/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h2 id="原则六-使用高性能的算子">原则六：使用高性能的算子</h2>
+
+<p>除了shuffle相关的算子有优化原则之外，其他的算子也都有着相应的优化原则。</p>
+
+<h4 id="使用reducebykey-aggregatebykey替代groupbykey">使用reduceByKey、aggregateByKey替代groupByKey</h4>
+
+<p>详情见 “原则五：使用map-side预聚合的shuffle操作”。</p>
+
+<h4 id="使用mapparttions替代普通map">使用mapParttions替代普通map</h4>
+
+<p>mapPartitions类的算子，一次函数调用会处理一个partition所有的数据，而不是一次函数调用一条，性能相对来说高一些。但是有的时候，使用mapPartitions会出现OOM（内存溢出）的问题。因为单次函数调用就要处理掉一个partition所有的数据，如果内存不够，垃圾回收时是无法回收掉太多对象的，很可能出现OOM异常。所有使用这类操作要慎重。</p>
+
+<h4 id="使用foreachpartitions替代foreach">使用foreachPartitions替代foreach</h4>
+
+<p>原理类似于“使用mapPartitions替代map”，也是一次函数调用处理一个partition的所有数据，而不是一次函数调用处理一条数据。在实践中发现，foreachPartitions类的算子，对性能的提升还是很有帮助的。比如在foreach函数中，将RDD中所有数据写MySQL，那么如果是普通的foreach算子，就会一条数据一条数据地写，每次函数调用可能就会创建一个数据库连接，此时就势必会频繁地创建和销毁数据库连接，性能是非常低下；但是如果用foreachPartitions算子一次性处理一个partition的数据，那么对于每个partition，只要创建一个数据库连接即可，然后执行批量插入操作，此时性能是比较高的。实践中发现，对于1万条左右的数据量写MySQL，性能可以提升30%以上。</p>
+
+<h3 id="使用filter之后进行coalesce操作">使用filter之后进行coalesce操作</h3>
+
+<p>通常对一个RDD执行filter算子过滤掉RDD中较多数据后（比如30%以上的数据），建议使用coalesce算子，手动减少RDD的partition数量，将RDD中的数据压缩到更少的partition中去。因为filter之后，RDD的每个partition中都会有很多数据被过滤掉，此时如果照常进行后续的计算，其实每个task处理的partition中的数据量并不是很多，有一点资源浪费，而且此时处理的task越多，可能速度反而越慢。因此用coalesce减少partition数量，将RDD中的数据压缩到更少的partition之后，只要使用更少的task即可处理完所有的partition。在某些场景下，对于性能的提升会有一定的帮助。</p>
+
+<h3 id="使用repartitionandsortwithinpartitions替代repartition与sort类操作">使用repartitionAndSortWithinPartitions替代repartition与sort类操作</h3>
+
+<p>repartitionAndSortWithinPartitions是Spark官网推荐的一个算子，官方建议，如果需要在repartition重分区之后，还要进行排序，建议直接使用repartitionAndSortWithinPartitions算子。因为该算子可以一边进行重分区的shuffle操作，一边进行排序。shuffle与sort两个操作同时进行，比先shuffle再sort来说，性能可能是要高的。</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/05/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/07/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

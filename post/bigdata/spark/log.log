@@ -1,0 +1,2061 @@
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.scheduler.JobScheduler 62 - Starting JobScheduler
+WriteAheadLogManager  for Thread 58 - Recovered 1 write ahead log files from file:/E:/idea-project/spark-1.6-test/receivedBlockMetadata
+WriteAheadLogManager  for Thread 62 - Recovered files are:
+file:/E:/idea-project/spark-1.6-test/receivedBlockMetadata/log-1498617220011-1498617280011
+org.apache.spark.streaming.scheduler.ReceiverTracker 58 - Starting 1 receivers
+org.apache.spark.streaming.scheduler.ReceiverTracker 58 - ReceiverTracker started
+org.apache.spark.streaming.dstream.StateDStream 58 - Checkpoint interval automatically set to 10000 ms
+org.apache.spark.streaming.dstream.MappedDStream 58 - Duration for remembering RDDs set to 20000 ms for org.apache.spark.streaming.dstream.MappedDStream@11030cfb
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - Duration for remembering RDDs set to 20000 ms for org.apache.spark.streaming.dstream.FlatMappedDStream@37e6a4b2
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - Duration for remembering RDDs set to 20000 ms for org.apache.spark.streaming.dstream.SocketInputDStream@21fe6f06
+org.apache.spark.streaming.dstream.ForEachDStream 58 - metadataCleanupDelay = -1
+org.apache.spark.streaming.dstream.StateDStream 58 - metadataCleanupDelay = -1
+org.apache.spark.streaming.dstream.MappedDStream 58 - metadataCleanupDelay = -1
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - metadataCleanupDelay = -1
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - metadataCleanupDelay = -1
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - Slide time = 1000 ms
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - Storage level = StorageLevel(false, false, false, false, 1)
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - Checkpoint interval = null
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - Remember duration = 20000 ms
+org.apache.spark.streaming.dstream.SocketInputDStream 58 - Initialized and validated org.apache.spark.streaming.dstream.SocketInputDStream@21fe6f06
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - Slide time = 1000 ms
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - Storage level = StorageLevel(false, false, false, false, 1)
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - Checkpoint interval = null
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - Remember duration = 20000 ms
+org.apache.spark.streaming.dstream.FlatMappedDStream 58 - Initialized and validated org.apache.spark.streaming.dstream.FlatMappedDStream@37e6a4b2
+org.apache.spark.streaming.dstream.MappedDStream 58 - Slide time = 1000 ms
+org.apache.spark.streaming.dstream.MappedDStream 58 - Storage level = StorageLevel(false, false, false, false, 1)
+org.apache.spark.streaming.dstream.MappedDStream 58 - Checkpoint interval = null
+org.apache.spark.streaming.dstream.MappedDStream 58 - Remember duration = 20000 ms
+org.apache.spark.streaming.dstream.MappedDStream 58 - Initialized and validated org.apache.spark.streaming.dstream.MappedDStream@11030cfb
+org.apache.spark.streaming.dstream.StateDStream 58 - Slide time = 1000 ms
+org.apache.spark.streaming.dstream.StateDStream 58 - Storage level = StorageLevel(false, true, false, false, 1)
+org.apache.spark.streaming.dstream.StateDStream 58 - Checkpoint interval = 10000 ms
+org.apache.spark.streaming.dstream.StateDStream 58 - Remember duration = 20000 ms
+org.apache.spark.streaming.dstream.StateDStream 58 - Initialized and validated org.apache.spark.streaming.dstream.StateDStream@42f308aa
+org.apache.spark.streaming.dstream.ForEachDStream 58 - Slide time = 1000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 58 - Storage level = StorageLevel(false, false, false, false, 1)
+org.apache.spark.streaming.dstream.ForEachDStream 58 - Checkpoint interval = null
+org.apache.spark.streaming.dstream.ForEachDStream 58 - Remember duration = 1000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 58 - Initialized and validated org.apache.spark.streaming.dstream.ForEachDStream@5fa403ef
+org.apache.spark.streaming.scheduler.ReceiverTracker 58 - Receiver 0 started
+org.apache.spark.streaming.util.RecurringTimer 58 - Started timer for JobGenerator at time 1498617282000
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Started JobGenerator at 1498617282000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Started JobScheduler
+
+
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 0 (start at NetWorkWordCount.scala:41) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 0 (start at NetWorkWordCount.scala:41)
+
+org.apache.spark.streaming.StreamingContext 58 - StreamingContext started
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for JobGenerator called at time 1498617282000
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event GenerateJobs(1498617282000 ms)
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 0)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 0 (Receiver 0 ParallelCollectionRDD[1] at makeRDD at ReceiverTracker.scala:588), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 0)
+
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+org.apache.spark.streaming.DStreamGraph 62 - Generating jobs for time 1498617282000 ms
+org.apache.spark.streaming.dstream.StateDStream 62 - Time 1498617282000 ms is valid
+org.apache.spark.streaming.dstream.StateDStream 58 - Time 1498617281000 ms is invalid as zeroTime is 1498617281000 ms and slideDuration is 1000 ms and difference is 0 ms
+org.apache.spark.streaming.dstream.MappedDStream 62 - Time 1498617282000 ms is valid
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Time 1498617282000 ms is valid
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Time 1498617282000 ms is valid
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$3.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.mutable.WrappedArray my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$4.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1$$anonfun$8) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1$$anonfun$8.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1 org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1$$anonfun$8.$outer
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1$$anonfun$8.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final org.apache.spark.util.collection.CompactBuffer org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1$$anonfun$8.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.PairRDDFunctions
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.PairRDDFunctions@6cd0a62f
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.PairRDDFunctions,Set(org$apache$spark$rdd$PairRDDFunctions$$vt))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.PairRDDFunctions,org.apache.spark.rdd.PairRDDFunctions@6cd0a62f)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.PairRDDFunctions org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.Partitioner org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1.partitioner$5
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 3
+org.apache.spark.util.ClosureCleaner 62 -      public final org.apache.spark.rdd.RDD org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.PairRDDFunctions org.apache.spark.rdd.PairRDDFunctions$$anonfun$groupByKey$1.org$apache$spark$rdd$PairRDDFunctions$$anonfun$$$outer()
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617282000 ms
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_0 stored as values in memory (estimated size 44.3 KB, free 44.3 KB)
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617282000 ms writer queue
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617282000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617282000'
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_0 locally took  161 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_0 without replication took  162 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_0_piece0 stored as bytes in memory (estimated size 14.8 KB, free 59.1 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_0_piece0 in memory on localhost:28320 (size: 14.8 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_0_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_0_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_0_piece0 locally took  8 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_0_piece0 without replication took  9 ms
+org.apache.spark.SparkContext 58 - Created broadcast 0 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 0 (Receiver 0 ParallelCollectionRDD[1] at makeRDD at ReceiverTracker.scala:588)
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(0)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 0.0 with 1 tasks
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 0.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 0.0: ANY
+org.apache.spark.scheduler.DAGScheduler 58 - Registering RDD 4 (map at NetWorkWordCount.scala:35)
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 0.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 1 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 2 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 1)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 2)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 2 (MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 2)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_1 stored as values in memory (estimated size 4.7 KB, free 63.9 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_1 locally took  5 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_1 without replication took  6 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.4 KB, free 66.3 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_1_piece0 in memory on localhost:28320 (size: 2.4 KB, free: 1811.2 MB)
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617224000.bk
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_1_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_1_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_1_piece0 locally took  10 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_1_piece0 without replication took  11 ms
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617282000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617282000', took 3266 bytes and 148 ms
+org.apache.spark.SparkContext 58 - Created broadcast 1 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(0)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 2.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0,PROCESS_LOCAL, 2640 bytes)
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 2.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 2.0: NO_PREF, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_2, runningTasks: 0
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 0.0 (TID 0)
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 2.0 (TID 1, localhost, partition 0,PROCESS_LOCAL, 1894 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 2.0 (TID 1)
+org.apache.spark.executor.Executor 62 - Task 1's epoch is 0
+org.apache.spark.executor.Executor 62 - Task 0's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_1
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_1 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_1 from memory
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_0
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_0 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_0 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_6_0
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_6_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_6_0 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_6_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_6_0 not found
+org.apache.spark.CacheManager 58 - Partition rdd_6_0 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 0, partitions 0-1
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 7 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  8 ms
+org.apache.spark.streaming.util.RecurringTimer 58 - Started timer for BlockGenerator at time 1498617282800
+org.apache.spark.streaming.receiver.BlockGenerator 58 - Started BlockGenerator
+org.apache.spark.memory.TaskMemoryManager 200 - Task 1 release 0.0 B from null
+org.apache.spark.streaming.receiver.BlockGenerator 58 - Started block pushing thread
+org.apache.spark.storage.MemoryStore 58 - Block rdd_6_0 stored as bytes in memory (estimated size 4.0 B, free 66.3 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_6_0 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_6_0
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_6_0
+org.apache.spark.storage.BlockManager 62 - Put block rdd_6_0 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_6_0 without replication took  4 ms
+org.apache.spark.streaming.scheduler.ReceiverTracker 58 - Registered receiver for stream 0 from 192.168.137.2:28296
+org.apache.spark.streaming.receiver.ReceiverSupervisorImpl 58 - Starting receiver
+org.apache.spark.streaming.receiver.ReceiverSupervisorImpl 58 - Called receiver onStart
+org.apache.spark.streaming.receiver.ReceiverSupervisorImpl 58 - Waiting for receiver to be stopped
+org.apache.spark.streaming.dstream.SocketReceiver 58 - Connecting to 196.168.1.34:9999
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 2.0 (TID 1). 1741 bytes result sent to driver
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_2, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NO_PREF, so moving to locality level ANY
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 2.0 (TID 1) in 128 ms on localhost (1/1)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 2.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 2 (print at NetWorkWordCount.scala:40) finished in 0.140 s
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 2, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 1, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 1 finished: print at NetWorkWordCount.scala:40, took 0.281658 s
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617282800
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.MapOutputTrackerMaster 58 - Size of output statuses for shuffle 0 is 82 bytes
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 2 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 4 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 3)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 4)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 4 (MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 4)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_2 stored as values in memory (estimated size 4.7 KB, free 71.0 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_2 locally took  2 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_2 without replication took  2 ms
+org.apache.spark.streaming.dstream.SocketReceiver 58 - Connected to 196.168.1.34:9999
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_2_piece0 stored as bytes in memory (estimated size 2.4 KB, free 73.5 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_2_piece0 in memory on localhost:28320 (size: 2.4 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_2_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_2_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_2_piece0 locally took  5 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_2_piece0 without replication took  5 ms
+org.apache.spark.SparkContext 58 - Created broadcast 2 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 4 (MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(1)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 4.0 with 1 tasks
+org.apache.spark.streaming.receiver.ReceiverSupervisorImpl 62 - state = Started
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 4.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 4.0: NO_PREF, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_4, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 4.0 (TID 2, localhost, partition 1,PROCESS_LOCAL, 1894 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 4.0 (TID 2)
+org.apache.spark.executor.Executor 62 - Task 2's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_2
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_2 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_2 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_6_1 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_6_1 not found
+org.apache.spark.CacheManager 58 - Partition rdd_6_1 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 0, partitions 1-2
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 0 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  0 ms
+org.apache.spark.memory.TaskMemoryManager 200 - Task 2 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_6_1 stored as bytes in memory (estimated size 4.0 B, free 73.5 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_6_1 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Put block rdd_6_1 locally took  4 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_6_1 without replication took  4 ms
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 4.0 (TID 2). 1741 bytes result sent to driver
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_4, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NO_PREF, so moving to locality level ANY
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 4 (print at NetWorkWordCount.scala:40) finished in 0.027 s
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 4.0 (TID 2) in 26 ms on localhost (1/1)
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 4, remaining stages = 2
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 4.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 3, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 2 finished: print at NetWorkWordCount.scala:40, took 0.052028 s
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Finished job streaming job 1498617282000 ms.0 from job set of time 1498617282000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearMetadata(1498617282000 ms)
+org.apache.spark.streaming.DStreamGraph 62 - Clearing metadata for time 1498617282000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Total delay: 0.857 s for time 1498617282000 ms (execution: 0.438 s)
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared 0 RDDs that were older than 1498617281000 ms: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.StateDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared 0 RDDs that were older than 1498617262000 ms: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.MappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared 0 RDDs that were older than 1498617262000 ms: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared 0 RDDs that were older than 1498617262000 ms: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared 0 RDDs that were older than 1498617262000 ms: 
+org.apache.spark.streaming.DStreamGraph 62 - Cleared old metadata for time 1498617282000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617282000 ms,true)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617282000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617282000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617282000 ms writer queue
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617282000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617282000'
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617224000
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617282000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617282000', took 3262 bytes and 52 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearCheckpointData(1498617282000 ms)
+org.apache.spark.streaming.DStreamGraph 58 - Clearing checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.DStreamGraph 58 - Cleared checkpoint data for time 1498617282000 ms
+org.apache.spark.streaming.scheduler.ReceivedBlockTracker 58 - Deleting batches ArrayBuffer()
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+WriteAheadLogManager  for Thread 58 - Attempting to clear 0 old log files in file:/E:/idea-project/spark-1.6-test/receivedBlockMetadata older than 1498617262000: 
+org.apache.spark.streaming.scheduler.InputInfoTracker 58 - remove old batch metadata: 
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for JobGenerator called at time 1498617283000
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event GenerateJobs(1498617283000 ms)
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617283000
+org.apache.spark.streaming.DStreamGraph 62 - Generating jobs for time 1498617283000 ms
+org.apache.spark.streaming.dstream.StateDStream 62 - Time 1498617283000 ms is valid
+org.apache.spark.streaming.dstream.MappedDStream 62 - Time 1498617283000 ms is valid
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Time 1498617283000 ms is valid
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Time 1498617283000 ms is valid
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$3.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.mutable.WrappedArray my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$4.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.apply(scala.collection.Iterable[])
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.streaming.dstream.StateDStream$$anonfun$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.updateFuncLocal$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.Iterator org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.streaming.dstream.StateDStream$$anonfun$1$$anonfun$2
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.streaming.dstream.StateDStream$$anonfun$1) is now cleaned +++
+org.apache.spark.streaming.dstream.StateDStream 62 - Persisting RDD 12 for time 1498617283000 ms to StorageLevel(false, true, false, false, 1)
+org.apache.spark.streaming.DStreamGraph 62 - Generated 1 jobs for time 1498617283000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Added jobs for time 1498617283000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Starting job streaming job 1498617283000 ms.0 from job set of time 1498617283000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617283000 ms,false)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617283000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.rdd.CoGroupedRDD 62 - Adding shuffle dependency with MapPartitionsRDD[9] at map at NetWorkWordCount.scala:35
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.rdd.CoGroupedRDD 62 - Adding one-to-one dependency with MapPartitionsRDD[6] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617283000 ms writer queue
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617283000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617283000'
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.scheduler.DAGScheduler 58 - Registering RDD 9 (map at NetWorkWordCount.scala:35)
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 3 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 7 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 5, ShuffleMapStage 6)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 7)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 7 (MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 7)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_3 stored as values in memory (estimated size 5.6 KB, free 79.1 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_3 locally took  4 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_3 without replication took  5 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_3_piece0 stored as bytes in memory (estimated size 2.7 KB, free 81.8 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_3_piece0 in memory on localhost:28320 (size: 2.7 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_3_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_3_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_3_piece0 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_3_piece0 without replication took  3 ms
+org.apache.spark.SparkContext 58 - Created broadcast 3 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 7 (MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(0)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 7.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 7.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 7.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_7, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 7.0 (TID 3, localhost, partition 0,PROCESS_LOCAL, 2121 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 7.0 (TID 3)
+org.apache.spark.executor.Executor 62 - Task 3's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_3
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_3 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_3 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_12_0 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_12_0 not found
+org.apache.spark.CacheManager 58 - Partition rdd_12_0 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 1, partitions 0-1
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 1 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  1 ms
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617225000.bk
+org.apache.spark.CacheManager 62 - Looking for partition rdd_6_0
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617283000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617283000', took 3267 bytes and 81 ms
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_6_0
+org.apache.spark.storage.BlockManager 62 - Level for block rdd_6_0 is StorageLevel(false, true, false, false, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block rdd_6_0 from memory
+org.apache.spark.storage.BlockManager 58 - Found block rdd_6_0 locally
+org.apache.spark.memory.TaskMemoryManager 200 - Task 3 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_12_0 stored as bytes in memory (estimated size 4.0 B, free 81.8 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_12_0 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Put block rdd_12_0 locally took  2 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_12_0 without replication took  2 ms
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 7.0 (TID 3). 2836 bytes result sent to driver
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_7, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 7 (print at NetWorkWordCount.scala:40) finished in 0.065 s
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 5, remaining stages = 3
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 7, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 6, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 3 finished: print at NetWorkWordCount.scala:40, took 0.092308 s
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 7.0 (TID 3) in 63 ms on localhost (1/1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 7.0, whose tasks have all completed, from pool 
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617283200
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.MapOutputTrackerMaster 58 - Size of output statuses for shuffle 1 is 82 bytes
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 4 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 10 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 9, ShuffleMapStage 8)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 10)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 10 (MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 10)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_4 stored as values in memory (estimated size 5.6 KB, free 87.4 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_4 locally took  1 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_4 without replication took  2 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_4_piece0 stored as bytes in memory (estimated size 2.7 KB, free 90.2 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_4_piece0 in memory on localhost:28320 (size: 2.7 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_4_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_4_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_4_piece0 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_4_piece0 without replication took  3 ms
+org.apache.spark.SparkContext 58 - Created broadcast 4 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 10 (MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(1)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 10.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 10.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 10.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_10, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 10.0 (TID 4, localhost, partition 1,PROCESS_LOCAL, 2121 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 10.0 (TID 4)
+org.apache.spark.executor.Executor 62 - Task 4's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_4
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_4 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_4 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_12_1 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_12_1 not found
+org.apache.spark.CacheManager 58 - Partition rdd_12_1 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 1, partitions 1-2
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 1 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  1 ms
+org.apache.spark.CacheManager 62 - Looking for partition rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_6_1
+org.apache.spark.storage.BlockManager 62 - Level for block rdd_6_1 is StorageLevel(false, true, false, false, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block rdd_6_1 from memory
+org.apache.spark.storage.BlockManager 58 - Found block rdd_6_1 locally
+org.apache.spark.memory.TaskMemoryManager 200 - Task 4 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_12_1 stored as bytes in memory (estimated size 4.0 B, free 90.2 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_12_1 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Put block rdd_12_1 locally took  2 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_12_1 without replication took  3 ms
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 10.0 (TID 4). 2836 bytes result sent to driver
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_10, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 10.0 (TID 4) in 26 ms on localhost (1/1)
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 10 (print at NetWorkWordCount.scala:40) finished in 0.027 s
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 10.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 8, remaining stages = 3
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 10, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 9, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 4 finished: print at NetWorkWordCount.scala:40, took 0.051602 s
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Finished job streaming job 1498617283000 ms.0 from job set of time 1498617283000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearMetadata(1498617283000 ms)
+org.apache.spark.streaming.DStreamGraph 62 - Clearing metadata for time 1498617283000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Total delay: 0.265 s for time 1498617283000 ms (execution: 0.221 s)
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared 0 RDDs that were older than 1498617282000 ms: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.StateDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared 0 RDDs that were older than 1498617263000 ms: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.MappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared 0 RDDs that were older than 1498617263000 ms: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared 0 RDDs that were older than 1498617263000 ms: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared 0 RDDs that were older than 1498617263000 ms: 
+org.apache.spark.streaming.DStreamGraph 62 - Cleared old metadata for time 1498617283000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617283000 ms,true)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617283000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617283000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617283000 ms writer queue
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617283000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617283000'
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617225000
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617283000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617283000', took 3263 bytes and 79 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearCheckpointData(1498617283000 ms)
+org.apache.spark.streaming.DStreamGraph 58 - Clearing checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.DStreamGraph 58 - Cleared checkpoint data for time 1498617283000 ms
+org.apache.spark.streaming.scheduler.ReceivedBlockTracker 58 - Deleting batches ArrayBuffer()
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+WriteAheadLogManager  for Thread 58 - Attempting to clear 0 old log files in file:/E:/idea-project/spark-1.6-test/receivedBlockMetadata older than 1498617263000: 
+org.apache.spark.streaming.scheduler.InputInfoTracker 58 - remove old batch metadata: 
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617283400
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617283600
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617283800
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617284000
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event GenerateJobs(1498617284000 ms)
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for JobGenerator called at time 1498617284000
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+org.apache.spark.streaming.DStreamGraph 62 - Generating jobs for time 1498617284000 ms
+org.apache.spark.streaming.dstream.StateDStream 62 - Time 1498617284000 ms is valid
+org.apache.spark.streaming.dstream.MappedDStream 62 - Time 1498617284000 ms is valid
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Time 1498617284000 ms is valid
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Time 1498617284000 ms is valid
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$3.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.mutable.WrappedArray my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$4.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.apply(scala.collection.Iterable[])
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.streaming.dstream.StateDStream$$anonfun$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.updateFuncLocal$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.Iterator org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.streaming.dstream.StateDStream$$anonfun$1$$anonfun$2
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.streaming.dstream.StateDStream$$anonfun$1) is now cleaned +++
+org.apache.spark.streaming.dstream.StateDStream 62 - Persisting RDD 18 for time 1498617284000 ms to StorageLevel(false, true, false, false, 1)
+org.apache.spark.streaming.DStreamGraph 62 - Generated 1 jobs for time 1498617284000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Added jobs for time 1498617284000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617284000 ms,false)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617284000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Starting job streaming job 1498617284000 ms.0 from job set of time 1498617284000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.rdd.CoGroupedRDD 62 - Adding shuffle dependency with MapPartitionsRDD[15] at map at NetWorkWordCount.scala:35
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.rdd.CoGroupedRDD 62 - Adding one-to-one dependency with MapPartitionsRDD[12] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617284000 ms
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617284000 ms writer queue
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617284000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617284000'
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.scheduler.DAGScheduler 58 - Registering RDD 15 (map at NetWorkWordCount.scala:35)
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 5 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 14 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 12, ShuffleMapStage 13, ShuffleMapStage 11)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 14)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 14 (MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 14)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_5 stored as values in memory (estimated size 5.9 KB, free 96.1 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_5 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_5 without replication took  3 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_5_piece0 stored as bytes in memory (estimated size 2.8 KB, free 98.9 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_5_piece0 in memory on localhost:28320 (size: 2.8 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_5_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_5_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_5_piece0 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_5_piece0 without replication took  3 ms
+org.apache.spark.SparkContext 58 - Created broadcast 5 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 14 (MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(0)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 14.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 14.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 14.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_14, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 14.0 (TID 5, localhost, partition 0,PROCESS_LOCAL, 2163 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 14.0 (TID 5)
+org.apache.spark.executor.Executor 62 - Task 5's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_5
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_5 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_5 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_18_0 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_18_0 not found
+org.apache.spark.CacheManager 58 - Partition rdd_18_0 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 2, partitions 0-1
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 0 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  0 ms
+org.apache.spark.CacheManager 62 - Looking for partition rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_12_0
+org.apache.spark.storage.BlockManager 62 - Level for block rdd_12_0 is StorageLevel(false, true, false, false, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block rdd_12_0 from memory
+org.apache.spark.storage.BlockManager 58 - Found block rdd_12_0 locally
+org.apache.spark.memory.TaskMemoryManager 200 - Task 5 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_18_0 stored as bytes in memory (estimated size 4.0 B, free 98.9 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_18_0 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Put block rdd_18_0 locally took  2 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_18_0 without replication took  3 ms
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617226000.bk
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 14.0 (TID 5). 2836 bytes result sent to driver
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617284000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617284000', took 3267 bytes and 56 ms
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_14, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 14.0 (TID 5) in 25 ms on localhost (1/1)
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 14 (print at NetWorkWordCount.scala:40) finished in 0.026 s
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 14.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 11, remaining stages = 4
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 14, remaining stages = 3
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 13, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 12, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 5 finished: print at NetWorkWordCount.scala:40, took 0.047248 s
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.MapOutputTrackerMaster 58 - Size of output statuses for shuffle 2 is 82 bytes
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 6 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 18 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 15, ShuffleMapStage 16, ShuffleMapStage 17)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 18)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 18 (MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 18)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_6 stored as values in memory (estimated size 5.9 KB, free 104.8 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_6 locally took  2 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_6 without replication took  2 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_6_piece0 stored as bytes in memory (estimated size 2.8 KB, free 107.7 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_6_piece0 in memory on localhost:28320 (size: 2.8 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_6_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_6_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_6_piece0 locally took  5 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_6_piece0 without replication took  5 ms
+org.apache.spark.SparkContext 58 - Created broadcast 6 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 18 (MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(1)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 18.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 18.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 18.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_18, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 18.0 (TID 6, localhost, partition 1,PROCESS_LOCAL, 2163 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 18.0 (TID 6)
+org.apache.spark.executor.Executor 62 - Task 6's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_6
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_6 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_6 from memory
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanBroadcast(5)
+org.apache.spark.ContextCleaner 62 - Cleaning broadcast 5
+org.apache.spark.CacheManager 62 - Looking for partition rdd_18_1
+org.apache.spark.broadcast.TorrentBroadcast 62 - Unpersisting TorrentBroadcast 5
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_18_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_18_1 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_18_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_18_1 not found
+org.apache.spark.CacheManager 58 - Partition rdd_18_1 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 2, partitions 1-2
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 1 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  1 ms
+org.apache.spark.CacheManager 62 - Looking for partition rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_12_1
+org.apache.spark.storage.BlockManager 62 - Level for block rdd_12_1 is StorageLevel(false, true, false, false, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block rdd_12_1 from memory
+org.apache.spark.storage.BlockManager 58 - Found block rdd_12_1 locally
+org.apache.spark.memory.TaskMemoryManager 200 - Task 6 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_18_1 stored as bytes in memory (estimated size 4.0 B, free 107.7 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_18_1 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_18_1
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_18_1
+org.apache.spark.storage.BlockManager 62 - Put block rdd_18_1 locally took  4 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_18_1 without replication took  4 ms
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 18.0 (TID 6). 2836 bytes result sent to driver
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - removing broadcast 5
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_18, runningTasks: 0
+org.apache.spark.storage.BlockManager 62 - Removing broadcast 5
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 18 (print at NetWorkWordCount.scala:40) finished in 0.025 s
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 18.0 (TID 6) in 24 ms on localhost (1/1)
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 17, remaining stages = 4
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 18.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 16, remaining stages = 3
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 18, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 15, remaining stages = 1
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_5_piece0
+org.apache.spark.scheduler.DAGScheduler 58 - Job 6 finished: print at NetWorkWordCount.scala:40, took 0.069897 s
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_5_piece0 of size 2912 dropped from memory (free 1899125951)
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Finished job streaming job 1498617284000 ms.0 from job set of time 1498617284000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearMetadata(1498617284000 ms)
+org.apache.spark.streaming.DStreamGraph 62 - Clearing metadata for time 1498617284000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Total delay: 0.193 s for time 1498617284000 ms (execution: 0.162 s)
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared 0 RDDs that were older than 1498617283000 ms: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.StateDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared 0 RDDs that were older than 1498617264000 ms: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.storage.BlockManagerInfo 58 - Removed broadcast_5_piece0 on localhost:28320 in memory (size: 2.8 KB, free: 1811.2 MB)
+org.apache.spark.streaming.dstream.MappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared 0 RDDs that were older than 1498617264000 ms: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_5_piece0
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_5_piece0
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared 0 RDDs that were older than 1498617264000 ms: 
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_5
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_5 of size 6040 dropped from memory (free 1899131991)
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared 0 RDDs that were older than 1498617264000 ms: 
+org.apache.spark.streaming.DStreamGraph 62 - Cleared old metadata for time 1498617284000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617284000 ms,true)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617284000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Done removing broadcast 5, response is 2
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617284200
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Sent response: 2 to 192.168.137.2:28296
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617284000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.ContextCleaner 62 - Cleaned broadcast 5
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanAccum(6)
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.ContextCleaner 62 - Cleaning accumulator 6
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.ContextCleaner 58 - Cleaned accumulator 6
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanBroadcast(4)
+org.apache.spark.ContextCleaner 62 - Cleaning broadcast 4
+org.apache.spark.broadcast.TorrentBroadcast 62 - Unpersisting TorrentBroadcast 4
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617284000 ms writer queue
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617284000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617284000'
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - removing broadcast 4
+org.apache.spark.storage.BlockManager 62 - Removing broadcast 4
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_4
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_4 of size 5728 dropped from memory (free 1899137719)
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_4_piece0
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_4_piece0 of size 2799 dropped from memory (free 1899140518)
+org.apache.spark.storage.BlockManagerInfo 58 - Removed broadcast_4_piece0 on localhost:28320 in memory (size: 2.7 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_4_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_4_piece0
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Done removing broadcast 4, response is 2
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Sent response: 2 to 192.168.137.2:28296
+org.apache.spark.ContextCleaner 62 - Cleaned broadcast 4
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanAccum(5)
+org.apache.spark.ContextCleaner 62 - Cleaning accumulator 5
+org.apache.spark.ContextCleaner 58 - Cleaned accumulator 5
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanBroadcast(3)
+org.apache.spark.ContextCleaner 62 - Cleaning broadcast 3
+org.apache.spark.broadcast.TorrentBroadcast 62 - Unpersisting TorrentBroadcast 3
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - removing broadcast 3
+org.apache.spark.storage.BlockManager 62 - Removing broadcast 3
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_3_piece0
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_3_piece0 of size 2799 dropped from memory (free 1899143317)
+org.apache.spark.storage.BlockManagerInfo 58 - Removed broadcast_3_piece0 on localhost:28320 in memory (size: 2.7 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_3_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_3_piece0
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_3
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_3 of size 5728 dropped from memory (free 1899149045)
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Done removing broadcast 3, response is 2
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Sent response: 2 to 192.168.137.2:28296
+org.apache.spark.ContextCleaner 62 - Cleaned broadcast 3
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanAccum(4)
+org.apache.spark.ContextCleaner 62 - Cleaning accumulator 4
+org.apache.spark.ContextCleaner 58 - Cleaned accumulator 4
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanBroadcast(2)
+org.apache.spark.ContextCleaner 62 - Cleaning broadcast 2
+org.apache.spark.broadcast.TorrentBroadcast 62 - Unpersisting TorrentBroadcast 2
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - removing broadcast 2
+org.apache.spark.storage.BlockManager 62 - Removing broadcast 2
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_2
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_2 of size 4856 dropped from memory (free 1899153901)
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_2_piece0
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_2_piece0 of size 2508 dropped from memory (free 1899156409)
+org.apache.spark.storage.BlockManagerInfo 58 - Removed broadcast_2_piece0 on localhost:28320 in memory (size: 2.4 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_2_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_2_piece0
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Done removing broadcast 2, response is 2
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Sent response: 2 to 192.168.137.2:28296
+org.apache.spark.ContextCleaner 62 - Cleaned broadcast 2
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanAccum(3)
+org.apache.spark.ContextCleaner 62 - Cleaning accumulator 3
+org.apache.spark.ContextCleaner 58 - Cleaned accumulator 3
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanBroadcast(1)
+org.apache.spark.ContextCleaner 62 - Cleaning broadcast 1
+org.apache.spark.broadcast.TorrentBroadcast 62 - Unpersisting TorrentBroadcast 1
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - removing broadcast 1
+org.apache.spark.storage.BlockManager 62 - Removing broadcast 1
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_1_piece0
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_1_piece0 of size 2508 dropped from memory (free 1899158917)
+org.apache.spark.storage.BlockManagerInfo 58 - Removed broadcast_1_piece0 on localhost:28320 in memory (size: 2.4 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_1_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_1_piece0
+org.apache.spark.storage.BlockManager 62 - Removing block broadcast_1
+org.apache.spark.storage.MemoryStore 62 - Block broadcast_1 of size 4856 dropped from memory (free 1899163773)
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Done removing broadcast 1, response is 2
+org.apache.spark.storage.BlockManagerSlaveEndpoint 62 - Sent response: 2 to 192.168.137.2:28296
+org.apache.spark.ContextCleaner 62 - Cleaned broadcast 1
+org.apache.spark.ContextCleaner 62 - Got cleaning task CleanAccum(2)
+org.apache.spark.ContextCleaner 62 - Cleaning accumulator 2
+org.apache.spark.ContextCleaner 58 - Cleaned accumulator 2
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617226000
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617284000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617284000', took 3263 bytes and 88 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearCheckpointData(1498617284000 ms)
+org.apache.spark.streaming.DStreamGraph 58 - Clearing checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing checkpoint data
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Nothing to delete
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared checkpoint data
+org.apache.spark.streaming.DStreamGraph 58 - Cleared checkpoint data for time 1498617284000 ms
+org.apache.spark.streaming.scheduler.ReceivedBlockTracker 58 - Deleting batches ArrayBuffer()
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+WriteAheadLogManager  for Thread 58 - Attempting to clear 0 old log files in file:/E:/idea-project/spark-1.6-test/receivedBlockMetadata older than 1498617264000: 
+org.apache.spark.streaming.scheduler.InputInfoTracker 58 - remove old batch metadata: 
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617284400
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617284600
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617284800
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617285000
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event GenerateJobs(1498617285000 ms)
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for JobGenerator called at time 1498617285000
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Received 1 records from queue
+org.apache.spark.streaming.util.BatchedWriteAheadLog 62 - Batched 1 records for Write Ahead Log write
+org.apache.spark.streaming.DStreamGraph 62 - Generating jobs for time 1498617285000 ms
+org.apache.spark.streaming.dstream.StateDStream 62 - Time 1498617285000 ms is valid
+org.apache.spark.streaming.dstream.MappedDStream 62 - Time 1498617285000 ms is valid
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Time 1498617285000 ms is valid
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Time 1498617285000 ms is valid
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$3.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.mutable.WrappedArray my.examples.streaming.NetWorkWordCount$$anonfun$3.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$3) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long my.examples.streaming.NetWorkWordCount$$anonfun$4.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 my.examples.streaming.NetWorkWordCount$$anonfun$4.apply(java.lang.String)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (my.examples.streaming.NetWorkWordCount$$anonfun$4) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 1
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.Tuple2 org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47.apply(scala.collection.Iterable[])
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.PairRDDFunctions$$anonfun$cogroup$2$$anonfun$apply$47) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.streaming.dstream.StateDStream$$anonfun$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.updateFuncLocal$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final scala.collection.Iterator org.apache.spark.streaming.dstream.StateDStream$$anonfun$1.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.streaming.dstream.StateDStream$$anonfun$1$$anonfun$2
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.streaming.dstream.StateDStream$$anonfun$1) is now cleaned +++
+org.apache.spark.streaming.dstream.StateDStream 62 - Persisting RDD 24 for time 1498617285000 ms to StorageLevel(false, true, false, false, 1)
+org.apache.spark.streaming.DStreamGraph 62 - Generated 1 jobs for time 1498617285000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Added jobs for time 1498617285000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617285000 ms,false)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617285000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Starting job streaming job 1498617285000 ms.0 from job set of time 1498617285000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.rdd.CoGroupedRDD 62 - Adding shuffle dependency with MapPartitionsRDD[21] at map at NetWorkWordCount.scala:35
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.rdd.CoGroupedRDD 62 - Adding one-to-one dependency with MapPartitionsRDD[18] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617285000 ms
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617285000 ms writer queue
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617285000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617285000'
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.scheduler.DAGScheduler 58 - Registering RDD 21 (map at NetWorkWordCount.scala:35)
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 7 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 23 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 19, ShuffleMapStage 20, ShuffleMapStage 21, ShuffleMapStage 22)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 23)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 23 (MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 23)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_7 stored as values in memory (estimated size 6.2 KB, free 74.1 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_7 locally took  2 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_7 without replication took  2 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_7_piece0 stored as bytes in memory (estimated size 2.9 KB, free 77.0 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_7_piece0 in memory on localhost:28320 (size: 2.9 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_7_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_7_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_7_piece0 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_7_piece0 without replication took  3 ms
+org.apache.spark.SparkContext 58 - Created broadcast 7 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 23 (MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(0)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 23.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 23.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 23.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_23, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 23.0 (TID 7, localhost, partition 0,PROCESS_LOCAL, 2205 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 23.0 (TID 7)
+org.apache.spark.executor.Executor 62 - Task 7's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_7
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_7 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_7 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_24_0
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_24_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_24_0 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_24_0
+org.apache.spark.storage.BlockManager 62 - Block rdd_24_0 not found
+org.apache.spark.CacheManager 58 - Partition rdd_24_0 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 3, partitions 0-1
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 0 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  0 ms
+org.apache.spark.CacheManager 62 - Looking for partition rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_18_0
+org.apache.spark.storage.BlockManager 62 - Level for block rdd_18_0 is StorageLevel(false, true, false, false, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block rdd_18_0 from memory
+org.apache.spark.storage.BlockManager 58 - Found block rdd_18_0 locally
+org.apache.spark.memory.TaskMemoryManager 200 - Task 7 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_24_0 stored as bytes in memory (estimated size 4.0 B, free 77.0 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_24_0 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_24_0
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_24_0
+org.apache.spark.storage.BlockManager 62 - Put block rdd_24_0 locally took  2 ms
+org.apache.spark.streaming.CheckpointWriter 58 - Deleting file:/E:/idea-project/spark-1.6-test/checkpoint-1498617227000.bk
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_24_0 without replication took  3 ms
+org.apache.spark.streaming.CheckpointWriter 58 - Checkpoint for time 1498617285000 ms saved to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617285000', took 3267 bytes and 51 ms
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 23.0 (TID 7). 2836 bytes result sent to driver
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_23, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 23.0 (TID 7) in 21 ms on localhost (1/1)
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 23 (print at NetWorkWordCount.scala:40) finished in 0.022 s
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 23.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 23, remaining stages = 5
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 20, remaining stages = 4
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 22, remaining stages = 3
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 19, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 21, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 7 finished: print at NetWorkWordCount.scala:40, took 0.041785 s
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD$$anonfun$take$1 org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.$outer
+org.apache.spark.util.ClosureCleaner 62 -      private final int org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.left$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28.apply(scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 2
+org.apache.spark.util.ClosureCleaner 62 -      <function0>
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  + cloning the object <function0> of class org.apache.spark.rdd.RDD$$anonfun$take$1
+org.apache.spark.util.ClosureCleaner 62 -  + cleaning cloned closure <function0> recursively (org.apache.spark.rdd.RDD$$anonfun$take$1)
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 3
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.rdd.RDD$$anonfun$take$1.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.$outer
+org.apache.spark.util.ClosureCleaner 62 -      public final int org.apache.spark.rdd.RDD$$anonfun$take$1.num$2
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.rdd.RDD$$anonfun$take$1.apply()
+org.apache.spark.util.ClosureCleaner 62 -      public org.apache.spark.rdd.RDD org.apache.spark.rdd.RDD$$anonfun$take$1.org$apache$spark$rdd$RDD$$anonfun$$$outer()
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 2
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$apply$49
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 1
+org.apache.spark.util.ClosureCleaner 62 -      org.apache.spark.rdd.RDD
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 1
+org.apache.spark.util.ClosureCleaner 62 -      MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 2
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD,Set(org$apache$spark$rdd$RDD$$evidence$1))
+org.apache.spark.util.ClosureCleaner 62 -      (class org.apache.spark.rdd.RDD$$anonfun$take$1,Set($outer))
+org.apache.spark.util.ClosureCleaner 62 -  + outermost object is not a closure, so do not clone it: (class org.apache.spark.rdd.RDD,MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function0> (org.apache.spark.rdd.RDD$$anonfun$take$1) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function1> (org.apache.spark.rdd.RDD$$anonfun$take$1$$anonfun$28) is now cleaned +++
+org.apache.spark.util.ClosureCleaner 62 - +++ Cleaning closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) +++
+org.apache.spark.util.ClosureCleaner 62 -  + declared fields: 2
+org.apache.spark.util.ClosureCleaner 62 -      public static final long org.apache.spark.SparkContext$$anonfun$runJob$5.serialVersionUID
+org.apache.spark.util.ClosureCleaner 62 -      private final scala.Function1 org.apache.spark.SparkContext$$anonfun$runJob$5.cleanedFunc$1
+org.apache.spark.util.ClosureCleaner 62 -  + declared methods: 2
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(java.lang.Object,java.lang.Object)
+org.apache.spark.util.ClosureCleaner 62 -      public final java.lang.Object org.apache.spark.SparkContext$$anonfun$runJob$5.apply(org.apache.spark.TaskContext,scala.collection.Iterator)
+org.apache.spark.util.ClosureCleaner 62 -  + inner classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer classes: 0
+org.apache.spark.util.ClosureCleaner 62 -  + outer objects: 0
+org.apache.spark.util.ClosureCleaner 62 -  + populating accessed fields because this is the starting closure
+org.apache.spark.util.ClosureCleaner 62 -  + fields accessed by starting closure: 0
+org.apache.spark.util.ClosureCleaner 62 -  + there are no enclosing objects!
+org.apache.spark.util.ClosureCleaner 62 -  +++ closure <function2> (org.apache.spark.SparkContext$$anonfun$runJob$5) is now cleaned +++
+org.apache.spark.SparkContext 58 - Starting job: print at NetWorkWordCount.scala:40
+org.apache.spark.MapOutputTrackerMaster 58 - Size of output statuses for shuffle 3 is 82 bytes
+org.apache.spark.scheduler.DAGScheduler 58 - Got job 8 (print at NetWorkWordCount.scala:40) with 1 output partitions
+org.apache.spark.scheduler.DAGScheduler 58 - Final stage: ResultStage 28 (print at NetWorkWordCount.scala:40)
+org.apache.spark.scheduler.DAGScheduler 58 - Parents of final stage: List(ShuffleMapStage 27, ShuffleMapStage 24, ShuffleMapStage 25, ShuffleMapStage 26)
+org.apache.spark.scheduler.DAGScheduler 58 - Missing parents: List()
+org.apache.spark.scheduler.DAGScheduler 62 - submitStage(ResultStage 28)
+org.apache.spark.scheduler.DAGScheduler 62 - missing: List()
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting ResultStage 28 (MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39), which has no missing parents
+org.apache.spark.scheduler.DAGScheduler 62 - submitMissingTasks(ResultStage 28)
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_8 stored as values in memory (estimated size 6.2 KB, free 83.2 KB)
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_8 locally took  1 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_8 without replication took  2 ms
+org.apache.spark.storage.MemoryStore 58 - Block broadcast_8_piece0 stored as bytes in memory (estimated size 2.9 KB, free 86.1 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added broadcast_8_piece0 in memory on localhost:28320 (size: 2.9 KB, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block broadcast_8_piece0
+org.apache.spark.storage.BlockManager 62 - Told master about block broadcast_8_piece0
+org.apache.spark.storage.BlockManager 62 - Put block broadcast_8_piece0 locally took  3 ms
+org.apache.spark.storage.BlockManager 62 - Putting block broadcast_8_piece0 without replication took  3 ms
+org.apache.spark.SparkContext 58 - Created broadcast 8 from broadcast at DAGScheduler.scala:1006
+org.apache.spark.scheduler.DAGScheduler 58 - Submitting 1 missing tasks from ResultStage 28 (MapPartitionsRDD[24] at updateStateByKey at NetWorkWordCount.scala:39)
+org.apache.spark.scheduler.DAGScheduler 62 - New pending partitions: Set(1)
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Adding task set 28.0 with 1 tasks
+org.apache.spark.scheduler.TaskSetManager 62 - Epoch for TaskSet 28.0: 0
+org.apache.spark.scheduler.TaskSetManager 62 - Valid locality levels for TaskSet 28.0: PROCESS_LOCAL, NODE_LOCAL, ANY
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_28, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 58 - Starting task 0.0 in stage 28.0 (TID 8, localhost, partition 1,PROCESS_LOCAL, 2205 bytes)
+org.apache.spark.executor.Executor 58 - Running task 0.0 in stage 28.0 (TID 8)
+org.apache.spark.executor.Executor 62 - Task 8's epoch is 0
+org.apache.spark.storage.BlockManager 62 - Getting local block broadcast_8
+org.apache.spark.storage.BlockManager 62 - Level for block broadcast_8 is StorageLevel(true, true, false, true, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block broadcast_8 from memory
+org.apache.spark.CacheManager 62 - Looking for partition rdd_24_1
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_24_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_24_1 not registered locally
+org.apache.spark.storage.BlockManager 62 - Getting remote block rdd_24_1
+org.apache.spark.storage.BlockManager 62 - Block rdd_24_1 not found
+org.apache.spark.CacheManager 58 - Partition rdd_24_1 not found, computing it
+org.apache.spark.MapOutputTrackerMaster 62 - Fetching outputs for shuffle 3, partitions 1-2
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - maxBytesInFlight: 50331648, targetRequestSize: 10066329
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Getting 0 non-empty blocks out of 0 blocks
+org.apache.spark.storage.ShuffleBlockFetcherIterator 58 - Started 0 remote fetches in 1 ms
+org.apache.spark.storage.ShuffleBlockFetcherIterator 62 - Got local blocks in  1 ms
+org.apache.spark.CacheManager 62 - Looking for partition rdd_18_1
+org.apache.spark.storage.BlockManager 62 - Getting local block rdd_18_1
+org.apache.spark.storage.BlockManager 62 - Level for block rdd_18_1 is StorageLevel(false, true, false, false, 1)
+org.apache.spark.storage.BlockManager 62 - Getting block rdd_18_1 from memory
+org.apache.spark.storage.BlockManager 58 - Found block rdd_18_1 locally
+org.apache.spark.memory.TaskMemoryManager 200 - Task 8 release 0.0 B from null
+org.apache.spark.storage.MemoryStore 58 - Block rdd_24_1 stored as bytes in memory (estimated size 4.0 B, free 86.1 KB)
+org.apache.spark.storage.BlockManagerInfo 58 - Added rdd_24_1 in memory on localhost:28320 (size: 4.0 B, free: 1811.2 MB)
+org.apache.spark.storage.BlockManagerMaster 62 - Updated info of block rdd_24_1
+org.apache.spark.storage.BlockManager 62 - Told master about block rdd_24_1
+org.apache.spark.storage.BlockManager 62 - Put block rdd_24_1 locally took  1 ms
+org.apache.spark.storage.BlockManager 62 - Putting block rdd_24_1 without replication took  1 ms
+org.apache.spark.executor.Executor 58 - Finished task 0.0 in stage 28.0 (TID 8). 2836 bytes result sent to driver
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_0, runningTasks: 1
+org.apache.spark.scheduler.TaskSchedulerImpl 62 - parentName: , name: TaskSet_28, runningTasks: 0
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level PROCESS_LOCAL, so moving to locality level NODE_LOCAL
+org.apache.spark.scheduler.TaskSetManager 62 - No tasks for locality level NODE_LOCAL, so moving to locality level ANY
+org.apache.spark.scheduler.TaskSetManager 58 - Finished task 0.0 in stage 28.0 (TID 8) in 17 ms on localhost (1/1)
+org.apache.spark.scheduler.DAGScheduler 58 - ResultStage 28 (print at NetWorkWordCount.scala:40) finished in 0.019 s
+org.apache.spark.scheduler.TaskSchedulerImpl 58 - Removed TaskSet 28.0, whose tasks have all completed, from pool 
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 26, remaining stages = 5
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 25, remaining stages = 4
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 28, remaining stages = 3
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 27, remaining stages = 2
+org.apache.spark.scheduler.DAGScheduler 62 - After removal of stage 24, remaining stages = 1
+org.apache.spark.scheduler.DAGScheduler 58 - Job 8 finished: print at NetWorkWordCount.scala:40, took 0.041163 s
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Finished job streaming job 1498617285000 ms.0 from job set of time 1498617285000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event ClearMetadata(1498617285000 ms)
+org.apache.spark.streaming.DStreamGraph 62 - Clearing metadata for time 1498617285000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Total delay: 0.157 s for time 1498617285000 ms (execution: 0.132 s)
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Cleared 0 RDDs that were older than 1498617284000 ms: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.StateDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.StateDStream 62 - Cleared 0 RDDs that were older than 1498617265000 ms: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.MappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.MappedDStream 62 - Cleared 0 RDDs that were older than 1498617265000 ms: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Cleared 0 RDDs that were older than 1498617265000 ms: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Clearing references to old RDDs: []
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Unpersisting old RDDs: 
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Cleared 0 RDDs that were older than 1498617265000 ms: 
+org.apache.spark.streaming.DStreamGraph 62 - Cleared old metadata for time 1498617285000 ms
+org.apache.spark.streaming.scheduler.JobGenerator 62 - Got event DoCheckpoint(1498617285000 ms,true)
+org.apache.spark.streaming.scheduler.JobGenerator 58 - Checkpointing graph for time 1498617285000 ms
+org.apache.spark.streaming.DStreamGraph 58 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.StateDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updating checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - Current checkpoint files:
+
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.MappedDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.StateDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.dstream.ForEachDStream 62 - Updated checkpoint data for time 1498617285000 ms: [
+0 checkpoint files 
+
+]
+org.apache.spark.streaming.DStreamGraph 58 - Updated checkpoint data for time 1498617285000 ms
+org.apache.spark.streaming.DStreamGraph 62 - DStreamGraph.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Enabled checkpoint mode
+org.apache.spark.streaming.dstream.SocketInputDStream 62 - SocketInputDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.ForEachDStream 62 - ForEachDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.StateDStream 62 - StateDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.MappedDStream 62 - MappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.dstream.FlatMappedDStream 62 - FlatMappedDStream.writeObject used
+org.apache.spark.streaming.dstream.DStreamCheckpointData 62 - DStreamCheckpointData.writeObject used
+org.apache.spark.streaming.DStreamGraph 62 - Disabled checkpoint mode
+org.apache.spark.streaming.CheckpointWriter 58 - Submitted checkpoint of time 1498617285000 ms writer queue
+org.apache.spark.streaming.CheckpointWriter 58 - Saving checkpoint for time 1498617285000 ms to file 'file:/E:/idea-project/spark-1.6-test/checkpoint-1498617285000'
+org.apache.spark.streaming.util.RecurringTimer 62 - Callback for BlockGenerator called at time 1498617285200
