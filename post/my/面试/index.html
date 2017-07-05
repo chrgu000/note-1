@@ -404,6 +404,72 @@ ref_host_cnts string
 ) partitioned by(datestr string);</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>insert into table zs.ods_weblog_detail partition(datestr='$day_01')
+select c.valid,c.remote_addr,c.remote_user,c.time_local,
+substring(c.time_local,0,10) as daystr,
+substring(c.time_local,12) as tmstr,
+substring(c.time_local,6,2) as month,
+substring(c.time_local,9,2) as day,
+substring(c.time_local,11,3) as hour,
+c.request,c.status,c.body_bytes_sent,c.http_referer,c.ref_host,c.ref_path,c.ref_query,c.ref_query_id,c.http_user_agent
+from
+(SELECT
+a.valid,a.remote_addr,a.remote_user,a.time_local,
+a.request,a.status,a.body_bytes_sent,a.http_referer,a.http_user_agent,b.ref_host,b.ref_path,b.ref_query,b.ref_query_id
+FROM zs.ods_weblog_origin a LATERAL VIEW parse_url_tuple(regexp_replace(http_referer, \"\\\"\", \"\"), 'HOST', 'PATH','QUERY', 'QUERY:id') b as ref_host, ref_path, ref_query, ref_query_id) c</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>insert into table zs.dw_pvs_hour partition(datestr='$day_01')
+select a.month as month,a.day as day,a.hour as hour,count(1) as pvs from zs.ods_weblog_detail a
+where a.datestr='$day_01' group by a.month,a.day,a.hour;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#!/bin/bash
+if [ $# -eq 1 ]
+then
+    cur_date=`date --date="${1}" +%Y-%m-%d`
+else
+    cur_date=`date -d'-1 day' +%Y-%m-%d`
+fi
+
+echo "cur_date:"${cur_date}
+
+year=`date --date=$cur_date +%Y`
+month=`date --date=$cur_date +%m`
+day=`date --date=$cur_date +%d`
+
+table_name=""
+table_columns=""
+hadoop_dir=/user/rd/bi_dm/app_user_experience_d/year=${year}/month=${month}/day=${day}
+mysql_db_pwd=biall_pwd2015
+mysql_db_name=bi_tag_all
+
+
+echo 'sqoop start'
+$SQOOP_HOME/bin/sqoop export \
+--connect "jdbc:mysql://hadoop03:3306/biclick" \
+--username $mysql_db_name \
+--password $mysql_db_pwd \
+--table $table_name \
+--columns $table_columns \
+--fields-terminated-by '\001' \
+--export-dir $hadoop_dir
+
+echo 'sqoop end'</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>

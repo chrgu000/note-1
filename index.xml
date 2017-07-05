@@ -316,6 +316,72 @@ ref_host_cnts string
 ) partitioned by(datestr string);&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;insert into table zs.ods_weblog_detail partition(datestr=&#39;$day_01&#39;)
+select c.valid,c.remote_addr,c.remote_user,c.time_local,
+substring(c.time_local,0,10) as daystr,
+substring(c.time_local,12) as tmstr,
+substring(c.time_local,6,2) as month,
+substring(c.time_local,9,2) as day,
+substring(c.time_local,11,3) as hour,
+c.request,c.status,c.body_bytes_sent,c.http_referer,c.ref_host,c.ref_path,c.ref_query,c.ref_query_id,c.http_user_agent
+from
+(SELECT
+a.valid,a.remote_addr,a.remote_user,a.time_local,
+a.request,a.status,a.body_bytes_sent,a.http_referer,a.http_user_agent,b.ref_host,b.ref_path,b.ref_query,b.ref_query_id
+FROM zs.ods_weblog_origin a LATERAL VIEW parse_url_tuple(regexp_replace(http_referer, \&#34;\\\&#34;\&#34;, \&#34;\&#34;), &#39;HOST&#39;, &#39;PATH&#39;,&#39;QUERY&#39;, &#39;QUERY:id&#39;) b as ref_host, ref_path, ref_query, ref_query_id) c&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;insert into table zs.dw_pvs_hour partition(datestr=&#39;$day_01&#39;)
+select a.month as month,a.day as day,a.hour as hour,count(1) as pvs from zs.ods_weblog_detail a
+where a.datestr=&#39;$day_01&#39; group by a.month,a.day,a.hour;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash
+if [ $# -eq 1 ]
+then
+    cur_date=`date --date=&#34;${1}&#34; +%Y-%m-%d`
+else
+    cur_date=`date -d&#39;-1 day&#39; +%Y-%m-%d`
+fi
+
+echo &#34;cur_date:&#34;${cur_date}
+
+year=`date --date=$cur_date +%Y`
+month=`date --date=$cur_date +%m`
+day=`date --date=$cur_date +%d`
+
+table_name=&#34;&#34;
+table_columns=&#34;&#34;
+hadoop_dir=/user/rd/bi_dm/app_user_experience_d/year=${year}/month=${month}/day=${day}
+mysql_db_pwd=biall_pwd2015
+mysql_db_name=bi_tag_all
+
+
+echo &#39;sqoop start&#39;
+$SQOOP_HOME/bin/sqoop export \
+--connect &#34;jdbc:mysql://hadoop03:3306/biclick&#34; \
+--username $mysql_db_name \
+--password $mysql_db_pwd \
+--table $table_name \
+--columns $table_columns \
+--fields-terminated-by &#39;\001&#39; \
+--export-dir $hadoop_dir
+
+echo &#39;sqoop end&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
