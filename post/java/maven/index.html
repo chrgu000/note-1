@@ -7,10 +7,9 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="Maven" />
-<meta property="og:description" content=" include::content/post/base.adoc[] :toc-title: Contents
-maven maven设置  仓库设置 ‪C:\Users\dishui\.m2\settings.xml xml &lt;mirrors&gt; &lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;/mirrors&gt;    **导出jar包到默认目录 targed/dependency **
-在eclipse中，选择项目的pom.xml文件， 点击右键菜单中的RunAs, 在弹出的Configuration窗口中， 在Goals输入 dependency:copy-dependencies后，点击运行
-  导入本地jar mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar  " />
+<meta property="og:description" content="Contents1. maven设置2. 导入本地`jar`3. 解决 JAR 依赖冲突4. Jetty 配置1. maven设置仓库设置 ‪C:\Users\dishui\.m2\settings.xml
+&lt;mirrors&gt;&lt;mirror&gt;&lt;id&gt;alimaven&lt;/id&gt;&lt;name&gt;aliyun maven&lt;/name&gt;&lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;&lt;/mirror&gt;&lt;/mirrors&gt;&#43; 导出`jar包`到默认目录 targed/dependency 
+在eclipse中，选择项目的`pom.xml`文件，点击右键菜单中的`RunAs`,在弹出的`Configuration`窗口中，在`Goals`输入 `dependency:copy-dependencies`后，点击运行2. 导入本地`jar`mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar3. 解决 JAR 依赖冲突 &lt;dependency&gt;&lt;groupId&gt;javax.mail&lt;/groupId&gt;&lt;artifactId&gt;mail&lt;/artifactId&gt;&lt;version&gt;${mail.version}&lt;/version&gt;&lt;exclusions&gt;&lt;exclusion&gt; (1)&lt;artifactId&gt;spring&lt;/artifactId&gt;&lt;groupId&gt;org." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/java/maven/" />
 
@@ -95,42 +94,124 @@ maven maven设置  仓库设置 ‪C:\Users\dishui\.m2\settings.xml xml &lt;mirr
 		</header>
 		<div class="entry-content clearfix">
 			
-			
-
-<p>include::content/post/base.adoc[]
-:toc-title: Contents</p>
-
-<h1 id="maven">maven</h1>
-
-<h4 id="maven设置">maven设置</h4>
-
-<ol>
-<li><strong>仓库设置 <code>‪C:\Users\dishui\.m2\settings.xml</code></strong>
-<code>xml
-&lt;mirrors&gt;
-&lt;mirror&gt;
-  &lt;id&gt;alimaven&lt;/id&gt;
-  &lt;name&gt;aliyun maven&lt;/name&gt;
-  &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
-  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-&lt;/mirror&gt;
-&lt;/mirrors&gt;
-</code></li>
-</ol>
-
-<ul>
-<li><p>**导出<code>jar包</code>到默认目录 <code>targed/dependency</code> **</p>
-
-<p>在eclipse中，选择项目的<code>pom.xml</code>文件，
-点击右键菜单中的<code>RunAs</code>,
-在弹出的<code>Configuration</code>窗口中，
-在<code>Goals</code>输入 <code>dependency:copy-dependencies</code>后，点击运行</p></li>
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel3">
+<li><a href="#_maven设置">1. maven设置</a></li>
+<li><a href="#_导入本地_jar">2. 导入本地`jar`</a></li>
+<li><a href="#_解决_jar_依赖冲突">3. 解决 JAR 依赖冲突</a></li>
+<li><a href="#_jetty_配置">4. Jetty 配置</a></li>
 </ul>
-
-<h4 id="导入本地-jar">导入本地<code>jar</code></h4>
-
-<pre><code class="language-bash">mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar
-</code></pre>
+</div>
+<div class="sect3">
+<h4 id="_maven设置">1. maven设置</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>仓库设置 <code>‪C:\Users\dishui\.m2\settings.xml</code></strong></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">  &lt;mirrors&gt;
+    &lt;mirror&gt;
+      &lt;id&gt;alimaven&lt;/id&gt;
+      &lt;name&gt;aliyun maven&lt;/name&gt;
+      &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+    &lt;/mirror&gt;
+  &lt;/mirrors&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+ <strong>导出`jar包`到默认目录 <code>targed/dependency</code> </strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>在eclipse中，选择项目的`pom.xml`文件，
+点击右键菜单中的`RunAs`,
+在弹出的`Configuration`窗口中，
+在`Goals`输入 `dependency:copy-dependencies`后，点击运行</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_导入本地_jar">2. 导入本地`jar`</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_解决_jar_依赖冲突">3. 解决 JAR 依赖冲突</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>    &lt;dependency&gt;
+        &lt;groupId&gt;javax.mail&lt;/groupId&gt;
+        &lt;artifactId&gt;mail&lt;/artifactId&gt;
+        &lt;version&gt;${mail.version}&lt;/version&gt;
+        &lt;exclusions&gt;
+            &lt;exclusion&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+                &lt;artifactId&gt;spring&lt;/artifactId&gt;
+                &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>排除需要忽略的jar</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jetty_配置">4. Jetty 配置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;build&gt;
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;
+        &lt;artifactId&gt;jetty-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;9.2.19.v20160908&lt;/version&gt;
+        &lt;configuration&gt;
+            &lt;webApp&gt;
+                &lt;contextPath&gt;/&lt;/contextPath&gt;
+                &lt;webInfIncludeJarPattern&gt;.*/classes/.*&lt;/webInfIncludeJarPattern&gt;
+                &lt;descriptor&gt;${basedir}/src/main/webapp/WEB-INF/web.xml&lt;/descriptor&gt;
+            &lt;/webApp&gt;
+            &lt;stopKey&gt;exit&lt;/stopKey&gt;
+            &lt;stopPort&gt;9091&lt;/stopPort&gt;
+            &lt;webAppSourceDirectory&gt;${project.basedir}/src/main/webapp&lt;/webAppSourceDirectory&gt;
+            &lt;scanIntervalSeconds&gt;0&lt;/scanIntervalSeconds&gt;
+            &lt;httpConnector&gt;
+                &lt;port&gt;8080&lt;/port&gt;
+            &lt;/httpConnector&gt;
+          &lt;loginServices&gt;
+            &lt;loginService implementation="org.eclipse.jetty.security.HashLoginService"&gt;
+              &lt;name&gt;MySecurityRealm&lt;/name&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+              &lt;config&gt;${basedir}/src/test/resources/jetty-realm.properties&lt;/config&gt;
+            &lt;/loginService&gt;
+          &lt;/loginServices&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+&lt;/build&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>和 <code>web.xml中配置的&lt;realm-name&gt; 一样</code></td>
+</tr>
+</table>
+</div>
+</div>
 
 		</div>
 		

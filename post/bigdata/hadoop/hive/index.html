@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hive" />
-<meta property="og:description" content="hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions3. Q &amp; A3.1. beeline 连接 hiveserver 报错3.2. java.lang.OutOfMemoryError: Java heap space with hive3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space1. Hive只在一个节点上安装即可上传tar包
+<meta property="og:description" content="hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions3. Q &amp; A3.1. beeline 连接 hiveserver 报错3.2. java.lang.OutOfMemoryError: Java heap space with hive3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space4. hive 操作1. Hive只在一个节点上安装即可上传tar包
 解压
 tar -zxvf hive-1.2.1.tar.gz -C /hadoop/安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）
 mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- &#34;MYSQL_ROOT_PASSWORD=111111&#34;ports:- &#34;3306:3306&#34;networks:- hadoopnetworks:hadoop:external: true配置 hive" />
@@ -114,6 +114,7 @@ mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.
 <li><a href="#_hiveserver2服务异常停止java_lang_outofmemoryerror_java_heap_space">3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space</a></li>
 </ul>
 </li>
+<li><a href="#_hive_操作">4. hive 操作</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -351,6 +352,50 @@ org.apache.hive.service.cli.HiveSQLException: Failed to open new session: java.l
 <div class="paragraph">
 <p>export HADOOP_OPTS="$HADOOP_OPTS -server -verbose:gc  -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/hive"</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hive_操作">4. hive 操作</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>往分区表中导入数据,首先要要导入原始表,然后从原始表中导入数据到分区表</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive" class="bare">https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://hadooped.blogspot.com/2013/06/apache-sqoop-part-3-data-transfer.html" class="bare">http://hadooped.blogspot.com/2013/06/apache-sqoop-part-3-data-transfer.html</a></p>
+</div>
+<div class="paragraph">
+<p>把 hive 的查询结果 直接导出到 mysql</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>中文乱码</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+  &lt;value&gt;jdbc:mysql://djt11:3306/hive?createDatabaseIfNotExsit=true;characterEncoding=UTF-8&lt;/value&gt;
+  &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>&#8201;&#8212;&#8201;修改字段注释字符集
+alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8;&#8201;&#8212;&#8201;修改表注释字符集
+alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;&#8201;&#8212;&#8201;修改分区表参数，以支持分区键能够用中文表示。
+alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;
+alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(4000) character set utf8;</p>
 </div>
 </div>
 </div>

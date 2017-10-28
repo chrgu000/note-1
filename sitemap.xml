@@ -3,7 +3,47 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-07-04T11:42:35+00:00</lastmod>
+    <lastmod>2017-10-07T21:07:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/hadoop/kafka/</loc>
+    <lastmod>2017-10-07T21:07:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2017-09-27T09:58:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-09-19T08:32:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2017-08-27T12:52:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/spark/spark-sql2/</loc>
+    <lastmod>2017-08-11T14:43:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/</loc>
+    <lastmod>2017-08-11T14:43:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/scala/scala-ref/</loc>
+    <lastmod>2017-07-28T09:38:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/work/zichuan/neo4j/</loc>
+    <lastmod>2017-07-10T08:54:21+00:00</lastmod>
   </url>
   
   <url>
@@ -973,6 +1013,50 @@
   </url>
   
   <url>
+    <loc>/post/bigdata/djt/spark/sougouStatistics/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/spark/spark-error/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/spark/tvplay/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/spark/wordcount/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/HBase%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/Sqoop%E5%AE%9E%E7%8E%B0HIve%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C%E6%95%B0%E6%8D%AE%E5%85%A5%E5%BA%93/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/flume%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E6%94%B6%E8%A7%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%94%B6%E9%9B%86/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E5%90%88%E5%B9%B6%E5%B0%8F%E6%96%87%E4%BB%B6/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E7%94%A8Hive%E5%88%86%E6%9E%90%E2%80%9C%E4%BD%99%E9%A2%9D%E5%AE%9D%E2%80%9D%E8%BA%BA%E7%9D%80%E8%B5%9A%E5%A4%A7%E9%92%B1%E8%83%8C%E5%90%8E%E7%9A%84%E9%80%BB%E8%BE%91/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA3%E8%8A%82%E7%82%B9%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E9%9D%A2%E8%AF%95/</loc>
+  </url>
+  
+  <url>
     <loc>/post/bigdata/spark/sparknotes/rdd_action_operator/01/</loc>
   </url>
   
@@ -1117,6 +1201,10 @@
   </url>
   
   <url>
+    <loc>/post/bigdata/spark/xiaoxiang/spark-shell/</loc>
+  </url>
+  
+  <url>
     <loc>/post/go/go-fundamental-programming/README/</loc>
   </url>
   
@@ -1230,6 +1318,14 @@
   
   <url>
     <loc>/tmp/tmp2017-01-08/</loc>
+  </url>
+  
+  <url>
+    <loc>/tmp/tmp2017-07-10/</loc>
+  </url>
+  
+  <url>
+    <loc>/tmp/tmp2017-08-30/</loc>
   </url>
   
   <url>

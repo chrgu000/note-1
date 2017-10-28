@@ -4256,6 +4256,567 @@ sonatype-oss-releases&lt;/p&gt;
     
     <item>
       <title></title>
+      <link>/tmp/tmp2017-07-10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tmp/tmp2017-07-10/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sed -i&amp;#8201;&amp;#8212;&amp;#8201;&#39;s/https:\/\/registry\.npm\.taobao\.org/http:\/\/127\.0\.0\.1:7001/g&#39; npm-shrinkwrap.json&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mysql -uroot -p111111 -e &#39;DROP DATABASE IF EXISTS cnpmjs_test;&#39; &amp;amp;&amp;amp;\
+mysql -uroot -p111111 -e &#39;CREATE DATABASE cnpmjs_test;&#39; &amp;amp;&amp;amp;\
+mysql -uroot -p111111 &#39;cnpmjs_test&#39; &amp;lt; docs/db.sql &amp;amp;&amp;amp;\
+mysql -uroot -p111111 &#39;cnpmjs_test&#39; -e &#39;show tables;&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=spring-data-neo4j-4.1.2.RELEASE.jar -DgroupId=org.springframework.data -DartifactId=spring-data-neo4j -Dversion=4.1.2.RELEASE -Dpackaging=jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;股东
+投资
+高管
+热词
+担保人
+被担保人
+交易对手
+资讯关联
+经营事件
+质押
+被质押
+供应商
+客户
+同行关系
+全部&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;龙观路57号尚美时代508室&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spring-framework-reference/htmlsingle/#testcontext-web-scoped-beans&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.spring.io/spring/docs/4.2.6.RELEASE/spring-framework-reference/html/aop.html&#34; class=&#34;bare&#34;&gt;https://docs.spring.io/spring/docs/4.2.6.RELEASE/spring-framework-reference/html/aop.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;152497092084&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (movie:Movie)
+WHERE lower(movie.title) CONTAINS &#34;Matrix&#34;
+RETURN movie&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (movie:Movie)
+RETURN movie&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run \
+    --publish=7474:7474 --publish=7687:7687 \
+    --volume=$HOME/neo4j/data:/data \
+    neo4j:3.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.springframework.data.repository.core.support.RepositoryFactorySupport.QueryExecutorMethodInterceptor#QueryExecutorMethodInterceptor&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=spring-context-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-context -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-aop-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-aop -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-beans-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-beans -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-core-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-core -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-expression-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-expression -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-tx-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-tx -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-web-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-web -Dversion=4.2.6.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-webmvc-4.2.6.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-webmvc -Dversion=4.2.6.RELEASE -Dpackaging=jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=spring-data-neo4j-4.1.2.RELEASE.jar -DgroupId=org.springframework.data -DartifactId=spring-data-neo4j -Dversion=4.1.2.RELEASE -Dpackaging=jar
+mvn install:install-file -Dfile=spring-data-commons-1.12.2.RELEASE.jar -DgroupId=org.springframework.data -DartifactId=spring-data-commons -Dversion=1.12.2.RELEASE -Dpackaging=jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=neo4j-ogm-core-2.0.3.jar -DgroupId=org.neo4j -DartifactId=neo4j-ogm-core -Dversion=2.0.3 -Dpackaging=jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=neo4j-ogm-core-2.0.3.jar -DgroupId=org.neo4j -DartifactId=neo4j-ogm-core -Dversion=2.0.3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=neo4j-ogm-api:2.0.3.jar -DgroupId=org.neo4j -DartifactId=neo4j-ogm-api -Dversion=2.0.3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=jackson-databind-2.7.1.jar -DgroupId=com.fasterxml.jackson.core -DartifactId=jackson-databind -Dversion=2.7.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=jackson-annotations-2.7.0.jar -DgroupId=com.fasterxml.jackson.core -DartifactId=jackson-annotations -Dversion=2.7.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=jackson-core-2.7.1.jar -DgroupId=com.fasterxml.jackson.core -DartifactId=jackson-core -Dversion=2.7.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=commons-codec:1.10.jar -DgroupId=commons-codec -DartifactId=commons-codec -Dversion=1.10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=neo4j-ogm-compiler-2.0.3.jar -DgroupId=org.neo4j -DartifactId=neo4j-ogm-compiler -Dversion=2.0.3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=commons-lang3:3.4 -DgroupId=org.apache.commons -DartifactId=commons-lang3 -Dversion=3.4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=neo4j-ogm-http-driver-2.0.3.jar -DgroupId=org.neo4j -DartifactId=neo4j-ogm-http-driver -Dversion=2.0.3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=httpclient-4.5.2.jar -DgroupId=org.apache.httpcomponents -DartifactId=httpclient -Dversion=4.5.2&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=httpcore-4.4.4.jar -DgroupId=org.apache.httpcomponents -DartifactId=httpcore -Dversion=4.4.4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=commons-io-2.4.jar -DgroupId=commons-io -DartifactId=commons-io -Dversion=2.4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=slf4j-api-1.7.21.jar -DgroupId=org.slf4j -DartifactId=slf4j-api -Dversion=1.7.21&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mvn install:install-file -Dfile=jcl-over-slf4j-1.7.21.jar -DgroupId=org.slf4j -DartifactId=jcl-over-slf4j -Dversion=1.7.21&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.neo4j:neo4j-ogm-core:2.0.3
+org.neo4j:neo4j-ogm-api:2.0.3
+com.fasterxml.jackson.core:jackson-databind:2.7.1
+com.fasterxml.jackson.core:jackson-annotations:2.7.0
+com.fasterxml.jackson.core:jackson-core:2.7.1
+commons-codec:commons-codec:1.10
+org.neo4j:neo4j-ogm-compiler:2.0.3
+org.apache.commons:commons-lang3:3.4
+org.neo4j:neo4j-ogm-http-driver:2.0.3
+org.apache.httpcomponents:httpclient:4.5.2
+org.apache.httpcomponents:httpcore:4.4.4
+commons-io:commons-io:2.4
+org.slf4j:slf4j-api:1.7.21
+org.slf4j:jcl-over-slf4j:1.7.21&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;!-- &lt;a href=&#34;https://mvnrepository.com/artifact/org.springframework/spring-context&#34; class=&#34;bare&#34;&gt;https://mvnrepository.com/artifact/org.springframework/spring-context&lt;/a&gt; -&amp;#8594;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;4.2.6.RELEASE&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/tmp/tmp2017-08-30/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tmp/tmp2017-08-30/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;npm adduser --registry=http://127.0.0.1:7001&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/root/mount/nginx2/web.conf:/etc/nginx/conf.d/web.conf&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/root/mount/nginx2/xiaohei.conf:/etc/nginx/conf.d/xiaohei.conf&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;map输入key 偏移量
+map输入value 每行文本内容
+map输出key
+map输出value&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar tv.jar com.dajiangtai.TV input output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hdfs://master:9000/spark/wordcount/person2.txt \
+hdfs://master:9000/spark/wordcount/output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--class wordcount.WordCount \
+--master spark://master:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-wordcount-1.0.jar \
+hdfs://master:9000/spark/wordcount/person2.txt \
+hdfs://master:9000/spark/wordcount/output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--master spark://master:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-wordcount-1.0.jar \
+hdfs://master:9000/spark/wordcount/person2.txt \
+hdfs://master:9000/spark/wordcount/output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;int playCountS = 0;
+int collectCountS = 0;
+int commentCountS = 0;
+int stampCountS = 0;
+int approveCountS = 0;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;playCountS &#34;\t&#34; collectCountS &#34;\t&#34; commentCountS &#34;\t&#34; stampCountS &#34;\t&#34; approveCountS &#34;\t&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;继承者们    1   4105447 202 844 48  671&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;继承者们
+1, 4105447, 202, 844, 48, 671&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--class sougou.Statistics \
+--master spark://master:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-sougou-statistics-1.0.jar \
+hdfs://master:9000/sougou/SogouQ.reduced \
+hdfs://master:9000/sougou&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo &#34;master&#34; &amp;gt; /etc/hostname
+echo &#34;slave1&#34; &amp;gt; /etc/hostname&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;useradd -d /home/hadoop -m hadoop
+192.168.137.21 djt11
+192.168.137.22 djt12
+192.168.137.23 djt13&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;export JAVA_HOME=/home/hadoop/app/jdk1.7.0_45
+export HADOOP_HOME=/home/hadoop/app/hadoop-2.6.5
+export SPARK_HOME=/home/hadoop/app/spark-1.6.1-bin-hadoop2.6
+export HIVE_HOME=/home/hadoop/app/apache-hive-1.2.1-bin
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/sbin:$HIVE_HOME/bin&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;content/src/linux/conf/ansible/bigdata/group_vars/bigdata&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/zookeeper/zkdata
+/zookeeper/zkdatalog&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $ZOOKEEPER_HOME/bin/zkServer.sh start
+sh $ZOOKEEPER_HOME/bin/zkServer.sh status&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $HADOOP_HOME/sbin/hadoop-daemon.sh start journalnode
+sh $HADOOP_HOME/sbin/hadoop-daemon.sh stop journalnode&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE IF NOT EXISTS stock(
+    tradedate STRING,
+    tradetime STRING,
+    stockid INT,
+    buyprice DOUBLE,
+    buysize INT,
+    sellprice DOUBLE,
+    sellsize INT
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;,&#39;
+STORED AS TEXTFILE;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;LOAD DATA INPATH &#39;/root/share/hadoop/total.csv&#39; INTO TABLE stock;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE IF NOT EXISTS stock_partition(
+    tradetime STRING,
+    stockid INT,
+    buyprice DOUBLE,
+    buysize INT,
+    sellprice DOUBLE,
+    sellsize INT
+) PARTITIONED BY (tradedate STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;,&#39;
+STORED AS TEXTFILE;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;set hive.exec.dynamic.partition.mode=nonstrict;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INSERT OVERWRITE TABLE stock_partition partition(tradedate) SELECT tradetime, stockid, buyprice, buysize, sellprice, sellsize, tradedate FROM stock distribute by tradedate;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;add jar /root/share/hadoop/maxUDF-1.0.jar;
+add jar /root/share/hadoop/minUDF-1.0.jar;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create temporary function maxprice  as &#39;hive.Max&#39;;
+create temporary function minprice  as &#39;hive.Min&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select stockid,tradedate,max(maxprice(buyprice,sellprice)),min(minprice(buyprice,sellprice)) from stock_partition where stockid = &#39;204001&#39; group by tradedate,stockid;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;OK
+204001  20130722    4.05    0.0
+204001  20130723    4.48    2.2
+204001  20130724    4.65    2.205
+204001  20130725    11.9    8.7
+204001  20130726    12.3    5.2
+Time taken: 43.182 seconds, Fetched: 5 row(s)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select stockid,tradedate,substring(tradetime,0,4) as time,sum(buyprice+sellprice)/count(stockid)*2 as avgnum from stock_partition  where stockid = &#39;204001&#39; group by stockid,tradedate,substring(tradetime,0,4);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;204001  20130722    1116    14.382499999999999
+204001  20130722    1117    14.32125
+204001  20130722    1118    14.267
+204001  20130722    1119    14.203333333333331
+204001  20130722    1120    14.185
+204001  20130722    1121    14.146363636363638
+204001  20130722    1122    14.145000000000001
+204001  20130722    1123    14.159090909090912
+204001  20130722    1124    14.17181818181818
+204001  20130722    1125    14.187272727272726
+204001  20130722    1126    14.143
+204001  20130722    1127    14.157
+204001  20130722    1128    14.116666666666667
+204001  20130722    1129    14.196363636363635&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE IF NOT EXISTS extra_result(
+    stockid STRING,
+    tradedate STRING,
+    time STRING,
+    avgnum DOUBLE,
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;,&#39;
+STORED AS TEXTFILE;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INSERT OVERWRITE TABLE extra_result select stockid,tradedate,substring(tradetime,0,4) as time,sum(buyprice+sellprice)/count(stockid)*2 as avgnum from stock_partition  where stockid = &#39;204001&#39; group by stockid,tradedate,substring(tradetime,0,4);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;{
+    category:[{all:100},{jp:100}],
+    list:[]
+}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sqoop list-databases \
+--connect jdbc:mysql://192.168.137.16/wordpress \
+--username hive \
+--password hive&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;导入
+sqoop import \
+--connect jdbc:mysql://192.168.137.16/wordpress \
+--username hive \
+--password hive \
+--table wp_options \
+--hive-import \
+--create-hive-table \
+--hive-table hive.wp_options&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;导出
+sqoop export \
+--connect \
+&#39;jdbc:mysql://192.168.137.16/djt_test?useUnicode=true&amp;amp;characterEncodi
+g=utf-8&#39; \
+--username hive \
+--password hive \
+--table wp_options \
+--export-dir /user/root/wp_options \
+--input-fields-terminated-by &#34;@&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE IF NOT EXISTS wp_options(
+    option_id BIGINT,
+    option_name STRING,
+    option_value STRING,
+    autoload STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;,&#39;
+STORED AS TEXTFILE;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DROP TABLE IF NOT EXISTS tmp_result;
+CREATE TABLE IF NOT EXISTS tmp_result(
+    count BIGINT
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;,&#39;
+STORED AS TEXTFILE;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;INSERT OVERWRITE TABLE tmp_result select count(1) from wp_options;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sqoop export \
+--connect \
+&#39;jdbc:mysql://192.168.137.16/djt_test?useUnicode=true&amp;amp;characterEncodi
+g=utf-8&#39; \
+--username hive \
+--password hive \
+--table extra_result  \
+--export-dir /user/hive/warehouse/hive.db/extra_result&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;address_tel=400-1361717;
+collect=1;
+PHPSESSID=24blahho4enkn25jop4d1rdgh2&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;GET &lt;a href=&#34;https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=STATE&amp;amp;connect_redirect=1&#34; class=&#34;bare&#34;&gt;https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=STATE&amp;amp;connect_redirect=1&lt;/a&gt; HTTP/1.1
+Host: open.weixin.qq.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,&lt;strong&gt;/&lt;/strong&gt;;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: address_tel=400-1361717; PHPSESSID=24blahho4enkn25jop4d1rdgh2; collect=1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=STATE&amp;amp;connect_redirect=1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;GET &lt;a href=&#34;https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882%26response_type%3Dcode%26scope%3Dsnsapi_base%26state%3DSTATE%26connect_redirect%3D1&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=STATE&amp;amp;connect_redirect=1&#34; class=&#34;bare&#34;&gt;https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882%26response_type%3Dcode%26scope%3Dsnsapi_base%26state%3DSTATE%26connect_redirect%3D1&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=STATE&amp;amp;connect_redirect=1&lt;/a&gt; HTTP/1.1
+Host: open.weixin.qq.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,&lt;strong&gt;/&lt;/strong&gt;;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: address_tel=400-1361717; PHPSESSID=24blahho4enkn25jop4d1rdgh2; collect=1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;GET &lt;a href=&#34;http://shouluo.me/gqsj/index2.php?g=wxpublics3&amp;amp;m=wxpublic&amp;amp;a=newsdetail&amp;amp;admin_id=2984&amp;amp;post_id=1620882&#34; class=&#34;bare&#34;&gt;http://shouluo.me/gqsj/index2.php?g=wxpublics3&amp;amp;m=wxpublic&amp;amp;a=newsdetail&amp;amp;admin_id=2984&amp;amp;post_id=1620882&lt;/a&gt; HTTP/1.1
+Host: shouluo.me
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,&lt;strong&gt;/&lt;/strong&gt;;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8,en-us;q=0.6,en;q=0.5;q=0.4
+Cookie: address_tel=400-1361717; collect=1; PHPSESSID=24blahho4enkn25jop4d1rdgh2; oguEja_think_language=zh-CN&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;GET /gqsj/index2.php?g=wxpublics3&amp;amp;m=wxpublic&amp;amp;a=newsdetail&amp;amp;post_id=1623440 HTTP/1.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;min.length &#34;1111&#34; &#34;12&#34; &#34;23&#34; &amp;#8594;  &#34;2&#34; &#34;23&#34; &amp;#8594; &#34;1&#34;
+min.length &#34;1111&#34; &#34;345&#34; &#34;4567&#34; &amp;#8594;  &#34;3&#34; &#34;4567&#34; &amp;#8594; &#34;1&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;min.length &#34;1111&#34; &#34;1&#34; &#34;1&#34; &amp;#8594;  &#34;1111111&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;@startuml
+association
+@enduml&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34;1111 12 23&#34; &amp;#8594;  &#34;2 23&#34; &amp;#8594; &#34;1&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34;1111&#34; &amp;#8594; &#34;2&#34;;
+&#34;12&#34; &amp;#8594; &#34;2&#34;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&#34;&#34; &#34;12&#34; &#34;23&#34; &amp;#8594; &#34;1&#34; &#34;23&#34; &amp;#8594; &#34;1&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;0
+Seq&#34;cat&#34;, 2), (&#34;cat&#34;, 5), (&#34;mouse&#34;, 4
+                ↓ byKey
+Seq&#34;cat&#34;,Seq(2,5,(&#34;mouse&#34;,Seq(4)))
+                ↓max
+Seq&#34;cat&#34;, 5),(&#34;mouse&#34;, 4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;100
+(&#34;cat&#34;,100),(&#34;mouse&#34;,100)
+Seq&#34;cat&#34;, 2), (&#34;cat&#34;, 5), (&#34;mouse&#34;, 4
+                ↓ byKey
+Seq&#34;cat&#34;,Seq(2,5,(&#34;mouse&#34;,Seq(4)))
+                ↓max
+Seq&#34;cat&#34;, 5),(&#34;mouse&#34;, 4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/**
+ *100  &amp;#8594; 在每个分区对每个key赋值1()key:100
+ *List&#34;cat&#34;, 2), (&#34;cat&#34;, 5), (&#34;mouse&#34;, 4), (&#34;cat&#34;, 12), (&#34;dog&#34;, 12), (&#34;mouse&#34;, 2
+ *                ↓
+ *partID:0
+ *List&#34;cat&#34;, 2), (&#34;cat&#34;, 5), (&#34;mouse&#34;, 4),|(&#34;cat&#34;, 100),(&#34;mouse&#34;, 100
+ *                ↓ byKey
+ *Seq&#34;cat&#34;,Seq(2,5,100,(&#34;mouse&#34;,Seq(4,100)))
+ *                ↓ max
+ *Seq&#34;cat&#34;, 100),(&#34;mouse&#34;, 100
+ *
+ *partID:1
+ *List&#34;cat&#34;, 12), (&#34;dog&#34;, 12), (&#34;mouse&#34;, 2),|(&#34;cat&#34;, 100),(&#34;dog&#34;, 100),(&#34;mouse&#34;, 100
+ *                ↓ byKey
+ *Seq&#34;cat&#34;,Seq(12,100,(&#34;mouse&#34;,Seq(2,100)),(&#34;dog&#34;,Seq(12,100)))
+ *                ↓ max
+ *Seq&#34;cat&#34;, 100),(&#34;mouse&#34;, 100),(&#34;dog&#34;, 100
+ *
+ *partID:0       partID:1
+ *           ↓ &lt;em&gt;+&lt;/em&gt;
+ *Seq&#34;cat&#34;, 200),(&#34;mouse&#34;, 200),(&#34;dog&#34;, 100
+*/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/*
+a  Seq4,d), (1,d), (3,d&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;d  Seq1,b), (2,b), (1,b), (3,b&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;a分区中没有键(2对)应的值  -&amp;#8594; CompactBuffer()&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;        d分区             a分区
+(4,(CompactBuffer(),CompactBuffer(d)))
+(1,(CompactBuffer(b, b),CompactBuffer(d)))
+(3,(CompactBuffer(b),CompactBuffer(d)))
+(2,(CompactBuffer(b),CompactBuffer()))
+*/&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup $STORM_HOME/bin/storm nimbus &amp;amp;
+nohup $STORM_HOME/bin/storm ui &amp;amp;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup $STORM_HOME/bin/storm supervisor &amp;amp;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;[(1,turkey),(2,rabbit),(2,salmon)]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;[(1,[&#34;dog&#34;])]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;15039811747&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/tmp/wuliuxiugai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

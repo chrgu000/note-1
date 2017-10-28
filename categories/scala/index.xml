@@ -9,6 +9,42 @@
     <atom:link href="/categories/scala/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Scala 参考</title>
+      <link>/post/bigdata/scala/scala-ref/</link>
+      <pubDate>Fri, 28 Jul 2017 09:38:57 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/scala-ref/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Scala 参考&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_scala_参考&#34;&gt;1. Scala 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_scala_参考&#34;&gt;1. Scala 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://alvinalexander.com/scala&#34; class=&#34;bare&#34;&gt;https://alvinalexander.com/scala&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://dzone.com&#34; class=&#34;bare&#34;&gt;https://dzone.com&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/lauris/awesome-scala&#34; class=&#34;bare&#34;&gt;https://github.com/lauris/awesome-scala&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html&#34; class=&#34;bare&#34;&gt;https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>快学Scala</title>
       <link>/post/bigdata/scala/%E5%BF%AB%E5%AD%A6Scala/</link>
       <pubDate>Wed, 21 Jun 2017 13:03:08 +0000</pubDate>
@@ -257,6 +293,9 @@
   case Calculator(&#34;HP&#34;, &#34;30B&#34;) &amp;#8658; &#34;business&#34;
   case Calculator(ourBrand, ourModel) &amp;#8658; &#34;Calculator: %s %s is of unknown type&#34;.format(ourBrand, ourModel)
 }&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;val wepons = Map(&#34;AK&#34; &amp;#8594; 12,&#34;DBL&#34;)&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

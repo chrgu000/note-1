@@ -1,0 +1,23 @@
+---
+
+- name: Copy Flume 包
+  copy:
+    src: '{{ srcdir }}/{{ flume }}'
+    dest: /tmp/{{ flume }}
+
+- unarchive:
+    src: '/tmp/{{ flume }}'
+    dest: '{{ appdir }}'
+    remote_src: True
+
+- file:
+    path: '{{ appdir }}/flume-ng-1.6.0-cdh5.7.1'
+    state: directory
+    owner: hadoop
+    group: hadoop
+    recurse: yes
+
+- name: Copy profile
+  copy:
+    src: '{{ srcdir }}/bigdata.sh'
+    dest: /etc/profile.d/

@@ -1,4 +1,26 @@
-jdk: jdk-7u79-linux-x64.tar.gz
-hadoop: hadoop-2.7.2.tar.gz
-spark: spark-1.5.3.tar.gz
-hive: apache-hive-2.1.1-bin.tar.gz
+jdk: jdk-7u45-linux-x64.tar.gz
+scala: scala-2.10.6.tgz
+hadoop: hadoop-2.6.5.tar.gz
+spark: spark-1.6.1-bin-hadoop2.6.tar.gz
+zookeeper: zookeeper-3.4.8.tar.gz
+hbase: hbase-1.2.6-bin.tar.gz
+storm: apache-storm-0.9.6.tar.gz
+kafka: kafka_2.10-0.8.2.2.tgz
+flume: apache-flume-1.6.0-bin.tar.gz
+
+srcdir: /root/share/soft/soft
+appdir: /home/hadoop/app
+
+
+hadoopconf: /root/share/soft/soft/hadoop-conf
+hbaseconf: /root/share/soft/soft/hbase-conf
+
+zookeeperdata: /home/hadoop/data/zookeeper/zkdata
+zookeeperlog: /home/hadoop/log/zookeeper/zkdatalog
+zookeeperhome: /home/hadoop/app/zookeeper-3.4.8/conf
+
+hadoophome: /home/hadoop/app/hadoop-2.6.5/etc/hadoop
+hbasehome: /home/hadoop/app/hbase-1.2.6/conf
+kafkahome: /home/hadoop/app/kafka_2.10-0.8.2.2/config
+
+stormhome: /home/hadoop/app/apache-storm-0.9.6/conf

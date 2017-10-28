@@ -9,6 +9,182 @@
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>问题总结</title>
+      <link>/post/bigdata/%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 19 Sep 2017 08:32:40 +0000</pubDate>
+      
+      <guid>/post/bigdata/%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_hbase&#34;&gt;1. Hbase&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_hbase&#34;&gt;1. Hbase&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;单节点启动 只有 HMaster 进程&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>机器学习与数学基础</title>
+      <link>/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sun, 27 Aug 2017 12:52:28 +0000</pubDate>
+      
+      <guid>/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;机器学习与数学基础&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_不明白&#34;&gt;1. 不明白&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_不明白&#34;&gt;1. 不明白&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;协方差&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SparkSql</title>
+      <link>/post/bigdata/spark/spark-sql2/</link>
+      <pubDate>Fri, 11 Aug 2017 14:43:47 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-sql2/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;SparkSql2&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_sql2&#34;&gt;1. Spark SQL2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_sql2&#34;&gt;1. Spark SQL2&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.spark.sql.SparkSession#sql
+  org.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SparkSql</title>
+      <link>/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/</link>
+      <pubDate>Fri, 11 Aug 2017 14:43:47 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;SparkSql2&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_sql2&#34;&gt;1. Spark SQL2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_sql2&#34;&gt;1. Spark SQL2&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;逻辑查询计划图
+物理查询计划
+任务调度
+任务分布式执行&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;前三个阶段 driver端完成&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;逻辑执行图
+    完全依赖
+        新生成的RDD的每个Partition完全依赖前一个依赖的某一个Partition
+    部分依赖
+        shuffle
+        新生成的RDD的每一个Partition的部分数据完全依赖前一个依赖的某一个Partition的部分数据&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;一对一 全依赖
+map filter flatMap&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;部分依赖   shuffle Rdd
+groupByKey
+reduceByKey&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;物理查询计划&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;划分 stage  以 shuffle 划分&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;每一个stage会产生 多个 task
+将尽可能多的
+不是一个partition一个task&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;几个Action 几个Job&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;一个job 多个stage&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;每个 stage 有很多个 task&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;每个 executer -&amp;#8594; process(进程) -&amp;#8594; task(线程)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;shuffle task 瓶颈所在  网络瓶颈&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;groupByKey -&amp;#8594; 新的RDD
+    shuffle RDD&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;reduceByKey
+    两种 RDD&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark historyserver 配置与启动&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation-enable&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log.server.url&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;http://master:19888/jobhistory/logs&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>spark hive</title>
       <link>/post/bigdata/spark/spark-hive/</link>
       <pubDate>Sat, 17 Jun 2017 14:11:22 +0000</pubDate>
@@ -5884,6 +6060,9 @@ hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/tagged/apache-spark&#34; class=&#34;bare&#34;&gt;https://stackoverflow.com/questions/tagged/apache-spark&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/u012318074/article/details/56835532&#34; class=&#34;bare&#34;&gt;http://blog.csdn.net/u012318074/article/details/56835532&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

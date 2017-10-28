@@ -672,6 +672,14 @@ git pull
 git push&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git remote add origin git@git.oschina.net:dishui/project.git
+git remote set-url origin git@git.oschina.net:dishui/project.git
+git add . &amp;amp;&amp;amp; git commit -m &#34;2017-07-10&#34;
+git push origin master:pingan&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_综合使用&#34;&gt;2.2.1. 综合使用&lt;/h4&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Posts" />
+<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/post/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+	<div id="main-content" class="mr-loop mr-content" role="main">
+		
+		<header class="page-header">
+			<h1 class="page-title">Posts</h1>
+		</header>
+		
+		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture3/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 3 课：类型与变量 基本信息  课程时长：32:37 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:57] 基本类型 [11:25] 类型零值 [16:30] 类型别名 [19:20] 变量的声明与赋值 [29:20] 类型转换 [32:13] 课堂作业布置  作业答案  下堂课讲解  补充说明  从严格意义上讲 type newInt int, 这里 newInt 并不能说是 int 的别名，而只是底层数据结构相同，在这里称为自定义类型，在进行类型转换时仍旧需要显式转换，但 byte 和 rune 确确实实为 uint8 和 int32 的别名，可以相互进行转换。有关于自定义类型将在后面的教程中进行讲解。 Var() 变量组可以在函数体内用于声明局部变量，感谢 Hubery 指出，但并不建议这样使用。  相关链接  暂无链接  视频错误 [04:30] var组只能声明全局变量，不能在函数体中使用。[x] var组只能声明全局变量，也可以在函数体中使用。[√]  课程链接  第 2 课：Go 基础知识 第 4 课：常量与运算符  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture4/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 4 课：常量与运算符 基本信息  课程时长：28:21 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:35] 常量的定义 [11:30] 常量的枚举 [17:05] 运算符 [27:45] 课堂作业布置  作业答案  下堂课讲解  补充说明  《Go 编程基础》视频第 4 课： 常量与运算符 笔记  相关链接  暂无链接  课程链接  第 3 课：类型与变量 第 5 课：控制语句  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture5/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 5 课：控制语句 基本信息  课程时长：28:33 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:51] 基础知识补充（指针、递增递减语句） [06:45] if判断语句 [10:32] for循环语句 [15:50] switch选择语句 [21:26] 跳转语句 [27:42] 课堂作业布置  作业答案  下堂课讲解  补充说明  如果在 if 的条件语句两边加上括号不会报错，但在 gofmt 时会自动消除  相关链接  暂无链接  课程链接  第 4 课：常量与运算符 第 6 课：数组 array  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture6/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 6 课：数组 array 基本信息  课程时长：22:01 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:23] array的定义 [10:02] 指向数组的指针和指针数组 [12:30] 数组之间的比较 [14:22] 使用new创建数组 [16:09] 多维数组 [18:45] 冒泡排序  作业答案  暂无作业  补充说明  for 循环中声明的变量在每次循环结束都会消失，作用域只在当次循环  相关链接  暂无链接  课程链接  第 5 课：控制语句 第 7 课：切片 slice  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture7/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 7 课：切片 slice 基本信息  课程时长：34:51 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:15] slice 概述 [05:20] 创建 slice [18:25] reslice 概述 [23:00] append()与slice [29:55] copy()与slice [33:55] 课堂作业布置  作业答案  下堂课讲解  补充说明  26:37 处的“数组” a 实际为切片，但不影响教程演示。若想其成为数组，应把 [] 改为 [...]。  相关链接  暂无链接  课程链接  第 6 课：数组 array 第 8 课：map  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture8/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 8 课：map 基本信息  课程时长：23:55 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:00] map 概述 [05:10] 简单 map 的创建与使用 [08:26] 复杂 map 与键值对操作 [13:10] map 与 slice 的迭代操作 [15:15] 元素类型为 map 的 slice [18:45] map 的间接排序 [22:30] 课堂作业布置  作业答案  下堂课讲解  补充说明  在开头的知识回顾中，reslice 的操作只是将 slice 指向底层的指针的值进行了调整，而未发生值的拷贝。  相关链接  暂无链接  课程链接  第 7 课：切片 slice 第 9 课：函数 function  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture9/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 9 课：函数 function 基本信息  课程时长：28:30 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:50] 函数概述 [05:00] 函数的定义与使用 [08:00] 不定长变参 [10:52] 传递值类型和引用类型 [13:20] 匿名函数与闭包 [18:15] defer 用法 [23:06] panic 与 recover [28:06] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 8 课：map 第 10 课：结构 struct  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/jbpm/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						bpm_module
+bpm_definition 流程定义
+决策
+JbpmServiceImpl
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/pc/1/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						js html5渲染的3D玫瑰花（程序员的情人节礼物）var b = document.body;var c = document.getElementsByTagName('canvas')[0];var a = c.getContext('2d');document.body.clientWidth;// start of submission //with(m=Math)C=cos,S=sin,P=pow,R=random;c.width=c.height=f=500;h=-250;function p(a,b,c){if(c60)return[S(a*7)*(13+5/(.2+P(b*4,4)))-S(b)*50,b*f+50,625+C(a*7)*(13+5/(.2+P(b*4,4)))+b*400,a*1-b/2,a];A=a*2-1;B=b*2-1;if(A*A+B*B37){n=(j=c&1)?6:4;o=.5/(a+.01)+C(b*125)*3-a*300;w=b*h;return[o*C(n)+w*S(n)+j*610-390,o*S(n)-w*C(n)+550-j*350,1180+C(B+A)*99-j*300,.4-a*.1+P(1-B*B,-h*6)*.15-a*b*.4+C(a+b)/5+P(C((o*(a+1)+(B0?w:-w))/25),30)*.1*(1-B*B),o/1e3+.7-o*w*3e-6]}if(c32){c=c*1.16-.15;o=a*45-20;w=b*b*h;z=o*S(c)+w*C(c)+620;return[o*C(c)-w*S(c),28+C(B*.5)*99-b*b*b*60-z/2-h,z,(b*b*.3+P((1-(A*A)),7)*.15+.3)*b,b*.7]}o=A*(2-b)*(80-c*2);w=99-C(A)*120-C(b)*(-h-c*4.9)+C(P(1-b,7))*50+c*2;z=o*S(c)+w*C(c)+700;return[o*C(c)-w*S(c),B*99-C(P(b, 7))*50-c/3-z/1.35+450,z,(1-b/1.2)*.9+a*.1, P((1-b),20)/4+.05]}}setInterval('for(i=0;iz)m[q]=z,a.fillStyle="rgb("+~(s[3]*h)+","+~(s[4]*h)+","+~(s[3]*s[3]*-80)+")",a.fillRect(x,y,1,1)}',0)// end of submission //
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/pc/222/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						病害形成的原因裂缝（1）横向裂缝：裂缝与路中心线基本垂直，缝宽不一，缝长贯穿部分路幅或整个路幅。裂缝一般比较规则，每隔一定的距离产生一道裂缝，裂缝间距的大小取决于当地的气温和沥青面层与半刚性基层材料的抗裂性能。
+（2）纵向裂缝：裂缝走向基本与行车方向平行，裂缝长度和宽度不一。主要集中在行车道轮迹分布密集处，因为高速公路交通渠化分明，轮迹位置及轮迹分布范围较小，大车、慢车、重型车辆全部集中在行车道上，快车、小型车，轻型车行驶于超车道机会明显增多，超车道上荷载较小，交通量相对较小，纵向裂缝也较小，纵缝缝宽一般在5～10mm，靠近标线或位于车道中央，且绵延几十米，甚至数百米。常以单条裂缝形式出现。产生的原因有两种可能性，一种情况是沥青面层分路幅摊铺时，两幅接茬处未处理好，在车辆荷载及大气因素作用下逐渐开裂；另一种情况是由于路基压实度不均匀或由于路基边缘受水侵蚀产生不均匀沉陷而引起。
+（3）网状裂缝：裂缝纵横交错，缝宽1mm以上，缝距1000px以下，1m2以上。
+（4）反射裂缝：主要是因为软基路段不均匀沉降引起的裂缝直接反射到沥青路面。另外，行车荷载的作用加速裂缝的发展。
+车辙车辙一般是在温度较高的季节，沥青面层在车辆的反复碾压下产生永久变形和塑性流动而逐渐形成。它通常是在伴随沥青面层压缩沉陷的同时，出现侧向隆起，二者组合起来构成的。路面的永久变形主要发生在沥青面层中。因此，为了延缓车辙的形成，主要应从提高沥青面层材料的高温稳定性来着手考虑。此外，车辙的严重程度与沥青面层的结构组成和配合比有极大关系，ⅱ型沥青混凝土路面自身的抗车辙能力比ⅰ型好的多。上海市中心城区的沥青路面车辙病害也较普遍，大部分集中在公路交叉口，车辆来往多，高温天气路面下受碾压严重更容易出现车辙，修补更换新的沥青混凝土后，但未经严格保养就投入使用，在新的碾压下又会出现车辙，往往出现恶性循环。根据湿热地区高速公路建设和养护的实践分析了沥青路面常见病害的各种成因，提出了各种病害的处治方法，并对我国今后高速公路建设、设计、施工及管养等方面提出了一些建议。沥青路面因具有地质条件适应性强、行车舒适、维护方便等优点而被广泛用于高速公路。在高速公路通车后，因行车荷载作用、外界环境影响以及设计、施工中存在的不足，沥青路面会逐步出现多种路面病害。
+沉陷沥青黏度小会影响沥青与矿料的黏附性。同时若沥青混合料的油石比太小,或在沥青加热和沥青混合料拌制过程中温度太高致使沥青过温,都会引起沥青混合料的沥青膜相对变薄,抗变形能力降低,脆性增加,空隙率偏大。这些都会导致沥青膜暴露太多,沥青的老化作用加快,同时渗水性加大,进而加快水对沥青的剥落作用,最终在车辆荷载作用下引起路面开裂、沉陷。
+坑槽沥青路面坑槽的产生往往都有一个形成的时间过程，开始时是局部裂缝进而龟裂松散，在行车荷载和雨水等因素下逐步形成坑槽。常见原因主要有以下几种：（1）路面厚度与压实度不够性坑槽 面层铺筑过程中易出现压实度不足，造成面层内部孔隙率较大，使得沥青混合料粘结力、防水性能下降；拌和厂离施工现场较远，运距过长，运输途中沥青混合料热量损失较大，运至现场后温度不能满足铺筑要求；路面下基层局部标高控制不严，导致沥青上面层个别地方厚度不够，在行车作用下，该处首先破损，形成坑槽。（2）粘结层不牢坑槽 混合料拌和摊铺时，下层表面含有泥、灰等杂物，使上下层不能有效粘结，而形成坑槽，如桥面上形成的坑，这类坑槽修补二次损坏频率较高，一般应在底层先打入砼上面层再用沥青料填补修复。（3）水损害性坑槽这种坑槽是沥青混凝土路面早期破坏中最常见的坑槽，水损害破坏往往是从沥青面层的中面层开始的。水分进入沥青路面，滞留在中面层，当集料与沥青膜剥离后，沥青混合料不再是一个整体，集料在荷载的作用下，对基层产生了力的作用，基层的局部松落形成灰浆，从路面的缝隙向上挤出来，在沥青路面上形成白色的唧浆。如此循环不断，形成了水损害性坑槽。（4）运营期间车辆造成的坑槽 柴油、机油滴漏在路表面上，沥青被稀释后，粘结力降低，集料散失形成坑槽；钢圈或车辆运输的重物，刮撞形成的坑槽；千斤顶顶出的坑槽以及火烧形成的坑槽。（5）基层、底基层损坏产生翻浆形成的坑槽
+泛油和油斑泛油和油斑这两种病害产生的最主要的原因是混合料离析。混合料发生离析时，粗集料和细集料分别集中于铺筑层的某些位置，使沥青混凝土不均匀、配合比级配与原设计不符，混合料失去原设计达到的粘接力就形成了路面推移，而混合料的不均匀还会导致集料和沥青分离，沥青集中到一处形成泛油和油斑。
+路面推移沥青混凝土面层推移，主要是混合料在道路的纵向发生位移，它可能是在施工期间发生或者是在道路通车一段时间后产生，尤其在高温天气时行车荷载的作用。
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+
+		
+<div class="mr-loop-pagination clearfix">
+	
+	<a class="page-numbers" href="/post/page/26/">«</a>
+	
+	<span class="page-numbers current">27/28</span>
+	
+	<a class="page-numbers" href="/post/page/28/">»</a>
+	
+</div>
+
+	</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+<div class="mr-widget widget_search navbar-wrapper" >
+	<div class="search-form" role="search" >
+		<label>
+			<span class="screen-reader-text">Search for:</span>
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
+		</label>
+		
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+	</div>
+</div>
+
+	
+	
+
+
+<div class="mr-widget widget_categories">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
+	<ul>
+		
+		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
+		
+		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
+		
+		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
+		
+		<li class="cat-item"><a href="/categories/go">Go</a></li>
+		
+		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
+		
+		<li class="cat-item"><a href="/categories/java">Java</a></li>
+		
+		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
+		
+		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
+		
+		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
+		
+		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
+		
+		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
+		
+		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
+		
+		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
+		
+		<li class="cat-item"><a href="/categories/work">Work</a></li>
+		
+		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
+		
+	</ul>
+</div>
+
+
+
+    
+
+
+<div class="mr-widget widget_tag_cloud">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
+	<div class="tagcloud">
+		
+			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
+		
+			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
+		
+			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
+		
+			<a href="/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
+		
+			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
+		
+			<a href="/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
+		
+			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
+		
+			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
+		
+			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
+		
+			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
+		
+			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
+		
+			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
+		
+			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
+		
+	</div>
+</div>
+
+
+
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

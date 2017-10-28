@@ -1,0 +1,31 @@
+---
+
+- name: 创建zookeeper data目录
+  file:
+    path: '{{ zookeeperdata }}'
+    state: directory
+    owner: hadoop
+    group: hadoop
+
+- name: 创建zookeeper log 目录
+  file:
+    path: '{{ zookeeperlog }}'
+    state: directory
+    owner: hadoop
+    group: hadoop
+
+- name: 复制 zoo.cfg
+  copy:
+    src: '{{ srcdir }}/zoo.cfg'
+    dest: '{{ zookeeperhome }}'
+
+- name: 复制 hadoop-conf 文件夹
+  copy:
+    src: '{{ hadoopconf }}/{{ item.src }}'
+    dest: '{{ item.dest }}'
+  with_items:
+    - { src: 'slaves', dest: '{{ hadoophome }}' }
+    - { src: 'core-site.xml', dest: '{{ hadoophome }}' }
+    - { src: 'hdfs-site.xml', dest: '{{ hadoophome }}' }
+    - { src: 'mapred-site.xml', dest: '{{ hadoophome }}' }
+    - { src: 'yarn-site.xml', dest: '{{ hadoophome }}' }

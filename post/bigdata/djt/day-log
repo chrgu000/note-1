@@ -1,0 +1,35 @@
+2017-10-03
+    flume 采集日志
+
+2017-10-10
+  kafka 高阶/低阶的区别
+
+  高阶
+    topic里面有分区,对高阶消费者来说,自己封装了一些API,我们启动一些线程,
+    高阶API会把分区均匀的分给线程
+
+    线程去读取分区内容是由高阶API来分配的
+
+
+    checkpoint  
+      元数据信息(meta)
+      配置信息
+      未完成的job
+      rdd依赖关系
+
+2017-10-11
+  /home/hadoop/data/tmp
+  rm -rf /home/hadoop/data/journaldata
+
+  # namenode高可用 所有节点启动 journalnode,主备namenode之间进行数据同步
+  sh $HADOOP_HOME/sbin/hadoop-daemon.sh start journalnode
+  sh $HADOOP_HOME/sbin/hadoop-daemon.sh stop journalnode
+
+  hdfs namenode -format
+
+  CID-beb6659a-dfe3-4ba3-bb39-c14798c178ea
+
+  tail -200 /home/hadoop/app/hadoop-2.6.5/logs/hadoop-hadoop-datanode-${HOSTNAME}.log
+
+
+  sh $TOOLS_HOME/flume/start-flume.sh

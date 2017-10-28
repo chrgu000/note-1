@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零散散</title>
+    <link>/categories/djt/index.xml</link>
+    <description>Recent content on 零零散散</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/djt/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>离线计算项目</title>
+      <link>/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Wed, 27 Sep 2017 09:58:17 +0000</pubDate>
+      
+      <guid>/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;离线计算项目&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_flume&#34;&gt;1. Flume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kill_flume&#34;&gt;kill flume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_interceptor_conf&#34;&gt;interceptor.conf&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_mapper_reducer_编写步骤&#34;&gt;1. Mapper Reducer 编写步骤&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_每天收视的总人数&#34;&gt;每天收视的总人数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_yarn&#34;&gt;yarn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_创建分区表&#34;&gt;创建分区表&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_节目&#34;&gt;1. 节目&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_频道&#34;&gt;2. 频道&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_count&#34;&gt;3. count&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_flume&#34;&gt;1. Flume&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;rm -rf /home/hadoop/flume/flume-collect/checkpoint/* &amp;amp;&amp;amp; \
+rm -rf /home/hadoop/flume/flume-collect/dataDir/*&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/agg.conf &amp;gt; ~/log/flume/${HOSTNAME}-flume.log 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/collect.conf &amp;gt; ~/log/flume/${HOSTNAME}-flume.log 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_kill_flume&#34; class=&#34;sect0&#34;&gt;kill flume&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat ~/log/flume/pid | xargs -I pid kill pid&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/spool.conf &amp;gt; ~/log/flume/djt11-flume.log -Dflume.root.logger=INFO,console 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_interceptor_conf&#34; class=&#34;sect0&#34;&gt;interceptor.conf&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/interceptor.conf &amp;gt; ~/log/flume/djt11-flume.log -Dflume.root.logger=INFO,console 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo &#34;&#34; &amp;gt; ~/log/flume/$HOSTNAME-flume.log
+tail -f ~/log/flume/${HOSTNAME}-flume.log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;tail -f ~/log/flume/djt12-flume.log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;tail -f ~/log/flume/djt13-flume.log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mount -t nfs 192.168.137.2:/e/djt /home/hadoop/share&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_mapper_reducer_编写步骤&#34;&gt;1. Mapper Reducer 编写步骤&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;创建Configuration&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;job实例&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置输出key value分隔符&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;setJar&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;setMapper&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;setOutputKey&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;setOutputValue
+.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat deploy.conf|grep -v &#39;^#&#39;|grep &#39;,all,&#39;|awk -F&#39;,&#39; &#39;{print $1}&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;flume 采集 小文件  sink 到 hdfs 中, 会不会一个小文件一个block块&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;stbNum + &#34;@&#34; + date + &#34;@&#34; + sn + &#34;@&#34; + p+ &#34;@&#34; + s + &#34;@&#34; + e + &#34;@&#34;
+            // + duration&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;stbNum      机顶盒
+date        日期
+sn          频道
+p           节目内容
+s           起始时间
+e           结束时间
+duration    收看时长&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;每个节目每天的收视人数和人均收视时长&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sn@date&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;收视人数&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum(stbNum)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mount -t nfs 192.168.137.2:/e/djt /home/hadoop/share&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mkdir -p /home/hadoop/data/flume/{checkpoint,dataDir}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $TOOLS_HOME/flume/start-flume.sh
+sh $TOOLS_HOME/flume/stop-flume.sh&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;tail -f $LOG_HOME/flume/${HOSTNAME}-flume.log&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;java -cp tv-1.0-jar-with-dependencies.jar io.dishui.upload.CopyManyFilesToHDFS &#34;hdfs://djt11:9000&#34; &#34;E:\\djt\\resource\\guangdian\\73\\*&#34; &#34;hdfs://djt11:9000/tv/&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar tv-1.0.jar io.dishui.tv.reducer.ParseAndFilterLog&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--class ParseAndFilterLog \
+--master spark://djt11:7077 \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 1g \
+--total-executor-cores 4 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/tv/* \
+hdfs://cluster1/output/spark-output-3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark.files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml&lt;/a&gt; &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查看文件的block块数
+hadoop fsck /tv/2012-09-17 -files -blocks&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--class ParseAndFilterLog \
+--master spark://djt11:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/tv/* \
+hdfs://cluster1/output/spark-output-1&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_每天收视的总人数&#34; class=&#34;sect0&#34;&gt;每天收视的总人数&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar tv-1.0-jar-with-dependencies.jar io.dishui.my.extract.ProgramNumAndTime \
+/output/spark-output-3/* /output/ProgramNumAndTime-output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hdfs dfs -cat /output/ProgramNumAndTime-output/* | wc -l&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--class ProgramNumAndTime \
+--master spark://djt11:7077 \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 1g \
+--total-executor-cores 4 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/output/spark-output-3/* \
+hdfs://cluster1/output/spark-ProgramNumAndTime-output&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_yarn&#34; class=&#34;sect0&#34;&gt;yarn&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
+--class extract.ProgramAvgAndReachNum \
+--master yarn \
+--deploy-mode client \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 1g \
+--total-executor-cores 4 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/guangdian/2012-09-18/parselog-out/* \
+hdfs://cluster1/output/spark-ProgramAvgAndReachNum-output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hdfs dfs -cat /output/spark-ProgramNumAndTime-output2/* | wc -l&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar guangdian.jar io.dishui.tv.reducer.ParseAndFilterLog /tv/2012-09-17 /tmp&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;io.dishui.tv.reducer.ParseAndFilterLog&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_创建分区表&#34; class=&#34;sect0&#34;&gt;创建分区表&lt;/h1&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_节目&#34;&gt;1. 节目&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;columnlog_min&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_min(
+    tvcolumn STRING COMMENT &#39;节目&#39;,
+    tvtime STRING COMMENT &#39;日期&#39;,
+    tvmin STRING COMMENT &#39;分钟&#39;,
+    avgnum INT COMMENT &#39;平均收视人数&#39;,
+    reachnum INT COMMENT &#39;到达人数&#39;,
+    tvrating DOUBLE COMMENT &#39;收视率&#39;,
+    reachrating DOUBLE COMMENT &#39;到达率&#39;,
+    marketshare DOUBLE COMMENT &#39;市场份额&#39;
+) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_hour LIKE columnlog_min;
+CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_day LIKE columnlog_min;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_频道&#34;&gt;2. 频道&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS channellog_min(
+    tvchannel STRING COMMENT &#39;节目&#39;,
+    tvtime STRING COMMENT &#39;日期&#39;,
+    tvmin STRING COMMENT &#39;分钟&#39;,
+    avgnum INT COMMENT &#39;平均收视人数&#39;,
+    reachnum INT COMMENT &#39;到达人数&#39;,
+    tvrating DOUBLE COMMENT &#39;收视率&#39;,
+    reachrating DOUBLE COMMENT &#39;到达率&#39;,
+    marketshare DOUBLE COMMENT &#39;市场份额&#39;
+) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS channellog_hour LIKE channellog_min;
+CREATE EXTERNAL TABLE IF NOT EXISTS channellog_day LIKE channellog_min;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_count&#34;&gt;3. count&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;columnlog_count&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_count(
+    tvcolumn STRING COMMENT &#39;节目&#39;,
+    tvtime STRING COMMENT &#39;日期&#39;,
+    num STRING COMMENT &#39;每天收视人数&#39;,
+    avg_timelen INT COMMENT &#39;平均收视时长&#39;,
+) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;channellog_count&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS channellog_count(
+    tvchannel STRING COMMENT &#39;频道&#39;,
+    tvtime STRING COMMENT &#39;日期&#39;,
+    num STRING COMMENT &#39;每天收视人数&#39;,
+    avg_timelen INT COMMENT &#39;平均收视时长&#39;,
+) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;truncate table columnlog_min;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS test_columnlog_min2(
+    tvcolumn STRING COMMENT &#39;节目&#39;,
+    tvdate1 STRING ,
+    tvmin STRING COMMENT &#39;分钟&#39;,
+    avgnum INT COMMENT &#39;平均收视人数&#39;,
+    reachnum INT COMMENT &#39;到达人数&#39;,
+    tvrating DOUBLE COMMENT &#39;收视率&#39;,
+    reachrating DOUBLE COMMENT &#39;到达率&#39;,
+    marketshare DOUBLE COMMENT &#39;市场份额&#39;
+) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/test_guangdian_ext&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select * from test_columnlog_min1 where tvdate=&#39;2012-09-20&#39; limit 5&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;alter table test_columnlog_min2 add partition (tvdate=&#39;2012-09-20&#39;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select * from test_columnlog_min2 limit 5;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS test1(
+    tvcolumn STRING COMMENT &#39;节目&#39;,
+    tvmin STRING COMMENT &#39;分钟&#39;
+) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/test_ext&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS test2(
+    tvcolumn STRING COMMENT &#39;节目&#39;,
+    tvdate STRING COMMENT &#39;日期&#39;,
+    tvmin STRING COMMENT &#39;分钟&#39;
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE
+LOCATION &#39;/test_ext2&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DJT_TV_OUTPUT=/guangdian
+startdate=2012-09-17&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hive -e &#34;
+load data inpath &#39;${DJT_TV_OUTPUT}/${startdate}/programRating-out/&#39; into table columnlog_min partition(tvdate=&#39;${startdate}&#39;);
+exit;
+&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;load data inpath &#39;/guangdian/2012-09-20/programRating-out/&#39; into table test_columnlog_min1 partition(tvdate=&#39;2012-09-20&#39;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;load data inpath &#39;/test_guangdian_ext/tvdate=2012-09-20&#39; into table test_columnlog_min1 partition(tvdate=&#39;2012-09-20&#39;);&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;startdate 2012-09-17
+enddate 2012-09-20&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select tvcolumn,tvdate1,concat(substr(tvmin,0,2),&#39;:00&#39;),sum(avgnum)/count(&lt;strong&gt;),sum(reachnum)/count(&lt;/strong&gt;),sum(tvrating)/count(&lt;strong&gt;),sum(reachrating)/count(&lt;/strong&gt;),sum(marketshare)/count(*) from test_columnlog_min2 where tvdate=&#39;2012-09-20&#39; group by  tvcolumn, tvdate1, concat(substr(tvmin,0,2),&#39;:00&#39;) limit 5;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(&#34;cat&#34;, (1,2)), (&#34;cat&#34;, (1,5)), (&#34;mouse&#34;, (1,4)), (&#34;cat&#34;, (11,2)), (&#34;dog&#34;, (11,2)), (&#34;mouse&#34;,(1, 2))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark 调优  spark sql 调优 方面的&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop jar guangdian.jar io.dishui.tv.mapper.ExtractChannelNumAndTimelen ${DJT_TV_OUTPUT}/${startdate}/parselog-out/  ${DJT_TV_OUTPUT}/${startdate}/channelNumAndTimelen-out&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark-submit \
+--class extract.ProgramAvgAndReachNum \
+--master yarn \
+--deploy-mode client \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-1.0-jar-with-dependencies.jar \
+${DJT_TV_OUTPUT}/${startdate}/parselog-out/ \
+${DJT_TV_OUTPUT}/${startdate}/channelNumAndTimelen-out&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark-submit \
+--class extract.CurrentNum \
+--master yarn \
+--deploy-mode cluster \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 512m \
+--total-executor-cores 2 \
+guangdian-spark.jar \
+/guangdian-spark/2012-09-17/parselog-out \
+/guangdian-spark/2012-09-17/extractCurrentNum-out&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark-submit \
+--class extract.AnalyzeCountProgramRating \
+--master yarn \
+--deploy-mode cluster \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 1g \
+--total-executor-cores 2 \
+guangdian-spark.jar \
+/guangdian-spark/2012-09-17/programAvgAndReach-out/ \
+/guangdian-spark/2012-09-17/programRating-out \
+/guangdian-spark/2012-09-17/extractCurrentNum-out/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark-submit \
+--class extract.AnalyzeCountProgramRating \
+--master spark://djt11:7077 \
+--files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
+--executor-memory 1g \
+--total-executor-cores 2 \
+guangdian-spark.jar \
+/guangdian-spark/2012-09-17/programAvgAndReach-out/ \
+/guangdian-spark/2012-09-17/programRating-out \
+/guangdian-spark/2012-09-17/extractCurrentNum-out/&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

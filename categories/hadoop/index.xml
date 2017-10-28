@@ -9,6 +9,52 @@
     <atom:link href="/categories/hadoop/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>kafka</title>
+      <link>/post/bigdata/hadoop/kafka/</link>
+      <pubDate>Sat, 07 Oct 2017 21:07:39 +0000</pubDate>
+      
+      <guid>/post/bigdata/hadoop/kafka/</guid>
+      <description>&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;启动&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $TOOLS_HOME/kafka/start-kafka.sh&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;amp;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看
+kafka-topics.sh --zookeeper djt11:2181 --list&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建
+kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;发送消息
+kafka-console-producer.sh --broker-list djt11:9092 --topic test&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接收消息
+kafka-console-consumer.sh --zookeeper djt11:2181 --topic test --from-beginning&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看消费者组的消费情况
+kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --group console-consumer-14804&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>hive on spark</title>
       <link>/post/bigdata/hadoop/hive-on-spark/</link>
       <pubDate>Sun, 04 Jun 2017 19:56:49 +0000</pubDate>
@@ -2669,6 +2715,10 @@ emp.java&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;如果想做深入定制导出，则可修改上述代码文件&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;flume 小结
+&lt;a href=&#34;http://blog.csdn.net/a616413086/article/details/52575182&#34; class=&#34;bare&#34;&gt;http://blog.csdn.net/a616413086/article/details/52575182&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4373,6 +4423,7 @@ order by A.username,A.month;&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;a href=&#34;#_hiveserver2服务异常停止java_lang_outofmemoryerror_java_heap_space&#34;&gt;3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_hive_操作&#34;&gt;4. hive 操作&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -4610,6 +4661,50 @@ org.apache.hive.service.cli.HiveSQLException: Failed to open new session: java.l
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;export HADOOP_OPTS=&#34;$HADOOP_OPTS -server -verbose:gc  -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/hive&#34;&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_hive_操作&#34;&gt;4. hive 操作&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;往分区表中导入数据,首先要要导入原始表,然后从原始表中导入数据到分区表&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive&#34; class=&#34;bare&#34;&gt;https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://hadooped.blogspot.com/2013/06/apache-sqoop-part-3-data-transfer.html&#34; class=&#34;bare&#34;&gt;http://hadooped.blogspot.com/2013/06/apache-sqoop-part-3-data-transfer.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;把 hive 的查询结果 直接导出到 mysql&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;中文乱码&lt;/p&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;jdbc:mysql://djt11:3306/hive?createDatabaseIfNotExsit=true;characterEncoding=UTF-8&amp;lt;/value&amp;gt;
+  &amp;lt;description&amp;gt;JDBC connect string for a JDBC metastore&amp;lt;/description&amp;gt;
+&amp;lt;/property&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;#8201;&amp;#8212;&amp;#8201;修改字段注释字符集
+alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8;&amp;#8201;&amp;#8212;&amp;#8201;修改表注释字符集
+alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;&amp;#8201;&amp;#8212;&amp;#8201;修改分区表参数，以支持分区键能够用中文表示。
+alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;
+alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(4000) character set utf8;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5752,7 +5847,22 @@ hadoop fs -put /a.txt /wordcount/input&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&#34;http://lxw1234.com/&#34; class=&#34;bare&#34;&gt;http://lxw1234.com/&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/flume-ng-1.6.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/flume-ng-1.6.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/hbase-1.2.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/hbase-1.2.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/hive-1.1.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/hive-1.1.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/hue-3.9.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/hue-3.9.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/parquet-1.5.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/parquet-1.5.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/parquet-format-2.1.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/parquet-format-2.1.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/spark-1.6.0-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/spark-1.6.0-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/sqoop-1.4.6-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/sqoop-1.4.6-cdh5.7.1.tar.gz&lt;/a&gt;
+&lt;a href=&#34;http://archive-primary.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.7.1.tar.gz&#34; class=&#34;bare&#34;&gt;http://archive-primary.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.7.1.tar.gz&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

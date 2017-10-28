@@ -93,7 +93,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture3/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/03/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -102,7 +102,12 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 3 课：类型与变量 基本信息  课程时长：32:37 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:57] 基本类型 [11:25] 类型零值 [16:30] 类型别名 [19:20] 变量的声明与赋值 [29:20] 类型转换 [32:13] 课堂作业布置  作业答案  下堂课讲解  补充说明  从严格意义上讲 type newInt int, 这里 newInt 并不能说是 int 的别名，而只是底层数据结构相同，在这里称为自定义类型，在进行类型转换时仍旧需要显式转换，但 byte 和 rune 确确实实为 uint8 和 int32 的别名，可以相互进行转换。有关于自定义类型将在后面的教程中进行讲解。 Var() 变量组可以在函数体内用于声明局部变量，感谢 Hubery 指出，但并不建议这样使用。  相关链接  暂无链接  视频错误 [04:30] var组只能声明全局变量，不能在函数体中使用。[x] var组只能声明全局变量，也可以在函数体中使用。[√]  课程链接  第 2 课：Go 基础知识 第 4 课：常量与运算符  
+						解决方案三：提高shuffle操作的并行度 方案适用场景： 如果我们必须要对数据倾斜迎难而上，那么建议优先使用这种方案，因为这是处理数据倾斜最简单的一种方案。
+方案实现思路： 在对RDD执行shuffle算子时，给shuffle算子传入一个参数，比如reduceByKey(1000)，该参数就设置了这个shuffle算子执行时shuffle read task的数量。对于Spark SQL中的shuffle类语句，比如group by、join等，需要设置一个参数，即spark.sql.shuffle.partitions，该参数代表了shuffle read task的并行度，该值默认是200，对于很多场景来说都有点过小。
+方案实现原理： 增加shuffle read task的数量，可以让原本分配给一个task的多个key分配给多个task，从而让每个task处理比原来更少的数据。举例来说，如果原本有5个key，每个key对应10条数据，这5个key都是分配给一个task的，那么这个task就要处理50条数据。而增加了shuffle read task以后，每个task就分配到一个key，即每个task就处理10条数据，那么自然每个task的执行时间都会变短了。具体原理如下图所示。
+方案优点： 实现起来比较简单，可以有效缓解和减轻数据倾斜的影响。
+方案缺点： 只是缓解了数据倾斜而已，没有彻底根除问题，根据实践经验来看，其效果有限。
+方案实践经验： 该方案通常无法彻底解决数据倾斜，因为如果出现一些极端情况，比如某个key对应的数据量有100万，那么无论你的task数量增加到多少，这个对应着100万数据的key肯定还是会分配到一个task中去处理，因此注定还是会发生数据倾斜的。所以这种方案只能说是在发现数据倾斜时尝试使用的第一种手段，尝试去用嘴简单的方法缓解数据倾斜而已，或者是和其他方案结合起来使用。
 					</div>
 				</div>
 			</div>
@@ -113,7 +118,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture4/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/04/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -122,7 +127,11 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 4 课：常量与运算符 基本信息  课程时长：28:21 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:35] 常量的定义 [11:30] 常量的枚举 [17:05] 运算符 [27:45] 课堂作业布置  作业答案  下堂课讲解  补充说明  《Go 编程基础》视频第 4 课： 常量与运算符 笔记  相关链接  暂无链接  课程链接  第 3 课：类型与变量 第 5 课：控制语句  
+						解决方案四：两阶段聚合（局部聚合+全局聚合） 方案适用场景： 对RDD执行reduceByKey等聚合类shuffle算子或者在Spark SQL中使用group by语句进行分组聚合时，比较适用这种方案。
+方案实现思路： 这个方案的核心实现思路就是进行两阶段聚合。第一次是局部聚合，先给每个key都打上一个随机数，比如10以内的随机数，此时原先一样的key就变成不一样的了，比如(hello, 1) (hello, 1) (hello, 1) (hello, 1)，就会变成(1_hello, 1) (1_hello, 1) (2_hello, 1) (2_hello, 1)。接着对打上随机数后的数据，执行reduceByKey等聚合操作，进行局部聚合，那么局部聚合结果，就会变成了(1_hello, 2) (2_hello, 2)。然后将各个key的前缀给去掉，就会变成(hello,2)(hello,2)，再次进行全局聚合操作，就可以得到最终结果了，比如(hello, 4)。
+方案实现原理：将原本相同的key通过附加随机前缀的方式，变成多个不同的key，就可以让原本被一个task处理的数据分散到多个task上去做局部聚合，进而解决单个task处理数据量过多的问题。接着去除掉随机前缀，再次进行全局聚合，就可以得到最终的结果。具体原理见下图。
+方案优点：对于聚合类的shuffle操作导致的数据倾斜，效果是非常不错的。通常都可以解决掉数据倾斜，或者至少是大幅度缓解数据倾斜，将Spark作业的性能提升数倍以上。
+方案缺点：仅仅适用于聚合类的shuffle操作，适用范围相对较窄。如果是join类的shuffle操作，还得用其他的解决方案。 // 第一步，给RDD中的每个key都打上一个随机前缀。 JavaPairRDD&lt;String, Long&gt; randomPrefixRdd = rdd.mapToPair( new PairFunction&lt;Tuple2&lt;Long,Long&gt;, String, Long&gt;() { private static final long serialVersionUID = 1L; @Override public Tuple2&lt;String, Long&gt; call(Tuple2&lt;Long, Long&gt; tuple) throws Exception { Random random = new Random(); int prefix = random.nextInt(10); return new Tuple2&lt;String, Long&gt;(prefix + &quot;_&quot; + tuple.
 					</div>
 				</div>
 			</div>
@@ -133,7 +142,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture5/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/05/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -142,7 +151,12 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 5 课：控制语句 基本信息  课程时长：28:33 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:51] 基础知识补充（指针、递增递减语句） [06:45] if判断语句 [10:32] for循环语句 [15:50] switch选择语句 [21:26] 跳转语句 [27:42] 课堂作业布置  作业答案  下堂课讲解  补充说明  如果在 if 的条件语句两边加上括号不会报错，但在 gofmt 时会自动消除  相关链接  暂无链接  课程链接  第 4 课：常量与运算符 第 6 课：数组 array  
+						解决方案五：将reduce join转为map join 方案适用场景： 在对RDD使用join类操作，或者是在Spark SQL中使用join语句时，而且join操作中的一个RDD或表的数据量比较小（比如几百M或者一两G），比较适用此方案。
+方案实现思路： 不使用join算子进行连接操作，而使用Broadcast变量与map类算子实现join操作，进而完全规避掉shuffle类的操作，彻底避免数据倾斜的发生和出现。将较小RDD中的数据直接通过collect算子拉取到Driver端的内存中来，然后对其创建一个Broadcast变量；接着对另外一个RDD执行map类算子，在算子函数内，从Broadcast变量中获取较小RDD的全量数据，与当前RDD的每一条数据按照连接key进行比对，如果连接key相同的话，那么就将两个RDD的数据用你需要的方式连接起来。
+方案实现原理： 普通的join是会走shuffle过程的，而一旦shuffle，就相当于会将相同key的数据拉取到一个shuffle read task中再进行join，此时就是reduce join。但是如果一个RDD是比较小的，则可以采用广播小RDD全量数据+map算子来实现与join同样的效果，也就是map join，此时就不会发生shuffle操作，也就不会发生数据倾斜。具体原理如下图所示。
+方案优点： 对join操作导致的数据倾斜，效果非常好，因为根本就不会发生shuffle，也就根本不会发生数据倾斜。
+方案缺点： 适用场景较少，因为这个方案只适用于一个大表和一个小表的情况。毕竟我们需要将小表进行广播，此时会比较消耗内存资源，driver和每个Executor内存中都会驻留一份小RDD的全量数据。如果我们广播出去的RDD数据比较大，比如10G以上，那么就可能发生内存溢出了。因此并不适合两个都是大表的情况。
+// 首先将数据量比较小的RDD的数据，collect到Driver中来。 List&lt;Tuple2&lt;Long, Row&gt;&gt; rdd1Data = rdd1.collect() // 然后使用Spark的广播功能，将小RDD的数据转换成广播变量，这样每个Executor就只有一份RDD的数据。 // 可以尽可能节省内存空间，并且减少网络传输性能开销。 final Broadcast&lt;List&lt;Tuple2&lt;Long, Row&gt;&gt;&gt; rdd1DataBroadcast = sc.broadcast(rdd1Data); // 对另外一个RDD执行map类操作，而不再是join类操作。 JavaPairRDD&lt;String, Tuple2&lt;String, Row&gt;&gt; joinedRdd = rdd2.mapToPair( new PairFunction&lt;Tuple2&lt;Long,String&gt;, String, Tuple2&lt;String, Row&gt;&gt;() { private static final long serialVersionUID = 1L; @Override public Tuple2&lt;String, Tuple2&lt;String, Row&gt;&gt; call(Tuple2&lt;Long, String&gt; tuple) throws Exception { // 在算子函数中，通过广播变量，获取到本地Executor中的rdd1数据。 List&lt;Tuple2&lt;Long, Row&gt;&gt; rdd1Data = rdd1DataBroadcast.
 					</div>
 				</div>
 			</div>
@@ -153,7 +167,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture6/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/06/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -162,7 +176,13 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 6 课：数组 array 基本信息  课程时长：22:01 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:23] array的定义 [10:02] 指向数组的指针和指针数组 [12:30] 数组之间的比较 [14:22] 使用new创建数组 [16:09] 多维数组 [18:45] 冒泡排序  作业答案  暂无作业  补充说明  for 循环中声明的变量在每次循环结束都会消失，作用域只在当次循环  相关链接  暂无链接  课程链接  第 5 课：控制语句 第 7 课：切片 slice  
+						解决方案六：采样倾斜key并分拆join操作 方案适用场景： 两个RDD/Hive表进行join的时候，如果数据量都比较大，无法采用“解决方案五”，那么此时可以看一下两个RDD/Hive表中的key分布情况。如果出现数据倾斜，是因为其中某一个RDD/Hive表中的少数几个key的数据量过大，而另一个RDD/Hive表中的所有key都分布比较均匀，那么采用这个解决方案是比较合适的。
+方案实现思路： 对包含少数几个数据量过大的key的那个RDD，通过sample算子采样出一份样本来，然后统计一下每个key的数量，计算出来数据量最大的是哪几个key。 然后将这几个key对应的数据从原来的RDD中拆分出来，形成一个单独的RDD，并给每个key都打上n以内的随机数作为前缀，而不会导致倾斜的大部分key形成另外一个RDD。
+接着将需要join的另一个RDD，也过滤出来那几个倾斜key对应的数据并形成一个单独的RDD，将每条数据膨胀成n条数据，这n条数据都按顺序附加一个0~n的前缀，不会导致倾斜的大部分key也形成另外一个RDD。 再将附加了随机前缀的独立RDD与另一个膨胀n倍的独立RDD进行join，此时就可以将原先相同的key打散成n份，分散到多个task中去进行join了。 而另外两个普通的RDD就照常join即可。 最后将两次join的结果使用union算子合并起来即可，就是最终的join结果。
+方案实现原理： 对于join导致的数据倾斜，如果只是某几个key导致了倾斜，可以将少数几个key分拆成独立RDD，并附加随机前缀打散成n份去进行join，此时这几个key对应的数据就不会集中在少数几个task上，而是分散到多个task进行join了。具体原理见下图。
+方案优点： 对于join导致的数据倾斜，如果只是某几个key导致了倾斜，采用该方式可以用最有效的方式打散key进行join。而且只需要针对少数倾斜key对应的数据进行扩容n倍，不需要对全量数据进行扩容。避免了占用过多内存。
+方案缺点： 如果导致倾斜的key特别多的话，比如成千上万个key都导致数据倾斜，那么这种方式也不适合。
+// 首先从包含了少数几个导致数据倾斜key的rdd1中，采样10%的样本数据。 JavaPairRDD&lt;Long, String&gt; sampledRDD = rdd1.sample(false, 0.1); // 对样本数据RDD统计出每个key的出现次数，并按出现次数降序排序。 // 对降序排序后的数据，取出top 1或者top 100的数据，也就是key最多的前n个数据。 // 具体取出多少个数据量最多的key，由大家自己决定，我们这里就取1个作为示范。 JavaPairRDD&lt;Long, Long&gt; mappedSampledRDD = sampledRDD.mapToPair( new PairFunction&lt;Tuple2&lt;Long,String&gt;, Long, Long&gt;() { private static final long serialVersionUID = 1L; @Override public Tuple2&lt;Long, Long&gt; call(Tuple2&lt;Long, String&gt; tuple) throws Exception { return new Tuple2&lt;Long, Long&gt;(tuple._1, 1L); } }); JavaPairRDD&lt;Long, Long&gt; countedSampledRDD = mappedSampledRDD.
 					</div>
 				</div>
 			</div>
@@ -173,7 +193,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture7/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/07/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -182,7 +202,16 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 7 课：切片 slice 基本信息  课程时长：34:51 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:15] slice 概述 [05:20] 创建 slice [18:25] reslice 概述 [23:00] append()与slice [29:55] copy()与slice [33:55] 课堂作业布置  作业答案  下堂课讲解  补充说明  26:37 处的“数组” a 实际为切片，但不影响教程演示。若想其成为数组，应把 [] 改为 [...]。  相关链接  暂无链接  课程链接  第 6 课：数组 array 第 8 课：map  
+						解决方案七：使用随机前缀和扩容RDD进行join 方案适用场景： 如果在进行join操作时，RDD中有大量的key导致数据倾斜，那么进行分拆key也没什么意义，此时就只能使用最后一种方案来解决问题了。
+方案实现思路： 该方案的实现思路基本和“解决方案六”类似，首先查看RDD/Hive表中的数据分布情况，找到那个造成数据倾斜的RDD/Hive表，比如有多个key都对应了超过1万条数据。
+然后将该RDD的每条数据都打上一个n以内的随机前缀。
+同时对另外一个正常的RDD进行扩容，将每条数据都扩容成n条数据，扩容出来的每条数据都依次打上一个0~n的前缀。
+最后将两个处理后的RDD进行join即可。
+方案实现原理： 将原先一样的key通过附加随机前缀变成不一样的key，然后就可以将这些处理后的“不同key”分散到多个task中去处理，而不是让一个task处理大量的相同key。该方案与“解决方案六”的不同之处就在于，上一种方案是尽量只对少数倾斜key对应的数据进行特殊处理，由于处理过程需要扩容RDD，因此上一种方案扩容RDD后对内存的占用并不大；而这一种方案是针对有大量倾斜key的情况，没法将部分key拆分出来进行单独处理，因此只能对整个RDD进行数据扩容，对内存资源要求很高。
+方案优点： 对join类型的数据倾斜基本都可以处理，而且效果也相对比较显著，性能提升效果非常不错。
+方案缺点： 该方案更多的是缓解数据倾斜，而不是彻底避免数据倾斜。而且需要对整个RDD进行扩容，对内存资源要求很高。
+方案实践经验： 曾经开发一个数据需求的时候，发现一个join导致了数据倾斜。优化之前，作业的执行时间大约是60分钟左右；使用该方案优化之后，执行时间缩短到10分钟左右，性能提升了6倍。
+// 首先将其中一个key分布相对较为均匀的RDD膨胀100倍。 JavaPairRDD&lt;String, Row&gt; expandedRDD = rdd1.flatMapToPair( new PairFlatMapFunction&lt;Tuple2&lt;Long,Row&gt;, String, Row&gt;() { private static final long serialVersionUID = 1L; @Override public Iterable&lt;Tuple2&lt;String, Row&gt;&gt; call(Tuple2&lt;Long, Row&gt; tuple) throws Exception { List&lt;Tuple2&lt;String, Row&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String, Row&gt;&gt;(); for(int i = 0; i &lt; 100; i++) { list.add(new Tuple2&lt;String, Row&gt;(0 + &quot;_&quot; + tuple._1, tuple._2)); } return list; } }); // 其次，将另一个有数据倾斜key的RDD，每条数据都打上100以内的随机前缀。 JavaPairRDD&lt;String, String&gt; mappedRDD = rdd2.
 					</div>
 				</div>
 			</div>
@@ -193,7 +222,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture8/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/08/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -202,7 +231,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 8 课：map 基本信息  课程时长：23:55 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:00] map 概述 [05:10] 简单 map 的创建与使用 [08:26] 复杂 map 与键值对操作 [13:10] map 与 slice 的迭代操作 [15:15] 元素类型为 map 的 slice [18:45] map 的间接排序 [22:30] 课堂作业布置  作业答案  下堂课讲解  补充说明  在开头的知识回顾中，reslice 的操作只是将 slice 指向底层的指针的值进行了调整，而未发生值的拷贝。  相关链接  暂无链接  课程链接  第 7 课：切片 slice 第 9 课：函数 function  
+						解决方案八：多种方案组合使用 在实践中发现，很多情况下，如果只是处理较为简单的数据倾斜场景，那么使用上述方案中的某一种基本就可以解决。但是如果要处理一个较为复杂的数据倾斜场景，那么可能需要将多种方案组合起来使用。比如说，我们针对出现了多个数据倾斜环节的Spark作业，可以先运用解决方案一和二，预处理一部分数据，并过滤一部分数据来缓解；其次可以对某些shuffle操作提升并行度，优化其性能；最后还可以针对不同的聚合或join操作，选择一种方案来优化其性能。大家需要对这些方案的思路和原理都透彻理解之后，在实践中根据各种不同的情况，灵活运用多种方案，来解决自己的数据倾斜问题。
 					</div>
 				</div>
 			</div>
@@ -213,7 +242,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture9/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/01/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -222,7 +251,10 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 9 课：函数 function 基本信息  课程时长：28:30 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:50] 函数概述 [05:00] 函数的定义与使用 [08:00] 不定长变参 [10:52] 传递值类型和引用类型 [13:20] 匿名函数与闭包 [18:15] defer 用法 [23:06] panic 与 recover [28:06] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 8 课：map 第 10 课：结构 struct  
+						shuffle 调优 调优概述 大多数Spark作业的性能主要就是消耗在了shuffle环节，因为该环节包含了大量的磁盘IO、序列化、网络数据传输等操作。因此，如果要让作业的更上一层楼，就必须要对shuffle过程进行调优。但是也必须提醒大家的是，影响一个Spark作业性能的因素，主要还是代码开发、资源参数以及数据倾斜，shuffle调优只能是在整个Spark的性能调优中站到一小部分而已。因此大家务必把握住调优的基本原则，千万不要舍本逐末。下面我们就给大家讲解shuffle的原理，以及相关参数的说明，同时给出各个参数的调优建议。
+ShuffleManager发展概述 在Spark 的源码中，负责shuffle过程的执行、计算和处理的组件主要就是ShuffleManager，也就是shuffle管理器。而随着Spark的版本的发展，ShuffleManager也在不断迭代，变得越来越先进。
+在Spark 1.2以前，默认的shuffle计算引擎是HashShuffleManager。而HashShuffleManager有着一个非常严重的弊端，就是会产生大量的中间磁盘文件，进而由大量的磁盘IO操作影响了性能。
+因此在Spark1.2以后的版本中，默认的ShuffleManager改成了SortShuffleManager。SortShuffleManager相较于HashShuffleManager来说，有了一定的改进。主要就在于，每个Task进行shuffle操作时，虽然也会产生较多的临时磁盘文件，但是最后会将所有的临时文件合并（merge）成一个磁盘文件，因此每个Task就只有一个磁盘文件。在下个stage的shuffle read task拉取自己的数据时，只要根据索引读取每个磁盘文件中的部分数据即可。
 					</div>
 				</div>
 			</div>
@@ -233,7 +265,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jbpm/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/02/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -242,11 +274,15 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						bpm_module
-bpm_definition 流程定义
-决策
-JbpmServiceImpl
-
+						HashShuffleManager运行原理 未经优化的HashShuffleManager 下图说明了未经优化的HashShuffleManager的原理。这里我们先明确一个假设前提：每个Executor只有一个CPU core，也就是说，无论这个Executor上分配多少个task线程，同一时间都只能执行一个task线程。
+我们先从shuffle write开始说起。shuffle write阶段，主要就是在一个stage结束计算之后，为了下一个Stage可以执行shuffle算子（比如reduceByKey），而将每个task处理的数据按key进行“分类”。所谓“分类”，就是对相同的key执行hash算法，从而将相同key都写入同一个磁盘文件中，而每一个磁盘文件都属于下游stage的一个task。在将数据写入磁盘之前，会将数据写入内存缓冲中，当内存缓冲填满之后，才会一些到磁盘文件中去。
+那么每个执行shuffle write的task，要为下一个stage创建多少磁盘文件呢？很简单，下一个stage的task有多少个，当前stage的每个task就要创建多少份磁盘文件。比如下一个stage总共有100个task，那么当前stage的每个task都要创建100份磁盘文件。如果当前stage有50个task，总共有10个Executor，每个Executor执行5个Task，那么每个Executor上总共就要创建爱你500个磁盘文件，所有Executor上会创建5000个磁盘文件。由此可见，未经优化的shuffle write操作所产生的磁盘文件的数量是极其惊人的。
+接着我们来说说shuffle read。shuffle read，通常就是一个stage刚开始要做的事情。此时该stage的每个task就是需要将上一个stage的计算结果中的所有相同key，从各个节点上通过网络拉取到自己所在的节点上，然后进行key的聚合或连接等操作。由于shuffle write的过程中，task给下游stage的每个task都创建了一个磁盘文件，因此shuffle read中，每个task只要从上游stage的所有task所在节点上，拉取属于自己的那一个磁盘文件即可。
+shuffle read的拉取过程就是一边拉取一边进行聚合的。每个shuffle read task都会有自己的一个buffer缓冲，每次都只能拉取与buffer缓冲相同大小的数据，然后通过内存中的一个Map进行聚合等操作。聚合完一批数据后，再拉取下一批数据，并放到buffer缓冲中进行聚合操作。一次类推，知道最后将所有数据拉取完，并得到最终的结果。
+优化后的HashShuffleManager 下图说明了优化后的HashShuffleManager的原理。这里说的优化，是指我们可以设置一个参数，spark.shuffle.consolidateFiles。该参数默认值为false，将其设置为true即可开启优化机制。通常来说，如果我们使用HashShuffleManager，那么都建议开启这个选项。
+开启consolidate机制之后，在shuffle write过程中，task就不是为下游stage的每个task创建一个磁盘文件了。此时会出现shuffleFileGroup的概念，每个shuffleFileGroup会对应一批磁盘文件，磁盘文件的数量与下游stage的task数量是相同的。一个Executor上有多少个CPU core，就可以执行多少个task。而第一批并行执行的每个task都会创建一个shuffleFileGroup，并将数据写入对应的磁盘文件内。
+当Executor的CPU core执行完一批task，接着执行下一批task时，下一批task就会复用之前已有的shuffleFileGroup，包括其中的磁盘文件。也就是说，此时task会将数据写入已有的磁盘文件中，而不会写入新的磁盘文件中。因此，consolidate机制允许不同的task复用同一批磁盘文件，这样就可以有效将多个task的磁盘文件进行一定程度上的合并，从而大幅度减少磁盘文件的数量，进而提升shuffle write的性能。
+假设第二个stage有100个task，每一个stage有50个task，总共还是有10个Executor，每个Executor执行5个task。那么原本使用未经优化的HashShuffleManager时，每个Executor会产生500个磁盘文件，所有Executor会产生5000个磁盘文件的。但是此时经过优化之后，每个Executor创建的磁盘文件的数量的计算公式为：CPU core的数量 * 下个stage的task数量。也就是说，每个Executor此时只会创建100个磁盘文件，所有Executor只会创建1000个磁盘文件。
 					</div>
 				</div>
 			</div>
@@ -257,7 +293,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/pc/1/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/03/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -266,7 +302,15 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						js html5渲染的3D玫瑰花（程序员的情人节礼物）var b = document.body;var c = document.getElementsByTagName('canvas')[0];var a = c.getContext('2d');document.body.clientWidth;// start of submission //with(m=Math)C=cos,S=sin,P=pow,R=random;c.width=c.height=f=500;h=-250;function p(a,b,c){if(c60)return[S(a*7)*(13+5/(.2+P(b*4,4)))-S(b)*50,b*f+50,625+C(a*7)*(13+5/(.2+P(b*4,4)))+b*400,a*1-b/2,a];A=a*2-1;B=b*2-1;if(A*A+B*B37){n=(j=c&1)?6:4;o=.5/(a+.01)+C(b*125)*3-a*300;w=b*h;return[o*C(n)+w*S(n)+j*610-390,o*S(n)-w*C(n)+550-j*350,1180+C(B+A)*99-j*300,.4-a*.1+P(1-B*B,-h*6)*.15-a*b*.4+C(a+b)/5+P(C((o*(a+1)+(B0?w:-w))/25),30)*.1*(1-B*B),o/1e3+.7-o*w*3e-6]}if(c32){c=c*1.16-.15;o=a*45-20;w=b*b*h;z=o*S(c)+w*C(c)+620;return[o*C(c)-w*S(c),28+C(B*.5)*99-b*b*b*60-z/2-h,z,(b*b*.3+P((1-(A*A)),7)*.15+.3)*b,b*.7]}o=A*(2-b)*(80-c*2);w=99-C(A)*120-C(b)*(-h-c*4.9)+C(P(1-b,7))*50+c*2;z=o*S(c)+w*C(c)+700;return[o*C(c)-w*S(c),B*99-C(P(b, 7))*50-c/3-z/1.35+450,z,(1-b/1.2)*.9+a*.1, P((1-b),20)/4+.05]}}setInterval('for(i=0;iz)m[q]=z,a.fillStyle="rgb("+~(s[3]*h)+","+~(s[4]*h)+","+~(s[3]*s[3]*-80)+")",a.fillRect(x,y,1,1)}',0)// end of submission //
+						SortShuffleManager运行原理 SortShuffleManager的运行机制主要分为两种，一种是普通运行机制，另一种是bypass运行机制。当shuffle read task的数量小于等于spark.shuffle.sort.bypassMerThreshold参数的值时（默认为200），就会启用bypass机制。
+普通运行机制 下图说明了普通的SortShuffleManager的原理。在该模式下，数据会先写入一个内存数据结构中，此时根据不同的shuffle算子，可能选不同的数据结构。如果是reduceByKey这种聚合类的shuffle算子，那么会选用Map数据结构，一边通过Map进行聚合，一边写入内存；如果是join这种普通的shuffle算子，那么会选用Array数据结构，直接写入内存。接着，没写一条数据进入内存数据结构之后，就会判断一下，是否达到了某个临界阈值。如果达到阈值的话，那么久尝试将内存数据结构中的数据溢写到磁盘，然后清空内存数据结构。
+在溢写到磁盘文件之前，会先根据key对内存数据结构中已有的数据进行排序。排序过后，会分批将数据写入磁盘文件。默认的batch数量是10000条，也就是说，排序好的数据，会以每批一万条数据的形式分批写入磁盘文件。写入磁盘文件是通过Java的 BufferedOutputStream实现的。BufferedOutputStream是Java的缓冲输出流，首先会将数据缓冲在内存中，当内存缓冲满溢之后再一次写入磁盘文件中，这样可以减少磁盘IO次数，提升性能。
+一个task将所有数据写入内存数据结构的过程中，会发生多次磁盘溢写操作，也就会产生多个临时文件。最后会将之前所有的临时磁盘文件都进行合并，也就是merge过程，此时会将之前所有临时磁盘文件中的数据读取出来，最后一次写入最终的磁盘文件之中。此外，由于一个task就只对应一个磁盘文件，也就意味着该task为下游stage的task准备的数据都在这一个文件中，因此还会单独写一份索引文件，其中表示了下游各个task的数据在文件中的 start offset 与 end offset。
+SortShuffleManager由于有一个磁盘文件merge的过程，因此大大减少了文件数量。比如第一个stage有50个task，总共有10个Executor，每个Executor执行5各task，而第二个stage有100个task。由于每个task最终只有一个磁盘文件，因此每个Executor上只有5个磁盘文件，所有Executor只有50个磁盘文件。
+bypass运行机制 下图说明了bypass SortShuffleManager的原理。bypass运行机制的触发条件如下：
+ shuffle map task数量小于spark.shuffle.sort.bypassMergeThreshold参数的值。 不是聚合类的shuffle算子（比如reduceByKey）  此时，task会为每个下游task都创建一个临时磁盘文件，并将数据按key进行hash然后根据key的hash值，将key写入对应的磁盘文件之中。当然，写入磁盘文件时也是先写入内存缓冲，内存缓冲写满之后再溢写到磁盘文件的。最后，同样会将所有临时的磁盘文件都合并成一个磁盘文件，并创建一个单独的索引文件。
+该过程的磁盘写机制其实跟未经优化的HashShuffleManager是一模一样的，因为都要创建数量惊人的磁盘文件，只是在最后会做一个磁盘文件的合并而已。因此少量的最终磁盘文件，也让该机制相对未经优化的HashShuffleManager来说，shuffle read的性能会更好。
+而该机制与普通SortShuffleManager运行机制的不同在于：第一，磁盘写机制不同；第二，不会进行排序。也就是说，启用该机制的最大好处在于，shuffle write过程中，不需要进行数据的排序操作，也就节省了这部分的性能开销。
 					</div>
 				</div>
 			</div>
@@ -277,7 +321,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/pc/222/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/04/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -286,16 +330,11 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						病害形成的原因裂缝（1）横向裂缝：裂缝与路中心线基本垂直，缝宽不一，缝长贯穿部分路幅或整个路幅。裂缝一般比较规则，每隔一定的距离产生一道裂缝，裂缝间距的大小取决于当地的气温和沥青面层与半刚性基层材料的抗裂性能。
-（2）纵向裂缝：裂缝走向基本与行车方向平行，裂缝长度和宽度不一。主要集中在行车道轮迹分布密集处，因为高速公路交通渠化分明，轮迹位置及轮迹分布范围较小，大车、慢车、重型车辆全部集中在行车道上，快车、小型车，轻型车行驶于超车道机会明显增多，超车道上荷载较小，交通量相对较小，纵向裂缝也较小，纵缝缝宽一般在5～10mm，靠近标线或位于车道中央，且绵延几十米，甚至数百米。常以单条裂缝形式出现。产生的原因有两种可能性，一种情况是沥青面层分路幅摊铺时，两幅接茬处未处理好，在车辆荷载及大气因素作用下逐渐开裂；另一种情况是由于路基压实度不均匀或由于路基边缘受水侵蚀产生不均匀沉陷而引起。
-（3）网状裂缝：裂缝纵横交错，缝宽1mm以上，缝距1000px以下，1m2以上。
-（4）反射裂缝：主要是因为软基路段不均匀沉降引起的裂缝直接反射到沥青路面。另外，行车荷载的作用加速裂缝的发展。
-车辙车辙一般是在温度较高的季节，沥青面层在车辆的反复碾压下产生永久变形和塑性流动而逐渐形成。它通常是在伴随沥青面层压缩沉陷的同时，出现侧向隆起，二者组合起来构成的。路面的永久变形主要发生在沥青面层中。因此，为了延缓车辙的形成，主要应从提高沥青面层材料的高温稳定性来着手考虑。此外，车辙的严重程度与沥青面层的结构组成和配合比有极大关系，ⅱ型沥青混凝土路面自身的抗车辙能力比ⅰ型好的多。上海市中心城区的沥青路面车辙病害也较普遍，大部分集中在公路交叉口，车辆来往多，高温天气路面下受碾压严重更容易出现车辙，修补更换新的沥青混凝土后，但未经严格保养就投入使用，在新的碾压下又会出现车辙，往往出现恶性循环。根据湿热地区高速公路建设和养护的实践分析了沥青路面常见病害的各种成因，提出了各种病害的处治方法，并对我国今后高速公路建设、设计、施工及管养等方面提出了一些建议。沥青路面因具有地质条件适应性强、行车舒适、维护方便等优点而被广泛用于高速公路。在高速公路通车后，因行车荷载作用、外界环境影响以及设计、施工中存在的不足，沥青路面会逐步出现多种路面病害。
-沉陷沥青黏度小会影响沥青与矿料的黏附性。同时若沥青混合料的油石比太小,或在沥青加热和沥青混合料拌制过程中温度太高致使沥青过温,都会引起沥青混合料的沥青膜相对变薄,抗变形能力降低,脆性增加,空隙率偏大。这些都会导致沥青膜暴露太多,沥青的老化作用加快,同时渗水性加大,进而加快水对沥青的剥落作用,最终在车辆荷载作用下引起路面开裂、沉陷。
-坑槽沥青路面坑槽的产生往往都有一个形成的时间过程，开始时是局部裂缝进而龟裂松散，在行车荷载和雨水等因素下逐步形成坑槽。常见原因主要有以下几种：（1）路面厚度与压实度不够性坑槽 面层铺筑过程中易出现压实度不足，造成面层内部孔隙率较大，使得沥青混合料粘结力、防水性能下降；拌和厂离施工现场较远，运距过长，运输途中沥青混合料热量损失较大，运至现场后温度不能满足铺筑要求；路面下基层局部标高控制不严，导致沥青上面层个别地方厚度不够，在行车作用下，该处首先破损，形成坑槽。（2）粘结层不牢坑槽 混合料拌和摊铺时，下层表面含有泥、灰等杂物，使上下层不能有效粘结，而形成坑槽，如桥面上形成的坑，这类坑槽修补二次损坏频率较高，一般应在底层先打入砼上面层再用沥青料填补修复。（3）水损害性坑槽这种坑槽是沥青混凝土路面早期破坏中最常见的坑槽，水损害破坏往往是从沥青面层的中面层开始的。水分进入沥青路面，滞留在中面层，当集料与沥青膜剥离后，沥青混合料不再是一个整体，集料在荷载的作用下，对基层产生了力的作用，基层的局部松落形成灰浆，从路面的缝隙向上挤出来，在沥青路面上形成白色的唧浆。如此循环不断，形成了水损害性坑槽。（4）运营期间车辆造成的坑槽 柴油、机油滴漏在路表面上，沥青被稀释后，粘结力降低，集料散失形成坑槽；钢圈或车辆运输的重物，刮撞形成的坑槽；千斤顶顶出的坑槽以及火烧形成的坑槽。（5）基层、底基层损坏产生翻浆形成的坑槽
-泛油和油斑泛油和油斑这两种病害产生的最主要的原因是混合料离析。混合料发生离析时，粗集料和细集料分别集中于铺筑层的某些位置，使沥青混凝土不均匀、配合比级配与原设计不符，混合料失去原设计达到的粘接力就形成了路面推移，而混合料的不均匀还会导致集料和沥青分离，沥青集中到一处形成泛油和油斑。
-路面推移沥青混凝土面层推移，主要是混合料在道路的纵向发生位移，它可能是在施工期间发生或者是在道路通车一段时间后产生，尤其在高温天气时行车荷载的作用。
-
+						shuffle相关参数调优 以下是Shffule过程中的一些主要参数，这里详细讲解了各个参数的功能、默认值以及基于实践经验给出的调优建议。
+spark.shuffle.file.buffer  默认值：32k 参数说明：该参数用于设置shuffle write task的BufferedOutputStream的buffer缓冲大小。将数据写到磁盘文件之前，会先写入buffer缓冲中，待缓冲写满之后，才会溢写到磁盘。 调优建议：如果作业可用的内存资源较为充足的话，可以适当增加这个参数的大小（比如64k），从而减少shuffle write过程中溢写磁盘文件的次数，也就可以减少磁盘IO次数，进而提升性能。在实践中发现，合理调节该参数，性能会有1%~5%的提升。  spark.reducer.maxSizeInFlight  默认值：48m 参数说明：该参数用于设置shuffle read task的buffer缓冲大小，而这个buffer缓冲决定了每次能够拉取多少数据。 调优建议：如果作业可用的内存资源较为充足的话，可以适当增加这个参数的大小（比如96m），从而减少拉取数据的次数，也就可以减少网络传输的次数，进而提升性能。在实践中发现，合理调节该参数，性能会有1%~5%的提升。  spark.shuffle.io.maxRetries  默认值：3 参数说明：shuffle read task从shuffle write task所在节点拉取属于自己的数据时，如果因为网络异常导致拉取失败，是会自动进行重试的。该参数就代表了可以重试的最大次数。如果在指定次数之内拉取 还是没有成功，就可能会导致作业执行失败。 调优建议：对于那些包含了特别耗时的shuffle操作的作业，建议增加重试最大次数（比如60次），以避免由于JVM的full gc或者网络不稳定等因素导致的数据拉取失败。在实践中发现，对于针对超大数据量（数十亿~上百亿）的shuffle过程，调节该参数可以大幅度提升稳定 性。  spark.shuffle.io.retryWait  默认值：5s 参数说明：具体解释同上，该参数代表了每次重试拉取数据的等待间隔，默认是5s。 调优建议：建议加大间隔时长（比如60s），以增加shuffle操作的稳定性。  spark.shuffle.memoryFraction  默认值：0.2 参数说明：该参数代表了Executor内存中，分配给shuffle read task进行聚合操作的内存比例，默认是20%。 调优建议：在资源参数调优中讲解过这个参数。如果内存充足，而且很少使用持久化操作，建议调高这个比例，给shuffle read的聚合操作更多内存，以避免由于内存不足导致聚合过程中频繁读写磁盘。在实践中发现，合理调节该参数可以将性能提升10%左右。  spark.shuffle.manager  默认值：sort 参数说明：该参数用于设置ShuffleManager的类型。Spark 1.5以后，有三个可选项：hash、sort和tungsten-sort。HashShuffleManager是Spark 1.2以前的默认选项，但是Spark 1.2以及之后的版本默认都是SortShuffleManager了。tungsten-sort与sort类似，但是使用了tungsten计划中的 堆外内存管理机制，内存使用效率更高。 调优建议：由于SortShuffleManager默认会对数据进行排序，因此如果你的业务逻辑中需要该排序机制的话，则使用默认的 SortShuffleManager就可以；而如果你的业务逻辑不需要对数据进行排序，那么建议参考后面的几个参数调优，通过bypass机制或优化的 HashShuffleManager来避免排序操作，同时提供较好的磁盘读写性能。这里要注意的是，tungsten-sort要慎用，因为之前发现了 一些相应的bug。
+spark.shuffle.sort.bypassMergeThreshold 默认值：200
+ 参数说明：当ShuffleManager为SortShuffleManager时，如果shuffle read task的数量小于这个阈值（默认是200），则shuffle write过程中不会进行排序操作，而是直接按照未经优化的HashShuffleManager的方式去写数据，但是最后会将每个task产生的所有临 时磁盘文件都合并成一个文件，并会创建单独的索引文件。
+ 调优建议：当你使用SortShuffleManager时，如果的确不需要排序操作，那么建议将这个参数调大一些，大于shuffle read task的数量。那么此时就会自动启用bypass机制，map-side就不会进行排序了，减少了排序的性能开销。但是这种方式下，依然会产生大量的磁 盘文件，因此shuffle write性能有待提高。
 					</div>
 				</div>
 			</div>
@@ -307,7 +346,7 @@
 	
 	<a class="page-numbers" href="/post/page/24/">«</a>
 	
-	<span class="page-numbers current">25/26</span>
+	<span class="page-numbers current">25/28</span>
 	
 	<a class="page-numbers" href="/post/page/26/">»</a>
 	
@@ -338,6 +377,8 @@
 	<ul>
 		
 		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
+		
+		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
 		
 		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
 		
@@ -394,6 +435,8 @@
 			<a href="/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
 		
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
+		
+			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
 		
 			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
 		

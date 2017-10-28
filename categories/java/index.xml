@@ -776,7 +776,8 @@ public class JettyTest {
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.eclipse.org/jetty/documentation/current/embedding-jetty.html&#34;&gt;embedding-jetty&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.eclipse.org/jetty/documentation/current/embedding-jetty.html&#34;&gt;embedding-jetty&lt;/a&gt;
+&lt;a href=&#34;https://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin&#34; class=&#34;bare&#34;&gt;https://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

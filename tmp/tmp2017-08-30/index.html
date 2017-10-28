@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="npm adduser --registry=http://127.0.0.1:7001
+/root/mount/nginx2/web.conf:/etc/nginx/conf.d/web.conf
+/root/mount/nginx2/xiaohei.conf:/etc/nginx/conf.d/xiaohei.conf
+map输入key 偏移量map输入value 每行文本内容map输出keymap输出value
+hadoop jar tv.jar com.dajiangtai.TV input output
+hdfs://master:9000/spark/wordcount/person2.txt \hdfs://master:9000/spark/wordcount/output
+sh $SPARK_HOME/bin/spark-submit \--class wordcount.WordCount \--master spark://master:7077 \--executor-memory 1g \--total-executor-cores 2 \spark-wordcount-1.0.jar \hdfs://master:9000/spark/wordcount/person2.txt \hdfs://master:9000/spark/wordcount/output
+sh $SPARK_HOME/bin/spark-submit \--master spark://master:7077 \--executor-memory 1g \--total-executor-cores 2 \spark-wordcount-1.0.jar \hdfs://master:9000/spark/wordcount/person2.txt \hdfs://master:9000/spark/wordcount/output
+int playCountS = 0;int collectCountS = 0;int commentCountS = 0;int stampCountS = 0;int approveCountS = 0;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/tmp/tmp2017-08-30/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
+										<h1 class="mr-header-title">零零散散</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>npm adduser --registry=http://127.0.0.1:7001</p>
+</div>
+<div class="paragraph">
+<p>/root/mount/nginx2/web.conf:/etc/nginx/conf.d/web.conf</p>
+</div>
+<div class="paragraph">
+<p>/root/mount/nginx2/xiaohei.conf:/etc/nginx/conf.d/xiaohei.conf</p>
+</div>
+<div class="paragraph">
+<p>map输入key 偏移量
+map输入value 每行文本内容
+map输出key
+map输出value</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar tv.jar com.dajiangtai.TV input output</p>
+</div>
+<div class="paragraph">
+<p>hdfs://master:9000/spark/wordcount/person2.txt \
+hdfs://master:9000/spark/wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--class wordcount.WordCount \
+--master spark://master:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-wordcount-1.0.jar \
+hdfs://master:9000/spark/wordcount/person2.txt \
+hdfs://master:9000/spark/wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--master spark://master:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-wordcount-1.0.jar \
+hdfs://master:9000/spark/wordcount/person2.txt \
+hdfs://master:9000/spark/wordcount/output</p>
+</div>
+<div class="paragraph">
+<p>int playCountS = 0;
+int collectCountS = 0;
+int commentCountS = 0;
+int stampCountS = 0;
+int approveCountS = 0;</p>
+</div>
+<div class="paragraph">
+<p>playCountS "\t" collectCountS "\t" commentCountS "\t" stampCountS "\t" approveCountS "\t"</p>
+</div>
+<div class="paragraph">
+<p>继承者们    1   4105447 202 844 48  671</p>
+</div>
+<div class="paragraph">
+<p>继承者们
+1, 4105447, 202, 844, 48, 671</p>
+</div>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--class sougou.Statistics \
+--master spark://master:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-sougou-statistics-1.0.jar \
+hdfs://master:9000/sougou/SogouQ.reduced \
+hdfs://master:9000/sougou</p>
+</div>
+<div class="paragraph">
+<p>echo "master" &gt; /etc/hostname
+echo "slave1" &gt; /etc/hostname</p>
+</div>
+<div class="paragraph">
+<p>useradd -d /home/hadoop -m hadoop
+192.168.137.21 djt11
+192.168.137.22 djt12
+192.168.137.23 djt13</p>
+</div>
+<div class="paragraph">
+<p>export JAVA_HOME=/home/hadoop/app/jdk1.7.0_45
+export HADOOP_HOME=/home/hadoop/app/hadoop-2.6.5
+export SPARK_HOME=/home/hadoop/app/spark-1.6.1-bin-hadoop2.6
+export HIVE_HOME=/home/hadoop/app/apache-hive-1.2.1-bin
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/sbin:$HIVE_HOME/bin</p>
+</div>
+<div class="paragraph">
+<p>content/src/linux/conf/ansible/bigdata/group_vars/bigdata</p>
+</div>
+<div class="paragraph">
+<p>/zookeeper/zkdata
+/zookeeper/zkdatalog</p>
+</div>
+<div class="paragraph">
+<p>sh $ZOOKEEPER_HOME/bin/zkServer.sh start
+sh $ZOOKEEPER_HOME/bin/zkServer.sh status</p>
+</div>
+<div class="paragraph">
+<p>sh $HADOOP_HOME/sbin/hadoop-daemon.sh start journalnode
+sh $HADOOP_HOME/sbin/hadoop-daemon.sh stop journalnode</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE IF NOT EXISTS stock(
+    tradedate STRING,
+    tradetime STRING,
+    stockid INT,
+    buyprice DOUBLE,
+    buysize INT,
+    sellprice DOUBLE,
+    sellsize INT
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>LOAD DATA INPATH '/root/share/hadoop/total.csv' INTO TABLE stock;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE IF NOT EXISTS stock_partition(
+    tradetime STRING,
+    stockid INT,
+    buyprice DOUBLE,
+    buysize INT,
+    sellprice DOUBLE,
+    sellsize INT
+) PARTITIONED BY (tradedate STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>set hive.exec.dynamic.partition.mode=nonstrict;</p>
+</div>
+<div class="paragraph">
+<p>INSERT OVERWRITE TABLE stock_partition partition(tradedate) SELECT tradetime, stockid, buyprice, buysize, sellprice, sellsize, tradedate FROM stock distribute by tradedate;</p>
+</div>
+<div class="paragraph">
+<p>add jar /root/share/hadoop/maxUDF-1.0.jar;
+add jar /root/share/hadoop/minUDF-1.0.jar;</p>
+</div>
+<div class="paragraph">
+<p>create temporary function maxprice  as 'hive.Max';
+create temporary function minprice  as 'hive.Min';</p>
+</div>
+<div class="paragraph">
+<p>select stockid,tradedate,max(maxprice(buyprice,sellprice)),min(minprice(buyprice,sellprice)) from stock_partition where stockid = '204001' group by tradedate,stockid;</p>
+</div>
+<div class="paragraph">
+<p>OK
+204001  20130722    4.05    0.0
+204001  20130723    4.48    2.2
+204001  20130724    4.65    2.205
+204001  20130725    11.9    8.7
+204001  20130726    12.3    5.2
+Time taken: 43.182 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>select stockid,tradedate,substring(tradetime,0,4) as time,sum(buyprice+sellprice)/count(stockid)*2 as avgnum from stock_partition  where stockid = '204001' group by stockid,tradedate,substring(tradetime,0,4);</p>
+</div>
+<div class="paragraph">
+<p>204001  20130722    1116    14.382499999999999
+204001  20130722    1117    14.32125
+204001  20130722    1118    14.267
+204001  20130722    1119    14.203333333333331
+204001  20130722    1120    14.185
+204001  20130722    1121    14.146363636363638
+204001  20130722    1122    14.145000000000001
+204001  20130722    1123    14.159090909090912
+204001  20130722    1124    14.17181818181818
+204001  20130722    1125    14.187272727272726
+204001  20130722    1126    14.143
+204001  20130722    1127    14.157
+204001  20130722    1128    14.116666666666667
+204001  20130722    1129    14.196363636363635</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE IF NOT EXISTS extra_result(
+    stockid STRING,
+    tradedate STRING,
+    time STRING,
+    avgnum DOUBLE,
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>INSERT OVERWRITE TABLE extra_result select stockid,tradedate,substring(tradetime,0,4) as time,sum(buyprice+sellprice)/count(stockid)*2 as avgnum from stock_partition  where stockid = '204001' group by stockid,tradedate,substring(tradetime,0,4);</p>
+</div>
+<div class="paragraph">
+<p>{
+    category:[{all:100},{jp:100}],
+    list:[]
+}</p>
+</div>
+<div class="paragraph">
+<p>sqoop list-databases \
+--connect jdbc:mysql://192.168.137.16/wordpress \
+--username hive \
+--password hive</p>
+</div>
+<div class="paragraph">
+<p>导入
+sqoop import \
+--connect jdbc:mysql://192.168.137.16/wordpress \
+--username hive \
+--password hive \
+--table wp_options \
+--hive-import \
+--create-hive-table \
+--hive-table hive.wp_options</p>
+</div>
+<div class="paragraph">
+<p>导出
+sqoop export \
+--connect \
+'jdbc:mysql://192.168.137.16/djt_test?useUnicode=true&amp;characterEncodi
+g=utf-8' \
+--username hive \
+--password hive \
+--table wp_options \
+--export-dir /user/root/wp_options \
+--input-fields-terminated-by "@"</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE IF NOT EXISTS wp_options(
+    option_id BIGINT,
+    option_name STRING,
+    option_value STRING,
+    autoload STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>DROP TABLE IF NOT EXISTS tmp_result;
+CREATE TABLE IF NOT EXISTS tmp_result(
+    count BIGINT
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>INSERT OVERWRITE TABLE tmp_result select count(1) from wp_options;</p>
+</div>
+<div class="paragraph">
+<p>sqoop export \
+--connect \
+'jdbc:mysql://192.168.137.16/djt_test?useUnicode=true&amp;characterEncodi
+g=utf-8' \
+--username hive \
+--password hive \
+--table extra_result  \
+--export-dir /user/hive/warehouse/hive.db/extra_result</p>
+</div>
+<div class="paragraph">
+<p>Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255</p>
+</div>
+<div class="paragraph">
+<p>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400</p>
+</div>
+<div class="paragraph">
+<p>address_tel=400-1361717;
+collect=1;
+PHPSESSID=24blahho4enkn25jop4d1rdgh2</p>
+</div>
+<div class="paragraph">
+<p>GET <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;connect_redirect=1" class="bare">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;connect_redirect=1</a> HTTP/1.1
+Host: open.weixin.qq.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<strong>/</strong>;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: address_tel=400-1361717; PHPSESSID=24blahho4enkn25jop4d1rdgh2; collect=1</p>
+</div>
+<div class="paragraph">
+<p>http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;connect_redirect=1</p>
+</div>
+<div class="paragraph">
+<p>GET <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882%26response_type%3Dcode%26scope%3Dsnsapi_base%26state%3DSTATE%26connect_redirect%3D1&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;connect_redirect=1" class="bare">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx647c912680d21247&amp;redirect_uri=http%3A%2F%2Fshouluo.me%2Fgqsj%2Findex2.php%3Fg%3Dwxpublics3%26m%3Dwxpublic%26a%3Dnewsdetail%26admin_id%3D2984%26post_id%3D1620882%26response_type%3Dcode%26scope%3Dsnsapi_base%26state%3DSTATE%26connect_redirect%3D1&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;connect_redirect=1</a> HTTP/1.1
+Host: open.weixin.qq.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<strong>/</strong>;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: address_tel=400-1361717; PHPSESSID=24blahho4enkn25jop4d1rdgh2; collect=1</p>
+</div>
+<div class="paragraph">
+<p>GET <a href="http://shouluo.me/gqsj/index2.php?g=wxpublics3&amp;m=wxpublic&amp;a=newsdetail&amp;admin_id=2984&amp;post_id=1620882" class="bare">http://shouluo.me/gqsj/index2.php?g=wxpublics3&amp;m=wxpublic&amp;a=newsdetail&amp;admin_id=2984&amp;post_id=1620882</a> HTTP/1.1
+Host: shouluo.me
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<strong>/</strong>;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.691.400 QQBrowser/9.0.2524.400
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8,en-us;q=0.6,en;q=0.5;q=0.4
+Cookie: address_tel=400-1361717; collect=1; PHPSESSID=24blahho4enkn25jop4d1rdgh2; oguEja_think_language=zh-CN</p>
+</div>
+<div class="paragraph">
+<p>GET /gqsj/index2.php?g=wxpublics3&amp;m=wxpublic&amp;a=newsdetail&amp;post_id=1623440 HTTP/1.1</p>
+</div>
+<div class="paragraph">
+<p>min.length "1111" "12" "23" &#8594;  "2" "23" &#8594; "1"
+min.length "1111" "345" "4567" &#8594;  "3" "4567" &#8594; "1"</p>
+</div>
+<div class="paragraph">
+<p>min.length "1111" "1" "1" &#8594;  "1111111"</p>
+</div>
+<div class="paragraph">
+<p>@startuml
+association
+@enduml</p>
+</div>
+<div class="paragraph">
+<p>"1111 12 23" &#8594;  "2 23" &#8594; "1"</p>
+</div>
+<div class="paragraph">
+<p>"1111" &#8594; "2";
+"12" &#8594; "2";</p>
+</div>
+<div class="paragraph">
+<p>"" "12" "23" &#8594; "1" "23" &#8594; "1"</p>
+</div>
+<div class="paragraph">
+<p>0
+Seq"cat", 2), ("cat", 5), ("mouse", 4
+                ↓ byKey
+Seq"cat",Seq(2,5,("mouse",Seq(4)))
+                ↓max
+Seq"cat", 5),("mouse", 4</p>
+</div>
+<div class="paragraph">
+<p>100
+("cat",100),("mouse",100)
+Seq"cat", 2), ("cat", 5), ("mouse", 4
+                ↓ byKey
+Seq"cat",Seq(2,5,("mouse",Seq(4)))
+                ↓max
+Seq"cat", 5),("mouse", 4</p>
+</div>
+<div class="paragraph">
+<p>/**
+ *100  &#8594; 在每个分区对每个key赋值1()key:100
+ *List"cat", 2), ("cat", 5), ("mouse", 4), ("cat", 12), ("dog", 12), ("mouse", 2
+ *                ↓
+ *partID:0
+ *List"cat", 2), ("cat", 5), ("mouse", 4),|("cat", 100),("mouse", 100
+ *                ↓ byKey
+ *Seq"cat",Seq(2,5,100,("mouse",Seq(4,100)))
+ *                ↓ max
+ *Seq"cat", 100),("mouse", 100
+ *
+ *partID:1
+ *List"cat", 12), ("dog", 12), ("mouse", 2),|("cat", 100),("dog", 100),("mouse", 100
+ *                ↓ byKey
+ *Seq"cat",Seq(12,100,("mouse",Seq(2,100)),("dog",Seq(12,100)))
+ *                ↓ max
+ *Seq"cat", 100),("mouse", 100),("dog", 100
+ *
+ *partID:0       partID:1
+ *           ↓ <em>+</em>
+ *Seq"cat", 200),("mouse", 200),("dog", 100
+*/</p>
+</div>
+<div class="paragraph">
+<p>/*
+a  Seq4,d), (1,d), (3,d</p>
+</div>
+<div class="paragraph">
+<p>d  Seq1,b), (2,b), (1,b), (3,b</p>
+</div>
+<div class="paragraph">
+<p>a分区中没有键(2对)应的值  -&#8594; CompactBuffer()</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>        d分区             a分区
+(4,(CompactBuffer(),CompactBuffer(d)))
+(1,(CompactBuffer(b, b),CompactBuffer(d)))
+(3,(CompactBuffer(b),CompactBuffer(d)))
+(2,(CompactBuffer(b),CompactBuffer()))
+*/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>nohup $STORM_HOME/bin/storm nimbus &amp;
+nohup $STORM_HOME/bin/storm ui &amp;</p>
+</div>
+<div class="paragraph">
+<p>nohup $STORM_HOME/bin/storm supervisor &amp;</p>
+</div>
+<div class="paragraph">
+<p>[(1,turkey),(2,rabbit),(2,salmon)]</p>
+</div>
+<div class="paragraph">
+<p>[(1,["dog"])]</p>
+</div>
+<div class="paragraph">
+<p>15039811747</p>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/tmp/tmp2017-07-10/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/tmp/wuliuxiugai/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -1,10 +1,14 @@
-slave1 ansible_ssh_host=hadoop-slave1
-slave2 ansible_ssh_host=hadoop-slave2
+djt11 ansible_ssh_host=djt11
+djt12 ansible_ssh_host=djt12
+djt13 ansible_ssh_host=djt13
 
 
 [bigdata]
-slave1
-slave2
+djt11
+djt12
+djt13
+
+
 
 [bigdata:vars]
 ansible_ssh_user=root
