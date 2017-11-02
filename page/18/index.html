@@ -125,7 +125,8 @@
 						Contents1. 多线程1.1. 线程带来的风险1.2. 线程安全性2. 参考1. 多线程1.1. 线程带来的风险安全性问题
 活跃性问题
 性能问题
-1.2. 线程安全性2. 参考[[Java多线程基础 | http://www.importnew.com/21136.html]]
+1.2. 线程安全性同步这个术语还包括volatile类型的变量,显式锁(Explicit Lock)以及原子变量如果当多个线程访问同一个可变的状态变量时。没有使用合适的同步那么程序就会出现错误。有三种方式可以修复这个问题. 不在线程之间共享该状态变量. 将状态变量修改为不可变的变量。. 在访问状态变量时，使用同步。
+2. 参考[[Java多线程基础 | http://www.importnew.com/21136.html]]
 [[http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency]]
 
 					</div>
