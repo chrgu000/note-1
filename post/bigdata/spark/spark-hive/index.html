@@ -57,8 +57,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -77,8 +77,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -187,20 +185,85 @@ val insertSql =
    """.stripMargin</p>
 </div>
 <div class="paragraph">
-<p>start-thriftserver.sh \
-  --hiveconf hive.server2.thrift.port=10000 \
-  --hiveconf hive.server2.thrift.bind.host=master \
-  --hiveconf hive.metastore.uris=thrift://master:9083 \
-  --master spark://master:7077</p>
+<p>nohup sh hive --service metastore &gt;&gt; /tmp/metastore.log 2&gt;&amp;1 &amp;</p>
 </div>
 <div class="paragraph">
-<p>beeline -u jdbc:hive2://master:10000 -n root</p>
+<p>sh /usr/hdp/current/spark2-thriftserver/sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=vm28 \
+  --master yarn\
+  --executor-memory 4G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=2 \
+  --conf spark.dynamicAllocation.maxExecutors=4</p>
+</div>
+<div class="paragraph">
+<p>cd /usr/hdp/2.6.3.0-235/spark2 &amp;&amp; \
+sh bin/beeline -u jdbc:hive2://192.168.168.104:10016 -n root</p>
 </div>
 <div class="paragraph">
 <p>log</p>
 </div>
 <div class="paragraph">
 <p>INFO hive.metastore: Connected to metastore</p>
+</div>
+<div class="paragraph">
+<p>nohup sh hive --service metastore &gt;&gt; /tmp/metastore.log 2&gt;&amp;1 &amp;</p>
+</div>
+<div class="paragraph">
+<p>sh /usr/hdp/2.6.3.0-235/spark2/sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=n04 \
+  --hiveconf hive.metastore.uris=thrift://n04:9083 \
+  --master yarn</p>
+</div>
+<div class="paragraph">
+<p>cd /usr/hdp/2.6.3.0-235/spark2
+sh sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10001 \
+  --hiveconf hive.server2.thrift.bind.host=192.168.168.104 \
+  --master yarn \
+  --executor-memory 8G \
+  --executor-cores 5 \
+  --num-executors 20</p>
+</div>
+<div class="paragraph">
+<p>cd /usr/hdp/2.6.3.0-235/spark2
+sh sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10001 \
+  --hiveconf hive.server2.thrift.bind.host=192.168.168.104 \
+  --master yarn \
+  --executor-memory 8G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=8 \
+  --conf spark.dynamicAllocation.maxExecutors=30</p>
+</div>
+<div class="paragraph">
+<p>sh /usr/hdp/2.6.3.0-235/spark2/sbin/my-start-thriftserver.sh \
+  --master yarn \
+  --executor-memory 8G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=8 \
+  --conf spark.dynamicAllocation.maxExecutors=30 \
+/root/tmp/my/jars/mythriftserver.jar</p>
+</div>
+<div class="paragraph">
+<p>org.apache.hadoop.hive.jdbc.HiveDriver</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>--hiveconf hive.server2.thrift.port=10001 \
+--hiveconf hive.server2.thrift.bind.host=192.168.168.104 \</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>tail -f /var/log/spark2/spark-root-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-bjmcc-hdp-cluster-node-04.out</p>
 </div>
 </div>
 </div>
@@ -258,7 +321,7 @@ val insertSql =
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

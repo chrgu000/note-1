@@ -1,0 +1,110 @@
+#! /bin/bash
+# set -x
+
+BIN_HOME="$(cd "`dirname "$0"`"; pwd)"
+source $BIN_HOME/env.sh
+
+declare -A map=()
+
+#cat hosts | awk -F'=' '{print $1,$2}'
+
+while read a b
+do
+  map[$a]=$b
+done < $BIN_HOME/hosts
+
+for node in ${!map[@]}
+do
+  if [ "" != "$NODES" ]; then
+    NODES=$NODES,$node
+  else
+    NODES=$node
+  fi
+done
+
+if [[ "$@" = *--help ]] || [[ "$@" = *-h ]] || [[ "$#" = 0 ]]; then
+  echo "Usage: run-zookeeper [config|start|stop|restart]"
+  pattern="Usage:\n"
+  pattern+="  #Config host.name num.partitions zookeeper.connect\n"
+  pattern+="    run-zookeeper c\n"
+  echo -e $pattern
+  exit 1
+fi
+
+function config(){
+
+  for key in ${!map[@]}
+  do
+    # echo ${map[$key]}
+    local CMD1="cp -f $ZOOKEEPER_HOME/conf/zoo_sample.cfg $ZOOKEEPER_HOME/conf/zoo.cfg"
+    local CMD2="sed -i \"s@dataDir=.*@dataDir=$ZOOKEEPER_DATA_DIRS@\" $ZOOKEEPER_HOME/conf/zoo.cfg"
+    local CMD4="mkdir -p $ZOOKEEPER_DATA_DIRS;echo '${map[$key]}' > $ZOOKEEPER_DATA_DIRS/myid"
+    clush -w $key $CMD1
+    clush -w $key $CMD2
+    clush -w $key $CMD4
+
+  done
+
+  for key2 in ${!map[@]}
+  do
+    local CMD3="echo 'server.${map[$key2]}=$key2:2888:3888' >> $ZOOKEEPER_HOME/conf/zoo.cfg"
+    echo "clush -w $NODES $CMD3"
+    clush -w $NODES $CMD3
+  done
+}
+
+function start(){
+  local CMD1="source $BIN_HOME/env.sh;$ZOOKEEPER_HOME/bin/zkServer.sh start"
+  # echo $NODES
+  clush -w $NODES $CMD1
+}
+
+function stop(){
+  local CMD1="source $BIN_HOME/env.sh;$ZOOKEEPER_HOME/bin/zkServer.sh stop"
+  # echo $NODES
+  clush -w $NODES $CMD1
+}
+
+function status(){
+  local CMD1="source $BIN_HOME/env.sh;$ZOOKEEPER_HOME/bin/zkServer.sh status"
+  # echo $NODES
+  clush -w $NODES $CMD1
+}
+
+
+case $1 in
+  #
+  (config)
+  echo "=== Config ZOOKEEPER! ==="
+  config
+  echo "=== Config ZOOKEEPER DONE! ==="
+  ;;
+  (start)
+  echo "=== Start ZOOKEEPER! ==="
+  start $@
+  ;;
+#
+  (stop)
+  echo "=== Stop ZOOKEEPER! ==="
+  stop
+  ;;
+#
+  (status)
+  echo "=== Status ZOOKEEPER! ==="
+  status
+  ;;
+#
+  (log)
+  tail -f $ZOO_LOG_DIR/zookeeper.out
+  ;;
+#
+  (restart)
+  echo "=== ReStart ZOOKEEPER! ==="
+  stop
+  start
+  ;;
+#
+  (*)
+  usage
+  ;;
+esac

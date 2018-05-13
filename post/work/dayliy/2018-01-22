@@ -1,0 +1,312 @@
+
+f_volte_sip_mw_h
+
+1.9 G    /output/result/f_volte_sip_mw_h/p_hour=2017122201
+1.8 G    /output/result/f_volte_sip_mw_h/p_hour=2017122202
+1.8 G    /output/result/f_volte_sip_mw_h/p_hour=2017122203
+1.8 G    /output/result/f_volte_sip_mw_h/p_hour=2017122204
+1.8 G    /output/result/f_volte_sip_mw_h/p_hour=2017122205
+2.0 G    /output/result/f_volte_sip_mw_h/p_hour=2017122206
+2.6 G    /output/result/f_volte_sip_mw_h/p_hour=2017122207
+3.1 G    /output/result/f_volte_sip_mw_h/p_hour=2017122208
+3.5 G    /output/result/f_volte_sip_mw_h/p_hour=2017122209
+3.5 G    /output/result/f_volte_sip_mw_h/p_hour=2017122210
+3.6 G    /output/result/f_volte_sip_mw_h/p_hour=2017122211
+3.7 G    /output/result/f_volte_sip_mw_h/p_hour=2017122212
+3.4 G    /output/result/f_volte_sip_mw_h/p_hour=2017122213
+3.5 G    /output/result/f_volte_sip_mw_h/p_hour=2017122214
+3.4 G    /output/result/f_volte_sip_mw_h/p_hour=2017122215
+3.5 G    /output/result/f_volte_sip_mw_h/p_hour=2017122216
+3.5 G    /output/result/f_volte_sip_mw_h/p_hour=2017122217
+3.3 G    /output/result/f_volte_sip_mw_h/p_hour=2017122218
+3.1 G    /output/result/f_volte_sip_mw_h/p_hour=2017122219
+3.0 G    /output/result/f_volte_sip_mw_h/p_hour=2017122220
+2.8 G    /output/result/f_volte_sip_mw_h/p_hour=2017122221
+2.5 G    /output/result/f_volte_sip_mw_h/p_hour=2017122222
+2.2 G    /output/result/f_volte_sip_mw_h/p_hour=2017122223
+
+
+
+
+
+f_volte_sip_mw_d
+
+
+
+f_volte_sip_mw_h
+
+
+CREATE TEMPORARY VIEW celllist USING csv
+OPTIONS(
+header true,
+path '/data/conf/celllist.csv')  
+
+
+
+-streaming.name test 
+-streaming.platform spark 
+-streaming.job.file.path file:///d/dishui/content/post/bigdata/spark/streamingpro/conf/batch_1.json
+-streaming.sql.source.a.path file://$SDATA/source/data.json 
+-streaming.sql.out.b.path file://$SDATA/out/parquet_1
+
+
+
+mysql -u root -e "select * from test.ceshi" > 2018-01-23.csv
+
+
+select * from test.ceshi into outfile '2018-01-23-1.csv' fields terminated by ',' optionally enclosed by '"' lines terminated by '\r\n';
+
+mysql -u root -e "select * from test.v_eptable limit 10 into outfile 'v_eptable.csv' fields terminated by ',' lines terminated by '\r\n'" && \
+mv /var/lib/mysql/v_eptable.csv v_eptable1.csv
+
+
+mysql -u root -e "select * into outfile 'v_eptable.csv' fields terminated by ',' lines terminated by '\r\n' from test.v_eptable limit 10" && \
+mv /var/lib/mysql/v_eptable.csv v_eptable1.csv
+
+mysql -u root --default-character-set=latin1 -e "select * from test.v_eptable limit 10 into outfile 'v_eptable.csv' fields terminated by ',' lines terminated by '\r\n'" && \
+mv /var/lib/mysql/v_eptable.csv v_eptable4.csv
+
+
+
+mysql -h 10.254.201.239 -udevelop -pdevelop1234! --default-character-set=utf8 -e "select * from test.v_eptable limit 10"
+mysql -u root -e "select * from test.v_eptable limit 10"
+
+
+alter database test character set utf8;
+
+
+
+DROPS1MME
+
+
+${filename:contains('bigxdrdrops1mme_')}
+
+drops1mme
+${filename:getDelimitedField(2, '_'):substring(0,10)}
+
+use default;
+alter table bigxdrdrops1mme add partition (phour='2017122208');
+alter table bigxdrdrops1mme add partition (phour='2017122209');
+alter table bigxdrdrops1mme add partition (phour='2017122210');
+
+
+
+
+bigxdrdrops1mme = 
+
+`local_province` string,        851     local_province
+`local_city` string,        |857        local_city
+`imsi` string,      |460027485056358        imsi
+`msisdn` string,        |8618785742704      msisdn
+`imei` string,      |862017031223416        imei
+`brand` string,     |       brand
+`product` string,       |       product
+`call_side` string,     |2      call_side
+`eci` string,       |46000007836161     eci
+`flow_starttime` string,        |2017-12-22 09:55:51.501000     flow_starttime
+`flow_endtime` string,      |2017-12-22 09:57:18.900000     flow_endtime
+`flow_firfailtime` string,      |       flow_firfailtime
+`flow_firfailinterface` string,     |       flow_firfailinterface
+`flow_firfail_neipname` string,     |       flow_firfail_neipname
+`flow_firfail_nename` string,       |       flow_firfail_nename
+`flow_firfail_netype` string,       |       flow_firfail_netype
+`rx_asr_time` string,       |       rx_asr_time
+`rx_abort_cause` string,        |       rx_abort_cause
+`rx_media_type` string,     |       rx_media_type
+`mw_procedure_start_time` string,       |2017-12-22 09:55:51.501000     mw_procedure_start_time
+`mw_procedure_end_time` string,     |2017-12-22 09:57:18.900000     mw_procedure_end_time
+`mw_answer_time` string,        |2017-12-22 09:56:04.003000     mw_answer_time
+`mw_source_ne_ip` string,       |10.184.101.77      mw_source_ne_ip
+`mw_source_ne_name` string,     |GYSCSCF2BHW        mw_source_ne_name
+`mw_dest_ne_ip` string,     |10.184.100.64      mw_dest_ne_ip
+`mw_dest_ne_name` string,       |GYICSCF1BHW        mw_dest_ne_name
+`mw_response_code` string,      |200        mw_response_code
+`mw_finish_warning_code` string,        |       mw_finish_warning_code
+`mw_finish_reason_protocol` string,     |       mw_finish_reason_protocol
+`mw_finish_reason_cause` string,        |       mw_finish_reason_cause
+`mw_firfailtime` string,        |1970-01-01 08:01:27.358000     mw_firfailtime
+`mw_first_fail_ne_ip` string,       |10.184.101.77      mw_first_fail_ne_ip
+`mw_first_fail_transaction` string,     |       mw_first_fail_transaction
+`s1mme_ffailtime` string,       |       s1mme_ffailtime
+`s1mme_ff_proceduretype` string,        |       s1mme_ff_proceduretype
+`s1mme_ff_procedurestatus` string,      |       s1mme_ff_procedurestatus
+`s1ap_ff_keyword1` string,      |       s1ap_ff_keyword1
+`s1ap_ff_causegroup` string,        |       s1ap_ff_causegroup
+`s1ap_ff_causespecific` string      |       s1ap_ff_causespecific
+
+
+local_province
+local_city
+imsi
+msisdn
+imei
+brand
+product
+call_side
+eci
+flow_starttime
+flow_endtime
+flow_firfailtime
+flow_firfailinterface
+flow_firfail_neipname
+flow_firfail_nename
+flow_firfail_netype
+rx_asr_time
+rx_abort_cause
+rx_media_type
+mw_procedure_start_time
+mw_procedure_end_time
+mw_answer_time
+mw_source_ne_ip
+mw_source_ne_name
+mw_dest_ne_ip
+mw_dest_ne_name
+mw_response_code
+mw_finish_warning_code
+mw_finish_reason_protocol
+mw_finish_reason_cause
+mw_firfailtime
+mw_first_fail_ne_ip
+mw_first_fail_transaction
+s1mme_ffailtime
+s1mme_ff_proceduretype
+s1mme_ff_procedurestatus
+s1ap_ff_keyword1
+s1ap_ff_causegroup
+s1ap_ff_causespecific
+phour
+
+
+851
+|857
+|460027485056358
+|8618785742704
+|862017031223416
+|
+|
+|2
+|46000007836161
+|2017-12-22 09:55:51.501000
+|2017-12-22 09:57:18.900000
+|
+|
+|
+|
+|
+|
+|
+|
+|2017-12-22 09:55:51.501000
+|2017-12-22 09:57:18.900000
+|2017-12-22 09:56:04.003000
+|10.184.101.77
+|GYSCSCF2BHW
+|10.184.100.64
+|GYICSCF1BHW
+|200
+|
+|
+|
+|1970-01-01 08:01:27.358000
+|10.184.101.77
+|
+|
+|
+|
+|
+|
+|
+
+
+
+CREATE EXTERNAL TABLE `bigxdrdrops1mme`(`local_province` string, `local_city` string, `imsi` string, `msisdn` string, `imei` string, `brand` string, `product` string, `call_side` string, `eci` string, `flow_starttime` string, `flow_endtime` string, `flow_firfailtime` string, `flow_firfailinterface` string, `flow_firfail_neipname` string, `flow_firfail_nename` string, `flow_firfail_netype` string, `rx_asr_time` string, `rx_abort_cause` string, `rx_media_type` string, `mw_procedure_start_time` string, `mw_procedure_end_time` string, `mw_answer_time` string, `mw_source_ne_ip` string, `mw_source_ne_name` string, `mw_dest_ne_ip` string, `mw_dest_ne_name` string, `mw_response_code` string, `mw_finish_warning_code` string, `mw_finish_reason_protocol` string, `mw_finish_reason_cause` string, `mw_firfailtime` string, `mw_first_fail_ne_ip` string, `mw_first_fail_transaction` string, `s1mme_ffailtime` string, `s1mme_ff_proceduretype` string, `s1mme_ff_procedurestatus` string, `s1ap_ff_keyword1` string, `s1ap_ff_causegroup` string, `s1ap_ff_causespecific` string)
+PARTITIONED BY (`phour` string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+  'separatorChar' = '|',
+  'serialization.format' = '1'
+)
+STORED AS
+  INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
+  OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 'hdfs://vm73:8020/cmdi/bigxdrdrops1mme'
+TBLPROPERTIES (
+  'transient_lastDdlTime' = '1516868170'
+)
+
+
+--master yarn --conf spark.sql.shuffle.partitions=10 --conf spark.eventLog.enabled=true --conf spark.eventLog.dir=hdfs://vm73/spark-log
+
+
+生产
+1. 创建表
+2. 创建hive表
+
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 2 --num-executors 5 --conf spark.sql.shuffle.partitions=10 --conf spark.eventLog.enabled=true --conf spark.eventLog.dir=hdfs://bjmcc-hdp-cluster-node-06.do:8020/spark2-history
+
+
+mw
+vtv
+
+指标呈现
+
+
+
+BroadcastExchange 
+
+BroadcastHashJoin 
+
+HashAggregate 
+
+tail -f console.log| awk '{if($0~"Finished for") print}'
+awk '{if($0~"Finished for") print}' console.log
+
+
+hdfs dfs -du -h /data/volte/srvccmr
+
+hdfs dfs -ls /output/result/f_v_bxdr_city_grid_imsi_h_render
+hdfs dfs -ls /output/result/f_v_bxdr_drop_grid_imsi_h_render
+hdfs dfs -ls /output/result/f_v_bxdr_srvcc_grid_imsi_h_render
+
+hdfs dfs -ls /output/result/f_v_bxdr_city_grid_imsi_d_render
+hdfs dfs -ls /output/result/f_v_bxdr_drop_grid_imsi_d_render
+hdfs dfs -ls /output/result/f_v_bxdr_srvcc_grid_imsi_d_render
+
+
+hdfs dfs -du -h /output/result/f_v_bxdr_city_grid_imsi_h_render
+hdfs dfs -du -h /output/result/f_v_bxdr_drop_grid_imsi_h_render
+hdfs dfs -du -h /output/result/f_v_bxdr_srvcc_grid_imsi_h_render
+
+hdfs dfs -du -h /output/result/f_v_bxdr_city_grid_imsi_d_render
+315.2 M  /output/result/f_v_bxdr_city_grid_imsi_d_render/p_hour=2017122200
+hdfs dfs -du -h /output/result/f_v_bxdr_drop_grid_imsi_d_render
+870.1 K  /output/result/f_v_bxdr_drop_grid_imsi_d_render/p_hour=2017122200
+hdfs dfs -du -h /output/result/f_v_bxdr_srvcc_grid_imsi_d_render
+1.1 M  /output/result/f_v_bxdr_srvcc_grid_imsi_d_render/p_hour=2017122200
+
+
+
+16.5 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122200
+12.6 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122201
+8.9 K    /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122202
+2.3 K    /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122203
+6.0 K    /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122204
+5.5 K    /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122205
+11.3 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122206
+28.3 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122207
+57.8 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122208
+81.0 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122209
+81.8 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122210
+100.0 K  /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122211
+115.2 K  /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122212
+81.7 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122213
+84.6 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122214
+94.4 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122215
+120.1 K  /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122216
+159.8 K  /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122217
+168.3 K  /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122218
+105.8 K  /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122219
+90.4 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122220
+77.2 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122221
+55.7 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122222
+33.3 K   /output/result/f_v_bxdr_srvcc_grid_imsi_h_render/p_hour=2017122223

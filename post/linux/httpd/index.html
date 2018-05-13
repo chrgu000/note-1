@@ -7,7 +7,8 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="Apache httpd 服务器" />
-<meta property="og:description" content="Contents1. Httpd1.1. 配置1. Httpd1.1. 配置# vim /etc/selinux/config# 修改SELINUX=disabled&lt;VirtualHost *:8080&gt;DocumentRoot /var/www/html/Alias /test/ &#34;/home/tmp/&#34;&lt;Directory /home/tmp&gt;AddHandler cgi-script .cgiOptions &#43;Indexes &#43;ExecCGIDirectoryIndex index.cgiAllowOverride Limit FileInfo IndexesOrder deny,allowAllow from all&lt;/Directory&gt;&lt;/VirtualHost&gt;" />
+<meta property="og:description" content="Contents1. Httpd1.1. 配置1. Httpd1.1. 配置# vi /etc/selinux/config# 修改SELINUX=disabledsed -i s@SELINUX=enforcing@SELINUX=disabled@ /etc/selinux/configcat /etc/selinux/config&lt;VirtualHost *:8080&gt;DocumentRoot /var/www/html/Alias /test/ &#34;/home/tmp/&#34;&lt;Directory /home/tmp&gt;AddHandler cgi-script .cgiOptions &#43;Indexes &#43;ExecCGIDirectoryIndex index.cgiAllowOverride Limit FileInfo IndexesOrder deny,allowAllow from all&lt;/Directory&gt;&lt;/VirtualHost&gt;Listen 9080
+&lt;VirtualHost *:9080&gt;Alias /HDP/ &#34;/data/HDP/&#34;&lt;Directory /data/HDP&gt;AddHandler cgi-script .cgiOptions &#43;Indexes &#43;ExecCGIDirectoryIndex index." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/httpd/" />
 
@@ -51,8 +52,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -71,8 +72,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -109,15 +108,19 @@
 <h3 id="_配置">1.1. 配置</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># vim /etc/selinux/config
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash"># vi /etc/selinux/config
 # 修改
-SELINUX=disabled</code></pre>
+SELINUX=disabled
+
+sed -i s@SELINUX=enforcing@SELINUX=disabled@ /etc/selinux/config
+
+cat /etc/selinux/config</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-conf" data-lang="conf">&lt;VirtualHost *:8080&gt;
-	DocumentRoot /var/www/html/
+    DocumentRoot /var/www/html/
     Alias /test/ "/home/tmp/"
     &lt;Directory /home/tmp&gt;
         AddHandler cgi-script .cgi
@@ -129,6 +132,47 @@ SELINUX=disabled</code></pre>
     &lt;/Directory&gt;
 &lt;/VirtualHost&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Listen 9080</p>
+</div>
+<div class="paragraph">
+<p>&lt;VirtualHost *:9080&gt;
+    Alias /HDP/ "/data/HDP/"
+    &lt;Directory /data/HDP&gt;
+        AddHandler cgi-script .cgi
+        Options +Indexes +ExecCGI
+        DirectoryIndex index.cgi
+        AllowOverride Limit FileInfo Indexes
+        Order deny,allow
+        Allow from all
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;VirtualHost *:9081&gt;
+    Alias /HDP-UTILS/ "/data/HDP-UTILS/"
+    &lt;Directory /data/HDP-UTILS&gt;
+        Options All
+        AllowOverride all
+        Allow from all
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;VirtualHost *:8080&gt;
+    DocumentRoot /data/
+    &lt;Directory /data&gt;
+        Options Indexes FollowSymLinks
+        AllowOverride None
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;Directory /home/macg/www/test&gt;
+    Options All
+    AllowOverride all
+&lt;/Directory&gt;</p>
 </div>
 </div>
 </div>
@@ -187,7 +231,7 @@ SELINUX=disabled</code></pre>
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

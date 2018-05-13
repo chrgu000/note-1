@@ -50,8 +50,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -70,8 +70,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -102,15 +100,15 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						启动
+						kafka1. 练习2. Window获取 topic 的 offset查看topic消费进度1. 错误启动
 sh $TOOLS_HOME/kafka/start-kafka.sh
-sh $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
+nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
+1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;
 查看kafka-topics.sh --zookeeper djt11:2181 --list
 创建kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test
 发送消息kafka-console-producer.sh --broker-list djt11:9092 --topic test
 接收消息kafka-console-consumer.sh --zookeeper djt11:2181 --topic test --from-beginning
-查看消费者组的消费情况kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --group console-consumer-14804
-
+查看消费者组的消费情况kafka-run-class.
 					</div>
 				</div>
 			</div>
@@ -263,6 +261,30 @@ mysql.ymlversion: '2'services:mysql:image: dishui.io:5000/mysql:5.5.52conta
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/hadoop/hive%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" rel="bookmark">hive基础操作</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-16 00:00:00 &#43;0000 UTC">March 16, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Hive 操作（一）表操作
+Hive 和 Mysql 的表操作语句类似，如果熟悉 Mysql，学习Hive 的表操作就非常容易了，下面对 Hive 的表操作进行深入讲解。(1)先来创建一个表名为student1的内部表
+hive&gt; CREATE TABLE IF NOT EXISTS student1&gt; (sno INT,sname STRING,age INT,sex STRING)&gt; ROW FORMAT DELIMITED&gt; FIELDS TERMINATED BY '\t'&gt; STORED AS TEXTFILE;
+建表规则如下：
+CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name[(col_name data_type [COMMENT col_comment], &#8230;&#8203;)][COMMENT table_comment][PARTITIONED BY (col_name data_type [COMMENT col_comment], &#8230;&#8203;)][CLUSTERED BY (col_name, col_name, &#8230;&#8203;)[SORTED BY (col_name [ASC|DESC], &#8230;&#8203;)] INTO num_buckets BUCKETS][ROW FORMAT row_format][STORED AS file_format][LOCATION hdfs_path]
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/bigdata/hadoop/log-analysis/" rel="bookmark">log</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -313,30 +335,16 @@ hadoop fs -mkdir -p /wordcount/input
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/hadoop2/" rel="bookmark">hadoop2.4.1集群搭建</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-12 00:00:00 &#43;0000 UTC">March 12, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hadoop1. CentOS 安装1.1. 准备Linux环境1.2. 安装 JDK1.3. 安装 hadoop2.4.11.3.1. 将 hadoop 添加到环境变量1.3.2. 格式化 namenode（是对 namenode 进行初始化）1.3.3. 启动 hadoop1.3.4. 验证是否启动成功1.4. 配置ssh免登陆2. docker 方式2.1. compose3. Example3.1. wordcount4. hdfs 文件上传流程5. 参考1. CentOS 安装1.1. 准备Linux环境先将虚拟机的网络模式选为NAT
-修改主机名
-vi /etc/sysconfig/networkNETWORKING=yesHOSTNAME=mini1 ###修改IP
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
+<div class="mr-loop-pagination clearfix">
+	
+	<span class="page-numbers current">1/2</span>
+	
+	<a class="page-numbers" href="/categories/hadoop/page/2/">»</a>
+	
+</div>
+
 	</div>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
@@ -361,6 +369,8 @@ vi /etc/sysconfig/networkNETWORKING=yesHOSTNAME=mini1 ###修改IP
 	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
 	<ul>
 		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
 		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
 		
 		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
@@ -374,6 +384,8 @@ vi /etc/sysconfig/networkNETWORKING=yesHOSTNAME=mini1 ###修改IP
 		<li class="cat-item"><a href="/categories/java">Java</a></li>
 		
 		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
 		
 		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
 		
@@ -444,7 +456,7 @@ vi /etc/sysconfig/networkNETWORKING=yesHOSTNAME=mini1 ###修改IP
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

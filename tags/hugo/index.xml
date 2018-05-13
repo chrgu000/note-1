@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>零零散散</title>
+    <title>零零碎碎</title>
     <link>/tags/hugo/index.xml</link>
-    <description>Recent content on 零零散散</description>
+    <description>Recent content on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
@@ -267,7 +267,7 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;p&gt;启动 &lt;strong&gt;nodejieba&lt;/strong&gt; 容器&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker run -it --name=lunr --volume-driver=cifs -v 192.168.137.2/note-hugo:/hugo dishui.io:5000/nodejieba:1.1 /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker run -it --name=lunr --volume-driver=cifs -v 192.168.137.1/dishui:/hugo registry.cn-hangzhou.aliyuncs.com/dishui/nodejieba:1.1 bash&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -275,9 +275,7 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;p&gt;构建索引&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /hugo/content &amp;amp;&amp;amp; \
-nodejs hugo-lunr.js &amp;amp;&amp;amp; \ # 生成原始数据
-nodejs index_builder.js # 生成索引&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /hugo/content &amp;amp;&amp;amp; nodejs hugo-lunr.js &amp;amp;&amp;amp; nodejs index_builder.js&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;

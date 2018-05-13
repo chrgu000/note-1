@@ -1,0 +1,45 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS cmdi.sv
+(
+    len                     INT,
+    city                    SMALLINT,
+    iface                   TINYINT,
+    xdr_id                  STRING,
+    rat                     TINYINT,
+    imsi                    BIGINT,
+    imei                    BIGINT,
+    msisdn                  STRING,
+    type                    TINYINT,
+    starttime               STRING,
+    endtime                 STRING,
+    source_ne_ip            STRING,
+    source_ne_port          SMALLINT,
+    dest_ne_ip              STRING,
+    dest_ne_port            SMALLINT,
+    roam_direction          TINYINT,
+    home_mcc                SMALLINT,
+    home_mnc                SMALLINT,
+    mcc                     SMALLINT,
+    mnc                     SMALLINT,
+    target_lac              SMALLINT,
+    source_tac              SMALLINT,
+    source_eci              SMALLINT,
+    sv_flags                TINYINT,
+    ul_c_msc_ip             STRING,
+    dl_c_mme_ip             STRING,
+    ul_c_msc_teid           BIGINT,
+    dl_c_mme_teid           BIGINT,
+    stn_sr                  STRING,
+    target_rnc_id           SMALLINT,
+    target_cell_id          SMALLINT,
+    arp                     TINYINT,
+    request_result          TINYINT,
+    result                  TINYINT,
+    sv_cause                TINYINT,
+    post_failure_cause      TINYINT,
+    resp_delay              BIGINT,
+    sv_delay                BIGINT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '|'
+STORED AS TEXTFILE
+LOCATION 'hdfs://vm73:8020/cmdi/sv';

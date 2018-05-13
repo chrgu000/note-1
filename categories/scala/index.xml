@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>零零散散</title>
+    <title>零零碎碎</title>
     <link>/categories/scala/index.xml</link>
-    <description>Recent content on 零零散散</description>
+    <description>Recent content on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/categories/scala/index.xml" rel="self" type="application/rss+xml" />
@@ -18,6 +18,8 @@
 &lt;div id=&#34;toctitle&#34;&gt;Scala 参考&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_scala_参考&#34;&gt;1. Scala 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sbt_仓库&#34;&gt;2. sbt 仓库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_新建项目&#34;&gt;3. 新建项目&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -38,6 +40,49 @@
 &lt;p&gt;&lt;a href=&#34;https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html&#34; class=&#34;bare&#34;&gt;https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sbt_仓库&#34;&gt;2. sbt 仓库&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;[repositories]
+  local
+  nexus-aliyun:http://maven.aliyun.com/nexus/content/groups/public
+  maven-central
+  typesafe-ivy-releases: http://dl.bintray.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+  sbt-ivy-snapshots: http://dl.bintray.com/typesafe/maven-releases/
+  sbt-plugin-releases: http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://hongjiang.info/scala/&#34; class=&#34;bare&#34;&gt;http://hongjiang.info/scala/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://yefremov.net/blog/scala-code-generation/&#34; class=&#34;bare&#34;&gt;http://yefremov.net/blog/scala-code-generation/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.programcreek.com/scala/scala.language.experimental.macros&#34; class=&#34;bare&#34;&gt;https://www.programcreek.com/scala/scala.language.experimental.macros&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Centaur/repox&#34; class=&#34;bare&#34;&gt;https://github.com/Centaur/repox&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.scala-sbt.org/1.x/docs/zh-cn/More-About-Settings.html&#34;&gt;SBT 文档&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_新建项目&#34;&gt;3. 新建项目&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sbt -Dsbt.override.build.repos=true -Dsbt.repository.config=/c/Users/dishui/.sbt/repositories assembly&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

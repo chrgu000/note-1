@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>clustershell</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="clustershell" />
+<meta property="og:description" content="clustershell1. clustershell2. 参考1. clustershell安装
+python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simplepip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple配置
+cat &gt; /etc/clustershell/groups.conf &lt;&lt;_EOF_# ClusterShell node groups main configuration file## Please see `man 5 groups.conf` and# http://clustershell.readthedocs.org/en/latest/config.html#node-groups# for further details.## NOTE: This is a simple group configuration example file, not a# default config file." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/clustershell/" />
+
+
+<meta property="og:updated_time" content="2018-01-27T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">clustershell</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2018-01-27 00:00:00 &#43;0000 UTC">January 27, 2018</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/linux" rel="category">linux</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">clustershell</div>
+<ul class="sectlevel1">
+<li><a href="#_clustershell">1. clustershell</a></li>
+<li><a href="#_参考">2. 参考</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_clustershell">1. clustershell</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>安装</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>配置</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cat &gt; /etc/clustershell/groups.conf &lt;&lt;_EOF_
+
+# ClusterShell node groups main configuration file
+#
+# Please see `man 5 groups.conf` and
+# http://clustershell.readthedocs.org/en/latest/config.html#node-groups
+# for further details.
+#
+# NOTE: This is a simple group configuration example file, not a
+#       default config file. Please edit it to fit your own needs.
+#
+[Main]
+
+# Default group source
+default: local
+
+# Group source config directory list (space separated, use quotes if needed).
+# Examples are provided. Copy them from *.conf.example to *.conf to enable.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default confdir value enables both system-wide and user configuration.
+confdir: /etc/clustershell/groups.conf.d $CFGDIR/groups.conf.d
+
+# New in 1.7, autodir defines a directory list (space separated, use quotes if
+# needed) where group data files will be auto-loaded.
+# Only *.yaml file are loaded. Copy *.yaml.example files to enable.
+# Group data files avoid the need of external calls for static config files.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default autodir value enables both system-wide and user configuration.
+autodir: /etc/clustershell/groups.d $CFGDIR/groups.d
+
+# Sections below also define group sources.
+#
+# NOTE: /etc/clustershell/groups is deprecated since version 1.7, thus if it
+#       doesn't exist, the "local.cfg" file from autodir will be used.
+#
+# See the documentation for $CFGDIR, $SOURCE, $GROUP and $NODE upcall special
+# variables. Please remember that they are substitued before the shell command
+# is effectively executed.
+#
+[local]
+# flat file "group: nodeset" based group source using $CFGDIR/groups.d/local.cfg
+# with backward support for /etc/clustershell/groups
+map: [ -f $CFGDIR/groups ] &amp;&amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n 's/^$GROUP:\(.*\)/\1/p' $f
+all: [ -f $CFGDIR/groups ] &amp;&amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n 's/^all:\(.*\)/\1/p' $f
+list: [ -f $CFGDIR/groups ] &amp;&amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n 's/^\([0-9A-Za-z_-]*\):.*/\1/p' $f
+
+_EOF_</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">cat &gt; /etc/clustershell/groups.d/cluster.yaml &lt;&lt;_EOF_
+kafkas:
+    brokers: 'hadoop[1,2]'
+_EOF_</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>执行命令</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>clush -g kafkas:brokers uptime</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_参考">2. 参考</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://clustershell.readthedocs.io/en/latest/tools/clush.html" class="bare">http://clustershell.readthedocs.io/en/latest/tools/clush.html</a></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>clush -g kafkas:brokers 'mkdir -p ~/tmp/{bin,tar}'
+
+clush -g kafkas:brokers -c /root/tmp/tar/kafka_2.11-0.8.2.2.tgz --dest ~/tmp/tar
+clush -g kafkas:brokers -c /root/tmp/bin/set_kafka_config.sh --dest ~/tmp/bin
+
+clush -g kafkas:brokers 'ls ~/tmp/tar'
+
+CMD='tar -zxf /root/tmp/tar/kafka_2.11-0.8.2.2.tgz -C /root/tmp/'
+clush -v -g kafkas:brokers $CMD
+
+#!/bin/bash
+
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+KAFKA_HOST_NAME=`hostname`
+KAFKA_NUM_PARTITIONS=3
+KAFKA_ZK_URL='vm73:2181,vm74:2181,vm75:2181'
+
+# host.name
+sed -i "s/^\#\?host.name=.*/host.name=${KAFKA_HOST_NAME}/" $KAFKA_HOME/config/server.properties
+# num.partitions
+sed -i "s/^\#\?num.partitions=.*/num.partitions=${KAFKA_NUM_PARTITIONS}/" $KAFKA_HOME/config/server.properties
+# zookeeper.connect=localhost:2181
+sed -i "s/^\#\?zookeeper.connect=.*/zookeeper.connect=${KAFKA_ZK_URL}/" $KAFKA_HOME/config/server.properties
+
+
+clush -w vm74
+
+clush -g kafkas:brokers 'sh /root/tmp/bin/set_kafka_config.sh'
+
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+CMD="cat ${KAFKA_HOME}/config/server.properties|grep 'host.name|zookeeper.connect'"
+CMD="cat ${KAFKA_HOME}/config/server.properties|grep 'zookeeper.connect'"
+clush -g kafkas:brokers $CMD
+
+declare -A map=(["vm74"]="1" ["vm75"]="2" ["vm76"]="3")
+
+for key in ${!map[@]}
+  do
+    echo ${map[$key]}
+    CMD="sed -i \"s/^\#\?broker.id=.*/broker.id=${map[$key]}/\" $KAFKA_HOME/config/server.properties"
+    clush -w $key $CMD
+  done
+
+for i in 1 2 3
+  do
+    echo "$i--&gt;$(uptime)"
+  done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>clush -w vm76 'tail -200 ~/tmp/logs/kafka.log'</p>
+</div>
+<div class="paragraph">
+<p>clush -w vm75 'tail -200 ~/tmp/logs/kafka.log'</p>
+</div>
+<div class="paragraph">
+<p>clush -w vm74 'tail -200 ~/tmp/logs/kafka.log'</p>
+</div>
+<div class="paragraph">
+<p>clush -g kafkas:brokers 'tail -f ~/tmp/logs/kafka.log'</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/ambari/" rel="prev"><span>«Previous</span><p>Ambari</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/streamingpro/streamingpro/" rel="next"><span>Next»</span><p>Streampro 学习</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

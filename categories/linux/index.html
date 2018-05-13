@@ -12,7 +12,7 @@
 <meta property="og:url" content="/categories/linux/" />
 
 
-<meta property="og:updated_time" content="2017-03-23T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2018-01-27T00:00:00&#43;00:00"/>
 
 
 
@@ -50,8 +50,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -71,8 +71,6 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
-        
 	</ul>
 </nav>
 				</div>
@@ -87,6 +85,28 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/clustershell/" rel="bookmark">clustershell</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-01-27 00:00:00 &#43;0000 UTC">January 27, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						clustershell1. clustershell2. 参考1. clustershell安装
+python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simplepip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple配置
+cat &gt; /etc/clustershell/groups.conf &lt;&lt;_EOF_# ClusterShell node groups main configuration file## Please see `man 5 groups.conf` and# http://clustershell.readthedocs.org/en/latest/config.html#node-groups# for further details.## NOTE: This is a simple group configuration example file, not a# default config file.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -308,32 +328,11 @@ nginx 平台为：rhel 6.4/CentOS-6.5 32bit
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/fen_qu/" rel="bookmark">linux 系统分区</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents 分区  首先查看机器上有多少块硬盘：
-$ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors/track, 121601 cylinders Units = cylinders of 16065 * 512 = 8225280 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disk identifier: 0x00000000 # # Disk /dev/sdd doesn't contain a valid partition table # Disk /dev/sdh: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors/track, 121601 cylinders Units = cylinders of 16065 * 512 = 8225280 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disk identifier: 0xd54c485e # # Device Boot Start End Blocks Id System /dev/sdh1 1 121601 976760001 83 Linux # 我的服务器上有很多块，有上述信息可知，目前sdd硬盘还为挂载  硬盘分区
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
-	<span class="page-numbers current">1/2</span>
+	<span class="page-numbers current">1/3</span>
 	
 	<a class="page-numbers" href="/categories/linux/page/2/">»</a>
 	
@@ -363,6 +362,8 @@ $ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors
 	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
 	<ul>
 		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
 		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
 		
 		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
@@ -376,6 +377,8 @@ $ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors
 		<li class="cat-item"><a href="/categories/java">Java</a></li>
 		
 		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
 		
 		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
 		
@@ -446,7 +449,7 @@ $ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

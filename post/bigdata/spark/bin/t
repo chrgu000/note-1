@@ -1,0 +1,35 @@
+#! /bin/bash
+set -x
+# JAVA_HOME
+# echo $LIB_HOME
+# exec java -Dfile.encoding=utf8 -cp "$CP_ENV" $3
+# ARGS=$@
+# ARGS=(a b c)
+# COUNT=${#ARGS[@]}
+# COUNT=${#ARGS[@]}
+
+# CMD=("${ARGS[@]:0:$COUNT}")
+# echo $CMD
+
+# echo $ARGS
+
+# echo ${ARGS[0|@|*]}
+
+OLD_IFS="$IFS"
+IFS=" "
+ARGS=($@)
+IFS="$OLD_IFS"
+COUNT=${#ARGS[@]}
+echo ${ARGS[@]:0:$COUNT}
+
+echo $@
+
+# for s in ${arr[@]}
+# do
+#   echo "$s"
+# done
+
+
+
+
+dirname `which run-flume`|xargs dirname

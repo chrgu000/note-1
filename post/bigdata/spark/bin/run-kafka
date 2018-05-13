@@ -1,0 +1,212 @@
+#! /bin/bash
+# set -x
+
+BIN_HOME="$(cd "`dirname "$0"`"; pwd)"
+source $BIN_HOME/env.sh
+
+declare -A map=()
+
+while read a b
+do
+  map[$a]=$b
+done < $BIN_HOME/hosts
+
+for node in ${!map[@]}
+do
+  if [ "" != "$NODES" ]; then
+    NODES=$NODES,$node
+  else
+    NODES=$node
+  fi
+  # KAFKA_ZK_URL='vm73:2181,vm74:2181,vm75:2181/kt1'
+  if [ "" != "$KAFKA_ZK_URL" ]; then
+    KAFKA_ZK_URL=${KAFKA_ZK_URL},$node:2181
+  else
+    KAFKA_ZK_URL=$node:2181
+  fi
+done
+
+if [ "" != "$KAFKA_ZK_URL" ]; then
+  KAFKA_ZK_URL=$KAFKA_ZK_URL/kt1
+fi
+
+if [[ "$@" = *--help ]] || [[ "$@" = *-h ]] || [[ "$#" = 0 ]]; then
+  echo "Usage: run-kafka [config|cb|t|start|stop]"
+  pattern="Usage:\n"
+  pattern+="  #Config host.name num.partitions zookeeper.connect\n"
+  pattern+="    run-kafka config\n"
+  pattern+="  #Start Kafka Server\n"
+  pattern+="    run-kafka start\n"
+  pattern+="  #Stop Kafka Server\n"
+  pattern+="    run-kafka stop\n"
+  pattern+="  #Get host.name num.partitions zookeeper.connect Value\n"
+  pattern+="    run-kafka t\n"
+  pattern+="  #Get host.name|num.partitions|zookeeper.connect Value\n"
+  pattern+="    run-kafka t broker.id|host.name|num.partitions|zookeeper.connect\n"
+  pattern+="  #Start Kafka Manager\n"
+  pattern+="    run-kafka startKM\n"
+  pattern+="  #Stop Kafka Manager\n"
+  pattern+="    run-kafka stopKM\n"
+  pattern+="  #Kafka Server Status\n"
+  pattern+="    run-kafka status\n"
+  pattern+="  #Kafka Server Log\n"
+  pattern+="    run-kafka log\n"
+  pattern+="  #Kafka Manager Log\n"
+  pattern+="    run-kafka mlog"
+  echo -e $pattern
+  exit 1
+fi
+
+function config(){
+  for key in ${!map[@]}
+  do
+    # echo ${map[$key]}
+    local CMD="sed -i \"s/^\#\?broker.id=.*/broker.id=${map[$key]}/\" $KAFKA_HOME/config/server.properties"
+    local CMD1="sed -i \"s/^\#\?host.name=.*/host.name=$key/\" $KAFKA_HOME/config/server.properties"
+    clush -w $key $CMD
+    clush -w $key $CMD1
+  done
+  # host.name
+
+  # num.partitions
+  local CMD2="sed -i \"s/^\#\?num.partitions=.*/num.partitions=${KAFKA_NUM_PARTITIONS}/\" $KAFKA_HOME/config/server.properties"
+  # zookeeper.connect=localhost:2181
+  local CMD3="sed -i \"s@^\#\?zookeeper.connect=.*@zookeeper.connect=${KAFKA_ZK_URL}@\" $KAFKA_HOME/config/server.properties"
+  # log.dirs=/tmp/kafka-logs
+  local CMD4="sed -i \"s@^\#\?log.dirs=.*@log.dirs=${KAFKA_LOG_DIRS}@\" $KAFKA_HOME/config/server.properties"
+  clush -w $NODES $CMD2
+  clush -w $NODES $CMD3
+  clush -w $NODES $CMD4
+}
+
+# clush -w vm74
+
+# clush -w $NODES 'sh /root/tmp/bin/set_kafka_config.sh'
+
+function validate(){
+  CMD="cat ${KAFKA_HOME}/config/server.properties|grep '^$1'"
+  clush -w $NODES $CMD
+}
+
+function configBrokerId(){
+  for key in ${!map[@]}
+    do
+      echo ${map[$key]}
+      CMD="sed -i \"s/^\#\?broker.id=.*/broker.id=${map[$key]}/\" $KAFKA_HOME/config/server.properties"
+      clush -w $key $CMD
+    done
+}
+
+function start(){
+  CMD="if [ ! -d \"$LOG_HOME\" ];then mkdir -p $LOG_HOME;fi"
+  clush -w $NODES $CMD
+  CMD2="source $BIN_HOME/env.sh;export JMX_PORT=$KAFKA_JMX_PORT;nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties 1>$LOG_HOME/kafka.log 2>$LOG_HOME/kafka.err"
+  clush -w $NODES $CMD2
+  clush -w $NODES "tail -f $LOG_HOME/kafka.log"
+}
+
+function stop(){
+  CMD2="$KAFKA_HOME/bin/kafka-server-stop.sh"
+  clush -w $NODES $CMD2
+  clush -w $NODES "> $LOG_HOME/kafka-server.pid"
+}
+
+function kStatus(){
+  CMD="source $BIN_HOME/env.sh;jps|grep Kafka"
+  # CMD+="if [ ! `ps ax | grep -i 'kafka\.Kafka' | grep java | grep -v grep | awk '{print $1}'` ];then "
+  # CMD+="echo \"Kafka Server is bad!\"; "
+  # CMD+="else "
+  # CMD+="echo \"Kafka Server is ok!\"; "
+  # CMD+="fi"
+  clush -w $NODES $CMD
+}
+
+#  -Dconfig.file=/path/to/application.conf
+function startKM(){
+  echo "Listen on $KAFKA_MANAGER_PORT!"
+  nohup $KAFKA_MANAGER_HOME/bin/kafka-manager -Dhttp.port=$KAFKA_MANAGER_PORT \
+  1>$LOG_HOME/kafka-manager.log \
+  2>$LOG_HOME/kafka-manager.err \
+  & echo $! >$LOG_HOME/kafka-manager.pid
+}
+
+function stopKM(){
+  if [ -s $LOG_HOME/kafka-manager.pid ];then
+    cat $LOG_HOME/kafka-manager.pid
+    cat $LOG_HOME/kafka-manager.pid | xargs -I pid kill pid
+    > $LOG_HOME/kafka-manager.pid
+  fi
+}
+
+function kmStatus(){
+  if [ -s $LOG_HOME/kafka-manager.pid ];then
+    echo "`hostname`: Kafka Manager is ok!"
+  else
+    echo "`hostname`: Kafka Manager is bad!"
+  fi
+}
+
+case $1 in
+  (config)
+  echo "Start Config Kafka"
+  config
+  ;;
+#
+  (start)
+  echo "Start Kafka"
+  start
+  ;;
+#
+  (stop)
+  echo "Stop Kafka"
+  stop
+  ;;
+#
+  (cb)
+  echo "Start Config Kafka BrokerId"
+  configBrokerId
+  ;;
+#
+  (t)
+  echo "Test Config Kafka"
+  if [ "$2" = "" ]
+  then
+    validate 'broker.id'
+    validate 'host.name'
+    validate 'num.partitions'
+    validate 'zookeeper.connect'
+    validate 'log.dirs'
+  else
+    validate $2
+  fi
+  ;;
+#
+  (startKM)
+  echo "Start Kafka Manager"
+  startKM
+  ;;
+#
+  (stopKM)
+  echo "Stop Kafka Manager"
+  stopKM
+  ;;
+#
+  (ks)
+  echo "Get Kafka Server Staus"
+  kStatus
+  ;;
+#
+  (kms)
+  echo "Get Kafka Manager Staus"
+  kmStatus
+  ;;
+#
+  (mlog)
+  tail -f $LOG_HOME/kafka-manager.err
+  ;;
+#
+  (log)
+  clush -w $NODES "tail -f $LOG_HOME/kafka.log"
+  ;;
+esac
+

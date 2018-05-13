@@ -7,12 +7,12 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="SparkStreaming" />
-<meta property="og:description" content="stream1. tmp2. SprakStreaming Demo2.1. StreamingWordCount1. tmp//监听 6066nc -lk 60662. SprakStreaming Demo2.1. StreamingWordCount环境:
+<meta property="og:description" content="stream1. tmp2. SprakStreaming Demo2.1. StreamingWordCount3. Receiver 源码流程图4. DirectKafkaInputDStream 源码分析图 0.8.2.25. DirectKafkaInputDStream 源码分析图 0.10.0.16. DirectKafkaInputDStream 源码分析图 0.10.0.1 --21. tmp//监听 6066nc -lk 60662. SprakStreaming Demo2.1. StreamingWordCount环境:
 名称下载地址hadoop2.6
 密码：roxm
 StreamingWordCount
 bigdata
-" />
+3." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/spark/spark-streaming/" />
 
@@ -56,8 +56,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -76,8 +76,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -109,6 +107,10 @@
 <li><a href="#_streamingwordcount">2.1. StreamingWordCount</a></li>
 </ul>
 </li>
+<li><a href="#_receiver_源码流程图">3. Receiver 源码流程图</a></li>
+<li><a href="#_directkafkainputdstream_源码分析图_0_8_2_2">4. DirectKafkaInputDStream 源码分析图 0.8.2.2</a></li>
+<li><a href="#_directkafkainputdstream_源码分析图_0_10_0_1">5. DirectKafkaInputDStream 源码分析图 0.10.0.1</a></li>
+<li><a href="#_directkafkainputdstream_源码分析图_0_10_0_1_2">6. DirectKafkaInputDStream 源码分析图 0.10.0.1 --2</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -152,6 +154,46 @@ nc -lk 6066</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_receiver_源码流程图">3. Receiver 源码流程图</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-7.svg" alt="graphviz 7" width="3497" height="911">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_directkafkainputdstream_源码分析图_0_8_2_2">4. DirectKafkaInputDStream 源码分析图 0.8.2.2</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-8.svg" alt="graphviz 8" width="4833" height="679">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_directkafkainputdstream_源码分析图_0_10_0_1">5. DirectKafkaInputDStream 源码分析图 0.10.0.1</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/spark-streaming-2.svg" alt="spark streaming 2" width="2205" height="554">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_directkafkainputdstream_源码分析图_0_10_0_1_2">6. DirectKafkaInputDStream 源码分析图 0.10.0.1 --2</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/spark-streaming-2-1.svg" alt="spark streaming 2 1" width="2223" height="836">
+</div>
 </div>
 </div>
 </div>
@@ -209,7 +251,7 @@ nc -lk 6066</code></pre>
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

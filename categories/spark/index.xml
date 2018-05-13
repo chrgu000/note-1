@@ -1,12 +1,269 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>零零散散</title>
+    <title>零零碎碎</title>
     <link>/categories/spark/index.xml</link>
-    <description>Recent content on 零零散散</description>
+    <description>Recent content on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ambari</title>
+      <link>/post/bigdata/ambari/</link>
+      <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bigdata/ambari/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Ambari&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_ambari&#34;&gt;1. Ambari&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_ambari动态添加删除节点&#34;&gt;3. ambari动态添加删除节点&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_下线节点&#34;&gt;3.1. 下线节点&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_上线节点&#34;&gt;3.2. 上线节点&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_ambari&#34;&gt;1. Ambari&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -o /etc/yum.repos.d/CentOS-Base.repo &lt;a href=&#34;http://mirrors.aliyun.com/repo/Centos-7.repo&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/repo/Centos-7.repo&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -o  /etc/yum.repos.d/ambari.repo &lt;a href=&#34;http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.0/ambari.repo&#34; class=&#34;bare&#34;&gt;http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.0/ambari.repo&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -o  /etc/yum.repos.d/ambari.repo &lt;a href=&#34;http://192.168.137.123/ambari/centos7/2.6.1.3-3/ambari.repo&#34; class=&#34;bare&#34;&gt;http://192.168.137.123/ambari/centos7/2.6.1.3-3/ambari.repo&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.3/ambari.repo&#34; class=&#34;bare&#34;&gt;http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.3/ambari.repo&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -o  /etc/yum.repos.d/hdp.repo &lt;a href=&#34;http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.4.0/hdp.repo&#34; class=&#34;bare&#34;&gt;http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.4.0/hdp.repo&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ambari-server setup --jdbc-db=mysql --jdbc-driver=/path/to/mysql/mysql-connector-java.jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ambari-server setup --jdbc-db=postgres --jdbc-driver=/root/postgresql-9.4.1211.jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;admin/admin&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://192.168.137.123/HDP/centos7/2.6.4.0-91/&#34; class=&#34;bare&#34;&gt;http://192.168.137.123/HDP/centos7/2.6.4.0-91/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://192.168.137.123/HDP-UTILS/&#34; class=&#34;bare&#34;&gt;http://192.168.137.123/HDP-UTILS/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://192.168.137.123/HDP-GPL/centos7/2.6.4.0-91/&#34; class=&#34;bare&#34;&gt;http://192.168.137.123/HDP-GPL/centos7/2.6.4.0-91/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://192.168.137.123/HDP/centos7/2.6.4.0-91/HDP-2.6.4.0-91.xml&#34; class=&#34;bare&#34;&gt;http://192.168.137.123/HDP/centos7/2.6.4.0-91/HDP-2.6.4.0-91.xml&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_start_the_ambari_server.html&#34; class=&#34;bare&#34;&gt;https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_start_the_ambari_server.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Python script has been killed due to timeout after waiting 1800 secs&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;vi /etc/ambari-server/conf/ambari.properties&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;agent.package.install.task.timeout=1800
+改为2700&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;postgres sql    ambari/bigdata
+psql -U ambari&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mv public.sql /var/lib/pgsql
+psql -U ambari -W -d postgres -f public.sql&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE DATABASE hive OWNER postgres;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create user hive with login password &#39;bigdata&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;vi /var/lib/pgsql/data/pg_hba.conf&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;python /usr/lib/ambari-agent/lib/ambari_agent/HostCleanup.py --silent --skip=users&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat /root/.ssh/id_rsa&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sed -i s@SELINUX=enforcing@SELINUX=disabled@ /etc/selinux/config&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo &#34;192.168.137.123  hadoop1&#34; &amp;gt;&amp;gt; /etc/hosts
+echo &#34;192.168.137.124  hadoop2&#34; &amp;gt;&amp;gt; /etc/hosts
+echo &#34;192.168.137.125  hadoop3&#34; &amp;gt;&amp;gt; /etc/hosts&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_ambari动态添加删除节点&#34;&gt;3. ambari动态添加删除节点&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_下线节点&#34;&gt;3.1. 下线节点&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;namenode节点上dfs.exclude文件
+echo &#34;hadoop3&#34; &amp;gt; /etc/hadoop/conf/dfs.exclude&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;resourcemanager节点上yarn.exclude文件
+echo &#34;hadoop3&#34; &amp;gt; /etc/hadoop/conf/yarn.exclude&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;选择任意一台节点执行：
+hdfs dfsadmin -refreshNodes
+yarn rmadmin -refreshNodes
+yarn node -list&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_上线节点&#34;&gt;3.2. 上线节点&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;上线节点基本与下线相同
+1) slaves文件里每行添加一个上线服务器名，同时保证dfs.exclude文件为空。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;2) ./hdfs dfsadmin -refreshNodes&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;3) 在要上线的节点上启动datanode：
+./hadoop-daemon.sh start datanode&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;4) 如需要启动nodemanager,则执行：
+./yarn-daemon.sh start nodemanager&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;5) 修改slaves，添加上线节点的hosts&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Streampro 学习</title>
+      <link>/post/bigdata/spark/streamingpro/streamingpro/</link>
+      <pubDate>Sat, 20 Jan 2018 18:20:34 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/streamingpro/streamingpro/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;==&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SHome=/d/spark
+SPARK_HOME=/d/env/spark-2.2.1-bin-hadoop2.7&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh $SPARK_HOME/bin/spark-submit   --class streaming.core.StreamingApp \
+  --master local[2] \
+  --name test \
+  $SHome/streamingpro-spark-2.0-1.0.0.jar \
+  -streaming.name test \
+  -streaming.platform spark \
+  -streaming.job.file.path &lt;a href=&#34;file://$SHome/batch_1.json&#34; class=&#34;bare&#34;&gt;file://$SHome/batch_1.json&lt;/a&gt;
+  -streaming.sql.source.a.path &lt;a href=&#34;file://$SHome/data/source/batch_1.json&#34; class=&#34;bare&#34;&gt;file://$SHome/data/source/batch_1.json&lt;/a&gt;
+  -streaming.sql.out.b.path &lt;a href=&#34;file://$SHome/data/out/parquet_1&#34; class=&#34;bare&#34;&gt;file://$SHome/data/out/parquet_1&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>spark-conf</title>
+      <link>/post/bigdata/spark/spark-conf/</link>
+      <pubDate>Wed, 15 Nov 2017 17:29:44 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-conf/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;spark-conf&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_defaults_conf&#34;&gt;1. spark-defaults.conf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_env_sh&#34;&gt;2. spark-env.sh&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_defaults_conf&#34;&gt;1. spark-defaults.conf&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;spark.master                     spark://vm74:7077
+spark.home                       /opt/hadoop-2.7.3
+# 日志
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://vm73:8020/spark-log
+#
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.executor.memory            6g
+spark.driver.memory              6g
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers=&#34;one two three&#34;
+# spark sql 默认task数
+spark.sql.shuffle.partitions     10
+
+--driver-java-options &#34;-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 4G --driver-cores 2 --executor-memory 6G --executor-cores 2 --num-executors 5 --conf spark.sql.shuffle.partitions=20 --driver-java-options &#34;-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark.acls.enable # true
+spark.admin.acls # set to admin users
+spark.modify.acls # user who can modify&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;--conf spark.admin.acls=root,hdfs&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_env_sh&#34;&gt;2. spark-env.sh&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export SPARK_DIST_CLASSPATH=$(/opt/hadoop-2.7.3/bin/hadoop classpath)
+export JAVA_HOME=/usr/java/jdk1.8.0_131/
+export HADOOP_HOME=/opt/hadoop-2.7.3
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_MASTER_IP=vm74
+export SPARK_MASTER_PORT=7077
+export SPARK_LOCAL_IP=vm74
+# SPARK_HISTORY_OPTS 配置日志
+export SPARK_HISTORY_OPTS=&#34;-Dspark.history.fs.logDirectory=hdfs://vm73:8020/spark-log&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>问题总结</title>
@@ -72,6 +329,8 @@
 &lt;div id=&#34;toctitle&#34;&gt;SparkSql2&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_spark_sql2&#34;&gt;1. Spark SQL2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_内置函数&#34;&gt;2. 内置函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_列名特殊字符处理&#34;&gt;3. 列名特殊字符处理&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -80,6 +339,231 @@
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;org.apache.spark.sql.SparkSession#sql
   org.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_内置函数&#34;&gt;2. 内置函数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;floor&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/&#34; class=&#34;bare&#34;&gt;https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SessionCalalog 用于管理表和数据库状态的内部目录
+Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;AbstractSqlParser
+SparkSqlParser&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sparkSession.sql(&#34;SELECT * FROM global_temp.people&#34;)
+  org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlan
+    org.apache.spark.sql.execution.SparkSqlParser#parse
+      org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SqlBaseLexer   词法分析
+ANTLRNoCaseStringStream
+CommonTokenStream
+SqlBaseParser&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Analyzer&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;def sql(sqlText: String): DataFrame = {
+  Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))
+}&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;sessionState.sqlParser.parsePlan(sqlText) -&amp;gt; unresolved logical plan&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SparkSql-1.0
+    org.apache.spark.sql.SQLContext#sql&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/oopsoom/article/details/37658021&#34;&gt;Spark SQL源码分析之核心流程&lt;/a&gt;
+&lt;a href=&#34;http://blog.csdn.net/dc_726/article/details/45399371&#34;&gt;Antlr v4入门教程和实例&lt;/a&gt;
+&lt;a href=&#34;http://www.jianshu.com/p/0aa4b1caac2e&#34; class=&#34;bare&#34;&gt;http://www.jianshu.com/p/0aa4b1caac2e&lt;/a&gt;
+&lt;a href=&#34;https://liuxiaofei.com.cn/blog/sql-execute-spark/&#34; class=&#34;bare&#34;&gt;https://liuxiaofei.com.cn/blog/sql-execute-spark/&lt;/a&gt;
+&lt;a href=&#34;https://docs.databricks.com/spark/latest/spark-sql/language-manual/create-table.html&#34; class=&#34;bare&#34;&gt;https://docs.databricks.com/spark/latest/spark-sql/language-manual/create-table.html&lt;/a&gt;
+&lt;a href=&#34;http://www.jasongj.com/&#34; class=&#34;bare&#34;&gt;http://www.jasongj.com/&lt;/a&gt;
+&lt;a href=&#34;https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html&#34;&gt;在spark sql中引入窗口函数&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://people.apache.org/~pwendell/spark-nightly/spark-master-docs/latest/api/sql/&#34;&gt;spark sql 函数&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.aboutyun.com/thread-23803-1-1.html&#34;&gt;spark sql 自适应体系&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_列名特殊字符处理&#34;&gt;3. 列名特殊字符处理&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select e.&lt;code&gt;UL_lost&amp;gt;1%&lt;/code&gt; from employee as e&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Hive 数据类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;分类  类型  描述  字面量示例
+原始类型  BOOLEAN true/false  TRUE
+TINYINT 1字节的有符号整数 -128~127  1Y
+SMALLINT  2个字节的有符号整数，-32768~32767 1S
+INT 4个字节的带符号整数  1
+BIGINT  8字节带符号整数  1L
+FLOAT 4字节单精度浮点数1.0
+DOUBLE  8字节双精度浮点数 1.0
+DEICIMAL  任意精度的带符号小数  1.0
+STRING  字符串，变长  “a”,’b’
+VARCHAR 变长字符串 “a”,’b’
+CHAR  固定长度字符串 “a”,’b’
+BINARY  字节数组  无法表示
+TIMESTAMP 时间戳，纳秒精度  122327493795
+DATE  日期  ‘2016-03-29’
+复杂类型  ARRAY 有序的的同类型的集合  array(1,2)
+MAP key-value,key必须为原始类型，value可以任意类型  map(‘a’,1,’b’,2)
+STRUCT  字段集合,类型可以不同 struct(‘1’,1,1.0), named_stract(‘col1’,’1’,’col2’,1,’clo3’,1.0)
+UNION 在有限取值范围内的一个值  create_union(1,’a’,63)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Spark 数据类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;数值类型
+ByteType : 表示 1 字节长的有符号整型，数值范围 : -128 到 127。
+ShortType : 表示 2 字节长的有符号整型，数值范围 : -32768 到 32767。
+IntegerType : 表示 4 字节长的有符号整型，数值范围 : -2147483648 到 2147483647。
+LongType : 表示 8 字节长的有符号整型，数值范围 : -9223372036854775808 到 9223372036854775807。
+FloatType : 表示 4 字节长的单精度浮点数。
+DoubleType : 表示 8 字节长的双精度浮点数。
+DecimalType : 表示任意精度有符号带小数的数值。内部使用 java.math.BigDecimal，一个BigDecimal 由一个任意精度的整数非标度值和一个 32 位的整数标度 (scale) 组成。
+字符串类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;StringType : 表示字符串值&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;二进制类型
+BinaryType : 表示字节序列值
+布尔类型
+BooleanType : 表示布尔值
+日期类型
+TimestampType : 表示包含年月日、时分秒等字段的日期值
+DateType : 表示包含年月日字段的日期值
+Complex types（复杂类型）
+ ArrayType(elementType, containsNull) : 数组类型，表示一个由类型为 elementType 的元素组成的序列，containsNull 用来表示 ArrayType 中的元素是否能为 null 值。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MapType(keyType, valueType, valueContainsNull) : 映射类型，表示一个键值对的集合。键的类型由 keyType 表示，值的类型则由 valueType 表示。对于一个 MapType 值，键是不允许为 null值。valueContainsNull 用来表示一个 MapType 的值是否能为 null 值。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;StructType(fields) : 表示由 StructField 序列描述的结构。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;StructField(name, datatype, nullable) : 表示 StructType 中的一个字段，name 表示字段名，datatype 是字段的数据类型，nullable 用来表示该字段是否可以为空值。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;对应关系&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Hive          Spark             Mysql&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;TINYINT      ByteType         int(11)
+SMALLINT     ShortType        int(11)
+INT          IntegerType      int(11)
+BIGINT       LongType         bigint(20)
+FLOAT        FloatType        float
+DOUBLE       DoubleType       NUMERIC(20,2)
+DEICIMAL     DecimalType      DECIMAL(19,4)
+STRING       StringType       varchar(60)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;BINARY       BinaryType
+TIMESTAMP    TimestampType
+DATE         DateType&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://cwiki.apachecn.org/pages/viewpage.action?pageId=2886757&#34; class=&#34;bare&#34;&gt;http://cwiki.apachecn.org/pages/viewpage.action?pageId=2886757&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 30 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;15*5&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;24M
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 2 --num-executors 1 --conf spark.sql.shuffle.partitions=5&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;58M&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;每小时 20s&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 15 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1G 270s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;298s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=30&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;232s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=30&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;279s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mw
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sv&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;drop&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 20 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;srvcc&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;widetable
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -276,20 +760,85 @@ val insertSql =
    &#34;&#34;&#34;.stripMargin&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;start-thriftserver.sh \
-  --hiveconf hive.server2.thrift.port=10000 \
-  --hiveconf hive.server2.thrift.bind.host=master \
-  --hiveconf hive.metastore.uris=thrift://master:9083 \
-  --master spark://master:7077&lt;/p&gt;
+&lt;p&gt;nohup sh hive --service metastore &amp;gt;&amp;gt; /tmp/metastore.log 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;beeline -u jdbc:hive2://master:10000 -n root&lt;/p&gt;
+&lt;p&gt;sh /usr/hdp/current/spark2-thriftserver/sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=vm28 \
+  --master yarn\
+  --executor-memory 4G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=2 \
+  --conf spark.dynamicAllocation.maxExecutors=4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cd /usr/hdp/2.6.3.0-235/spark2 &amp;amp;&amp;amp; \
+sh bin/beeline -u jdbc:hive2://192.168.168.104:10016 -n root&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;log&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;INFO hive.metastore: Connected to metastore&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nohup sh hive --service metastore &amp;gt;&amp;gt; /tmp/metastore.log 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh /usr/hdp/2.6.3.0-235/spark2/sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10000 \
+  --hiveconf hive.server2.thrift.bind.host=n04 \
+  --hiveconf hive.metastore.uris=thrift://n04:9083 \
+  --master yarn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cd /usr/hdp/2.6.3.0-235/spark2
+sh sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10001 \
+  --hiveconf hive.server2.thrift.bind.host=192.168.168.104 \
+  --master yarn \
+  --executor-memory 8G \
+  --executor-cores 5 \
+  --num-executors 20&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cd /usr/hdp/2.6.3.0-235/spark2
+sh sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10001 \
+  --hiveconf hive.server2.thrift.bind.host=192.168.168.104 \
+  --master yarn \
+  --executor-memory 8G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=8 \
+  --conf spark.dynamicAllocation.maxExecutors=30&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh /usr/hdp/2.6.3.0-235/spark2/sbin/my-start-thriftserver.sh \
+  --master yarn \
+  --executor-memory 8G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=8 \
+  --conf spark.dynamicAllocation.maxExecutors=30 \
+/root/tmp/my/jars/mythriftserver.jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;org.apache.hadoop.hive.jdbc.HiveDriver&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;--hiveconf hive.server2.thrift.port=10001 \
+--hiveconf hive.server2.thrift.bind.host=192.168.168.104 \&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;tail -f /var/log/spark2/spark-root-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-bjmcc-hdp-cluster-node-04.out&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -307,7 +856,11 @@ val insertSql =
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_sparkcontext&#34;&gt;1. SparkContext&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_job的提交和运行&#34;&gt;2. job的提交和运行&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_sparksteaming_源码&#34;&gt;3. SparkSteaming 源码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_sparksteaming_源码&#34;&gt;3. SparkSteaming 源码&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_jobscheduler&#34;&gt;3.1. JobScheduler&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -447,6 +1000,94 @@ private[org.apache.spark] abstract class EventLoop[E](name: String)
 extends Logging
 
 An event loop to receive events from the caller and process all events in the event thread. It will start an exclusive event thread to process all events. Note: The event queue will grow indefinitely. So subclasses should make sure onReceive can handle events in time to avoid the potential OOM.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MapOutputTrackerMasterEndpoint
+TaskSetManager&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Dispatcher
+  ThreadPoolExecutor#execute(new MessageLoop)
+    MessageLoop
+      Inbox#process
+        RpcMessage
+        OneWayMessage
+        OnStart
+        OnStop
+        RemoteProcessConnected
+        RemoteProcessDisconnected
+        RemoteProcessConnectionError&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Endpoint
+  RpcEndpointVerifier
+  MapOutputTrackerMasterEndpoint
+  BlockManagerMasterEndpoint
+  BlockManagerSlaveEndpoint
+  OutputCommitCoordinatorEndpoint
+  HeartbeatReceiver&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;JobGenerator&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;JobScheduler#start
+  JobGenerator#start
+  DStreamGraph#start
+  RecurringTimer#start(long)
+    RecurringTimer#loop
+      RecurringTimer#triggerActionForNextInterval   //循环调用
+        JobGenerator#processEvent
+          JobGenerator#generateJobs
+            JobScheduler#submitJobSet
+        JobScheduler#processEvent&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_jobscheduler&#34;&gt;3.1. JobScheduler&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/JobScheduler-1.svg&#34; alt=&#34;JobScheduler 1&#34; width=&#34;1440&#34; height=&#34;638&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/JobScheduler3.svg&#34; alt=&#34;JobScheduler3&#34; width=&#34;1024&#34; height=&#34;502&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/JobScheduler5.svg&#34; alt=&#34;JobScheduler5&#34; width=&#34;2793&#34; height=&#34;335&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/JobScheduler6.svg&#34; alt=&#34;JobScheduler6&#34; width=&#34;2588&#34; height=&#34;597&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;{rank=same;bg -&amp;gt; p8 [arrowhead=None]};
+{p8 -&amp;gt; m7 [label=&#34;blockPushingThread.start()#120&#34;,arrowhead=None]};
+{rank=same;p8 -&amp;gt; m10 [arrowhead=None]};
+{m6 -&amp;gt; p8 [label=&#34;blockIntervalTimer.start()#119&#34; ,arrowhead=None]};
+{rt -&amp;gt; m6 [label=&#34;RecurringTimer#start#59&#34; ,arrowhead=None, dir=back]};&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;{rt &amp;#8594; bg [xlabel=&#34;loop#103\ntriggerActionForNextInterval#103&#34;]};&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;subgraph BlockGenerator {&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;  label = &#34;BlockGenerator&#34;;
+  color=blue
+}&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -777,6 +1418,10 @@ log_format tick &#34;$msec^A$remote_addr^A$u_domain^A$u_url^A$u_title^A$u_referr
 &lt;li&gt;&lt;a href=&#34;#_streamingwordcount&#34;&gt;2.1. StreamingWordCount&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_receiver_源码流程图&#34;&gt;3. Receiver 源码流程图&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_directkafkainputdstream_源码分析图_0_8_2_2&#34;&gt;4. DirectKafkaInputDStream 源码分析图 0.8.2.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_directkafkainputdstream_源码分析图_0_10_0_1&#34;&gt;5. DirectKafkaInputDStream 源码分析图 0.10.0.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_directkafkainputdstream_源码分析图_0_10_0_1_2&#34;&gt;6. DirectKafkaInputDStream 源码分析图 0.10.0.1 --2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -820,6 +1465,46 @@ nc -lk 6066&lt;/code&gt;&lt;/pre&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_receiver_源码流程图&#34;&gt;3. Receiver 源码流程图&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-7.svg&#34; alt=&#34;graphviz 7&#34; width=&#34;3497&#34; height=&#34;911&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_directkafkainputdstream_源码分析图_0_8_2_2&#34;&gt;4. DirectKafkaInputDStream 源码分析图 0.8.2.2&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-8.svg&#34; alt=&#34;graphviz 8&#34; width=&#34;4833&#34; height=&#34;679&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_directkafkainputdstream_源码分析图_0_10_0_1&#34;&gt;5. DirectKafkaInputDStream 源码分析图 0.10.0.1&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/spark-streaming-2.svg&#34; alt=&#34;spark streaming 2&#34; width=&#34;2205&#34; height=&#34;554&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_directkafkainputdstream_源码分析图_0_10_0_1_2&#34;&gt;6. DirectKafkaInputDStream 源码分析图 0.10.0.1 --2&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/spark-streaming-2-1.svg&#34; alt=&#34;spark streaming 2 1&#34; width=&#34;2223&#34; height=&#34;836&#34;&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5993,78 +6678,6 @@ hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>spark参考</title>
-      <link>/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/</link>
-      <pubDate>Sat, 08 Apr 2017 18:42:52 +0000</pubDate>
-      
-      <guid>/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;spark&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_rdd&#34;&gt;1. RDD&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_rdd&#34;&gt;1. RDD&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html&#34;&gt;SparkRDDAPIExamples&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/21483985&#34; class=&#34;bare&#34;&gt;https://zhuanlan.zhihu.com/p/21483985&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://tech.meituan.com/spark-tuning-basic.html&#34; class=&#34;bare&#34;&gt;http://tech.meituan.com/spark-tuning-basic.html&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.zhihu.com/question/23655827?rf=27642986&#34; class=&#34;bare&#34;&gt;https://www.zhihu.com/question/23655827?rf=27642986&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/hseagle/category/569175.html&#34;&gt;Apache Spark源码走读&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/1.5.1/quick-start.html&#34;&gt;spark 1.5.1 docs&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/1.5.1/sql-programming-guide.html&#34;&gt;spark hive&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/latest/building-spark.html&#34;&gt;building-spark&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&#34; class=&#34;bare&#34;&gt;https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&#34; class=&#34;bare&#34;&gt;https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;amp;search=y&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/zbf8441372/article/category/1556747&#34;&gt;张包峰&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/gaoyanjie55&#34;&gt;高彦杰的博客&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://jerryshao.me/&#34;&gt;赛赛的网络日志&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/melodyishere/article/details/32353929&#34;&gt;Spark运行调试方法与学习资源汇总&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/tagged/apache-spark&#34; class=&#34;bare&#34;&gt;https://stackoverflow.com/questions/tagged/apache-spark&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/u012318074/article/details/56835532&#34; class=&#34;bare&#34;&gt;http://blog.csdn.net/u012318074/article/details/56835532&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

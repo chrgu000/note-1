@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>零零散散</title>
+    <title>零零碎碎</title>
     <link>/tags/sublime/index.xml</link>
-    <description>Recent content on 零零散散</description>
+    <description>Recent content on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
@@ -701,9 +701,61 @@ Preferences-&amp;#8594;Key Bindings-User`&lt;/p&gt;
             { &#34;key&#34;: &#34;setting.auto_match_enabled&#34;, &#34;operator&#34;: &#34;equal&#34;, &#34;operand&#34;: true },
             { &#34;key&#34;: &#34;selection_empty&#34;, &#34;operator&#34;: &#34;equal&#34;, &#34;operand&#34;: false, &#34;match_all&#34;: true },
         ]
+    },
+    {
+        &#34;keys&#34;: [&#34;ctrl+s&#34;],  // use &#34;ctrl+s&#34; to overwrite save
+        &#34;command&#34;: &#34;chain&#34;,
+        &#34;args&#34;: {
+            &#34;commands&#34;: [
+                [&#34;set_line_ending&#34;, {&#34;type&#34;: &#34;unix&#34;}], // also possible: &#34;unix&#34;, &#34;windows&#34;, &#34;cr&#34;
+                [&#34;save&#34;]
+            ]
+        },
+    },
+    {
+        &#34;keys&#34;: [&#34;alt+2&#34;],
+        &#34;command&#34;: &#34;chain&#34;,
+        &#34;args&#34;: {
+            &#34;commands&#34;: [
+                [&#34;show_overlay&#34;, {&#34;overlay&#34;: &#34;goto&#34;, &#34;show_files&#34;: true}],
+                [&#34;move&#34;, {&#34;by&#34;: &#34;lines&#34;, &#34;forward&#34;: true}]
+            ]
+        },
     }
 ]&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;正则匹配所有的a标签&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;a\b[^&amp;gt;]+\bhref=&#34;(&lt;strong class=&#34;&lt;sup&gt;&#34;&#34;&gt;)&#34;[&lt;/sup&gt;&amp;gt;]&lt;/strong&gt;&amp;gt;([\s\S]*?)&amp;lt;/a&amp;gt;
+分组1和分组2即为href和value&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;解释：
+&amp;lt;a\b                                        #匹配a标签的开始&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;[^&amp;gt;]+                                      #匹配a标签中href之前的内容&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;\bhref=&#34;([^&#34;]*)&#34;                       #匹配href的值，并将匹配内容捕获到分组1当中&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;[^&amp;gt;]*&amp;gt;                                    #匹配a标签中href之后的内容&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;([\s\S]*?)                                  #匹配a标签的value，并捕获到分组2当中，?表示懒惰匹配&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;/a&amp;gt;                                       #匹配a标签的结束&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;summary标签中内容
+&amp;lt;summary\b[^&amp;gt;]+&amp;gt;([\s\S]*?)&amp;lt;/summary&amp;gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_参考&#34;&gt;3.1. 参考&lt;/h3&gt;

@@ -1,0 +1,86 @@
+1. 读取xml
+2. 正则解析
+3. 注册临时表
+4.
+
+
+
+
+select * from result.F_VOLTE_SIP_Mw_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_ALL_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_TERMINAL_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_AREA_VD_IMSI_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_AREA_VD_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_VD_H limit 1;
+
+select * from result.F_VOLTE_SIP_Mw_CITY_AREA_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_AREA_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_AREA_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_H where p_hour=2017112409 limit 1;
+
+select * from result.F_VOLTE_SIP_Mw_NAT_AREA_VD_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_VD_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_AREA_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_GRID_IMSI_H limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_CITY_CI_H limit 1;
+
+
+
+
+
+select * from result.F_VOLTE_SIP_SV_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_ALL_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_TERMINAL_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_AREA_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_AREA_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_AREA_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_AREA_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_AREA_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_VD_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_AREA_H where p_hour=2017112409 limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_H where p_hour=2017112409 limit 1;
+
+
+select * from result.F_VOLTE_SIP_Mw_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_ALL_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_CI_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_TERMINAL_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_AREA_VD_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_AREA_VD_IMSI_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_VD_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_AREA_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_CITY_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_AREA_VD_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_VD_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_AREA_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_PROV_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_AREA_VD_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_VD_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_AREA_D where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_Mw_NAT_D where p_hour like '20171124%' limit 1;
+
+
+
+
+select * from result.F_VOLTE_SIP_SV_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_ALL_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_TERMINAL_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_AREA_VD_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_VD_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_AREA_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_CITY_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_AREA_VD_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_VD_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_AREA_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_PROV_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_AREA_VD_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_VD_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_AREA_D  where p_hour like '20171124%' limit 1;
+select * from result.F_VOLTE_SIP_SV_NAT_D  where p_hour like '20171124%' limit 1;

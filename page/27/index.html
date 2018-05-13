@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>零零散散</title>
+<title>零零碎碎</title>
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="零零散散" />
+<meta property="og:title" content="零零碎碎" />
 <meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
@@ -50,8 +50,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -71,8 +71,6 @@
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
         
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
-        
 	</ul>
 </nav>
 				</div>
@@ -89,7 +87,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture3/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/04.shuffle%E8%B0%83%E4%BC%98/04/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -98,7 +96,11 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 3 课：类型与变量 基本信息  课程时长：32:37 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:57] 基本类型 [11:25] 类型零值 [16:30] 类型别名 [19:20] 变量的声明与赋值 [29:20] 类型转换 [32:13] 课堂作业布置  作业答案  下堂课讲解  补充说明  从严格意义上讲 type newInt int, 这里 newInt 并不能说是 int 的别名，而只是底层数据结构相同，在这里称为自定义类型，在进行类型转换时仍旧需要显式转换，但 byte 和 rune 确确实实为 uint8 和 int32 的别名，可以相互进行转换。有关于自定义类型将在后面的教程中进行讲解。 Var() 变量组可以在函数体内用于声明局部变量，感谢 Hubery 指出，但并不建议这样使用。  相关链接  暂无链接  视频错误 [04:30] var组只能声明全局变量，不能在函数体中使用。[x] var组只能声明全局变量，也可以在函数体中使用。[√]  课程链接  第 2 课：Go 基础知识 第 4 课：常量与运算符  
+						shuffle相关参数调优 以下是Shffule过程中的一些主要参数，这里详细讲解了各个参数的功能、默认值以及基于实践经验给出的调优建议。
+spark.shuffle.file.buffer  默认值：32k 参数说明：该参数用于设置shuffle write task的BufferedOutputStream的buffer缓冲大小。将数据写到磁盘文件之前，会先写入buffer缓冲中，待缓冲写满之后，才会溢写到磁盘。 调优建议：如果作业可用的内存资源较为充足的话，可以适当增加这个参数的大小（比如64k），从而减少shuffle write过程中溢写磁盘文件的次数，也就可以减少磁盘IO次数，进而提升性能。在实践中发现，合理调节该参数，性能会有1%~5%的提升。  spark.reducer.maxSizeInFlight  默认值：48m 参数说明：该参数用于设置shuffle read task的buffer缓冲大小，而这个buffer缓冲决定了每次能够拉取多少数据。 调优建议：如果作业可用的内存资源较为充足的话，可以适当增加这个参数的大小（比如96m），从而减少拉取数据的次数，也就可以减少网络传输的次数，进而提升性能。在实践中发现，合理调节该参数，性能会有1%~5%的提升。  spark.shuffle.io.maxRetries  默认值：3 参数说明：shuffle read task从shuffle write task所在节点拉取属于自己的数据时，如果因为网络异常导致拉取失败，是会自动进行重试的。该参数就代表了可以重试的最大次数。如果在指定次数之内拉取 还是没有成功，就可能会导致作业执行失败。 调优建议：对于那些包含了特别耗时的shuffle操作的作业，建议增加重试最大次数（比如60次），以避免由于JVM的full gc或者网络不稳定等因素导致的数据拉取失败。在实践中发现，对于针对超大数据量（数十亿~上百亿）的shuffle过程，调节该参数可以大幅度提升稳定 性。  spark.shuffle.io.retryWait  默认值：5s 参数说明：具体解释同上，该参数代表了每次重试拉取数据的等待间隔，默认是5s。 调优建议：建议加大间隔时长（比如60s），以增加shuffle操作的稳定性。  spark.shuffle.memoryFraction  默认值：0.2 参数说明：该参数代表了Executor内存中，分配给shuffle read task进行聚合操作的内存比例，默认是20%。 调优建议：在资源参数调优中讲解过这个参数。如果内存充足，而且很少使用持久化操作，建议调高这个比例，给shuffle read的聚合操作更多内存，以避免由于内存不足导致聚合过程中频繁读写磁盘。在实践中发现，合理调节该参数可以将性能提升10%左右。  spark.shuffle.manager  默认值：sort 参数说明：该参数用于设置ShuffleManager的类型。Spark 1.5以后，有三个可选项：hash、sort和tungsten-sort。HashShuffleManager是Spark 1.2以前的默认选项，但是Spark 1.2以及之后的版本默认都是SortShuffleManager了。tungsten-sort与sort类似，但是使用了tungsten计划中的 堆外内存管理机制，内存使用效率更高。 调优建议：由于SortShuffleManager默认会对数据进行排序，因此如果你的业务逻辑中需要该排序机制的话，则使用默认的 SortShuffleManager就可以；而如果你的业务逻辑不需要对数据进行排序，那么建议参考后面的几个参数调优，通过bypass机制或优化的 HashShuffleManager来避免排序操作，同时提供较好的磁盘读写性能。这里要注意的是，tungsten-sort要慎用，因为之前发现了 一些相应的bug。
+spark.shuffle.sort.bypassMergeThreshold 默认值：200
+ 参数说明：当ShuffleManager为SortShuffleManager时，如果shuffle read task的数量小于这个阈值（默认是200），则shuffle write过程中不会进行排序操作，而是直接按照未经优化的HashShuffleManager的方式去写数据，但是最后会将每个task产生的所有临 时磁盘文件都合并成一个文件，并会创建单独的索引文件。
+ 调优建议：当你使用SortShuffleManager时，如果的确不需要排序操作，那么建议将这个参数调大一些，大于shuffle read task的数量。那么此时就会自动启用bypass机制，map-side就不会进行排序了，减少了排序的性能开销。但是这种方式下，依然会产生大量的磁 盘文件，因此shuffle write性能有待提高。
 					</div>
 				</div>
 			</div>
@@ -109,7 +111,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture4/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/xiaoxiang/spark-shell/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -118,130 +120,16 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 第 4 课：常量与运算符 基本信息  课程时长：28:21 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:35] 常量的定义 [11:30] 常量的枚举 [17:05] 运算符 [27:45] 课堂作业布置  作业答案  下堂课讲解  补充说明  《Go 编程基础》视频第 4 课： 常量与运算符 笔记  相关链接  暂无链接  课程链接  第 3 课：类型与变量 第 5 课：控制语句  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture5/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 5 课：控制语句 基本信息  课程时长：28:33 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:51] 基础知识补充（指针、递增递减语句） [06:45] if判断语句 [10:32] for循环语句 [15:50] switch选择语句 [21:26] 跳转语句 [27:42] 课堂作业布置  作业答案  下堂课讲解  补充说明  如果在 if 的条件语句两边加上括号不会报错，但在 gofmt 时会自动消除  相关链接  暂无链接  课程链接  第 4 课：常量与运算符 第 6 课：数组 array  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture6/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 6 课：数组 array 基本信息  课程时长：22:01 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:23] array的定义 [10:02] 指向数组的指针和指针数组 [12:30] 数组之间的比较 [14:22] 使用new创建数组 [16:09] 多维数组 [18:45] 冒泡排序  作业答案  暂无作业  补充说明  for 循环中声明的变量在每次循环结束都会消失，作用域只在当次循环  相关链接  暂无链接  课程链接  第 5 课：控制语句 第 7 课：切片 slice  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture7/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 7 课：切片 slice 基本信息  课程时长：34:51 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:15] slice 概述 [05:20] 创建 slice [18:25] reslice 概述 [23:00] append()与slice [29:55] copy()与slice [33:55] 课堂作业布置  作业答案  下堂课讲解  补充说明  26:37 处的“数组” a 实际为切片，但不影响教程演示。若想其成为数组，应把 [] 改为 [...]。  相关链接  暂无链接  课程链接  第 6 课：数组 array 第 8 课：map  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture8/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 8 课：map 基本信息  课程时长：23:55 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:00] map 概述 [05:10] 简单 map 的创建与使用 [08:26] 复杂 map 与键值对操作 [13:10] map 与 slice 的迭代操作 [15:15] 元素类型为 map 的 slice [18:45] map 的间接排序 [22:30] 课堂作业布置  作业答案  下堂课讲解  补充说明  在开头的知识回顾中，reslice 的操作只是将 slice 指向底层的指针的值进行了调整，而未发生值的拷贝。  相关链接  暂无链接  课程链接  第 7 课：切片 slice 第 9 课：函数 function  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture9/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 9 课：函数 function 基本信息  课程时长：28:30 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:50] 函数概述 [05:00] 函数的定义与使用 [08:00] 不定长变参 [10:52] 传递值类型和引用类型 [13:20] 匿名函数与闭包 [18:15] defer 用法 [23:06] panic 与 recover [28:06] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 8 课：map 第 10 课：结构 struct  
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jbpm/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						bpm_module
-bpm_definition 流程定义
-决策
-JbpmServiceImpl
+						val rdd = sc.parallelize(1 to 100,5)
+rdd.count
+val rdd2 = rdd.map(_+4)
+rdd2.take(2)
+echo "hello world" &gt;&gt; /tmp/wordcount.txtecho "hello spark hadoop" &gt;&gt; /tmp/wordcount.txtecho "hello china" &gt;&gt; /tmp/wordcount.txt
+val rdd = sc.textFile("file:///tmp/wordcount.txt")
+rdd.count
+val mappedRdd = rdd.flatMap(_.split(" "))
+val resultRdd = kvRdd.reduceByKey(+)
+resultRdd.saveAsTextFile("file:///tmp/output")
 
 					</div>
 				</div>
@@ -253,7 +141,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/pc/1/" rel="bookmark"></a>
+						<a href="/post/go/go-fundamental-programming/README/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -262,7 +150,9 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						js html5渲染的3D玫瑰花（程序员的情人节礼物）var b = document.body;var c = document.getElementsByTagName('canvas')[0];var a = c.getContext('2d');document.body.clientWidth;// start of submission //with(m=Math)C=cos,S=sin,P=pow,R=random;c.width=c.height=f=500;h=-250;function p(a,b,c){if(c60)return[S(a*7)*(13+5/(.2+P(b*4,4)))-S(b)*50,b*f+50,625+C(a*7)*(13+5/(.2+P(b*4,4)))+b*400,a*1-b/2,a];A=a*2-1;B=b*2-1;if(A*A+B*B37){n=(j=c&1)?6:4;o=.5/(a+.01)+C(b*125)*3-a*300;w=b*h;return[o*C(n)+w*S(n)+j*610-390,o*S(n)-w*C(n)+550-j*350,1180+C(B+A)*99-j*300,.4-a*.1+P(1-B*B,-h*6)*.15-a*b*.4+C(a+b)/5+P(C((o*(a+1)+(B0?w:-w))/25),30)*.1*(1-B*B),o/1e3+.7-o*w*3e-6]}if(c32){c=c*1.16-.15;o=a*45-20;w=b*b*h;z=o*S(c)+w*C(c)+620;return[o*C(c)-w*S(c),28+C(B*.5)*99-b*b*b*60-z/2-h,z,(b*b*.3+P((1-(A*A)),7)*.15+.3)*b,b*.7]}o=A*(2-b)*(80-c*2);w=99-C(A)*120-C(b)*(-h-c*4.9)+C(P(1-b,7))*50+c*2;z=o*S(c)+w*C(c)+700;return[o*C(c)-w*S(c),B*99-C(P(b, 7))*50-c/3-z/1.35+450,z,(1-b/1.2)*.9+a*.1, P((1-b),20)/4+.05]}}setInterval('for(i=0;iz)m[q]=z,a.fillStyle="rgb("+~(s[3]*h)+","+~(s[4]*h)+","+~(s[3]*s[3]*-80)+")",a.fillRect(x,y,1,1)}',0)// end of submission //
+						《Go编程基础》 借用《Go Web编程》一书中的话，出本套教程并不代表我自身的能力有多强，而是我愿意将自己在学习过程中积累到的知识分享给大家，并结合自己遇到的一些坑爹经历来讲解如何处理各种奇葩问题，从而更好地帮助广大的和潜在的 Go 语言爱好者。
+基本信息  教程讲师：无闻 教程简介：《Go编程基础》是一套针对 Google 出品的 Go 语言的视频语音教程，主要面向 Go 语言新手级别的学习者。 开发环境：Go 语言 1.0.3-1.5.* 版本 开发工具：Sublime Text 2-3 开发系统：Windows 7 64 位 其它说明：每堂课都会建立一个文件（例如：lecture1.md）作为课堂笔记。课堂笔记中里面包含了该堂课所涵盖的知识点以及知识点开始讲解的时间点，方便学习者快速定位要了解的部分，节省不必要浪费的时间。此外，如果教程中因口误或其它原因使学习者产生迷惑的部分，同样会在课堂笔记中进行补充说明。 收录网站：  优才网 皆学问 网易云课堂 51CTO 学院  课程下载：  百度网盘（提取码：mgom）   捐赠作者 如果您觉得本套教程确实不错，并认为作者的努力值得肯定，可以通过 支付宝 为作者提供小额捐助，以资鼓励。
+教程大纲    课时数 课时标题 在线播放     第 1 课 Go开发环境搭建 土豆网 优才网 网易云课堂   第 2 课 Go基础知识 土豆网 优才网 网易云课堂   第 3 课 类型与变量 土豆网 优才网 网易云课堂   第 4 课 常量与运算符 土豆网 优才网 网易云课堂   第 5 课 控制语句 土豆网 优才网 网易云课堂   第 6 课 数组array 土豆网 优才网 网易云课堂   第 7 课 切片slice 土豆网 优才网 网易云课堂   第 8 课 map 土豆网 优才网 网易云课堂   第 9 课 函数function 土豆网 优才网 网易云课堂   第 10 课 结构struct 土豆网 优才网 网易云课堂   第 11 课 方法method 土豆网 优才网 网易云课堂   第 12 课 接口interface 土豆网 优才网 网易云课堂   第 13 课 反射reflection 土豆网 优才网 网易云课堂   第 14 课 并发concurrency 土豆网 优才网 网易云课堂   第 15 课 项目与坑 土豆网 优才网 网易云课堂    相关资源  教程资源  《Go Web基础》 《Go名库讲解》  QQ 交流群  Martini&amp;Macaron 交流群：371440803 Golang Web 开发：245386165 Go Web 交流：259316004  学习网站  Golang 友团 Go 语言学习园地 Golang 中国  辅助站点  Go Walker：在线 Go 项目 API 文档   授权许可 除特别声明外，本套教程中的内容使用CC BY-SA 3.
 					</div>
 				</div>
 			</div>
@@ -273,7 +163,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/pc/222/" rel="bookmark"></a>
+						<a href="/post/go/go-fundamental-programming/lectures/lecture1/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -282,16 +172,127 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						病害形成的原因裂缝（1）横向裂缝：裂缝与路中心线基本垂直，缝宽不一，缝长贯穿部分路幅或整个路幅。裂缝一般比较规则，每隔一定的距离产生一道裂缝，裂缝间距的大小取决于当地的气温和沥青面层与半刚性基层材料的抗裂性能。
-（2）纵向裂缝：裂缝走向基本与行车方向平行，裂缝长度和宽度不一。主要集中在行车道轮迹分布密集处，因为高速公路交通渠化分明，轮迹位置及轮迹分布范围较小，大车、慢车、重型车辆全部集中在行车道上，快车、小型车，轻型车行驶于超车道机会明显增多，超车道上荷载较小，交通量相对较小，纵向裂缝也较小，纵缝缝宽一般在5～10mm，靠近标线或位于车道中央，且绵延几十米，甚至数百米。常以单条裂缝形式出现。产生的原因有两种可能性，一种情况是沥青面层分路幅摊铺时，两幅接茬处未处理好，在车辆荷载及大气因素作用下逐渐开裂；另一种情况是由于路基压实度不均匀或由于路基边缘受水侵蚀产生不均匀沉陷而引起。
-（3）网状裂缝：裂缝纵横交错，缝宽1mm以上，缝距1000px以下，1m2以上。
-（4）反射裂缝：主要是因为软基路段不均匀沉降引起的裂缝直接反射到沥青路面。另外，行车荷载的作用加速裂缝的发展。
-车辙车辙一般是在温度较高的季节，沥青面层在车辆的反复碾压下产生永久变形和塑性流动而逐渐形成。它通常是在伴随沥青面层压缩沉陷的同时，出现侧向隆起，二者组合起来构成的。路面的永久变形主要发生在沥青面层中。因此，为了延缓车辙的形成，主要应从提高沥青面层材料的高温稳定性来着手考虑。此外，车辙的严重程度与沥青面层的结构组成和配合比有极大关系，ⅱ型沥青混凝土路面自身的抗车辙能力比ⅰ型好的多。上海市中心城区的沥青路面车辙病害也较普遍，大部分集中在公路交叉口，车辆来往多，高温天气路面下受碾压严重更容易出现车辙，修补更换新的沥青混凝土后，但未经严格保养就投入使用，在新的碾压下又会出现车辙，往往出现恶性循环。根据湿热地区高速公路建设和养护的实践分析了沥青路面常见病害的各种成因，提出了各种病害的处治方法，并对我国今后高速公路建设、设计、施工及管养等方面提出了一些建议。沥青路面因具有地质条件适应性强、行车舒适、维护方便等优点而被广泛用于高速公路。在高速公路通车后，因行车荷载作用、外界环境影响以及设计、施工中存在的不足，沥青路面会逐步出现多种路面病害。
-沉陷沥青黏度小会影响沥青与矿料的黏附性。同时若沥青混合料的油石比太小,或在沥青加热和沥青混合料拌制过程中温度太高致使沥青过温,都会引起沥青混合料的沥青膜相对变薄,抗变形能力降低,脆性增加,空隙率偏大。这些都会导致沥青膜暴露太多,沥青的老化作用加快,同时渗水性加大,进而加快水对沥青的剥落作用,最终在车辆荷载作用下引起路面开裂、沉陷。
-坑槽沥青路面坑槽的产生往往都有一个形成的时间过程，开始时是局部裂缝进而龟裂松散，在行车荷载和雨水等因素下逐步形成坑槽。常见原因主要有以下几种：（1）路面厚度与压实度不够性坑槽 面层铺筑过程中易出现压实度不足，造成面层内部孔隙率较大，使得沥青混合料粘结力、防水性能下降；拌和厂离施工现场较远，运距过长，运输途中沥青混合料热量损失较大，运至现场后温度不能满足铺筑要求；路面下基层局部标高控制不严，导致沥青上面层个别地方厚度不够，在行车作用下，该处首先破损，形成坑槽。（2）粘结层不牢坑槽 混合料拌和摊铺时，下层表面含有泥、灰等杂物，使上下层不能有效粘结，而形成坑槽，如桥面上形成的坑，这类坑槽修补二次损坏频率较高，一般应在底层先打入砼上面层再用沥青料填补修复。（3）水损害性坑槽这种坑槽是沥青混凝土路面早期破坏中最常见的坑槽，水损害破坏往往是从沥青面层的中面层开始的。水分进入沥青路面，滞留在中面层，当集料与沥青膜剥离后，沥青混合料不再是一个整体，集料在荷载的作用下，对基层产生了力的作用，基层的局部松落形成灰浆，从路面的缝隙向上挤出来，在沥青路面上形成白色的唧浆。如此循环不断，形成了水损害性坑槽。（4）运营期间车辆造成的坑槽 柴油、机油滴漏在路表面上，沥青被稀释后，粘结力降低，集料散失形成坑槽；钢圈或车辆运输的重物，刮撞形成的坑槽；千斤顶顶出的坑槽以及火烧形成的坑槽。（5）基层、底基层损坏产生翻浆形成的坑槽
-泛油和油斑泛油和油斑这两种病害产生的最主要的原因是混合料离析。混合料发生离析时，粗集料和细集料分别集中于铺筑层的某些位置，使沥青混凝土不均匀、配合比级配与原设计不符，混合料失去原设计达到的粘接力就形成了路面推移，而混合料的不均匀还会导致集料和沥青分离，沥青集中到一处形成泛油和油斑。
-路面推移沥青混凝土面层推移，主要是混合料在道路的纵向发生位移，它可能是在施工期间发生或者是在道路通车一段时间后产生，尤其在高温天气时行车荷载的作用。
-
+						 第 1 课：Go 开发环境搭建 基本信息  课程时长：20:02 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] Go 基本介绍 [04:10] 安装 Go 语言 [05:00] Go 环境变量与工作目录 [07:27] Go 命令简介 [11:06] godoc 建立本地文档 [15:40] Sublime Text 安装与配置 [18:05] &quot;Hello world!&quot;  补充说明  如果对安装 Sublime Text 部分不是很理解，完整教程请参考 博文  相关链接  Go 在谷歌：以软件工程为目的的语言设计 go-wiki Go Walker Go Language Resources Golang 相关 QQ 群 Go 源码安装：参考链接 Go 标准包安装：下载地址 CHM手册 其它 IDE 安装方案：参考链接 下载 Sublime Text：官方网站 安装 gosublime（破解版可能无法安装）：安装指令 Sublime Text 2 入门及技巧 Go 初学者常问的问题 FAQ  课程链接  第 2 课：Go 基础知识  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture10/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 10 课：结构 struct 基本信息  课程时长：38:57 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [08:28] 结构的定义与使用 [12:45] 使用字面值初始化 [18:05] 匿名结构与字段 [23:43] 结构间的赋值与比较 [26:10] 嵌入结构 [31:25] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 9 课：函数 function 第 11 课：方法 method  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture11/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 11 课：方法 method 基本信息  课程时长：23:13 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [06:30] 方法的声明与使用 [13:05] 类型别名与方法 [16:30] Method Value 与 Method Expression [18:43] 方法名称冲突与字段访问权限 [21:20] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 10 课：结构 struct 第 12 课：接口 interface  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture12/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 12 课：接口 interface 基本信息  课程时长：28:36 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:30] 接口的定义与基本操作 [10:43] 嵌入接口 [12:45] 类型断言 [13:58] 空接口与 type switch [18:48] 接口转换 [22:07] 接口使用注意事项  补充说明  暂无说明  相关链接  评: 为什么我不喜欢 Go 语言式的接口  课程链接  第 11 课：方法 method 第 13 课：反射 reflection  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture13/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 13 课：反射 reflection 基本信息  课程时长：31:33 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [04:28] 反射基本操作 [12:10] 反射匿名或嵌入字段 [16:10] 修改目标对象 [24:10] 动态调用方法 [28:15] 课堂作业布置  作业答案  下堂课讲解  补充说明  视频第 22 分 33 秒，代码第 23 行应该为 if v.Kind() != reflect.Ptr || !v.Elem().CanSet() {。  相关链接  暂无链接  课程链接  第 12 课：接口 interface 第 14 课：并发 concurrency  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture14/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 14 课：并发 concurrency 基本信息  课程时长：47:52 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [03:17] 初窥 goroutine [08:45] channel 概述 [20:20] 多个 goroutine 打印 [29:00] select 概述 [47:17] 课堂作业布置  作业答案  下堂课讲解  补充说明  暂无说明  相关链接  Concurrency Is Not Parallelism 【PPT】 Go语言_并发篇 goroutine背后的系统知识 Advanced Go Concurrency Patterns What exactly does runtime.Gosched do?  课程链接  第 13 课：反射 reflection 第 15 课：项目与坑  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/go/go-fundamental-programming/lectures/lecture15/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 第 15 课：项目与坑 基本信息  课程时长：28:56 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] 知识回顾 [06:32] 完整项目结构 [15:15] slice 与 append 的坑 [19:45] time.Format 的坑 [23:02] range 与闭包的坑  补充说明  暂无说明  相关链接  暂无链接  课程链接  第 14 课：并发 concurrency  
 					</div>
 				</div>
 			</div>
@@ -303,7 +304,7 @@
 	
 	<a class="page-numbers" href="/page/26/">«</a>
 	
-	<span class="page-numbers current">27/28</span>
+	<span class="page-numbers current">27/30</span>
 	
 	<a class="page-numbers" href="/page/28/">»</a>
 	
@@ -333,6 +334,8 @@
 	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
 	<ul>
 		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
 		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
 		
 		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
@@ -346,6 +349,8 @@
 		<li class="cat-item"><a href="/categories/java">Java</a></li>
 		
 		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
 		
 		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
 		
@@ -416,7 +421,7 @@
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

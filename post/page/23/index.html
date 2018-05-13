@@ -50,8 +50,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -70,8 +70,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -93,7 +91,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/07/" rel="bookmark"></a>
+						<a href="/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E5%90%88%E5%B9%B6%E5%B0%8F%E6%96%87%E4%BB%B6/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -102,14 +100,7 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						saveAsNewAPIHadoopFile、saveAsNewAPIHadoopDataset saveAsNewAPIHadoopFile def saveAsNewAPIHadoopFileF &lt;: OutputFormat[K, V](implicit fm: ClassTag[F]): Unit
-def saveAsNewAPIHadoopFile(path: String, keyClass: Class[], valueClass: Class[], outputFormatClass: Class[_ &lt;: OutputFormat[_, _]], conf: Configuration = self.context.hadoopConfiguration): Unit
-saveAsNewAPIHadoopFile用于将RDD数据保存到HDFS上，使用新版本Hadoop API。 用法基本同saveAsHadoopFile。
-import org.apache.spark.SparkConf import org.apache.spark.SparkContext import SparkContext._ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat import org.apache.hadoop.io.Text import org.apache.hadoop.io.IntWritable var rdd1 = sc.makeRDD(Array((&quot;A&quot;,2),(&quot;A&quot;,1),(&quot;B&quot;,6),(&quot;B&quot;,3),(&quot;B&quot;,7))) rdd1.saveAsNewAPIHadoopFile(&quot;/tmp/lxw1234/&quot;,classOf[Text],classOf[IntWritable],classOf[TextOutputFormat[Text,IntWritable]])  saveAsNewAPIHadoopDataset def saveAsNewAPIHadoopDataset(conf: Configuration): Unit
-作用同saveAsHadoopDataset,只不过采用新版本Hadoop API。
-以写入HBase为例：
-HBase建表：
-create ‘lxw1234′,{NAME =&gt; ‘f1′,VERSIONS =&gt; 1},{NAME =&gt; ‘f2′,VERSIONS =&gt; 1},{NAME =&gt; ‘f3′,VERSIONS =&gt; 1}
+						Contents1. RegexAcceptPathFilter2. CopyManyFilesToHDFS1. RegexAcceptPathFilterpackage hdfs.uploadfile;import org.apache.hadoop.fs.Path;import org.apache.hadoop.fs.PathFilter;public class RegexAcceptPathFilter implements PathFilter {private final String regex;public static final String REGEX1 = "^.*txt$";public static final String REGEX2 = "^.*\\.svn$";public RegexAcceptPathFilter(String regex) {if (regex.equals(REGEX1)) {this.regex = REGEX1;}else {this.regex = REGEX2;}}public boolean accept(Path path) {boolean flag = path.toString().matches(regex);if (regex.equals(REGEX1)) {return flag;}else {return !
 					</div>
 				</div>
 			</div>
@@ -120,7 +111,7 @@ create ‘lxw1234′,{NAME =&gt; ‘f1′,VERSIONS =&gt; 1},{NAME =&gt; ‘f2′
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/rdd_transform_operator/01/" rel="bookmark"></a>
+						<a href="/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E7%94%A8Hive%E5%88%86%E6%9E%90%E2%80%9C%E4%BD%99%E9%A2%9D%E5%AE%9D%E2%80%9D%E8%BA%BA%E7%9D%80%E8%B5%9A%E5%A4%A7%E9%92%B1%E8%83%8C%E5%90%8E%E7%9A%84%E9%80%BB%E8%BE%91/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -129,9 +120,7 @@ create ‘lxw1234′,{NAME =&gt; ‘f1′,VERSIONS =&gt; 1},{NAME =&gt; ‘f2′
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						map、flagMap、distinct map 将一个RDD中的每个数据项，通过map中的函数映射变为一个新的元素。 输入分区与输出分区一对一，即：有多少个输入分区，就有多少个输出分区。
-hadoop fs -cat /tmp/lxw1234/1.txt hello world hello spark hello hive //读取HDFS文件到RDD scala&gt; var data = sc.textFile(&quot;/tmp/lxw1234/1.txt&quot;) data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[1] at textFile at :21 //使用map算子 scala&gt; var mapresult = data.map(line =&gt; line.split(&quot;\\s+&quot;)) mapresult: org.apache.spark.rdd.RDD[Array[String]] = MapPartitionsRDD[2] at map at :23 //运算map算子结果 scala&gt; mapresult.collect res0: Array[Array[String]] = Array(Array(hello, world), Array(hello, spark), Array(hello, hive))  flatMap 属于Transformation算子，第一步和map一样，最后将所有的输出分区合并成一个。
-/使用flatMap算子 scala&gt; var flatmapresult = data.flatMap(line =&gt; line.split(&quot;\\s+&quot;)) flatmapresult: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[3] at flatMap at :23 //运算flagMap算子结果 scala&gt; flatmapresult.
+						Contents1. 创建原始表2. 创建分区表3. 自定义 Max,Min 函数4. 注册临时函数5. 统计每分钟均价1. 创建原始表CREATE TABLE IF NOT EXISTS stock(tradedate STRING,tradetime STRING,stockid INT,buyprice DOUBLE,buysize INT,sellprice DOUBLE,sellsize INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','STORED AS TEXTFILE;LOAD DATA INPATH '/root/share/hadoop/total.csv' INTO TABLE stock;2. 创建分区表CREATE TABLE IF NOT EXISTS stock_partition(tradetime STRING,stockid INT,buyprice DOUBLE,buysize INT,sellprice DOUBLE,sellsize INT) PARTITIONED BY (tradedate STRING) (1)ROW FORMAT DELIMITED FIELDS TERMINATED BY ','STORED AS TEXTFILE;set hive.
 					</div>
 				</div>
 			</div>
@@ -142,7 +131,7 @@ hadoop fs -cat /tmp/lxw1234/1.txt hello world hello spark hello hive //读取HDF
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/rdd_%E9%94%AE%E5%80%BC%E8%BD%AC%E6%8D%A2/01/" rel="bookmark"></a>
+						<a href="/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA3%E8%8A%82%E7%82%B9%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -151,9 +140,18 @@ hadoop fs -cat /tmp/lxw1234/1.txt hello world hello spark hello hive //读取HDF
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						partitionBy、mapValues、flatMapValues partitionBy def partitionBy(partitioner: Partitioner): RDD[(K, V)]
-该函数根据partitioner函数生成新的ShuffleRDD，将原RDD重新分区。
-scala&gt; var rdd1 = sc.makeRDD(Array((1,&quot;A&quot;),(2,&quot;B&quot;),(3,&quot;C&quot;),(4,&quot;D&quot;)),2) rdd1: org.apache.spark.rdd.RDD[(Int, String)] = ParallelCollectionRDD[23] at makeRDD at :21 scala&gt; rdd1.partitions.size res20: Int = 2 //查看rdd1中每个分区的元素 scala&gt; rdd1.mapPartitionsWithIndex{ | (partIdx,iter) =&gt; { | var part_map = scala.collection.mutable.Map[String,List[(Int,String)]]() | while(iter.hasNext){ | var part_name = &quot;part_&quot; + partIdx; | var elem = iter.next() | if(part_map.contains(part_name)) { | var elems = part_map(part_name) | elems ::= elem | part_map(part_name) = elems | } else { | part_map(part_name) = List[(Int,String)]{elem} | } | } | part_map.
+						Contents1. 对主机、用户、目录、软件的规划1.1. 主机规划1.2. 软件规划1.3. 用户规划1.4. 目录规划2. 集群安装前的环境检查，比如时钟同步、hosts文件检查、禁用防火墙等3. Ansible 批量搭建hadoop环境4. 运行 Hadoop 环境5. 运行 wordcount1. 对主机、用户、目录、软件的规划1.1. 主机规划djt11/192.168.137.21djt12/192.168.137.22djt13/192.168.137.23namenode
+是
+是
+否
+datanode
+是
+是
+是
+resourcemanager
+是
+是
+否
 					</div>
 				</div>
 			</div>
@@ -164,7 +162,7 @@ scala&gt; var rdd1 = sc.makeRDD(Array((1,&quot;A&quot;),(2,&quot;B&quot;),(3,&qu
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/rdd_%E9%94%AE%E5%80%BC%E8%BD%AC%E6%8D%A2/03/" rel="bookmark"></a>
+						<a href="/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E9%9D%A2%E8%AF%95/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -173,15 +171,19 @@ scala&gt; var rdd1 = sc.makeRDD(Array((1,&quot;A&quot;),(2,&quot;B&quot;),(3,&qu
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						groupByKey、reduceByKey、reduceByKeyLocally groupByKey def groupByKey(): RDD[(K, Iterable[V])]
-def groupByKey(numPartitions: Int): RDD[(K, Iterable[V])]
-def groupByKey(partitioner: Partitioner): RDD[(K, Iterable[V])]
-该函数用于将RDD[K,V]中每个K对应的V值，合并到一个集合Iterable[V]中，
-参数numPartitions用于指定分区数；
-参数partitioner用于指定分区函数；
-scala&gt; var rdd1 = sc.makeRDD(Array((&quot;A&quot;,0),(&quot;A&quot;,2),(&quot;B&quot;,1),(&quot;B&quot;,2),(&quot;C&quot;,1))) rdd1: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[89] at makeRDD at :21 scala&gt; rdd1.groupByKey().collect res81: Array[(String, Iterable[Int])] = Array((A,CompactBuffer(0, 2)), (B,CompactBuffer(2, 1)), (C,CompactBuffer(1)))  reduceByKey def reduceByKey(func: (V, V) =&gt; V): RDD[(K, V)]
-def reduceByKey(func: (V, V) =&gt; V, numPartitions: Int): RDD[(K, V)]
-def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
+						数据结构：所有种类的数据都是记录在同一个文件中，比如pv、play等数据。每个种类的数据的数据格式都是不一样的，需要通过url区分每个种类的数据参数顺序不一样，需要我们对每个种类的数据定义元数据，数据拆分需要此元数据
+数据采集规范：日志数据记录在多台日志服务器上，每个小时会生成一个文件，文件命名为2017052412.log文件会放到固定的目录，以便flume采集采集数据的时候需要添加文件名头信息，根据文件头解析出天和小时，并设置天和小时的头，在写hdfs时需要用到这些头信息。
+YARN分布式缓存工作流程具体如下:步骤1客户端将应用程序所需的文件资源(外部字典、JAR包、二进制文件等)提交到HDFS上。步骤2客户端将应用程序提交到ResourceManager上。步骤3 ResourceManager与某个NodeManager通信，启动应用程序ApplicationMaster,NodeManager收到命令后，首先从HDFS下载文件(缓存)，然后启动ApplicationMaster步骤4 ApplicationMaster与ResourceManager通信，以请求和获取计算资源。步骤5 ApplicationMaster收到新分配的计算资源后，与对应的NodeManager通信，以启动任务。步骤6如果该应用程序第一次在该节点上启动任务，则NodeManager首先从HDFS上下载文件缓存到本地，然后启动任务。步骤7 NodeManager后续收到启动任务请求后，如果文件以在本地缓存，则直接运行任务，否则等待文件缓存完成后再启动。各节点上的缓存文件由对应的NodeManager管理和维护。考虑到磁盘空间的有限性，NodeManager采用了一定的缓存置换算法定期清理失效文件。
+1、有哪些数据（见excel表格）、总体流程
+pv页面点击
+flum 24台日志机器，24个日志采集agent, 5台聚合agent高可用的拓扑结构
+2、采集的细节3、mapreduce、hdfs、资源管理器
+block 64M 2个10M的文件上传后会有几个block 2个文件上传流程、高可用
+应用程序设计流程、分布式缓存资源管理器种类、队列资源抢占
+4、hive sql
+5.数据量
+每条是0.39K 1*60*24*5000
+hadoop 75节点 8核 32G 4T500G+ 20几种日志清洗计算(1小时之内) 500G * 1024 / 64M = 8000 map8000 / 75 = 107 map / 台107 / 16 = 7 并行map64M / 0.
 					</div>
 				</div>
 			</div>
@@ -192,7 +194,7 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/README/" rel="bookmark"></a>
+						<a href="/post/bigdata/hadoop/yarn/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -201,8 +203,8 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Spark 学习笔记 分享我学习spark期间，做的笔记，有很多东西，也是集百家之言，做出来的总结。 由于，在整理笔记期间，很多学习过程中，参考的书籍以及网页都已经忘记，部分不能标明内容出处，再次，向原作者致歉。
-该 Spark学习笔记，会常常更新，以督促自己学习。
+						ResourceManagerResourceTrackerNodeManager 通过RPC协议向 ResourceManager 注册,汇报节点健康状况和 Container运行状态,并领取ResourceManager下达的命令,这些命令包括重新初始化,清理Container 等,在该 RPC 协议中, ResourceManager扮演RPC Server的角色(由内部组件ResourceTrackerService实现),而NodeManager扮演RPC Client的角色,换句话说,NodeManager与ResourceManager之间采用了"pull模型", NodeManager 总是周期性地主动向 ResourceManager 发起请求,并通过领取下达给自己的命令ApplicationMasterProtocol应用程序的 ApplicationMaster 通过该 RPC 协议向 ResourceManager 注册,申请资源和释放资源.在该协议中, ApplicationMaster 扮演 RPC Client的角色,而 ResourceManager 扮演 RPC Server 的角色,换句话说, ResourceManager 与 ApplicationMaster 之间也采用了 "pull 模型"ApplicationClientProtocol应用程序的客户端通过该RPC协议向 ResourceManager 提交应用程序,查询应用程序状态和控制应用程序
+yarn 命令application 列表yarn application -listapplicationattempt 列表yarn applicationattempt -list &lt;Application-Id&gt;container 列表yarn container -list &lt;ApplicationAttempt-Id&gt;参考Hadoop之YARN命令
 					</div>
 				</div>
 			</div>
@@ -213,7 +215,7 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/sparksql/%E5%9B%9E%E9%A1%BEsparksql/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/01/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -222,7 +224,13 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 回顾SparkSQL  处理的数据90%来源于Hive表（Hive数据仓库） 过程  Hadoop -&gt; Hive -&gt; SparkSQL  建议：  编写项目时，最后写上使用SparkSQL在调研，在运行，尝试  程序入口  SQLContext &amp; HiveContext RDD、DataFrame、Dataset 外部数据源（json、parquet、jdbc、table）  与Hive的集成  sqlContext.sql(&ldquo;select * from emp&rdquo;).show  ThriftServer  启动一个SparkApplication，多个客户连接 beeline jdbc  存储分析结果  dataframe.write(json、jdbc、table、text)    Spark如何与HBase进行集成？？  spark 如何与HBase进行交互？  读数据 写数据  SparkCore  read：hbase -&gt;table-&gt; RDD write -&gt; Cell  SparkSQL  SparkSQL -&gt; Hive -&gt; HBase Hive与HBase集成时，需要将HBase Client相关Jar包放入  SparkSQL External Data Source  
+						RDDAction操作(1)–first、count、reduce、collect 算子 算子是一个函数空间到函数空间上的映射O: X -&gt; X。
+广义上的算子可以推广到任何空间，如内积空间等。
+first def first(): T
+first返回RDD中的第一个元素，不排序
+scala&gt; var rdd1 = sc.makeRDD(Array((&quot;a&quot;,1),(&quot;b&quot;,2),(&quot;c&quot;,3),4)) rdd1: org.apache.spark.rdd.RDD[Any] = ParallelCollectionRDD[0] at makeRDD at &lt;console&gt;:27 scala&gt; rdd1.first res0: Any = (a,1) var rdd1 = sc.makeRDD(Seq(10, 4, 2, 12, 3)) rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at makeRDD at &lt;console&gt;:27 scala&gt; rdd1.first res1: Int = 10  count def count(): Long
+count返回RDD中元素数量
+scala&gt; var rdd1 = sc.makeRDD(Array((&quot;A&quot;,&quot;1&quot;),(&quot;B&quot;,&quot;2&quot;),(&quot;C&quot;,&quot;3&quot;)),2) rdd1: org.apache.spark.rdd.RDD[(String, String)] = ParallelCollectionRDD[34] at makeRDD at :21 scala&gt; rdd1.
 					</div>
 				</div>
 			</div>
@@ -233,7 +241,7 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/01/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/02/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -242,10 +250,11 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 原则一：避免创建重复的RDD 通常来说，我们在开发一个Spark作业时，首先是基于某个数据源（比如Hive表或HDFS文件）创建一个初始的RDD；接着对这个RDD执行某个算子操作，然后得到下一个RDD；以此类推，循环往复，直到计算出最终我们需要的结果。在这个过程中，多个RDD会通过不同的算子操作（比如map、reduce等）串起来，这个“RDD串”，就是RDD lineage，也就是“RDD的血缘关系链”。
-我们在开发过程中要注意：对于同一份数据，只应该创建一个RDD，不能创建多个RDD来代表同一份数据。
-一些Spark初学者在刚开始开发Spark作业时，或者是有经验的工程师在开发RDD lineage极其冗长的Spark作业时，可能会忘了自己之前对于某一份数据已经创建过一个RDD了，从而导致对于同一份数据，创建了多个RDD。这就意味着，我们的Spark作业会进行多次重复计算来创建多个代表相同数据的RDD，进而增加了作业的性能开销。
-一个简单的例子 // 需要对名为“hello.txt”的HDFS文件进行一次map操作，再进行一次reduce操作。也就是说，需要对一份数据执行两次算子操作。 // 错误的做法：对于同一份数据执行多次算子操作时，创建多个RDD。 // 这里执行了两次textFile方法，针对同一个HDFS文件，创建了两个RDD出来，然后分别对每个RDD都执行了一个算子操作。 // 这种情况下，Spark需要从HDFS上两次加载hello.txt文件的内容，并创建两个单独的RDD；第二次加载HDFS文件以及创建RDD的性能开销，很明显是白白浪费掉的。 val rdd1 = sc.textFile(&quot;hdfs://192.168.0.1:9000/hello.txt&quot;) rdd1.map(...) val rdd2 = sc.textFile(&quot;hdfs://192.168.0.1:9000/hello.txt&quot;) rdd2.reduce(...) // 正确的用法：对于一份数据执行多次算子操作时，只使用一个RDD。 // 这种写法很明显比上一种写法要好多了，因为我们对于同一份数据只创建了一个RDD，然后对这一个RDD执行了多次算子操作。 // 但是要注意到这里为止优化还没有结束，由于rdd1被执行了两次算子操作，第二次执行reduce操作的时候，还会再次从源头处重新计算一次rdd1的数据，因此还是会有重复计算的性能开销。 // 要彻底解决这个问题，必须结合“原则三：对多次使用的RDD进行持久化”，才能保证一个RDD被多次使用时只被计算一次。 val rdd1 = sc.textFile(&quot;hdfs://192.168.0.1:9000/hello.txt&quot;) rdd1.map(...) rdd1.reduce(...)  
+						take、top、takeOrdered take def take(num: Int): Array[T]
+take用于获取RDD中从0到num-1下标的元素，不排序
+scala&gt; var rdd1 = sc.makeRDD(Seq(10, 4, 2, 12, 3)) rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[40] at makeRDD at :21 scala&gt; rdd1.take(1) res0: Array[Int] = Array(10) scala&gt; rdd1.take(2) res1: Array[Int] = Array(10, 4)  top def top(num: Int)(implicit ord: Ordering[T]):Array[T]
+top函数用于从RDD中，按照默认（降序）或者指定的排序规则，返回前num个元素
+scala&gt; var rdd1 = sc.makeRDD(Seq(10, 4, 2, 12, 3)) rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[40] at makeRDD at :21 scala&gt; rdd1.top(1) res2: Array[Int] = Array(12) scala&gt; rdd1.
 					</div>
 				</div>
 			</div>
@@ -256,7 +265,7 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/02/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/03/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -265,8 +274,9 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 原则二：尽可能复用同一个RDD 除了要避免在开发过程中对一份完全相同的数据创建多个RDD之外，在对不同的数据执行算子操作时还要尽可能地复用一个RDD。比如说，有一个RDD的数据格式是key-value类型的，另一个是单value类型的，这两个RDD的value数据是完全一样的。那么此时我们可以只使用key-value类型的那个RDD，因为其中已经包含了另一个的数据。对于类似这种多个RDD的数据有重叠或者包含的情况，我们应该尽量复用一个RDD，这样可以尽可能地减少RDD的数量，从而尽可能减少算子执行的次数。
-一个简单的例子 // 错误的做法。 // 有一个&lt;Long, String&gt;格式的RDD，即rdd1。 // 接着由于业务需要，对rdd1执行了一个map操作，创建了一个rdd2，而rdd2中的数据仅仅是rdd1中的value值而已，也就是说，rdd2是rdd1的子集。 JavaPairRDD&lt;Long, String&gt; rdd1 = ... JavaRDD&lt;String&gt; rdd2 = rdd1.map(...) // 分别对rdd1和rdd2执行了不同的算子操作。 rdd1.reduceByKey(...) rdd2.map(...) // 正确的做法。 // 上面这个case中，其实rdd1和rdd2的区别无非就是数据格式不同而已，rdd2的数据完全就是rdd1的子集而已，却创建了两个rdd，并对两个rdd都执行了一次算子操作。 // 此时会因为对rdd1执行map算子来创建rdd2，而多执行一次算子操作，进而增加性能开销。 // 其实在这种情况下完全可以复用同一个RDD。 // 我们可以使用rdd1，既做reduceByKey操作，也做map操作。 // 在进行第二个map操作时，只使用每个数据的tuple._2，也就是rdd1中的value值，即可。 JavaPairRDD&lt;Long, String&gt; rdd1 = ... rdd1.reduceByKey(...) rdd1.map(tuple._2...) // 第二种方式相较于第一种方式而言，很明显减少了一次rdd2的计算开销。 // 但是到这里为止，优化还没有结束，对rdd1我们还是执行了两次算子操作，rdd1实际上还是会被计算两次。 // 因此还需要配合“原则三：对多次使用的RDD进行持久化”进行使用，才能保证一个RDD被多次使用时只被计算一次。  
+						aggregate、fold、lookup aggregate def aggregateU(seqOp:(U,T)) =&gt; U,combOp:(U,U) =&gt; U)(implicit arg0: ClassTag[U]):U
+aggregate用户聚合RDD中的元素，先使用seqOp将RDD中每个分区中的T类型元素聚合成U类型，再使用combOp将之前每个分区聚合后的U类型聚合成U类型，特别注意seqOp和comOp都会使用zeroValue的值，zeroValue的类型为U。
+var rdd1 = sc.makeRDD(1 to 10,2) rdd1.mapPartitionsWithIndex{ (partIdx,iter) =&gt; { var part_map = scala.collection.mutable.Map[String,List[Int]]() while(iter.hasNext){ var part_name = &quot;part_&quot; + partIdx; var elem = iter.next() if(part_map.contains(part_name)) { var elems = part_map(part_name) elems ::= elem part_map(part_name) = elems } else { part_map(part_name) = List[Int]{elem} } } part_map.iterator } }.collect res16: Array[(String, List[Int])] = Array((part_0,List(5, 4, 3, 2, 1)), (part_1,List(10, 9, 8, 7, 6)))  第一个分区中包含5,4,3,2,1 第二个分区中包含10,9,8,7,6
 					</div>
 				</div>
 			</div>
@@ -277,7 +287,7 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/03/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/04/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -286,11 +296,14 @@ def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 原则三：对多次使用的RDD进行持久化 当你在Spark代码中多次对一个RDD做了算子操作后，恭喜，你已经实现Spark作业第一步的优化了，也就是尽可能复用RDD。此时就该在这个基础之上，进行第二步优化了，也就是要保证对一个RDD执行多次算子操作时，这个RDD本身仅仅被计算一次。
-Spark中对于一个RDD执行多次算子的默认原理是这样的：每次你对一个RDD执行一个算子操作时，都会重新从源头处计算一遍，计算出那个RDD来，然后再对这个RDD执行你的算子操作。这种方式的性能是很差的。
-因此对于这种情况，我们的建议是：对多次使用的RDD进行持久化。此时Spark就会根据你的持久化策略，将RDD中的数据保存到内存或者磁盘中。以后每次对这个RDD进行算子操作时，都会直接从内存或磁盘中提取持久化的RDD数据，然后执行算子，而不会从源头处重新计算一遍这个RDD，再执行算子操作。
-对多次使用的RDD进行持久化的代码示例 // 如果要对一个RDD进行持久化，只要对这个RDD调用cache()和persist()即可。 // 正确的做法。 // cache()方法表示：使用非序列化的方式将RDD中的数据全部尝试持久化到内存中。 // 此时再对rdd1执行两次算子操作时，只有在第一次执行map算子时，才会将这个rdd1从源头处计算一次。 // 第二次执行reduce算子时，就会直接从内存中提取数据进行计算，不会重复计算一个rdd。 val rdd1 = sc.textFile(&quot;hdfs://192.168.0.1:9000/hello.txt&quot;).cache() rdd1.map(...) rdd1.reduce(...) // persist()方法表示：手动选择持久化级别，并使用指定的方式进行持久化。 // 比如说，StorageLevel.MEMORY_AND_DISK_SER表示，内存充足时优先持久化到内存中，内存不充足时持久化到磁盘文件中。 // 而且其中的_SER后缀表示，使用序列化的方式来保存RDD数据，此时RDD中的每个partition都会序列化成一个大的字节数组，然后再持久化到内存或磁盘中。 // 序列化的方式可以减少持久化的数据对内存/磁盘的占用量，进而避免内存被持久化数据占用过多，从而发生频繁GC。 val rdd1 = sc.textFile(&quot;hdfs://192.168.0.1:9000/hello.txt&quot;).persist(StorageLevel.MEMORY_AND_DISK_SER) rdd1.map(...) rdd1.reduce(...)  对于persist()方法而言，我们可以根据不同的业务场景选择不同的持久化级别。
-Spark的持久化级别  ##### MEMORY_ONLY 使用未序列化的Java对象格式，将数据保存在内存中。如果内存不够存放所有的数据，则数据可能就不会进行持久化。那么下次对这个RDD执行算子操作时，那些没有被持久化的数据，需要从源头处重新计算一遍。这是默认的持久化策略，使用cache()方法时，实际就是使用的这种持久化策略。 ##### MEMORY_AND_DISK 使用未序列化的Java对象格式，优先尝试将数据保存在内存中。如果内存不够存放所有的数据，会将数据写入磁盘文件中，下次对这个RDD执行算子时，持久化在磁盘文件中的数据会被读取出来使用。 ##### MEMORY_ONLY_SER 基本含义同MEMORY_ONLY。唯一的区别是，会将RDD中的数据进行序列化，RDD的每个partition会被序列化成一个字节数组。这种方式更加节省内存，从而可以避免持久化的数据占用过多内存导致频繁GC。 ##### MEMORY_AND_DISK_SER 基本含义同MEMORY_AND_DISK。唯一的区别是，会将RDD中的数据进行序列化，RDD的每个partition会被序列化成一个字节数组。这种方式更加节省内存，从而可以避免持久化的数据占用过多内存导致频繁GC。 ##### DISK_ONLY 使用未序列化的Java对象格式，将数据全部写入磁盘文件中。 ##### MEMORY_ONLY_2, MEMORY_AND_DISK_2, 等等. 对于上述任意一种持久化策略，如果加上后缀_2，代表的是将每个持久化的数据，都复制一份副本，并将副本保存到其他节点上。这种基于副本的持久化机制主要用于进行容错。假如某个节点挂掉，节点的内存或磁盘中的持久化数据丢失了，那么后续对RDD计算时还可以使用该数据在其他节点上的副本。如果没有副本的话，就只能将这些数据从源头处重新计算一遍了。  如何选择一种最合适的持久化策略  默认情况下，性能最高的当然是MEMORY_ONLY，但前提是你的内存必须足够足够大，可以绰绰有余地存放下整个RDD的所有数据。因为不进行序列化与反序列化操作，就避免了这部分的性能开销；对这个RDD的后续算子操作，都是基于纯内存中的数据的操作，不需要从磁盘文件中读取数据，性能也很高；而且不需要复制一份数据副本，并远程传送到其他节点上。但是这里必须要注意的是，在实际的生产环境中，恐怕能够直接用这种策略的场景还是有限的，如果RDD中数据比较多时（比如几十亿），直接用这种持久化级别，会导致JVM的OOM内存溢出异常。 如果使用MEMORY_ONLY级别时发生了内存溢出，那么建议尝试使用MEMORY_ONLY_SER级别。该级别会将RDD数据序列化后再保存在内存中，此时每个partition仅仅是一个字节数组而已，大大减少了对象数量，并降低了内存占用。这种级别比MEMORY_ONLY多出来的性能开销，主要就是序列化与反序列化的开销。但是后续算子可以基于纯内存进行操作，因此性能总体还是比较高的。此外，可能发生的问题同上，如果RDD中的数据量过多的话，还是可能会导致OOM内存溢出的异常。 如果纯内存的级别都无法使用，那么建议使用MEMORY_AND_DISK_SER策略，而不是MEMORY_AND_DISK策略。因为既然到了这一步，就说明RDD的数据量很大，内存无法完全放下。序列化后的数据比较少，可以节省内存和磁盘的空间开销。同时该策略会优先尽量尝试将数据缓存在内存中，内存缓存不下才会写入磁盘。 通常不建议使用DISK_ONLY和后缀为_2的级别：因为完全基于磁盘文件进行数据的读写，会导致性能急剧降低，有时还不如重新计算一次所有RDD。后缀为_2的级别，必须将所有数据都复制一份副本，并发送到其他节点上，数据复制以及网络传输会导致较大的性能开销，除非是要求作业的高可用性，否则不建议使用。  
+						countByKey、foreach、foreachPartition、sortBy countByKey def countByKey(): Map[K, Long]
+countByKey用于统计RDD[K,V]中每个K的数量。
+scala&gt; var rdd1 = sc.makeRDD(Array((&quot;A&quot;,0),(&quot;A&quot;,2),(&quot;B&quot;,1),(&quot;B&quot;,2),(&quot;B&quot;,3))) rdd1: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[7] at makeRDD at :21 scala&gt; rdd1.countByKey res5: scala.collection.Map[String,Long] = Map(A -&gt; 2, B -&gt; 3)  foreach def foreach(f: (T) ⇒ Unit): Unit
+foreach用于遍历RDD,将函数f应用于每一个元素。
+但要注意，如果对RDD执行foreach，只会在Executor端有效，而并不是Driver端。
+在Spark1.4中是这样，不知道是否真如此。
+这时候，使用accumulator共享变量与foreach结合，倒是个不错的选择。
+scala&gt; var cnt = sc.accumulator(0) cnt: org.apache.spark.Accumulator[Int] = 0 scala&gt; var rdd1 = sc.makeRDD(1 to 10,2) rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[5] at makeRDD at :21 scala&gt; rdd1.
 					</div>
 				</div>
 			</div>
@@ -301,7 +314,7 @@ Spark的持久化级别  ##### MEMORY_ONLY 使用未序列化的Java对象格式
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01.%E5%BC%80%E5%8F%91%E8%B0%83%E4%BC%98/04/" rel="bookmark"></a>
+						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/05/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -310,10 +323,18 @@ Spark的持久化级别  ##### MEMORY_ONLY 使用未序列化的Java对象格式
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						 原则四：尽量避免使用shuffle类算子 如果有可能的话，要尽量避免使用shuffle类算子。因为Spark作业运行过程中，最消耗性能的地方就是shuffle过程。shuffle过程，简单来说，就是将分布在集群中多个节点上的同一个key，拉取到同一个节点上，进行聚合或join等操作。比如reduceByKey、join等算子，都会触发shuffle操作。
-shuffle过程中，各个节点上的相同key都会先写入本地磁盘文件中，然后其他节点需要通过网络传输拉取各个节点上的磁盘文件中的相同key。而且相同key都拉取到同一个节点进行聚合操作时，还有可能会因为一个节点上处理的key过多，导致内存不够存放，进而溢写到磁盘文件中。因此在shuffle过程中，可能会发生大量的磁盘文件读写的IO操作，以及数据的网络传输操作。磁盘IO和网络数据传输也是shuffle性能较差的主要原因。
-因此在我们的开发过程中，能避免则尽可能避免使用reduceByKey、join、distinct、repartition等会进行shuffle的算子，尽量使用map类的非shuffle算子。这样的话，没有shuffle操作或者仅有较少shuffle操作的Spark作业，可以大大减少性能开销。
-Broadcast与map进行join代码示例 // 传统的join操作会导致shuffle操作。 // 因为两个RDD中，相同的key都需要通过网络拉取到一个节点上，由一个task进行join操作。 val rdd3 = rdd1.join(rdd2) // Broadcast+map的join操作，不会导致shuffle操作。 // 使用Broadcast将一个数据量较小的RDD作为广播变量。 val rdd2Data = rdd2.collect() val rdd2DataBroadcast = sc.broadcast(rdd2Data) // 在rdd1.map算子中，可以从rdd2DataBroadcast中，获取rdd2的所有数据。 // 然后进行遍历，如果发现rdd2中某条数据的key与rdd1的当前数据的key是相同的，那么就判定可以进行join。 // 此时就可以根据自己需要的方式，将rdd1当前数据与rdd2中可以连接的数据，拼接在一起（String或Tuple）。 val rdd3 = rdd1.map(rdd2DataBroadcast...) // 注意，以上操作，建议仅仅在rdd2的数据量比较少（比如几百M，或者一两G）的情况下使用。 // 因为每个Executor的内存中，都会驻留一份rdd2的全量数据。  
+						 saveAsSequenceFile、saveAsObjectFile saveAsTextFile def saveAsTextFile(path: String): Unit
+def saveAsTextFile(path: String, codec: Class[_ &lt;: CompressionCodec]): Unit
+saveAsTextFile用于将RDD以文本文件的格式存储到文件系统中。
+codec参数可以指定压缩的类名。
+var rdd1 = sc.makeRDD(1 to 10,2) scala&gt; rdd1.saveAsTextFile(&quot;hdfs:///user/apple/testspark&quot;) //保存到HDFS scala&gt; rdd1.saveAsTextFile(&quot;file:///Users/apple/testspark&quot;) //保存到本地 //由于设置为两个分区，因此保存的路径中，有part-00000,part-00000  指定压缩格式保存
+//需要将使用的压缩工具包导入 rdd1.saveAsTextFile(&quot;hdfs:///user/apple/testspark1&quot;,classOf[com.hadoop.compression.lzo.LzopCodec])  saveAsSequenceFile saveAsSequenceFile用于将RDD以SequenceFile的文件格式保存到HDFS上。
+用法同saveAsTextFile。
+spark 1.6.1 没有改方法
+saveAsObjectFile def saveAsObjectFile(path: String): Unit
+saveAsObjectFile用于将RDD中的元素序列化成对象，存储到文件中。
+对于HDFS，默认采用SequenceFile保存。
+rdd1.saveAsObjectFile(&quot;/user/apple/sparktest02&quot;) hadoop fs -cat /user/apple/sparktest02/part-00000 SEQ !org.apache.hadoop.io.NullWritable&quot;org.apache.hadoop.io.BytesWritableT  
 					</div>
 				</div>
 			</div>
@@ -325,7 +346,7 @@ Broadcast与map进行join代码示例 // 传统的join操作会导致shuffle操�
 	
 	<a class="page-numbers" href="/post/page/22/">«</a>
 	
-	<span class="page-numbers current">23/28</span>
+	<span class="page-numbers current">23/30</span>
 	
 	<a class="page-numbers" href="/post/page/24/">»</a>
 	
@@ -355,6 +376,8 @@ Broadcast与map进行join代码示例 // 传统的join操作会导致shuffle操�
 	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
 	<ul>
 		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
 		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
 		
 		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
@@ -368,6 +391,8 @@ Broadcast与map进行join代码示例 // 传统的join操作会导致shuffle操�
 		<li class="cat-item"><a href="/categories/java">Java</a></li>
 		
 		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
 		
 		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
 		
@@ -438,7 +463,7 @@ Broadcast与map进行join代码示例 // 传统的join操作会导致shuffle操�
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

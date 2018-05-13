@@ -50,8 +50,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -70,8 +70,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -93,7 +91,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/quanceng/" rel="bookmark">圈层模块</a>
+						<a href="/post/linux/virtualbox/" rel="bookmark">virtualbox错误</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -102,11 +100,8 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 圈层1.1. 发布动态1. 圈层1.1. 发布动态URLhttp://116.90.81.68/app/app_user_mood/insert.shtml
-支持格式POST JSON
-HTTP请求方式Content-Type: application/json;charset=UTF-8
-携带参数说明{"user_id": "201512116eSr5i4", # 用户id"user_name": "20160928TyWUN1L", # 用户名"mood": "兆华", # 动态详情"img": "img/asdlfjl13345431231.img" # 图片 多张用 | 拼接}是否需要登录是
-成功{"state":1}失败{"
+						 include::content/post/base.adoc[] :toc-title: Contents VirtualBox Tip VBox中出现UUID have already exists解决方法  进入到VBoxManage.exe所在目录
+# 参数:虚拟vdi硬盘路径 VBoxManage.exe internalcommands sethduuid G:\VirtualMachine\CentOS-WEB\CentOS-WEB-01.vdi   通信问题  host-only模式下  主机ping通虚拟机 √ 虚拟机ping主机 ✘  关闭win10防火墙    修改硬盘大小 #7d91f211-d3e4-4185-bd9a-314c9b39856d #修改成40G VBoxManage modifyhd uuid –-resize 40960  
 					</div>
 				</div>
 			</div>
@@ -117,7 +112,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/thread/" rel="bookmark">多线程</a>
+						<a href="/post/windows/" rel="bookmark">win 端口转发</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -126,12 +121,147 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 多线程1.1. 线程带来的风险1.2. 线程安全性2. 参考1. 多线程1.1. 线程带来的风险安全性问题
-活跃性问题
-性能问题
-1.2. 线程安全性同步这个术语还包括volatile类型的变量,显式锁(Explicit Lock)以及原子变量如果当多个线程访问同一个可变的状态变量时。没有使用合适的同步那么程序就会出现错误。有三种方式可以修复这个问题. 不在线程之间共享该状态变量. 将状态变量修改为不可变的变量。. 在访问状态变量时，使用同步。
-2. 参考[[Java多线程基础 | http://www.importnew.com/21136.html]]
-[[http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency]]
+						Contents1. Git2. Windows2.1. win10 端口转发2.2. Windows 环境变量2.3. mklink 创建链接设置环境变量1. Gitsvn 导出 git 单个目录
+# trunk 替代 branchhttps://github.com/dishuiGit/codes.git/trunk/Spring-test2. Windows2.1. win10 端口转发netsh
+# 查看netsh interface portproxy show all#addnetsh interface portproxy add v4tov4 listenport=9200 connectaddress=192.168.137.164 connectport=9200# 删除netsh interface portproxy delete v4tov4 listenport=9200 listenaddress=196.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/yum/" rel="bookmark">yum基础操作</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						yum 源阿里云 yum 源
+http://mirrors.aliyun.com/repo/
+备份你的原镜像文件，以免出错后可以恢复
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repocurl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo下载新的 epel-7.repo 到 /etc/yum.repos.d/
+curl -o /etc/yum.repos.d/epel-7.repo http://mirrors.aliyun.com/repo/epel-7.repo运行 yum makecache 生成缓存
+yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@c1 ~]# sed -i 's=keepcache=0=keepcache=1=g' /etc/yum.conf[root@c1 ~]# grep keepcache /etc/yum.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/zookeeper/" rel="bookmark">zookeeper基础</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. zookeeper1.1. ZooKeeper 常用四字命令：1. zookeepercreate /zk-book 123ls /zk-bookget /zk-book1.1. ZooKeeper 常用四字命令：ZooKeeper 支持某些特定的四字命令字母与其的交互。它们大多是查询命令，用来获取 ZooKeeper 服务的当前状态及相关信息。用户在客户端可以通过 telnet 或 nc 向 ZooKeeper 提交相应的命令
+来查看哪个节点被选择作为follower或者leader
+echo stat|nc 127.0.0.1 2181测试是否启动了该Server，若回复imok表示已经启动
+echo ruok|nc 127.0.0.1 2181列出未经处理的会话和临时节点。
+echo dump| nc 127.0.0.1 2181关掉server
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/tmp/" rel="bookmark">临时文件</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Swarm2. 采购单2.1. 搜索框由于，Mai沥青平台前期访问量不大，没有部署硬件防火墙Mai沥青平台，上线时间紧张，没有划分网络，前期数据量不大，web应用与数据库没有逻辑隔离划分vLan:1. 提高安全性2. 提高性能
+网聚无线http://www.wellidc.net/世纪互联http://www.ch.21vianet.com/
+机房位置 （全国位置）北京上帝数据中心北京兆维数据中心网络接入BGP接入,上传/下载 1:1联通，移动，电信机房应急管理IDC被攻击，连接不上服务器怎么办？最慢20分钟恢复服务器断电，有什么数据保护措施？磁带保存，保存周期多长时间假如数据丢失，如何补偿，有什么补偿措施
+产品与服务机柜出租 （价格）8万左右网络带宽（价格）120/MCDN服务 （价格）60~70元
+机房位置 （全国位置）北京上帝数据中心北京兆维数据中心网络接入BGP接入,上传/下载 1:1联通，移动，电信机房应急管理IDC被攻击，连接不上服务器怎么办？最慢20分钟恢复服务器断电，有什么数据保护措施？磁带保存，保存周期多长时间产品与服务机柜出租 （价格）8万左右网络带宽（价格）120/MCDN服务 （价格）60~70元
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/tmp2016-10-26/" rel="bookmark">临时文件</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						ContentsServer definitionsaddress of a MySQL server.This will keep MaxScale aware of the state of the servers.MySQL Monitor documentation:Service definitionsReadConnRoute documentation:ReadWriteSplit documentation:This service enables the use of the MaxAdmin interfaceMaxScale administration guide:Listener definitions for the servicesecho 172.17.80.3 hadoop-slave1 &gt;&gt; /etc/hostsecho 172.17.80.4 hadoop-slave2 &gt;&gt; /etc/hosts
+cat &gt; /usr/lib/systemd/system/etcd.service &lt;&lt;_EOF_
+Description=etcdAfter=network.targetAfter=network-online.target
+ExecStart=/root/bin/etcd \--name my-etcd-1 \--data-dir ~/etcd-data \--listen-client-urls http://0.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/mathematics/xuxiaozhan/hanshu-qiudao/" rel="bookmark">函数求导</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 四大法则2. 函数求导法则21. 四大法则\[[u(x) \pm v(x)]' = u'(x) + v'(x)\]\[[u(x)v(x)]' = u'(x)v(x) + u(x)v'(x)\]\[[\frac{u(x)}{v(x)}]' = \frac{u'(x)v(x)-u(x)v'(x)}{v^2(x)}'\]\[[\frac{1}{v(x)}]' = - \frac{v'(x)}{v^2(x)}\]\[[u \pm v]' = u' \pm v'\]\[(uv)' = u'v + uv'\]\[(\frac{u}{v})' = \frac{u'v-uv'}{v^2}\]推广
+\[[u + v + w]' = u' + v' + w'\]\[(uvw)' = u'vw + uv'w + uvw'\]\[\displaystyle \sum_{i=1}^n C_{i}u_{i})' = \sum C_{i}u_{i}'\]线性组合的导数 = 导数的线性组合
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/junit/" rel="bookmark">单元测试</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 单元测试2. 参考1. 单元测试2. 参考[[mockito doc| http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html]]
 
 					</div>
 				</div>
@@ -143,7 +273,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/cservice/" rel="bookmark">客服管理</a>
+						<a href="/post/work/app/goods/" rel="bookmark">商品模块</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -152,11 +282,8 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 客服管理1.1. 动态1.1.1. 动态详情1.2. 采购单1.3. 资源单2. 审核2.1. 审核动态2.2. 审核评论2.3. 审核采购单3. 获取客服信息3.1. 获取平台客服3.2. 获取卖家客服1. 客服管理1.1. 动态URLhttp://app.mailiqing.com/app/cservice/dynamic?start=1&amp;limit=10
+						Contents1. 商品模块1.1. 商品列表统一接口1.2. 进入现货市场1.3. 搜索框1.4. 品牌过滤1.5. 供应商过滤1.6. 型号过滤1.7. 类目过滤1.8. 价格排序1.9. 添加商品1.9.1. 商品分类1.9.2. 品牌1.10. 立即购买 结算1.11. 筛选1.11.1. 获取 品牌 型号 供应商1.12. 首页 轮播1.13. 首页 类目1.14. 商品详情1.15. 进入店铺1.16. 搜索框1.17. 首页 通知1. 商品模块1.1. 商品列表统一接口URLhttp://app.mailiqing.com/app/goods/search
 支持格式JSON
-HTTP请求方式GET Content-Type: application/json;charset=UTF-8
-携带参数说明start : 起始页limit : 每页显示个数是否需要登录是
-成功{"
 					</div>
 				</div>
 			</div>
@@ -167,7 +294,7 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
-						<a href="/post/mathematics/xuxiaozhan/daoshu-moxing/" rel="bookmark">导数的概念</a>
+						<a href="/post/work/koto/" rel="bookmark">图片服务器</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
 						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -176,157 +303,10 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						Contents1. 导数的概念1.1. 导数形式1.1.1. 例子1.2. 单侧导数1. 导数的概念瞬时速度\(v = \lim\limits_{\Delta t\to 0} \frac{\Delta s}{\Delta t} \Rightarrowv(t) = s^`(t) = \frac{ds}{dt}\)
-切线斜率\(k = \lim\limits_{\Delta x\to 0} \frac{\Delta y}{\Delta x} \Rightarrowk = f'(x) = \frac{dy}{dx}\)
-线密度\(\rho = \lim\limits_{\Delta x\to 0} \frac{\Delta m}{\Delta x} \Rightarrow\rho = m'(x) = \frac{dm}{dx}\)
-1.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/shop/" rel="bookmark">店铺模块</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 店铺1.1. 我的店铺1.2. 店铺 商品管理1.3. 商品管理 (上架,下架)1. 店铺1.1. 我的店铺URLhttp://116.90.81.68/app/shop/{userId}
-支持格式JSON
-HTTP请求方式GET Content-Type: application/json;charset=UTF-8
-携带参数说明{userId} : 用户Idhttp://116.90.81.68/app/shop/20150615uo7jE40
-是否需要登录否
-成功{"id": "2015091404A3ol8", # 店铺id"shopName": "北京中物振华贸易有限公司", # 店铺名称"shopLogo": "196.168.1.31/data/upload_image/shop/13/0/016a6e2b4da14457b1da90ed39ed27c7.jpg", # 店铺logo"shopStandardLogo": "196.168.1.31/data/upload_image/shop/14/8/3a858e0536244ac9a8ede39792fe9ebe.png", # 店铺介绍 图片"
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/quoteprice/" rel="bookmark">报价单模块</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 报价单1.1. 报价单发布1.2. 收到的报价1.3. 报价单 详情1. 报价单1.1. 报价单发布URLhttp://116.90.81.68/app/quoteprice/add
-支持格式POST JSON
-HTTP请求方式Content-Type: application/json;charset=UTF-8
-携带参数说明{"userId" : "201512116eSr5i4" # 用户id"procurId" : "20160928TyWUN1L", # 采购单id"factoryName" : "兆华", # 公司名称"repositoryAddr" : "北京|北京市", # 出库地址"desc" : "70#沥青好东西", # 报价描述"contact" : "小明", # 联系人"phone" : "13345431231", # 电话"
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/template/" rel="bookmark">接口模板</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 搜索框1. 搜索框URLhttp:///goods/search
-支持格式JSON
-HTTP请求方式Content-Type: application/json;charset=UTF-8
-携带参数说明{"searchKey" : "沥青" #搜索值}是否需要登录否
-成功{"searchKey" : "沥青"}失败{"state" : 0,"message" : "查询结果为空！"}
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/well/" rel="bookmark">日常积累 点点滴滴</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 一点 一点1.1. js1.2. tomcat1.3. 密码1.4. 工具1.5. 科学上网mycat 管理入口1. 一点 一点1.1. jsjquery-aop[jquery-aop]: https://github.com/gonzalocasas/jquery-aop
-demo
-// 导入 aop.js jquery9.min.js//(function(){function T(){this.init();_this = this;};T.prototype = {init: function(){$('*[data-save]').each(function(){$(this).bind('click',{flag:$(this)},_this.save);});$('*[data-delete]').each(function(){$(this).bind('click',{flag:$(this)},_this.delete);});},save: function(event){var data = event.data.flag;console.log(data.html());},delete: function(event){var data = event.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/mathematics/machine-learn/" rel="bookmark">机器学习</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						参考 [[http://www.nlpcn.org/]]
-[[https://github.com/NLPchina/elasticsearch-sql]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/arch/" rel="bookmark">架构</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 服务器 vlan1. 服务器 vlan参考 浅谈web架构之架构设计
-图片服务器架构演进
-物理机(2)IBM x3650M4 2U 机架式服务器一颗E5-2609v2 2.5GHz/16GB（4*8GB）/2x1TB 7.2K SAS 2.5"/Raid 5/四端口千兆网卡/双冗余550W
-软件运行环境Linux coreos01 4.9.0-coreos + Tomcat7.0.62 + Mysql5.5 + Redis3.2 + ElasticSearch1.4
-物理机1(虚拟机)
-主机名
-IP
-操作系统
-处理器
-内存
-运行软件
-coreos01
+						Contents1. mongo1.1. mongo 安装1.2. ImageMagick2. Koto 图片服务器1. mongo1.1. mongo 安装下载
+[[https://www.mongodb.com/download-center?jmp=docs#community]]
+配置
+# ${MONGO_PATH} --&gt; /root/opt/sof/mongodb-linux-i686-3.2.7ln -s ${MONGO_PATH}/bin/mongod /usr/bin/mongodln -s ${MONGO_PATH}/bin/mongo /usr/bin/mongo/etc/mongod.conf systemLog:destination: filepath: "/var/log/mongodb/mongod.log" #日志路径logAppend: truestorage:dbPath: "/home/vagrant/opt/mongd/db"processManagement: #后台运行fork: truenet:bindIp: 0.0.0.0 #绑定所有网卡port: 27017启动
 					</div>
 				</div>
 			</div>
@@ -338,7 +318,7 @@
 	
 	<a class="page-numbers" href="/post/page/17/">«</a>
 	
-	<span class="page-numbers current">18/28</span>
+	<span class="page-numbers current">18/30</span>
 	
 	<a class="page-numbers" href="/post/page/19/">»</a>
 	
@@ -368,6 +348,8 @@
 	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
 	<ul>
 		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
 		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
 		
 		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
@@ -381,6 +363,8 @@
 		<li class="cat-item"><a href="/categories/java">Java</a></li>
 		
 		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
 		
 		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
 		
@@ -451,7 +435,7 @@
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

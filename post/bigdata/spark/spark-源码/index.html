@@ -7,15 +7,13 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="spark-源码" />
-<meta property="og:description" content="spark-基础1. SparkContext2. job的提交和运行3. SparkSteaming 源码1. SparkContext2. job的提交和运行3. SparkSteaming 源码StreamingContext
+<meta property="og:description" content="spark-基础1. SparkContext2. job的提交和运行3. SparkSteaming 源码3.1. JobScheduler1. SparkContext2. job的提交和运行3. SparkSteaming 源码StreamingContext
 new DStreamGraphnew AtomicInteger(0)new JobScheduler(this)new ContextWaiternew StreamingJobProgressListener(this)new StreamingSource(this)NetworkAddressUtils.java
 org.apache.spark.util.ClosureCleaner
 org.apache.spark.streaming.DStreamGraph
 org.apache.spark.streaming.dstream.SocketInputDStream
 org.apache.spark.streaming.dstream.DStreamCheckpointData
 org.apache.spark.streaming.dstream.ForEachDStream
-org.apache.spark.streaming.dstream.DStreamCheckpointData
-org.apache.spark.streaming.dstream.MappedDStream
 org." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/" />
@@ -60,8 +58,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -80,8 +78,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -109,7 +105,11 @@
 <ul class="sectlevel1">
 <li><a href="#_sparkcontext">1. SparkContext</a></li>
 <li><a href="#_job的提交和运行">2. job的提交和运行</a></li>
-<li><a href="#_sparksteaming_源码">3. SparkSteaming 源码</a></li>
+<li><a href="#_sparksteaming_源码">3. SparkSteaming 源码</a>
+<ul class="sectlevel2">
+<li><a href="#_jobscheduler">3.1. JobScheduler</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -251,6 +251,94 @@ extends Logging
 An event loop to receive events from the caller and process all events in the event thread. It will start an exclusive event thread to process all events. Note: The event queue will grow indefinitely. So subclasses should make sure onReceive can handle events in time to avoid the potential OOM.</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>MapOutputTrackerMasterEndpoint
+TaskSetManager</p>
+</div>
+<div class="paragraph">
+<p>Dispatcher
+  ThreadPoolExecutor#execute(new MessageLoop)
+    MessageLoop
+      Inbox#process
+        RpcMessage
+        OneWayMessage
+        OnStart
+        OnStop
+        RemoteProcessConnected
+        RemoteProcessDisconnected
+        RemoteProcessConnectionError</p>
+</div>
+<div class="paragraph">
+<p>Endpoint
+  RpcEndpointVerifier
+  MapOutputTrackerMasterEndpoint
+  BlockManagerMasterEndpoint
+  BlockManagerSlaveEndpoint
+  OutputCommitCoordinatorEndpoint
+  HeartbeatReceiver</p>
+</div>
+<div class="paragraph">
+<p>JobGenerator</p>
+</div>
+<div class="paragraph">
+<p>JobScheduler#start
+  JobGenerator#start
+  DStreamGraph#start
+  RecurringTimer#start(long)
+    RecurringTimer#loop
+      RecurringTimer#triggerActionForNextInterval   //循环调用
+        JobGenerator#processEvent
+          JobGenerator#generateJobs
+            JobScheduler#submitJobSet
+        JobScheduler#processEvent</p>
+</div>
+<div class="sect2">
+<h3 id="_jobscheduler">3.1. JobScheduler</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler-1.svg" alt="JobScheduler 1" width="1440" height="638">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler3.svg" alt="JobScheduler3" width="1024" height="502">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler5.svg" alt="JobScheduler5" width="2793" height="335">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler6.svg" alt="JobScheduler6" width="2588" height="597">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{rank=same;bg -&gt; p8 [arrowhead=None]};
+{p8 -&gt; m7 [label="blockPushingThread.start()#120",arrowhead=None]};
+{rank=same;p8 -&gt; m10 [arrowhead=None]};
+{m6 -&gt; p8 [label="blockIntervalTimer.start()#119" ,arrowhead=None]};
+{rt -&gt; m6 [label="RecurringTimer#start#59" ,arrowhead=None, dir=back]};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>{rt &#8594; bg [xlabel="loop#103\ntriggerActionForNextInterval#103"]};</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>subgraph BlockGenerator {</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  label = "BlockGenerator";
+  color=blue
+}</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -307,7 +395,7 @@ An event loop to receive events from the caller and process all events in the ev
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

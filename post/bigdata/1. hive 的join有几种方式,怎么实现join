@@ -1,0 +1,157 @@
+1. hive 的join有几种方式,怎么实现join
+3种,reduce side join, map side join, semijoin
+reduce side join,map阶段,对来自不同表的k,v对打标签,区分不同的数据来源,将连接的key作为key,将其余部分和标签作为value输出
+reduce阶段:
+    根据连接的key进行分组,在不同的分组中,拆分不同来源的数据,做笛卡儿积操作
+
+map side join, 适用于 一个大表和一个小表做join
+将小表文件放入DistributedCache,在DistributeeDcache读取小表的key,value对,放入内存,扫描大表,将大表的k,v,与小表做比对,匹配上了 进行输出
+
+semi join,是reduce side join的一个变种,在map端,过滤一部分数据,减少shuffle阶段的数据传输
+
+
+2. hive 内部表和外部表的区别
+内部表 删除表,连带删除数据
+外部表 删除表,不删数据
+
+3. hive 如何优化
+join优化,把小表放在join左边,如果一张表特别小,使用mapjoin
+排序优化,order by 默认只有一个reduce,使用 distribute by + sort by
+使用分区,减少查询时,数据的检索时间
+
+4. hive中的压缩格式
+TextFile,SequenceFile,RCFile
+
+TextFile 没有压缩,磁盘开销大,文件解析开销大
+SequenceFile Hadoop的二进制文件存储,使用方便,
+RCFile 列式存储,压缩比高,解析性能好
+
+
+
+配置 spark.deploy.zookeeper.dir,master元数据信息在zookeeper上保存目录,包括Worker,Driver,Application,executer.
+StandBy节点要从zookeeper中读取元数据信息,恢复集群,对外提供服务
+
+不会,作业已经申请过资源了,申请后,driver和executer进行通信
+
+
+配置zookeeper
+在 spark-env.sh 文件中,配置 spark_daemon_java_opts= spark.deploy.recoverMode=zookeeper
+spark.deploy.zookeeper.url
+spark.deploy.zookeeper.dir
+分发 spark-env.sh文件到各个节点
+在master节点启动./start-all.sh
+在其他master节点启动 ./start-master.sh
+submit提交任务,需要指定多个master url地址
+
+
+一个Spark作业,有一个主进程,driver进程,具有SparkContext实例,有main方法是程序的入口点
+功能: driver 负责向集群申请资源,向master注册信息,负责作业的解析与调度,stage是DAGScheduler根据RDD之间的依赖关系进行划分,将TaskSet传递给TaskScheduler,TaskScheduler调度到Executer上执行
+
+
+
+
+local  在本地以多线程的方式运行
+standlone 分布式集群模式,spark负责资源管理,任务监控,不依赖其他外部组件
+spark on yarn 分布式集群模式, yarn负责资源的管理和任务监控
+spark on mesos
+
+
+work主要负责本节点的内存和CPU的监控,接收mater分配过来的资源指令,通过ExcutorRunner来执行Task任务
+
+
+基于内存计算,减少低效的磁盘操作
+基于RDDGraph,高效的迭代算法
+基于Lineage容错机制
+
+
+高阶,没有多大的差别,都是基于MR模型,将map端数据,partion分区到不同reducer
+reducer接收数据,边shuffle边aggregate
+
+低阶
+    Hadoop MapReduce 基于sort-based,进入combin和reduce的数据都是经过排序的,所以reduce能处理大规模数据
+    通过外排得到(maper端将数据拍好序,reduce端边shuffle边reduce)
+    
+
+
+
+
+
+
+CREATE EXTERNAL TABLE user( 
+    userid INT,
+    gender STRING,
+    age INT,
+    occupation STRING,
+    zipcode INT
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
+LOCATION 'file:///home/hadoop/tmp/data';
+
+show create table user;
+
+
+
+
+
+
+
+cat > /etc/apt/sources.list <<_EOF_
+
+deb http://mirrors.aliyun.com/debian/ wheezy main non-free contrib
+deb http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ wheezy main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib
+
+_EOF_
+
+
+
+
+
+
+version: '2'
+services:
+  mysql:
+    image: mysql:5.5.52
+    container_name: mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=111111"
+#   volumes:
+#     - /data/mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  seafile:
+    image: m3adow/seafile
+    container_name: seafile
+    environment:
+      - "SEAFILE_ADDRESS=192.168.137.21"
+      - "SEAFILE_ADMIN=dishui_git@126.com"
+      - "SEAFILE_ADMIN_PW=123456"
+      - "MYSQL_SERVER=192.168.137.21"
+      - "MYSQL_USER=root"
+      - "MYSQL_USER_PASSWORD=111111"
+      - "MYSQL_ROOT_PASSWORD=111111"
+    volumes:
+      - /data/seafile-data:/seafile
+    ports:
+      - "8000:8000"
+      - "8082:8082"
+
+
+docker run -d -e SEAFILE_NAME=Seaflail \
+    -e SEAFILE_ADDRESS=192.168.137.21 \
+    -e SEAFILE_ADMIN=dishui_git@126.com \
+    -e SEAFILE_ADMIN_PW=123456 \
+    -e MYSQL_SERVER=192.168.137.21 \
+    -e MYSQL_USER=root \
+    -e MYSQL_USER_PASSWORD=111111 \
+    -e MYSQL_ROOT_PASSWORD=111111 \
+    -v /data/seafile-data:/seafile \
+  m3adow/seafile
+
+docker run --user=0 \
+  -v /data/seafile-data:/home/seafile \
+  -p 8000:8000 \
+  -p 8082:8082 \
+  -ti sunx/seafile

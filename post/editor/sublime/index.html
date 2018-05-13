@@ -57,8 +57,8 @@ Preferences-&#8594;Key Bindings-User`
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -77,8 +77,6 @@ Preferences-&#8594;Key Bindings-User`
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -491,9 +489,61 @@ Preferences-&#8594;Key Bindings-User`</p>
             { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
             { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
         ]
+    },
+    {
+        "keys": ["ctrl+s"],  // use "ctrl+s" to overwrite save
+        "command": "chain",
+        "args": {
+            "commands": [
+                ["set_line_ending", {"type": "unix"}], // also possible: "unix", "windows", "cr"
+                ["save"]
+            ]
+        },
+    },
+    {
+        "keys": ["alt+2"],
+        "command": "chain",
+        "args": {
+            "commands": [
+                ["show_overlay", {"overlay": "goto", "show_files": true}],
+                ["move", {"by": "lines", "forward": true}]
+            ]
+        },
     }
 ]</code></pre>
 </div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>正则匹配所有的a标签</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&lt;a\b[^&gt;]+\bhref="(<strong class="<sup>"">)"[</sup>&gt;]</strong>&gt;([\s\S]*?)&lt;/a&gt;
+分组1和分组2即为href和value</p>
+</div>
+<div class="paragraph">
+<p>解释：
+&lt;a\b                                        #匹配a标签的开始</p>
+</div>
+<div class="paragraph">
+<p>[^&gt;]+                                      #匹配a标签中href之前的内容</p>
+</div>
+<div class="paragraph">
+<p>\bhref="([^"]*)"                       #匹配href的值，并将匹配内容捕获到分组1当中</p>
+</div>
+<div class="paragraph">
+<p>[^&gt;]*&gt;                                    #匹配a标签中href之后的内容</p>
+</div>
+<div class="paragraph">
+<p>([\s\S]*?)                                  #匹配a标签的value，并捕获到分组2当中，?表示懒惰匹配</p>
+</div>
+<div class="paragraph">
+<p>&lt;/a&gt;                                       #匹配a标签的结束</p>
+</div>
+<div class="paragraph">
+<p>summary标签中内容
+&lt;summary\b[^&gt;]+&gt;([\s\S]*?)&lt;/summary&gt;</p>
 </div>
 <div class="sect2">
 <h3 id="_参考">3.1. 参考</h3>
@@ -571,7 +621,7 @@ Preferences-&#8594;Key Bindings-User`</p>
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

@@ -7,15 +7,15 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="kafka" />
-<meta property="og:description" content="启动
+<meta property="og:description" content="kafka1. 练习2. Window获取 topic 的 offset查看topic消费进度1. 错误启动
 sh $TOOLS_HOME/kafka/start-kafka.sh
-sh $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
+nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
+1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;
 查看kafka-topics.sh --zookeeper djt11:2181 --list
 创建kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test
 发送消息kafka-console-producer.sh --broker-list djt11:9092 --topic test
 接收消息kafka-console-consumer.sh --zookeeper djt11:2181 --topic test --from-beginning
-查看消费者组的消费情况kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --group console-consumer-14804
-" />
+查看消费者组的消费情况kafka-run-class." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/hadoop/kafka/" />
 
@@ -59,8 +59,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -79,8 +79,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -103,7 +101,22 @@
 		</header>
 		<div class="entry-content clearfix">
 			
-			<div class="olist arabic">
+			<div id="toc" class="toc">
+<div id="toctitle">kafka</div>
+<ul class="sectlevel1">
+<li><a href="#_练习">1. 练习</a></li>
+<li><a href="#_window">2. Window</a></li>
+<li><a href="#_获取_topic_的_offset">获取 topic 的 offset</a></li>
+<li><a href="#_查看topic消费进度">查看topic消费进度</a>
+<ul class="sectlevel1">
+<li><a href="#_错误">1. 错误</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>启动</p>
@@ -114,7 +127,10 @@
 <p>sh $TOOLS_HOME/kafka/start-kafka.sh</p>
 </div>
 <div class="paragraph">
-<p>sh $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;</p>
+<p>nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;</p>
+</div>
+<div class="paragraph">
+<p>1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -140,6 +156,144 @@ kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --gr
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>验证端口
+lsof -i:2181</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_练习">1. 练习</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建测试 topic test1
+bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic test1 --partitions 3 --replication-factor 1</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>source env.sh
+sh $KAFKA_HOME/bin/kafka-topics.sh --zookeeper localhost:2181/kt1 --create --topic t1 --partitions 3 --replication-factor 1</p>
+</div>
+<div class="paragraph">
+<p>查看topic
+$KAFKA_HOME/bin/kafka-topics.sh --zookeeper vm73:2181/kt1 --describe --topic t1</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建个消费者
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+sh $KAFKA_HOME/bin/kafka-console-consumer.sh --zookeeper vm75:2181/kt1 --from-beginning --topic testtopic</p>
+</li>
+<li>
+<p>创建生产者
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+sh $KAFKA_HOME/bin/kafka-console-producer.sh --broker-list vm74:9092,vm75:9092,vm76:9092 --topic t1</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>LIB_HOME=/root/tmp/test/consumer/target/lib
+java -Djava.ext.dirs=$LIB_HOME:$JAVA_HOME/jre/lib/ext dishui.DemoConsumer vm75:2181/kt1 t1 group1 consumer2</p>
+</div>
+<div class="paragraph">
+<p>LIB_HOME=/root/tmp/test/consumer/target/lib
+java -Djava.ext.dirs=$LIB_HOME:$JAVA_HOME/jre/lib/ext guojun.ProducerDemo</p>
+</div>
+<div class="paragraph">
+<p>run-java consumer-1.0-SNAPSHOT.jar lib guojun.ProducerDemo</p>
+</div>
+<div class="paragraph">
+<p>KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+sh $KAFKA_HOME/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list "vm75:9092" --topic "t1" --time -1</p>
+</div>
+<div class="paragraph">
+<p>run-spark</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_window">2. Window</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<div class="title">\bin\windows\kafka-topics.bat --zookeeper localhost:2181/kt1 --create --topic t1 --partitions 3 --replication-factor 1</div>
+<p>source env.sh</p>
+</div>
+</div>
+</div>
+<h1 id="_获取_topic_的_offset" class="sect0">获取 topic 的 offset</h1>
+<div class="paragraph">
+<p>kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list vm28:9092 --topic "t1" --time -1</p>
+</div>
+<div class="paragraph">
+<p>time :
+  -1 最大偏移量
+  -2 最小偏移量</p>
+</div>
+<h1 id="_查看topic消费进度" class="sect0">查看topic消费进度</h1>
+<div class="paragraph">
+<p>这个会显示出consumer group的offset情况， 必须参数为&#8212;&#8203;group， 不指定&#8212;&#8203;topic，默认为所有topic</p>
+</div>
+<div class="paragraph">
+<p>Displays the: Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Group</p>
+</div>
+<div class="paragraph">
+<p>kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --group group1 --topic t1 --zookeeper vm26:2181/kt1</p>
+</div>
+<div class="paragraph">
+<p>几个问题</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Producer,Broker,Consumer 的工作模式
+Broker,ZooKeeper 作为后台服务
+Producer,Consumer 作为SDK</p>
+</li>
+<li>
+<p>Producer,Consumer 和 Broker 的交互过程
+Producer &#8594; Broker (push)
+特点:
+  Broker 不需要感知 Consumer 的存在
+  如果使用 push 模式, Consumer 处理数据特别慢,会出现 延迟,数据丢失,应用程序压垮
+  pull模式: Consumer 消费多少去拿多少,根据 Consumer 的消费能力去从 Broker 拿数据,避免 Consumer 应用程序被压垮
+  Producer 如何知道有哪些 Broker 的存在,以及对每条消息而言, Producer 如何知道将该条消息发送给哪个 Broker
+  Consumer 如何感知有哪些 Broker 的存在,它需要怎样知道应该从哪个 Broker 去取数据</p>
+<div class="literalblock">
+<div class="content">
+<pre>Producer 分别去连接三个 Broker , 只要有一个连接成功, 它就可以从 Broker 里去拿到当前活着的整个列表相关的元信息,从而返回给 Producer, 这个时候 Producer 就会知道整个集群有多少个 Broker, 每个 Topic 有多少个 Partition, 每个 Partition 在哪个 Broker 上。 Producer 会将元数据信息存在内存中。
+Producer 刷新元数据信息有两种方式
+  1. Producer 向某个 Broker 发送数据失败，主动出发刷新元数据信息，重新去获取整个集群的元数据信息
+  2. Producer 周期性的刷新缓存的元数据信息
+    刷新周期可以通过 Producer 的配置参数设置</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Consumer -&gt; Broker (pull)
+  如何获取整个 Kafka 集群的元数据信息
+    整个集群的元信息都会存在 ZooKeeper 中， Consumer 连接了 ZooKeeper 集群，就会知道有多少个 Topic
+  Consumer 如何知道从哪个 Broker 上消费数据
+    涉及到 Topic 和 Partition 概念，以及 Consumer ReBalance 概念</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect1">
+<h2 id="_错误">1. 错误</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/kafka/2018-05-09_145805.png" alt="2018 05 09 145805">
+</div>
+</div>
+<hr>
+</div>
+</div>
 
 		</div>
 		
@@ -160,6 +314,10 @@ kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --gr
 	
 
 	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/osgi/" rel="prev"><span>«Previous</span><p>osgi</p></a>
+		</div>
 		
 		
 		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
@@ -190,7 +348,7 @@ kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --gr
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

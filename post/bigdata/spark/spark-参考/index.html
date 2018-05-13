@@ -7,7 +7,8 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="spark参考" />
-<meta property="og:description" content="spark1. RDD1. RDDSparkRDDAPIExamples
+<meta property="og:description" content="spark1. 参数2. RDD1. 参数--master yarn --deploy-mode client --driver-memory 14G --driver-cores 3 --executor-memory 14G --executor-cores 4 --num-executors 52 --conf spark.sql.shuffle.partitions=50
+2. RDDSparkRDDAPIExamples
 https://zhuanlan.zhihu.com/p/21483985
 http://tech.meituan.com/spark-tuning-basic.html
 https://www.zhihu.com/question/23655827?rf=27642986
@@ -19,11 +20,7 @@
 https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;search=y
 张包峰
 高彦杰的博客
-赛赛的网络日志
-Spark运行调试方法与学习资源汇总
-https://stackoverflow.com/questions/tagged/apache-spark
-http://blog.csdn.net/u012318074/article/details/56835532
-" />
+赛赛的网络日志" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/" />
 
@@ -67,8 +64,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -87,8 +84,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -114,11 +109,20 @@
 			<div id="toc" class="toc">
 <div id="toctitle">spark</div>
 <ul class="sectlevel1">
-<li><a href="#_rdd">1. RDD</a></li>
+<li><a href="#_参数">1. 参数</a></li>
+<li><a href="#_rdd">2. RDD</a></li>
 </ul>
 </div>
 <div class="sect1">
-<h2 id="_rdd">1. RDD</h2>
+<h2 id="_参数">1. 参数</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 14G --driver-cores 3 --executor-memory 14G --executor-cores 4 --num-executors 52 --conf spark.sql.shuffle.partitions=50</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rdd">2. RDD</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -170,7 +174,13 @@
 <li>
 <p><a href="http://blog.csdn.net/u012318074/article/details/56835532" class="bare">http://blog.csdn.net/u012318074/article/details/56835532</a></p>
 </li>
+<li>
+<p><a href="http://lxw1234.com/archives/2015/12/593.htm" class="bare">http://lxw1234.com/archives/2015/12/593.htm</a></p>
+</li>
 </ol>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_spark-component-guide/content/dra-properties.html" class="bare">https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_spark-component-guide/content/dra-properties.html</a></p>
 </div>
 </div>
 </div>
@@ -228,7 +238,7 @@
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

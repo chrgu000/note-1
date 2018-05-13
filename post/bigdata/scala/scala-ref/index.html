@@ -7,11 +7,16 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="Scala 参考" />
-<meta property="og:description" content="Scala 参考1. Scala 参考1. Scala 参考https://alvinalexander.com/scala
+<meta property="og:description" content="Scala 参考1. Scala 参考2. sbt 仓库3. 新建项目1. Scala 参考https://alvinalexander.com/scala
 https://dzone.com
 https://github.com/lauris/awesome-scala
 https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html
-" />
+2. sbt 仓库[repositories]localnexus-aliyun:http://maven.aliyun.com/nexus/content/groups/publicmaven-centraltypesafe-ivy-releases: http://dl.bintray.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]sbt-ivy-snapshots: http://dl.bintray.com/typesafe/maven-releases/sbt-plugin-releases: http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]http://hongjiang.info/scala/
+http://yefremov.net/blog/scala-code-generation/
+https://www.programcreek.com/scala/scala.language.experimental.macros
+https://github.com/Centaur/repox
+SBT 文档
+3. 新建项目sbt -Dsbt." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/scala/scala-ref/" />
 
@@ -55,8 +60,8 @@
 						<div class="mr-site-identity">
 							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
 								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零散散" rel="home">
-										<h1 class="mr-header-title">零零散散</h1>
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
 										<h2 class="mr-header-tagline">点滴记录</h2>
 									</a>
 								</div>
@@ -75,8 +80,6 @@
             <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
         
             <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/storm">storm</a></li>
         
 	</ul>
 </nav>
@@ -103,6 +106,8 @@
 <div id="toctitle">Scala 参考</div>
 <ul class="sectlevel1">
 <li><a href="#_scala_参考">1. Scala 参考</a></li>
+<li><a href="#_sbt_仓库">2. sbt 仓库</a></li>
+<li><a href="#_新建项目">3. 新建项目</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -123,6 +128,49 @@
 <p><a href="https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html" class="bare">https://windor.gitbooks.io/beginners-guide-to-scala/content/chp1-extractors.html</a></p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sbt_仓库">2. sbt 仓库</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[repositories]
+  local
+  nexus-aliyun:http://maven.aliyun.com/nexus/content/groups/public
+  maven-central
+  typesafe-ivy-releases: http://dl.bintray.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+  sbt-ivy-snapshots: http://dl.bintray.com/typesafe/maven-releases/
+  sbt-plugin-releases: http://dl.bintray.com/sbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://hongjiang.info/scala/" class="bare">http://hongjiang.info/scala/</a></p>
+</li>
+<li>
+<p><a href="http://yefremov.net/blog/scala-code-generation/" class="bare">http://yefremov.net/blog/scala-code-generation/</a></p>
+</li>
+<li>
+<p><a href="https://www.programcreek.com/scala/scala.language.experimental.macros" class="bare">https://www.programcreek.com/scala/scala.language.experimental.macros</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Centaur/repox" class="bare">https://github.com/Centaur/repox</a></p>
+</li>
+<li>
+<p><a href="https://www.scala-sbt.org/1.x/docs/zh-cn/More-About-Settings.html">SBT 文档</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_新建项目">3. 新建项目</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>sbt -Dsbt.override.build.repos=true -Dsbt.repository.config=/c/Users/dishui/.sbt/repositories assembly</p>
 </div>
 </div>
 </div>
@@ -180,7 +228,7 @@
 	</div>
 		<div class="mr-copyright-wrap">
 			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2017 零零散散. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
 			</div>
 		</div>
 	</div>

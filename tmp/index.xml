@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tmp-rsses on 零零散散</title>
+    <title>Tmp-rsses on 零零碎碎</title>
     <link>/tmp/index.xml</link>
-    <description>Recent content in Tmp-rsses on 零零散散</description>
+    <description>Recent content in Tmp-rsses on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 26 Apr 2017 13:25:36 +0000</lastBuildDate>
@@ -4811,6 +4811,151 @@ nohup $STORM_HOME/bin/storm ui &amp;amp;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;15039811747&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/tmp/tmp2017-11-11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tmp/tmp2017-11-11/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE IF NOT EXISTS test
+(sno INT,sname STRING,age INT,sex STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY &#39;@&#39;
+STORED AS TEXTFILE;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;LOAD DATA LOCAL INPATH &#39;/home/hadoop/share/tmp/1&#39; INTO TABLE test;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$JAVA_HOME/bin/java -DNAME=FRAMEWORK -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/urandom $TURNING_OPTION $DEBUG_GC $DEBUG_OPTION $EXTRA_OPTION -DFRAMEWORK_HOME=$FRAMEWORK_HOME -Dfile.encoding=UTF-8 -classpath $FRAMEWORK_HOME/bin:$FRAMEWORK_HOME/lib/commons-io-2.1.jar:$FRAMEWORK_HOME/lib/org.apache.felix.main-5.6.2.jar com.nsn.framework.Main&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select
+    &#39;4&#39; as network,
+    &#39;2g&#39; AS bsc_rnc_enb_ip,
+    destination_ip as dip,
+    tai as tac,
+    replycode as reply_code,
+    duration,
+    record_close_cause as rec_close_cause,
+    imsi,
+    ecgi_3gpp2_bsid as cell,
+    sgw_hsgw_ip_addr as sgw_ip
+from anhui.s1u_dns
+limit 5;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select
+    distinct(sgw_ip) as sgw_ip
+from anhui.s1u_dns
+limit 5;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select count(*) from anhui.s1u_dns&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;export SPARK_DIST_CLASSPATH=$(/opt/hadoop-2.7.3/bin/hadoop classpath)
+export JAVA_HOME=/usr/java/jdk1.8.0_131/
+export HADOOP_HOME=/opt/hadoop-2.7.3
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_MASTER_IP=vm74
+export SPARK_MASTER_PORT=7077
+export SPARK_LOCAL_IP=vm74&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;spark.master                     spark://vm74:7077
+spark.home                       /opt/hadoop-2.7.3
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://vm74:9000/spark-log
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.executor.memory            6g
+spark.driver.memory              6g
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers=&#34;one two three&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;lsof -p PID&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;datamining_s1u_dns.xml
+    &amp;lt;database id=&#34;spark1&#34; type=&#34;XDR-CMCC-SPARK&#34; name=&#34;HADOOP Env 1&#34;
+        runtime=&#34;true&#34; /&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;datasource.properties
+    datasources=spark1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;COPY f_do_s1_ho_imsi_ci_anhui2 FROM &#39;/tmp/F_DO_S1_HO_IMSI_CI_ANHUI2_2017-11-13_09000093519660531340467.csv&#39; DELIMITER AS &#39;,&#39; NULL AS &#39;null&#39;;
+COPY t1 FROM &#39;D:\tmp\files\F_DO_S1_HO_IMSI_CI_ANHUI2_2017-11-13_0900008392860789826925871.csv&#39; DELIMITER AS &#39;,&#39; NULL AS &#39;null&#39;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://vm74:8899/tbox/callback?token=s1u_dns.27920&amp;amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;window=20171113090000-20171113100000&amp;amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;id=27920&#34; class=&#34;bare&#34;&gt;http://vm74:8899/tbox/callback?token=s1u_dns.27920&amp;amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;window=20171113090000-20171113100000&amp;amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;id=27920&lt;/a&gt;
+&lt;a href=&#34;http://localhost:8899/tbox/callback?token=s1u_dns.27920&amp;amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;window=20171113090000-20171113100000&amp;amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;id=27920&#34; class=&#34;bare&#34;&gt;http://localhost:8899/tbox/callback?token=s1u_dns.27920&amp;amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;window=20171113090000-20171113100000&amp;amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;amp;id=27920&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;VD_CITY_VDNET_D&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;useradd git
+passwd git&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kill $(jps|grep Spark|awk &#39;{print $1}&#39;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;LD_LIBRARY_PATH=/usr/pgsql-9.6/lib/:/usr/lib64/
+export LD_LIBRARY_PATH&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;export LD_LIBRARY_PATH=/usr/local/greenplum-db-4.3.14.0/lib/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create user anhui with login password &#39;password&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;service postgresql-9.6 restart&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;create schema test;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE &#34;test&#34;.&#34;t1&#34; (
+    &#34;sgw_ip&#34; varchar(60) COLLATE &#34;default&#34;,
+    &#34;sdate&#34; timestamp(6),
+    &#34;report_id&#34; int8
+)
+WITH (OIDS=FALSE)
+;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &#34;test&#34;.&#34;t1&#34; OWNER TO &#34;postgres&#34;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE TABLE &#34;test&#34;.&#34;t2&#34; (
+    &#34;sgw_ip2&#34; varchar(60) COLLATE &#34;default&#34;,
+    &#34;sdate&#34; timestamp(6),
+    &#34;report_id&#34; int8
+)
+WITH (OIDS=FALSE)
+;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ALTER TABLE &#34;test&#34;.&#34;t2&#34; OWNER TO &#34;postgres&#34;;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;D:\\tar\\eclipse-jee-indigo-SR2-win32-x86_64\\eclipse\\plugins\\org.eclipse.equinox.launcher_1.2.0.v20110502.jar&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;java -jar D:\\tar\\eclipse-jee-indigo-SR2-win32-x86_64\\eclipse\\plugins\\org.eclipse.equinox.launcher_1.2.0.v20110502.jar -application org.eclipse.ant.core.antRunner -data D:\\project\\Framework\\plugins2 -buildfile build_plugins.xml&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;svn.exe co &lt;a href=&#34;https://github.com/apache/spark.git/branches/branch-2.1/examples&#34; class=&#34;bare&#34;&gt;https://github.com/apache/spark.git/branches/branch-2.1/examples&lt;/a&gt; /d/idea-project/spark-examples-2.1&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

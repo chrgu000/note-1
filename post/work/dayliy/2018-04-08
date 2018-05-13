@@ -1,0 +1,186 @@
+
+java -cp JMS-Test1-jar-with-dependencies.jar JMSProducer volte_sv 20171222
+
+
+
+
+
+/usr/bin/spark-submit  --master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 20 --conf spark.sql.shuffle.partitions=20 --class com.nsn.datamining.spark.launcher.Main  --conf spark.ui.port=7805 --jars lib/commons-codec-1.9.jar,lib/commons-lang3-3.1.jar,lib/commons-logging-1.2.jar,lib/fluent-hc-4.4.1.jar,lib/httpclient-4.4.1.jar,lib/httpcore-4.4.1.jar,lib/commons-io-2.4.jar,lib/quartz-2.2.3.jar,lib/slf4j-api-1.7.25.jar,lib/slf4j-jdk14-1.7.25.jar,lib/commons-codec.jar,lib/commons-net-3.4.jar,lib/commons-pool-1.3.jar,lib/jsch-0.1.52.jar,lib/commons-io-2.1.jar,lib/commons-pool2-2.4.2.jar,lib/guava-18.0.jar,lib/log4j-1.2.16.jar,lib/mina-core-2.0.13.jar,lib/mina-filter-compression-2.0.13.jar,lib/netty-all-5.0.0.jar,lib/slf4j-api-1.6.1.jar,lib/slf4j-log4j12-1.6.1.jar,lib/zookeeper-3.4.6.jar,lib/commons-codec.jar,lib/commons-compress-1.13.jar,lib/commons-dbcp-1.2.2.jar,lib/commons-dbcp2-2.1.1.jar,lib/commons-lang3-3.1.jar,lib/commons-logging.jar,lib/commons-net-3.1.jar,lib/commons-pool-1.3.jar,lib/commons-pool2-2.4.2.jar,lib/ibatis-2.3.4.726.jar,lib/ojdbc6.jar,lib/spring-2.5.6.jar,lib/commons-math3-3.4.1.jar,lib/ojdbc6.jar,lib/poi-3.11-20141221.jar,lib/poi-ooxml-3.11-20141221.jar,lib/poi-ooxml-schemas-3.11-20141221.jar,lib/postgresql-9.4.1211.jar,lib/weka.jar,lib/xmlbeans-2.6.0.jar,lib/commons-collections-3.2.2.jar,lib/commons-io-2.1.jar,lib/hadoop-hdfs-2.7.3.jar,lib/org.apache.felix.main-5.6.2.jar,plugins/com.nsn.configurator.jar,plugins/com.nsn.logger.jar,plugins/com.nsn.util.jar,plugins/com.nsn.io.jar,plugins/com.nsn.executer.jar,plugins/com.nsn.task.jar,plugins/com.nsn.merger.jar,plugins/com.nsn.alarm.jar,plugins/com.nsn.scheduler.jar,plugins/com.nsn.scanner.jar,plugins/com.nsn.cluster.jar,plugins/com.nsn.framework.jar,plugins/com.nsn.datamining.jar,plugins/com.nsn.datamining.spark.jar,plugins/com.nsn.datamining.support.xdr.cmcc.jar,plugins/com.nsn.datamining.support.xdr.cmcc.cmdi.jar,plugins/com.nsn.do.tbox.cmcc.spark.volte.day.jar main.jar  hive.title="" spark1.arg.hiveSetting="mapred.input.dir.recursive=true" datamining.callback="http://n06:8899/tbox/callback" arg.location="hdfs://bjmcc-hdp-cluster-node-06.do:8020/output/" spark1.arg.hdfs="hdfs://bjmcc-hdp-cluster-node-06.do:8020/output/" hdfs.type="HDFS" spark1.source-type="XDR-CMCC-SPARK" arg.report.date="20171222" arg.spark.options="--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 20 --conf spark.sql.shuffle.partitions=20" spark1.arg.home="/opt/do/spark-2.2.0" hdfs.source-type="HDFS-NORMAL" arg.spark1="spark1" hive.type="HIVE" report.program="volte_sv_day" arg.report-id="6781" spark1.type="XDR-CMCC-SPARK" arg.hive="hive" hive.arg.location="/output/result" spark1.arg.hivedb="result" spark1.arg.staging="hdfs://vm73:8020/user/hdfs/.sparkStaging/" hive.source-type="HIVE-NORMAL" arg.home="/opt/do/spark-2.2.0" arg.staging="hdfs://vm73:8020/user/hdfs/.sparkStaging/" arg.hiveSetting="mapred.input.dir.recursive=true" arg.report.hour="00" spark1.arg.configuration="/opt/do/spark-2.2.0/conf1" report.end="20171222000000" report.start="20171222000000" arg.short-id="TBX_100_0" datasources="hive,spark1,hdfs" spark1.title="" arg.name="Toolbox-nokia" arg.hdfs="hdfs://bjmcc-hdp-cluster-node-06.do:8020/output/" hdfs.arg.location="hdfs://bjmcc-hdp-cluster-node-06.do:8020/output/" arg.configuration="/opt/do/spark-2.2.0/conf1" report.id="6781" hdfs.title="" arg.database="result" hive.arg.database="result" arg.hivedb="result" spark1.arg.name="Toolbox-nokia" arg.planId="1761"
+
+
+
+
+
+D:\env\spark-2.1.1\bin\spark-submit2.cmd   --class com.nsn.datamining.spark.launcher.Main  --conf spark.ui.port=7805 --jars lib/log4j-1.2.16.jar,lib/commons-codec-1.9.jar,lib/commons-lang3-3.1.jar,lib/commons-logging-1.2.jar,lib/fluent-hc-4.4.1.jar,lib/httpclient-4.4.1.jar,lib/httpcore-4.4.1.jar,lib/commons-io-2.4.jar,lib/quartz-2.2.3.jar,lib/slf4j-api-1.7.25.jar,lib/slf4j-jdk14-1.7.25.jar,lib/commons-codec.jar,lib/commons-net-3.4.jar,lib/commons-pool-1.3.jar,lib/jsch-0.1.52.jar,lib/commons-io-2.1.jar,lib/commons-pool2-2.4.2.jar,lib/guava-18.0.jar,lib/log4j-1.2.16.jar,lib/mina-core-2.0.13.jar,lib/mina-filter-compression-2.0.13.jar,lib/netty-all-5.0.0.jar,lib/slf4j-api-1.6.1.jar,lib/slf4j-log4j12-1.6.1.jar,lib/zookeeper-3.4.6.jar,lib/commons-codec.jar,lib/commons-compress-1.13.jar,lib/commons-dbcp-1.2.2.jar,lib/commons-dbcp2-2.1.1.jar,lib/commons-lang3-3.1.jar,lib/commons-logging.jar,lib/commons-net-3.1.jar,lib/commons-pool-1.3.jar,lib/commons-pool2-2.4.2.jar,lib/ibatis-2.3.4.726.jar,lib/ojdbc6.jar,lib/spring-2.5.6.jar,lib/commons-math3-3.4.1.jar,lib/ojdbc6.jar,lib/poi-3.11-20141221.jar,lib/poi-ooxml-3.11-20141221.jar,lib/poi-ooxml-schemas-3.11-20141221.jar,lib/postgresql-9.4.1211.jar,lib/weka.jar,lib/xmlbeans-2.6.0.jar,lib/commons-collections-3.2.2.jar,lib/commons-io-2.1.jar,lib/hadoop-hdfs-2.7.3.jar,lib/org.apache.felix.main-5.6.2.jar,lib/activemq-all-5.9.0.jar,plugins/com.nsn.logger.jar,plugins/com.nsn.configurator.jar,plugins/com.nsn.util.jar,plugins/com.nsn.io.jar,plugins/com.nsn.executer.jar,plugins/com.nsn.task.jar,plugins/com.nsn.merger.jar,plugins/com.nsn.alarm.jar,plugins/com.nsn.scheduler.jar,plugins/com.nsn.scanner.jar,plugins/com.nsn.cluster.jar,plugins/com.nsn.framework.jar,plugins/com.nsn.datamining.jar,plugins/com.nsn.datamining.spark.jar,plugins/com.nsn.datamining.support.xdr.cmcc.jar,plugins/com.nsn.datamining.support.xdr.cmcc.cmdi.jar,plugins/com.nsn.messages.client.jar,plugins/com.nsn.messages.driver.jar,plugins/com.nsn.tbox.test1.jar main.jar  hive.title="" spark1.arg.hiveSetting="hive.input.dir.recursive=true hive.supports.subdirectories=true" datamining.callback="http://localhost:8899/tbox/callback" arg.location="hdfs://localhost:8020/output/" spark1.arg.hdfs="hdfs://localhost:8020/output/" hdfs.type="HDFS" spark1.source-type="XDR-CMCC-SPARK" arg.report.date="20171122" arg.spark.options="" spark1.arg.home="/opt/spark-2.1.1" hdfs.source-type="HDFS-NORMAL" arg.spark1="spark1" hive.type="HIVE" report.program="test1" arg.report-id="6781" spark1.type="XDR-CMCC-SPARK" arg.hive="hive" hive.arg.location="/output/result" spark1.arg.hivedb="anhui" spark1.arg.staging="hdfs://localhost:8020/user/root/.sparkStaging/" hive.source-type="HIVE-NORMAL" arg.home="/opt/spark-2.1.1" arg.staging="hdfs://localhost:8020/user/root/.sparkStaging/" arg.hiveSetting="hive.input.dir.recursive=true hive.supports.subdirectories=true" arg.report.hour="00" spark1.arg.configuration="/opt/spark-2.10/conf2" report.end="20171122000000" report.start="20171122000000" arg.short-id="TBX_100_0" datasources="hive,spark1,hdfs" spark1.title="" arg.name="Toolbox-nokia" arg.hdfs="hdfs://localhost:8020/output/" hdfs.arg.location="hdfs://localhost:8020/output/" arg.configuration="/opt/spark-2.10/conf2" report.id="6781" hdfs.title="" arg.database="result" hive.arg.database="result" arg.hivedb="anhui" spark1.arg.name="Toolbox-nokia" arg.planId="1721"
+
+
+这里有个问题:
+    小时触发天的只能触发一次(如果想再次出发,需要重启Toolbox)
+    解决：
+        通过MQ,把Topic的AtomicInteger重置成0,清空Topic的executed
+
+
+
+{
+  "event": "test2",
+  "start": 2017112200000,
+  "end": 2017112210000,
+  "status": "SUCCESS",
+  "delay": 1000,
+  "type": "HOURLY"
+}
+
+
+
+
+小时 --> 天
+  . 24小时跑了4个小时,然后被重启。重启后从第5小时接着执行
+
+天 <-- 小时
+
+
+
+curl -o /c/Users/Justin/Projects/knap-build/var/knapsack/software/x86-windows/openssl/1.0.1l/ssl/cert.pem https://curl.haxx.se/ca/cacert.pem
+
+
+
+
+asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicCN
+
+
++++
+description = ""
+date = "2018-04-13"
+categories = [
+]
+tags = [
+]
+thumbnail = ""
+title = "工具箱2.0小版本更新列表——3.17.53"
+
++++
+include::content/post/base.adoc[]
+:toc-title: MessageDriver
+
+
+
+ asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicCN 3.17.53.adoc
+
+
+
+周一 早: 土大力/鱼粉
+周二 晚：请安/披萨/凉皮/水果
+周三 早：双椒焖面+粥/鱼粉
+周四 晚：请安/披萨/凉皮/水果
+周五 早：喜糖饺子/鱼粉
+周六 晚：请安/披萨/凉皮/水果
+周日 早：上帝美食城/鱼粉
+
+
+
+
+
+    <profile>
+      <id>nexus</id>
+      <properties>
+        <osgi_plugins_home>D:\project\Framework\plugins</osgi_plugins_home>
+        <osgi_version>1.0-SNAPSHOT</osgi_version>
+        <spark_lib_path>D:\project\com.nsn.datamining.spark\spark_lib</spark_lib_path>
+        <common_lib_dir>D:\project\Framework\lib</common_lib_dir>
+        <assembly_path>D:\project\assembly</assembly_path>
+      </properties>
+    </profile>
+
+
+CREATE DATABASE "zk" WITH ENCODING='UTF8' OWNER="postgres";
+
+
+
+
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-Startlevel: 1
+Require-Bundle: com.nsn.logger;bundle-version="4.0.0",
+ com.nsn.framework;bundle-version="1.0.0"
+
+data.check.fs.defaultFS=hdfs://vm26:8020
+data.check.path=/tmp/dishui
+data.check.event=data.t1
+data.check.type=HOURLY
+data.check.period=5
+data.check.unit=0
+
+
+
+
+
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.3.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Name>${project.artifactId}</Bundle-Name>
+                        <Export-Package>
+                            com.tibco.tibjms.*,
+                            com.tibco.tibjms.naming.*,
+                            com.tibco.tibjms.naming.tibjmsnaming.*,
+                        </Export-Package>
+                        <Import-Package>
+                            *,
+                            !javax.jms.*,
+                        </Import-Package>
+
+                        <Embed-Dependency>
+                            javax.jms-api;scope=compile|runtime;inline=false;
+                        </Embed-Dependency>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+ss://YWVzLTI1Ni1jZmI6aXN4Lnl0LTk2NjgxNzI1QDE5Mi4yNDEuMjMyLjIzODoxODA0NA==
+
+
+
+jdbc:hive2://vm26:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2
+
+
+!connect jdbc:hive2://vm26:2181,vm27:2181,vm28:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2
+
+
+volte_sv:SUCCESS,vtv:SUCCESS
+
+
+ssr://MjMuOTUuMjI3LjE3NzoxMjMwNzphdXRoX3NoYTFfdjQ6YWVzLTEyOC1jdHI6aHR
+
+
+
+
+nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
+
+1>/home/zhoukai/logs/kafkaserver.log 2>/var/log/kafkaserver.err &
+
+
+这个文档是消息触发功能，需要更新的插件和在Activator中需要添加的代码
+
+
+volte_sv: 专题id
+SUCCESS: 专题的执行结果
+
+
+volte_sv专题执行成功并且volte_mw专题执行成功
+
+
+选择一天24个小时
+
+
+
+java -cp JMS-Test1-jar.jar JMSProducer s1u 2018031201 tcp://localhost:61616
+
+1.

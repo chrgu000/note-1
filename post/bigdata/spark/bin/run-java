@@ -1,0 +1,45 @@
+#! /bin/bash
+# set -x
+# JAVA_HOME
+export JAVA_HOME=/usr/java/jdk1.8.0_131
+export SCALA_HOME=/root/tmp/opt/scala-2.11.8
+export PATH=$PATH:$JAVA_HOME/bin:$SCALA_HOME/bin
+# LIB_HOME=/root/tmp/test/consumer/target/lib
+# sh $SPARK_HOME/sbin/start-history-server.sh
+
+if [[ "$@" = *--help ]] || [[ "$@" = *-h ]] || [[ "$#" = 0 ]] || [[ "$#" < 3 ]]; then
+  echo "Usage: run-java jar lib_dir class"
+  exit 1
+fi
+# 判断 $2 是否为空
+if [ "$2" != "$LIB_HOME" ]; then
+  LIB_HOME="`pwd`/$2"
+else
+  LIB_HOME="`pwd`/lib"
+fi
+
+JARS=`find $LIB_HOME -name "*.jar"`
+
+CP_ENV=$LIB_HOME/$1
+
+for JAR in $JARS
+do
+  CP_ENV=$CP_ENV:$JAR
+done
+
+# echo $LIB_HOME
+
+# 参数截取  先转数组然后截取
+OLD_IFS="$IFS"
+IFS=" "
+ARGS=($@)
+IFS="$OLD_IFS"
+COUNT=${#ARGS[@]}
+
+echo $CP_ENV
+echo ${ARGS[@]:2:$COUNT}
+
+# echo "$CP_ENV" ${ARGS[@]:2:$COUNT}
+
+echo -e "exec java -Dfile.encoding=utf8 -cp "$CP_ENV" ${ARGS[@]:2:$COUNT}"
+# exec java -Dfile.encoding=utf8 -cp "$CP_ENV" ${ARGS[@]:2:$COUNT}

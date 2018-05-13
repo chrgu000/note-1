@@ -1,12 +1,201 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>零零散散</title>
+    <title>零零碎碎</title>
     <link>/categories/linux/index.xml</link>
-    <description>Recent content on 零零散散</description>
+    <description>Recent content on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>clustershell</title>
+      <link>/post/linux/clustershell/</link>
+      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/clustershell/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;clustershell&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_clustershell&#34;&gt;1. clustershell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_clustershell&#34;&gt;1. clustershell&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;cat &amp;gt; /etc/clustershell/groups.conf &amp;lt;&amp;lt;_EOF_
+
+# ClusterShell node groups main configuration file
+#
+# Please see `man 5 groups.conf` and
+# http://clustershell.readthedocs.org/en/latest/config.html#node-groups
+# for further details.
+#
+# NOTE: This is a simple group configuration example file, not a
+#       default config file. Please edit it to fit your own needs.
+#
+[Main]
+
+# Default group source
+default: local
+
+# Group source config directory list (space separated, use quotes if needed).
+# Examples are provided. Copy them from *.conf.example to *.conf to enable.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default confdir value enables both system-wide and user configuration.
+confdir: /etc/clustershell/groups.conf.d $CFGDIR/groups.conf.d
+
+# New in 1.7, autodir defines a directory list (space separated, use quotes if
+# needed) where group data files will be auto-loaded.
+# Only *.yaml file are loaded. Copy *.yaml.example files to enable.
+# Group data files avoid the need of external calls for static config files.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default autodir value enables both system-wide and user configuration.
+autodir: /etc/clustershell/groups.d $CFGDIR/groups.d
+
+# Sections below also define group sources.
+#
+# NOTE: /etc/clustershell/groups is deprecated since version 1.7, thus if it
+#       doesn&#39;t exist, the &#34;local.cfg&#34; file from autodir will be used.
+#
+# See the documentation for $CFGDIR, $SOURCE, $GROUP and $NODE upcall special
+# variables. Please remember that they are substitued before the shell command
+# is effectively executed.
+#
+[local]
+# flat file &#34;group: nodeset&#34; based group source using $CFGDIR/groups.d/local.cfg
+# with backward support for /etc/clustershell/groups
+map: [ -f $CFGDIR/groups ] &amp;amp;&amp;amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n &#39;s/^$GROUP:\(.*\)/\1/p&#39; $f
+all: [ -f $CFGDIR/groups ] &amp;amp;&amp;amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n &#39;s/^all:\(.*\)/\1/p&#39; $f
+list: [ -f $CFGDIR/groups ] &amp;amp;&amp;amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n &#39;s/^\([0-9A-Za-z_-]*\):.*/\1/p&#39; $f
+
+_EOF_&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat &amp;gt; /etc/clustershell/groups.d/cluster.yaml &amp;lt;&amp;lt;_EOF_
+kafkas:
+    brokers: &#39;hadoop[1,2]&#39;
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;执行命令&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;clush -g kafkas:brokers uptime&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://clustershell.readthedocs.io/en/latest/tools/clush.html&#34; class=&#34;bare&#34;&gt;http://clustershell.readthedocs.io/en/latest/tools/clush.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;clush -g kafkas:brokers &#39;mkdir -p ~/tmp/{bin,tar}&#39;
+
+clush -g kafkas:brokers -c /root/tmp/tar/kafka_2.11-0.8.2.2.tgz --dest ~/tmp/tar
+clush -g kafkas:brokers -c /root/tmp/bin/set_kafka_config.sh --dest ~/tmp/bin
+
+clush -g kafkas:brokers &#39;ls ~/tmp/tar&#39;
+
+CMD=&#39;tar -zxf /root/tmp/tar/kafka_2.11-0.8.2.2.tgz -C /root/tmp/&#39;
+clush -v -g kafkas:brokers $CMD
+
+#!/bin/bash
+
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+KAFKA_HOST_NAME=`hostname`
+KAFKA_NUM_PARTITIONS=3
+KAFKA_ZK_URL=&#39;vm73:2181,vm74:2181,vm75:2181&#39;
+
+# host.name
+sed -i &#34;s/^\#\?host.name=.*/host.name=${KAFKA_HOST_NAME}/&#34; $KAFKA_HOME/config/server.properties
+# num.partitions
+sed -i &#34;s/^\#\?num.partitions=.*/num.partitions=${KAFKA_NUM_PARTITIONS}/&#34; $KAFKA_HOME/config/server.properties
+# zookeeper.connect=localhost:2181
+sed -i &#34;s/^\#\?zookeeper.connect=.*/zookeeper.connect=${KAFKA_ZK_URL}/&#34; $KAFKA_HOME/config/server.properties
+
+
+clush -w vm74
+
+clush -g kafkas:brokers &#39;sh /root/tmp/bin/set_kafka_config.sh&#39;
+
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+CMD=&#34;cat ${KAFKA_HOME}/config/server.properties|grep &#39;host.name|zookeeper.connect&#39;&#34;
+CMD=&#34;cat ${KAFKA_HOME}/config/server.properties|grep &#39;zookeeper.connect&#39;&#34;
+clush -g kafkas:brokers $CMD
+
+declare -A map=([&#34;vm74&#34;]=&#34;1&#34; [&#34;vm75&#34;]=&#34;2&#34; [&#34;vm76&#34;]=&#34;3&#34;)
+
+for key in ${!map[@]}
+  do
+    echo ${map[$key]}
+    CMD=&#34;sed -i \&#34;s/^\#\?broker.id=.*/broker.id=${map[$key]}/\&#34; $KAFKA_HOME/config/server.properties&#34;
+    clush -w $key $CMD
+  done
+
+for i in 1 2 3
+  do
+    echo &#34;$i--&amp;gt;$(uptime)&#34;
+  done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -w vm76 &#39;tail -200 ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -w vm75 &#39;tail -200 ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -w vm74 &#39;tail -200 ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -g kafkas:brokers &#39;tail -f ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>CentOS7</title>
@@ -3807,324 +3996,6 @@ yum clean all&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>svn 安装与配置</title>
-      <link>/post/linux/svn-setup/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/linux/svn-setup/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#__code_svn_code&#34;&gt;1. &lt;code&gt;svn&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#__svn_配置&#34;&gt;2. `SVN`配置&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_启服务器及测试&#34;&gt;3. 启服务器及测试&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_项目自动发布&#34;&gt;4. 项目自动发布&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#__code_svn_code_命令&#34;&gt;5. &lt;code&gt;Svn&lt;/code&gt; 命令&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_测试分支和主分支合并&#34;&gt;6. 测试分支和主分支合并&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_svn_检出_github_目录&#34;&gt;7. Svn 检出 github 目录&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;__code_svn_code&#34;&gt;1. &lt;code&gt;svn&lt;/code&gt;&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;`svn`安装&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yum -y install subversion
-yum -y install mod_dav_svn&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;创建`SVN`根目录&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir -p $HOME/svn/&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;创建repo1库&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;svnadmin create $HOME/svn/repo1&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;__svn_配置&#34;&gt;2. `SVN`配置&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;用户密码`passwd`配置&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vim /root/svn/repo1/conf/passwd
-=
-xyc = 123
-lyf = 123&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;权限控制`authz`配置&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;[groups]            =组
-admin = xyc,lyf   =创建一个admin组，将用户加入到组
-[/]                 =根目录权限设置（就是“svn”这个文件夹）
-=aaa = rw            =aaa对svn下的所有版本库有读写权限
-[repo1:/]            =repo:/,表示对repo版本库下的所有资源设置权限
-@admin = rw         =admin组的用户对repo1版本库有读写权限&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;服务`svnserve.conf`配置&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;[general]
-=匿名访问的权限，可以是read,write,none,默认为read
-anon-access = none
-=使授权用户有写权限
-auth-access = write
-=密码数据库的路径
-password-db = passwd
-=访问控制文件
-authz-db = authz
-=认证命名空间，subversion会在认证提示里显示，并且作为凭证缓存的关键字
-realm = /opt/svn/repo&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;启动`SVN`&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;svnserve -d -r /usr/local/svn       =指定SVN根目录&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;查看`SVN`进程&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ps -ef|grep svnserve&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;检测`SVN` 端口&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;netstat -ln |grep 3690&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;停止重启`SVN`&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; killall svnserve&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_启服务器及测试&#34;&gt;3. 启服务器及测试&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;启`SVN`服务，并指定`SVN`的根目录&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;svnserve -d -r /usr/local/svn&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;使用`checkout`导出文件&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;svn checkout svn://127.0.0.1/repo1/xyc /usr/local/web/xyc      =本机测试，必需写127.0.0.1&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_项目自动发布&#34;&gt;4. 项目自动发布&lt;/h3&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;配置`svn post-commit`钩子&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;=!/bin/bash
-export LANG=&#34;zh_CN.UTF-8&#34;
-export LANG=&#34;zh_CN.UTF-8&#34;
-export LC_CTYPE=&#34;zh_CN.UTF-8&#34;
-svn update /usr/local/web/xyc/ --username=svnuser --password=svnpass --non-interactive&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;授予可执行权限&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;chmod a.x /usr/local/svn/repo1/hooks/post-commit&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;__code_svn_code_命令&#34;&gt;5. &lt;code&gt;Svn&lt;/code&gt; 命令&lt;/h3&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;获取本地仓库项目版本号&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;svn info | awk -F&#39;:&#39; &#39;{if($1 == &#34;Revision&#34;){gsub(/ /,&#34;&#34;,$2);print $2}}&#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;code&gt;gsub(/ /,&#34;&#34;,$2)&lt;/code&gt; 去除空格&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;ulist&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;切换版本&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;svn merge -r rHEAD:5230 svn://196.168.1.224/project/b2b&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;最新版 --&amp;#8594; 5230版&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_测试分支和主分支合并&#34;&gt;6. 测试分支和主分支合并&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#!/bin/bash
-
-#revision
-FROM=$1
-END=$2
-
-DEV=/e/IntelliJ-1/dev-2/
-STABLE=/d/resource/b2b/
-
-if [ ! -f ${STABLE}merge.sh ];
-then
-  cat &amp;lt;&amp;lt;&amp;lt; &#39;
-#!/bin/bash
-cd `dirname $1`
-svn merge -r$2:HEAD svn://196.168.1.32/project/branches/dev/$1 $STABLE/$1&#39; &amp;gt; ${STABLE}merge.sh
-fi
-
-cd $DEV &amp;amp;&amp;amp; \
-svn diff --summarize -r $FROM:$END | awk &#39;{if($1 != &#34;D&#34;){print $2}}&#39; | awk -F &#39;.&#39; &#39;{if($NF ~ &#34;jsp|js|java|xml|css|properties|png|jpg|html|jar|ftl&#34;){print $0}}&#39; &amp;gt; ${STABLE}update.txt
-
-cd $STABLE &amp;amp;&amp;amp; \
-cat update.txt | awk &#39;{gsub(&#34;\\\\&#34;,&#34;/&#34;);print $0}&#39; | xargs -I tmp sh merge.sh tmp $2&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_svn_检出_github_目录&#34;&gt;7. Svn 检出 github 目录&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;先用命令看看github的分支&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;svn ls https://github.com/apache/spark.git
-
-branches/
-tags/
-trunk/
-
-svn ls https://github.com/apache/spark.git/branches&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;检出指定分支下的文件夹到目录&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 检出spark1.6分支下的examples目录
-svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/spark-examples-1.6&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
