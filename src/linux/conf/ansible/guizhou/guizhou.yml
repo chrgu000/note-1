@@ -1,0 +1,13 @@
+---
+
+- name: apply nifi nodes
+  hosts: nifi-hdfs
+  roles:
+    # - nifi
+    # - nifi-stop
+    - nifi-del
+
+# - name: apply nifi-hdfs nodes
+#   hosts: nifi-hdfs
+#   roles:
+#     - nifi-handle

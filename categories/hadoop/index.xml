@@ -19,6 +19,13 @@
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_练习&#34;&gt;1. 练习&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_window&#34;&gt;2. Window&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kafka_0_10_0_1&#34;&gt;kafka 0.10.0.1&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动&#34;&gt;1. 启动&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_windows&#34;&gt;windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_group_消费的偏移量&#34;&gt;group 消费的偏移量&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_获取_topic_的_offset&#34;&gt;获取 topic 的 offset&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_查看topic消费进度&#34;&gt;查看topic消费进度&lt;/a&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
@@ -131,14 +138,28 @@ sh $KAFKA_HOME/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list &
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_window&#34;&gt;2. Window&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_kafka_0_10_0_1&#34; class=&#34;sect0&#34;&gt;kafka 0.10.0.1&lt;/h1&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_启动&#34;&gt;1. 启动&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;\bin\windows\kafka-topics.bat --zookeeper localhost:2181/kt1 --create --topic t1 --partitions 3 --replication-factor 1&lt;/div&gt;
-&lt;p&gt;source env.sh&lt;/p&gt;
+&lt;p&gt;start .\zookeeper-server-start.bat ..\..\config\zookeeper.properties
+start .\kafka-server-start.bat ..\..\config\server.properties
+start .\kafka-server-start.bat ..\..\config\server2.properties&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;h1 id=&#34;_windows&#34; class=&#34;sect0&#34;&gt;windows&lt;/h1&gt;
+
+&lt;h1 id=&#34;_group_消费的偏移量&#34; class=&#34;sect0&#34;&gt;group 消费的偏移量&lt;/h1&gt;
+
 &lt;h1 id=&#34;_获取_topic_的_offset&#34; class=&#34;sect0&#34;&gt;获取 topic 的 offset&lt;/h1&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;\kafka-run-class.bat kafka.tools.ConsumerOffsetChecker --group spark-consumer-1 --topic wordcountt2 --zookeeper localhost:2181/kt1&lt;/div&gt;
 &lt;p&gt;kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list vm28:9092 --topic &#34;t1&#34; --time -1&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;

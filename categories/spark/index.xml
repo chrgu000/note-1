@@ -9,6 +9,18 @@
     <atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>spark-问题</title>
+      <link>/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 20 Jun 2018 10:49:12 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;有一个表中，有200+字段 然后我要分别统计每个字段的 空值和非空值的分布情况。  这个表一天的数据大概有24T  目前打算抽样一千万条数据。 想用透视表来做 哪位大神指导一下，要是用spark 的话 怎么写&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Ambari</title>
       <link>/post/bigdata/ambari/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
@@ -98,6 +110,9 @@ psql -U ambari -W -d postgres -f public.sql&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;CREATE DATABASE hive OWNER postgres;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE DATABASE js_toolbox OWNER postgres;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;create user hive with login password &#39;bigdata&#39;;&lt;/p&gt;
@@ -533,7 +548,7 @@ DATE         DateType&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;232s
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=30&lt;/p&gt;
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 30 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;279s
@@ -541,7 +556,7 @@ DATE         DateType&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;mw
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 50 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;sv&lt;/p&gt;
@@ -564,6 +579,9 @@ DATE         DateType&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;widetable
 --master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=50 --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -805,10 +823,10 @@ sh sbin/start-thriftserver.sh \
   --num-executors 20&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cd /usr/hdp/2.6.3.0-235/spark2
+&lt;p&gt;cd /usr/hdp/2.6.3.0-235/spark2 &amp;amp;&amp;amp; \
 sh sbin/start-thriftserver.sh \
-  --hiveconf hive.server2.thrift.port=10001 \
-  --hiveconf hive.server2.thrift.bind.host=192.168.168.104 \
+  --hiveconf hive.server2.thrift.port=10016 \
+  --hiveconf hive.server2.thrift.bind.host=172.33.10.51 \
   --master yarn \
   --executor-memory 8G \
   --executor-cores 5 \
@@ -839,6 +857,21 @@ sh sbin/start-thriftserver.sh \
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;tail -f /var/log/spark2/spark-root-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-bjmcc-hdp-cluster-node-04.out&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yunnan-lt&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sh /opt/beh/core/spark/sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10010 \
+  --hiveconf hive.server2.thrift.bind.host=172.33.10.51 \
+  --master yarn \
+  --executor-memory 12G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=8 \
+  --conf spark.dynamicAllocation.maxExecutors=40&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1503,7 +1536,7 @@ nc -lk 6066&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/spark-streaming-2-1.svg&#34; alt=&#34;spark streaming 2 1&#34; width=&#34;2223&#34; height=&#34;836&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/spark-streaming-2-1.svg&#34; alt=&#34;spark streaming 2 1&#34; width=&#34;3138&#34; height=&#34;896&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6160,526 +6193,6 @@ cd $SPARK_HOME \
 &lt;p&gt;(1,(CompactBuffer(b, b),CompactBuffer(c, c))),
 (3,(CompactBuffer(b),CompactBuffer(c))),
 (2,(CompactBuffer(b),CompactBuffer(c)))&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>spark-基础</title>
-      <link>/post/bigdata/spark/spark-%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Sat, 08 Apr 2017 18:42:52 +0000</pubDate>
-      
-      <guid>/post/bigdata/spark/spark-%E5%9F%BA%E7%A1%80/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;spark-基础&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_spark集群安装&#34;&gt;1. Spark集群安装&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_安装&#34;&gt;1.1. 安装&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_机器部署&#34;&gt;1.1.1. 机器部署&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_下载spark安装包&#34;&gt;1.1.2. 下载Spark安装包&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_配置spark&#34;&gt;1.1.3. 配置Spark&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_执行第一个spark程序&#34;&gt;1.2. 执行第一个spark程序&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_启动spark_shell&#34;&gt;1.3. 启动Spark Shell&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_启动spark_shell_2&#34;&gt;1.3.1. 启动spark shell&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_在spark_shell中编写wordcount程序&#34;&gt;1.3.2. 在spark shell中编写WordCount程序&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_在idea中编写wordcount程序&#34;&gt;1.4. 在IDEA中编写WordCount程序&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_spark集群安装&#34;&gt;1. Spark集群安装&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_安装&#34;&gt;1.1. 安装&lt;/h3&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_机器部署&#34;&gt;1.1.1. 机器部署&lt;/h4&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;准备两台以上Linux服务器，安装好JDK1.7&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_下载spark安装包&#34;&gt;1.1.2. 下载Spark安装包&lt;/h4&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;下载&lt;br&gt;
-&lt;a href=&#34;http://www.apache.org/dyn/closer.lua/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz&#34; class=&#34;bare&#34;&gt;http://www.apache.org/dyn/closer.lua/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;上传解压安装包&lt;/p&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;上传 &lt;strong&gt;spark-1.5.2-bin-hadoop2.6.tgz&lt;/strong&gt; 安装包到Linux上&lt;/p&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;解压安装包到指定位置&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxvf spark-1.5.2-bin-hadoop2.6.tgz -C /usr/local&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_配置spark&#34;&gt;1.1.3. 配置Spark&lt;/h4&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;进入到Spark安装目录&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /usr/local/spark-1.5.2-bin-hadoop2.6&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;进入conf目录并重命名并修改spark-env.sh.template文件&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd conf/
-mv spark-env.sh.template spark-env.sh
-vi spark-env.sh&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;在该配置文件中添加如下配置&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export JAVA_HOME=/usr/java/jdk1.7.0_45
-export SPARK_MASTER_IP=node1.itcast.cn
-export SPARK_MASTER_PORT=7077&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;重命名并修改slaves.template文件&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mv slaves.template slaves
-vi slaves
-//在该文件中添加子节点所在的位置（Worker节点）
-node2.itcast.cn
-node3.itcast.cn
-node4.itcast.cn&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将配置好的Spark拷贝到其他节点上&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;scp -r spark-1.5.2-bin-hadoop2.6/ node2:/usr/local/
-scp -r spark-1.5.2-bin-hadoop2.6/ node3:/usr/local/
-scp -r spark-1.5.2-bin-hadoop2.6/ node4:/usr/local/&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Spark集群配置完毕，目前是1个 &lt;strong&gt;Master&lt;/strong&gt; ，3个 &lt;strong&gt;Work&lt;/strong&gt; ，在 &lt;strong&gt;node1&lt;/strong&gt; 上启动 &lt;strong&gt;Spark&lt;/strong&gt; 集群&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/sbin/start-all.sh&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;启动后执行jps命令&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;主节点上有Master进程，其他子节点上有Work进行，登录Spark管理界面查看集群状态（主节点）：
-http://node1:8080/
-到此为止，Spark集群安装完毕，但是有一个很大的问题，那就是Master节点存在单点故障，要解决此问题，就要借助zookeeper，并且启动至少两个Master节点来实现高可靠，配置方式比较简单：&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Spark集群规划&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;node1，node2是Master；node3，node4，node5是Worker
-安装配置zk集群，并启动zk集群
-停止spark所有服务，修改配置文件spark-env.sh，在该配置文件中删掉SPARK_MASTER_IP并添加如下配置&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export SPARK_DAEMON_JAVA_OPTS=&#34;-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=zk1,zk2,zk3 -Dspark.deploy.zookeeper.dir=/spark&#34;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在 &lt;strong&gt;node1&lt;/strong&gt; 节点上修改 &lt;strong&gt;slaves&lt;/strong&gt; 配置文件内容指定 &lt;strong&gt;worker&lt;/strong&gt; 节点&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在 &lt;strong&gt;node1&lt;/strong&gt; 上执行 &lt;strong&gt;sbin/start-all.sh&lt;/strong&gt; 脚本，然后在 &lt;strong&gt;node2&lt;/strong&gt; 上执行 &lt;strong&gt;sbin/start-master.sh&lt;/strong&gt; 启动第二个 &lt;strong&gt;Master&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;执行Spark程序&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_执行第一个spark程序&#34;&gt;1.2. 执行第一个spark程序&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-submit \
---class org.apache.spark.examples.SparkPi \
---master spark://node1.itcast.cn:7077 \
---executor-memory 1G \
---total-executor-cores 2 \
-/usr/local/spark-1.5.2-bin-hadoop2.6/lib/spark-examples-1.5.2-hadoop2.6.0.jar \
-100&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;该算法是利用蒙特·卡罗算法求PI&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_启动spark_shell&#34;&gt;1.3. 启动Spark Shell&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark-shell是Spark自带的交互式Shell程序，方便用户进行交互式编程，用户可以在该命令行下用scala编写spark程序。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_启动spark_shell_2&#34;&gt;1.3.1. 启动spark shell&lt;/h4&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-shell \
---master spark://node1.itcast.cn:7077 \ &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
---executor-memory 2g \ &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
---total-executor-cores 2 &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;colist arabic&#34;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;master spark://node1.itcast.cn:7077 指定Master的地址&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;executor-memory 2g 指定每个worker可用内存为2G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;total-executor-cores 2 指定整个集群使用的cup核数为2个&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;admonitionblock tip&#34;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&#34;icon&#34;&gt;
-&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&#34;content&#34;&gt;
-如果启动spark shell时没有指定master地址，但是也可以正常启动spark shell和执行spark shell中的程序，其实是启动了spark的local模式，该模式仅在本机启动一个进程，没有与集群建立联系。
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Spark Shell中已经默认将SparkContext类初始化为对象sc。用户代码如果需要用到，则直接应用sc即可&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_在spark_shell中编写wordcount程序&#34;&gt;1.3.2. 在spark shell中编写WordCount程序&lt;/h4&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;首先启动hdfs&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;向hdfs上传一个文件到hdfs://node1.itcast.cn:9000/words.txt&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在spark shell中用scala语言编写spark程序&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sc.textFile(&#34;hdfs://node1.itcast.cn:9000/words.txt&#34;).flatMap(_.split(&#34; &#34;))
-.map((_,1)).reduceByKey(_+_).saveAsTextFile(&#34;hdfs://node1.itcast.cn:9000/out&#34;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;使用hdfs命令查看结果&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hdfs dfs -ls hdfs://node1.itcast.cn:9000/out/p*&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;admonitionblock tip&#34;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&#34;icon&#34;&gt;
-&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&#34;content&#34;&gt;
- &lt;strong&gt;sc&lt;/strong&gt; 是 &lt;strong&gt;SparkContext&lt;/strong&gt; 对象，该对象时提交 &lt;strong&gt;spark&lt;/strong&gt; 程序的入口
-&lt;strong&gt;textFile(hdfs://node1.itcast.cn:9000/words.txt)&lt;/strong&gt; 是hdfs中读取数据
-&lt;strong&gt;flatMap(&lt;em&gt;.split(&#34; &#34;))&lt;/strong&gt; 先map在压平
-&lt;strong&gt;map&lt;/em&gt;,1&lt;/strong&gt; 将单词和1构成元组
-&lt;strong&gt;reduceByKey(&lt;em&gt;+&lt;/em&gt;)&lt;/strong&gt; 按照 &lt;strong&gt;key&lt;/strong&gt; 进行r &lt;strong&gt;educe&lt;/strong&gt; ，并将v &lt;strong&gt;alue&lt;/strong&gt; 累加
-&lt;strong&gt;saveAsTextFile(&#34;hdfs://node1.itcast.cn:9000/out&#34;)&lt;/strong&gt; 将结果写入到hdfs中
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_在idea中编写wordcount程序&#34;&gt;1.4. 在IDEA中编写WordCount程序&lt;/h3&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark shell仅在测试和验证我们的程序时使用的较多，在生产环境中，通常会在IDE中编制程序，然后打成jar包，然后提交到集群，最常用的是创建一个Maven项目，利用Maven来管理jar包的依赖。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建一个项目&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;选择Maven项目，然后点击next&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;填写maven的GAV，然后点击next&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;填写项目名称，然后点击finish&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;创建好maven项目后，点击Enable Auto-Import&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;配置Maven的pom.xml&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&amp;lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&amp;gt;
-&amp;lt;project xmlns=&#34;http://maven.apache.org/POM/4.0.0&#34;
-         xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
-         xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&amp;gt;
-    &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
-
-    &amp;lt;groupId&amp;gt;cn.itcast.spark&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;spark-mvn&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
-
-    &amp;lt;properties&amp;gt;
-        &amp;lt;maven.compiler.source&amp;gt;1.7&amp;lt;/maven.compiler.source&amp;gt;
-        &amp;lt;maven.compiler.target&amp;gt;1.7&amp;lt;/maven.compiler.target&amp;gt;
-        &amp;lt;encoding&amp;gt;UTF-8&amp;lt;/encoding&amp;gt;
-        &amp;lt;scala.version&amp;gt;2.10.6&amp;lt;/scala.version&amp;gt;
-        &amp;lt;scala.compat.version&amp;gt;2.10&amp;lt;/scala.compat.version&amp;gt;
-    &amp;lt;/properties&amp;gt;
-
-    &amp;lt;dependencies&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.scala-lang&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;scala-library&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;${scala.version}&amp;lt;/version&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.apache.spark&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spark-core_2.10&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;1.5.2&amp;lt;/version&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.apache.spark&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spark-streaming_2.10&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;1.5.2&amp;lt;/version&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.apache.hadoop&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;hadoop-client&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;2.6.2&amp;lt;/version&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-    &amp;lt;/dependencies&amp;gt;
-
-    &amp;lt;build&amp;gt;
-        &amp;lt;sourceDirectory&amp;gt;src/main/scala&amp;lt;/sourceDirectory&amp;gt;
-        &amp;lt;testSourceDirectory&amp;gt;src/test/scala&amp;lt;/testSourceDirectory&amp;gt;
-        &amp;lt;plugins&amp;gt;
-            &amp;lt;plugin&amp;gt;
-                &amp;lt;groupId&amp;gt;net.alchim31.maven&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;scala-maven-plugin&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;3.2.0&amp;lt;/version&amp;gt;
-                &amp;lt;executions&amp;gt;
-                    &amp;lt;execution&amp;gt;
-                        &amp;lt;goals&amp;gt;
-                            &amp;lt;goal&amp;gt;compile&amp;lt;/goal&amp;gt;
-                            &amp;lt;goal&amp;gt;testCompile&amp;lt;/goal&amp;gt;
-                        &amp;lt;/goals&amp;gt;
-                        &amp;lt;configuration&amp;gt;
-                            &amp;lt;args&amp;gt;
-                                &amp;lt;arg&amp;gt;-make:transitive&amp;lt;/arg&amp;gt;
-                                &amp;lt;arg&amp;gt;-dependencyfile&amp;lt;/arg&amp;gt;
-                                &amp;lt;arg&amp;gt;${project.build.directory}/.scala_dependencies&amp;lt;/arg&amp;gt;
-                            &amp;lt;/args&amp;gt;
-                        &amp;lt;/configuration&amp;gt;
-                    &amp;lt;/execution&amp;gt;
-                &amp;lt;/executions&amp;gt;
-            &amp;lt;/plugin&amp;gt;
-            &amp;lt;plugin&amp;gt;
-                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;2.18.1&amp;lt;/version&amp;gt;
-                &amp;lt;configuration&amp;gt;
-                    &amp;lt;useFile&amp;gt;false&amp;lt;/useFile&amp;gt;
-                    &amp;lt;disableXmlReport&amp;gt;true&amp;lt;/disableXmlReport&amp;gt;
-                    &amp;lt;includes&amp;gt;
-                        &amp;lt;include&amp;gt;**/*Test.*&amp;lt;/include&amp;gt;
-                        &amp;lt;include&amp;gt;**/*Suite.*&amp;lt;/include&amp;gt;
-                    &amp;lt;/includes&amp;gt;
-                &amp;lt;/configuration&amp;gt;
-            &amp;lt;/plugin&amp;gt;
-
-            &amp;lt;plugin&amp;gt;
-                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;maven-shade-plugin&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;2.3&amp;lt;/version&amp;gt;
-                &amp;lt;executions&amp;gt;
-                    &amp;lt;execution&amp;gt;
-                        &amp;lt;phase&amp;gt;package&amp;lt;/phase&amp;gt;
-                        &amp;lt;goals&amp;gt;
-                            &amp;lt;goal&amp;gt;shade&amp;lt;/goal&amp;gt;
-                        &amp;lt;/goals&amp;gt;
-                        &amp;lt;configuration&amp;gt;
-                            &amp;lt;filters&amp;gt;
-                                &amp;lt;filter&amp;gt;
-                                    &amp;lt;artifact&amp;gt;*:*&amp;lt;/artifact&amp;gt;
-                                    &amp;lt;excludes&amp;gt;
-                                        &amp;lt;exclude&amp;gt;META-INF/*.SF&amp;lt;/exclude&amp;gt;
-                                        &amp;lt;exclude&amp;gt;META-INF/*.DSA&amp;lt;/exclude&amp;gt;
-                                        &amp;lt;exclude&amp;gt;META-INF/*.RSA&amp;lt;/exclude&amp;gt;
-                                    &amp;lt;/excludes&amp;gt;
-                                &amp;lt;/filter&amp;gt;
-                            &amp;lt;/filters&amp;gt;
-                            &amp;lt;transformers&amp;gt;
-                                &amp;lt;transformer implementation=&#34;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&#34;&amp;gt;
-                                    &amp;lt;mainClass&amp;gt;cn.itcast.spark.WordCount&amp;lt;/mainClass&amp;gt;
-                                &amp;lt;/transformer&amp;gt;
-                            &amp;lt;/transformers&amp;gt;
-                        &amp;lt;/configuration&amp;gt;
-                    &amp;lt;/execution&amp;gt;
-                &amp;lt;/executions&amp;gt;
-            &amp;lt;/plugin&amp;gt;
-        &amp;lt;/plugins&amp;gt;
-    &amp;lt;/build&amp;gt;
-&amp;lt;/project&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将src/main/java和src/test/java分别修改成src/main/scala和src/test/scala，与pom.xml中的配置保持一致&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;新建一个scala class，类型为Object&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;编写spark程序&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;package cn.itcast.spark
-
-import org.apache.spark.{SparkContext, SparkConf}
-
-object WordCount {
-  def main(args: Array[String]) {
-    //创建SparkConf()并设置App名称
-    val conf = new SparkConf().setAppName(&#34;WC&#34;)
-    //创建SparkContext，该对象是提交spark App的入口
-    val sc = new SparkContext(conf)
-    //使用sc创建RDD并执行相应的transformation和action
-    sc.textFile(args(0)).flatMap(_.split(&#34; &#34;)).map((_, 1)).reduceByKey(_+_, 1).sortBy(_._2, false).saveAsTextFile(args(1))
-    //停止sc，结束该任务
-    sc.stop()
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;使用Maven打包：首先修改pom.xml中的main class&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;点击idea右侧的Maven Project选项&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;点击Lifecycle,选择clean和package，然后点击Run Maven Build&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;选择编译成功的jar包，并将该jar上传到Spark集群中的某个节点上&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;首先启动hdfs和Spark集群
-启动hdfs&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/hadoop-2.6.1/sbin/start-dfs.sh&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;启动spark&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/sbin/start-all.sh&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;使用spark-submit命令提交Spark应用（注意参数的顺序）&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;/usr/local/spark-1.5.2-bin-hadoop2.6/bin/spark-submit \
---class cn.itcast.spark.WordCount \
---master spark://node1.itcast.cn:7077 \
---executor-memory 2G \
---total-executor-cores 4 \
-/root/spark-mvn-1.0-SNAPSHOT.jar \
-hdfs://node1.itcast.cn:9000/words.txt \
-hdfs://node1.itcast.cn:9000/out&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;查看程序执行结果&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;hdfs dfs -cat hdfs://node1.itcast.cn:9000/out/part-00000
-(hello,6)
-(tom,3)
-(kitty,2)
-(jerry,1)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>

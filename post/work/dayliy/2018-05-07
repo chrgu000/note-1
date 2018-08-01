@@ -42,16 +42,7 @@ kafka-topics.sh --zookeeper vm28:2181/kt2 --create --topic wordcountt1 --partiti
 kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list vm26:6667 --topic "HNCMCC" --time -1 --partitions 0
 
 
-# kafka 0.10.0.1
-# windows
-.\kafka-topics.bat --zookeeper localhost:2181/kt1 --create --topic wordcountt2 --partitions 3 --replication-factor 1
 
-.\kafka-topics.bat --zookeeper localhost:2181/kt1 --describe --topic wordcountt2
-
-# group 消费的偏移量
-.\kafka-run-class.bat kafka.admin.ConsumerGroupCommand --describe --group group1 --zookeeper localhost:2181/kt1
-
-.\kafka-run-class.bat kafka.tools.ConsumerOffsetChecker --group spark-consumer-1 --topic wordcountt2 --zookeeper localhost:2181/kt1
 
 
 pip install faker -i https://pypi.tuna.tsinghua.edu.cn/simple
@@ -118,3 +109,77 @@ bigxdrdrops1mmemro = xdr_id:bigint:8, length:bigint:8, local_province:varchar:2,
 
 
 . Executor 与 Kafka Topic Partition 的关系
+
+
+. sparklinstener
+
+
+
+
+
+
+docker pull moredip/giter8
+
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out moredip/giter8 foundweekends/giter8.g8 --name=my-new-website
+
+# 本地
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/spark-mvn.g8/ --name=spark-mvn
+
+
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/java-scala-mvn.g8/ --name=my-mvn-1
+
+
+二分查找的时间复杂度
+
+
+(select
+INITIAL_REGISTER_ATTEMPT AS INITIAL_REGISTER_ATTEMPT_MW,
+INITIAL_REGISTER_SUCC AS INITIAL_REGISTER_SUCC_MW,
+CALL_SETUP_A_MO_SUCC AS CALL_SETUP_A_MO_SUCC_MW,
+CALL_SETUP_A_MT_SUCC AS CALL_SETUP_A_MT_SUCC_MW,
+CALL_SETUP_ANS_A_MO_SUCC,
+CALL_SETUP_ANS_A_MT_SUCC,
+CALL_SETUP_A_MT_ATTEMPT AS CALL_SETUP_A_MT_ATTEMPT_MW,
+CALL_SETUP_A_MO_ATTEMPT AS CALL_SETUP_A_MO_ATTEMPT_MW,
+CALL_SETUP_FAIL_A_MO_CMCC_USR,
+CALL_SETUP_FAIL_A_MT_CMCC_USR,
+CALL_SETUP_A_MO_LATENCY_ALL AS CALL_SETUP_A_MO_LATENCY_ALL_MW
+from result.f_volte_sip_sv_city_imsi_h
+where p_hour=2017122209) as a
+
+
+
+
+
+
+select
+    phour,province,scity,imsi,
+    sum(INITIAL_REGISTER_SUCC_MW) AS INITIAL_REGISTER_SUCC_MW,
+    sum(CALL_SETUP_A_MO_ATTEMPT_MW-CALL_SETUP_FAIL_A_MO_CMCC_USR) AS SETUP_A_MO_ATP_EXUSR_MW,
+    sum(CALL_SETUP_A_MT_ATTEMPT_MW-CALL_SETUP_FAIL_A_MT_CMCC_USR) AS SETUP_A_MT_ATP_EXUSR_MW,
+    sum(CALL_SETUP_A_MO_SUCC_MW) AS SETUP_A_MO_SUCC_MW,
+    sum(CALL_SETUP_A_MT_SUCC_MW) AS SETUP_A_MT_SUCC_MW,
+    sum(CALL_SETUP_ANS_A_MO_SUCC) AS SETUP_ANS_A_MO_SUCC_MW,
+    sum(CALL_SETUP_ANS_A_MT_SUCC) AS SETUP_ANS_A_MT_SUCC_MW
+from (select
+phour,province,scity,imsi,
+INITIAL_REGISTER_ATTEMPT AS INITIAL_REGISTER_ATTEMPT_MW,
+INITIAL_REGISTER_SUCC AS INITIAL_REGISTER_SUCC_MW,
+CALL_SETUP_A_MO_SUCC AS CALL_SETUP_A_MO_SUCC_MW,
+CALL_SETUP_A_MT_SUCC AS CALL_SETUP_A_MT_SUCC_MW,
+CALL_SETUP_ANS_A_MO_SUCC,
+CALL_SETUP_ANS_A_MT_SUCC,
+CALL_SETUP_A_MT_ATTEMPT AS CALL_SETUP_A_MT_ATTEMPT_MW,
+CALL_SETUP_A_MO_ATTEMPT AS CALL_SETUP_A_MO_ATTEMPT_MW,
+CALL_SETUP_FAIL_A_MO_CMCC_USR,
+CALL_SETUP_FAIL_A_MT_CMCC_USR,
+CALL_SETUP_A_MO_LATENCY_ALL AS CALL_SETUP_A_MO_LATENCY_ALL_MW
+from result.f_volte_sip_mw_city_area_vd_imsi_h
+where p_hour=2017122209) as a
+GROUP BY phour,province,scity,imsi limit 100;
+
+
+
+select distinct phour,province,scity,imsi
+from result.f_volte_sip_mw_city_area_vd_imsi_h
+where p_hour=2017122209  limit 100

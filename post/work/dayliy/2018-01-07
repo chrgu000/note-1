@@ -7,3 +7,12 @@ alter table bigxdrcmccsrvcc add partition (phour='2017122223');
 alter table bigxdrcmccmr add partition (phour='2017122223');
 alter table bigxdrcmccdropmr add partition (phour='2017122223');
 alter table bigxdrcmccsrvccmr add partition (phour='2017122223');
+
+alter table bigxdrcmcc drop partition (phour='2018041717');
+alter table bigxdrcmcc drop partition (phour='2018041718');
+alter table bigxdrcmcc drop partition (phour='2018041719');
+
+
+alter table bigxdrcmcc add partition (phour='2018041717');
+alter table bigxdrcmcc add partition (phour='2018041718');
+alter table bigxdrcmcc add partition (phour='2018041719');

@@ -19,7 +19,7 @@ mysql -h172.17.0.2 -P3308 -uroot -p
 mysql -h172.17.0.2 -P3308 -udevelop -p
 mysql -h192.168.168.105 -P3308 -udevelop -p
 
-mysql> source /root/tmp/mysql-ddl/mysql-sv.sql;
+mysql> source /root/tmp/mysql-ddl/mysql.sql;
 
 
 curl http://192.168.168.105:8899/c/c/Toolbox/datasource.properties

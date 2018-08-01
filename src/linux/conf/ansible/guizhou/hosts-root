@@ -1,0 +1,4 @@
+[nifi]
+nifi02 ansible_ssh_host=10.198.102.92 ansible_ssh_user=root ansible_ssh_pass=Yy@wgzx92
+nifi03 ansible_ssh_host=10.198.102.93 ansible_ssh_user=root ansible_ssh_pass=Yy@wgzx93
+

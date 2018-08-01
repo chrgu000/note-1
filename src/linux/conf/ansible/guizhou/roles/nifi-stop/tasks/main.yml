@@ -1,0 +1,15 @@
+---
+
+- name: check jdk variable
+  shell: cat /home/{{ ansible_ssh_user }}/.bashrc
+  register: bashrc_result
+
+- name: jdk variable configuration ~/.bashrc file
+  shell: /bin/echo {{ item }} >> /home/{{ ansible_ssh_user }}/.bashrc; source /home/{{ ansible_ssh_user }}/.bashrc
+  when: bashrc_result.stdout.find('JAVA_HOME') == -1
+  with_items:
+     - export JAVA_HOME=/opt/do/java/jdk1.8.0_77
+
+- name: nifi stop
+  shell: chdir=/opt/do/hdf/nifi/bin nohup ./nifi.sh stop &
+

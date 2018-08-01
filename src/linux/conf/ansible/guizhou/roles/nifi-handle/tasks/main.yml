@@ -1,0 +1,11 @@
+---
+
+- name: 复制 nifi.properties
+  copy:
+    src: /opt/do/hdf/nifi/conf/nifi.properties
+    dest: /opt/do/hdf/nifi/conf/
+    owner: hdfs
+    group: hdfs
+
+- name: 替换hostname
+  raw: sed -i s@nifi01@`hostname`@ /opt/do/hdf/nifi/conf/nifi.properties

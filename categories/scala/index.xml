@@ -9,6 +9,46 @@
     <atom:link href="/categories/scala/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Scala g8 模板</title>
+      <link>/post/bigdata/scala/g8/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/g8/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;g8模板&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地&#34;&gt;本地&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker pull moredip/giter8&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out moredip/giter8 foundweekends/giter8.g8 --name=my-new-website&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_本地&#34; class=&#34;sect0&#34;&gt;本地&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/spark-mvn.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/spark-mvn.g8/&lt;/a&gt; --name=spark-mvn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/java-scala-mvn.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/java-scala-mvn.g8/&lt;/a&gt; --name=my-mvn-1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.messages.t1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do-web.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do-web.g8/&lt;/a&gt; --name=com.nsn.web.do.tbox.spark.kpi.cucwm2&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Scala 参考</title>
       <link>/post/bigdata/scala/scala-ref/</link>
       <pubDate>Fri, 28 Jul 2017 09:38:57 +0000</pubDate>

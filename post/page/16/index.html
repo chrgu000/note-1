@@ -91,6 +91,204 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/codes/" rel="bookmark">java编程题</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 网易有道内推编程题1.1. 11.2. 21. 网易有道内推编程题1.1. 1洗牌在生活中十分常见，现在需要写一个程序模拟洗牌的过程。 现在需要洗2n张牌，从上到下依次是第1张，第2张，第3张一直到第2n张。首先，我们把这2n张牌分成两堆，左手拿着第1张到第n张（上半堆），右手拿着第n+1张到第2n张（下半堆）。接着就开始洗牌的过程，先放下右手的最后一张牌，再放下左手的最后一张牌，接着放下右手的倒数第二张牌，再放下左手的倒数第二张牌，直到最后放下左手的第一张牌。接着把牌合并起来就可以了。 例如有6张牌，最开始牌的序列是1,2,3,4,5,6。首先分成两组，左手拿着1,2,3；右手拿着4,5,6。在洗牌过程中按顺序放下了6,3,5,2,4,1。把这六张牌再次合成一组牌之后，我们按照从上往下的顺序看这组牌，就变成了序列1,4,2,5,3,6。 现在给出一个原始牌组，请输出这副牌洗牌k次之后从上往下的序列。
+import java.util.Scanner;public class Main {public static void main(String[] args) {Scanner in = new Scanner(System.in);int groupNumber = in.nextInt();int[][] groupNumbers = new int[groupNumber][];int[] ks = new int[groupNumber];for (int i = 0; i &lt; groupNumber; i++) {int n = in.nextInt();ks[i] = in.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/jenkins/" rel="bookmark">jenkins 构建工具</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Jenkins1.1. 增量构建1.1.1. 配置2. Ant3. Svn 增量更新1. Jenkins1.1. 增量构建1.1.1. 配置1 [[/src/img/2016-11-18-02.png]]
+2 [[/src/img/2016-11-18-03.png]]
+3 [[/src/img/2016-11-18-04.png]]
+4 [[/src/img/2016-11-18-05.png]]
+5 [[/src/img/2016-11-18-01.png]]==== 脚本
+#!/bin/bashsource /etc/profilebase="/root/.jenkins/workspace/mailiqing-increment"#更新文件列表update_list="$base/update.txt"#日期date=$(date +%Y-%m-%d)#增量打包文件tar_file="$base/path/app-path$date.tar.gz"#本地svn仓库地址svn_repo_url="$base/app"#编译后的class文件路径path="$svn_repo_url/WebRoot/WEB-INF/classes"webroot="$svn_repo_url/WebRoot"remote_cmd="
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/jesery/" rel="bookmark">jesery</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Jesery1. Jesery@Path ,定义路径。
+@GET、@POST、@PUT等，定义提交请求的方法。
+@Consumes，定义接收请求的参数格式，是JSON、XML，还是form表单。
+@Produces，定义输出的格式，输出XML、JSON等格式。
+@XmlRootElement、@XmlElement、@XmlAttribute定义根元素、元素、属性，使用这些注解可以自定义xml的输出格式。
+@FormParam、@QueryParam、@PathParam，获取单个参数的三种方式：分别是从表单获取参数、从url问号之后获取参数、获取路径参数。还可以直接将POJO作为方法参数，根据接收的参数格式自动封装bean，比如底部代码中的formJson(Member member)方法。
+@Context，从容器的上下文获取HttpServletRequest、HttpServletResponse等对象。
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/linux-tip/" rel="bookmark">linux tip</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						##1、nohup命令及其输出文件
+ 　nohup命令：如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。nohup就是不挂起的意思( n ohang up)。
+  该命令的一般形式为：nohup command &amp;
+   bash ls xxx 1&gt;out.txt 2&gt;&amp;1 nohup /mnt/Nand3/H2000G &gt;/dev/null 2&gt;&amp;1 &amp;  &gt;对于&amp; 1 更准确的说应该是文件描述符 1,而1 一般代表的就是STDOUT_FILENO,实际上这个操作就是一个dup2(2)调用.他标准输出到all_result,然后复制标准输出到文件描述符2(STDERR_FILENO),其后果就是文件描述符1和2指向同一个文件表项,也可以说错误的输出被合并了.其中0 表示键盘输入 1表示屏幕输出2表示错误输出.把标准出错重定向到标准输出,然后扔到/DEV/NULL下面去。通俗的说，就是把所有标准输出和标准出错都扔到垃圾桶里面。   command &gt;out.file 2&gt;&amp;1 &amp;
+  command &gt;out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。 2&gt;&amp;1 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了out.file文件，即将标准出错也输出到out.file文件中。最后一个&amp; ， 是让该命令在后台执行。
+ 试想2&gt;1代表什么，2与&gt;结合代表错误重定向，而1则代表错误重定向到一个文件1，而不代表标准输出； 换成2&gt;&amp;1，&amp;与1结合就代表标准输出了，就变成错误重定向到标准输出.
+ 你可以用
+ ls 2&gt;1测试一下，不会报没有2文件的错误，但会输出一个空的文件1； ls xxx 2&gt;1测试，没有xxx这个文件的错误输出到了1中； ls xxx 2&gt;&amp;1测试，不会生成1这个文件了，不过错误跑到标准输出了； ls xxx &gt;out.txt 2&gt;&amp;1, 实际上可换成 ls xxx 1&gt;out.txt 2&gt;&amp;1；重定向符号&gt;默认是1,错误和输出都传到out.txt了。 为何2&gt;&amp;1要写在后面？    command &gt; file 2&gt;&amp;1
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/basic/" rel="bookmark">linux 基础命令</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 命令历史的使用技巧：2. 查看 linux 系统信息3. 获取 ip 地址4. 端口查看5. 时间同步5.1. NTP 时间服务器设置5.2. 参考6. Rsync7. DNS 服务器8. 查看日志9. 参考10. Q &amp; A10.1. failed: Host is down1. 命令历史的使用技巧：!n:执行命令历史中的第n条命令；
+!-n:执行命令历史中的倒数第n条命令；
+!!: 执行上一条命令；
+!string:执行命令历史中最近一个以指定字符串开头的命令
+!$:引用前一个命令的最后一个参数;
+`Esc, `.
+Alt+.
+2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/fen_qu/" rel="bookmark">linux 系统分区</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents 分区  首先查看机器上有多少块硬盘：
+$ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors/track, 121601 cylinders Units = cylinders of 16065 * 512 = 8225280 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disk identifier: 0x00000000 # # Disk /dev/sdd doesn't contain a valid partition table # Disk /dev/sdh: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors/track, 121601 cylinders Units = cylinders of 16065 * 512 = 8225280 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disk identifier: 0xd54c485e # # Device Boot Start End Blocks Id System /dev/sdh1 1 121601 976760001 83 Linux # 我的服务器上有很多块，有上述信息可知，目前sdd硬盘还为挂载  硬盘分区
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/my/lunr/" rel="bookmark">lunr</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						参考 https://github.com/codepiano/lunr.js/tree/master/test
+http://gohugo.io/templates/partials/
+https://github.com/spf13/hugo
+https://discuss.gohugo.io/t/live-hugo-site-search-with-lunr-js/2857
+https://runkit.com/npm/lunr-locale-chinese#
+https://www.google.com/?gfe_rd=ssl&amp;ei=EQCbVs7yMOOD8Qe8xJqYBA#q=lunrjs+nodejieba
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/mariadb/" rel="bookmark">mariadb</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Mariadb1.1. CentOS 7 (64-bit)1.2. 配置文件1.3. 初始化数据1.4. 启动 Mariadb1.5. 设置ROOT密码1.6. 登陆mysql1.7. 授权root远程登录1. Mariadb1.1. CentOS 7 (64-bit)# vi /etc/yum.repos.d/[mariadb]name = MariaDBbaseurl = http://yum.mariadb.org/10.0/centos7-amd64gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDBgpgcheck=1参考脚本目录
+/usr/share/mysql
+全局配置文件 (Global)
+/etc/my.cnf
+1.2. 配置文件[client]#password = your_passwordport = 3306socket = /var/lib/mysql/mysql.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/maxscale/" rel="bookmark">maxsclae</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -126,201 +324,13 @@
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/myBatis-generator/" rel="bookmark">mybatis</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						[[MyBatis Generator|http://mbg.cndocs.tk/running/runningWithJava.html]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mycat/" rel="bookmark">mycat</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. `mysql`一主一从2. centos-java dockerfile3. Mycat4. 主从数据库 授权1. `mysql`一主一从master-cnf
-[mysqld]# 表明不区分大小写lower_case_table_names=1# 字符编码character_set_server=utf8max_allowed_packet=4M# 开启二进制日志log-bin=master-binlog-bin-index=master-bin.index# 1-2^32 必须唯一server-id=1innodb_file_per_table=1+ slave-cnf
-[mysqld]lower_case_table_names=1character_set_server=utf8max_allowed_packet=4M# 开启中继日志relay-log=relay-logrelay-log-index=relay-log.index# 1-2^32 必须唯一server-id=11innodb_file_per_table=12. centos-java dockerfileFROM centosMAINTAINER dishui_git@126.comENV TZ "Asia/Shanghai"ADD jdk-7u79-linux-x64.rpm /tmpRUN mkdir -p /usr/java &amp;&amp; \rpm -ivh jdk-7u79-linux-x64.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mycat/mycat-command-line/" rel="bookmark">mycat命令</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. MyCAT 命令行监控1.1. KILL @@CONNECTION1. MyCAT 命令行监控用mysql命令行连接 mysql –utest –ptest –P9066 -h172.17.0.4
-mysql –utest –ptest –P8066 -h172.17.0.4 (jdbc连接)
-SHOW @@HELP 可显示所有相关管理命令
-SHOW @@BACKEND 显示后端物理库连接信息，包括当前连接数，端口
-mysql&gt; show @@backend\G;*************************** 1. row ***************************processor: Processor0id: 12mysqlId: 5host: mysqlSlaveport: 3306l_port: 34828net_in: 3389net_out: 861life: 2661closed: falseborrowed: falseSEND_QUEUE: 0schema: testdbcharset: latin1:8txlevel: 0autocommit: true*************************** 2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mysql-master-slave/" rel="bookmark">mysql主从配置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Mysql 主从复制1. Mysql 主从复制1.1. master1.2. slave1.3. 安装 mysql (CentOS-7 x64) master1.4. 安装 mysql (CentOS-7 x64) Slave1. Mysql 主从复制1.1. master启用二进制日志
-log-bin = master-binlog-bin-index = master-bin.index选择一个唯一 server-id
-server-id = {0-2^32}创建具有复制权限的用户
-REPLICATION SLAVEREPLICATION CLIENT1.2. slave启动中继日志
-relay-log = relay-log选择一个唯一的 server-id
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mysql1/" rel="bookmark">mysql基础操作</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. mysql1.1. linux安装mysql设置1.2. Mysql 备份/还原1.3. mysql数据库操作1.4. 终端shell连接数据库乱码1.5. 数据库编码1.6. mysql 修改密码1.7. mysql 新增、删除用户和权限分配1.8. 存储过程1.9. 查看1.10. mysql 备份数据库1. mysql1.1. linux安装mysql设置/usr/bin/mysqladmin -u root password '123'
-设置mysql用户名/密码
-mysql 状态/开启/停止
-service mysqld status
-service mysqld start
-service mysqld stop
-任意主机以用户root和密码mypwd连接到mysql服务器
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/linux-sed/" rel="bookmark">sed</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. sed1. sedsed [options] 'AddressCommand' file &#8230;&#8203;删除行sed '1,2d' ~/tmp/fstab
-行中包含d删除sed '/e/d' ~/tmp/fstab
-第1行开始,往后删除2行`sed '1,+2d' ~/tmp/fstab
-查找行首空白,替换为空history | sed 's#^*##g'
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/shell/" rel="bookmark">shell</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. shell1.1. 获取当前目录1. shell1.1. 获取当前目录+
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"变量
-for var in $@doecho "$var"docker tag $var dishui.io:5000/$vardocker push dishui.io:5000/$vardocker rmi dishui.io:5000/$vardone参考
-Shell $0, $#, $*, $@, $?, $$和命令行参数
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/ssh/" rel="bookmark">ssh</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 安装2. 25个必须记住的SSH命令3. ssh-copy-id1. 安装CentOS7 64 系统
-yum install openssh-server -y启动 ssh
-# /usr/sbin/sshdCould not load host key: /etc/ssh/ssh_host_rsa_keyCould not load host key: /etc/ssh/ssh_host_ecdsa_keyCould not load host key: /etc/ssh/ssh_host_ed25519_key解决办法
-ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key # 重新建立 ssh_host_dsa_key 文件ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key # 重新建立 ssh_host_rsa_key 文件2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/post/page/15/">«</a>
 	
-	<span class="page-numbers current">16/30</span>
+	<span class="page-numbers current">16/31</span>
 	
 	<a class="page-numbers" href="/post/page/17/">»</a>
 	
@@ -358,6 +368,8 @@ Shell $0, $#, $*, $@, $?, $$和命令行参数
 		
 		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
 		
+		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
+		
 		<li class="cat-item"><a href="/categories/go">Go</a></li>
 		
 		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
@@ -386,6 +398,8 @@ Shell $0, $#, $*, $@, $?, $$和命令行参数
 		
 		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
 		
+		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
+		
 		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
 		
 	</ul>
@@ -406,11 +420,7 @@ Shell $0, $#, $*, $@, $?, $$和命令行参数
 		
 			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
 		
-			<a href="/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
-		
 			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
 		
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
 		

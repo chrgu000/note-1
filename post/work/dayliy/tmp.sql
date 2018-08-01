@@ -8,12 +8,12 @@ OPTIONS(
 path '/output/7200/parquet/TMP_TBX_100_0_F_V_BXDR_DROP_S1MME_H_SUMMARY/*.parquet')
 
 
-CREATE TEMPORARY VIEW bigxdrcmccmr USING csv
+CREATE TEMPORARY VIEW mw_hn USING csv
 OPTIONS(
 --header true,
 --inferSchema true,
 sep '|',
-path '/data/volte/cmccmr/phour=2017122209/*.CSV')
+path '/data/volte-hn/mw/phour=2018041718/*.CSV')
 
 
 

@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="" />
 <meta property="og:description" content="ResourceManagerResourceTrackerNodeManager 通过RPC协议向 ResourceManager 注册,汇报节点健康状况和 Container运行状态,并领取ResourceManager下达的命令,这些命令包括重新初始化,清理Container 等,在该 RPC 协议中, ResourceManager扮演RPC Server的角色(由内部组件ResourceTrackerService实现),而NodeManager扮演RPC Client的角色,换句话说,NodeManager与ResourceManager之间采用了&#34;pull模型&#34;, NodeManager 总是周期性地主动向 ResourceManager 发起请求,并通过领取下达给自己的命令ApplicationMasterProtocol应用程序的 ApplicationMaster 通过该 RPC 协议向 ResourceManager 注册,申请资源和释放资源.在该协议中, ApplicationMaster 扮演 RPC Client的角色,而 ResourceManager 扮演 RPC Server 的角色,换句话说, ResourceManager 与 ApplicationMaster 之间也采用了 &#34;pull 模型&#34;ApplicationClientProtocol应用程序的客户端通过该RPC协议向 ResourceManager 提交应用程序,查询应用程序状态和控制应用程序
-yarn 命令application 列表yarn application -listapplicationattempt 列表yarn applicationattempt -list &lt;Application-Id&gt;container 列表yarn container -list &lt;ApplicationAttempt-Id&gt;参考Hadoop之YARN命令" />
+yarn 命令application 列表yarn application -listapplicationattempt 列表yarn applicationattempt -list &lt;Application-Id&gt;container 列表yarn container -list &lt;ApplicationAttempt-Id&gt;yarn logs -applicationId application_1531923430869_511705" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/hadoop/yarn/" />
 
@@ -125,6 +125,9 @@
 <div class="content">
 <pre class="highlight"><code>yarn container -list &lt;ApplicationAttempt-Id&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>yarn logs -applicationId application_1531923430869_511705</p>
 </div>
 </div>
 </div>

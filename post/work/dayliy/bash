@@ -11,9 +11,11 @@ awk '{if($0~"/usr/bin/spark-submit") print}' console.log
 tail -f console.log |grep -i 'exeception'
 
 awk '{if($0~"Executing for") print}' console.log
+awk '{if($0~"Error") print}' console.log
 
 awk '{if($0~"success") print}' console.log
 
+awk '{if($0~"ConnectTimeoutException") print}' console.log
 
 awk '{if($0~"Exception") print}' /var/log/spark2/spark-root-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-bjmcc-hdp-cluster-node-04.out
 

@@ -310,7 +310,7 @@ DATE         DateType</p>
 </div>
 <div class="paragraph">
 <p>232s
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=30</p>
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 30 --conf spark.sql.shuffle.partitions=50</p>
 </div>
 <div class="paragraph">
 <p>279s
@@ -318,7 +318,7 @@ DATE         DateType</p>
 </div>
 <div class="paragraph">
 <p>mw
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G</p>
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 50 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G</p>
 </div>
 <div class="paragraph">
 <p>sv</p>
@@ -341,6 +341,9 @@ DATE         DateType</p>
 <div class="paragraph">
 <p>widetable
 --master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=50 --conf spark.yarn.executor.memoryOverhead=4G</p>
 </div>
 </div>
 </div>

@@ -6,8 +6,249 @@
     <description>Recent content on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 14 Apr 2018 21:33:54 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Aug 2018 10:28:36 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>DO工具箱开发</title>
+      <link>/post/work/nokia/nokia/</link>
+      <pubDate>Wed, 01 Aug 2018 10:28:36 +0000</pubDate>
+      
+      <guid>/post/work/nokia/nokia/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;DO工具箱&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_指标呈现&#34;&gt;1. 指标呈现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_指标呈现_天&#34;&gt;2. 指标呈现(天)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定界定位&#34;&gt;3. 定界定位&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;OSGi&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Toolbox 工具箱&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;工具箱的安装、开发及使用。时间充足的话再把消息队列详细说说。最好能让他参于到你的项目中，&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;基于spark sql&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1, sql语句封装在xml里
+ source：
+   数据源&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;summary:
+  处理逻辑&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;result:
+  输出结果&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;datasources=hdfs,hive&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hdfs.source-type=HDFS-NORMAL
+hdfs.type=HDFS
+hdfs.title=HDFS for CMDI
+hdfs.arg.location=hdfs://vm26:8020/zhoukai/output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hive.source-type=HIVE-NORMAL
+hive.type=HIVE
+hive.title=Hive for CMDI
+hive.arg.database=result
+hive.arg.location=/output/zhoukai/result&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;runtime.spark.submit=/usr/bin/spark-submit&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;输入:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;输出
+StreamSource：
+  HiveStreamSource
+  HDFSStreamSource&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;插件开发
+  1. Bundle-SymbolicName
+  2. Bundle-Activator
+  3. Require-Bundle&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --name new_d_user_details30 --deploy-mode cluster --driver-memory 10G --driver-cores 2 --executor-memory 12G --executor-cores 2 --num-executors 20 --conf spark.dynamicAllocation.enabled=false --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_指标呈现&#34;&gt;1. 指标呈现&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/nokia-1.svg&#34; alt=&#34;nokia 1&#34; width=&#34;2570&#34; height=&#34;1971&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_指标呈现_天&#34;&gt;2. 指标呈现(天)&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/nokia-2.svg&#34; alt=&#34;nokia 2&#34; width=&#34;1988&#34; height=&#34;1877&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_定界定位&#34;&gt;3. 定界定位&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/nokia-3.svg&#34; alt=&#34;nokia 3&#34; width=&#34;1328&#34; height=&#34;1322&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SparkSql</title>
+      <link>/post/work/dayliy/2018-07-09/</link>
+      <pubDate>Thu, 19 Jul 2018 14:43:47 +0000</pubDate>
+      
+      <guid>/post/work/dayliy/2018-07-09/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;stream&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_tmp&#34;&gt;1. tmp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_tmp&#34;&gt;1. tmp&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;asdfjlj&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/2018-07-02-1.png&#34; alt=&#34;2018 07 02 1&#34; width=&#34;317&#34; height=&#34;949&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SparkSql</title>
+      <link>/post/work/dayliy/2018-07-18/</link>
+      <pubDate>Wed, 18 Jul 2018 14:43:47 +0000</pubDate>
+      
+      <guid>/post/work/dayliy/2018-07-18/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;xxxxx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    &amp;lt;result id=&amp;quot;VD_NAT_H&amp;quot; for=&amp;quot;NAT_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_PROV_VENDOR_AREA_H&amp;quot; for=&amp;quot;PROV_VENDOR_AREA_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_PROV_VENDOR_H&amp;quot; for=&amp;quot;PROV_VENDOR_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_PROV_AREA_H&amp;quot; for=&amp;quot;PROV_AREA_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_PROV_H&amp;quot; for=&amp;quot;PROV_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_CITY_VENDOR_AREA_H&amp;quot; for=&amp;quot;CITY_VENDOR_AREA_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_CITY_VENDOR_H&amp;quot; for=&amp;quot;CITY_VENDOR_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_CITY_AREA_H&amp;quot; for=&amp;quot;CITY_AREA_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+    &amp;lt;result id=&amp;quot;VD_CITY_H&amp;quot; for=&amp;quot;CITY_H_SUMMARY&amp;quot; to=&amp;quot;hive&amp;quot; title=&amp;quot;spark1&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>数据采集与同步</title>
+      <link>/post/bigdata/bigdata-warehouse/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Mon, 02 Jul 2018 14:20:43 +0000</pubDate>
+      
+      <guid>/post/bigdata/bigdata-warehouse/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select
+  timestamp,
+  cid,
+  tb.uid,
+  sessionId,
+  ipAddress,
+  page,
+  ctype,
+  type,
+  event,
+  useragent,
+  version,
+  content,
+  lead(timestamp) over (partition by cid,sessionid order by timestamp asc) as next_time
+from b_event_trace_i where dt=&#39;&#39; and envent=&#39;pageview&#39;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>spark-问题</title>
+      <link>/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 20 Jun 2018 10:49:12 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;有一个表中，有200+字段 然后我要分别统计每个字段的 空值和非空值的分布情况。  这个表一天的数据大概有24T  目前打算抽样一千万条数据。 想用透视表来做 哪位大神指导一下，要是用spark 的话 怎么写&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scala g8 模板</title>
+      <link>/post/bigdata/scala/g8/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/g8/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;g8模板&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地&#34;&gt;本地&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker pull moredip/giter8&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out moredip/giter8 foundweekends/giter8.g8 --name=my-new-website&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_本地&#34; class=&#34;sect0&#34;&gt;本地&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/spark-mvn.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/spark-mvn.g8/&lt;/a&gt; --name=spark-mvn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/java-scala-mvn.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/java-scala-mvn.g8/&lt;/a&gt; --name=my-mvn-1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.messages.t1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do-web.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do-web.g8/&lt;/a&gt; --name=com.nsn.web.do.tbox.spark.kpi.cucwm2&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>graphviz</title>
@@ -211,6 +452,414 @@
     </item>
     
     <item>
+      <title>yunnan-lt</title>
+      <link>/post/work/nokia/yunnan-lt/yunnan-lt/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/work/nokia/yunnan-lt/yunnan-lt/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;yunnan-lt&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_多sheet保存csv&#34;&gt;1. 多sheet保存csv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_代办&#34;&gt;2. 代办&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_问题&#34;&gt;3. 问题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_er&#34;&gt;4. ER&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_云南联通中间表小时&#34;&gt;4.1. 云南联通中间表小时&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_云南联通中间表天&#34;&gt;4.2. 云南联通中间表天&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;服务器信息&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;172.33.2.17
+yarn &lt;a href=&#34;http://172.33.2.17:23188/cluster&#34; class=&#34;bare&#34;&gt;http://172.33.2.17:23188/cluster&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;172.33.2.17
+root/Huawei@123&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;su - hadoop&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop fs -ls /lte/xdr&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;web
+  172.33.10.51&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MRO数据源表
+O_LTE_MRO_IMSI&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MRS数据源表
+O_LTE_MRS_RSRP
+O_LTE_MRS_RSRQ
+O_LTE_MRS_TADV
+O_LTE_MRS_POWERHEADROOM
+O_LTE_MRS_AOA
+O_LTE_MRS_SINRUL
+O_LTE_MRS_RECEIVEDIPOWER
+O_LTE_MRS_RIPPRB
+O_LTE_MRS_TADVRSRP
+O_LTE_MRS_TADVAOA
+O_LTE_MRS_RIPRSRP
+O_LTE_MRS_RIPRSRQ
+O_LTE_MRS_SINRULRIP
+O_LTE_MRS_PACKETLOSSRATEULQCI1
+O_LTE_MRS_PACKETLOSSRATEULQCI2
+O_LTE_MRS_PACKETLOSSRATEULQCI3
+O_LTE_MRS_PACKETLOSSRATEULQCI4
+O_LTE_MRS_PACKETLOSSRATEULQCI5
+O_LTE_MRS_PACKETLOSSRATEULQCI6
+O_LTE_MRS_PACKETLOSSRATEULQCI7
+O_LTE_MRS_PACKETLOSSRATEULQCI8
+O_LTE_MRS_PACKETLOSSRATEULQCI9
+O_LTE_MRS_PACKETLOSSRATEDLQCI1
+O_LTE_MRS_PACKETLOSSRATEDLQCI2
+O_LTE_MRS_PACKETLOSSRATEDLQCI3
+O_LTE_MRS_PACKETLOSSRATEDLQCI4
+O_LTE_MRS_PACKETLOSSRATEDLQCI5
+O_LTE_MRS_PACKETLOSSRATEDLQCI6
+O_LTE_MRS_PACKETLOSSRATEDLQCI7
+O_LTE_MRS_PACKETLOSSRATEDLQCI8
+O_LTE_MRS_PACKETLOSSRATEDLQCI9&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_多sheet保存csv&#34;&gt;1. 多sheet保存csv&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Sub SaveToCSVs()&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim fDir As String&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim wB As Workbook&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim wS As Worksheet&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim fPath As String&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim sPath As String&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;fPath = &#34;C:\Users\dishui\Desktop\liantong-km\doc\&#34;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;sPath = &#34;C:\Users\dishui\Desktop\liantong-km\csv3\&#34;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;fDir = Dir(fPath)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Do While (fDir &amp;lt;&amp;gt; &#34;&#34;)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;If Right(fDir, 4) = &#34;.xls&#34; Or Right(fDir, 5) = &#34;.xlsx&#34; Then&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;On Error Resume Next&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Set wB = Workbooks.Open(fPath &amp;amp; fDir)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&#39;MsgBox (wB.Name)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;For Each wS In wB.Sheets&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;wS.SaveAs sPath &amp;amp; wS.Name &amp;amp; &#34;.csv&#34;, xlCSV&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Next wS&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;wB.Close False&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Set wB = Nothing&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;End If&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;fDir = Dir&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;On Error GoTo 0&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Loop&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;End Sub&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;s1u业务       &amp;#8592;   s1u_rpt业务
+s1u_dns业务       &amp;#8592;   s1u_dns_rpt业务
+s1u_http业务      &amp;#8592;   s1u_http_rpt业务
+s1u_mme业务       &amp;#8592;   s1u_mme_rpt业务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;s1u_rpt业务
+s1u_dns_rpt业务
+s1u_http_rpt业务
+s1u_mme_rpt业务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;算法设计器 (天级别的)
+    凌晨的&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;customer_group业务
+    定时 每个小时执行一次&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;customer_group_first业务
+    跑一个小时的 执行一次&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;customer_group_daily业务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;问题&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;2018年6月24日
+1. O_LTE_RPM_EUTRANCELL源表没有&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;STARTTIME
+  O_LTE_RPM_EUTRANCELL
+    DAY_ID+HOUR_ID
+格式 yyyy-MM-dd hh:mm:ss&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;M_PM_LTE_CELL_H
+  HOPREPINCSUCCRATE 重复
+  AVAILCELLRATIO 根据什么分组  eci&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;O_AM
+  scity&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_代办&#34;&gt;2. 代办&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;p_rmconf
+  2:当EquipmentClass为EUTRANCELL时，取NeName与P_netconf表cell_oid字段相匹配，获取CELL_ID。同时通过NeName与O_RM_EUTRANCELL的NMS_ORIG_RES_NAME字段匹配获取STARTTIME。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;com.nsn.do.tbox.spark.kpi.cucwm
+com.nsn.do.tbox.spark.kpi.cucmr
+com.nsn.do.tbox.spark.kpi.cucmr.day
+com.nsn.do.tbox.spark.kpi.cucwm.day
+com.nsn.web.do.tbox.spark.kpi.cucmr
+com.nsn.web.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_问题&#34;&gt;3. 问题&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;云南联通汇总表(day)V3.1.1表
+S_MRO_LTE_RSRP_D 问题
+
+18行
+  某小区，SumPRRP/timeRSRP-140
+
+35行
+  某小区，(sum(RSRP_ALL)-sum(RSRP_110))/sum((RSRP_ALL)&amp;gt;10,and (sum(RSRP_ALL))&amp;gt;1000,1,0)
+
+
+p_rmconf.xlsx
+2行
+  不同网元用各自网元的START_TIME
+  O_RM_ENDEB
+  O_RM_EUTRANCELL
+  O_RM_HSS_FE
+  O_RM_MME
+  O_RM_PGW
+  O_RM_SGW&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_er&#34;&gt;4. ER&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_云南联通中间表小时&#34;&gt;4.1. 云南联通中间表小时&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/yunnan-lt-1.svg&#34; alt=&#34;yunnan lt 1&#34; width=&#34;931&#34; height=&#34;1189&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_云南联通中间表天&#34;&gt;4.2. 云南联通中间表天&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Failed to generate image: erd.EXE failed: &#34;&amp;lt;stdin&amp;gt;&#34; (line 5, column 8):
+unexpected &#39;(&#39;
+expecting relationship or attribute
+
+title {label: &#34;云南联通中间表天&#34;, size: &#34;13&#34;}
+# Entities
+
+[S_MRO_LTE_RSRP_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   邻区MR(天)
+[S_MRS_LTE_RSRP_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   服务小区MR(天)
+[S_MRS_LTE_IOT_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   小区干扰(天)
+[S_PM_LTE_CELL_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   小区级KPI指标(天)
+[S_PM_LTE_SCITY_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   地市级KPI指标(天)
+
+# Relationships&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/yunnan-lt-3.svg&#34; alt=&#34;yunnan lt 3&#34; width=&#34;509&#34; height=&#34;422&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>初级1</title>
+      <link>/post/niuke/%E5%88%9D%E7%BA%A71/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/niuke/%E5%88%9D%E7%BA%A71/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_对数器&#34;&gt;对数器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;二分查找的时间复杂度 \(O(\log{_2} N)\)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_对数器&#34; class=&#34;sect0&#34;&gt;对数器&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;贪心策略&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>大数据仓库构建-实体关系（ER）建模理论及应用场景案例1维度建模理论及应用场景案例1</title>
+      <link>/post/bigdata/bigdata-warehouse/er/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/bigdata/bigdata-warehouse/er/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;er&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_1&#34;&gt;1. 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_data_vauit建模例子&#34;&gt;2. Data VauIt建模例子&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_1&#34;&gt;1. 1&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/dw-erd-1.svg&#34; alt=&#34;dw erd 1&#34; width=&#34;1876&#34; height=&#34;853&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/dw-erd-2.svg&#34; alt=&#34;dw erd 2&#34; width=&#34;625&#34; height=&#34;521&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_data_vauit建模例子&#34;&gt;2. Data VauIt建模例子&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/dw-erd-3.svg&#34; alt=&#34;dw erd 3&#34; width=&#34;587&#34; height=&#34;486&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Ambari</title>
       <link>/post/bigdata/ambari/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
@@ -300,6 +949,9 @@ psql -U ambari -W -d postgres -f public.sql&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;CREATE DATABASE hive OWNER postgres;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE DATABASE js_toolbox OWNER postgres;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;create user hive with login password &#39;bigdata&#39;;&lt;/p&gt;
@@ -730,1208 +1382,6 @@ DefNew: 4416K-&amp;gt;0K(4928K)
 &lt;p&gt;-Xmx20m : 最大堆内存20m
 -Xms20m : 最小堆内存20m
 -Xmn1m : 新生代1m eden + from + to 一共1m&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>数据结构与算法</title>
-      <link>/post/java/%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/java/%E5%9F%BA%E7%A1%80/</guid>
-      <description>&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_数据结构与算法&#34;&gt;数据结构与算法&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;表、栈和队列&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>spark-conf</title>
-      <link>/post/bigdata/spark/spark-conf/</link>
-      <pubDate>Wed, 15 Nov 2017 17:29:44 +0000</pubDate>
-      
-      <guid>/post/bigdata/spark/spark-conf/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;spark-conf&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_spark_defaults_conf&#34;&gt;1. spark-defaults.conf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_spark_env_sh&#34;&gt;2. spark-env.sh&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_spark_defaults_conf&#34;&gt;1. spark-defaults.conf&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;spark.master                     spark://vm74:7077
-spark.home                       /opt/hadoop-2.7.3
-# 日志
-spark.eventLog.enabled           true
-spark.eventLog.dir               hdfs://vm73:8020/spark-log
-#
-spark.serializer                 org.apache.spark.serializer.KryoSerializer
-spark.executor.memory            6g
-spark.driver.memory              6g
-spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers=&#34;one two three&#34;
-# spark sql 默认task数
-spark.sql.shuffle.partitions     10
-
---driver-java-options &#34;-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties&#34;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 4G --driver-cores 2 --executor-memory 6G --executor-cores 2 --num-executors 5 --conf spark.sql.shuffle.partitions=20 --driver-java-options &#34;-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark.acls.enable # true
-spark.admin.acls # set to admin users
-spark.modify.acls # user who can modify&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;--conf spark.admin.acls=root,hdfs&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_spark_env_sh&#34;&gt;2. spark-env.sh&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;export SPARK_DIST_CLASSPATH=$(/opt/hadoop-2.7.3/bin/hadoop classpath)
-export JAVA_HOME=/usr/java/jdk1.8.0_131/
-export HADOOP_HOME=/opt/hadoop-2.7.3
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export SPARK_MASTER_IP=vm74
-export SPARK_MASTER_PORT=7077
-export SPARK_LOCAL_IP=vm74
-# SPARK_HISTORY_OPTS 配置日志
-export SPARK_HISTORY_OPTS=&#34;-Dspark.history.fs.logDirectory=hdfs://vm73:8020/spark-log&#34;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>osgi</title>
-      <link>/post/work/osgi/</link>
-      <pubDate>Wed, 15 Nov 2017 15:06:53 +0000</pubDate>
-      
-      <guid>/post/work/osgi/</guid>
-      <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#几个必须的元素&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Bundle-ManifestVersion:2      // 定义了bundle遵循规范的规则，1表示r3规范 2表示r4和以后的版本&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Manifest-Version:1.0    // 主要的版本号&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Bundle-SymbolicName:org.activiti.designer - help;singleton:=true&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;// 唯一的bundle名称，相当于在系统中的id。singleton表示是否使用单启动方式&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#可选的&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Bundle-Name: Activiti Designer - help   //  bundel 名称
-Bundle-Vendor: Activiti      //发布商
-Bundle-RequiredExecutionEnvironment: J2SE-1.6//需要的执行环境&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#下面是一些引用包的信息，包括包名称和版本号，只有引用了这些包，才能让classloader装载&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Import-Package: javax.servlet;version=&#34;2.4.0&#34;,
-                           javax.servlet.http;version=&#34;2.4.0&#34;,
-                           org.apache.commons.logging;version=&#34;1.0.4&#34;,&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;org.osgi.framework;version=&#34;1.4.0&#34;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#这是直接引用整个bundle，一般不提倡整个引用，这里是用来定义扩展&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.graphiti,
- org.eclipse.graphiti.ui,
- org.eclipse.core.resources,
- org.eclipse.ui.views.properties.tabbed&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;#用得较多的几个&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Bundle-ClassPath: .,dom4j-1.6.1.jar         // Bundle 的 Classpath&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Export-Package: org.activiti.designer,
-                           org.activiti.designer.actions,
-                           org.activiti.designer.command   //对外暴露的 package&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Fragment-Host:                     //Fragment 类型 Bundle 所属的 Bundle名&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;DynamicImport-Package      //Bundle动态引用的 package&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>kafka</title>
-      <link>/post/bigdata/hadoop/kafka/</link>
-      <pubDate>Sat, 07 Oct 2017 21:07:39 +0000</pubDate>
-      
-      <guid>/post/bigdata/hadoop/kafka/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;kafka&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_练习&#34;&gt;1. 练习&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_window&#34;&gt;2. Window&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_获取_topic_的_offset&#34;&gt;获取 topic 的 offset&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_查看topic消费进度&#34;&gt;查看topic消费进度&lt;/a&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_错误&#34;&gt;1. 错误&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;preamble&#34;&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;启动&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sh $TOOLS_HOME/kafka/start-kafka.sh&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;amp;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;1&amp;gt;/var/log/hiveserver.log 2&amp;gt;/var/log/hiveserver.err &amp;amp;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;查看
-kafka-topics.sh --zookeeper djt11:2181 --list&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;创建
-kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;发送消息
-kafka-console-producer.sh --broker-list djt11:9092 --topic test&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;接收消息
-kafka-console-consumer.sh --zookeeper djt11:2181 --topic test --from-beginning&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;查看消费者组的消费情况
-kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper djt11:2181 --group console-consumer-14804&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;验证端口
-lsof -i:2181&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_练习&#34;&gt;1. 练习&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建测试 topic test1
-bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic test1 --partitions 3 --replication-factor 1&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;source env.sh
-sh $KAFKA_HOME/bin/kafka-topics.sh --zookeeper localhost:2181/kt1 --create --topic t1 --partitions 3 --replication-factor 1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;查看topic
-$KAFKA_HOME/bin/kafka-topics.sh --zookeeper vm73:2181/kt1 --describe --topic t1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建个消费者
-KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
-sh $KAFKA_HOME/bin/kafka-console-consumer.sh --zookeeper vm75:2181/kt1 --from-beginning --topic testtopic&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;创建生产者
-KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
-sh $KAFKA_HOME/bin/kafka-console-producer.sh --broker-list vm74:9092,vm75:9092,vm76:9092 --topic t1&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;LIB_HOME=/root/tmp/test/consumer/target/lib
-java -Djava.ext.dirs=$LIB_HOME:$JAVA_HOME/jre/lib/ext dishui.DemoConsumer vm75:2181/kt1 t1 group1 consumer2&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;LIB_HOME=/root/tmp/test/consumer/target/lib
-java -Djava.ext.dirs=$LIB_HOME:$JAVA_HOME/jre/lib/ext guojun.ProducerDemo&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;run-java consumer-1.0-SNAPSHOT.jar lib guojun.ProducerDemo&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
-sh $KAFKA_HOME/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list &#34;vm75:9092&#34; --topic &#34;t1&#34; --time -1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;run-spark&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_window&#34;&gt;2. Window&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;\bin\windows\kafka-topics.bat --zookeeper localhost:2181/kt1 --create --topic t1 --partitions 3 --replication-factor 1&lt;/div&gt;
-&lt;p&gt;source env.sh&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_获取_topic_的_offset&#34; class=&#34;sect0&#34;&gt;获取 topic 的 offset&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list vm28:9092 --topic &#34;t1&#34; --time -1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;time :
-  -1 最大偏移量
-  -2 最小偏移量&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_查看topic消费进度&#34; class=&#34;sect0&#34;&gt;查看topic消费进度&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;这个会显示出consumer group的offset情况， 必须参数为&amp;#8212;&amp;#8203;group， 不指定&amp;#8212;&amp;#8203;topic，默认为所有topic&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Displays the: Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Group&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --group group1 --topic t1 --zookeeper vm26:2181/kt1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;几个问题&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;Producer,Broker,Consumer 的工作模式
-Broker,ZooKeeper 作为后台服务
-Producer,Consumer 作为SDK&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Producer,Consumer 和 Broker 的交互过程
-Producer &amp;#8594; Broker (push)
-特点:
-  Broker 不需要感知 Consumer 的存在
-  如果使用 push 模式, Consumer 处理数据特别慢,会出现 延迟,数据丢失,应用程序压垮
-  pull模式: Consumer 消费多少去拿多少,根据 Consumer 的消费能力去从 Broker 拿数据,避免 Consumer 应用程序被压垮
-  Producer 如何知道有哪些 Broker 的存在,以及对每条消息而言, Producer 如何知道将该条消息发送给哪个 Broker
-  Consumer 如何感知有哪些 Broker 的存在,它需要怎样知道应该从哪个 Broker 去取数据&lt;/p&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Producer 分别去连接三个 Broker , 只要有一个连接成功, 它就可以从 Broker 里去拿到当前活着的整个列表相关的元信息,从而返回给 Producer, 这个时候 Producer 就会知道整个集群有多少个 Broker, 每个 Topic 有多少个 Partition, 每个 Partition 在哪个 Broker 上。 Producer 会将元数据信息存在内存中。
-Producer 刷新元数据信息有两种方式
-  1. Producer 向某个 Broker 发送数据失败，主动出发刷新元数据信息，重新去获取整个集群的元数据信息
-  2. Producer 周期性的刷新缓存的元数据信息
-    刷新周期可以通过 Producer 的配置参数设置&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Consumer -&amp;gt; Broker (pull)
-  如何获取整个 Kafka 集群的元数据信息
-    整个集群的元信息都会存在 ZooKeeper 中， Consumer 连接了 ZooKeeper 集群，就会知道有多少个 Topic
-  Consumer 如何知道从哪个 Broker 上消费数据
-    涉及到 Topic 和 Partition 概念，以及 Consumer ReBalance 概念&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_错误&#34;&gt;1. 错误&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/kafka/2018-05-09_145805.png&#34; alt=&#34;2018 05 09 145805&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>离线计算项目</title>
-      <link>/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/</link>
-      <pubDate>Wed, 27 Sep 2017 09:58:17 +0000</pubDate>
-      
-      <guid>/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;离线计算项目&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_flume&#34;&gt;1. Flume&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_kill_flume&#34;&gt;kill flume&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_interceptor_conf&#34;&gt;interceptor.conf&lt;/a&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_mapper_reducer_编写步骤&#34;&gt;1. Mapper Reducer 编写步骤&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_每天收视的总人数&#34;&gt;每天收视的总人数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_yarn&#34;&gt;yarn&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_创建分区表&#34;&gt;创建分区表&lt;/a&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_节目&#34;&gt;1. 节目&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_频道&#34;&gt;2. 频道&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_count&#34;&gt;3. count&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_flume&#34;&gt;1. Flume&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;rm -rf /home/hadoop/flume/flume-collect/checkpoint/* &amp;amp;&amp;amp; \
-rm -rf /home/hadoop/flume/flume-collect/dataDir/*&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/agg.conf &amp;gt; ~/log/flume/${HOSTNAME}-flume.log 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/collect.conf &amp;gt; ~/log/flume/${HOSTNAME}-flume.log 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_kill_flume&#34; class=&#34;sect0&#34;&gt;kill flume&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat ~/log/flume/pid | xargs -I pid kill pid&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/spool.conf &amp;gt; ~/log/flume/djt11-flume.log -Dflume.root.logger=INFO,console 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_interceptor_conf&#34; class=&#34;sect0&#34;&gt;interceptor.conf&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/interceptor.conf &amp;gt; ~/log/flume/djt11-flume.log -Dflume.root.logger=INFO,console 2&amp;gt;&amp;amp;1 &amp;amp; echo $! &amp;gt; ~/log/flume/pid&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;echo &#34;&#34; &amp;gt; ~/log/flume/$HOSTNAME-flume.log
-tail -f ~/log/flume/${HOSTNAME}-flume.log&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;tail -f ~/log/flume/djt12-flume.log&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;tail -f ~/log/flume/djt13-flume.log&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;mount -t nfs 192.168.137.2:/e/djt /home/hadoop/share&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_mapper_reducer_编写步骤&#34;&gt;1. Mapper Reducer 编写步骤&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;创建Configuration&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;job实例&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;设置输出key value分隔符&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;setJar&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;setMapper&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;setOutputKey&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;setOutputValue
-.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;cat deploy.conf|grep -v &#39;^#&#39;|grep &#39;,all,&#39;|awk -F&#39;,&#39; &#39;{print $1}&#39;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;flume 采集 小文件  sink 到 hdfs 中, 会不会一个小文件一个block块&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;stbNum + &#34;@&#34; + date + &#34;@&#34; + sn + &#34;@&#34; + p+ &#34;@&#34; + s + &#34;@&#34; + e + &#34;@&#34;
-            // + duration&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;stbNum      机顶盒
-date        日期
-sn          频道
-p           节目内容
-s           起始时间
-e           结束时间
-duration    收看时长&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;每个节目每天的收视人数和人均收视时长&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sn@date&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;收视人数&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sum(stbNum)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;mount -t nfs 192.168.137.2:/e/djt /home/hadoop/share&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;mkdir -p /home/hadoop/data/flume/{checkpoint,dataDir}&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sh $TOOLS_HOME/flume/start-flume.sh
-sh $TOOLS_HOME/flume/stop-flume.sh&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;tail -f $LOG_HOME/flume/${HOSTNAME}-flume.log&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;java -cp tv-1.0-jar-with-dependencies.jar io.dishui.upload.CopyManyFilesToHDFS &#34;hdfs://djt11:9000&#34; &#34;E:\\djt\\resource\\guangdian\\73\\*&#34; &#34;hdfs://djt11:9000/tv/&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop jar tv-1.0.jar io.dishui.tv.reducer.ParseAndFilterLog&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
---class ParseAndFilterLog \
---master spark://djt11:7077 \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 1g \
---total-executor-cores 4 \
-spark-1.0-jar-with-dependencies.jar \
-hdfs://cluster1/tv/* \
-hdfs://cluster1/output/spark-output-3&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark.files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml&lt;/a&gt; &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;查看文件的block块数
-hadoop fsck /tv/2012-09-17 -files -blocks&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
---class ParseAndFilterLog \
---master spark://djt11:7077 \
---executor-memory 1g \
---total-executor-cores 2 \
-spark-1.0-jar-with-dependencies.jar \
-hdfs://cluster1/tv/* \
-hdfs://cluster1/output/spark-output-1&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_每天收视的总人数&#34; class=&#34;sect0&#34;&gt;每天收视的总人数&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop jar tv-1.0-jar-with-dependencies.jar io.dishui.my.extract.ProgramNumAndTime \
-/output/spark-output-3/* /output/ProgramNumAndTime-output&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hdfs dfs -cat /output/ProgramNumAndTime-output/* | wc -l&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
---class ProgramNumAndTime \
---master spark://djt11:7077 \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 1g \
---total-executor-cores 4 \
-spark-1.0-jar-with-dependencies.jar \
-hdfs://cluster1/output/spark-output-3/* \
-hdfs://cluster1/output/spark-ProgramNumAndTime-output&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_yarn&#34; class=&#34;sect0&#34;&gt;yarn&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sh $SPARK_HOME/bin/spark-submit \
---class extract.ProgramAvgAndReachNum \
---master yarn \
---deploy-mode client \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 1g \
---total-executor-cores 4 \
-spark-1.0-jar-with-dependencies.jar \
-hdfs://cluster1/guangdian/2012-09-18/parselog-out/* \
-hdfs://cluster1/output/spark-ProgramAvgAndReachNum-output&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hdfs dfs -cat /output/spark-ProgramNumAndTime-output2/* | wc -l&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop jar guangdian.jar io.dishui.tv.reducer.ParseAndFilterLog /tv/2012-09-17 /tmp&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;io.dishui.tv.reducer.ParseAndFilterLog&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_创建分区表&#34; class=&#34;sect0&#34;&gt;创建分区表&lt;/h1&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_节目&#34;&gt;1. 节目&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;columnlog_min&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_min(
-    tvcolumn STRING COMMENT &#39;节目&#39;,
-    tvtime STRING COMMENT &#39;日期&#39;,
-    tvmin STRING COMMENT &#39;分钟&#39;,
-    avgnum INT COMMENT &#39;平均收视人数&#39;,
-    reachnum INT COMMENT &#39;到达人数&#39;,
-    tvrating DOUBLE COMMENT &#39;收视率&#39;,
-    reachrating DOUBLE COMMENT &#39;到达率&#39;,
-    marketshare DOUBLE COMMENT &#39;市场份额&#39;
-) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_hour LIKE columnlog_min;
-CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_day LIKE columnlog_min;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_频道&#34;&gt;2. 频道&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS channellog_min(
-    tvchannel STRING COMMENT &#39;节目&#39;,
-    tvtime STRING COMMENT &#39;日期&#39;,
-    tvmin STRING COMMENT &#39;分钟&#39;,
-    avgnum INT COMMENT &#39;平均收视人数&#39;,
-    reachnum INT COMMENT &#39;到达人数&#39;,
-    tvrating DOUBLE COMMENT &#39;收视率&#39;,
-    reachrating DOUBLE COMMENT &#39;到达率&#39;,
-    marketshare DOUBLE COMMENT &#39;市场份额&#39;
-) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS channellog_hour LIKE channellog_min;
-CREATE EXTERNAL TABLE IF NOT EXISTS channellog_day LIKE channellog_min;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_count&#34;&gt;3. count&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;columnlog_count&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_count(
-    tvcolumn STRING COMMENT &#39;节目&#39;,
-    tvtime STRING COMMENT &#39;日期&#39;,
-    num STRING COMMENT &#39;每天收视人数&#39;,
-    avg_timelen INT COMMENT &#39;平均收视时长&#39;,
-) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;channellog_count&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS channellog_count(
-    tvchannel STRING COMMENT &#39;频道&#39;,
-    tvtime STRING COMMENT &#39;日期&#39;,
-    num STRING COMMENT &#39;每天收视人数&#39;,
-    avg_timelen INT COMMENT &#39;平均收视时长&#39;,
-) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/guangdian_ext&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;truncate table columnlog_min;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS test_columnlog_min2(
-    tvcolumn STRING COMMENT &#39;节目&#39;,
-    tvdate1 STRING ,
-    tvmin STRING COMMENT &#39;分钟&#39;,
-    avgnum INT COMMENT &#39;平均收视人数&#39;,
-    reachnum INT COMMENT &#39;到达人数&#39;,
-    tvrating DOUBLE COMMENT &#39;收视率&#39;,
-    reachrating DOUBLE COMMENT &#39;到达率&#39;,
-    marketshare DOUBLE COMMENT &#39;市场份额&#39;
-) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/test_guangdian_ext&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select * from test_columnlog_min1 where tvdate=&#39;2012-09-20&#39; limit 5&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;alter table test_columnlog_min2 add partition (tvdate=&#39;2012-09-20&#39;);&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select * from test_columnlog_min2 limit 5;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS test1(
-    tvcolumn STRING COMMENT &#39;节目&#39;,
-    tvmin STRING COMMENT &#39;分钟&#39;
-) PARTITIONED BY (tvdate STRING COMMENT &#39;日期&#39;)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/test_ext&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CREATE EXTERNAL TABLE IF NOT EXISTS test2(
-    tvcolumn STRING COMMENT &#39;节目&#39;,
-    tvdate STRING COMMENT &#39;日期&#39;,
-    tvmin STRING COMMENT &#39;分钟&#39;
-)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;@&#39;
-STORED AS TEXTFILE
-LOCATION &#39;/test_ext2&#39;;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;DJT_TV_OUTPUT=/guangdian
-startdate=2012-09-17&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hive -e &#34;
-load data inpath &#39;${DJT_TV_OUTPUT}/${startdate}/programRating-out/&#39; into table columnlog_min partition(tvdate=&#39;${startdate}&#39;);
-exit;
-&#34;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;load data inpath &#39;/guangdian/2012-09-20/programRating-out/&#39; into table test_columnlog_min1 partition(tvdate=&#39;2012-09-20&#39;);&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;load data inpath &#39;/test_guangdian_ext/tvdate=2012-09-20&#39; into table test_columnlog_min1 partition(tvdate=&#39;2012-09-20&#39;);&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;startdate 2012-09-17
-enddate 2012-09-20&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select tvcolumn,tvdate1,concat(substr(tvmin,0,2),&#39;:00&#39;),sum(avgnum)/count(&lt;strong&gt;),sum(reachnum)/count(&lt;/strong&gt;),sum(tvrating)/count(&lt;strong&gt;),sum(reachrating)/count(&lt;/strong&gt;),sum(marketshare)/count(*) from test_columnlog_min2 where tvdate=&#39;2012-09-20&#39; group by  tvcolumn, tvdate1, concat(substr(tvmin,0,2),&#39;:00&#39;) limit 5;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;(&#34;cat&#34;, (1,2)), (&#34;cat&#34;, (1,5)), (&#34;mouse&#34;, (1,4)), (&#34;cat&#34;, (11,2)), (&#34;dog&#34;, (11,2)), (&#34;mouse&#34;,(1, 2))&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark 调优  spark sql 调优 方面的&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop jar guangdian.jar io.dishui.tv.mapper.ExtractChannelNumAndTimelen ${DJT_TV_OUTPUT}/${startdate}/parselog-out/  ${DJT_TV_OUTPUT}/${startdate}/channelNumAndTimelen-out&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark-submit \
---class extract.ProgramAvgAndReachNum \
---master yarn \
---deploy-mode client \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 1g \
---total-executor-cores 2 \
-spark-1.0-jar-with-dependencies.jar \
-${DJT_TV_OUTPUT}/${startdate}/parselog-out/ \
-${DJT_TV_OUTPUT}/${startdate}/channelNumAndTimelen-out&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark-submit \
---class extract.CurrentNum \
---master yarn \
---deploy-mode cluster \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 512m \
---total-executor-cores 2 \
-guangdian-spark.jar \
-/guangdian-spark/2012-09-17/parselog-out \
-/guangdian-spark/2012-09-17/extractCurrentNum-out&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark-submit \
---class extract.AnalyzeCountProgramRating \
---master yarn \
---deploy-mode cluster \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 1g \
---total-executor-cores 2 \
-guangdian-spark.jar \
-/guangdian-spark/2012-09-17/programAvgAndReach-out/ \
-/guangdian-spark/2012-09-17/programRating-out \
-/guangdian-spark/2012-09-17/extractCurrentNum-out/&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark-submit \
---class extract.AnalyzeCountProgramRating \
---master spark://djt11:7077 \
---files &lt;a href=&#34;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&#34; class=&#34;bare&#34;&gt;file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml&lt;/a&gt; \
---executor-memory 1g \
---total-executor-cores 2 \
-guangdian-spark.jar \
-/guangdian-spark/2012-09-17/programAvgAndReach-out/ \
-/guangdian-spark/2012-09-17/programRating-out \
-/guangdian-spark/2012-09-17/extractCurrentNum-out/&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>问题总结</title>
-      <link>/post/bigdata/%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Tue, 19 Sep 2017 08:32:40 +0000</pubDate>
-      
-      <guid>/post/bigdata/%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;spark&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_hbase&#34;&gt;1. Hbase&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_hbase&#34;&gt;1. Hbase&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;单节点启动 只有 HMaster 进程&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>机器学习与数学基础</title>
-      <link>/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Sun, 27 Aug 2017 12:52:28 +0000</pubDate>
-      
-      <guid>/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;机器学习与数学基础&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_不明白&#34;&gt;1. 不明白&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_不明白&#34;&gt;1. 不明白&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;协方差&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>SparkSql</title>
-      <link>/post/bigdata/spark/spark-sql2/</link>
-      <pubDate>Fri, 11 Aug 2017 14:43:47 +0000</pubDate>
-      
-      <guid>/post/bigdata/spark/spark-sql2/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;SparkSql2&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_spark_sql2&#34;&gt;1. Spark SQL2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_内置函数&#34;&gt;2. 内置函数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_列名特殊字符处理&#34;&gt;3. 列名特殊字符处理&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_spark_sql2&#34;&gt;1. Spark SQL2&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;org.apache.spark.sql.SparkSession#sql
-  org.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_内置函数&#34;&gt;2. 内置函数&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;floor&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/&#34; class=&#34;bare&#34;&gt;https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SessionCalalog 用于管理表和数据库状态的内部目录
-Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;AbstractSqlParser
-SparkSqlParser&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sparkSession.sql(&#34;SELECT * FROM global_temp.people&#34;)
-  org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlan
-    org.apache.spark.sql.execution.SparkSqlParser#parse
-      org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SqlBaseLexer   词法分析
-ANTLRNoCaseStringStream
-CommonTokenStream
-SqlBaseParser&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Analyzer&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;def sql(sqlText: String): DataFrame = {
-  Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))
-}&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;sessionState.sqlParser.parsePlan(sqlText) -&amp;gt; unresolved logical plan&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;SparkSql-1.0
-    org.apache.spark.sql.SQLContext#sql&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/oopsoom/article/details/37658021&#34;&gt;Spark SQL源码分析之核心流程&lt;/a&gt;
-&lt;a href=&#34;http://blog.csdn.net/dc_726/article/details/45399371&#34;&gt;Antlr v4入门教程和实例&lt;/a&gt;
-&lt;a href=&#34;http://www.jianshu.com/p/0aa4b1caac2e&#34; class=&#34;bare&#34;&gt;http://www.jianshu.com/p/0aa4b1caac2e&lt;/a&gt;
-&lt;a href=&#34;https://liuxiaofei.com.cn/blog/sql-execute-spark/&#34; class=&#34;bare&#34;&gt;https://liuxiaofei.com.cn/blog/sql-execute-spark/&lt;/a&gt;
-&lt;a href=&#34;https://docs.databricks.com/spark/latest/spark-sql/language-manual/create-table.html&#34; class=&#34;bare&#34;&gt;https://docs.databricks.com/spark/latest/spark-sql/language-manual/create-table.html&lt;/a&gt;
-&lt;a href=&#34;http://www.jasongj.com/&#34; class=&#34;bare&#34;&gt;http://www.jasongj.com/&lt;/a&gt;
-&lt;a href=&#34;https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html&#34;&gt;在spark sql中引入窗口函数&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;https://people.apache.org/~pwendell/spark-nightly/spark-master-docs/latest/api/sql/&#34;&gt;spark sql 函数&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.aboutyun.com/thread-23803-1-1.html&#34;&gt;spark sql 自适应体系&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_列名特殊字符处理&#34;&gt;3. 列名特殊字符处理&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;select e.&lt;code&gt;UL_lost&amp;gt;1%&lt;/code&gt; from employee as e&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Hive 数据类型&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;分类  类型  描述  字面量示例
-原始类型  BOOLEAN true/false  TRUE
-TINYINT 1字节的有符号整数 -128~127  1Y
-SMALLINT  2个字节的有符号整数，-32768~32767 1S
-INT 4个字节的带符号整数  1
-BIGINT  8字节带符号整数  1L
-FLOAT 4字节单精度浮点数1.0
-DOUBLE  8字节双精度浮点数 1.0
-DEICIMAL  任意精度的带符号小数  1.0
-STRING  字符串，变长  “a”,’b’
-VARCHAR 变长字符串 “a”,’b’
-CHAR  固定长度字符串 “a”,’b’
-BINARY  字节数组  无法表示
-TIMESTAMP 时间戳，纳秒精度  122327493795
-DATE  日期  ‘2016-03-29’
-复杂类型  ARRAY 有序的的同类型的集合  array(1,2)
-MAP key-value,key必须为原始类型，value可以任意类型  map(‘a’,1,’b’,2)
-STRUCT  字段集合,类型可以不同 struct(‘1’,1,1.0), named_stract(‘col1’,’1’,’col2’,1,’clo3’,1.0)
-UNION 在有限取值范围内的一个值  create_union(1,’a’,63)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Spark 数据类型&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;数值类型
-ByteType : 表示 1 字节长的有符号整型，数值范围 : -128 到 127。
-ShortType : 表示 2 字节长的有符号整型，数值范围 : -32768 到 32767。
-IntegerType : 表示 4 字节长的有符号整型，数值范围 : -2147483648 到 2147483647。
-LongType : 表示 8 字节长的有符号整型，数值范围 : -9223372036854775808 到 9223372036854775807。
-FloatType : 表示 4 字节长的单精度浮点数。
-DoubleType : 表示 8 字节长的双精度浮点数。
-DecimalType : 表示任意精度有符号带小数的数值。内部使用 java.math.BigDecimal，一个BigDecimal 由一个任意精度的整数非标度值和一个 32 位的整数标度 (scale) 组成。
-字符串类型&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;StringType : 表示字符串值&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;二进制类型
-BinaryType : 表示字节序列值
-布尔类型
-BooleanType : 表示布尔值
-日期类型
-TimestampType : 表示包含年月日、时分秒等字段的日期值
-DateType : 表示包含年月日字段的日期值
-Complex types（复杂类型）
- ArrayType(elementType, containsNull) : 数组类型，表示一个由类型为 elementType 的元素组成的序列，containsNull 用来表示 ArrayType 中的元素是否能为 null 值。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;MapType(keyType, valueType, valueContainsNull) : 映射类型，表示一个键值对的集合。键的类型由 keyType 表示，值的类型则由 valueType 表示。对于一个 MapType 值，键是不允许为 null值。valueContainsNull 用来表示一个 MapType 的值是否能为 null 值。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;StructType(fields) : 表示由 StructField 序列描述的结构。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;StructField(name, datatype, nullable) : 表示 StructType 中的一个字段，name 表示字段名，datatype 是字段的数据类型，nullable 用来表示该字段是否可以为空值。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;对应关系&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Hive          Spark             Mysql&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;TINYINT      ByteType         int(11)
-SMALLINT     ShortType        int(11)
-INT          IntegerType      int(11)
-BIGINT       LongType         bigint(20)
-FLOAT        FloatType        float
-DOUBLE       DoubleType       NUMERIC(20,2)
-DEICIMAL     DecimalType      DECIMAL(19,4)
-STRING       StringType       varchar(60)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;BINARY       BinaryType
-TIMESTAMP    TimestampType
-DATE         DateType&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://cwiki.apachecn.org/pages/viewpage.action?pageId=2886757&#34; class=&#34;bare&#34;&gt;http://cwiki.apachecn.org/pages/viewpage.action?pageId=2886757&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 30 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;15*5&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;24M
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 2 --num-executors 1 --conf spark.sql.shuffle.partitions=5&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;58M&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;每小时 20s&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=10&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 15 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;1G 270s
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=10&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;298s
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=30&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;232s
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=30&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;279s
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=10&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;mw
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sv&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;drop&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 20 --conf spark.sql.shuffle.partitions=50&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;srvcc&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;widetable
---master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>SparkSql</title>
-      <link>/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/</link>
-      <pubDate>Fri, 11 Aug 2017 14:43:47 +0000</pubDate>
-      
-      <guid>/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;SparkSql2&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_spark_sql2&#34;&gt;1. Spark SQL2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_spark_sql2&#34;&gt;1. Spark SQL2&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;逻辑查询计划图
-物理查询计划
-任务调度
-任务分布式执行&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;前三个阶段 driver端完成&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;逻辑执行图
-    完全依赖
-        新生成的RDD的每个Partition完全依赖前一个依赖的某一个Partition
-    部分依赖
-        shuffle
-        新生成的RDD的每一个Partition的部分数据完全依赖前一个依赖的某一个Partition的部分数据&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;一对一 全依赖
-map filter flatMap&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;部分依赖   shuffle Rdd
-groupByKey
-reduceByKey&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;物理查询计划&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;划分 stage  以 shuffle 划分&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;每一个stage会产生 多个 task
-将尽可能多的
-不是一个partition一个task&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;几个Action 几个Job&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;一个job 多个stage&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;每个 stage 有很多个 task&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;每个 executer -&amp;#8594; process(进程) -&amp;#8594; task(线程)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;shuffle task 瓶颈所在  网络瓶颈&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;groupByKey -&amp;#8594; 新的RDD
-    shuffle RDD&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;reduceByKey
-    两种 RDD&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;spark historyserver 配置与启动&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.log-aggregation-enable&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;
-&amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.log.server.url&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;http://master:19888/jobhistory/logs&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;sc.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

@@ -100,15 +100,14 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						kafka1. 练习2. Window获取 topic 的 offset查看topic消费进度1. 错误启动
+						kafka1. 练习2. Windowkafka 0.10.0.11. 启动windowsgroup 消费的偏移量获取 topic 的 offset查看topic消费进度1. 错误启动
 sh $TOOLS_HOME/kafka/start-kafka.sh
 nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
 1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;
 查看kafka-topics.sh --zookeeper djt11:2181 --list
 创建kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test
 发送消息kafka-console-producer.sh --broker-list djt11:9092 --topic test
-接收消息kafka-console-consumer.sh --zookeeper djt11:2181 --topic test --from-beginning
-查看消费者组的消费情况kafka-run-class.
+接收消息kafka-console-consumer.
 					</div>
 				</div>
 			</div>
@@ -377,6 +376,8 @@ hadoop fs -mkdir -p /wordcount/input
 		
 		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
 		
+		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
+		
 		<li class="cat-item"><a href="/categories/go">Go</a></li>
 		
 		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
@@ -405,6 +406,8 @@ hadoop fs -mkdir -p /wordcount/input
 		
 		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
 		
+		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
+		
 		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
 		
 	</ul>
@@ -425,11 +428,7 @@ hadoop fs -mkdir -p /wordcount/input
 		
 			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
 		
-			<a href="/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
-		
 			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
 		
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
 		

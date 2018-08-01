@@ -76,7 +76,7 @@ if __name__ == '__main__':
         with open(file_path, 'w') as f:
             for i in range(num):
                 data = {
-                    'id' : fake.random_int(min=0, max=9999),
+                    'id' : fake.random_int(min=0, max=20),
                     'name' : random_name(),
                     'phone_number' : random_phone_number(),
                     'address' : random_address(),

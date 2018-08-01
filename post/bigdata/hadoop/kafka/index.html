@@ -7,15 +7,14 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="kafka" />
-<meta property="og:description" content="kafka1. 练习2. Window获取 topic 的 offset查看topic消费进度1. 错误启动
+<meta property="og:description" content="kafka1. 练习2. Windowkafka 0.10.0.11. 启动windowsgroup 消费的偏移量获取 topic 的 offset查看topic消费进度1. 错误启动
 sh $TOOLS_HOME/kafka/start-kafka.sh
 nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
 1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;
 查看kafka-topics.sh --zookeeper djt11:2181 --list
 创建kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test
 发送消息kafka-console-producer.sh --broker-list djt11:9092 --topic test
-接收消息kafka-console-consumer.sh --zookeeper djt11:2181 --topic test --from-beginning
-查看消费者组的消费情况kafka-run-class." />
+接收消息kafka-console-consumer." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/hadoop/kafka/" />
 
@@ -106,6 +105,13 @@
 <ul class="sectlevel1">
 <li><a href="#_练习">1. 练习</a></li>
 <li><a href="#_window">2. Window</a></li>
+<li><a href="#_kafka_0_10_0_1">kafka 0.10.0.1</a>
+<ul class="sectlevel1">
+<li><a href="#_启动">1. 启动</a></li>
+</ul>
+</li>
+<li><a href="#_windows">windows</a></li>
+<li><a href="#_group_消费的偏移量">group 消费的偏移量</a></li>
 <li><a href="#_获取_topic_的_offset">获取 topic 的 offset</a></li>
 <li><a href="#_查看topic消费进度">查看topic消费进度</a>
 <ul class="sectlevel1">
@@ -218,14 +224,28 @@ sh $KAFKA_HOME/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list "
 <div class="sect1">
 <h2 id="_window">2. Window</h2>
 <div class="sectionbody">
+
+</div>
+</div>
+<h1 id="_kafka_0_10_0_1" class="sect0">kafka 0.10.0.1</h1>
+<div class="sect1">
+<h2 id="_启动">1. 启动</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <div class="title">\bin\windows\kafka-topics.bat --zookeeper localhost:2181/kt1 --create --topic t1 --partitions 3 --replication-factor 1</div>
-<p>source env.sh</p>
+<p>start .\zookeeper-server-start.bat ..\..\config\zookeeper.properties
+start .\kafka-server-start.bat ..\..\config\server.properties
+start .\kafka-server-start.bat ..\..\config\server2.properties</p>
 </div>
 </div>
 </div>
+<h1 id="_windows" class="sect0">windows</h1>
+
+<h1 id="_group_消费的偏移量" class="sect0">group 消费的偏移量</h1>
+
 <h1 id="_获取_topic_的_offset" class="sect0">获取 topic 的 offset</h1>
 <div class="paragraph">
+<div class="title">\kafka-run-class.bat kafka.tools.ConsumerOffsetChecker --group spark-consumer-1 --topic wordcountt2 --zookeeper localhost:2181/kt1</div>
 <p>kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list vm28:9092 --topic "t1" --time -1</p>
 </div>
 <div class="paragraph">

@@ -91,6 +91,211 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/mysqlcuo_wu/" rel="bookmark">Mysql错误</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						 Mysql错误 MySQL Daemon failed to start.  bash #查看mysql日志 less /var/log/mysqld.log  unknown variable 'default-character-set=utf8'  用character_set_server=utf8来取代 default-character-set=utf8   Cannot load from mysql.proc. The table is probably corrupted # use mysql; # ALTER TABLE `proc` MODIFY COLUMN `comment` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL AFTER `sql_mode`;  
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/nfsjian_1/" rel="bookmark">NFS配置</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents
+NFS配置 ####一、 系统环境
+系统平台：CentOS 6.5 NFS Server IP：192.168.137.101 防火墙已关闭/iptables: Firewall is not running.  ####二、 安装NFS服务
+ 查看系统是否已安装NFS(系统默认安装)  bash [root@c1 tmp]# rpm -qa|grep nfs nfs-utils-lib-1.1.5-6.el6.i686 nfs4-acl-tools-0.3.3-6.el6.i686 nfs-utils-1.2.3-39.el6.i686    ####三、 NFS服务器的配置
+NFS服务器的配置相对比较简单，只需要在相应的配置文件中进行设置，然后启动NFS服务器即可。
+NFS的常用目录
+/etc/exports NFS服务的主要配置文件 /usr/sbin/exportfs NFS服务的管理命令 /usr/sbin/showmount 客户端的查看命令 /var/lib/nfs/etab 记录NFS分享出来的目录的完整权限设定值 /var/lib/nfs/xtab 记录曾经登录过的客户端信息  NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。
+/etc/exports文件内容格式：
+&lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]  a. 输出目录：
+输出目录是指NFS系统中需要共享给客户机使用的目录；  b. 客户端：
+客户端是指网络中可以访问这个NFS输出目录的计算机
+客户端常用的指定方式
+指定ip地址的主机：192.168.0.200 指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0 指定域名的主机：david.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/nagios/" rel="bookmark">Nagios</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Nagios1.1. 马哥 Nagios基础和入门配置1. Nagios1.1. 马哥 Nagios基础和入门配置安装依赖 yum grouplist #查看 Development Tools 是否安装yum -y install httpd php mysql-devel php-mysql添加nagios运行所需要的用户和组
+groupadd nagcmduseradd -G nagcmd nagios把apache加入到nagcmd组,以便于在通过web Interface操作nagios时有足够的权限
+usermod -a -G nagcmd apache编译安装nagios
+date 0710103216 # 0710-月份 1031-时间 16-年./configure --help #查看帮助.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/nginx/" rel="bookmark">Nginx 安装配置</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents
+nginx 平台为：rhel 6.4/CentOS-6.5 32bit
+一、安装Nginx： 1、解决依赖关系 # 方法1 yum groupinstall &quot;Development Tools&quot; &quot;Server Platform Deveopment&quot; yum install openssl-devel pcre-devel # 方法2 #安装make yum -y install gcc automake autoconf libtool make #安装g++ yum -y install gcc gcc-c++ #安装pcre yum install openssl-devel pcre-devel  2、安装  首先添加用户nginx，实现以之运行nginx服务进程：
+# groupadd -r nginx # useradd -r -g nginx nginx  接着开始编译和安装：
+# ./configure \ --prefix=/usr \ --sbin-path=/usr/sbin/nginx \ --conf-path=/etc/nginx/nginx.conf \ --error-log-path=/var/log/nginx/error.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/rancher/" rel="bookmark">Rancher</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Rancher1. rancher/storage-nfs1.1. 配置CoreOS nfs service1.2. 启动 Rancher Server1.2.1. docker 方式启动1.2.2. compose 方式启动1.2.3. Rancher NFS 配置1.3. maxscale-mysql2. 镜像2.1. push rancher相关镜像到 registry2.2. rancher-agent 拉取镜像2.3. 参考3. Rancher Cli API1. rancher/storage-nfs1.1. 配置CoreOS nfs serviceimage 安装 sudo vi /var/lib/coreos-install/user_datavagrant 安装 # sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data#cloud-configcoreos:units:- name: "
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/redis/" rel="bookmark">Redis</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Redis1.1. 命令1.2. 配置文件1.3. Codis1.4. 参考1. Redis1.1. 命令删除所有 key
+redis-cli keys "*" | xargs redis-cli del1.2. 配置文件redis.conf# appendfsync always#每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用appendfsync everysec#每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐# appendfsync no #完全依赖os，性能最好,持久化没保证1.3. Codisgolang 版本
+go1.6.linux-amd64.tar.gz环境变量
+# vi ~/.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/iocxml_md/" rel="bookmark">Spring IOC</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						IOC_xml Spring IoC  由spring管理,生成的类
+  Interface 生成出来的类实现的接口列表  org.springframework.aop.SpringProxy org.springframework.aop.framework.Advised package.user_interfaces(用户自定义实现的接口) CgLib :    BeanDefination
+ 解析applicationContext.xml   instantiateBean : bean实例化
+  设置接口 public static Set&lt;Class&gt; getAllInterfacesForClassAsSet(Class clazz, ClassLoader classLoader) { Assert.notNull(clazz, &quot;Class must not be null&quot;); if (clazz.isInterface() &amp;&amp; isVisible(clazz, classLoader)) { return Collections.singleton(clazz); } Set&lt;Class&gt; interfaces = new LinkedHashSet&lt;Class&gt;(); while (clazz != null) { Class&lt;?&gt;[] ifcs = clazz.getInterfaces(); for (Class&lt;?&gt; ifc : ifcs) { interfaces.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/spring-conf/" rel="bookmark">Spring 配置文件</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. applicationContext.xml1. applicationContext.xml== spring-mvc-back.xml```xml:/src/conf/spring/spring-mvc-back.xml```== spring-mvc-front.xml```xml:/src/conf/spring/spring-mvc-front.xml```== 注解```xml:/src/conf/spring/conf/anotation.xml```== ibatis```xml:/src/conf/spring/conf/ibatis.xml```== jdbc```xml:/src/conf/spring/conf/jdbc.xml```== property```xml:/src/conf/spring/conf/property.xml```== 事务```xml:/src/conf/spring/conf/transaction.xml```
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/mvcxml_md/" rel="bookmark">SpringMVC</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						MVC_xml springmvc.xml &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd &quot;&gt; &lt;!-- 配置式开发开始=========================================== --&gt; &lt;!-- 处理器 映射器 &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt; --&gt; &lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt; &lt;!-- 集中管理Url --&gt; &lt;property name=&quot;mappings&quot;&gt; &lt;props&gt; &lt;prop key=&quot;/items1.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items2.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items3.action &quot;&gt;items1Controller&lt;/prop&gt; &lt;/props&gt; &lt;/property&gt; &lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现Controller接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现HttpRequestHandler接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 视图解释器 jspViewResolver 默认支持 jstl --&gt; &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt; &lt;!
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/vagrant/" rel="bookmark">Vagrant常用命令</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -106,211 +311,13 @@
 			</div>
 		</article>
 		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/alpine/" rel="bookmark">alpine</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. gollum 安装2. 安装软件2.1. 安装 PlantUML1. gollum 安装安装ruby
-sudo apk --update add ruby ruby-nokogiri ruby-rdoc build-base ruby-dev icu-dev zlib-dev git安装gollum
-sudo gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/sudo gem install gollum github-markdown asciidoctor pygments.rb --no-ri --no-rdoc局域网访问慢
-sudo vi /usr/lib/ruby/2.2.0/webrick/config.rb#第 36 行：:DoNotReverseLookup =&gt; nil,:DoNotReverseLookup =&gt; true开机自启动(Adding a custom service to rc-service)
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/awk/" rel="bookmark">awk</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. AWK1.1. 去除重复行1.2. ps 查询进程1. AWK1.1. 去除重复行awk '!a[$0]++' test-ins-2.txtcat arg.txt | awk -F '.' '{if($NF ~ "java"){print $0}}' | xargs -I t dirname t | awk '!a[$0]++' | xargs -I s ls s | awk '{print $1}' | awk -F'.' '{if($1 ~ /\$/){print $1}}'1.2. ps 查询进程ps -ef|grep varnish | awk '{if($1 ~ "
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/bug/" rel="bookmark">bug</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						我的店铺&#8212;&#8203;添加商品&#8212;&#8203;添加商品属性出库地址和销售区域 是选择的 不是填写的
-SELECTmpa.product_id,IFNULL(tranAddr (MAX(CASEmpa.attr_nameWHEN '销售地区'THEN mpa.attr_valueELSE NULLEND),'-'),CAST(mpa.attr_value AS CHAR(12))) sale_region,MAX(CASEmpa.attr_nameWHEN '出库地区'THEN tranAddr(mpa.attr_value,'-')ELSE NULLEND) repository_region,FROMmlq_product_attr mpaWHERE mpa.product_id = '201610261142512'
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/docker-ref/" rel="bookmark">docker 参考</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						[[docker format | https://docs.docker.com/engine/admin/formatting/]]
-[[容器界大事件：深度解析 containerd | https://yq.aliyun.com/articles/66626]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/docker-compose/" rel="bookmark">docker-compose</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						docker-compose1. docker-compose2. Docker+Docker-Compose+Zookeeper 集群搭建2.1. 环境2.2. docker-compose2.3. pipework2.4. zookeeper 集群2.5. docker-compose3. Docker Registry3.1. 配置3.1.1. registry server3.1.2. docker client端3.2. compose 文件3.3. api3.4. 参考3.5. Q &amp; A1. docker-compose参考 docker-compose.yml 
-CoreOS 安装 docker-compose 
-docker-compose 
-compose-file
-http://dockone.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/es/elasticsearch-jdbc-importer/" rel="bookmark">elasticsearch-jdbc-importer</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						elasticsearch-jdbc-importer mysql数据导入elasticsearch  设置映射 json PUT /b2b { &quot;settings&quot;: { &quot;number_of_replicas&quot;: &quot;1&quot;, &quot;number_of_shards&quot;: &quot;1&quot; }, &quot;mappings&quot;: { &quot;mlq_goods&quot;: { &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;category&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;cat_code&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;mmseg&quot; }, &quot;brand_name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;brand_name_noa&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;new_seller_nick&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;goods_status&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;title&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; } } }, &quot;mlq_product&quot;: { &quot;_parent&quot;: { &quot;type&quot;: &quot;mlq_goods&quot; }, &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;sale_region&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;repository_region&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; }, &quot;product_name_noa&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }, &quot;product_name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;: &quot;yes&quot;, &quot;index&quot;: &quot;analyzed&quot;, &quot;analyzer&quot;: &quot;ik&quot; } } } } }  import导入文件 bash #!
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/es/es-snippet/" rel="bookmark">es 代码片段</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents es-snippet new snippets  索引分片设置 json PUT /b2b { &quot;settings&quot;:{ &quot;number_of_shards&quot;:1, &quot;number_of_replicas&quot;:1 } } //查询b2b分片信息 GET /b2b/_settings   mlq_goods  mlq_goods的mapping设置 json PUT /b2b/mlq_goods/_mapping { &quot;mlq_goods&quot;:{ &quot;properties&quot;: { &quot;id&quot;: { &quot;type&quot;:&quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;not_analyzed&quot; }, &quot;title&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;store&quot;:&quot;yes&quot;, &quot;index&quot;:&quot;analyzed&quot;, &quot;analyzer&quot;:&quot;ik_analyzer&quot; } } } } //查询mlq_goods的mapping信息 GET /b2b/mlq_goods/_mapping  从数据库导入mlq_goods表到ES配置信息 json PUT /_river/mlq_goods/_meta { &quot;type&quot; : &quot;jdbc&quot;, &quot;jdbc&quot; : { &quot;url&quot; : &quot;jdbc:mysql://localhost:3306/b2b&quot;, &quot;user&quot; : &quot;root&quot;, &quot;password&quot; : &quot;111111&quot;, &quot;sql&quot; : &quot;SELECT mg.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/es/es-book-note/" rel="bookmark">es 基础</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						include::content/post/base.adoc[] :toc-title: Contents
-ES-book-note 1、基本查询  词条查询
-   json { &quot;query&quot;:{ &quot;term&quot;:{ &quot;title&quot;:{ &quot;value&quot;:&quot;crime&quot; } } } }    多词条查询
-   json { &quot;query&quot;:{ &quot;terms&quot;:{ //novel,book 字段 &quot;tags&quot;:[&quot;novel&quot;,&quot;book&quot;], //至少一条需要匹配 &quot;minimum_match&quot;:1 } } }    match_all 查询
-   json { &quot;query&quot;:{ &quot;match_all&quot;:{ } } }    常用词查询
-   json { &quot;query&quot;:{ &quot;common&quot;:{ &quot;title&quot;:{ &quot;query&quot;:&quot;crime and punishment&quot;, &quot;cutoff_frequncy&quot;:0.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/es/escha_jian_an_zhuang/" rel="bookmark">es 插件安装</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 include::content/post/base.adoc[] :toc-title: Contents ES插件 插件列表  inquisitor 分词 paramedic bigdesk kopf segmentspy marvel  ps: ES-Path /root/opt/elasticsearch-1.7.1
-安装head   bash bin/plugin install head   安装Marvel   bash bin/plugin install elasticsearch/marvel/latest   ES错误 启动Marve错误 marvel.agent.exporter: error connecting to [[0:0:0:0:0:0:0:0]:9200] [No route to host]   解决方法:
-#vim elasticsearch.yml #添加 network.host: 192.168.137.107 # http端口 http.port: 9200 http.host: &quot;192.168.137.107&quot;   找不到mysql驱动  驱动包不兼容  更换驱动包  驱动包路径错误  放置在$JAVA_HOME/jre/lib/ext/下   
-					</div>
-				</div>
-			</div>
-		</article>
-		
 
 		
 <div class="mr-loop-pagination clearfix">
 	
 	<a class="page-numbers" href="/post/page/12/">«</a>
 	
-	<span class="page-numbers current">13/30</span>
+	<span class="page-numbers current">13/31</span>
 	
 	<a class="page-numbers" href="/post/page/14/">»</a>
 	
@@ -348,6 +355,8 @@ ES-book-note 1、基本查询  词条查询
 		
 		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
 		
+		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
+		
 		<li class="cat-item"><a href="/categories/go">Go</a></li>
 		
 		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
@@ -376,6 +385,8 @@ ES-book-note 1、基本查询  词条查询
 		
 		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
 		
+		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
+		
 		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
 		
 	</ul>
@@ -396,11 +407,7 @@ ES-book-note 1、基本查询  词条查询
 		
 			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
 		
-			<a href="/tags/guava" class="tag-link" title="guava" style="font-size: 12px;">guava</a>
-		
 			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="/tags/java" class="tag-link" title="java" style="font-size: 12px;">java</a>
 		
 			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
 		

@@ -223,6 +223,19 @@ image_attributes['target'] = image_name2</code></pre>
 </div>
 </div>
 </li>
+<li>
+<p>修改 <code>asciidoctor-diagram-1.5.4\lib\asciidoctor-diagram\erd</code> 下的 <code>extension.rb</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 24行修改编码，解决中文字符乱码
+source_code = source.to_s
+res_source_code=source_code.encode 'GBK','UTF-8'
+dot_code = generate_stdin(erd_path, format.to_s, res_source_code) do |tool_path, output_path|
+  [tool_path, '-o', Platform.native_path(output_path), '-f', 'dot']
+end</code></pre>
+</div>
+</div>
+</li>
 </ol>
 </div>
 </li>

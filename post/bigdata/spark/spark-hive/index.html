@@ -230,10 +230,10 @@ sh sbin/start-thriftserver.sh \
   --num-executors 20</p>
 </div>
 <div class="paragraph">
-<p>cd /usr/hdp/2.6.3.0-235/spark2
+<p>cd /usr/hdp/2.6.3.0-235/spark2 &amp;&amp; \
 sh sbin/start-thriftserver.sh \
-  --hiveconf hive.server2.thrift.port=10001 \
-  --hiveconf hive.server2.thrift.bind.host=192.168.168.104 \
+  --hiveconf hive.server2.thrift.port=10016 \
+  --hiveconf hive.server2.thrift.bind.host=172.33.10.51 \
   --master yarn \
   --executor-memory 8G \
   --executor-cores 5 \
@@ -264,6 +264,21 @@ sh sbin/start-thriftserver.sh \
 </div>
 <div class="paragraph">
 <p>tail -f /var/log/spark2/spark-root-org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-bjmcc-hdp-cluster-node-04.out</p>
+</div>
+<div class="paragraph">
+<p>yunnan-lt</p>
+</div>
+<div class="paragraph">
+<p>sh /opt/beh/core/spark/sbin/start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10010 \
+  --hiveconf hive.server2.thrift.bind.host=172.33.10.51 \
+  --master yarn \
+  --executor-memory 12G \
+  --executor-cores 5 \
+  --conf spark.dynamicAllocation.enabled=true \
+  --conf spark.shuffle.service.enabled=true \
+  --conf spark.dynamicAllocation.minExecutors=8 \
+  --conf spark.dynamicAllocation.maxExecutors=40</p>
 </div>
 </div>
 </div>

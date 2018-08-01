@@ -1,0 +1,165 @@
+o_rm_enodeb_factory
+o_rm_eutrancell_factory
+o_rm_hss_factory
+o_rm_mme_factory
+o_rm_pgw_factory
+o_rm_sgw_factory
+
+
+
+O_RM_ENODEB_FILTERED,O_RM_EUTRANCELL_FILTERED,O_RM_HSS_FILTERED,O_RM_MME_FILTERED,O_RM_PGW_FILTERED,O_RM_SGW_FILTERED
+
+CucXdrStreamSource.factory("o_rm_enodeb_factory",new o_rm_enodeb_factory());
+CucXdrStreamSource.factory("o_rm_eutrancell_factory",new o_rm_eutrancell_factory());
+CucXdrStreamSource.factory("o_rm_hss_factory",new o_rm_hss_factory());
+CucXdrStreamSource.factory("o_rm_mme_factory",new o_rm_mme_factory());
+CucXdrStreamSource.factory("o_rm_pgw_factory",new o_rm_pgw_factory());
+CucXdrStreamSource.factory("o_rm_sgw_factory",new o_rm_sgw_factory());
+
+m_mro_lte_rsrp_h
+
+O_RM_ENODEB_FILTERED,O_RM_EUTRANCELL_FILTERED,O_RM_HSS_FE_FILTERED,O_RM_MME_FILTERED,O_RM_PGW_FILTERED,O_RM_SGW_FILTERED
+
+show create table o_rm_enodeb;
+show create table o_rm_eutrancell;
+show create table o_rm_hss_fe;
+show create table o_rm_mme;
+show create table o_rm_pgw;
+show create table o_rm_sgw;
+
+select
+  enodeb_id,
+  starttime
+from o_am_factory ma
+inner join omc_data.o_rm_enodeb ore
+on ma.nename=ore.nms_orig_res_name
+limit 1
+
+
+"1:当EquipmentClass为eNodeB时，取NeName与O_RM_ENDEB表NMS_ORIG_RES_NAME字段相匹配，获取O_RM_ENDEB表ENODEB_ID对应字段,同时取符号""-""后的6位。举例如下：ENODEB_ID为460-01-760294取760294作为ENODEB_ID.
+2:当EquipmentClass为EUTRANCELL时，取NeName与P_netconf表cell_oid字段相匹配，获取CELL_ID。
+
+3：当EquipmentClass为HSS_FE时，取NeName与O_RM_HSS_FE表NMS_ORIG_RES_NAME字段相匹配，获取NMS_ORIG_RES_NAME对应字段。当NMS_ORIG_RES_NAME包含ER时直接获取字段，当NMS_ORIG_RES_NAME包含HW时，取""_HW""及其前字段。举例如下：NMS_ORIG_RES_NAME为YN_KM_HSS02FE02_HW_HSS9860则取YN_KM_HSS02FE02_HW。NMS_ORIG_RES_NAME为YN_HSS01FE09_ER时直接取YN_HSS01FE09_ER。
+
+4：当EquipmentClass为MME时，取NeName与O_RM_MME表NMS_ORIG_RES_NAME字段相匹配，获取MANAGE_IPADDRESS对应字段。
+5：当EquipmentClass为SGW时，取NeName与O_RM_SGW表NMS_ORIG_RES_NAME字段相匹配，获取EQP_ADDRESS对应字段。
+6：当EquipmentClass为PGW时，取NeName与O_RM_PGW表NMS_ORIG_RES_NAME字段相匹配，获取EQP_ADDRESS对应字段。"
+
+
+with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='enodeb')
+select p.starttime as starttime,p.nename as nename,p.enodeb_id as code from ${O_RM_ENDEB_FILTERED} p inner join a
+on p.nms_orig_res_name=a.nename
+union all
+with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='EUTRANCELL')
+select a.starttime as starttime,a.nename as nename,p.cell_id as code from p_netconf_4g_broadcast p inner join a
+on p.cell_oid=a.nename
+union all
+with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='HSS_FE')
+select p.starttime as starttime,a.nename as nename,p.nms_orig_res_name as code from ${O_RM_HSS_FE_FILTERED} p inner join a
+on p.nms_orig_res_name=a.nename
+union all
+with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='MME')
+select p.starttime as starttime,a.nename as nename,p.manage_ipaddress as code from ${O_RM_MME_FILTERED} p inner join a
+on p.nms_orig_res_name=a.nename
+union all
+with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='PGW')
+select p.starttime as starttime,a.nename as nename,p.eqp_address as code from ${O_RM_PGW_FILTERED} p inner join a
+on p.nms_orig_res_name=a.nename
+union all
+with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='SGW')
+select p.starttime as starttime,a.nename as nename,p.eqp_address as code from ${O_RM_SGW_FILTERED} p inner join a
+on p.nms_orig_res_name=a.nename
+
+O_RM_ENODEB_0_SUMMARY,O_RM_EUTRANCELL_0_SUMMARY,O_RM_HSS_FE_0_SUMMARY,O_RM_MME_0_SUMMARY,O_RM_PGW_0_SUMMARY,O_RM_SGW_0_SUMMARY
+    <summary id="O_RM_ENODEB_0_SUMMARY" in="O_AM_FILTERED,O_RM_EUTRANCELL_FILTERED" cache="false">
+        <body><![CDATA[
+            with a as (select equipmentclass,nename from ${O_AM_FILTERED} where equipmentclass='enodeb')
+            select p.starttime as starttime,a.nename as nename,p.enodeb_id as code from ${O_RM_EUTRANCELL_FILTERED} p inner join a
+            on p.nms_orig_res_name=a.nename
+        ]]></body>
+    </summary>
+
+    <summary id="O_RM_EUTRANCELL_0_SUMMARY" in="O_AM_FILTERED" cache="false">
+        <body><![CDATA[
+            with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='EUTRANCELL')
+            select a.starttime as starttime,a.nename as nename,p.cell_id as code from p_netconf_4g_broadcast p inner join a
+            on p.cell_oid=a.nename
+        ]]></body>
+    </summary>
+
+    <summary id="O_RM_HSS_FE_0_SUMMARY" in="O_AM_FILTERED" cache="false">
+        <body><![CDATA[
+            with a as (select equipmentclass,nename,starttime from ${O_AM_FILTERED} where equipmentclass='HSS_FE')
+            select p.starttime as starttime,a.nename as nename,p.nms_orig_res_name as code from ${O_RM_HSS_FE_FILTERED} p inner join a
+            on p.nms_orig_res_name=a.nename
+        ]]></body>
+    </summary>
+
+    <summary id="O_RM_MME_0_SUMMARY" in="O_AM_FILTERED,O_RM_MME_FILTERED" cache="false">
+        <body><![CDATA[
+            with a as (select equipmentclass,nename,starttime from o_am_factory where equipmentclass='MME')
+            select p.starttime as starttime,a.nename as nename,p.manage_ipaddress as code from ${O_RM_MME_FILTERED} p inner join a
+            on p.nms_orig_res_name=a.nename
+        ]]></body>
+    </summary>
+
+    <summary id="O_RM_PGW_0_SUMMARY" in="O_AM_FILTERED,O_RM_PGW_FILTERED" cache="false">
+        <body><![CDATA[
+            with a as (select equipmentclass,nename,starttime from ${O_AM_FILTERED} where equipmentclass='PGW')
+            select p.starttime as starttime,a.nename as nename,p.eqp_address as code from ${O_RM_PGW_FILTERED} p inner join a
+            on p.nms_orig_res_name=a.nename
+        ]]></body>
+    </summary>
+
+    <summary id="O_RM_SGW_0_SUMMARY" in="O_AM_FILTERED,O_RM_SGW_FILTERED" cache="false">
+        <body><![CDATA[
+            with a as (select equipmentclass,nename,starttime from ${O_AM_FILTERED} where equipmentclass='SGW')
+            select p.starttime as starttime,a.nename as nename,p.eqp_address as code from ${O_RM_SGW_FILTERED} p inner join a
+            on p.nms_orig_res_name=a.nename
+        ]]></body>
+    </summary>
+union all
+
+            union all
+
+            union all
+
+            union all
+
+            union all
+
+
+O_RM_ENODEB_FILTERED,
+O_RM_EUTRANCELL_FILTERED,
+O_RM_HSS_FILTERED,
+O_RM_MME_FILTERED,
+O_RM_PGW_FILTERED,
+O_RM_SGW_FILTERED
+
+with a as (
+select starttime,nename,code from ${O_RM_ENODEB_0_SUMMARY}
+union all
+select starttime,nename,code from ${O_RM_EUTRANCELL_0_SUMMARY}
+union all
+select starttime,nename,code from ${O_RM_HSS_FE_0_SUMMARY}
+union all
+select starttime,nename,code from ${O_RM_MME_0_SUMMARY}
+union all
+select starttime,nename,code from ${O_RM_PGW_0_SUMMARY}
+union all
+select starttime,nename,code from ${O_RM_SGW_0_SUMMARY})
+select starttime,nename,code from a group by starttime,nename,code
+
+
+
+s1mme
+--master yarn --driver-cores 4 --conf spark.sql.shuffle.partitions=50 --executor-memory 8g --executor-cores 5 --num-executors 60
+
+s1u
+--master yarn --driver-cores 4 --conf spark.sql.shuffle.partitions=50 --executor-memory 8g --executor-cores 5 --num-executors 40
+
+s1udns
+--master yarn --driver-cores 4 --conf spark.sql.shuffle.partitions=50 --executor-memory 8g --executor-cores 5 --num-executors 10
+
+s1uhttp
+--master yarn --driver-cores 4 --conf spark.sql.shuffle.partitions=50 --executor-memory 8g --executor-cores 5 --num-executors 30
