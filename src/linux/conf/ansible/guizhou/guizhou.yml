@@ -4,8 +4,8 @@
   hosts: nifi-hdfs
   roles:
     # - nifi
-    # - nifi-stop
-    - nifi-del
+    - nifi-stop
+    - nifi-handle
 
 # - name: apply nifi-hdfs nodes
 #   hosts: nifi-hdfs

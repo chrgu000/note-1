@@ -1,9 +1,13 @@
 #! /bin/bash
 # set -x
 
-PLUGINS_FOLDER=/d/project/Framework/plugins
-PLUGINS_FOLDER_REMOTE=/opt/do/Toolbox/plugins
-TMP_TAR_PATH=/opt/do/Toolbox/plugins
+# JARS=/d/project/Framework/plugins
+# JARS_REMOTE=/opt/do/Toolbox/plugins
+# TMP_TAR_PATH=/opt/do/Toolbox/plugins
+
+JARS=/d/IdeaProject/hdfs-over-ftp-master/target
+JARS_REMOTE=/home/hdfs/zk-tmp/jar/part
+TMP_TAR_PATH=.
 
 function usage(){
   if [[ "$@" = *--help ]] || [[ "$@" = *-h ]] || [[ "$#" = 0 ]] || [[ "$#" < 2 ]]; then
@@ -16,7 +20,7 @@ function usage(){
 }
 
 function mktar(){
-    cd $PLUGINS_FOLDER
+    cd $JARS
     JAR=$1
     CLASS=$2
 
@@ -34,10 +38,10 @@ function updatejar(){
     JAR=$1
     CLASS=$2
     cd $TMP_TAR_PATH
-    tar -zxf tmp.tar.gz -C $PLUGINS_FOLDER_REMOTE
+    tar -zxf tmp.tar.gz -C $JARS_REMOTE
 
     RESULT=`tar -tvf ${TMP_TAR_PATH}/tmp.tar.gz|awk '{print $6}'`
-    cd $PLUGINS_FOLDER_REMOTE
+    cd $JARS_REMOTE
     echo $RESULT
     echo "Update Start!"
     jar -uvf $JAR $RESULT

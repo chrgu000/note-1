@@ -100,19 +100,13 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						DO工具箱1. 指标呈现2. 指标呈现(天)3. 定界定位OSGi
-Toolbox 工具箱
+						DO工具箱1. OSGi2. 配置3. 指标呈现4. 指标呈现(天)5. 定界定位1. OSGiToolbox 工具箱
 工具箱的安装、开发及使用。时间充足的话再把消息队列详细说说。最好能让他参于到你的项目中，
 基于spark sql
 1, sql语句封装在xml里source：数据源
-summary:处理逻辑result:输出结果datasources=hdfs,hive
-hdfs.source-type=HDFS-NORMALhdfs.type=HDFShdfs.title=HDFS for CMDIhdfs.arg.location=hdfs://vm26:8020/zhoukai/output
-hive.source-type=HIVE-NORMALhive.type=HIVEhive.title=Hive for CMDIhive.arg.database=resulthive.arg.location=/output/zhoukai/result
-runtime.spark.submit=/usr/bin/spark-submit
-输入:
+summary:处理逻辑result:输出结果2. 配置datasources=hdfs,hivehdfs.source-type=HDFS-NORMALhdfs.type=HDFShdfs.title=HDFS for CMDIhdfs.arg.location=hdfs://vm26:8020/zhoukai/outputhive.source-type=HIVE-NORMALhive.type=HIVEhive.title=Hive for CMDIhive.arg.database=resulthive.arg.location=/output/zhoukai/resultruntime.spark.submit=/usr/bin/spark-submit输入:
 输出StreamSource：HiveStreamSourceHDFSStreamSource
-插件开发1. Bundle-SymbolicName2. Bundle-Activator3. Require-Bundle
---master yarn --name new_d_user_details30 --deploy-mode cluster --driver-memory 10G --driver-cores 2 --executor-memory 12G --executor-cores 2 --num-executors 20 --conf spark.
+插件开发 Bundle-SymbolicName
 					</div>
 				</div>
 			</div>

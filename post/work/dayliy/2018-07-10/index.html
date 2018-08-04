@@ -536,6 +536,11 @@ com.nsn.datamining.jar XmlDataminingFactory</pre>
 10.195.221.87:22/../../data1/hwvolte/?maxactive=64&amp;download=false</pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>java -Xmx8g -Xms2g -jar hdfs-over-ftp-1.0-jar-with-dependencies.jar 2&gt;~/hdfs-ftp.err &amp;</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>s1mme
   eric_lte:eric_lte@123
@@ -736,6 +741,38 @@ COLUMN_COMMENT 备注</p>
 </div>
 <div class="paragraph">
 <p><a href="ftp://hdfs:310dcbbf4cce62f762a2aaa148d556bd@localhost:2222" class="bare">ftp://hdfs:310dcbbf4cce62f762a2aaa148d556bd@localhost:2222</a></p>
+</div>
+<div class="paragraph">
+<p>LTE_851_SXYD00001_Cx_20180802091300_0005.txt</p>
+</div>
+<div class="paragraph">
+<p>minute
+${filename:getDelimitedField(5, '_'):substring(0,12)}</p>
+</div>
+<div class="paragraph">
+<p>LTE_${category}_${minute}_${random():mod(1000):plus(1)}.txt</p>
+</div>
+<div class="paragraph">
+<p>${category:in('Mw','Sv','drop','srvcc','cmcc','dropmr','srvccmr','cmccmr','vtv','drops1mme','Gm','ISC','Mg','Cx','Sh','Gx','Rx','Zh','s1mme','Mj')}</p>
+</div>
+<div class="paragraph">
+<p>'Mw','Sv','drop','srvcc','cmcc','dropmr','srvccmr','cmccmr','vtv','drops1mme','Gm','Isc','Mg','Cx','Sh','Gx','Rx','Zh','s1mme','Mj'</p>
+</div>
+<div class="paragraph">
+<p>'Gm','ISC','Mg','Cx','Sh','Gx','Rx','Zh','Mj'</p>
+</div>
+<div class="paragraph">
+<p>"V:\Users\dishui\.m2\repository.zip.007"
+"V:\Users\dishui\.m2\repository.zip.008"
+"V:\Users\dishui\.m2\repository.zip.009"
+"V:\Users\dishui\.m2\repository.zip.010"
+"V:\Users\dishui\.m2\repository.zip.011"
+"V:\Users\dishui\.m2\repository.zip.012"
+"V:\Users\dishui\.m2\repository.zip.013"
+"V:\Users\dishui\.m2\repository.zip.014"
+"V:\Users\dishui\.m2\repository.zip.015"
+"V:\Users\dishui\.m2\repository.zip.016"
+"V:\Users\dishui\.m2\repository.zip.017"</p>
 </div>
 </div>
 </div>

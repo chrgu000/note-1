@@ -18,14 +18,16 @@
       <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
 &lt;div id=&#34;toctitle&#34;&gt;DO工具箱&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_指标呈现&#34;&gt;1. 指标呈现&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_指标呈现_天&#34;&gt;2. 指标呈现(天)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_定界定位&#34;&gt;3. 定界定位&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_osgi&#34;&gt;1. OSGi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;2. 配置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_指标呈现&#34;&gt;3. 指标呈现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_指标呈现_天&#34;&gt;4. 指标呈现(天)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定界定位&#34;&gt;5. 定界定位&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;OSGi&lt;/p&gt;
-&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_osgi&#34;&gt;1. OSGi&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Toolbox 工具箱&lt;/p&gt;
 &lt;/div&gt;
@@ -52,24 +54,28 @@
   输出结果&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;datasources=hdfs,hive&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hdfs.source-type=HDFS-NORMAL
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_配置&#34;&gt;2. 配置&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;datasources=hdfs,hive
+
+hdfs.source-type=HDFS-NORMAL
 hdfs.type=HDFS
 hdfs.title=HDFS for CMDI
-hdfs.arg.location=hdfs://vm26:8020/zhoukai/output&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hive.source-type=HIVE-NORMAL
+hdfs.arg.location=hdfs://vm26:8020/zhoukai/output
+
+hive.source-type=HIVE-NORMAL
 hive.type=HIVE
 hive.title=Hive for CMDI
 hive.arg.database=result
-hive.arg.location=/output/zhoukai/result&lt;/p&gt;
+hive.arg.location=/output/zhoukai/result
+
+runtime.spark.submit=/usr/bin/spark-submit&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;runtime.spark.submit=/usr/bin/spark-submit&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;输入:&lt;/p&gt;
@@ -80,17 +86,33 @@ StreamSource：
   HiveStreamSource
   HDFSStreamSource&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;插件开发
-  1. Bundle-SymbolicName
-  2. Bundle-Activator
-  3. Require-Bundle&lt;/p&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;插件开发 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Bundle-SymbolicName&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bundle-Activator&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Require-Bundle&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;--master yarn --name new_d_user_details30 --deploy-mode cluster --driver-memory 10G --driver-cores 2 --executor-memory 12G --executor-cores 2 --num-executors 20 --conf spark.dynamicAllocation.enabled=false --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_指标呈现&#34;&gt;1. 指标呈现&lt;/h2&gt;
+&lt;h2 id=&#34;_指标呈现&#34;&gt;3. 指标呈现&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -100,7 +122,7 @@ StreamSource：
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_指标呈现_天&#34;&gt;2. 指标呈现(天)&lt;/h2&gt;
+&lt;h2 id=&#34;_指标呈现_天&#34;&gt;4. 指标呈现(天)&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -110,7 +132,7 @@ StreamSource：
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_定界定位&#34;&gt;3. 定界定位&lt;/h2&gt;
+&lt;h2 id=&#34;_定界定位&#34;&gt;5. 定界定位&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;

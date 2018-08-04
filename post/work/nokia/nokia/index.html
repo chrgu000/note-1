@@ -7,19 +7,13 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="DO工具箱开发" />
-<meta property="og:description" content="DO工具箱1. 指标呈现2. 指标呈现(天)3. 定界定位OSGi
-Toolbox 工具箱
+<meta property="og:description" content="DO工具箱1. OSGi2. 配置3. 指标呈现4. 指标呈现(天)5. 定界定位1. OSGiToolbox 工具箱
 工具箱的安装、开发及使用。时间充足的话再把消息队列详细说说。最好能让他参于到你的项目中，
 基于spark sql
 1, sql语句封装在xml里source：数据源
-summary:处理逻辑result:输出结果datasources=hdfs,hive
-hdfs.source-type=HDFS-NORMALhdfs.type=HDFShdfs.title=HDFS for CMDIhdfs.arg.location=hdfs://vm26:8020/zhoukai/output
-hive.source-type=HIVE-NORMALhive.type=HIVEhive.title=Hive for CMDIhive.arg.database=resulthive.arg.location=/output/zhoukai/result
-runtime.spark.submit=/usr/bin/spark-submit
-输入:
+summary:处理逻辑result:输出结果2. 配置datasources=hdfs,hivehdfs.source-type=HDFS-NORMALhdfs.type=HDFShdfs.title=HDFS for CMDIhdfs.arg.location=hdfs://vm26:8020/zhoukai/outputhive.source-type=HIVE-NORMALhive.type=HIVEhive.title=Hive for CMDIhive.arg.database=resulthive.arg.location=/output/zhoukai/resultruntime.spark.submit=/usr/bin/spark-submit输入:
 输出StreamSource：HiveStreamSourceHDFSStreamSource
-插件开发1. Bundle-SymbolicName2. Bundle-Activator3. Require-Bundle
---master yarn --name new_d_user_details30 --deploy-mode cluster --driver-memory 10G --driver-cores 2 --executor-memory 12G --executor-cores 2 --num-executors 20 --conf spark." />
+插件开发 Bundle-SymbolicName" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/work/nokia/nokia/" />
 
@@ -105,14 +99,16 @@
 			<div id="toc" class="toc">
 <div id="toctitle">DO工具箱</div>
 <ul class="sectlevel1">
-<li><a href="#_指标呈现">1. 指标呈现</a></li>
-<li><a href="#_指标呈现_天">2. 指标呈现(天)</a></li>
-<li><a href="#_定界定位">3. 定界定位</a></li>
+<li><a href="#_osgi">1. OSGi</a></li>
+<li><a href="#_配置">2. 配置</a></li>
+<li><a href="#_指标呈现">3. 指标呈现</a></li>
+<li><a href="#_指标呈现_天">4. 指标呈现(天)</a></li>
+<li><a href="#_定界定位">5. 定界定位</a></li>
 </ul>
 </div>
-<div class="paragraph">
-<p>OSGi</p>
-</div>
+<div class="sect1">
+<h2 id="_osgi">1. OSGi</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Toolbox 工具箱</p>
 </div>
@@ -139,24 +135,28 @@
   输出结果</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>datasources=hdfs,hive</p>
 </div>
-<div class="paragraph">
-<p>hdfs.source-type=HDFS-NORMAL
+</div>
+<div class="sect1">
+<h2 id="_配置">2. 配置</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>datasources=hdfs,hive
+
+hdfs.source-type=HDFS-NORMAL
 hdfs.type=HDFS
 hdfs.title=HDFS for CMDI
-hdfs.arg.location=hdfs://vm26:8020/zhoukai/output</p>
-</div>
-<div class="paragraph">
-<p>hive.source-type=HIVE-NORMAL
+hdfs.arg.location=hdfs://vm26:8020/zhoukai/output
+
+hive.source-type=HIVE-NORMAL
 hive.type=HIVE
 hive.title=Hive for CMDI
 hive.arg.database=result
-hive.arg.location=/output/zhoukai/result</p>
+hive.arg.location=/output/zhoukai/result
+
+runtime.spark.submit=/usr/bin/spark-submit</code></pre>
 </div>
-<div class="paragraph">
-<p>runtime.spark.submit=/usr/bin/spark-submit</p>
 </div>
 <div class="paragraph">
 <p>输入:</p>
@@ -167,17 +167,33 @@ StreamSource：
   HiveStreamSource
   HDFSStreamSource</p>
 </div>
-<div class="paragraph">
-<p>插件开发
-  1. Bundle-SymbolicName
-  2. Bundle-Activator
-  3. Require-Bundle</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">插件开发 </dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bundle-SymbolicName</p>
+</li>
+<li>
+<p>Bundle-Activator</p>
+</li>
+<li>
+<p>Require-Bundle</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>--master yarn --name new_d_user_details30 --deploy-mode cluster --driver-memory 10G --driver-cores 2 --executor-memory 12G --executor-cores 2 --num-executors 20 --conf spark.dynamicAllocation.enabled=false --conf spark.yarn.executor.memoryOverhead=4G</p>
 </div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_指标呈现">1. 指标呈现</h2>
+<h2 id="_指标呈现">3. 指标呈现</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -187,7 +203,7 @@ StreamSource：
 </div>
 </div>
 <div class="sect1">
-<h2 id="_指标呈现_天">2. 指标呈现(天)</h2>
+<h2 id="_指标呈现_天">4. 指标呈现(天)</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -197,7 +213,7 @@ StreamSource：
 </div>
 </div>
 <div class="sect1">
-<h2 id="_定界定位">3. 定界定位</h2>
+<h2 id="_定界定位">5. 定界定位</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
