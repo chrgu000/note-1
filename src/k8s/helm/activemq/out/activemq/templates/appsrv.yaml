@@ -1,0 +1,31 @@
+---
+# Source: activemq/templates/appsrv.yaml
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: activemq
+  labels:
+    app: activemq
+    chart: activemq-0.1.0
+    release: activemq
+    heritage: Tiller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: activemq
+      release: activemq
+  template:
+    metadata:
+      labels:
+        app: activemq
+        release: activemq
+    spec:
+      containers:
+
+        - name: activemq
+          image: rmohr/activemq:5.15.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 61616
+            - containerPort: 8161

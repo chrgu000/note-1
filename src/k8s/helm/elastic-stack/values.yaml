@@ -1,0 +1,9 @@
+# Default values for elk.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+logstash:
+  enabled: true
+  # elasticsearch:
+  #   host: elastic-stack-elasticsearch-client
+

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App 表设计</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="App 表设计" />
+<meta property="og:description" content="Contents1. App 表设计2. APP 表关系2.1. 圈层2.2. 群组2.3. 用户3. APP 表3.1. 用户反馈表3.2. 用户收藏表3.3. 用户评论表3.4. 用户企业认证表3.5. 群组投诉表3.6. 添加好友记录表3.7. 好友推荐表3.8. 好友关系表3.9. 群组信息表3.10. 群设置表3.11. 群-用户关系表3.12. 个人主页设置表3.13. 图片信息表3.14. 用户点赞表3.15. 圈层表3.16. 推送消息表3.17. 用户分享表3.18. 用户个人认证表3.19. 用户登录记录表3.20. 用户动态表1. App 表设计2. APP 表关系2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/app-tables/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">App 表设计</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_app_表设计">1. App 表设计</a></li>
+<li><a href="#_app_表关系">2. APP 表关系</a>
+<ul class="sectlevel2">
+<li><a href="#_圈层">2.1. 圈层</a></li>
+<li><a href="#_群组">2.2. 群组</a></li>
+<li><a href="#_用户">2.3. 用户</a></li>
+</ul>
+</li>
+<li><a href="#_app_表">3. APP 表</a>
+<ul class="sectlevel2">
+<li><a href="#_用户反馈表">3.1. 用户反馈表</a></li>
+<li><a href="#_用户收藏表">3.2. 用户收藏表</a></li>
+<li><a href="#_用户评论表">3.3. 用户评论表</a></li>
+<li><a href="#_用户企业认证表">3.4. 用户企业认证表</a></li>
+<li><a href="#_群组投诉表">3.5. 群组投诉表</a></li>
+<li><a href="#_添加好友记录表">3.6. 添加好友记录表</a></li>
+<li><a href="#_好友推荐表">3.7. 好友推荐表</a></li>
+<li><a href="#_好友关系表">3.8. 好友关系表</a></li>
+<li><a href="#_群组信息表">3.9. 群组信息表</a></li>
+<li><a href="#_群设置表">3.10. 群设置表</a></li>
+<li><a href="#_群_用户关系表">3.11. 群-用户关系表</a></li>
+<li><a href="#_个人主页设置表">3.12. 个人主页设置表</a></li>
+<li><a href="#_图片信息表">3.13. 图片信息表</a></li>
+<li><a href="#_用户点赞表">3.14. 用户点赞表</a></li>
+<li><a href="#_圈层表">3.15. 圈层表</a></li>
+<li><a href="#_推送消息表">3.16. 推送消息表</a></li>
+<li><a href="#_用户分享表">3.17. 用户分享表</a></li>
+<li><a href="#_用户个人认证表">3.18. 用户个人认证表</a></li>
+<li><a href="#_用户登录记录表">3.19. 用户登录记录表</a></li>
+<li><a href="#_用户动态表">3.20. 用户动态表</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_app_表设计">1. App 表设计</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_app_表关系">2. APP 表关系</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_圈层">2.1. 圈层</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/app-quanceng.svg" alt="app quanceng" width="548" height="313">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_群组">2.2. 群组</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/app-qunzu.svg" alt="app qunzu" width="437" height="194">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户">2.3. 用户</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/app-user.svg" alt="app user" width="762" height="313">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_app_表">3. APP 表</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_用户反馈表">3.1. 用户反馈表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_advice    用户反馈表                                        */
+/*==============================================================*/
+create table app_advice
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            char(15) comment '用户名称',
+   type                 int(2) comment '反馈类型',
+   content              varchar(500) comment '反馈内容',
+   status               int(2) comment '状态：已回复',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户收藏表">3.2. 用户收藏表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_collection     用户收藏表                                   */
+/*==============================================================*/
+create table app_collection
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名',
+   type                 int(2) comment '类型：0资源单，1采购单，2动态，3商品，4店铺',
+   relation_id          char(15) comment '关联ID',
+   title                varchar(50) comment '标题',
+   url                  varchar(200) comment '链接',
+   content              varchar(500) comment '内容',
+   in_date              datetime comment '收藏时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户评论表">3.3. 用户评论表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_comment         用户评论表                                  */
+/*==============================================================*/
+create table app_comment
+(
+   id                   char(15) not null comment '主键',
+   type                 int(2) comment '类型：0资源单，1采购单，2动态',
+   mid                  char(15) comment '被评论信息ID',
+   user_id              char(15) comment '用户ID',
+   f_comment_id         char(15) comment '所回复的id',
+   user_name            varchar(30) comment '用户名',
+   comment              longtext comment '评论内容',
+   in_date              datetime comment '评论时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户企业认证表">3.4. 用户企业认证表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_company_authentication     用户企业认证表                       */
+/*==============================================================*/
+create table app_company_authentication
+(
+   id                   char(15) not null comment '主键',
+   cust_id              char(15) comment '企业主键',
+   is_authentication    int(2) comment '是否认证：0是，1否',
+   authentication_date  datetime comment '认证时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_群组投诉表">3.5. 群组投诉表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_complain         群组投诉表                                 */
+/*==============================================================*/
+create table app_complain
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名称',
+   reason               varchar(100) comment '投诉原因',
+   in_date              datetime comment '投诉时间',
+   primary key (id)
+);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_添加好友记录表">3.6. 添加好友记录表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_friend_add     添加好友记录表                                   */
+/*==============================================================*/
+create table app_friend_add
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            char(15) comment '用户名称',
+   added_user_id        char(15) comment '被添加用户ID',
+   added_user_name      varchar(30) comment '被添加用户名称',
+   add_status           int(2) comment '添加状态：0已申请，1已添加，2已拒绝',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_好友推荐表">3.7. 好友推荐表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_friend_recommend      好友推荐表                            */
+/*==============================================================*/
+create table app_friend_recommend
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '推荐人ID',
+   re_user_id           char(15) comment '被推荐人ID',
+   re_user_name         varchar(30) comment '被推荐人名称',
+   in_date              datetime comment '推荐时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_好友关系表">3.8. 好友关系表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_friendship        好友关系表                                */
+/*==============================================================*/
+create table app_friendship
+(
+   id                   char(15) not null comment '主键',
+   user_id1             char(15) comment '用户1ID',
+   user_id2             char(15) comment '用户2ID',
+   level                int(2) comment '好友级别：1一级好友，2二级好友，3三级好友',
+   in_date              datetime comment '成为好友时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_群组信息表">3.9. 群组信息表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_group            群组信息表                                 */
+/*==============================================================*/
+create table app_group
+(
+   id                   char(15) not null comment '主键',
+   group_name           varchar(30) comment '群名称',
+   creator_id           char(15) comment '创建人ID',
+   creator_name         varchar(30) comment '创建人名称',
+   leader_id            char(15) comment '群主ID',
+   leader_name          varchar(30) comment '群主名称',
+   group_img            varchar(200) comment '群头像',
+   group_notice         varchar(200) comment '群公告',
+   notice_date          datetime comment '公告发布时间',
+   in_date              datemite comment '群创建时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_群设置表">3.10. 群设置表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_group_set       群设置表                                  */
+/*==============================================================*/
+create table app_group_set
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(15) comment '用户名称',
+   is_disturb           int(1) comment '是否免打扰：0是，1否',
+   is_save              int(1) comment '是否保存到通讯录：0是，1否',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_群_用户关系表">3.11. 群-用户关系表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_group_user      群-用户关系表                                  */
+/*==============================================================*/
+create table app_group_user
+(
+   id                   char(15) not null comment '主键',
+   group_id             char(15) comment '群ID',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名称',
+   is_leader            int(1) comment '是否群主：0是，1否',
+   is_manager           int(1) comment '是否管理员：0是，1否',
+   in_date              datetime comment '创建时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_个人主页设置表">3.12. 个人主页设置表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_homeset   个人主页设置表                                        */
+/*==============================================================*/
+create table app_homeset
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户主键',
+   see_me               int(2) comment '是否可看我的动态：0是，1否',
+   see_her              int(2) comment '是否看他的动态：0是，1否',
+   in_blacklis          int(2) comment '是否加入黑名单：0是，1否',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_图片信息表">3.13. 图片信息表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_image      图片信息表                                       */
+/*==============================================================*/
+create table app_image
+(
+   id                   char(15) not null comment '主键',
+   img_belong           char(15) comment '图片所属',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名称',
+   url                  varchar(200) comment '图片地址',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户点赞表">3.14. 用户点赞表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_likes      用户点赞表                                       */
+/*==============================================================*/
+create table app_likes
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名',
+   relation_id          char(15) comment '关联ID',
+   type                 int(2) comment '类型：0资源单，1采购单，2动态，3商品，4店铺',
+   in_date              datetime comment '收藏时间'
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_圈层表">3.15. 圈层表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_pitchcircle    圈层表                                   */
+/*==============================================================*/
+create table app_pitchcircle
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户标识',
+   type                 int(2) comment '类型：0资源单，1采购单，2动态',
+   relation_id          char(15) comment '关联的外部主键',
+   title                varchar(50) comment '标题',
+   detail               longtext comment '详情',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_推送消息表">3.16. 推送消息表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_pushed     推送消息表                                       */
+/*==============================================================*/
+create table app_pushed
+(
+   id                   char(15) not null comment '主键',
+   title                varchar(15) comment '标题',
+   detail               longtext comment '详情',
+   in_date              datetime comment '发布时间',
+   publish_user_id      char(15) comment '发布人ID',
+   publish_user_name    varchar(30) comment '发布人姓名',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户分享表">3.17. 用户分享表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_share     用户分享表                                        */
+/*==============================================================*/
+create table app_share
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名称',
+   type                 int(2) comment '类型：0资源单，1采购单，2动态，3商品',
+   share_to             int(2) comment '分享到：0QQ好友，1微信好友，2微信朋友圈，3微博，4复制链接',
+   share_id             char(15) comment '所属ID',
+   title                varchar(50) comment '标题',
+   url                  varchar(200) comment '链接',
+   in_date              datetime comment '分享时间',
+   Column_10            char(10),
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户个人认证表">3.18. 用户个人认证表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_user_authentication  用户个人认证表                             */
+/*==============================================================*/
+create table app_user_authentication
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   is_authentication    int(2) comment '是否认证：0是，1否',
+   authentication_date  datetime comment '认证时间'
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户登录记录表">3.19. 用户登录记录表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_user_login      用户登录记录表                                  */
+/*==============================================================*/
+create table app_user_login
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名',
+   login_date           datetime comment '登录时间',
+   ip                   varchar(100) comment 'IP地址',
+   longitude            varchar(50) comment '经度',
+   latitude             varchar(50) comment '纬度',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用户动态表">3.20. 用户动态表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql" data-lang="sql">/*==============================================================*/
+/* Table: app_user_mood       用户动态表                                  */
+/*==============================================================*/
+create table app_user_mood
+(
+   id                   char(15) not null comment '主键',
+   user_id              char(15) comment '用户ID',
+   user_name            varchar(30) comment '用户名称',
+   mood                 varchar(200) comment '动态详情',
+   likes                int(8) comment '点赞数',
+   status               int(2) comment '状态：0待审核，1审核中，2审核通过，3审核不通过',
+   in_date              datetime comment '时间',
+   primary key (id)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/httpd/" rel="prev"><span>«Previous</span><p>Apache httpd 服务器</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/asciinema/" rel="next"><span>Next»</span><p>Asciinema</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

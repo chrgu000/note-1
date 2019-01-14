@@ -1,0 +1,14 @@
+version: '2'
+services:
+  pc-web:
+    image: dishui.io:5000/dishuigit/tomcat:1.0
+    stdin_open: true
+    volumes:
+    - /home/core/opt/src/data/setenv.sh:/apache-tomcat-7.0.62/bin/setenv.sh
+    - /home/core/opt/src/data/b2b:/apache-tomcat-7.0.62/webapps/b2b
+    - /home/core/opt/src/data/jprofiler9:/jprofiler9
+    tty: true
+    ports:
+    - 8080:8080/tcp
+    labels:
+      io.rancher.container.pull_image: always

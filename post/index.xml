@@ -1,0 +1,2005 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Post-rsses on 零零碎碎</title>
+    <link>/post/index.xml</link>
+    <description>Recent content in Post-rsses on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 20 Dec 2018 17:17:42 +0000</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>cmake</title>
+      <link>/post/go/cmake/</link>
+      <pubDate>Thu, 20 Dec 2018 17:17:42 +0000</pubDate>
+      
+      <guid>/post/go/cmake/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_编译git2go&#34;&gt;1. 编译git2go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编译&#34;&gt;2. 编译&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_编译git2go&#34;&gt;1. 编译git2go&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;go get gopkg.in/libgit2/git2go.v25&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装 gcc&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-pkg-config&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载 &lt;code&gt;libssh2&lt;/code&gt; 1.8&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;mkdir bin &amp;amp;&amp;amp; cd bin
+cmake -G &#34;Visual Studio 15 2017 Win64&#34; -DCRYPTO_BACKEND=OpenSSL -DCMAKE_INSTALL_PREFIX=D:\\libssh2 -DENABLE_ZLIB_COMPRESSION=OFF -DBUILD_SHARED_LIBS=ON ..
+cmake --build . --target install&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;编译 &lt;code&gt;libgit2&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;# 打开 MSYS2 MinGW 64-bit
+cd $GOPATH/src/gopkg.in/libgit2/git2go.v25/vendor/libgit2
+
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/d/libssh2/lib/pkgconfig
+
+mkdir build &amp;amp;&amp;amp; cd build
+
+cmake -G &#34;Visual Studio 15 2017 Win64&#34;  -DCMAKE_INSTALL_PREFIX=/e/libgit2  -DBUILD_CLAR=OFF  -DUSE_SSH=ON  ..
+
+cmake --build . --target install&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置环境变量
+PKG_CONFIG_PATH=D:\libgit2\lib\pkgconfig&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_编译&#34;&gt;2. 编译&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cmd /C &#34;set CGO_ENABLED=1&amp;amp;&amp;amp; set CC=D:\msys64\mingw64\bin\x86_64-w64-mingw32-gcc.exe &amp;amp;&amp;amp; set CXX=D:\msys64\mingw64\bin\x86_64-w64-mingw32-g++.exe &amp;amp;&amp;amp; go build -ldflags=&#34;-H windowsgui&#34;&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lazarus参考文档</title>
+      <link>/post/work/suning/lazarus/</link>
+      <pubDate>Mon, 10 Dec 2018 16:26:08 +0000</pubDate>
+      
+      <guid>/post/work/suning/lazarus/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;1. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://wiki.lazarus.freepascal.org/Lazarus_Documentation/zh_CN#Lazarus_and_Pascal_Tutorials&#34;&gt;Lazarus Documentation/zh CN&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://wiki.lazarus.freepascal.org/LCL_Components&#34;&gt;LCL Components&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;res2go.exe -path . -outpath gocode -pause &#34;ew&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>grpc</title>
+      <link>/post/work/suning/grpc/</link>
+      <pubDate>Wed, 19 Sep 2018 09:51:02 +0000</pubDate>
+      
+      <guid>/post/work/suning/grpc/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;grpc&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_c&#34;&gt;1. C++&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_环境&#34;&gt;1.1. 环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;1.2. 配置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1.3. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_c&#34;&gt;1. C++&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_环境&#34;&gt;1.1. 环境&lt;/h3&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;软件&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;版本&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Visual Studio 2017 Community&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置&#34;&gt;1.2. 配置&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/grpc-1.svg&#34; alt=&#34;grpc 1&#34; width=&#34;139&#34; height=&#34;266&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;附加包含目录 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc-include&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;预处理器定义 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;_WIN32_WINNT=0x600&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;运行库 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;多线程 DLL (/MD)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;预编译头 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;不使用预编译头&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;附加库目录 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc-libs&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;附加依赖项 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;gpr.lib
+grpc.lib
+grpc++.lib
+libprotobuf.lib
+libprotoc.lib
+ssl.lib
+crypto.lib
+zlibstatic.lib
+address_sorting.lib
+cares.lib&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/grpc-2.png&#34; alt=&#34;grpc 2&#34; width=&#34;512&#34; height=&#34;512&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;1.3. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/u011304970/article/details/75453509&#34;&gt;VS2015 编译和使用 gRPC&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SparkSql内核剖析</title>
+      <link>/post/bigdata/spark/spark-sql%E5%86%85%E6%A0%B8%E5%89%96%E6%9E%90/</link>
+      <pubDate>Tue, 04 Sep 2018 09:23:58 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-sql%E5%86%85%E6%A0%B8%E5%89%96%E6%9E%90/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;SparkSql&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_sql_背景&#34;&gt;1. Spark SQL 背景&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_spark_sql逻辑计划概述&#34;&gt;2. Spark SQL逻辑计划概述&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_sql_背景&#34;&gt;1. Spark SQL 背景&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_spark_sql逻辑计划概述&#34;&gt;2. Spark SQL逻辑计划概述&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Spark SQL 逻辑计划在实现层面被定义为 LogicalPlan 类。从SQL语句经过 SparkSqlParser 解析生成 Unresolved LogicalPlan, 到最终优化为 Optimized LogicalPlan,这个流程主要经过三个阶段&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://github.com/dishuiGit/draw.io/blob/master/svg/SparkSql%E9%80%BB%E8%BE%91%E8%AE%A1%E5%88%92%E6%A6%82%E8%BF%B0-1.png?raw=true&#34; alt=&#34;SparkSql%E9%80%BB%E8%BE%91%E8%AE%A1%E5%88%92%E6%A6%82%E8%BF%B0 1&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/sparksql-01.svg&#34; alt=&#34;sparksql 01&#34; width=&#34;313&#34; height=&#34;207&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;inputSet|missingInput|producedAttributes|output|outputSet&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;由 SparkSqlParser 中的 AstBuilder 执行节点访问,将语法树的各种 Context 节点转换成对应的 LogicalPlan 节点, 从而成为一棵未解析的逻辑算子树(Unresolved LogicalPlan),此时的逻辑算子树是最初形态,不包含数据信息与列信息等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;由 Analyzer 将一系列的规则作用在 Unresolved LogicalPlan 上，对树上的节点绑定各种数据信息，生成解析后的逻辑算子树 (Analyzed LogicalPlan)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;由 Spark SQL中的优化器(Optimizer)将一系列规则作用到上一步生成的逻辑算子树中，在确保结果正确的前提下改写其中的低效结构，生成优化后的逻辑算子树 (Optimized LogicalPlan)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>suning001</title>
+      <link>/post/work/suning/work/</link>
+      <pubDate>Tue, 04 Sep 2018 09:23:58 +0000</pubDate>
+      
+      <guid>/post/work/suning/work/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s参考&#34;&gt;1. k8s参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编译出错&#34;&gt;2. 编译出错&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编译openssl&#34;&gt;3. 编译openssl&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_积分排行&#34;&gt;3.1. 积分排行&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;180907040&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;邮箱地址:
+&lt;a href=&#34;mailto:kaizhouk@pptv.com&#34;&gt;kaizhouk@pptv.com&lt;/a&gt;
+用户名/密码: kaizhouk/142857git!12345
+&lt;a href=&#34;https://mail.pptv.com&#34; class=&#34;bare&#34;&gt;https://mail.pptv.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://im.suning.com&#34; class=&#34;bare&#34;&gt;https://im.suning.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.com&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;mailto:18089513@suning-sports.com&#34;&gt;18089513@suning-sports.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;18089513/142857git!123456
+18089513&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;薪资密码: 142857git!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;服务器地址:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;10.200.169.5  root 111111&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;10.200.169.32 root ShuiXingX&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;10.200.169.48 root 111111&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ws://10.200.168.40:8080/cxzx/moment/Websocket&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ws://localhost:8080/moment/Websocket&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;thinkgem/admin&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;周凯+180907040&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;50寸  1.1*1.3
+40寸  95*1.2&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;服务发现
+配置中心
+项目框架升级
+配置管理
+docker
+k8s/rancher&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+# Step 2: 添加软件源信息
+sudo yum-config-manager --add-repo &lt;a href=&#34;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo&#34; class=&#34;bare&#34;&gt;http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo&lt;/a&gt;
+# Step 3: 更新并安装 Docker-CE
+sudo yum makecache fast
+sudo yum -y install docker-ce
+# Step 4: 开启Docker服务
+sudo service docker start&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_k8s参考&#34;&gt;1. k8s参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kubernetes.org.cn/4047.html&#34;&gt;kubernetes-整体概述和架构&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;tcp://10.200.169.5:61616?maxim
+umConnections=1000&amp;amp;amp;wireFormat.maxFrameSize=104857600&#34;/&amp;gt;
+            &amp;lt;transportConnector name=&#34;amqp&#34; uri=&#34;amqp://0.0.0.0:5672?maximumCo
+nnections=1000&amp;amp;amp;wireFormat.maxFrameSize=104857600&#34;/&amp;gt;
+            &amp;lt;transportConnector name=&#34;stomp&#34; uri=&#34;stomp://0.0.0.0:61613?maximu
+mConnections=1000&amp;amp;amp;wireFormat.maxFrameSize=104857600&#34;/&amp;gt;
+            &amp;lt;transportConnector name=&#34;mqtt&#34; uri=&#34;mqtt://0.0.0.0:1883?maximumCo
+nnections=1000&amp;amp;amp;wireFormat.maxFrameSize=104857600&#34;/&amp;gt;
+            &amp;lt;transportConnector name=&#34;ws&#34; uri=&#34;ws://0.0.0.0:61614?maximumConne
+ctions=1000&amp;amp;amp;wireFormat.maxFrameSize=104857600&#34;/&amp;gt;
+
+
+http://192.168.137.17:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+kubectl proxy --address=&#39;192.168.137.17&#39; --port=8001 --accept-hosts=&#39;^*$&#39;
+
+http://192.168.137.17:8001/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/workload?namespace=default&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ssh登陆 10.200.169.5
+cd /usr/local/zookeeper-3.4.12 &amp;amp;&amp;amp; sh bin/zkCli.sh -server 10.200.169.5:2181&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;call &#34;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat&#34; x64
+cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release
+cmake --build .&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cmake .. -G &#34;Visual Studio 15 2017&#34; -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=&#34;C:\Program Files\OpenSSL&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;md .build
+cd .build
+cmake .. -G &#34;Visual Studio 15 2017&#34;
+cmake --build . --config Release&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;protoc --cpp_out=./ helloworld.proto
+protoc --grpc_out=./ --plugin=protoc-gen-grpc=C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc\.build\grpc_cpp_plugin.exe helloworld.proto&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cmake -DOPENSSL_ROOT_DIR=&#34;C:\Program Files\OpenSSL&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc-include
+C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc-libs&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc\include&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;链接
+C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc\.build2018-09-17\third_party\zlib\Release&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/u011304970/article/details/75453509&#34;&gt;重要&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_编译出错&#34;&gt;2. 编译出错&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;解决：在项目属性中的Preprocessor Definitions中添加_WIN32_WINNT=0x600&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;C:\Users\TEMP-02\Desktop\dishui\project\grpc\grpc-libs\benchmark.lib&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;gpr.lib
+grpc.lib
+grpc++.lib
+libprotobufd.lib
+ssl.lib
+crypto.lib
+zlibstaticd.lib&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_编译openssl&#34;&gt;3. 编译openssl&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;perl Configure VC-WIN64A no-asm
+nmake
+nmake test
+nmake install&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/dev/sda
+/dev/sdb
+/dev/sdd&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;infiniband&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;{&#34;id&#34;:&#34;xxx&#34;,&#34;state&#34;:&#34;0&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;#!/bin/bash
+
+
+
+http://10.200.169.5/cxzx
+thinkgem/admin
+
+数据管理|监控管理
+
+for ((i=1; i&amp;lt;=1000; i ++))
+do
+  curl -X POST \
+  http://10.200.169.5/cxzx/a/suning/monitor/add \
+  -H &#39;cache-control: no-cache&#39; \
+  -H &#39;content-type: application/json&#39; \
+  -d &#39;{&#34;mac&#34;:&#34;00-E0-4C-6C-DD-D6&#34;}&#39;
+  sleep 2
+done
+
+
+for ((i=1; i&amp;lt;=1000; i ++))
+do
+  curl -X POST \
+  http://localhost:8080/a/suning/monitor/add \
+  -H &#39;cache-control: no-cache&#39; \
+  -H &#39;content-type: application/json&#39; \
+  -d &#39;{&#34;mac&#34;:&#34;12-21-12-21-12-31&#34;}&#39;
+  sleep 2
+done
+
+
+for ((i=1; i&amp;lt;=100; i ++))
+do
+curl -X POST \
+  http://localhost:8080/a/suning/monitor/zk/create \
+  -H &#39;cache-control: no-cache&#39; \
+  -H &#39;content-type: application/json&#39; \
+  -d &#39;{&#34;mac&#34;:41,&#34;name&#34;:&#34;device1&#34;,&#34;tag&#34;:&#34;pc&#34;}&#39;
+sleep 1
+done
+
+
+
+docker pull registry.cn-hangzhou.aliyuncs.com/kuaihuoyun/disconf&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_积分排行&#34;&gt;3.1. 积分排行&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/suning-work-erd-2.svg&#34; alt=&#34;suning work erd 2&#34; width=&#34;976&#34; height=&#34;239&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;内网签名
+创新业务中心研发部
+周凯 18089513
+手机：18710110778
+邮箱：&lt;a href=&#34;mailto:zhoukai@suning-sports.com&#34;&gt;zhoukai@suning-sports.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;外网签名
+苏宁体育集团
+苏宁体育文化传媒（北京）有限公司    周凯
+手机：18710110778
+邮箱：&lt;a href=&#34;mailto:zhoukai@suning-sports.com&#34;&gt;zhoukai@suning-sports.com&lt;/a&gt;
+地址：北京市朝阳区朝阳路167号苏宁生活广场苏宁中心写字楼16F
+邮编：100025
+网址：sports.pptv.com&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;部门签名
+苏宁体育集团
+苏宁体育文化传媒（北京）有限公司
+手机：18710110778
+邮箱：&lt;a href=&#34;mailto:zhoukai@suning-sports.com&#34;&gt;zhoukai@suning-sports.com&lt;/a&gt;
+地址：北京市朝阳区朝阳路167号苏宁生活广场苏宁中心写字楼16F
+邮编：100025
+网址：sports.pptv.com&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;处理器（负载，温度）、显卡（负载，使用率，温度）、内存（使用率）、硬盘（使用率），网络&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -i -H &#34;Accept: application/json&#34; &lt;a href=&#34;http://cxzx.fabx.com.cn/_plugin/sql?sql=select&#34; class=&#34;bare&#34;&gt;http://cxzx.fabx.com.cn/_plugin/sql?sql=select&lt;/a&gt; * from f/f24 limit 10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl &lt;a href=&#34;http://localhost:9200/_sql?sql=select&#34; class=&#34;bare&#34;&gt;http://localhost:9200/_sql?sql=select&lt;/a&gt; * from f/f24 limit 10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl -i -H &#34;Accept: application/json&#34; &lt;a href=&#34;http://elastic-stack-elasticsearch-client:9200/_sql?sql=select&#34; class=&#34;bare&#34;&gt;http://elastic-stack-elasticsearch-client:9200/_sql?sql=select&lt;/a&gt; * from f/f24 limit 10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;192.168.88.43:5901&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum install tigervnc-server -y
+systemctl stop firewalld.service
+systemctl disable firewalld.service&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+vi /etc/systemd/system/vncserver@:1.service&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.realvnc.com/en/connect/download/viewer/&#34; class=&#34;bare&#34;&gt;https://www.realvnc.com/en/connect/download/viewer/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;parted -a optimal /dev/sdb mkpart primary 0% 4096MB&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>k8s 命令</title>
+      <link>/post/work/suning/k8s/</link>
+      <pubDate>Tue, 28 Aug 2018 09:23:58 +0000</pubDate>
+      
+      <guid>/post/work/suning/k8s/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_命令&#34;&gt;2. k8s 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_yaml&#34;&gt;3. k8s yaml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_etcd&#34;&gt;4. etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_helm&#34;&gt;5. helm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_问题&#34;&gt;6. k8s 问题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_master_重新分配ip&#34;&gt;7. k8s master 重新分配ip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_linux&#34;&gt;8. linux&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_nfs&#34;&gt;8.1. nfs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_etcd_2&#34;&gt;9. etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_清除k8s&#34;&gt;10. 清除k8s&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_firewalld_操作&#34;&gt;11. Firewalld 操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kubeadm_join_错误&#34;&gt;12. kubeadm join 错误&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker&#34;&gt;13. docker&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;1. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kubernetes.org.cn/1414.html&#34;&gt;k8s yaml&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://jimmysong.io/kubernetes-handbook/concepts/concepts.html&#34;&gt;k8s 概念&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.weave.works/docs/scope/latest/installing/#k8s&#34;&gt;weave&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.github.io/ingress-nginx/&#34;&gt;ingress&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://help.aliyun.com/document_detail/58587.html?spm=a2c4e.11153940.blogcont159601.76.6703174aXbVxHD&#34;&gt;利用 Helm 简化应用部署&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://jimmysong.io/posts/manage-kubernetes-native-app-with-helm/&#34; class=&#34;bare&#34;&gt;https://jimmysong.io/posts/manage-kubernetes-native-app-with-helm/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/A632189007/article/details/78909835&#34;&gt;开启iptables情况下Swarm、kubernetes等组件正常工作的配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://ramitsurana.github.io/awesome-kubernetes/&#34;&gt;awesome-kubernetes&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_k8s_命令&#34;&gt;2. k8s 命令&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;docker pull quay.io/coreos/flannel:v0.10.0-amd64
+docker pull quay.io/coreos/flannel:v0.10.0-arm
+docker pull quay.io/coreos/flannel:v0.10.0-ppc64le
+docker pull quay.io/coreos/flannel:v0.10.0-s390x
+
+
+docker tag [ImageId] registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:[镜像版本号]
+docker push registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:[镜像版本号]
+
+
+docker tag 463654e4ed2d registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-s390x
+docker tag e2f67d69dd84 registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-ppc64le
+docker tag c663d02f7966 registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-arm
+docker tag f0fad859c909 registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-amd64
+
+
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-s390x
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-ppc64le
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-arm
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-amd64
+
+
+docker pull xiyangxixia/k8s-flannel:v0.10.0-s390x
+docker pull xiyangxixia/k8s-flannel:v0.10.0-ppc64le
+docker pull xiyangxixia/k8s-flannel:v0.10.0-arm
+docker pull xiyangxixia/k8s-flannel:v0.10.0-amd64
+
+
+
+docker tag xiyangxixia/k8s-flannel:v0.10.0-s390x quay.io/coreos/flannel:v0.10.0-amd64
+docker tag xiyangxixia/k8s-flannel:v0.10.0-ppc64le quay.io/coreos/flannel:v0.10.0-arm
+docker tag xiyangxixia/k8s-flannel:v0.10.0-arm quay.io/coreos/flannel:v0.10.0-ppc64le
+docker tag xiyangxixia/k8s-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-s390x
+
+
+kubectl get pod --all-namespaces -o wide
+
+delete
+
+kubectl delete pod tiller-deploy-67d8b477f7-8b4r6 -n kube-system --grace-period=0 --force
+
+kubectl delete pods,services -n kube-system -l k8s-app=kube-dns
+
+describe
+
+kubectl -n kube-system describe secret kubernetes-dashboard
+kubectl -n default describe ingress-release-nginx-ingress-controller-cb646488f-rksrp
+
+
+
+kubectl get pods &amp;lt;pod-name&amp;gt; -o=custom-columns=NAME:.metadata.name
+
+
+kubectl get svc -n kube-system -o wide
+
+kubectl logs -p &amp;lt;Pod Name&amp;gt;
+
+按顺序启动如下服务：etcd, docker, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, kube-proxy
+
+
+sed -i s@k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.0@registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64:v1.10.0@ kubernetes-dashboard.yaml
+
+kubectl proxy --address=&#39;192.168.137.21&#39; --port=8086 --accept-hosts=&#39;^*$&#39;
+
+
+http://192.168.137.21:8086/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+
+kubectl -n kube-system describe secret kubernetes-dashboard
+
+http://192.168.137.21:8086/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/workload?namespace=default
+
+
+kubectl label node k8s02 node-role.kubernetes.io/node=node&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;重启容器&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;kubectl exec POD_NAME -c CONTAINER_NAME /sbin/kill 1&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_k8s_yaml&#34;&gt;3. k8s yaml&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;apiVersion: v1              #指定api版本，此值必须在kubectl apiversion中
+kind: Pod                   #指定创建资源的角色/类型
+metadata:                   #资源的元数据/属性
+  name: web04-pod           #资源的名字，在同一个namespace中必须唯一
+  labels:                   #设定资源的标签，详情请见http://blog.csdn.net/liyingke112/article/details/77482384
+    k8s-app: apache
+    version: v1
+    kubernetes.io/cluster-service: &#34;true&#34;
+  annotations:              #自定义注解列表
+    - name: String          #自定义注解名字
+spec:                       #specification of the resource content 指定该资源的内容
+  restartPolicy: Always     #表明该容器一直运行，默认k8s的策略，在此容器退出后，会立即创建一个相同的容器
+  nodeSelector:             #节点选择，先给主机打标签kubectl label nodes kube-node1 zone=node1
+    zone: node1
+  containers:
+  - name: web04-pod         #容器的名字
+    image: web:apache       #容器使用的镜像地址
+    imagePullPolicy: Never  #三个选择Always、Never、IfNotPresent，每次启动时检查和更新（从registery）images的策略，
+                            # Always，每次都检查
+                            # Never，每次都不检查（不管本地是否有）
+                            # IfNotPresent，如果本地有就不检查，如果没有就拉取
+    command: [&#39;sh&#39;]         #启动容器的运行命令，将覆盖容器中的Entrypoint,对应Dockefile中的ENTRYPOINT
+    args: [&#34;$(str)&#34;]        #启动容器的命令参数，对应Dockerfile中CMD参数
+    env:                    #指定容器中的环境变量
+    - name: str             #变量的名字
+      value: &#34;/etc/run.sh&#34;  #变量的值
+    resources:              #资源管理，请求请见http://blog.csdn.net/liyingke112/article/details/77452630
+      requests:             #容器运行时，最低资源需求，也就是说最少需要多少资源容器才能正常运行
+        cpu: 0.1            #CPU资源（核数），两种方式，浮点数或者是整数+m，0.1=100m，最少值为0.001核（1m）
+        memory: 32Mi        #内存使用量
+      limits:               #资源限制
+        cpu: 0.5
+        memory: 32Mi
+    ports:
+    - containerPort: 80     #容器开发对外的端口
+      name: httpd           #名称
+      protocol: TCP
+    livenessProbe:          #pod内容器健康检查的设置，详情请见http://blog.csdn.net/liyingke112/article/details/77531584
+      httpGet:              #通过httpget检查健康，返回200-399之间，则认为容器正常
+        path: /             #URI地址
+        port: 80
+        #host: 127.0.0.1    #主机地址
+        scheme: HTTP
+      initialDelaySeconds: 180 #表明第一次检测在容器启动后多长时间后开始
+      timeoutSeconds: 5     #检测的超时时间
+      periodSeconds: 15     #检查间隔时间
+      #也可以用这种方法
+      #exec: 执行命令的方法进行监测，如果其退出码不为0，则认为容器正常
+      #  command:
+      #    - cat
+      #    - /tmp/health
+      #也可以用这种方法
+      #tcpSocket: //通过tcpSocket检查健康
+      #  port: number
+    lifecycle:              #生命周期管理
+      postStart:            #容器运行之前运行的任务
+        exec:
+          command:
+            - &#39;sh&#39;
+            - &#39;yum upgrade -y&#39;
+      preStop:              #容器关闭之前运行的任务
+        exec:
+          command: [&#39;service httpd stop&#39;]
+    volumeMounts:           #详情请见http://blog.csdn.net/liyingke112/article/details/76577520
+    - name: volume          #挂载设备的名字，与volumes[*].name 需要对应
+      mountPath: /data      #挂载到容器的某个路径下
+      readOnly: True
+  volumes:                  #定义一组挂载设备
+  - name: volume            #定义一个挂载设备的名字
+    #meptyDir: {}
+    hostPath:
+      path: /opt            #挂载设备类型为hostPath，路径为宿主机下的/opt,这里设备类型支持很多种&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubectl label nodes myweb dedicated=master&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_etcd&#34;&gt;4. etcd&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;etcd --endpoints http://192.168.137.21:2379&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_helm&#34;&gt;5. helm&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;# 在kube-system命名空间中创建tiller账户
+kubectl create serviceaccount --namespace kube-system tiller
+
+# 创建角色并授予cluster-admin权限
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+helm init --service-account tiller -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.10.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+
+安装ingress
+nginx-ingress  修改 values.yaml 166行 externalIPs 为主机 IP
+
+helm install --name ingress --namespace kube-common ./
+
+安装dashboard
+
+helm install --name k8s-dashboard --namespace kube-common ./
+
+登陆 dashboard 输入 Token
+
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk &#39;{print $1}&#39;)
+
+开启10250端口
+iptables -I INPUT -p tcp --dport 10250 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+
+
+helm upgrade tomcat-t1 .
+
+helm install --name tomcat-t1 .
+
+#删除
+helm delete --purge tomcat-t1&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_k8s_问题&#34;&gt;6. k8s 问题&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;在 master 节点上部署应用&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;kubectl taint nodes --all node-role.kubernetes.io/master-&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_k8s_master_重新分配ip&#34;&gt;7. k8s master 重新分配ip&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_linux&#34;&gt;8. linux&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;#修改时区
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#同步时间
+ntpdate -ud 10.200.169.32
+
+
+#查看完整错误信息
+journalctl -xefu kubelet&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_nfs&#34;&gt;8.1. nfs&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;yum install nfs-utils rpcbind -y
+echo &#34;/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)&#34; &amp;gt;&amp;gt; /etc/exports
+
+仅在nfs服务器上 systemctl start rpcbind nfs&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_etcd_2&#34;&gt;9. etcd&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;版本2连接server查看不到信息&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;export ETCDCTL_API=3&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep flannel|xargs -i sh -c &#39;etcdctl --endpoints=http://10.200.169.32:2379 del {}&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep -E &#34;coredns|kube-apiserver|kube-scheduler|kube-dns|flannel|kube-system|tiller|kube-public|minions&#34;|xargs -i sh -c &#39;etcdctl --endpoints=http://10.200.169.32:2379 del {}&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_清除k8s&#34;&gt;10. 清除k8s&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;删除etcd目录 /var/lib/etcd&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubectl get pvc|grep elas|xargs -i sh -c &#39;kubectl delete pvc {}&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_firewalld_操作&#34;&gt;11. Firewalld 操作&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.51cto.com/754599082/2046537&#34;&gt;firewalld的9个zonefirewalld关于zone和service的操作&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;vi /etc/sysconfig/iptables&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-A INPUT -p tcp -m state --state NEW -m tcp --dport 6443 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-A INPUT -i flannel.1 -j ACCEPT
+-A FORWARD -i flannel.1 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-A INPUT -i docker0 -j ACCEPT
+-A FORWARD -i docker0 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-A INPUT -i cni0 -j ACCEPT
+-A FORWARD -i cni0 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-A INPUT -s 10.244.0.0/0 -j ACCEPT
+-A FORWARD -s 10.244.0.0/0 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-A INPUT -s 10.254.0.0/0 -j ACCEPT
+-A FORWARD -s 10.254.0.0/0 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;systemctl stop firewalld
+systemctl mask firewalld&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查看已添加的iptables规则
+iptables -L -n -v&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;service iptables save&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;iptables -A OUTPUT -j ACCEPT
+iptables -I INPUT -p tcp --dport 10250 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;iptables -I INPUT -s 10.96.0.1/0 -j ACCEPT
+iptables -I FORWARD -s 10.96.0.1/0 -j ACCEPT&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_kubeadm_join_错误&#34;&gt;12. kubeadm join 错误&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;unable to check if the container runtime at &#34;/var/run/dockershim.sock&#34; is running
+yum remove cri-tools&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;mailto:ss@rohankdd.com&#34;&gt;ss@rohankdd.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker&#34;&gt;13. docker&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat /etc/docker/daemon.json
+{
+    &#34;graph&#34;: &#34;/home/data/docker&#34;
+}&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>akka-概念</title>
+      <link>/post/bigdata/scala/akka-%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Sat, 04 Aug 2018 14:42:49 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/akka-%E6%A6%82%E5%BF%B5/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;akka-概念&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_akka的功能&#34;&gt;1. Akka的功能&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_akka的功能&#34;&gt;1. Akka的功能&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;并行处理大量请求&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务和客户端的并发交互&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;响应式异步交互&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;异步编程模型&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/akka-gainian-1.svg&#34; alt=&#34;akka gainian 1&#34; width=&#34;396&#34; height=&#34;238&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/akka-gainian-2.svg&#34; alt=&#34;akka gainian 2&#34; width=&#34;633&#34; height=&#34;49&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/akka-gainian-3.svg&#34; alt=&#34;akka gainian 3&#34; width=&#34;314&#34; height=&#34;292&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DO工具箱开发</title>
+      <link>/post/work/nokia/nokia/</link>
+      <pubDate>Wed, 01 Aug 2018 10:28:36 +0000</pubDate>
+      
+      <guid>/post/work/nokia/nokia/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;DO工具箱&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_osgi&#34;&gt;1. OSGi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;2. 配置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_指标呈现&#34;&gt;3. 指标呈现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_指标呈现_天&#34;&gt;4. 指标呈现(天)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定界定位&#34;&gt;5. 定界定位&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_osgi&#34;&gt;1. OSGi&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Toolbox 工具箱&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;工具箱的安装、开发及使用。时间充足的话再把消息队列详细说说。最好能让他参于到你的项目中，&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;基于spark sql&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;1, sql语句封装在xml里
+ source：
+   数据源&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;summary:
+  处理逻辑&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;result:
+  输出结果&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_配置&#34;&gt;2. 配置&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;datasources=hdfs,hive
+
+hdfs.source-type=HDFS-NORMAL
+hdfs.type=HDFS
+hdfs.title=HDFS for CMDI
+hdfs.arg.location=hdfs://vm26:8020/zhoukai/output
+
+hive.source-type=HIVE-NORMAL
+hive.type=HIVE
+hive.title=Hive for CMDI
+hive.arg.database=result
+hive.arg.location=/output/zhoukai/result
+
+runtime.spark.submit=/usr/bin/spark-submit&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;输入:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;输出
+StreamSource：
+  HiveStreamSource
+  HDFSStreamSource&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;插件开发 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Bundle-SymbolicName&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bundle-Activator&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Require-Bundle&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;--master yarn --name new_d_user_details30 --deploy-mode cluster --driver-memory 10G --driver-cores 2 --executor-memory 12G --executor-cores 2 --num-executors 20 --conf spark.dynamicAllocation.enabled=false --conf spark.yarn.executor.memoryOverhead=4G&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_指标呈现&#34;&gt;3. 指标呈现&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/nokia-1.svg&#34; alt=&#34;nokia 1&#34; width=&#34;2570&#34; height=&#34;1971&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_指标呈现_天&#34;&gt;4. 指标呈现(天)&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/nokia-2.svg&#34; alt=&#34;nokia 2&#34; width=&#34;1988&#34; height=&#34;1877&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_定界定位&#34;&gt;5. 定界定位&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/nokia-3.svg&#34; alt=&#34;nokia 3&#34; width=&#34;1328&#34; height=&#34;1322&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SparkSql</title>
+      <link>/post/work/dayliy/2018-07-09/</link>
+      <pubDate>Thu, 19 Jul 2018 14:43:47 +0000</pubDate>
+      
+      <guid>/post/work/dayliy/2018-07-09/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;stream&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_tmp&#34;&gt;1. tmp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_tmp&#34;&gt;1. tmp&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;asdfjlj&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/2018-07-02-1.png&#34; alt=&#34;2018 07 02 1&#34; width=&#34;317&#34; height=&#34;949&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>数据采集与同步</title>
+      <link>/post/bigdata/bigdata-warehouse/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Mon, 02 Jul 2018 14:20:43 +0000</pubDate>
+      
+      <guid>/post/bigdata/bigdata-warehouse/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;select
+  timestamp,
+  cid,
+  tb.uid,
+  sessionId,
+  ipAddress,
+  page,
+  ctype,
+  type,
+  event,
+  useragent,
+  version,
+  content,
+  lead(timestamp) over (partition by cid,sessionid order by timestamp asc) as next_time
+from b_event_trace_i where dt=&#39;&#39; and envent=&#39;pageview&#39;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>spark-问题</title>
+      <link>/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 20 Jun 2018 10:49:12 +0000</pubDate>
+      
+      <guid>/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;有一个表中，有200+字段 然后我要分别统计每个字段的 空值和非空值的分布情况。  这个表一天的数据大概有24T  目前打算抽样一千万条数据。 想用透视表来做 哪位大神指导一下，要是用spark 的话 怎么写&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scala g8 模板</title>
+      <link>/post/bigdata/scala/g8/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/bigdata/scala/g8/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;g8模板&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地&#34;&gt;本地&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker pull moredip/giter8&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out moredip/giter8 foundweekends/giter8.g8 --name=my-new-website&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_本地&#34; class=&#34;sect0&#34;&gt;本地&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/spark-mvn.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/spark-mvn.g8/&lt;/a&gt; --name=spark-mvn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/java-scala-mvn.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/java-scala-mvn.g8/&lt;/a&gt; --name=my-mvn-1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.messages.t1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do.g8/&lt;/a&gt; --name=com.nsn.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do-web.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do-web.g8/&lt;/a&gt; --name=com.nsn.web.do.tbox.spark.kpi.cucwm2&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>graphviz</title>
+      <link>/post/work/dayliy/graphviz/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/work/dayliy/graphviz/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;graphviz&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_4&#34;&gt;2. graphviz-4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_5&#34;&gt;3. graphviz-5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_6&#34;&gt;4. graphviz-6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_7&#34;&gt;5. graphviz-7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_3_17_53_1&#34;&gt;6. 3.17.53-1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_监控_hdfs_文件_触发消息&#34;&gt;7. 监控 hdfs 文件,触发消息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_8&#34;&gt;8. graphviz-8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_9&#34;&gt;9. graphviz-9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_10&#34;&gt;10. graphviz-10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_11&#34;&gt;11. graphviz-11&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_12&#34;&gt;12. graphviz-12&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_13&#34;&gt;13. graphviz-13&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_14&#34;&gt;14. graphviz-14&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_15&#34;&gt;15. graphviz-15&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_16&#34;&gt;16. graphviz-16&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_graphviz_17&#34;&gt;17. graphviz-17&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_erd&#34;&gt;Erd&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_erd_1&#34;&gt;1. Erd 1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;1. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://renenyffenegger.ch/notes/tools/Graphviz/examples/index&#34; class=&#34;bare&#34;&gt;https://renenyffenegger.ch/notes/tools/Graphviz/examples/index&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://tonyballantyne.com/graphs.html&#34; class=&#34;bare&#34;&gt;http://tonyballantyne.com/graphs.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-1.svg&#34; alt=&#34;graphviz 1&#34; width=&#34;541&#34; height=&#34;170&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-2.svg&#34; alt=&#34;graphviz 2&#34; width=&#34;968&#34; height=&#34;315&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-3.svg&#34; alt=&#34;graphviz 3&#34; width=&#34;178&#34; height=&#34;154&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_4&#34;&gt;2. graphviz-4&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-4.svg&#34; alt=&#34;graphviz 4&#34; width=&#34;715&#34; height=&#34;543&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_5&#34;&gt;3. graphviz-5&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-5.svg&#34; alt=&#34;graphviz 5&#34; width=&#34;215&#34; height=&#34;155&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_6&#34;&gt;4. graphviz-6&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-6.svg&#34; alt=&#34;graphviz 6&#34; width=&#34;413&#34; height=&#34;204&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_7&#34;&gt;5. graphviz-7&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_3_17_53_1&#34;&gt;6. 3.17.53-1&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/3.17.53-1.svg&#34; alt=&#34;3.17.53 1&#34; width=&#34;2133&#34; height=&#34;442&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/3.17.53-1-1.svg&#34; alt=&#34;3.17.53 1 1&#34; width=&#34;1141&#34; height=&#34;97&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/3.17.53-1-2.svg&#34; alt=&#34;3.17.53 1 2&#34; width=&#34;1034&#34; height=&#34;264&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_监控_hdfs_文件_触发消息&#34;&gt;7. 监控 hdfs 文件,触发消息&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/3.17.53-2.svg&#34; alt=&#34;3.17.53 2&#34; width=&#34;824&#34; height=&#34;534&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_8&#34;&gt;8. graphviz-8&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_9&#34;&gt;9. graphviz-9&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-9.svg&#34; alt=&#34;graphviz 9&#34; width=&#34;3890&#34; height=&#34;3888&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_10&#34;&gt;10. graphviz-10&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-10.svg&#34; alt=&#34;graphviz 10&#34; width=&#34;449&#34; height=&#34;345&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_11&#34;&gt;11. graphviz-11&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-11.svg&#34; alt=&#34;graphviz 11&#34; width=&#34;178&#34; height=&#34;174&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_12&#34;&gt;12. graphviz-12&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-12.svg&#34; alt=&#34;graphviz 12&#34; width=&#34;425&#34; height=&#34;331&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_13&#34;&gt;13. graphviz-13&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-13.svg&#34; alt=&#34;graphviz 13&#34; width=&#34;441&#34; height=&#34;325&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_14&#34;&gt;14. graphviz-14&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-14.svg&#34; alt=&#34;graphviz 14&#34; width=&#34;535&#34; height=&#34;574&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_15&#34;&gt;15. graphviz-15&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-15.svg&#34; alt=&#34;graphviz 15&#34; width=&#34;264&#34; height=&#34;228&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_16&#34;&gt;16. graphviz-16&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-16.svg&#34; alt=&#34;graphviz 16&#34; width=&#34;329&#34; height=&#34;212&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_graphviz_17&#34;&gt;17. graphviz-17&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/graphviz-17.svg&#34; alt=&#34;graphviz 17&#34; width=&#34;82&#34; height=&#34;103&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_erd&#34; class=&#34;sect0&#34;&gt;Erd&lt;/h1&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_erd_1&#34;&gt;1. Erd 1&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/erd-graphvi-1.svg&#34; alt=&#34;erd graphvi 1&#34; width=&#34;554&#34; height=&#34;417&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>yunnan-lt</title>
+      <link>/post/work/nokia/yunnan-lt/yunnan-lt/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/work/nokia/yunnan-lt/yunnan-lt/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;yunnan-lt&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_多sheet保存csv&#34;&gt;1. 多sheet保存csv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_代办&#34;&gt;2. 代办&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_问题&#34;&gt;3. 问题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_er&#34;&gt;4. ER&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_云南联通中间表小时&#34;&gt;4.1. 云南联通中间表小时&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_云南联通中间表天&#34;&gt;4.2. 云南联通中间表天&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;服务器信息&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;172.33.2.17
+yarn &lt;a href=&#34;http://172.33.2.17:23188/cluster&#34; class=&#34;bare&#34;&gt;http://172.33.2.17:23188/cluster&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;172.33.2.17
+root/Huawei@123&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;su - hadoop&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;hadoop fs -ls /lte/xdr&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;web
+  172.33.10.51&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MRO数据源表
+O_LTE_MRO_IMSI&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MRS数据源表
+O_LTE_MRS_RSRP
+O_LTE_MRS_RSRQ
+O_LTE_MRS_TADV
+O_LTE_MRS_POWERHEADROOM
+O_LTE_MRS_AOA
+O_LTE_MRS_SINRUL
+O_LTE_MRS_RECEIVEDIPOWER
+O_LTE_MRS_RIPPRB
+O_LTE_MRS_TADVRSRP
+O_LTE_MRS_TADVAOA
+O_LTE_MRS_RIPRSRP
+O_LTE_MRS_RIPRSRQ
+O_LTE_MRS_SINRULRIP
+O_LTE_MRS_PACKETLOSSRATEULQCI1
+O_LTE_MRS_PACKETLOSSRATEULQCI2
+O_LTE_MRS_PACKETLOSSRATEULQCI3
+O_LTE_MRS_PACKETLOSSRATEULQCI4
+O_LTE_MRS_PACKETLOSSRATEULQCI5
+O_LTE_MRS_PACKETLOSSRATEULQCI6
+O_LTE_MRS_PACKETLOSSRATEULQCI7
+O_LTE_MRS_PACKETLOSSRATEULQCI8
+O_LTE_MRS_PACKETLOSSRATEULQCI9
+O_LTE_MRS_PACKETLOSSRATEDLQCI1
+O_LTE_MRS_PACKETLOSSRATEDLQCI2
+O_LTE_MRS_PACKETLOSSRATEDLQCI3
+O_LTE_MRS_PACKETLOSSRATEDLQCI4
+O_LTE_MRS_PACKETLOSSRATEDLQCI5
+O_LTE_MRS_PACKETLOSSRATEDLQCI6
+O_LTE_MRS_PACKETLOSSRATEDLQCI7
+O_LTE_MRS_PACKETLOSSRATEDLQCI8
+O_LTE_MRS_PACKETLOSSRATEDLQCI9&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_多sheet保存csv&#34;&gt;1. 多sheet保存csv&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Sub SaveToCSVs()&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim fDir As String&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim wB As Workbook&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim wS As Worksheet&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim fPath As String&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Dim sPath As String&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;fPath = &#34;C:\Users\dishui\Desktop\liantong-km\doc\&#34;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;sPath = &#34;C:\Users\dishui\Desktop\liantong-km\csv3\&#34;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;fDir = Dir(fPath)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Do While (fDir &amp;lt;&amp;gt; &#34;&#34;)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;If Right(fDir, 4) = &#34;.xls&#34; Or Right(fDir, 5) = &#34;.xlsx&#34; Then&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;On Error Resume Next&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Set wB = Workbooks.Open(fPath &amp;amp; fDir)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&#39;MsgBox (wB.Name)&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;For Each wS In wB.Sheets&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;wS.SaveAs sPath &amp;amp; wS.Name &amp;amp; &#34;.csv&#34;, xlCSV&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Next wS&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;wB.Close False&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Set wB = Nothing&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;End If&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;fDir = Dir&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;On Error GoTo 0&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Loop&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;End Sub&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;s1u业务       &amp;#8592;   s1u_rpt业务
+s1u_dns业务       &amp;#8592;   s1u_dns_rpt业务
+s1u_http业务      &amp;#8592;   s1u_http_rpt业务
+s1u_mme业务       &amp;#8592;   s1u_mme_rpt业务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;s1u_rpt业务
+s1u_dns_rpt业务
+s1u_http_rpt业务
+s1u_mme_rpt业务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;算法设计器 (天级别的)
+    凌晨的&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;customer_group业务
+    定时 每个小时执行一次&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;customer_group_first业务
+    跑一个小时的 执行一次&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;customer_group_daily业务&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;问题&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;2018年6月24日
+1. O_LTE_RPM_EUTRANCELL源表没有&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;STARTTIME
+  O_LTE_RPM_EUTRANCELL
+    DAY_ID+HOUR_ID
+格式 yyyy-MM-dd hh:mm:ss&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;M_PM_LTE_CELL_H
+  HOPREPINCSUCCRATE 重复
+  AVAILCELLRATIO 根据什么分组  eci&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;O_AM
+  scity&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_代办&#34;&gt;2. 代办&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;p_rmconf
+  2:当EquipmentClass为EUTRANCELL时，取NeName与P_netconf表cell_oid字段相匹配，获取CELL_ID。同时通过NeName与O_RM_EUTRANCELL的NMS_ORIG_RES_NAME字段匹配获取STARTTIME。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;com.nsn.do.tbox.spark.kpi.cucwm
+com.nsn.do.tbox.spark.kpi.cucmr
+com.nsn.do.tbox.spark.kpi.cucmr.day
+com.nsn.do.tbox.spark.kpi.cucwm.day
+com.nsn.web.do.tbox.spark.kpi.cucmr
+com.nsn.web.do.tbox.spark.kpi.cucwm&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_问题&#34;&gt;3. 问题&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;云南联通汇总表(day)V3.1.1表
+S_MRO_LTE_RSRP_D 问题
+
+18行
+  某小区，SumPRRP/timeRSRP-140
+
+35行
+  某小区，(sum(RSRP_ALL)-sum(RSRP_110))/sum((RSRP_ALL)&amp;gt;10,and (sum(RSRP_ALL))&amp;gt;1000,1,0)
+
+
+p_rmconf.xlsx
+2行
+  不同网元用各自网元的START_TIME
+  O_RM_ENDEB
+  O_RM_EUTRANCELL
+  O_RM_HSS_FE
+  O_RM_MME
+  O_RM_PGW
+  O_RM_SGW&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_er&#34;&gt;4. ER&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_云南联通中间表小时&#34;&gt;4.1. 云南联通中间表小时&lt;/h3&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/yunnan-lt-1.svg&#34; alt=&#34;yunnan lt 1&#34; width=&#34;931&#34; height=&#34;1189&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_云南联通中间表天&#34;&gt;4.2. 云南联通中间表天&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;Failed to generate image: erd.EXE failed: &#34;&amp;lt;stdin&amp;gt;&#34; (line 5, column 8):
+unexpected &#39;(&#39;
+expecting relationship or attribute
+
+title {label: &#34;云南联通中间表天&#34;, size: &#34;13&#34;}
+# Entities
+
+[S_MRO_LTE_RSRP_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   邻区MR(天)
+[S_MRS_LTE_RSRP_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   服务小区MR(天)
+[S_MRS_LTE_IOT_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   小区干扰(天)
+[S_PM_LTE_CELL_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   小区级KPI指标(天)
+[S_PM_LTE_SCITY_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
+   地市级KPI指标(天)
+
+# Relationships&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/plantuml/yunnan-lt-3.svg&#34; alt=&#34;yunnan lt 3&#34; width=&#34;509&#34; height=&#34;422&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>初级1</title>
+      <link>/post/niuke/%E5%88%9D%E7%BA%A71/</link>
+      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
+      
+      <guid>/post/niuke/%E5%88%9D%E7%BA%A71/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_对数器&#34;&gt;对数器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;二分查找的时间复杂度 \(O(\log{_2} N)\)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_对数器&#34; class=&#34;sect0&#34;&gt;对数器&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;贪心策略&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

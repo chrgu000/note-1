@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>换元积分法</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="换元积分法" />
+<meta property="og:description" content="换元积分法1. 换元积分法1.1. 第一类换元积分法1.2. 凑微分法的步骤1.3. 常见凑微分的积分类型1.4. 常见的凑微分公式1. 换元积分法1.1. 第一类换元积分法1.2. 凑微分法的步骤1.3. 常见凑微分的积分类型1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/mathematics/xuxiaozhan/%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95/" />
+
+
+<meta property="og:updated_time" content="2017-02-12T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">换元积分法</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-02-12 00:00:00 &#43;0000 UTC">February 12, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">换元积分法</div>
+<ul class="sectlevel1">
+<li><a href="#_换元积分法">1. 换元积分法</a>
+<ul class="sectlevel2">
+<li><a href="#_第一类换元积分法">1.1. 第一类换元积分法</a></li>
+<li><a href="#_凑微分法的步骤">1.2. 凑微分法的步骤</a></li>
+<li><a href="#_常见凑微分的积分类型">1.3. 常见凑微分的积分类型</a></li>
+<li><a href="#_常见的凑微分公式">1.4. 常见的凑微分公式</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_换元积分法">1. 换元积分法</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_第一类换元积分法">1.1. 第一类换元积分法</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_100516.png" alt="2017 02 13 100516">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_凑微分法的步骤">1.2. 凑微分法的步骤</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_100802.png" alt="2017 02 13 100802">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_常见凑微分的积分类型">1.3. 常见凑微分的积分类型</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101300.png" alt="2017 02 13 101300">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101419.png" alt="2017 02 13 101419">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101458.png" alt="2017 02 13 101458">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101719.png" alt="2017 02 13 101719">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101800.png" alt="2017 02 13 101800">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101840.png" alt="2017 02 13 101840">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_101938.png" alt="2017 02 13 101938">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_102025.png" alt="2017 02 13 102025">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_201609.png" alt="2017 02 13 201609">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_201735.png" alt="2017 02 13 201735">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_202158.png" alt="2017 02 13 202158">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_202330.png" alt="2017 02 13 202330">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_202452.png" alt="2017 02 13 202452">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204000.png" alt="2017 02 13 204000">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204047.png" alt="2017 02 13 204047">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204154.png" alt="2017 02 13 204154">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204348.png" alt="2017 02 13 204348">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204408.png" alt="2017 02 13 204408">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204507.png" alt="2017 02 13 204507">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu/2017-02-13_204533.png" alt="2017 02 13 204533">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/gaoshu" alt="gaoshu">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_常见的凑微分公式">1.4. 常见的凑微分公式</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">换元法类型</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所用的凑微分公式</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(ax + b)dx = \frac{1}{a}}\int{f(ax + b)d(ax + b)}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle dx = \frac{1}{a}d(ax + b)\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(x^n)x^{n-1}dx = \frac{1}{n}}\int{f(x^n)dx^n}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle x^{n-1}dx = \frac{1}{n}dx^n\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(x^2)xdx = \frac{1}{2}}\int{f(x^2)dx^2}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle xdx = \frac{1}{2}dx^2\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f(\sqrt{x})}{\sqrt{x}}dx} = 2\int{f(\sqrt{x})d\sqrt{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{\sqrt{x}}dx = 2d\sqrt{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(\frac{1}{x})\frac{1}{x^2}dx} = -\int{f(\frac{1}{x})d\frac{1}{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{x^2}dx = -d\frac{1}{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f(\ln{x})}{x}dx} = \int{f(\ln{x})d\ln{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{x}dx = d\ln{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(e^x)e^xdx} = \int{f(e^x)de^x}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle e^xdx = de^x\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(\sin{x})\cos{x}dx} = \int{f(\sin{x})d\sin{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \cos{x}dx = d\sin{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{f(\cos{x})\sin{x}dx} = -\int{f(\cos{x})d\cos{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \sin{x}dx = -d\cos{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f'(x)}{f(x)}dx} = \int{\frac{1}{f(x)d(f(x))}} = \ln{|f(x)| + C}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle f'(x)dx = df(x)\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f(\arctan{x})}{1 + x^2}dx} = -\int{f(\arctan{x})d\arctan{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{1+x^2}dx = d\arctan{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f(\arcsin{x})}{\sqrt{1 - x^2}}dx} = -\int{f(\arcsin{x})d\arcsin{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{\sqrt{1 - x^2}}dx = d\arcsin{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f(\tan{x})}{\cos^2{x}}dx} = \int{f(\tan{x})\sec^2{x}dx} = \int{f(\tan{x})d\tan{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{\cos^2{x}}dx = \sec^2{x}dx = d\tan{x}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \int{\frac{f(\cos{x})}{\sin^2{x}}dx} = \int{f(\cot{x})\csc^2{x}dx} = -\int{f(\cos{x})d\cot{x}}\)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\displaystyle \frac{1}{\sin^2{x}}dx = \csc^2{x}dx = -d\cot{x}\)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/mathematics/xuxiaozhan/%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E5%92%8C%E6%9E%81%E5%80%BC/" rel="prev"><span>«Previous</span><p>函数的单调性和极值</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/mathematics/xuxiaozhan/%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95%282%29/" rel="next"><span>Next»</span><p>换元积分法(2)</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

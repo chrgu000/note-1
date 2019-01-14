@@ -1,0 +1,29 @@
+---
+
+- command: mkdir /home/core/tmp
+  args:
+    creates: /home/core/tmp
+
+- command: mkdir /home/core/bin
+  args:
+    creates: /home/core/bin
+
+- copy:
+    src: rancher-linux-amd64-v0.4.1.tar.gz
+    dest: /home/core/tmp
+
+- name: unarchive
+  unarchive:
+    src: /home/core/tmp/rancher-linux-amd64-v0.4.1.tar.gz
+    dest: /home/core/tmp
+    remote_src: True
+
+- name: Move rancher-linux-amd64-v0.4.1 to rancher
+  command: mv /home/core/tmp/rancher-v0.4.1/rancher /home/core/bin/
+
+- name: chmod +x /home/core/bin/rancher
+  file:
+    path: /home/core/bin/rancher
+    owner: core
+    group: core
+    mode: "u+x"

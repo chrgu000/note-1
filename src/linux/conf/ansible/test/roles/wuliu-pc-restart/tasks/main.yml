@@ -1,0 +1,20 @@
+---
+
+- command: mkdir /home/core/tmp
+  args:
+    creates: /home/core/tmp
+
+- copy:
+    src: /tmp/{{ pc_wuliu_i_tar }}
+    dest: /home/core/tmp/{{ pc_wuliu_i_tar }}
+  notify: restart web
+
+- unarchive:
+    src: /home/core/tmp/{{ pc_wuliu_i_tar }}
+    dest: /home/core/wuliu
+    remote_src: True
+
+- name: delete {{ pc_wuliu_i_tar }}
+  file:
+    path: /home/core/tmp/{{ pc_wuliu_i_tar }}
+    state: absent

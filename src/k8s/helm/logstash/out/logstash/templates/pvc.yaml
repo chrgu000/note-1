@@ -1,0 +1,16 @@
+---
+# Source: tomcat/templates/pvc.yaml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: logstash
+  labels:
+    app: logstash
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "8Gi"
+  storageClassName: "cxzx-nfs"

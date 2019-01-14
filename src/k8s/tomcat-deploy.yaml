@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myweb
+  labels:
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 3
+  selector:
+    app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      nodeSelector:
+        dedicated: master
+      tolerations:
+        - key: dedicated
+          operator: Equal
+          value: master
+          effect: NoSchedule
+      containers:
+        - name: myweb
+          image: tomcat:8.0.51-alpine
+          ports:
+            - containerPort: 8080

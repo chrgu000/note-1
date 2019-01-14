@@ -1,0 +1,323 @@
+
+
+:host: D:\dishui\content
+:img: {host}/src
+:resource: content/resource
+:src: content/src
+:svg: {host}/src/svg
+// :imagesdir: {host}/src
+:imagesoutdir: {host}/src/img/plantuml
+:plantimgdir: {host}/src/img/plantuml
+:experimental:
+:table-caption!:
+:example-caption!:
+:icons: font
+:sectnums:
+:toc:
+:toclevels: 5
+:source-highlighter: pygments
+:stem: latexmath
+:toc-title: 3.17.53
+
+= 工具箱2.0小版本更新列表——3.17.53
+
+*本次主要更新以下几项内容*
+|===
+|更新内容 |是否兼容老版本
+
+|消息触发: 小时级别(24个小时)的任务执行完毕，触发天级别的任务开始执行
+|新增功能
+
+|===
+
+
+== 配置
+=== 更新插件
+  * com.nsn.messages
+  * com.nsn.messages.client
+  * com.nsn.messages.driver
+  * com.nsn.datamining.spark
+  * com.nsn.web.do.tbox
+  * com.nsn.base.hdfs
+  * com.nsn.messages.check
+
+=== 配置中心,修改 `datasource.properties`
+[source,properties]
+----
+datasources=hdfs,hive
+
+hdfs.source-type=HDFS-NORMAL
+hdfs.type=HDFS
+hdfs.title=HDFS for CMDI
+hdfs.arg.location=hdfs://bjmcc-hdp-cluster-node-06.do:8020/output
+
+hive.source-type=HIVE-NORMAL
+hive.type=HIVE
+hive.title=Hive for CMDI
+hive.arg.database=result
+hive.arg.location=/output/result
+----
+
+[source,properties]
+----
+# data check
+data.check.fs.defaultFS=hdfs://vm26:8020 <1>
+data.check.path=/dishui/tmp <2>
+data.check.event=data.t1 <3>
+data.check.type=HOURLY <4>
+data.check.period=10 <5>
+data.check.unit=0 <6>
+----
+<1> *HDFS URL*
+<2> 需要检查文件的路径
+<3> 监听的 *Topic*
+<4> *Topic* 的类型
+<5> 检测时间间隔
+<6> 0:秒,1:分钟,2:小时
+
+=== 在 `postgresql` 中修改 `tbx_report_plan` 表结构
+[source,sql]
+----
+ALTER TABLE "public"."tbx_report_plan" ADD COLUMN "message_topic" varchar(64);
+ALTER TABLE "public"."tbx_report_plan" ADD COLUMN "send_trigger" varchar(64);
+----
+
+
+== 例子
+
+=== `小时指标sv(24小时)` 执行完毕,触发 `天指标sv`
+
+
+==== 天指标sv
+
+===== 在 `com.nsn.do.tbox.cmcc.spark.volte.day` 中 `Activator` 的 `start` 方法中添加
+[source,java]
+----
+private static final String[][] modules = {
+  {"volte_mw_day", "mw天专题", "/com/nsn/doo/tbox/cmcc/spark/volte/day/mw_day.xml"},
+  {"volte_sv_day", "sv天专题", "/com/nsn/doo/tbox/cmcc/spark/volte/day/sv_day.xml"}, <1>
+  {"bigxdrcmcc_day", "bigxdr天专题", "/com/nsn/doo/tbox/cmcc/spark/volte/day/bigxdrcmcc_day.xml"},
+  {"cmccdrop_day", "cmccdrop天专题", "/com/nsn/doo/tbox/cmcc/spark/volte/day/cmccdrop_day.xml"},
+  {"cmccsrvcc_day", "cmccsrvcc天专题", "/com/nsn/doo/tbox/cmcc/spark/volte/day/cmccsrvcc_day.xml"}
+};
+
+for (final String[] ss : modules) {
+  DataminingFactory.register(ss[0], new XmlDataminingFactory(ss[0], ss[1], ss[1], 1, Activator.class.getClassLoader(), Activator.class, ss[2]));
+  MessageDriver.Topic topic = new MessageDriver.Topic(ss[0]).type(DAYLY);<2>
+  MessageDriver.listen(topic);
+}
+----
+<1> 一个专题对应一个 *topic*
+<2> 天专题对应的 *type* 是 *DAYLY*
+
+===== *sv_day.xml*
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<datamining id="sv_day" name="volte专题" type="spark1" driver="REQUIRED">
+  <title>volte_SV_DAY专题</title>
+  <description>volte_SV_DAY专题</description>
+  <database id="spark1" type="XDR-CMCC-SPARK" name="HADOOP Env 1" runtime="true" />
+  <database id="hive" type="HIVE" name="hive结果库"/> <1>
+  <database id="hdfs" type="HDFS" name="hdfs结果"/> <2>
+  <window by="HOURLY" />
+
+  <source id="SV_DAY" database="spark1" cache="false">
+    <arg name="tables">sv_day_factory</arg>
+    <body><![CDATA[
+      SELECT * FROM sv_day_factory f
+    ]]></body>
+  </source>
+
+  <summary id="F_VOLTE_SIP_SV_D_SUMMARY" in="SV_DAY" cache="true" cache-type="both">
+    <body><![CDATA[
+            select
+              phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id,terminal,
+        sum(SRVCC_RESP_FAIL) as SRVCC_ATTEMPT,
+        sum(SRVCC_RESP_FAIL) as SRVCC_RESP_FAIL,
+        sum(SRVCC_RESP_SUCC) as SRVCC_RESP_SUCC,
+        sum(SRVCC_RESP_LATENCY_ALL) as SRVCC_RESP_LATENCY_ALL,
+        sum(SRVCC_COMP_SUCC) as SRVCC_COMP_SUCC,
+        sum(SRVCC_COMP_FAIL) as SRVCC_COMP_FAIL,
+        sum(SRVCC_COMP_LATENCY_ALL) as SRVCC_COMP_LATENCY_ALL,
+        sum(SRVCC_MEDIA_LATENCY_ALL) as SRVCC_MEDIA_LATENCY_ALL
+      from ${SV_DAY}
+      GROUP BY phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id,terminal
+        ]]></body>
+  </summary>
+
+    <summary id="F_VOLTE_SIP_SV_ALL_D_SUMMARY" in="F_VOLTE_SIP_SV_D_SUMMARY">
+        <body><![CDATA[
+            select
+              phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id,
+        sum(SRVCC_RESP_FAIL) as SRVCC_ATTEMPT,
+        sum(SRVCC_RESP_FAIL) as SRVCC_RESP_FAIL,
+        sum(SRVCC_RESP_SUCC) as SRVCC_RESP_SUCC,
+        sum(SRVCC_RESP_LATENCY_ALL) as SRVCC_RESP_LATENCY_ALL,
+        sum(SRVCC_COMP_SUCC) as SRVCC_COMP_SUCC,
+        sum(SRVCC_COMP_FAIL) as SRVCC_COMP_FAIL,
+        sum(SRVCC_COMP_LATENCY_ALL) as SRVCC_COMP_LATENCY_ALL,
+        sum(SRVCC_MEDIA_LATENCY_ALL) as SRVCC_MEDIA_LATENCY_ALL
+      from ${F_VOLTE_SIP_SV_D_SUMMARY}
+      GROUP BY phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id
+        ]]></body>
+    </summary>
+  <summary id="F_VOLTE_SIP_SV_TERMINAL_D_SUMMARY" in="F_VOLTE_SIP_SV_D_SUMMARY">
+    <body><![CDATA[
+        select phour,province,scity,
+          sum(SRVCC_RESP_FAIL) as SRVCC_ATTEMPT,
+          sum(SRVCC_RESP_FAIL) as SRVCC_RESP_FAIL,
+          sum(SRVCC_RESP_SUCC) as SRVCC_RESP_SUCC,
+          sum(SRVCC_RESP_LATENCY_ALL) as SRVCC_RESP_LATENCY_ALL,
+          sum(SRVCC_COMP_SUCC) as SRVCC_COMP_SUCC,
+          sum(SRVCC_COMP_FAIL) as SRVCC_COMP_FAIL,
+          sum(SRVCC_COMP_LATENCY_ALL) as SRVCC_COMP_LATENCY_ALL,
+          sum(SRVCC_MEDIA_LATENCY_ALL) as SRVCC_MEDIA_LATENCY_ALL
+        from ${F_VOLTE_SIP_SV_D_SUMMARY}
+        GROUP BY phour,province,scity
+        ]]></body>
+  </summary>
+
+  <!-- 天表 -->
+  <result id="F_VOLTE_SIP_SV_D" for="F_VOLTE_SIP_SV_D_SUMMARY" to="hive" title="spark1"/> <3>
+  <result id="F_VOLTE_SIP_SV_ALL_D" for="F_VOLTE_SIP_SV_ALL_D_SUMMARY" to="hive" title="spark1"/>
+  <result id="F_VOLTE_SIP_SV_TERMINAL_D" for="F_VOLTE_SIP_SV_TERMINAL_D_SUMMARY" to="hive" title="spark1"/>
+</datamining>
+----
+<1> 引入 *database hive*
+<2> 引入 *database hdfs*
+<3> *result* 结果写入 *hive*
+
+===== 页面填写
+
+
+image::{img}/img/work/do/2018-04-13_172105.png[]
+---
+
+==== 小时指标sv
+
+===== 在 `com.nsn.do.tbox.cmcc.spark.volte` 中 `Activator` 的 `start` 方法中添加
+
+[source,java]
+----
+
+private static final String[][] modules = {
+  {"volte_mw", "mw小时专题", "/com/nsn/doo/tbox/cmcc/spark/volte/mw.xml"},
+  {"volte_sv", "sv小时专题", "/com/nsn/doo/tbox/cmcc/spark/volte/sv.xml"},<1>
+  {"bigxdrcmcc", "bigxdr小时专题", "/com/nsn/doo/tbox/cmcc/spark/volte/bigxdrcmcc.xml"},
+  {"cmccdrop", "cmccdrop小时专题", "/com/nsn/doo/tbox/cmcc/spark/volte/cmccdrop.xml"},
+  {"cmccsrvcc", "cmccsrvcc小时专题", "/com/nsn/doo/tbox/cmcc/spark/volte/cmccsrvcc.xml"}
+};
+
+for (final String[] ss : modules) {
+  DataminingFactory.register(ss[0], new XmlDataminingFactory(ss[0], ss[1], ss[1], 1, Activator.class.getClassLoader(), Activator.class, ss[2]));
+  MessageDriver.Topic topic = new MessageDriver.Topic(ss[0]).type(HOURLY);<2>
+  MessageDriver.listen(topic);
+}
+----
+<1> 一个专题对应一个 *topic*
+<2> 小时专题对应的 *type* 是 *HOURLY*
+
+===== sv.xml
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<datamining id="sv" name="volte专题" type="spark1" driver="REQUIRED">
+  <title>volte_SV专题</title>
+  <description>volte_SV专题</description>
+  <database id="spark1" type="XDR-CMCC-SPARK" name="HADOOP Env 1" runtime="true" />
+  <database id="hive" type="HIVE" name="hive结果库"/> <1>
+  <database id="hdfs" type="HDFS" name="hdfs结果"/> <2>
+  <window by="HOURLY" />
+
+  <prepare type="class">com.nsn.datamining.support.xdr.cmcc.cmdi.broadcast.ConfigBroadcaster</prepare>
+  <prepare type="class">com.nsn.datamining.support.xdr.cmcc.cmdi.udf.UDFRegister</prepare>
+
+  <source id="SV" database="spark1" cache="false">
+    <arg name="tables">sv_factory</arg>
+    <body><![CDATA[
+      SELECT * FROM sv_factory f
+    ]]></body>
+  </source>
+
+  <summary id="SV_NET_CI_SUMMARY" in="SV">
+    <body><![CDATA[
+            SELECT a.*, b.city as scity, b.areatype as area, b.vendor, nc.vendor as vendor_net
+        FROM ${SV} a
+       inner join celllist b
+        on a.ci = b.cell_id
+       inner join (select ne_name,vendor from netconf group by ne_name,vendor) nc
+          on a.mme_ip = nc.ne_name
+        ]]></body>
+  </summary>
+
+  <summary id="F_VOLTE_SIP_SV_H_SUMMARY" in="SV_NET_CI_SUMMARY" cache="true" cache-type="both">
+    <body><![CDATA[
+            select
+              phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id,terminal,vendor_net,
+        COUNT(1) as SRVCC_ATTEMPT,
+        sum(case when REQUEST_RESULT <> 16 then 1 ELSE 0 end) as SRVCC_RESP_FAIL,
+        sum(case when REQUEST_RESULT = 16 then 1 ELSE 0  end) as SRVCC_RESP_SUCC,
+        sum(case when REQUEST_RESULT = 16 then RESP_DELAY ELSE 0 end) as SRVCC_RESP_LATENCY_ALL,
+        sum(case when RESULT = 0 then 1 ELSE 0 end) as SRVCC_COMP_SUCC,
+        sum(case when RESULT <> 0 then 1 ELSE 0 end ) as SRVCC_COMP_FAIL,
+        sum(case when RESULT = 0 AND SV_DELAY < 60000 then SV_DELAY ELSE 0 end ) as SRVCC_COMP_LATENCY_ALL,
+        sum(case when RESULT = 0 then (SV_DELAY-RESP_DELAY) ELSE 0 end ) as SRVCC_MEDIA_LATENCY_ALL
+      from ${SV_NET_CI_SUMMARY}
+      GROUP BY phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id,terminal,vendor_net
+        ]]></body>
+  </summary>
+
+  <summary id="F_VOLTE_SIP_SV_ALL_H_SUMMARY" in="F_VOLTE_SIP_SV_H_SUMMARY">
+    <body><![CDATA[
+      select
+        phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id,
+        sum(SRVCC_ATTEMPT) as SRVCC_ATTEMPT,
+        sum(SRVCC_RESP_FAIL) as SRVCC_RESP_FAIL,
+        sum(SRVCC_RESP_SUCC) as SRVCC_RESP_SUCC,
+        sum(SRVCC_RESP_LATENCY_ALL) as SRVCC_RESP_LATENCY_ALL,
+        sum(SRVCC_COMP_SUCC) as SRVCC_COMP_SUCC,
+        sum(SRVCC_COMP_FAIL) as SRVCC_COMP_FAIL,
+        sum(SRVCC_COMP_LATENCY_ALL) as SRVCC_COMP_LATENCY_ALL,
+        sum(SRVCC_MEDIA_LATENCY_ALL) as SRVCC_MEDIA_LATENCY_ALL
+      from ${F_VOLTE_SIP_SV_H_SUMMARY}
+      GROUP BY phour,province,scity,area,vendor,mme_ip,emsc_ip,ci,target_cell_id
+    ]]></body>
+  </summary>
+  <summary id="F_VOLTE_SIP_SV_TERMINAL_H_SUMMARY" in="F_VOLTE_SIP_SV_H_SUMMARY">
+    <body><![CDATA[
+        select phour,province,scity,
+          sum(SRVCC_ATTEMPT) as SRVCC_ATTEMPT,
+          sum(SRVCC_RESP_FAIL) as SRVCC_RESP_FAIL,
+          sum(SRVCC_RESP_SUCC) as SRVCC_RESP_SUCC,
+          sum(SRVCC_RESP_LATENCY_ALL) as SRVCC_RESP_LATENCY_ALL,
+          sum(SRVCC_COMP_SUCC) as SRVCC_COMP_SUCC,
+          sum(SRVCC_COMP_FAIL) as SRVCC_COMP_FAIL,
+          sum(SRVCC_COMP_LATENCY_ALL) as SRVCC_COMP_LATENCY_ALL,
+          sum(SRVCC_MEDIA_LATENCY_ALL) as SRVCC_MEDIA_LATENCY_ALL
+        from ${F_VOLTE_SIP_SV_H_SUMMARY}
+        GROUP BY phour,province,scity
+    ]]></body>
+  </summary>
+
+  <!-- 小时表 -->
+  <result id="F_VOLTE_SIP_SV_H" for="F_VOLTE_SIP_SV_H_SUMMARY" to="hive"/> <3>
+  <result id="F_VOLTE_SIP_SV_ALL_H" for="F_VOLTE_SIP_SV_ALL_H_SUMMARY" to="hive,hdfs"/> <4>
+  <result id="F_VOLTE_SIP_SV_TERMINAL_H" for="F_VOLTE_SIP_SV_TERMINAL_H_SUMMARY" to="hive" title="spark1"/>
+</datamining>
+----
+<1> 引入 *database hive*
+<2> 引入 *database hdfs*
+<3> *result* 结果写入 *hive*
+<4> *result* 结果同时写入 *hdfs* 、*hive*
+
+===== 页面填写
+
+image::{img}/img/work/do/2018-04-16_153521.png[]
+---
+
+
+== 类图
+
+

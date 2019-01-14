@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>storm</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="storm" />
+<meta property="og:description" content="storm 简介1. 离线计算是什么？2. 流式计算是什么3. 离线计算与实时计算的区别4. Storm是什么？5. Storm与Hadoop的区别6. Storm应用场景及行业案例6.1. 典型案列7. Storm核心组件（重要）8. Storm编程模型（重要）9. 流式计算一般架构图（重要）1. 离线计算是什么？ 离线计算：批量获取数据、批量传输数据、周期性批量计算数据、数据展示代表技术：Sqoop批量导入数据、HDFS批量存储数据、MapReduce批量计算数据、Hive批量计算数据、***任务调度1，hivesql2、调度平台3、Hadoop集群运维4、数据清洗（脚本语言）5、元数据管理6、数据稽查7、数据仓库模型架构2. 流式计算是什么流式计算：数据实时产生、数据实时传输、数据实时计算、实时展示代表技术：Flume实时获取数据、Kafka/metaq实时数据存储、Storm/JStorm实时数据计算、Redis实时结果缓存、持久化存储(mysql)。一句话总结：将源源不断产生的数据实时收集并实时计算，尽可能快的得到计算结果
+3. 离线计算与实时计算的区别最大的区别：实时收集、实时计算、实时展示
+4. Storm是什么？Flume实时采集，低延迟Kafka消息队列，低延迟Storm实时计算，低延迟Redis实时存储，低延迟Storm用来实时处理数据，特点：低延迟、高可用、分布式、可扩展、数据不丢失。提供简单容易理解的接口，便于开发。海量数据？数据类型很多，产生数据的终端很多，处理数据能力增强5. Storm与Hadoop的区别 Storm用于实时计算，Hadoop用于离线计算。 Storm处理的数据保存在内存中，源源不断；Hadoop处理的数据保存在文件系统中，一批一批。 Storm的数据通过网络传输进来；Hadoop的数据保存在磁盘中。 Storm与Hadoop的编程模型相似Job：任务名称JobTracker：项目经理TaskTracker：开发组长、产品经理Child:负责开发的人员Mapper/Reduce:开发人员中的两种角色，一种是服务器开发、一种是客户端开发Topology:任务名称Nimbus:项目经理Supervisor:开组长、产品经理Worker:开人员Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是客户端开发6." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/storm/storm/" />
+
+
+<meta property="og:updated_time" content="2017-03-26T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">storm</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-26 00:00:00 &#43;0000 UTC">March 26, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/storm" rel="category">storm</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">storm 简介</div>
+<ul class="sectlevel1">
+<li><a href="#_离线计算是什么">1. 离线计算是什么？</a></li>
+<li><a href="#_流式计算是什么">2. 流式计算是什么</a></li>
+<li><a href="#_离线计算与实时计算的区别">3. 离线计算与实时计算的区别</a></li>
+<li><a href="#_storm是什么">4. Storm是什么？</a></li>
+<li><a href="#_storm与hadoop的区别">5. Storm与Hadoop的区别</a></li>
+<li><a href="#_storm应用场景及行业案例">6. Storm应用场景及行业案例</a>
+<ul class="sectlevel2">
+<li><a href="#_典型案列">6.1. 典型案列</a></li>
+</ul>
+</li>
+<li><a href="#_storm核心组件_重要">7. Storm核心组件（重要）</a></li>
+<li><a href="#_storm编程模型_重要">8. Storm编程模型（重要）</a></li>
+<li><a href="#_流式计算一般架构图_重要">9. 流式计算一般架构图（重要）</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_离线计算是什么">1. 离线计算是什么？</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>    离线计算：批量获取数据、批量传输数据、周期性批量计算数据、数据展示
+    代表技术：Sqoop批量导入数据、HDFS批量存储数据、MapReduce批量计算数据、Hive批量计算数据、***任务调度
+1，hivesql
+2、调度平台
+3、Hadoop集群运维
+4、数据清洗（脚本语言）
+5、元数据管理
+6、数据稽查
+7、数据仓库模型架构</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_流式计算是什么">2. 流式计算是什么</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>流式计算：数据实时产生、数据实时传输、数据实时计算、实时展示
+代表技术：Flume实时获取数据、Kafka/metaq实时数据存储、Storm/JStorm实时数据计算、Redis实时结果缓存、持久化存储(mysql)。
+一句话总结：将源源不断产生的数据实时收集并实时计算，尽可能快的得到计算结果</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_离线计算与实时计算的区别">3. 离线计算与实时计算的区别</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>最大的区别：实时收集、实时计算、实时展示</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm是什么">4. Storm是什么？</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>Flume实时采集，低延迟
+Kafka消息队列，低延迟
+Storm实时计算，低延迟
+Redis实时存储，低延迟
+
+Storm用来实时处理数据，特点：低延迟、高可用、分布式、可扩展、数据不丢失。提供简单容易理解的接口，便于开发。
+
+
+海量数据？数据类型很多，产生数据的终端很多，处理数据能力增强</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm与hadoop的区别">5. Storm与Hadoop的区别</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>   Storm用于实时计算，Hadoop用于离线计算。
+   Storm处理的数据保存在内存中，源源不断；Hadoop处理的数据保存在文件系统中，一批一批。
+   Storm的数据通过网络传输进来；Hadoop的数据保存在磁盘中。
+   Storm与Hadoop的编程模型相似
+
+Job：任务名称
+JobTracker：项目经理
+TaskTracker：开发组长、产品经理
+Child:负责开发的人员
+Mapper/Reduce:开发人员中的两种角色，一种是服务器开发、一种是客户端开发
+
+Topology:任务名称
+Nimbus:项目经理
+Supervisor:开组长、产品经理
+Worker:开人员
+Spout/Bolt：开人员中的两种角色，一种是服务器开发、一种是客户端开发</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm应用场景及行业案例">6. Storm应用场景及行业案例</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>        Storm用来实时计算源源不断产生的数据，如同流水线生产。
+6.1、运用场景
+   日志分析
+从海量日志中分析出特定的数据，并将分析的结果存入外部存储器用来辅佐决策。
+   管道系统
+将一个数据从一个系统传输到另外一个系统，比如将数据库同步到Hadoop
+   消息转化器
+将接受到的消息按照某种格式进行转化，存储到另外一个系统如消息中间件</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_典型案列">6.1. 典型案列</h3>
+<div class="listingblock">
+<div class="content">
+<pre>   一淘-实时分析系统：实时分析用户的属性，并反馈给搜索引擎
+最初，用户属性分析是通过每天在云梯上定时运行的MR job来完成的。为了满足实时性的要求，希望能够实时分析用户的行为日志，将最新的用户属性反馈给搜索引擎，能够为用户展现最贴近其当前需求的结果。
+   携程-网站性能监控：实时分析系统监控携程网的网站性能
+利用HTML5提供的performance标准获得可用的指标，并记录日志。Storm集群实时分析日志和入库。使用DRPC聚合成报表，通过历史数据对比等判断规则，触发预警事件。
+   阿里妈妈-用户画像：实时计算用户的兴趣数据
+为了更加精准投放广告，阿里妈妈后台计算引擎需要维护每个用户的兴趣点（理想状态是，你对什么感兴趣，就向你投放哪类广告）。用户兴趣主要基于用户的历史行为、用户的实时查询、用户的实时点击、用户的地理信息而得，其中实时查询、实时点击等用户行为都是实时数据。考虑到系统的实时性，阿里妈妈使用Storm维护用户兴趣数据，并在此基础上进行受众定向的广告投放。</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm核心组件_重要">7. Storm核心组件（重要）</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-26-3.png" alt="2017 03 26 3">
+</div>
+</div>
+<hr>
+<div class="listingblock">
+<div class="content">
+<pre>   Nimbus：负责资源分配和任务调度。
+   Supervisor：负责接受nimbus分配的任务，启动和停止属于自己管理的worker进程。---通过配置文件设置当前supervisor上启动多少个worker。
+   Worker：运行具体处理组件逻辑的进程。Worker运行的任务类型只有两种，一种是Spout任务，一种是Bolt任务。
+   Task：worker中每一个spout/bolt的线程称为一个task. 在storm0.8之后，task不再与物理线程对应，不同spout/bolt的task可能会共享一个物理线程，该线程称为executor。</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm编程模型_重要">8. Storm编程模型（重要）</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-26-2.png" alt="2017 03 26 2">
+</div>
+</div>
+<hr>
+<div class="listingblock">
+<div class="content">
+<pre>   Topology：Storm中运行的一个实时应用程序的名称。（拓扑）
+   Spout：在一个topology中获取源数据流的组件。
+通常情况下spout会从外部数据源中读取数据，然后转换为topology内部的源数据。
+   Bolt：接受数据然后执行处理的组件,用户可以在其中执行自己想要的操作。
+   Tuple：一次消息传递的基本单元，理解为一组消息就是一个Tuple。
+   Stream：表示数据的流向。</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_流式计算一般架构图_重要">9. 流式计算一般架构图（重要）</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-26-1.png" alt="2017 03 26 1">
+</div>
+</div>
+<hr>
+<div class="listingblock">
+<div class="content">
+<pre>   其中flume用来获取数据。
+   Kafka用来临时保存数据。
+   Strom用来计算数据。
+   Redis是个内存数据库，用来保存数据。</pre>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" rel="prev"><span>«Previous</span><p>storm集群部署,单词计数,Stream Grouping</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/CentOS7/" rel="next"><span>Next»</span><p>CentOS7</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

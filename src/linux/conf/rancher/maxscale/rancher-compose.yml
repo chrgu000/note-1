@@ -1,0 +1,10 @@
+version: '2'
+services:
+  mysql-s1:
+    scale: 1
+  mysql-s2:
+    scale: 1
+  maxscale:
+    scale: 1
+  mysql-m:
+    scale: 1

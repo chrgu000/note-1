@@ -1,0 +1,34 @@
+---
+
+- name: Copy Kafka 包
+  copy:
+    src: '{{ srcdir }}/{{ kafka }}'
+    dest: /tmp/{{ kafka }}
+
+- unarchive:
+    src: '/tmp/{{ kafka }}'
+    dest: '{{ appdir }}'
+    remote_src: True
+
+- file:
+    path: '{{ appdir }}/kafka_2.10-0.8.2.2'
+    state: directory
+    owner: hadoop
+    group: hadoop
+    recurse: yes
+
+- name: 复制 kafka-conf 文件夹
+  copy:
+    src: '{{ srcdir }}/kafka-conf/{{ item.src }}'
+    dest: '{{ item.dest }}'
+  with_items:
+    - { src: 'consumer.properties', dest: '{{ kafkahome }}' }
+    - { src: 'producer.properties', dest: '{{ kafkahome }}' }
+    - { src: 'server.properties', dest: '{{ kafkahome }}' }
+    - { src: 'zookeeper.properties', dest: '{{ kafkahome }}' }
+
+
+- name: Copy profile
+  copy:
+    src: '{{ srcdir }}/bigdata.sh'
+    dest: /etc/profile.d/

@@ -1,0 +1,235 @@
+.conum[data-value] {
+    display: inline-block;
+    color: #fff !important;
+    background-color: rgba(0,0,0,0.8);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    text-align: center;
+    width: 1.67em;
+    height: 1.67em;
+    font-size: 0.75em;
+    line-height: 1.67em;
+    font-family: "Open Sans", "Sans", sans-serif;
+    font-style: normal;
+    font-weight: bold
+}
+
+.conum[data-value] * {
+    color: #fff !important
+}
+
+.conum[data-value]+b {
+    display: none
+}
+
+.conum[data-value]:after {
+    content: attr(data-value)
+}
+
+pre .conum[data-value] {
+    position: relative;
+    top: -0.125em
+}
+
+b.conum * {
+    color: inherit !important
+}
+
+.conum:not([data-value]):empty {
+    display: none
+}
+
+div .arabic {
+    margin-left: 15px;
+}
+
+div.arabic tr{
+    border-top: none;
+}
+
+div.arabic tr td{
+    border: none;
+    padding: 4px 4px;
+    display: inline-flex;
+}
+
+/*ul .sectlevel1{
+    margin-left: 10px;
+}
+
+ul .sectlevel2{
+    margin-left: 17px;
+}*/
+
+div .dlist dt {
+    list-style-type: none;
+}
+
+code {
+    background-color: #D1EEEE;
+}
+
+.navbar-wrapper {
+  margin-top:5px;
+  position: relative;
+  z-index: 15;
+
+}
+
+.navbar.navbar-inverse.navbar-static-top {
+  background: #5cb85c;
+  border-color: #398439;
+}
+.navbar.navbar-inverse.navbar-static-top a{
+  color:#fff;
+}
+.navbar.navbar-inverse.navbar-static-top a:hover{
+  color:#0A64A4;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus{
+  background:#398439;
+  font-weight:700;
+}
+.navbar-inverse .navbar-nav>.active>a:hover {
+  background:#398439;
+  color:#fff;
+  font-weight:700;
+}
+
+
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title {
+    text-rendering: optimizeLegibility;
+    text-align: left;
+    font-style: italic;
+    font-size: 1rem
+}
+
+.admonitionblock>table {
+    border-collapse: separate;
+    border: 0;
+    background: none;
+    width: 100%
+}
+
+.admonitionblock>table td.icon {
+    text-align: center;
+    width: 80px;
+    border: 0;
+}
+
+.admonitionblock>table td.icon img {
+    max-width: none
+}
+
+.admonitionblock>table td.icon .title {
+    font-weight: 300;
+    text-transform: uppercase
+}
+
+.admonitionblock>table td.content {
+    padding-left: 1.125em;
+    padding-right: 1.25em;
+    border-left: 3px solid #ddd;
+    color: rgba(0,0,0,0.6);
+    border-bottom: 0;
+}
+
+.admonitionblock>table td.content>div:last-child p,.admonitionblock>table td.content>div:last-child ol,.admonitionblock>table td.content>div:last-child ul,.admonitionblock>table td.content>div:last-child dl,.admonitionblock>table td.content>div:last-child dl dd:last-child {
+    margin-bottom: 0
+}
+
+.admonitionblock.lead>table td.content {
+    font-size: 1.5em;
+    line-height: 1.6;
+    color: rgba(0,0,0,0.8)
+}
+
+.admonitionblock td.icon [class^="fa icon-"] {
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    cursor: default
+}
+
+.admonitionblock td.icon .icon-note:before {
+    content: "\f05a";
+    color: #19407c
+}
+
+.admonitionblock td.icon .icon-tip:before {
+    content: "\f0eb";
+    text-shadow: 1px 1px 2px rgba(155,155,0,0.8);
+    color: #111
+}
+
+.admonitionblock td.icon .icon-warning:before {
+    content: "\f071";
+    color: #bf6900
+}
+
+.admonitionblock td.icon .icon-caution:before {
+    content: "\f06d";
+    color: #bf3400
+}
+
+.admonitionblock td.icon .icon-important:before {
+    content: "\f06a";
+    color: #bf0000
+}
+
+.admonitionblock tr {
+    border-top:none;
+}
+
+
+span.icon>.fa {
+    cursor: default
+}
+
+.admonitionblock td.icon [class^="fa icon-"] {
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    cursor: default
+}
+
+.admonitionblock td.icon .icon-note:before {
+    content: "\f05a";
+    color: #19407c
+}
+
+.admonitionblock td.icon .icon-tip:before {
+    content: "\f0eb";
+    text-shadow: 1px 1px 2px rgba(155,155,0,0.8);
+    color: #111
+}
+
+.admonitionblock td.icon .icon-warning:before {
+    content: "\f071";
+    color: #bf6900
+}
+
+.admonitionblock td.icon .icon-caution:before {
+    content: "\f06d";
+    color: #bf3400
+}
+
+.admonitionblock td.icon .icon-important:before {
+    content: "\f06a";
+    color: #bf0000
+}
+
+
+.colist table {
+  border-top:none;
+}
+
+#scrollUp {
+    background-image: url("/img/top.png");
+    bottom: 20px;
+    right: 20px;
+    width: 38px;    /* Width of image */
+    height: 38px;   /* Height of image */
+}
+
+.tableblock > thead{
+    background-color: lightsteelblue;
+}

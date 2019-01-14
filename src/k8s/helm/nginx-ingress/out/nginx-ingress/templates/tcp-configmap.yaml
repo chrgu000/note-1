@@ -1,0 +1,17 @@
+---
+# Source: nginx-ingress/templates/tcp-configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: nginx-ingress
+    chart: nginx-ingress-0.28.1
+    component: "controller"
+    heritage: Tiller
+    release: nginx-ingress
+  name: nginx-ingress-tcp
+data:
+  "6379": default/redis-master:6379
+  "9300": default/elasticsearch-master:9300
+  

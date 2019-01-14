@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常用JVM配置参数</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="常用JVM配置参数" />
+<meta property="og:description" content="Trace 跟踪参数-verbose:gc # 打开gc-XX:&#43;printGC可以打印GC的简要信息[GC 4790K-&gt;374K(15872K), 0.0001606 secs]4790K -&gt; GC前的大小374K -&gt; GC后的大小15872K -&gt; 堆大小-XX:&#43;PrintGCDetails打印GC详细信息-XX:&#43;PrintGCTimeStamps打印CG发生的时间戳例[GC[DefNew: 4416K-&gt;0K(4928K), 0.0001897 secs] 4790K-&gt;374K(15872K), 0.0002232 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]新生代GCDefNew: 4416K-&gt;0K(4928K)详细GC信息-XX:&#43;PrintGCDetails的输出-Xloggc:log/gc.log指定GC log的位置，以文件输出帮助开发人员分析问题-XX:&#43;PrintHeapAtGC每次一次GC后，都打印堆信息-XX:&#43;TraceClassLoading监控类的加载-XX:&#43;PrintClassHistogram按下Ctrl&#43;Break后，打印类的信息：
+num #instances #bytes class name1: 890617 470266000 [B2: 890643 21375432 java.util.HashMap$Node3: 890608 14249728 java." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/jvm/%E5%B8%B8%E7%94%A8JVM%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/" />
+
+
+<meta property="og:updated_time" content="2017-11-25T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">常用JVM配置参数</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-11-25 00:00:00 &#43;0000 UTC">November 25, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/jvm" rel="category">jvm</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="sect1">
+<h2 id="_trace_跟踪参数">Trace 跟踪参数</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>-verbose:gc     # 打开gc
+-XX:+printGC
+
+可以打印GC的简要信息
+[GC 4790K-&gt;374K(15872K), 0.0001606 secs]
+4790K -&gt; GC前的大小
+374K  -&gt; GC后的大小
+15872K -&gt; 堆大小
+
+
+-XX:+PrintGCDetails
+打印GC详细信息
+-XX:+PrintGCTimeStamps
+打印CG发生的时间戳
+例
+[GC[DefNew: 4416K-&gt;0K(4928K), 0.0001897 secs] 4790K-&gt;374K(15872K), 0.0002232 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
+
+新生代GC
+DefNew: 4416K-&gt;0K(4928K)
+
+详细GC信息
+-XX:+PrintGCDetails的输出
+
+-Xloggc:log/gc.log
+指定GC log的位置，以文件输出
+帮助开发人员分析问题
+
+
+-XX:+PrintHeapAtGC
+每次一次GC后，都打印堆信息
+
+-XX:+TraceClassLoading
+监控类的加载</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>-XX:+PrintClassHistogram
+按下Ctrl+Break后，打印类的信息：</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__num_instances_bytes_class_name"> num     #instances         #bytes  class name</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>1:        890617      470266000  [B
+2:        890643       21375432  java.util.HashMap$Node
+3:        890608       14249728  java.lang.Long
+4:            13        8389712  [Ljava.util.HashMap$Node;
+5:          2062         371680  [C
+6:           463          41904  java.lang.Class</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>分别显示：序号、实例数量、总大小、类型</p>
+</div>
+<div class="paragraph">
+<p>-Xmn
+设置新生代大小
+-XX:NewRatio
+新生代（eden+2*s）和老年代（不包含永久区）的比值
+4 表示 新生代:老年代=1:4，即年轻代占堆的1/5
+-XX:SurvivorRatio
+设置两个Survivor区和eden的比
+幸存区  from to
+8表示 两个Survivor :eden=2:8，即一个Survivor占年轻代的1/10</p>
+</div>
+<div class="paragraph">
+<p>-Xmx20m -Xms20m -Xmn1m  -XX:+PrintGCDetails</p>
+</div>
+<div class="paragraph">
+<p>-Xmx20m : 最大堆内存20m
+-Xms20m : 最小堆内存20m
+-Xmn1m : 新生代1m eden + from + to 一共1m</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/java/algorithm/1-10/" rel="prev"><span>«Previous</span><p>leetcode算法</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/java/%E5%9F%BA%E7%A1%80/" rel="next"><span>Next»</span><p>数据结构与算法</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/tags/git/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Git的奇技淫巧</title>
+      <link>/post/linux/git-tips/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/git-tips/</guid>
+      <description>
+
+&lt;h1 id=&#34;git的奇技淫巧-see-no-evil&#34;&gt;Git的奇技淫巧:see_no_evil:&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Git常用命令集合，Fork于&lt;a href=&#34;https://github.com/git-tips/tips&#34;&gt;tips&lt;/a&gt;项目&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Git是一个“分布式版本管理工具”，简单的理解版本管理工具：大家在写东西的时候都用过“回撤”这个功能，但是回撤只能回撤几步，假如想要找回我三天之前的修改，光用“回撤”是找不回来的。而“版本管理工具”能记录每次的修改，只要提交到版本仓库，你就可以找到之前任何时刻的状态（文本状态）。&lt;/p&gt;
+
+&lt;p&gt;下面的内容就是列举了常用的git命令和一些小技巧，可以通过&amp;rdquo;页面内查找&amp;rdquo;的方式进行快速查询：&lt;code&gt;Ctrl/Command+f&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;开卷必读&#34;&gt;开卷必读&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;如果之前未使用过Git，可以学习&lt;a href=&#34;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000&#34;&gt;廖老师的免费Git教程&lt;/a&gt;入门&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;一定要先测试命令的效果后&lt;/strong&gt;，再用于工作环境中，以防造成不能弥补的后果！&lt;strong&gt;到时候别拿着砍刀来找我&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;所有的命令都在&lt;code&gt;git version 2.7.4 (Apple Git-66)&lt;/code&gt;下测试通过&lt;/li&gt;
+&lt;li&gt;统一概念：
+
+&lt;ul&gt;
+&lt;li&gt;工作区：改动（增删文件和内容）&lt;/li&gt;
+&lt;li&gt;暂存区：输入命令：&lt;code&gt;git add 改动的文件名&lt;/code&gt;，此次改动就放到了‘暂存区’&lt;/li&gt;
+&lt;li&gt;本地仓库(简称：本地)：输入命令：&lt;code&gt;git commit 此次修改的描述&lt;/code&gt;，此次改动就放到了’本地仓库’，每个commit，我叫它为一个‘版本’。&lt;/li&gt;
+&lt;li&gt;远程仓库(简称：远程)：输入命令：&lt;code&gt;git push 远程仓库&lt;/code&gt;，此次改动就放到了‘远程仓库’（github等)&lt;/li&gt;
+&lt;li&gt;commit-id：输出命令：&lt;code&gt;git log&lt;/code&gt;，最上面那行&lt;code&gt;commit xxxxxx&lt;/code&gt;，后面的字符串就是commit-id&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;如果喜欢这个项目，欢迎Star、提交Pr、&lt;a href=&#34;https://github.com/521xueweihan/git-tips/issues&#34;&gt;反馈问题&lt;/a&gt;😊&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#展示帮助信息&#34;&gt;展示帮助信息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#回到远程仓库的状态&#34;&gt;回到远程仓库的状态&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#重设第一个commit&#34;&gt;重设第一个commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示工作区和暂存区的不同&#34;&gt;展示工作区和暂存区的不同&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示暂存区和最近版本的不同&#34;&gt;展示暂存区和最近版本的不同&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示暂存区工作区和最近版本的不同&#34;&gt;展示暂存区、工作区和最近版本的不同&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#快速切换分支&#34;&gt;快速切换分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除已经合并到master的分支&#34;&gt;删除已经合并到master的分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示所有的分支关联的远程仓库&#34;&gt;展示所有的分支关联的远程仓库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#关联远程分支&#34;&gt;关联远程分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除本地分支&#34;&gt;删除本地分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除远程分支&#34;&gt;删除远程分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#查看标签&#34;&gt;查看标签&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#本地创建标签&#34;&gt;本地创建标签&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#推送标签到远程仓库&#34;&gt;推送标签到远程仓库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除本地标签&#34;&gt;删除本地标签&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除远程标签&#34;&gt;删除远程标签&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#放弃工作区的修改&#34;&gt;放弃工作区的修改&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#回到某一个commit的状态并重新增添一个commit&#34;&gt;回到某一个commit的状态，并重新增添一个commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#回到某个commit的状态并删除后面的commit&#34;&gt;回到某个commit的状态，并删除后面的commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#修改上一个commit的描述&#34;&gt;修改上一个commit的描述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#查看commit历史&#34;&gt;查看commit历史&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#显示本地执行过git命令&#34;&gt;显示本地执行过git命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#修改作者名&#34;&gt;修改作者名&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#修改远程仓库的url&#34;&gt;修改远程仓库的url&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#列出所有远程仓库&#34;&gt;列出所有远程仓库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#列出本地和远程分支&#34;&gt;列出本地和远程分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#列出远程分支&#34;&gt;列出远程分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#查看两个星期内的改动&#34;&gt;查看两个星期内的改动&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#把A分支的某一个commit放到B分支上&#34;&gt;把A分支的某一个commit，放到B分支上&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#给git命令起别名&#34;&gt;给git命令起别名&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#存储当前的修改但不用提交commit&#34;&gt;存储当前的修改，但不用提交commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#保存当前状态包括untracked的文件&#34;&gt;保存当前状态，包括untracked的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示所有stashes&#34;&gt;展示所有stashes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#回到某个stash的状态&#34;&gt;回到某个stash的状态&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#回到最后一个stash的状态并删除这个stash&#34;&gt;回到最后一个stash的状态，并删除这个stash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除所有的stash&#34;&gt;删除所有的stash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#从stash中拿出某个文件的修改&#34;&gt;从stash中拿出某个文件的修改&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示所有tracked的文件&#34;&gt;展示所有tracked的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示所有untracked的文件&#34;&gt;展示所有untracked的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示所有忽略的文件&#34;&gt;展示所有忽略的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#强制删除untracked的文件&#34;&gt;强制删除untracked的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#强制删除untracked的目录&#34;&gt;强制删除untracked的目录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#重命名分支&#34;&gt;重命名分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示简化的commit历史&#34;&gt;展示简化的commit历史&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#查看某段代码是谁写的&#34;&gt;查看某段代码是谁写的&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#把某一个分支到导出成一个文件&#34;&gt;把某一个分支到导出成一个文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#从包中导入分支&#34;&gt;从包中导入分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#执行rebase之前自动stash&#34;&gt;执行rebase之前自动stash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#从远程仓库根据ID拉下某一状态-到本地分支&#34;&gt;从远程仓库根据ID，拉下某一状态，到本地分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#详细展示一行中的修改&#34;&gt;详细展示一行中的修改&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#清除gitignore文件中记录的文件&#34;&gt;清除&lt;code&gt;.gitignore&lt;/code&gt;文件中记录的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示所有alias和configs&#34;&gt;展示所有alias和configs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示忽略的文件&#34;&gt;展示忽略的文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#commit历史中显示Branch1有的但是Branch2没有commit&#34;&gt;commit历史中显示Branch1有的，但是Branch2没有commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#在commit-log中显示GPG签名&#34;&gt;在commit log中显示GPG签名&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#删除全局设置&#34;&gt;删除全局设置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#新建并切换到新分支上同时这个分支没有任何commit&#34;&gt;新建并切换到新分支上，同时这个分支没有任何commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示任意分支某一文件的内容&#34;&gt;展示任意分支某一文件的内容&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#clone下来指定的单一分支&#34;&gt;clone下来指定的单一分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#创建并切换到该分支&#34;&gt;创建并切换到该分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#忽略文件的权限变化&#34;&gt;忽略文件的权限变化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#展示本地所有的分支的commit&#34;&gt;展示本地所有的分支的commit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#在commit-log中查找相关内容&#34;&gt;在commit log中查找相关内容&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#把暂存区的指定file放到工作区中&#34;&gt;把暂存区的指定file放到工作区中&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#强制推送&#34;&gt;强制推送&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#增加远程仓库&#34;&gt;增加远程仓库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#联系我&#34;&gt;联系我&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;展示帮助信息&#34;&gt;展示帮助信息&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git help -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;回到远程仓库的状态&#34;&gt;回到远程仓库的状态&lt;/h2&gt;
+
+&lt;p&gt;抛弃本地仓库的所有版本(commit)，回到远程仓库的状态。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git fetch --all &amp;amp;&amp;amp; git reset --hard origin/master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;重设第一个commit&#34;&gt;重设第一个commit&lt;/h2&gt;
+
+&lt;p&gt;也就是把所有的改动都重新放回工作区，并&lt;strong&gt;清空所有的commit&lt;/strong&gt;，这样就可以重新提交第一个commit了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git update-ref -d HEAD
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示工作区和暂存区的不同&#34;&gt;展示工作区和暂存区的不同&lt;/h2&gt;
+
+&lt;p&gt;输出&lt;strong&gt;工作区&lt;/strong&gt;和&lt;strong&gt;暂存区&lt;/strong&gt;的different(不同)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git diff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以展示本地仓库中任意两个commit之间的文件变动：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git diff &amp;lt;commit-id&amp;gt; &amp;lt;commit-id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示暂存区和最近版本的不同&#34;&gt;展示暂存区和最近版本的不同&lt;/h2&gt;
+
+&lt;p&gt;输出&lt;strong&gt;暂存区&lt;/strong&gt;和本地最近的版本(commit)的different(不同)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git diff --cached
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示暂存区-工作区和最近版本的不同&#34;&gt;展示暂存区、工作区和最近版本的不同&lt;/h2&gt;
+
+&lt;p&gt;输出&lt;strong&gt;工作区&lt;/strong&gt;、&lt;strong&gt;暂存区&lt;/strong&gt; 和本地最近的版本(commit)的different(不同)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git diff HEAD
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;快速切换分支&#34;&gt;快速切换分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout -
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除已经合并到master的分支&#34;&gt;删除已经合并到master的分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch --merged master | grep -v &#39;^\*\|  master&#39; | xargs -n 1 git branch -d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示所有的分支关联的远程仓库&#34;&gt;展示所有的分支关联的远程仓库&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch -vv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;关联远程分支&#34;&gt;关联远程分支&lt;/h2&gt;
+
+&lt;p&gt;关联之后，&lt;code&gt;git branch -vv&lt;/code&gt;就可以展示关联的远程分支名了，同时推送到远程仓库直接：&lt;code&gt;git push&lt;/code&gt;，不需要指定远程仓库了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch -u origin/mybranch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者在push时加上&lt;code&gt;-u&lt;/code&gt;参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git push origin/mybranch -u
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除本地分支&#34;&gt;删除本地分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch -d &amp;lt;local-branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除远程分支&#34;&gt;删除远程分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git push origin --delete &amp;lt;remote-branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git push origin :&amp;lt;remote-branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;查看标签&#34;&gt;查看标签&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;git tag
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;展示当前分支的最近的tag&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git describe --tags --abbrev=0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;本地创建标签&#34;&gt;本地创建标签&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git tag &amp;lt;version-number&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;默认tag是打在最近的一次commit上，如果需要指定commit打tag：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git tag -a &amp;lt;version-number&amp;gt; -m &amp;quot;v1.0 发布(描述)&amp;quot; &amp;lt;commit-id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;推送标签到远程仓库&#34;&gt;推送标签到远程仓库&lt;/h2&gt;
+
+&lt;p&gt;首先要保证本地创建好了标签才可以推送标签到远程仓库：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git push origin &amp;lt;local-version-number&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一次性推送所有标签，同步到远程仓库：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin --tags
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除本地标签&#34;&gt;删除本地标签&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git tag -d &amp;lt;tag-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除远程标签&#34;&gt;删除远程标签&lt;/h2&gt;
+
+&lt;p&gt;删除远程标签需要&lt;strong&gt;先删除本地标签&lt;/strong&gt;，再执行下面的命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git push origin :refs/tags/&amp;lt;tag-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;放弃工作区的修改&#34;&gt;放弃工作区的修改&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout &amp;lt;file-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;放弃所有修改：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;回到某一个commit的状态-并重新增添一个commit&#34;&gt;回到某一个commit的状态，并重新增添一个commit&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git revert &amp;lt;commit-id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;回到某个commit的状态-并删除后面的commit&#34;&gt;回到某个commit的状态，并删除后面的commit&lt;/h2&gt;
+
+&lt;p&gt;和revert的区别：reset命令会抹去某个commit id之后的所有commit&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git reset &amp;lt;commit-id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;修改上一个commit的描述&#34;&gt;修改上一个commit的描述&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git commit --amend
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;查看commit历史&#34;&gt;查看commit历史&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;查看某段代码是谁写的&#34;&gt;查看某段代码是谁写的&lt;/h2&gt;
+
+&lt;p&gt;blame的意思为‘责怪’，你懂的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git blame &amp;lt;file-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;显示本地执行过git命令&#34;&gt;显示本地执行过git命令&lt;/h2&gt;
+
+&lt;p&gt;就像shell的history一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git reflog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;修改作者名&#34;&gt;修改作者名&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git commit --amend --author=&#39;Author Name &amp;lt;email@address.com&amp;gt;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;修改远程仓库的url&#34;&gt;修改远程仓库的url&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git remote set-url origin &amp;lt;URL&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;列出所有远程仓库&#34;&gt;列出所有远程仓库&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git remote
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;列出本地和远程分支&#34;&gt;列出本地和远程分支&lt;/h2&gt;
+
+&lt;p&gt;-a参数相当于：all&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch -a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;列出远程分支&#34;&gt;列出远程分支&lt;/h2&gt;
+
+&lt;p&gt;-r参数相当于：remote&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch -r
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;查看两个星期内的改动&#34;&gt;查看两个星期内的改动&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git whatchanged --since=&#39;2 weeks ago&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;把a分支的某一个commit-放到b分支上&#34;&gt;把A分支的某一个commit，放到B分支上&lt;/h2&gt;
+
+&lt;p&gt;这个过程需要&lt;code&gt;cherry-pick&lt;/code&gt;命令，&lt;a href=&#34;http://sg552.iteye.com/blog/1300713#bc2367928&#34;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout &amp;lt;branch-name&amp;gt; &amp;amp;&amp;amp; git cherry-pick &amp;lt;commit-id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;给git命令起别名&#34;&gt;给git命令起别名&lt;/h2&gt;
+
+&lt;p&gt;简化命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git config --global alias.&amp;lt;handle&amp;gt; &amp;lt;command&amp;gt;
+
+比如：git status 改成 git st，这样可以简化命令
+
+git config --global alias.st status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;存储当前的修改-但不用提交commit&#34;&gt;存储当前的修改，但不用提交commit&lt;/h2&gt;
+
+&lt;p&gt;详解可以参考&lt;a href=&#34;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137602359178794d966923e5c4134bc8bf98dfb03aea3000&#34;&gt;廖雪峰老师的git教程&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git stash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;保存当前状态-包括untracked的文件&#34;&gt;保存当前状态，包括untracked的文件&lt;/h2&gt;
+
+&lt;p&gt;untracked文件：新建的文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git stash -u
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示所有stashes&#34;&gt;展示所有stashes&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git stash list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;回到某个stash的状态&#34;&gt;回到某个stash的状态&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git stash apply &amp;lt;stash@{n}&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;回到最后一个stash的状态-并删除这个stash&#34;&gt;回到最后一个stash的状态，并删除这个stash&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git stash pop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除所有的stash&#34;&gt;删除所有的stash&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git stash clear
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;从stash中拿出某个文件的修改&#34;&gt;从stash中拿出某个文件的修改&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout &amp;lt;stash@{n}&amp;gt; -- &amp;lt;file-path&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示所有tracked的文件&#34;&gt;展示所有tracked的文件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git ls-files -t
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示所有untracked的文件&#34;&gt;展示所有untracked的文件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git ls-files --others
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示所有忽略的文件&#34;&gt;展示所有忽略的文件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git ls-files --others -i --exclude-standard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;强制删除untracked的文件&#34;&gt;强制删除untracked的文件&lt;/h2&gt;
+
+&lt;p&gt;可以用来删除新建的文件。如果不指定文件文件名，则清空所有工作的untracked文件。&lt;code&gt;clean&lt;/code&gt;命令，&lt;strong&gt;注意两点&lt;/strong&gt;：
+1. clean后，删除的文件无法找回
+2. 不会影响tracked的文件的改动，只会删除untracked的文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git clean &amp;lt;file-name&amp;gt; -f
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;强制删除untracked的目录&#34;&gt;强制删除untracked的目录&lt;/h2&gt;
+
+&lt;p&gt;可以用来删除新建的目录，&lt;strong&gt;注意&lt;/strong&gt;:这个命令也可以用来删除untracked的文件。详情见上一条&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git clean &amp;lt;directory-name&amp;gt; -df
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;重命名分支&#34;&gt;重命名分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git branch -m &amp;lt;new-branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示简化的commit历史&#34;&gt;展示简化的commit历史&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git log --pretty=oneline --graph --decorate --all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;把某一个分支到导出成一个文件&#34;&gt;把某一个分支到导出成一个文件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git bundle create &amp;lt;file&amp;gt; &amp;lt;branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;从包中导入分支&#34;&gt;从包中导入分支&lt;/h2&gt;
+
+&lt;p&gt;新建一个分支，分支内容就是上面&lt;code&gt;git bundle create&lt;/code&gt;命令导出的内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git clone repo.bundle &amp;lt;repo-dir&amp;gt; -b &amp;lt;branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;执行rebase之前自动stash&#34;&gt;执行rebase之前自动stash&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git rebase --autostash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;从远程仓库根据id-拉下某一状态-到本地分支&#34;&gt;从远程仓库根据ID，拉下某一状态，到本地分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git fetch origin pull/&amp;lt;id&amp;gt;/head:&amp;lt;branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;详细展示一行中的修改&#34;&gt;详细展示一行中的修改&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git diff --word-diff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;清除gitignore文件中记录的文件&#34;&gt;清除gitignore文件中记录的文件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git clean -X -f
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示所有alias和configs&#34;&gt;展示所有alias和configs&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git config --list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示忽略的文件&#34;&gt;展示忽略的文件&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git status --ignored
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;commit历史中显示branch1有的-但是branch2没有commit&#34;&gt;commit历史中显示Branch1有的，但是Branch2没有commit&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git log Branch1 ^Branch2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;在commit-log中显示gpg签名&#34;&gt;在commit log中显示GPG签名&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git log --show-signature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;删除全局设置&#34;&gt;删除全局设置&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git config --global --unset &amp;lt;entry-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;新建并切换到新分支上-同时这个分支没有任何commit&#34;&gt;新建并切换到新分支上，同时这个分支没有任何commit&lt;/h2&gt;
+
+&lt;p&gt;相当于保存修改，但是重写commit历史&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout --orphan &amp;lt;branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示任意分支某一文件的内容&#34;&gt;展示任意分支某一文件的内容&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git show &amp;lt;branch-name&amp;gt;:&amp;lt;file-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;clone下来指定的单一分支&#34;&gt;clone下来指定的单一分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git clone -b &amp;lt;branch-name&amp;gt; --single-branch https://github.com/user/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;创建并切换到该分支&#34;&gt;创建并切换到该分支&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git checkout -b &amp;lt;branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;忽略文件的权限变化&#34;&gt;忽略文件的权限变化&lt;/h2&gt;
+
+&lt;p&gt;不再将文件的权限变化视作改动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git config core.fileMode false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;展示本地所有的分支的commit&#34;&gt;展示本地所有的分支的commit&lt;/h2&gt;
+
+&lt;p&gt;最新的放在最上面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git for-each-ref --sort=-committerdate --format=&#39;%(refname:short)&#39; refs/heads/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;在commit-log中查找相关内容&#34;&gt;在commit log中查找相关内容&lt;/h2&gt;
+
+&lt;p&gt;通过grep查找，given-text：所需要查找的字段&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git log --all --grep=&#39;&amp;lt;given-text&amp;gt;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;把暂存区的指定file放到工作区中&#34;&gt;把暂存区的指定file放到工作区中&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git reset &amp;lt;file-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;强制推送&#34;&gt;强制推送&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git push -f &amp;lt;remote-name&amp;gt; &amp;lt;branch-name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;增加远程仓库&#34;&gt;增加远程仓库&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git remote add origin &amp;lt;remote-url&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;联系我&#34;&gt;联系我&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;博客园：&lt;a href=&#34;http://www.cnblogs.com/xueweihan/&#34;&gt;削微寒&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;邮箱：&lt;a href=&#34;mailto:595666367@qq.com&#34;&gt;发邮件给我&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;或者直接提Pr，Issues&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;#目录&#34;&gt;⬆ 返回顶部&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>git基础命令</title>
+      <link>/post/linux/git/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/git/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;git&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_git&#34;&gt;1. git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_拉取git项目中的特定文件夹&#34;&gt;2. 拉取git项目中的特定文件夹&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_命令&#34;&gt;2.1. 命令&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_远程分支&#34;&gt;2.1.1. 远程分支&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_本地目录_存在文件_上传到码云&#34;&gt;2.2. 本地目录(存在文件),上传到码云&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_综合使用&#34;&gt;2.2.1. 综合使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;2.2.2. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_git&#34;&gt;1. git&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_拉取git项目中的特定文件夹&#34;&gt;2. 拉取git项目中的特定文件夹&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# svn list &amp;lt;repositry-url&amp;gt; 查看文件夹
+svn list https://github.com/apache/spark.git
+# 拉取git项目中的特定文件夹
+svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.6&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_命令&#34;&gt;2.1. 命令&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_远程分支&#34;&gt;2.1.1. 远程分支&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看远程分支&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ git remote -v
+origin  git@git.oschina.net:dishui/local_b2b.git (fetch)
+origin  git@git.oschina.net:dishui/local_b2b.git (push)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加远程分支&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git remote add origin git@git.oschina.net:dishui/local_b2b.git&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;push 本地分支到远程分支(如果没有,会自动创建)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git push origin bigdata #bigdata 分支名称&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;设置远程分支&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git remote set-url origin git@github.com:dishuiGit/SublimeNote.git&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git add .		#添加
+git reset .		#撤销添加&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_本地目录_存在文件_上传到码云&#34;&gt;2.2. 本地目录(存在文件),上传到码云&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# cd &amp;lt;dir&amp;gt;
+git init .
+vi .gitignore # 设置不需要提交的文件
+git add . &amp;amp;&amp;amp; git commit -m &#34;msg&#34;
+git branch --set-upstream-to=origin/&amp;lt;branch&amp;gt; master # 本地分支与远程分支关联
+git pull
+git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git remote add origin git@git.oschina.net:dishui/project.git
+git remote set-url origin git@git.oschina.net:dishui/project.git
+git add . &amp;amp;&amp;amp; git commit -m &#34;2017-07-10&#34;
+git push origin master:pingan&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_综合使用&#34;&gt;2.2.1. 综合使用&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看是否有文件需要提交&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git status | awk -F &#39;:&#39; &#39;{print $2}&#39;| awk &#39;!a[$0]++&#39; | wc -l&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Ref &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;[[python-git|http://gitpython.readthedocs.io/en/stable/]]&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_q_a&#34;&gt;2.2.2. Q &amp;amp; A&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;error: src refspec bigdata does not match any.&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;[root@localhost dockerfiles]# git push origin bigdata
+error: src refspec bigdata does not match any.
+error: 无法推送一些引用到 &#39;git@git.oschina.net:dishui/dockerfiles.git&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;解决&lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git push origin master:bigdata&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

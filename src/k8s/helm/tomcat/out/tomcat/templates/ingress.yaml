@@ -1,0 +1,27 @@
+---
+# Source: tomcat/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tomcat
+  labels:
+    app: tomcat
+    chart: tomcat-0.1.0
+    release: tomcat
+    heritage: Tiller
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    proxy_connect_timeout: 12s
+    proxy_read_timeout: 10800s
+    proxy_send_timeout: 12s
+    proxy_set_header: Connection "upgrade"
+    
+spec:
+  rules:
+    - host: dev.cxzx.fabx.com.cn
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: tomcat
+              servicePort: 8080

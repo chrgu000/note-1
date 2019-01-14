@@ -1,0 +1,40 @@
+---
+# Source: nginx-ingress/templates/controller-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-ingress
+    chart: nginx-ingress-0.28.1
+    component: "controller"
+    heritage: Tiller
+    release: nginx-ingress
+  name: nginx-ingress-controller
+spec:
+  clusterIP: ""
+  externalIPs:
+    - 192.168.88.32
+    - 10.200.169.32
+    
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: https
+    - name: "6379-tcp"
+      port: 6379
+      protocol: TCP
+      targetPort: "6379-tcp"
+    - name: "9300-tcp"
+      port: 9300
+      protocol: TCP
+      targetPort: "9300-tcp"
+  selector:
+    app: nginx-ingress
+    component: "controller"
+    release: nginx-ingress
+  type: "LoadBalancer"

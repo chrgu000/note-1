@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/categories/algorithm/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>leetcode算法</title>
+      <link>/post/java/algorithm/1-10/</link>
+      <pubDate>Mon, 27 Nov 2017 15:43:47 +0000</pubDate>
+      
+      <guid>/post/java/algorithm/1-10/</guid>
+      <description>&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_longest_substring_without_repeating_characters_最长的子串不重复的字符&#34;&gt;Longest Substring Without Repeating Characters(最长的子串不重复的字符)&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Intuition&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Check all the substring one by one to see if it has no duplicate character.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Suppose we have a function boolean allUnique(String substring) which will return true if the characters in the substring are all unique, otherwise false. We can iterate through all the possible substrings of the given string s and call the function allUnique. If it turns out to be true, then we update our answer of the maximum length of substring without duplicate characters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Now let&amp;#8217;s fill the missing parts:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;To enumerate all substrings of a given string, we enumerate the start and end indices of them. Suppose the start and end indices are *i* and *j*, respectively. Then we have *0≤i&amp;lt;j≤n*  (here end index *j* is exclusive by convention). Thus, using two nested loops with i from  *0*  to  *n−1*  and  *j*  from  *i+1*  to  *n* , we can enumerate all the substrings of  *s* .&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;为了枚举给定字符串的所有子字符串，我们枚举它们的开始和结束索引。 假设开始和结束的指数分别是 i 和 j 。 那么我们有0≤i&amp;lt;j≤n（这里的结束索引 j 是常规排除的）。 因此，使用从 0 到 n-1 的i和从 i + 1 到 n 的 j 的两个嵌套循环，我们可以列举所有的 s&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;To check if one string has duplicate characters, we can use a set. We iterate through all the characters in the string and put them into the set one by one. Before putting one character, we check if the set already contains it. If so, we return false. After the loop, we return true.&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;要检查一个字符串是否有重复的字符，我们可以使用一个集合。 我们遍历字符串中的所有字符，并将它们逐个放入集合中。 在放一个字符之前，我们检查一下这个集合是否已经包含它。 如果是这样，我们返回false。 循环之后，我们返回true。&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_算法2&#34;&gt;算法2&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Algorithm
+    The naive approach is very straightforward. But it is too slow. So how can we optimize it?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;In the naive approaches, we repeatedly check a substring to see if it has duplicate character. But it is unnecessary. If a substring s{ij} from index i to j−1 is already checked to have no duplicate characters. We only need to check if s[j] is already in the substring sij&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

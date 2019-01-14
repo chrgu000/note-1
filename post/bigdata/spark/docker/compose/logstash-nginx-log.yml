@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  nginx-log:
+    image: dishui.io:5000/nginx-log:1.1
+    container_name: nginx-log
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx_logs:/var/nginx_logs/
+    networks:
+      - hadoop
+  logstash:
+    image: dishui.io:5000/logstash:5
+    container_name: logstash
+    command: "-f /flow-kafka.conf"
+    # volumes_from:
+    #   - nginx-log
+    volumes:
+      - ./nginx_logs:/var/nginx_logs/
+      - ./conf/flow-kafka.conf:/flow-kafka.conf
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true

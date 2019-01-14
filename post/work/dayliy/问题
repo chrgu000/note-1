@@ -1,0 +1,236 @@
+2018-01-19
+    v_cnetoetable2 表中数据重复
+
+    解决：
+        vtv天表，选择时间段 2017122200 - 2017122200
+
+    srvcc " 丢失问题 (待解决)
+
+
+
+
+
+2018-01-19
+  bigxdrdrops1mme
+    rx_abort_cause 缺失
+
+
+
+验证 celllist 中 " 是否去掉
+  1.
+
+celllist.csv
+
+所有引号去掉
+
+覆盖回去
+
+awk '{ gsub(/"/, ""); print >"celllist.csv"}' celllist.csv
+
+awk '{ gsub(/"/, ""); print}' t11.csv >t1.csv
+
+awk '{if($0~"\"") print}' celllist.csv | wc -l
+
+awk '{if($0~"exception") print}' console.log | wc -l
+awk '{if($0~"Finished for") print}' console.log
+
+tail -f console.log |grep -i 'exeception'
+
+
+
+select count(1) from result.F_VOLTE_SIP_SV_NAT_AREA_H   170293
+
+
+
+SELECT
+    count(*)
+FROM
+    (
+        SELECT
+            eci,
+            count(*)
+        FROM
+            v_cnetoetable2
+        WHERE
+            date = '2017-12-22'
+        GROUP BY
+            eci
+        HAVING
+            count(*) > 1
+    ) aa
+
+
+select * from v_cnetoetable2 where eci='46000242829578'
+
+
+
+
+select cgi,eci,cityname from v_eptable where eci = ''
+
+select count(eci) from v_eptable
+
+
+
+select province,scity,phour,ci
+from result.F_V_BXDR_VTV_ALL_D
+group by province,scity,phour,ci
+having count(ci) > 1
+
+
+
+SELECT
+    count(*)
+FROM
+    (
+        SELECT
+            ci,
+            count(*)
+        FROM
+            result.F_V_BXDR_VTV_ALL_D
+        WHERE
+            phour = '20171222'
+        GROUP BY
+            ci
+        HAVING
+            count(*) > 1
+    ) aa
+
+
+
+46000093884034
+46000242829578
+
+
+CREATE TEMPORARY VIEW ${tableName}
+    AS (${sql})
+
+
+CREATE TEMPORARY VIEW F_VOLTE_KPI USING parquet
+OPTIONS(
+path '/output/dt3/33992/parquet/TMP_TBX_100_0_F_VOLTE_KPI')
+
+
+CREATE TEMPORARY VIEW bigxdrdrops1mme USING csv
+OPTIONS(
+header true,
+path '/cmdi/bigxdrdrops1mme/phour=2017122209/*.csv')
+
+
+渲染
+delete from V_CNGRIDANARESULTTABLE;
+
+
+小时评估&渲染  volte_widetable
+delete from VD_NAT_PROV_CITY_VENDOR_AREA_H;
+delete from VD_NAT_VENDOR_AREA_H;
+delete from VD_NAT_VENDOR_H;
+delete from VD_NAT_AREA_H;
+delete from VD_NAT_H;
+delete from VD_PROV_VENDOR_AREA_H;
+delete from VD_PROV_VENDOR_H;
+delete from VD_PROV_AREA_H;
+delete from VD_PROV_H;
+delete from VD_CITY_VENDOR_AREA_H;
+delete from VD_CITY_VENDOR_H;
+delete from VD_CITY_AREA_H;
+delete from VD_CITY_H;
+
+delete from VD_NAT_VDNET_H;
+delete from VD_PROV_VDNET_H;
+delete from VD_CITY_VDNET_H;
+
+--天评估&渲染  volte_widetable_day
+delete from VD_NAT_VENDOR_AREA_D;
+delete from VD_NAT_VENDOR_D;
+delete from VD_NAT_AREA_D;
+delete from VD_NAT_D;
+delete from VD_PROV_VENDOR_AREA_D;
+delete from VD_PROV_VENDOR_D;
+delete from VD_PROV_AREA_D;
+delete from VD_PROV_D;
+delete from VD_CITY_VENDOR_AREA_D;
+delete from VD_CITY_VENDOR_D;
+delete from VD_CITY_AREA_D;
+delete from VD_CITY_D;
+delete from v_cnetoetable2;
+delete from V_CNGRIDANARESULTTABLE;
+
+delete from VD_NAT_VDNET_D;
+delete from VD_PROV_VDNET_D;
+delete from VD_CITY_VDNET_D;
+
+--定界定位  volte_fault
+delete from VD_FAULT_LOCATING_SUM;
+delete from VD_FAULT_LOCATING_TERMINAL;
+delete from VD_FAULT_LOCATING_TERMINAL_DETAIL;
+delete from VD_FAULT_LOCATING_USER;
+delete from VD_FAULT_LOCATING_USER_DETAIL;
+delete from VD_FAULT_LOCATING_RADIO;
+delete from VD_FAULT_LOCATING_RADIO_DETAIL;
+delete from VD_FAULT_LOCATING_EPC;
+delete from VD_FAULT_LOCATING_EPC_DETAIL;
+delete from VD_FAULT_LOCATING_IMS;
+delete from VD_FAULT_LOCATING_IMS_DETAIL;
+delete from VD_FAULT_LOCATING_CS;
+delete from VD_FAULT_LOCATING_CS_DETAIL;
+
+select * from VD_FAULT_LOCATING_SUM;
+
+验证是否清空
+
+
+select * from VD_PROV_H;
+
+select count(1) from VD_NAT_PROV_CITY_VENDOR_AREA_H;
+select count(1) from VD_NAT_VENDOR_AREA_H;
+select count(1) from VD_NAT_VENDOR_H;
+select count(1) from VD_NAT_AREA_H;
+select count(1) from VD_NAT_H;
+select count(1) from VD_PROV_VENDOR_AREA_H;
+select count(1) from VD_PROV_VENDOR_H;
+select count(1) from VD_PROV_AREA_H;
+select count(1) from VD_PROV_H;
+select count(1) from VD_CITY_VENDOR_AREA_H;
+select count(1) from VD_CITY_VENDOR_H;
+select count(1) from VD_CITY_AREA_H;
+select count(1) from VD_CITY_H;
+
+select * from VD_PROV_D;
+
+select count(1) from VD_NAT_VENDOR_AREA_D;
+select count(1) from VD_NAT_VENDOR_D;
+select count(1) from VD_NAT_AREA_D;
+select count(1) from VD_NAT_D;
+select count(1) from VD_PROV_VENDOR_AREA_D;
+select count(1) from VD_PROV_VENDOR_D;
+select count(1) from VD_PROV_AREA_D;
+select count(1) from VD_PROV_D;
+select count(1) from VD_CITY_VENDOR_AREA_D;
+select count(1) from VD_CITY_VENDOR_D;
+select count(1) from VD_CITY_AREA_D;
+select count(1) from VD_CITY_D;
+select count(1) from v_cnetoetable2;
+select count(1) from V_CNGRIDANARESULTTABLE;
+
+select count(1) from VD_FAULT_LOCATING_SUM;
+select count(1) from VD_FAULT_LOCATING_TERMINAL;
+select count(1) from VD_FAULT_LOCATING_TERMINAL_DETAIL;
+select count(1) from VD_FAULT_LOCATING_USER;
+select count(1) from VD_FAULT_LOCATING_USER_DETAIL;
+select count(1) from VD_FAULT_LOCATING_RADIO;
+select count(1) from VD_FAULT_LOCATING_RADIO_DETAIL;
+select count(1) from VD_FAULT_LOCATING_EPC;
+select count(1) from VD_FAULT_LOCATING_EPC_DETAIL;
+select count(1) from VD_FAULT_LOCATING_IMS;
+select count(1) from VD_FAULT_LOCATING_IMS_DETAIL;
+select count(1) from VD_FAULT_LOCATING_CS;
+select count(1) from VD_FAULT_LOCATING_CS_DETAIL;
+
+
+
+引号 处理
+
+netconf  ip  前后有空格
+
+
+

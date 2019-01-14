@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="购物车购物车 列表URLhttp://116.90.81.68/app/cart/list?start=1&amp;limit=10&amp;userId=201506242J080J3
+支持格式GET JSON
+HTTP请求方式Content-Type: application/json;charset=UTF-8
+携带参数说明start # 起始页limit # 每页显示个数userId # 移动端 本地保存的用户ID是否需要登录否
+成功{&#34;state&#34;: 1,&#34;totalsize&#34; : 4&#34;list&#34;: [{&#34;sellerNick&#34;: &#34;廊坊通泰公路材料有限公司&#34;, #供应商&#34;shopName&#34;: &#34;廊坊通泰公路材料有限公司&#34;, #店铺名&#34;productPrice&#34;: &#34;4250.00&#34;, # 价格&#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e351fce4b0b02f90bf7b20.img_300_300.img&#34;,&#34;userId&#34;: &#34;201506242J080J3&#34;, # 用户id&#34;userName&#34;: &#34;tjzh&#34;, # 用户名&#34;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/app/cart/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="sect1">
+<h2 id="_购物车">购物车</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_购物车_列表">购物车 列表</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/list?start=1&amp;limit=10&amp;userId=201506242J080J3" class="bare">http://116.90.81.68/app/cart/list?start=1&amp;limit=10&amp;userId=201506242J080J3</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>start # 起始页
+limit # 每页显示个数
+userId # 移动端 本地保存的用户ID</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "totalsize" : 4
+  "list": [
+    {
+      "sellerNick": "廊坊通泰公路材料有限公司", #供应商
+      "shopName": "廊坊通泰公路材料有限公司", #店铺名
+      "productPrice": "4250.00", # 价格
+      "img": "http://116.90.81.68:80/koto/img/57e351fce4b0b02f90bf7b20.img_300_300.img",
+      "userId": "201506242J080J3", # 用户id
+      "userName": "tjzh", # 用户名
+      "productId": "20160224dD6HNuc", # 商品id
+      "productName": "70#", # 商品名称
+      "productQuantity": 35, # 购买数量
+      "minQuantity": "35", # 最小起订量
+      "accessTime": "2016-03-29 06:49:14", # 添加时间
+      "deliveryType": 0, #提货方式 0：卖家送货 1：买家自提
+      "id": "20160329303v668" # 购物车id
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_添加购物车">添加购物车</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/add" class="bare">http://116.90.81.68/app/cart/add</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>POST JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "userId" : "201506242J080J3", #用户id
+  "productId" : "20151026X3422O5", #商品id
+  "productName" : "兆华 70#", #商品名称
+  "productQuantity" : 45, #购买数量
+  "deliveryType" : 1 #提货方式 0：卖家送货 1：买家自提
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>是</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "添加失败！"
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_获取库存">获取库存</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/product/getStock/{id}" class="bare">http://116.90.81.68/app/product/getStock/{id}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{id} : 20150915P303OF7 # 商品id
+http://{host}/product/getStock/20150915P303OF7</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "stockQuantity": "5000"
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "获取库存失败"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_编辑购物车">编辑购物车</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/edit" class="bare">http://116.90.81.68/app/cart/edit</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>POST JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "id" : "20151026X3422O5", # 购物车id
+  "productQuantity" : 450 # 商品数量
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "state": 1
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+	"state" : 0,
+	"message" : "编辑失败"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_删除">删除</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/del/{id}" class="bare">http://116.90.81.68/app/cart/del/{id}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{id} : 2015062545V2OHQ # 商品id
+http://{host}/cart/del/2015062545V2OHQ</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>是</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+<dd>
+<p>{
+    "state": 1
+}</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+	"state" : 0,
+	"message" : "删除失败"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_收货地址">收货地址</h3>
+<div class="sect3">
+<h4 id="_获取收获地址">获取收获地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/get/addr/list/{userId}" class="bare">http://116.90.81.68/app/cart/get/addr/list/{userId}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>GET Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{userId} : 用户id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>例：http://116.90.81.68/app/cart/get/addr/list/20150615uo7jE40</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>需要</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "consignee": "娃哈哈222", # 联系人
+      "cellphone": "1234567845", # 联系电话
+      "levelNo": 0, # 是否是默认地址 0：是  -1：否
+      "area": "北京 北京市4", # 地址
+      "address": "xxxxee" # 详细地址
+      "id": "201610081534403" # 地址id
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_默认收货地址">默认收货地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/get/addr/default/{userId}" class="bare">http://116.90.81.68/app/cart/get/addr/default/{userId}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>GET</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>userId : 用户id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>例: <a href="http://116.90.81.68/app/cart/get/addr/default/20160920GY3Pm85444" class="bare">http://116.90.81.68/app/cart/get/addr/default/20160920GY3Pm85444</a>
+是否需要登录::
+否</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "consignee" : "陆陆",
+  "cellphone" : "18840853787",
+  "levelNo" : 0,
+  "address" : "啦啦队",
+  "area" : "河北省|秦皇岛市|抚宁县",
+  "state" : 1,
+  "id" : "201610140328269"
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "没有默认地址！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加收获地址">添加收获地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/add/addr" class="bare">http://116.90.81.68/app/cart/add/addr</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "userId":"20150615uo7jE40", # 用户id
+  "consignee" : "娃哈哈2", # 联系人
+  "area" : "北京|北京市", # 地址
+  "address" : "xxxxee", # 详细地址
+  "cellphone" : "12345678" # 电话
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>是</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "id": "201610120452124", # 地址id
+  "levelNo": "0" # 是否默认 0:默认 -1:不是默认
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "添加失败！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_编辑收货地址">编辑收货地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/edit/addr" class="bare">http://116.90.81.68/app/cart/edit/addr</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "id" : "201610081534403", # 收货地址id
+  "userId":"20150615uo7jE40", # 用户id
+  "consignee" : "娃哈哈2", # 联系人
+  "area" : "北京|北京市4", # 地址
+  "address" : "xxxxee", # 详细地址
+  "cellphone" : "1234567845" # 电话
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "searchKey" : "沥青"
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_设置默认地址">设置默认地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/edit/addr" class="bare">http://116.90.81.68/app/cart/edit/addr</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>POST Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "id" : "201610081534403", # 收货地址id
+  "levelNo":0 # 设置默认地址
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{"state":1}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "编辑失败！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_删除地址">删除地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://116.90.81.68/app/cart/del/addr/{id}" class="bare">http://116.90.81.68/app/cart/del/addr/{id}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>GET Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{id} : id # 地址id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://116.90.81.68/app/cart/del/addr/201610081608294" class="bare">http://116.90.81.68/app/cart/del/addr/201610081608294</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{"state":1}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "删除失败！"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/app/bug/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/app/cservice/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

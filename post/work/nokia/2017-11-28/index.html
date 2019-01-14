@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="SELECTCASEWHENa.num = 1 THEN2ENDFROM( SELECT 1 AS num ) AS a
+sdateb.cityb.countyb.network_typeb.gridb.grid_type in（城市）b.long_centerb.lat_centera.value_tag in(高,极高)a.network_tag in（差，极差）b.problemtypesb.indicatorb.indicatorvalueb.weightb.solutionb.lacb.cgib.Cell_Nameb.longb.Latif (count(c.)&gt;0,“是”,“否”）count（c.）first(c.planed_site_name)
+sdatecitycountynetwork_typegridlacCGICell_NamelongLatproblemtypesindicatorindicatorvalueweightsolution
+city,county,network_type,grid,lac,ci,Cell_Name,long ,Lat," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/nokia/2017-11-28/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>SELECT
+CASE
+WHEN
+    a.num = 1 THEN
+    2
+END
+FROM
+    ( SELECT 1 AS num ) AS a</p>
+</div>
+<div class="paragraph">
+<p>sdate
+b.city
+b.county
+b.network_type
+b.grid
+b.grid_type  in（城市）
+b.long_center
+b.lat_center
+a.value_tag     in(高,极高)
+a.network_tag   in（差，极差）
+b.problemtypes
+b.indicator
+b.indicatorvalue
+b.weight
+b.solution
+b.lac
+b.cgi
+b.Cell_Name
+b.long
+b.Lat
+if  (count(c.<strong>)&gt;0,“是”,“否”）
+count（c.</strong>）
+first(c.planed_site_name)</p>
+</div>
+<div class="paragraph">
+<p>sdate
+city
+county
+network_type
+grid
+lac
+CGI
+Cell_Name
+long
+Lat
+problemtypes
+indicator
+indicatorvalue
+weight
+solution</p>
+</div>
+<div class="paragraph">
+<p>city,
+county,
+network_type,
+grid,
+lac,
+ci,
+Cell_Name,
+long ,
+Lat,</p>
+</div>
+<div class="paragraph">
+<p>sdate
+b.city
+b.county
+b.grid
+b.long_center
+b.lat_center
+value_score
+a.value_tag     in(高,极高)
+network_score
+a.network_tag   in（差，极差）
+count(d.<strong>) where d.network_type='4G'
+count(d.</strong>) where d.network_type='2G'
+count(distinct b.cgi) where b.network_type='4G'
+count(distinct b.cgi) where b.network_type='2G'
+count（b.<strong>）
+if  (count(c.</strong>)&gt;0,“是”,“否”）
+count（c.*）</p>
+</div>
+<div class="paragraph">
+<p>MR&lt;-110dBm STRING</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE IF NOT EXISTS stock(
+    <code>MR&#8592;110dBm</code> STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>indicator_en
+(case
+  when indicator='MR&#8592;110dBm' then (select a.<code>MR&#8592;110dBm</code> from f_do_vl_mr_poor_m a, f_do_vl_mr_poor_lev_m b, f_do_vl_mr_overlap_m c, f_do_vl_mr_overlap_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(b.<code>lev_MR&#8592;110dBm</code>,f.relation,f.bad_thr) and gele(c.mrnum,f.relation2,f.num_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+  when indicator='overlap' then (select c.overlap from f_do_vl_mr_poor_m a, f_do_vl_mr_poor_lev_m b, f_do_vl_mr_overlap_m c, f_do_vl_mr_overlap_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(d.overlap,f.relation,f.bad_thr) and gele(c.mrnum,f.relation2,f.num_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+  when indicator='UL_interface' then (select a.UL_interface from f_do_vl_mr_poor_m a, f_do_vl_mr_poor_lev_m b, f_do_vl_mr_overlap_m c, f_do_vl_mr_overlap_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_UL_interface,f.relation,f.bad_thr) and gele(c.mrnum,f.relation2,f.num_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+  when indicator='UL_lost&gt;1%' then (select a.<code>UL_lost&gt;1%</code> from f_do_vl_mr_poor_m a, f_do_vl_mr_poor_lev_m b, f_do_vl_mr_overlap_m c, f_do_vl_mr_overlap_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(b.<code>lev_UL_lost&gt;1%</code>,f.relation,f.bad_thr) and gele(c.mrnum,f.relation2,f.num_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+  when indicator='mr_Mrnum' then (select c.mrnum from f_do_vl_mr_poor_m a, f_do_vl_mr_poor_lev_m b, f_do_vl_mr_overlap_m c, f_do_vl_mr_overlap_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>when indicator='wl_succ_rate' then (select a.wl_succ_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_wl_succ_rate,f.relation,f.bad_thr) and gele(c.day_wl_succ_rate,f.relation3,f.day_thr) and gele(a.erab_conn_att,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='rrc_succ_rate' then (select a.rrc_succ_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_rrc_succ_rate,f.relation,f.bad_thr) and gele(c.days_rrc_succ_rate,f.relation3,f.day_thr) and gele(a.rrc_conn_att,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='erab_succ_rate' then (select a.erab_succ_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_erab_succ_rate,f.relation,f.bad_thr) and gele(c.days_erab_succ_rate,f.relation3,f.day_thr) and gele(a.erab_conn_att,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='rrc_conn_att' then (select a.rrc_conn_att from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='erab_conn_att' then (select a.erab_conn_att from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='wl_succ_rate_qci1' then (select a.wl_succ_rate_qci1 from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_wl_succ_rate_qci1,f.relation,f.bad_thr) and gele(c.days_wl_succ_rate_qci1,f.relation3,f.day_thr) and gele(a.erab_att_qci1,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='erab_succ_rate_qci1' then (select a.erab_succ_rate_qci1 from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_erab_succ_rate_qci1,f.relation,f.bad_thr) and gele(c.days_erab_succ_rate_qci1,f.relation3,f.day_thr) and gele(a.erab_att_qci1,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='rrc_reconf_rate' then (select a.rrc_reconf_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_rrc_reconf_rate,f.relation,f.bad_thr) and gele(c.days_rrc_reconf_rate,f.relation3,f.day_thr) and gele(a.rrc_reconf,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='ho_succ_rate' then (select a.ho_succ_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_ho_succ_rate,f.relation,f.bad_thr) and gele(c.days_ho_succ_rate,f.relation3,f.day_thr) and gele((a.interenb_ho_s1_out_att+a.interenb_ho_x2_out_att+a.intraenb_ho_out_att),f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='esrvcc_succ_rate' then (select a.esrvcc_succ_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_esrvcc_succ_rate,f.relation,f.bad_thr) and gele(c.days_esrvcc_succ_rate,f.relation3,f.day_thr) and gele(a.ho_to_2g_att,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='wl_drop_rate' then (select a.wl_drop_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_wl_drop_rate,f.relation,f.bad_thr) and gele(c.days_wl_drop_rate,f.relation3,f.day_thr) and gele(a.erab_conn_succ,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='erab_drop_rate_qci1' then (select a.erab_drop_rate_qci1 from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_erab_drop_rate_qci1,f.relation,f.bad_thr) and gele(c.days_erab_drop_rate_qci1,f.relation3,f.day_thr) and gele(a.erab_conn_succ,f.relation2,f.num_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='esRVCC_rate' then (select a.esRVCC_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_esRVCC_rate,f.relation,f.bad_thr) and gele(c.days_esRVCC_rate,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>when indicator='data_resid_rate' then (select a.data_resid_rate from f_do_vl_fenliu_lte_m a, f_do_vl_fenliu_lte_lev_m b, f_do_vl_fenliu_gsm_m c, f_do_vl_fenliu_gsm_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_data_resid_rate,f.relation,f.bad_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+when indicator='latency_resid_rate' then (select a.latency_resid_rate from f_do_vl_fenliu_lte_m a, f_do_vl_fenliu_lte_lev_m b, f_do_vl_fenliu_gsm_m c, f_do_vl_fenliu_gsm_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_latency_resid_rate,f.relation,f.bad_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+when indicator='back_traffic_rate' then (select c.back_traffic_rate from f_do_vl_fenliu_lte_m a, f_do_vl_fenliu_lte_lev_m b, f_do_vl_fenliu_gsm_m c, f_do_vl_fenliu_gsm_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(d.lev_back_traffic_rate,f.relation,f.bad_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+when indicator='back_traffic' then (select c.back_traffic from f_do_vl_fenliu_lte_m a, f_do_vl_fenliu_lte_lev_m b, f_do_vl_fenliu_gsm_m c, f_do_vl_fenliu_gsm_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(d.lev_back_traffic,f.relation,f.bad_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+when indicator='total_traffic' then (select c.total_traffic from f_do_vl_fenliu_lte_m a, f_do_vl_fenliu_lte_lev_m b, f_do_vl_fenliu_gsm_m c, f_do_vl_fenliu_gsm_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and d.lev_total_traffic in(1,2) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)
+when indicator='4g_low_resid_users' then (select c.4g_low_resid_users from f_do_vl_fenliu_lte_m a, f_do_vl_fenliu_lte_lev_m b, f_do_vl_fenliu_gsm_m c, f_do_vl_fenliu_gsm_lev_m d, cfg_vl_cel_prob_thr f where 1=1 and gele(d.lev_4g_low_resid_users,f.relation,f.bad_thr) and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>when indicator='prb_ul_utiliz' then (select a.prb_ul_utiliz from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_prb_ul_utiliz,f.relation,f.bad_thr) and gele(c.days_prb_ul_utiliz,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='prb_dl_utiliz' then (select a.prb_dl_utiliz from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_prb_dl_utiliz,f.relation,f.bad_thr) and gele(c.days_prb_dl_utiliz,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='rrc_conn_avg' then ()
+when indicator='rrc_conn_max' then ()
+when indicator='rrc_conn_occu' then ()
+when indicator='rrc_conn_occu_max' then ()
+when indicator='wl_ul_bytes' then (select a.wl_ul_bytes from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_wl_ul_bytes,f.relation,f.bad_thr) and gele(c.days_wl_ul_bytes,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='wl_dl_bytes' then (select a.wl_dl_bytes from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_wl_dl_bytes,f.relation,f.bad_thr) and gele(c.days_wl_dl_bytes,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>when indicator='DISTURB' then (select a.DISTURB from f_do_vl_kpi_gsm_w a, f_do_vl_kpi_gsm_lev_w b, f_do_vl_kpi_gsm_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_DISTURB,f.relation,f.bad_thr) and gele(c.days_DISTURB,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='SD_BLK' then (select a.SD_BLK from f_do_vl_kpi_gsm_w a, f_do_vl_kpi_gsm_lev_w b, f_do_vl_kpi_gsm_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_poor_cov,f.relation,f.bad_thr) and gele(c.days_poor_cov,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+when indicator='poor_cov' then (select a.poor_cov from f_do_vl_kpi_gsm_w a, f_do_vl_kpi_gsm_lev_w b, f_do_vl_kpi_gsm_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_poor_cov,f.relation,f.bad_thr) and gele(c.days_poor_cov,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  when indicator='up_dl_latency' then (select a.up_dl_latency from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_up_dl_latency,f.relation,f.bad_thr) and gele(c.days_up_dl_latency,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+  when indicator='up_ul_pklost_rate' then (select a.up_ul_pklost_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_up_ul_pklost_rate,f.relation,f.bad_thr) and gele(c.days_up_ul_pklost_rate,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+  when indicator='up_dl_pklost_rate' then (select a.up_dl_pklost_rate from f_do_vl_kpi_lte_w a, b b, f_do_vl_kpi_lte_days_w c, cfg_vl_cel_prob_thr f where 1=1 and gele(b.lev_up_dl_pklost_rate,f.relation,f.bad_thr) and gele(c.days_up_dl_pklost_rate,f.relation3,f.day_thr) and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci)
+end) as indicatorvalue</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>case
+  when indicator='MR&#8592;110dBm' then ()
+  when indicator='overlap' then ()
+  when indicator='UL_interface' then ()
+  when indicator='UL_lost&gt;1%' then ()
+  when indicator='mr_Mrnum' then ()
+  when indicator='wl_succ_rate' then
+  when indicator='rrc_succ_rate' then
+  when indicator='erab_succ_rate' then
+  when indicator='rrc_conn_att' then
+  when indicator='erab_conn_att' then
+  when indicator='wl_succ_rate_qci1' then
+  when indicator='erab_succ_rate_qci1' then
+  when indicator='rrc_reconf_rate' then
+  when indicator='ho_succ_rate' then
+  when indicator='esrvcc_succ_rate' then
+  when indicator='wl_drop_rate' then
+  when indicator='erab_drop_rate_qci1' then
+  when indicator='esRVCC_rate' then
+  when indicator='data_resid_rate' then
+  when indicator='latency_resid_rate' then
+  when indicator='back_traffic_rate' then
+  when indicator='back_traffic' then
+  when indicator='total_traffic' then
+  when indicator='4g_low_resid_users' then
+  when indicator='prb_ul_utiliz' then
+  when indicator='prb_dl_utiliz' then
+  when indicator='rrc_conn_avg' then
+  when indicator='rrc_conn_max' then
+  when indicator='rrc_conn_occu' then
+  when indicator='rrc_conn_occu_max' then
+  when indicator='wl_ul_bytes' then
+  when indicator='wl_dl_bytes' then
+  when indicator='DISTURB' then
+  when indicator='SD_BLK' then
+  when indicator='poor_cov' then
+  when indicator='up_dl_latency' then
+  when indicator='up_ul_pklost_rate' then
+  when indicator='up_dl_pklost_rate' then
+end</p>
+</div>
+<div class="paragraph">
+<p>select tc.problemtypes from cfg_vl_cel_prob_thr as tc where tc.indicator=</p>
+</div>
+<div class="paragraph">
+<p>PRB上行无线利用率
+PRB下行无线利用率
+有效RRC连接平均数
+有效RRC连接最大数
+RRC连接平均数
+RRC连接最大数
+空口上行业务字节数
+空口下行业务字节数</p>
+</div>
+<div class="paragraph">
+<p>prb_ul_utiliz
+prb_dl_utiliz
+rrc_conn_avg
+rrc_conn_max
+rrc_conn_occu
+rrc_conn_occu_max
+wl_ul_bytes
+wl_dl_bytes</p>
+</div>
+<div class="paragraph">
+<p>up_dl_latency
+up_ul_pklost_rate
+up_dl_pklost_rate</p>
+</div>
+<div class="paragraph">
+<p>用户面下行平均时延
+用户面上行丢包率
+用户面下行丢包率</p>
+</div>
+<div class="paragraph">
+<p>and a.city=b.city=c.city and a.grid=b.grid=cigrid and a.ci=b.ci=c.ci</p>
+</div>
+<div class="paragraph">
+<p>and eq3(a.city,b.city,c.city) and eq3(a.grid,b.grid,cigrid) and eq3(a.ci,b.ci,c.ci)</p>
+</div>
+<div class="paragraph">
+<p>and a.city=b.city=c.city=d.city and a.grid=b.grid=cigrid=d.grid and a.ci=b.ci=c.ci=d.ci</p>
+</div>
+<div class="paragraph">
+<p>and eq4(a.city,b.city,c.city,d.city) and eq4(a.grid,b.grid,cigrid,d.grid) and eq4(a.ci,b.ci,c.ci,d.ci)</p>
+</div>
+<div class="paragraph">
+<p>select a.indicatorvalue from residential_area_limited a where a.indicator_en=indicator</p>
+</div>
+<div class="paragraph">
+<p>${F_DO_VL_SCORE_TAG_GRID_W_SUMMARY} as a,
+${F_DO_VL_CEL_PROBLEM_OPEN_W_SUMMARY} as b,
+${PLANED_SITE} as c,
+${GRID_PAR}A as d</p>
+</div>
+<div class="paragraph">
+<p>sdate
+b.city
+b.county
+b.grid
+b.long_center
+b.lat_center
+value_score
+a.value_tag
+network_score
+a.network_tag
+count(d.<strong>) where d.network_type='4G'
+count(d.</strong>) where d.network_type='2G'
+count(distinct b.cgi) where b.network_type='4G'
+count(distinct b.cgi) where b.network_type='2G'
+count（b.<strong>）
+if  (count(c.</strong>)&gt;0,“是”,“否”）
+count（c.*）</p>
+</div>
+<div class="paragraph">
+<p>sdate
+a.city
+a.county
+a.network_type
+a.cgi
+a.Cell_Name
+a.grid
+a.indicator
+c.value_tag
+b.lev_rrc_conn_avg
+a
+a
+a
+a</p>
+</div>
+<div class="paragraph">
+<p>indicatorscore indicatorvolatility persistence num_time</p>
+</div>
+<div class="paragraph">
+<p>kpi_lev表指的是f_do_vl_kpi_gsm_lev_w和b</p>
+</div>
+<div class="paragraph">
+<p>indicator_en</p>
+</div>
+<div class="paragraph">
+<p>indicatorscore
+小区指标维度，直接用对应指标的kpi_lev_w
+是不是指使用 b表中的lev_kpi_lev_w的值
+indicatorvolatility
+小区指标维度，直接用对应指标的kpi_std_lev_w
+对应 f_do_vl_kpi_lte_std_lev_w 表中的 lev_std_kpi_std_lev_w的值</p>
+</div>
+<div class="paragraph">
+<p>kpi_days_w
+f_do_vl_kpi_lte_days_w  表中的 lev_kpi_days_w</p>
+</div>
+<div class="paragraph">
+<p>例如lte指标wl_succ_rate指标波动，对应的波动lev是lev_std_wl_succ_rate，在f_do_vl_kpi_lte_std_lev_w表中的lev_std_wl_succ_rate可能是12345，这个值就是indicatorvolatility的值</p>
+</div>
+<div class="paragraph">
+<p>indicator</p>
+</div>
+<div class="paragraph">
+<p>f_do_vl_cel_problem_w 的查询条件中 b和c 是哪两张表？</p>
+</div>
+<div class="paragraph">
+<p>problemtypes indicator indicatorvalue weight solution</p>
+</div>
+<div class="paragraph">
+<p>select '区域(栅格/小区)性能' as type, '驻留类' as class, '数据驻留比例' as indicator, 'data_resid_rate' as indicator_en, a.data_resid_rate as indicatorvalue</p>
+</div>
+<div class="paragraph">
+<p>city indicator indicatorvalue</p>
+</div>
+<div class="paragraph">
+<p>grid_para a
+cfg_vl_cel_prob_thr f</p>
+</div>
+<div class="paragraph">
+<p>f.indicator_en=rrc_conn_occu
+f.indicator_en=rrc_conn_occu_max</p>
+</div>
+<div class="paragraph">
+<p>b.interenb_ho_s1_out_att+b.interenb_ho_x2_out_att+b.intraenb_ho_out_att求和共15平均分类54321</p>
+</div>
+<div class="paragraph">
+<p>select sum(chineseScore) from
+(select
+  x.id,
+  x.chinese+20+30 as chineseScore,
+  x.math
+from
+  studentTable x inner join scoreTable y
+  on x.id=y.sid) z
+where z.chineseScore &lt; 100</p>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/dayliy/3/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/work/nokia/bj/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BF%A1%E6%81%AF/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

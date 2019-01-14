@@ -1,0 +1,9 @@
+[Unit]
+Description=docker-volume-netshare
+
+[Service]
+User=root
+ExecStart=/opt/bin/docker-volume-netshare cifs --username dishui --password dishui --domain storage
+
+[Install]
+WantedBy=multi-user.target

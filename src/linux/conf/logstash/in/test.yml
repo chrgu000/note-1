@@ -1,0 +1,17 @@
+input {
+  stdin {
+      codec => "plain"
+      type => "std"
+  }
+}
+filter {
+    mutate {
+        split => ["message", "|"]
+    }
+}
+output {
+  stdout {
+      codec => rubydebug
+      workers => 2
+  }
+}

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SparkSql</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="SparkSql" />
+<meta property="og:description" content="SparkSql21. Spark SQL22. 内置函数3. 列名特殊字符处理1. Spark SQL2org.apache.spark.sql.SparkSession#sqlorg.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan
+2. 内置函数floor
+https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/
+每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。
+SessionCalalog 用于管理表和数据库状态的内部目录Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系
+AbstractSqlParserSparkSqlParser
+sparkSession.sql(&#34;SELECT * FROM global_temp.people&#34;)org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlanorg.apache.spark.sql.execution.SparkSqlParser#parseorg.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse
+SqlBaseLexer 词法分析ANTLRNoCaseStringStreamCommonTokenStreamSqlBaseParser
+Analyzer
+def sql(sqlText: String): DataFrame = {Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))}sessionState.sqlParser.parsePlan(sqlText) -&gt; unresolved logical planSparkSql-1.0org.apache.spark.sql.SQLContext#sql" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/spark/spark-sql2/" />
+
+
+<meta property="og:updated_time" content="2017-08-11T14:43:47&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">SparkSql</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/spark" rel="category">spark</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">SparkSql2</div>
+<ul class="sectlevel1">
+<li><a href="#_spark_sql2">1. Spark SQL2</a></li>
+<li><a href="#_内置函数">2. 内置函数</a></li>
+<li><a href="#_列名特殊字符处理">3. 列名特殊字符处理</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_spark_sql2">1. Spark SQL2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>org.apache.spark.sql.SparkSession#sql
+  org.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_内置函数">2. 内置函数</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>floor</p>
+</div>
+<div class="paragraph">
+<p><a href="https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/" class="bare">https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/</a></p>
+</div>
+<div class="paragraph">
+<p>每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。</p>
+</div>
+<div class="paragraph">
+<p>SessionCalalog 用于管理表和数据库状态的内部目录
+Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系</p>
+</div>
+<div class="paragraph">
+<p>AbstractSqlParser
+SparkSqlParser</p>
+</div>
+<div class="paragraph">
+<p>sparkSession.sql("SELECT * FROM global_temp.people")
+  org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlan
+    org.apache.spark.sql.execution.SparkSqlParser#parse
+      org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse</p>
+</div>
+<div class="paragraph">
+<p>SqlBaseLexer   词法分析
+ANTLRNoCaseStringStream
+CommonTokenStream
+SqlBaseParser</p>
+</div>
+<div class="paragraph">
+<p>Analyzer</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>def sql(sqlText: String): DataFrame = {
+  Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sessionState.sqlParser.parsePlan(sqlText) -&gt; unresolved logical plan</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>SparkSql-1.0
+    org.apache.spark.sql.SQLContext#sql</p>
+</div>
+<div class="paragraph">
+<p><a href="http://blog.csdn.net/oopsoom/article/details/37658021">Spark SQL源码分析之核心流程</a>
+<a href="http://blog.csdn.net/dc_726/article/details/45399371">Antlr v4入门教程和实例</a>
+<a href="http://www.jianshu.com/p/0aa4b1caac2e" class="bare">http://www.jianshu.com/p/0aa4b1caac2e</a>
+<a href="https://liuxiaofei.com.cn/blog/sql-execute-spark/" class="bare">https://liuxiaofei.com.cn/blog/sql-execute-spark/</a>
+<a href="https://docs.databricks.com/spark/latest/spark-sql/language-manual/create-table.html" class="bare">https://docs.databricks.com/spark/latest/spark-sql/language-manual/create-table.html</a>
+<a href="http://www.jasongj.com/" class="bare">http://www.jasongj.com/</a>
+<a href="https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html">在spark sql中引入窗口函数</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://people.apache.org/~pwendell/spark-nightly/spark-master-docs/latest/api/sql/">spark sql 函数</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.aboutyun.com/thread-23803-1-1.html">spark sql 自适应体系</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_列名特殊字符处理">3. 列名特殊字符处理</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>select e.<code>UL_lost&gt;1%</code> from employee as e</p>
+</div>
+<div class="paragraph">
+<p>Hive 数据类型</p>
+</div>
+<div class="paragraph">
+<p>分类  类型  描述  字面量示例
+原始类型  BOOLEAN true/false  TRUE
+TINYINT 1字节的有符号整数 -128~127  1Y
+SMALLINT  2个字节的有符号整数，-32768~32767 1S
+INT 4个字节的带符号整数  1
+BIGINT  8字节带符号整数  1L
+FLOAT 4字节单精度浮点数1.0
+DOUBLE  8字节双精度浮点数 1.0
+DEICIMAL  任意精度的带符号小数  1.0
+STRING  字符串，变长  “a”,’b’
+VARCHAR 变长字符串 “a”,’b’
+CHAR  固定长度字符串 “a”,’b’
+BINARY  字节数组  无法表示
+TIMESTAMP 时间戳，纳秒精度  122327493795
+DATE  日期  ‘2016-03-29’
+复杂类型  ARRAY 有序的的同类型的集合  array(1,2)
+MAP key-value,key必须为原始类型，value可以任意类型  map(‘a’,1,’b’,2)
+STRUCT  字段集合,类型可以不同 struct(‘1’,1,1.0), named_stract(‘col1’,’1’,’col2’,1,’clo3’,1.0)
+UNION 在有限取值范围内的一个值  create_union(1,’a’,63)</p>
+</div>
+<div class="paragraph">
+<p>Spark 数据类型</p>
+</div>
+<div class="paragraph">
+<p>数值类型
+ByteType : 表示 1 字节长的有符号整型，数值范围 : -128 到 127。
+ShortType : 表示 2 字节长的有符号整型，数值范围 : -32768 到 32767。
+IntegerType : 表示 4 字节长的有符号整型，数值范围 : -2147483648 到 2147483647。
+LongType : 表示 8 字节长的有符号整型，数值范围 : -9223372036854775808 到 9223372036854775807。
+FloatType : 表示 4 字节长的单精度浮点数。
+DoubleType : 表示 8 字节长的双精度浮点数。
+DecimalType : 表示任意精度有符号带小数的数值。内部使用 java.math.BigDecimal，一个BigDecimal 由一个任意精度的整数非标度值和一个 32 位的整数标度 (scale) 组成。
+字符串类型</p>
+</div>
+<div class="paragraph">
+<p>StringType : 表示字符串值</p>
+</div>
+<div class="paragraph">
+<p>二进制类型
+BinaryType : 表示字节序列值
+布尔类型
+BooleanType : 表示布尔值
+日期类型
+TimestampType : 表示包含年月日、时分秒等字段的日期值
+DateType : 表示包含年月日字段的日期值
+Complex types（复杂类型）
+ ArrayType(elementType, containsNull) : 数组类型，表示一个由类型为 elementType 的元素组成的序列，containsNull 用来表示 ArrayType 中的元素是否能为 null 值。</p>
+</div>
+<div class="paragraph">
+<p>MapType(keyType, valueType, valueContainsNull) : 映射类型，表示一个键值对的集合。键的类型由 keyType 表示，值的类型则由 valueType 表示。对于一个 MapType 值，键是不允许为 null值。valueContainsNull 用来表示一个 MapType 的值是否能为 null 值。</p>
+</div>
+<div class="paragraph">
+<p>StructType(fields) : 表示由 StructField 序列描述的结构。</p>
+</div>
+<div class="paragraph">
+<p>StructField(name, datatype, nullable) : 表示 StructType 中的一个字段，name 表示字段名，datatype 是字段的数据类型，nullable 用来表示该字段是否可以为空值。</p>
+</div>
+<div class="paragraph">
+<p>对应关系</p>
+</div>
+<div class="paragraph">
+<p>Hive          Spark             Mysql</p>
+</div>
+<div class="paragraph">
+<p>TINYINT      ByteType         int(11)
+SMALLINT     ShortType        int(11)
+INT          IntegerType      int(11)
+BIGINT       LongType         bigint(20)
+FLOAT        FloatType        float
+DOUBLE       DoubleType       NUMERIC(20,2)
+DEICIMAL     DecimalType      DECIMAL(19,4)
+STRING       StringType       varchar(60)</p>
+</div>
+<div class="paragraph">
+<p>BINARY       BinaryType
+TIMESTAMP    TimestampType
+DATE         DateType</p>
+</div>
+<div class="paragraph">
+<p><a href="http://cwiki.apachecn.org/pages/viewpage.action?pageId=2886757" class="bare">http://cwiki.apachecn.org/pages/viewpage.action?pageId=2886757</a></p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 30 --conf spark.sql.shuffle.partitions=50</p>
+</div>
+<div class="paragraph">
+<p>15*5</p>
+</div>
+<div class="paragraph">
+<p>24M
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 2 --num-executors 1 --conf spark.sql.shuffle.partitions=5</p>
+</div>
+<div class="paragraph">
+<p>58M</p>
+</div>
+<div class="paragraph">
+<p>每小时 20s</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=10</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 15 --conf spark.sql.shuffle.partitions=50</p>
+</div>
+<div class="paragraph">
+<p>1G 270s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=10</p>
+</div>
+<div class="paragraph">
+<p>298s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 5 --conf spark.sql.shuffle.partitions=30</p>
+</div>
+<div class="paragraph">
+<p>232s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 30 --conf spark.sql.shuffle.partitions=50</p>
+</div>
+<div class="paragraph">
+<p>279s
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=10</p>
+</div>
+<div class="paragraph">
+<p>mw
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 50 --conf spark.sql.shuffle.partitions=200 --conf spark.yarn.executor.memoryOverhead=4G</p>
+</div>
+<div class="paragraph">
+<p>sv</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=50</p>
+</div>
+<div class="paragraph">
+<p>drop</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 20 --conf spark.sql.shuffle.partitions=50</p>
+</div>
+<div class="paragraph">
+<p>srvcc</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20</p>
+</div>
+<div class="paragraph">
+<p>widetable
+--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 10 --conf spark.sql.shuffle.partitions=20</p>
+</div>
+<div class="paragraph">
+<p>--master yarn --deploy-mode client --driver-memory 12G --driver-cores 5 --executor-memory 8G --executor-cores 5 --num-executors 40 --conf spark.sql.shuffle.partitions=50 --conf spark.yarn.executor.memoryOverhead=4G</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="prev"><span>«Previous</span><p>机器学习与数学基础</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/" rel="next"><span>Next»</span><p>SparkSql</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

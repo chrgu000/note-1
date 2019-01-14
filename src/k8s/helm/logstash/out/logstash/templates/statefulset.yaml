@@ -1,0 +1,77 @@
+---
+# Source: logstash/templates/statefulset.yaml
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: logstash
+  labels:
+    app: logstash
+    chart: logstash-1.4.1
+    release: logstash
+    heritage: Tiller
+spec:
+  selector:
+    matchLabels:
+      app: logstash
+      release: logstash
+  template:
+    metadata:
+      labels:
+        app: logstash
+        release: logstash
+      annotations:
+        checksum/patterns: d1635e712f692f3d703473b5c7b19b78d899eff37cc11d1a5c79da8f700a633f
+        checksum/pipeline: c107a9cd26e90e1d4eac772aeb6a1a720e128d8ca14e3a4e0660ddcfd57d8f9d
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+
+        ## logstash
+        - name: logstash
+          image: "logstash:2.4"
+          imagePullPolicy: IfNotPresent
+          env:
+            ## Logstash monitoring API host and port env vars
+            - name: HTTP_HOST
+              value: "0.0.0.0"
+            - name: HTTP_PORT
+              value: "9600"
+            ## Elasticsearch output
+            - name: ELASTICSEARCH_HOST
+              value: "elasticsearch-master"
+            - name: ELASTICSEARCH_PORT
+              value: "9200"
+            ## Additional env vars
+            - name: CONFIG_RELOAD_AUTOMATIC
+              value: "true"
+            - name: PATH_CONFIG
+              value: "/usr/share/logstash/pipeline"
+            - name: PATH_DATA
+              value: "/usr/share/logstash/data"
+            - name: QUEUE_CHECKPOINT_WRITES
+              value: "1"
+            - name: QUEUE_DRAIN
+              value: "true"
+            - name: QUEUE_MAX_BYTES
+              value: "1gb"
+            - name: QUEUE_TYPE
+              value: "persisted"
+          resources:
+            {}
+            
+          volumeMounts:
+            - mountPath: /usr/share/logstash/data
+              name: data
+            
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "2Gi"
+        storageClassName: "cxzx-nfs"

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yunnan-lt</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="yunnan-lt" />
+<meta property="og:description" content="yunnan-lt1. 多sheet保存csv2. 代办3. 问题4. ER4.1. 云南联通中间表小时4.2. 云南联通中间表天服务器信息
+172.33.2.17yarn http://172.33.2.17:23188/cluster
+172.33.2.17root/Huawei@123
+su - hadoop
+hadoop fs -ls /lte/xdr
+web172.33.10.51
+MRO数据源表O_LTE_MRO_IMSI
+MRS数据源表O_LTE_MRS_RSRPO_LTE_MRS_RSRQO_LTE_MRS_TADVO_LTE_MRS_POWERHEADROOMO_LTE_MRS_AOAO_LTE_MRS_SINRULO_LTE_MRS_RECEIVEDIPOWERO_LTE_MRS_RIPPRBO_LTE_MRS_TADVRSRPO_LTE_MRS_TADVAOAO_LTE_MRS_RIPRSRPO_LTE_MRS_RIPRSRQO_LTE_MRS_SINRULRIPO_LTE_MRS_PACKETLOSSRATEULQCI1O_LTE_MRS_PACKETLOSSRATEULQCI2O_LTE_MRS_PACKETLOSSRATEULQCI3O_LTE_MRS_PACKETLOSSRATEULQCI4O_LTE_MRS_PACKETLOSSRATEULQCI5O_LTE_MRS_PACKETLOSSRATEULQCI6O_LTE_MRS_PACKETLOSSRATEULQCI7O_LTE_MRS_PACKETLOSSRATEULQCI8O_LTE_MRS_PACKETLOSSRATEULQCI9O_LTE_MRS_PACKETLOSSRATEDLQCI1O_LTE_MRS_PACKETLOSSRATEDLQCI2O_LTE_MRS_PACKETLOSSRATEDLQCI3O_LTE_MRS_PACKETLOSSRATEDLQCI4O_LTE_MRS_PACKETLOSSRATEDLQCI5O_LTE_MRS_PACKETLOSSRATEDLQCI6O_LTE_MRS_PACKETLOSSRATEDLQCI7O_LTE_MRS_PACKETLOSSRATEDLQCI8O_LTE_MRS_PACKETLOSSRATEDLQCI9" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/nokia/yunnan-lt/yunnan-lt/" />
+
+
+<meta property="og:updated_time" content="2018-04-14T21:33:54&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">yunnan-lt</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">yunnan-lt</div>
+<ul class="sectlevel1">
+<li><a href="#_多sheet保存csv">1. 多sheet保存csv</a></li>
+<li><a href="#_代办">2. 代办</a></li>
+<li><a href="#_问题">3. 问题</a></li>
+<li><a href="#_er">4. ER</a>
+<ul class="sectlevel2">
+<li><a href="#_云南联通中间表小时">4.1. 云南联通中间表小时</a></li>
+<li><a href="#_云南联通中间表天">4.2. 云南联通中间表天</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>服务器信息</p>
+</div>
+<div class="paragraph">
+<p>172.33.2.17
+yarn <a href="http://172.33.2.17:23188/cluster" class="bare">http://172.33.2.17:23188/cluster</a></p>
+</div>
+<div class="paragraph">
+<p>172.33.2.17
+root/Huawei@123</p>
+</div>
+<div class="paragraph">
+<p>su - hadoop</p>
+</div>
+<div class="paragraph">
+<p>hadoop fs -ls /lte/xdr</p>
+</div>
+<div class="paragraph">
+<p>web
+  172.33.10.51</p>
+</div>
+<div class="paragraph">
+<p>MRO数据源表
+O_LTE_MRO_IMSI</p>
+</div>
+<div class="paragraph">
+<p>MRS数据源表
+O_LTE_MRS_RSRP
+O_LTE_MRS_RSRQ
+O_LTE_MRS_TADV
+O_LTE_MRS_POWERHEADROOM
+O_LTE_MRS_AOA
+O_LTE_MRS_SINRUL
+O_LTE_MRS_RECEIVEDIPOWER
+O_LTE_MRS_RIPPRB
+O_LTE_MRS_TADVRSRP
+O_LTE_MRS_TADVAOA
+O_LTE_MRS_RIPRSRP
+O_LTE_MRS_RIPRSRQ
+O_LTE_MRS_SINRULRIP
+O_LTE_MRS_PACKETLOSSRATEULQCI1
+O_LTE_MRS_PACKETLOSSRATEULQCI2
+O_LTE_MRS_PACKETLOSSRATEULQCI3
+O_LTE_MRS_PACKETLOSSRATEULQCI4
+O_LTE_MRS_PACKETLOSSRATEULQCI5
+O_LTE_MRS_PACKETLOSSRATEULQCI6
+O_LTE_MRS_PACKETLOSSRATEULQCI7
+O_LTE_MRS_PACKETLOSSRATEULQCI8
+O_LTE_MRS_PACKETLOSSRATEULQCI9
+O_LTE_MRS_PACKETLOSSRATEDLQCI1
+O_LTE_MRS_PACKETLOSSRATEDLQCI2
+O_LTE_MRS_PACKETLOSSRATEDLQCI3
+O_LTE_MRS_PACKETLOSSRATEDLQCI4
+O_LTE_MRS_PACKETLOSSRATEDLQCI5
+O_LTE_MRS_PACKETLOSSRATEDLQCI6
+O_LTE_MRS_PACKETLOSSRATEDLQCI7
+O_LTE_MRS_PACKETLOSSRATEDLQCI8
+O_LTE_MRS_PACKETLOSSRATEDLQCI9</p>
+</div>
+<div class="sect1">
+<h2 id="_多sheet保存csv">1. 多sheet保存csv</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sub SaveToCSVs()</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Dim fDir As String</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Dim wB As Workbook</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Dim wS As Worksheet</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Dim fPath As String</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Dim sPath As String</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fPath = "C:\Users\dishui\Desktop\liantong-km\doc\"</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sPath = "C:\Users\dishui\Desktop\liantong-km\csv3\"</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fDir = Dir(fPath)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Do While (fDir &lt;&gt; "")</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>If Right(fDir, 4) = ".xls" Or Right(fDir, 5) = ".xlsx" Then</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>On Error Resume Next</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Set wB = Workbooks.Open(fPath &amp; fDir)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>'MsgBox (wB.Name)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>For Each wS In wB.Sheets</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>wS.SaveAs sPath &amp; wS.Name &amp; ".csv", xlCSV</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Next wS</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>wB.Close False</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Set wB = Nothing</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>End If</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fDir = Dir</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>On Error GoTo 0</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Loop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>End Sub</p>
+</div>
+<div class="paragraph">
+<p>s1u业务       &#8592;   s1u_rpt业务
+s1u_dns业务       &#8592;   s1u_dns_rpt业务
+s1u_http业务      &#8592;   s1u_http_rpt业务
+s1u_mme业务       &#8592;   s1u_mme_rpt业务</p>
+</div>
+<div class="paragraph">
+<p>s1u_rpt业务
+s1u_dns_rpt业务
+s1u_http_rpt业务
+s1u_mme_rpt业务</p>
+</div>
+<div class="paragraph">
+<p>算法设计器 (天级别的)
+    凌晨的</p>
+</div>
+<div class="paragraph">
+<p>customer_group业务
+    定时 每个小时执行一次</p>
+</div>
+<div class="paragraph">
+<p>customer_group_first业务
+    跑一个小时的 执行一次</p>
+</div>
+<div class="paragraph">
+<p>customer_group_daily业务</p>
+</div>
+<div class="paragraph">
+<p>问题</p>
+</div>
+<div class="paragraph">
+<p>2018年6月24日
+1. O_LTE_RPM_EUTRANCELL源表没有</p>
+</div>
+<div class="paragraph">
+<p>STARTTIME
+  O_LTE_RPM_EUTRANCELL
+    DAY_ID+HOUR_ID
+格式 yyyy-MM-dd hh:mm:ss</p>
+</div>
+<div class="paragraph">
+<p>M_PM_LTE_CELL_H
+  HOPREPINCSUCCRATE 重复
+  AVAILCELLRATIO 根据什么分组  eci</p>
+</div>
+<div class="paragraph">
+<p>O_AM
+  scity</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_代办">2. 代办</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>p_rmconf
+  2:当EquipmentClass为EUTRANCELL时，取NeName与P_netconf表cell_oid字段相匹配，获取CELL_ID。同时通过NeName与O_RM_EUTRANCELL的NMS_ORIG_RES_NAME字段匹配获取STARTTIME。</p>
+</div>
+<div class="paragraph">
+<p>com.nsn.do.tbox.spark.kpi.cucwm
+com.nsn.do.tbox.spark.kpi.cucmr
+com.nsn.do.tbox.spark.kpi.cucmr.day
+com.nsn.do.tbox.spark.kpi.cucwm.day
+com.nsn.web.do.tbox.spark.kpi.cucmr
+com.nsn.web.do.tbox.spark.kpi.cucwm</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_问题">3. 问题</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>云南联通汇总表(day)V3.1.1表
+S_MRO_LTE_RSRP_D 问题
+
+18行
+  某小区，SumPRRP/timeRSRP-140
+
+35行
+  某小区，(sum(RSRP_ALL)-sum(RSRP_110))/sum((RSRP_ALL)&gt;10,and (sum(RSRP_ALL))&gt;1000,1,0)
+
+
+p_rmconf.xlsx
+2行
+  不同网元用各自网元的START_TIME
+  O_RM_ENDEB
+  O_RM_EUTRANCELL
+  O_RM_HSS_FE
+  O_RM_MME
+  O_RM_PGW
+  O_RM_SGW</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_er">4. ER</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_云南联通中间表小时">4.1. 云南联通中间表小时</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/yunnan-lt-1.svg" alt="yunnan lt 1" width="931" height="1189">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_云南联通中间表天">4.2. 云南联通中间表天</h3>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: erd.EXE failed: "&lt;stdin&gt;" (line 5, column 8):
+unexpected '('
+expecting relationship or attribute
+
+title {label: "云南联通中间表天", size: "13"}
+# Entities
+
+[S_MRO_LTE_RSRP_D] {bgcolor: "#d0e0d0", size: "12"}
+   邻区MR(天)
+[S_MRS_LTE_RSRP_D] {bgcolor: "#d0e0d0", size: "12"}
+   服务小区MR(天)
+[S_MRS_LTE_IOT_D] {bgcolor: "#d0e0d0", size: "12"}
+   小区干扰(天)
+[S_PM_LTE_CELL_D] {bgcolor: "#d0e0d0", size: "12"}
+   小区级KPI指标(天)
+[S_PM_LTE_SCITY_D] {bgcolor: "#d0e0d0", size: "12"}
+   地市级KPI指标(天)
+
+# Relationships</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/yunnan-lt-3.svg" alt="yunnan lt 3" width="509" height="422">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/dayliy/graphviz/" rel="prev"><span>«Previous</span><p>graphviz</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/niuke/%E5%88%9D%E7%BA%A71/" rel="next"><span>Next»</span><p>初级1</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

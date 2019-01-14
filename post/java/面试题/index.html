@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java 面试题</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Java 面试题" />
+<meta property="og:description" content="面向对象编程的基本理念与核心设计思想解释下多态性（polymorphism），封装性（encapsulation），内聚（cohesion）以及耦合（coupling）。
+继承（Inheritance）与聚合（Aggregation）的区别在哪里。
+你是如何理解干净的代码（Clean Code）与技术负载（Technical Debt）的。
+描述下常用的重构技巧。
+阐述下 SOLID 原则。
+其他的譬如 KISS,DRY,YAGNI 等原则又是什么含义。
+什么是设计模式（Design Patterns）？你知道哪些设计模式？
+你有了解过存在哪些反模式（Anti-Patterns）吗？
+你会如何设计登陆舰/数学表达式计算程序/一条龙？
+你知道哪些基本的排序算法，它们的计算复杂度如何？在给定数据的情况下你会倾向于使用哪种算法呢？尝试编写如下代码：
+计算指定数字的阶乘
+开发 Fizz Buzz 小游戏
+倒转句子中的单词
+回文字符串检测
+枚举给定字符串的所有排列组合
+Java 核心概念equals 与 hashCode 的异同点在哪里？Java 的集合中又是如何使用它们的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/%E9%9D%A2%E8%AF%95%E9%A2%98/" />
+
+
+<meta property="og:updated_time" content="2017-01-17T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Java 面试题</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-17 00:00:00 &#43;0000 UTC">January 17, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/java" rel="category">java</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="sect1">
+<h2 id="_面向对象编程的基本理念与核心设计思想">面向对象编程的基本理念与核心设计思想</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>解释下多态性（polymorphism），封装性（encapsulation），内聚（cohesion）以及耦合（coupling）。</p>
+</li>
+<li>
+<p>继承（Inheritance）与聚合（Aggregation）的区别在哪里。</p>
+</li>
+<li>
+<p>你是如何理解干净的代码（Clean Code）与技术负载（Technical Debt）的。</p>
+</li>
+<li>
+<p>描述下常用的重构技巧。</p>
+</li>
+<li>
+<p>阐述下 SOLID 原则。</p>
+</li>
+<li>
+<p>其他的譬如 KISS,DRY,YAGNI 等原则又是什么含义。</p>
+</li>
+<li>
+<p>什么是设计模式（Design Patterns）？你知道哪些设计模式？</p>
+</li>
+<li>
+<p>你有了解过存在哪些反模式（Anti-Patterns）吗？</p>
+</li>
+<li>
+<p>你会如何设计登陆舰/数学表达式计算程序/一条龙？</p>
+</li>
+<li>
+<p>你知道哪些基本的排序算法，它们的计算复杂度如何？在给定数据的情况下你会倾向于使用哪种算法呢？
+尝试编写如下代码：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>计算指定数字的阶乘</p>
+</li>
+<li>
+<p>开发 Fizz Buzz 小游戏</p>
+</li>
+<li>
+<p>倒转句子中的单词</p>
+</li>
+<li>
+<p>回文字符串检测</p>
+</li>
+<li>
+<p>枚举给定字符串的所有排列组合</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_java_核心概念">Java 核心概念</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>equals 与 hashCode 的异同点在哪里？Java 的集合中又是如何使用它们的。</p>
+</li>
+<li>
+<p>描述下 Java 中集合（Collections），接口（Interfaces），实现（Implementations）的概念。LinkedList 与 ArrayList 的区别是什么？</p>
+</li>
+<li>
+<p>基础类型（Primitives）与封装类型（Wrappers）的区别在哪里？</p>
+</li>
+<li>
+<p>final 与 static 关键字可以用于哪里？它们的作用是什么？</p>
+</li>
+<li>
+<p>阐述下 Java 中的访问描述符（Access Modifiers）。</p>
+</li>
+<li>
+<p>描述下 String,StringBuilder 以及 StringBuffer 区别。</p>
+</li>
+<li>
+<p>接口（Interface）与抽象类（Abstract Class）的区别在哪里。</p>
+</li>
+<li>
+<p>覆盖（Overriding）与重载（OverLoading）的区别在哪里。</p>
+</li>
+<li>
+<p>异常分为哪几种类型？以及所谓的handle or declare原则应该如何理解？</p>
+</li>
+<li>
+<p>简述垃圾回收器的工作原理。</p>
+</li>
+<li>
+<p>你是如何处理内存泄露或者栈溢出问题的？</p>
+</li>
+<li>
+<p>如何构建不可变的类结构？关键点在哪里？</p>
+</li>
+<li>
+<p>什么是 JIT 编译？</p>
+</li>
+<li>
+<p>Java 8 / Java 7 为我们提供了什么新功能？即将到来的 Java 9 又带来了怎样的新功能？</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spring">Spring</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>新版的 Spring 中有哪些新特性？</p>
+</li>
+<li>
+<p>介绍下 Spring 的优势与缺陷。</p>
+</li>
+<li>
+<p>什么是控制反转（Inversion of Control）与依赖注入（Dependency Injection）？</p>
+</li>
+<li>
+<p>你用过哪些 Spring 的模块？</p>
+</li>
+<li>
+<p>Spring 中是如何使用依赖注入的？</p>
+</li>
+<li>
+<p>Spring 中提供了几种自动注入的机制？</p>
+</li>
+<li>
+<p>介绍下 Spring MVC。</p>
+</li>
+<li>
+<p>Spring 中 Scopes 有哪些？</p>
+</li>
+<li>
+<p>Spring 中 Bean 的生命周期包含哪些步骤？</p>
+</li>
+<li>
+<p>Spring Bean 与 EJB Bean 的区别在哪里？
+其他主题</p>
+</li>
+<li>
+<p>介绍下切面编程（Aspect Oriented Programming）。</p>
+</li>
+<li>
+<p>概述下 GET 与 POST 的区别。</p>
+</li>
+<li>
+<p>Web Server、Web Container 与 Application Server 的区别是什么？</p>
+</li>
+<li>
+<p>简要介绍下从浏览器输入 URL 开始到获取到请求界面之后 Java Web 应用中发生了什么。</p>
+</li>
+<li>
+<p>什么是 N 层架构？</p>
+</li>
+<li>
+<p>微服务（MicroServices）与巨石型应用（Monolithic Applications）之间的区别在哪里？</p>
+</li>
+<li>
+<p>你知道哪些商业级设计模式？</p>
+</li>
+<li>
+<p>你是如何测试一个应用的？知道哪些测试框架？</p>
+</li>
+<li>
+<p>你是如何测试单个方法的？</p>
+</li>
+<li>
+<p>在你的职业生涯中，算得上最困难的技术挑战是什么？</p>
+</li>
+<li>
+<p>什么是领域驱动开发（Domain Driven Development）？</p>
+</li>
+<li>
+<p>介绍下一些你最爱的 IDE 的常用插件。</p>
+</li>
+<li>
+<p>除了 IDE 之外，你的日常工作中还会用到哪些工具？</p>
+</li>
+<li>
+<p>你使用什么版本管理工具？</p>
+</li>
+<li>
+<p>分支（Branch）与标签（Tag）之间的区别在哪里？</p>
+</li>
+<li>
+<p>你常用的持续集成（Continuous Integration）、静态代码分析（Static Code Analysis）工具有哪些？</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://www.tuicool.com/articles/Rjueiqv">多线程</a></p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/linux/ansible/" rel="prev"><span>«Previous</span><p>ansible</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/mathematics/xuxiaozhan/%E5%BE%AE%E5%88%86/" rel="next"><span>Next»</span><p>微分</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

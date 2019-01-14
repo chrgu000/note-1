@@ -1,0 +1,25 @@
+---
+# Source: redis/templates/networkpolicy.yaml
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: "redis"
+  labels:
+    app: redis
+    chart: redis-5.1.3
+    release: "redis"
+    heritage: "Tiller"
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+      release: "redis"
+  ingress:
+    # Allow inbound connections
+    - ports:
+      - port: 6379
+      from:
+        - podSelector:
+            matchLabels:
+              redis-client: "true"

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scala实战</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Scala实战" />
+<meta property="og:description" content="Scala实战1. Scala实战2. 项目概述2.1. 需求2.2. Akka简介3. 项目实现3.1. 架构图3.2. 重要类介绍3.2.1. ActorSystem3.2.2. Actor3.3. Master类3.4. Worker类1. Scala实战2. 项目概述2.1. 需求目前大多数的分布式架构底层通信都是通过RPC实现的，RPC框架非常多，比如前我们学过的Hadoop项目的RPC通信框架，但是Hadoop在设计之初就是为了运行长达数小时的批量而设计的，在某些极端的情况下，任务提交的延迟很高，所有Hadoop的RPC显得有些笨重。Spark 的RPC是通过Akka类库实现的，Akka用Scala语言开发，基于Actor并发模型实现，Akka具有高可靠、高性能、可扩展等特点，使用Akka可以轻松实现分布式RPC功能。2.2. Akka简介Akka基于Actor模型，提供了一个用于构建可扩展的（Scalable）、弹性的（Resilient）、快速响应的（Responsive）应用程序的平台。
+Actor模型在计算机科学领域，Actor模型是一个并行计算（Concurrent Computation）模型，它把actor作为并行计算的基本元素来对待：为响应一个接收到的消息，一个actor能够自己做出一些决策，如创建更多的actor，或发送更多的消息，或者确定如何去响应接收到的下一个消息。
+Actor是Akka中最核心的概念，它是一个封装了状态和行为的对象，Actor之间可以通过交换消息的方式进行通信，每个Actor都有自己的收件箱（Mailbox）。通过Actor能够简化锁及线程管理，可以非常容易地开发出正确地并发程序和并行系统，Actor具有如下特性：
+提供了一种高级抽象，能够简化在并发（Concurrency）/并行（Parallelism）应用场景下的编程开发
+提供了异步非阻塞的、高性能的事件驱动编程模型
+超级轻量级事件处理（每GB堆内存几百万Actor）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/" />
+
+
+<meta property="og:updated_time" content="2017-04-07T15:06:47&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Scala实战</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-04-07 15:06:47 &#43;0000 UTC">April 07, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/scala" rel="category">scala</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Scala实战</div>
+<ul class="sectlevel1">
+<li><a href="#_scala实战">1. Scala实战</a></li>
+<li><a href="#_项目概述">2. 项目概述</a>
+<ul class="sectlevel2">
+<li><a href="#_需求">2.1. 需求</a></li>
+<li><a href="#_akka简介">2.2. Akka简介</a></li>
+</ul>
+</li>
+<li><a href="#_项目实现">3. 项目实现</a>
+<ul class="sectlevel2">
+<li><a href="#_架构图">3.1. 架构图</a></li>
+<li><a href="#_重要类介绍">3.2. 重要类介绍</a>
+<ul class="sectlevel3">
+<li><a href="#_actorsystem">3.2.1. ActorSystem</a></li>
+<li><a href="#_actor">3.2.2. Actor</a></li>
+</ul>
+</li>
+<li><a href="#_master类">3.3. Master类</a></li>
+<li><a href="#_worker类">3.4. Worker类</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_scala实战">1. Scala实战</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_项目概述">2. 项目概述</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_需求">2.1. 需求</h3>
+<div class="listingblock">
+<div class="content">
+<pre>目前大多数的分布式架构底层通信都是通过RPC实现的，RPC框架非常多，比如前我们学过的Hadoop项目的RPC通信框架，但是Hadoop在设计之初就是为了运行长达数小时的批量而设计的，在某些极端的情况下，任务提交的延迟很高，所有Hadoop的RPC显得有些笨重。
+
+Spark 的RPC是通过Akka类库实现的，Akka用Scala语言开发，基于Actor并发模型实现，Akka具有高可靠、高性能、可扩展等特点，使用Akka可以轻松实现分布式RPC功能。</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_akka简介">2.2. Akka简介</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Akka基于Actor模型，提供了一个用于构建可扩展的（Scalable）、弹性的（Resilient）、快速响应的（Responsive）应用程序的平台。</p>
+</div>
+</blockquote>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Actor模型</dt>
+<dd>
+<p>在计算机科学领域，Actor模型是一个并行计算（Concurrent Computation）模型，它把actor作为并行计算的基本元素来对待：为响应一个接收到的消息，一个actor能够自己做出一些决策，如创建更多的actor，或发送更多的消息，或者确定如何去响应接收到的下一个消息。</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_151513.png" alt="2017 04 07 151513">
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Actor</dt>
+<dd>
+<p>是Akka中最核心的概念，它是一个封装了状态和行为的对象，Actor之间可以通过交换消息的方式进行通信，每个Actor都有自己的收件箱（Mailbox）。通过Actor能够简化锁及线程管理，可以非常容易地开发出正确地并发程序和并行系统，Actor具有如下特性：</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>提供了一种高级抽象，能够简化在并发（Concurrency）/并行（Parallelism）应用场景下的编程开发</p>
+</li>
+<li>
+<p>提供了异步非阻塞的、高性能的事件驱动编程模型</p>
+</li>
+<li>
+<p>超级轻量级事件处理（每GB堆内存几百万Actor）</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_项目实现">3. 项目实现</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_架构图">3.1. 架构图</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-07_151523.png" alt="2017 04 07 151523">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_重要类介绍">3.2. 重要类介绍</h3>
+<div class="sect3">
+<h4 id="_actorsystem">3.2.1. ActorSystem</h4>
+<div class="paragraph">
+<p>在 <strong>Akka</strong> 中， <strong>ActorSystem</strong> 是一个重量级的结构，他需要分配多个线程，所以在实际应用中， <strong>ActorSystem</strong> 通常是一个单例对象，我们可以使用这个 <strong>ActorSystem</strong> 创建很多 <strong>Actor</strong> 。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_actor">3.2.2. Actor</h4>
+<div class="paragraph">
+<p>在Akka中，Actor负责通信，在Actor中有一些重要的生命周期方法。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>preStart()</strong> 方法：该方法在 <strong>Actor</strong> 对象构造方法执行后执行，整个 <strong>Actor</strong> 生命周期中仅执行一次。</p>
+</li>
+<li>
+<p><strong>receive()</strong> 方法：该方法在 <strong>Actor</strong> 的 <strong>preStart</strong> 方法执行完成后执行，用于接收消息，会被反复执行。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_master类">3.3. Master类</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>import scala.concurrent.duration._
+import akka.actor.{Props, ActorSystem, Actor}
+import akka.actor.Actor.Receive
+import com.typesafe.config.ConfigFactory
+
+import scala.collection.mutable
+
+/**
+  * Master为整个集群中的主节点
+  * Master继承了Actor
+  */
+class Master extends Actor{
+
+  //保存WorkerID和Work信息的map
+  val idToWorker = new mutable.HashMap[String, WorkerInfo]
+  //保存所有Worker信息的Set
+  val workers = new mutable.HashSet[WorkerInfo]
+  //Worker超时时间
+  val WORKER_TIMEOUT = 10 * 1000
+  //重新receive方法
+
+  //导入隐式转换，用于启动定时器
+  import context.dispatcher
+
+  //构造方法执行完执行一次
+  override def preStart(): Unit = {
+    //启动定时器，定时执行
+    context.system.scheduler.schedule(0 millis, WORKER_TIMEOUT millis, self, CheckOfTimeOutWorker)
+  }
+
+  //该方法会被反复执行，用于接收消息，通过case class模式匹配接收消息
+  override def receive: Receive = {
+    //Worker向Master发送的注册消息
+    case RegisterWorker(id, workerHost, memory, cores) =&gt; {
+      if(!idToWorker.contains(id)) {
+        val worker = new WorkerInfo(id, workerHost, memory, cores)
+        workers.add(worker)
+        idToWorker(id) = worker
+        sender ! RegisteredWorker("192.168.10.1")
+      }
+    }
+
+    //Worker向Master发送的心跳消息
+    case HeartBeat(workerId) =&gt; {
+      val workerInfo = idToWorker(workerId)
+      workerInfo.lastHeartbeat = System.currentTimeMillis()
+    }
+
+    //Master自己向自己发送的定期检查超时Worker的消息
+    case CheckOfTimeOutWorker =&gt; {
+      val currentTime = System.currentTimeMillis()
+      val toRemove = workers.filter(w =&gt; currentTime - w.lastHeartbeat &gt;WORKER_TIMEOUT).toArray
+      for(worker &lt;- toRemove){
+        workers -= worker
+        idToWorker.remove(worker.id)
+      }
+      println("worker size: "+ workers.size)
+    }
+  }
+}
+
+object Master {
+  //程序执行入口
+  def main(args: Array[String]) {
+
+    val host = "192.168.10.1"
+    val port = 8888
+    //创建ActorSystem的必要参数
+    val configStr =
+      s"""
+         |akka.actor.provider = "akka.remote.RemoteActorRefProvider"
+         |akka.remote.netty.tcp.hostname = "$host"
+         |akka.remote.netty.tcp.port = "$port"
+""".stripMargin
+    val config = ConfigFactory.parseString(configStr)
+    //ActorSystem是单例的，用来创建Actor
+    val actorSystem = ActorSystem.create("MasterActorSystem", config)
+    //启动Actor，Master会被实例化，生命周期方法会被调用
+    actorSystem.actorOf(Props[Master], "Master")
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_worker类">3.4. Worker类</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>import java.util.UUID
+import scala.concurrent.duration._
+import akka.actor.{ActorSelection, Props, ActorSystem, Actor}
+import akka.actor.Actor.Receive
+import com.typesafe.config.ConfigFactory
+
+/**
+  * Worker为整个集群的从节点
+  * Worker继承了Actor
+  */
+class Worker extends Actor{
+
+  //Worker端持有Master端的引用（代理对象）
+  var master: ActorSelection = null
+  //生成一个UUID，作为Worker的标识
+  val id = UUID.randomUUID().toString
+
+  //构造方法执行完执行一次
+  override def preStart(): Unit = {
+    //Worker向MasterActorSystem发送建立连接请求
+    master = context.system.actorSelection("akka.tcp://MasterActorSystem@192.168.10.1:8888/user/Master")
+    //Worker向Master发送注册消息
+    master ! RegisterWorker(id, "192.168.10.1", 10240, 8)
+  }
+
+  //该方法会被反复执行，用于接收消息，通过case class模式匹配接收消息
+  override def receive: Receive = {
+    //Master向Worker的反馈信息
+    case RegisteredWorker(masterUrl) =&gt; {
+      import context.dispatcher
+      //启动定时任务，向Master发送心跳
+      context.system.scheduler.schedule(0 millis, 5000 millis, self, SendHeartBeat)
+    }
+
+    case SendHeartBeat =&gt; {
+      println("worker send heartbeat")
+      master ! HeartBeat(id)
+    }
+  }
+}
+
+object Worker {
+  def main(args: Array[String]) {
+    val clientPort = 2552
+    //创建WorkerActorSystem的必要参数
+    val configStr =
+      s"""
+         |akka.actor.provider = "akka.remote.RemoteActorRefProvider"
+         |akka.remote.netty.tcp.port = $clientPort
+""".stripMargin
+    val config = ConfigFactory.parseString(configStr)
+    val actorSystem = ActorSystem("WorkerActorSystem", config)
+    //启动Actor，Master会被实例化，生命周期方法会被调用
+    actorSystem.actorOf(Props[Worker], "Worker")
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/" rel="prev"><span>«Previous</span><p>spark参考</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="next"><span>Next»</span><p>Scala高级特性</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

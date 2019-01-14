@@ -1,0 +1,129 @@
+---
+# Source: redis/templates/redis-master-statefulset.yaml
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: redis-master
+  labels:
+    app: redis
+    chart: redis-5.1.3
+    release: "redis"
+    heritage: "Tiller"
+spec:
+  selector:
+    matchLabels:
+      release: "redis"
+      role: master
+      app: redis
+  serviceName: redis-master
+  template:
+    metadata:
+      labels:
+        release: "redis"
+        chart: redis-5.1.3
+        role: master
+        app: redis
+      annotations:
+        checksum/health: 70f3076b893f6ca64677c9f5f27938210bcb317b00a40e8f00790544effae07c
+        checksum/configmap: 1122727b1e196a7a527a2a9fe70777753c518eba5d1cfa8bd5d188d5945e0307
+        checksum/secret: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      serviceAccountName: "default"
+      containers:
+      - name: redis
+        image: "docker.io/bitnami/redis:4.0.12"
+        imagePullPolicy: "IfNotPresent"
+        command:
+          - redis-server
+          
+        args:
+        - "--port"
+        - "$(REDIS_PORT)"
+        - "--protected-mode"
+        - "no"
+        - "--include"
+        - "/opt/bitnami/redis/etc/redis.conf"
+        - "--include"
+        - "/opt/bitnami/redis/etc/master.conf"
+        env:
+        - name: REDIS_REPLICATION_MODE
+          value: master
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        - name: REDIS_PORT
+          value: "6379"
+        ports:
+        - name: redis
+          containerPort: 6379
+        livenessProbe:
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 5
+          exec:
+            command:
+            - sh
+            - -c
+            - /health/ping_local.sh
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 5
+          exec:
+            command:
+            - sh
+            - -c
+            - /health/ping_local.sh
+        resources:
+          null
+          
+        volumeMounts:
+        - name: health
+          mountPath: /health
+        - name: redis-data
+          mountPath: /bitnami/redis/data
+          subPath: 
+        - name: config
+          mountPath: /opt/bitnami/redis/etc
+      initContainers:
+      - name: volume-permissions
+        image: "docker.io/bitnami/minideb:latest"
+        imagePullPolicy: "IfNotPresent"
+        command: ["/bin/chown", "-R", "1001:1001", "/bitnami/redis/data"]
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: redis-data
+          mountPath: /bitnami/redis/data
+          subPath: 
+      volumes:
+      - name: health
+        configMap:
+          name: redis-health
+          defaultMode: 0755
+      - name: config
+        configMap:
+          name: redis
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-data
+        labels:
+          app: "redis"
+          component: "master"
+          release: "redis"
+          heritage: "Tiller"
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+        storageClassName: "cxzx-nfs"
+  updateStrategy:
+    type: RollingUpdate

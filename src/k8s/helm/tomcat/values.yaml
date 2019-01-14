@@ -1,0 +1,69 @@
+# Default values for the chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+
+image:
+  tomcat:
+    repository: tomcat
+    tag: "8.5"
+  pullPolicy: IfNotPresent
+
+deploy:
+  directory: /usr/local/tomcat/webapps
+
+## Persist data to a persistent volume
+persistence:
+  enabled: true
+  ## database data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  storageClass: cxzx-nfs
+  accessMode: ReadWriteOnce
+  size: 8Gi
+  annotations: {}
+
+service:
+  name: http
+  type: ClusterIP
+  #type: NodePort
+  internalPort: 8080
+  externalPort: 8080
+
+ingress:
+  enabled: true
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+    proxy_connect_timeout: 12s #配置点1
+    proxy_read_timeout: 10800s
+    proxy_send_timeout: 12s
+    proxy_set_header: X-Real-IP $remote_addr
+    proxy_set_header: X-Forwarded-For $proxy_add_x_forwarded_for
+    proxy_set_header: Upgrade $http_upgrade
+    proxy_set_header: Connection "upgrade"
+  path: /
+  hosts:
+    - dev.cxzx.fabx.com.cn
+    # - cxzx.fabx.com.cn
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+#  limits:
+#    cpu: 100m
+#    memory: 256Mi
+#  requests:
+#    cpu: 100m
+#    memory: 256Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

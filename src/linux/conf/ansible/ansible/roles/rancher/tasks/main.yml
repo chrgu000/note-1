@@ -1,0 +1,17 @@
+---
+
+- name: Copy pull.sh
+  copy:
+    src: /root/bin/pull.sh
+    dest: /tmp/
+
+- name: Copy registry-cert.sh
+  copy:
+    src: /root/bin/registry-cert.sh
+    dest: /tmp/
+
+- name: 添加密钥
+  command: sh /tmp/registry-cert.sh
+
+- name: 拉去rancher镜像
+  command: sh /tmp/pull.sh

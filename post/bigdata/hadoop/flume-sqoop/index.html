@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>flume-sqoop</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="flume-sqoop" />
+<meta property="og:description" content="flume-sqoop1. Flume介绍1.1. 概述1.2. 运行机制1.3. Flume采集系统结构图2. Flume实战案例2.1. Flume的安装部署2.2. 采集案例2.2.1. 采集目录到HDFS2.2.2. 采集文件到HDFS2.2.3. 更多source和sink组件3. 工作流调度器azkaban3.1. 为什么需要工作流调度系统3.2. 工作流调度实现方式3.3. 常见工作流调度系统3.4. Azkaban与Oozie对比3.4.1. Azkaban介绍3.4.2. Azkaban安装部署3.4.3. Azkaban实战Command类型多job工作流flowHDFS操作任务MAPREDUCE任务HIVE脚本任务4. sqoop数据迁移4.1. sqoop安装4.2. Sqoop的数据导入4.2.1. 示例导入表表数据到HDFS导入关系表到HIVE导入到HDFS指定目录导入表数据子集增量导入4." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/hadoop/flume-sqoop/" />
+
+
+<meta property="og:updated_time" content="2017-03-17T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">flume-sqoop</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-17 00:00:00 &#43;0000 UTC">March 17, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/hadoop" rel="category">hadoop</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">flume-sqoop</div>
+<ul class="sectlevel1">
+<li><a href="#_flume介绍">1. Flume介绍</a>
+<ul class="sectlevel2">
+<li><a href="#_概述">1.1. 概述</a></li>
+<li><a href="#_运行机制">1.2. 运行机制</a></li>
+<li><a href="#_flume采集系统结构图">1.3. Flume采集系统结构图</a></li>
+</ul>
+</li>
+<li><a href="#_flume实战案例">2. Flume实战案例</a>
+<ul class="sectlevel2">
+<li><a href="#_flume的安装部署">2.1. Flume的安装部署</a></li>
+<li><a href="#_采集案例">2.2. 采集案例</a>
+<ul class="sectlevel3">
+<li><a href="#_采集目录到hdfs">2.2.1. 采集目录到HDFS</a></li>
+<li><a href="#_采集文件到hdfs">2.2.2. 采集文件到HDFS</a></li>
+<li><a href="#_更多source和sink组件">2.2.3. 更多source和sink组件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_工作流调度器azkaban">3. 工作流调度器azkaban</a>
+<ul class="sectlevel2">
+<li><a href="#_为什么需要工作流调度系统">3.1. 为什么需要工作流调度系统</a></li>
+<li><a href="#_工作流调度实现方式">3.2. 工作流调度实现方式</a></li>
+<li><a href="#_常见工作流调度系统">3.3. 常见工作流调度系统</a></li>
+<li><a href="#_azkaban与oozie对比">3.4. Azkaban与Oozie对比</a>
+<ul class="sectlevel3">
+<li><a href="#_azkaban介绍">3.4.1. Azkaban介绍</a></li>
+<li><a href="#_azkaban安装部署">3.4.2. Azkaban安装部署</a></li>
+<li><a href="#_azkaban实战">3.4.3. Azkaban实战</a>
+<ul class="sectlevel4">
+<li><a href="#_command类型多job工作流flow">Command类型多job工作流flow</a></li>
+<li><a href="#_hdfs操作任务">HDFS操作任务</a></li>
+<li><a href="#_mapreduce任务">MAPREDUCE任务</a></li>
+<li><a href="#_hive脚本任务">HIVE脚本任务</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_sqoop数据迁移">4. sqoop数据迁移</a>
+<ul class="sectlevel2">
+<li><a href="#_sqoop安装">4.1. sqoop安装</a></li>
+<li><a href="#_sqoop的数据导入">4.2. Sqoop的数据导入</a>
+<ul class="sectlevel3">
+<li><a href="#_示例">4.2.1. 示例</a>
+<ul class="sectlevel4">
+<li><a href="#_导入表表数据到hdfs">导入表表数据到HDFS</a></li>
+<li><a href="#_导入关系表到hive">导入关系表到HIVE</a></li>
+<li><a href="#_导入到hdfs指定目录">导入到HDFS指定目录</a></li>
+<li><a href="#_导入表数据子集">导入表数据子集</a></li>
+<li><a href="#_增量导入">增量导入</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_sqoop的数据导出">4.3. Sqoop的数据导出</a></li>
+<li><a href="#_sqoop作业">4.4. Sqoop作业</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>在一个完整的大数据处理系统中，除了hdfs+mapreduce+hive组成分析系统的核心之外，还需要数据采集、结果数据导出、任务调度等不可或缺的辅助系统，而这些辅助工具在hadoop生态体系中都有便捷的开源框架，如图所示：</p>
+</div>
+</blockquote>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image001.png" alt="image001">
+</div>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_flume介绍">1. Flume介绍</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_概述">1.1. 概述</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Flume是一个分布式、可靠、和高可用的海量日志采集、聚合和传输的系统。</p>
+</li>
+<li>
+<p>Flume可以采集文件，socket数据包等各种形式源数据，又可以将采集到的数据输出到HDFS、hbase、hive、kafka等众多外部存储系统中</p>
+</li>
+<li>
+<p>一般的采集需求，通过对flume的简单配置即可实现</p>
+</li>
+<li>
+<p>Flume针对特殊场景也具备良好的自定义扩展能力，因此，flume可以适用于大部分的日常数据采集场景</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_运行机制">1.2. 运行机制</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Flume</strong> 分布式系统中最核心的角色是 <strong>agent</strong>，<strong>flume</strong> 采集系统就是由一个个*agent*所连接起来形成</p>
+</li>
+<li>
+<p>每一个 <strong>agent</strong> 相当于一个数据传递员 ，内部有三个组件：</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Source</strong>：采集源，用于跟数据源对接，以获取数据</p>
+</li>
+<li>
+<p><strong>Sink</strong>：下沉地，采集数据的传送目的，用于往下一级 <strong>agent</strong> 传递数据或者往最终存储系统传递数据</p>
+</li>
+<li>
+<p><strong>Channel</strong>：<strong>angent</strong> 内部的数据传输通道，用于从 <strong>source</strong> 将数据传递到 <strong>sink</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image003.png" alt="image003">
+</div>
+</div>
+<hr>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flume采集系统结构图">1.3. Flume采集系统结构图</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>简单结构</p>
+<div class="ulist">
+<ul>
+<li>
+<p>单个agent采集数据</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image005.png" alt="image005">
+</div>
+</div>
+<hr>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>复杂结构</p>
+<div class="ulist">
+<ul>
+<li>
+<p>多个agent之间串联</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image007.png" alt="image007">
+</div>
+</div>
+<hr>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_flume实战案例">2. Flume实战案例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_flume的安装部署">2.1. Flume的安装部署</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Flume的安装非常简单，只需要解压即可，当然，前提是已有hadoop环境<br>
+上传安装包到数据源所在节点上<br>
+然后解压  <code>tar -zxvf apache-flume-1.6.0-bin.tar.gz</code><br>
+然后进入 <strong>flume</strong> 的目录，修改 <strong>conf</strong> 下的 <strong>flume-env.sh</strong>，在里面配置 <strong>JAVA_HOME</strong></p>
+</li>
+<li>
+<p>根据数据采集的需求配置采集方案，描述在配置文件中(文件名可任意自定义)</p>
+</li>
+<li>
+<p>指定采集方案配置文件，在相应的节点上启动 <strong>flume agent</strong></p>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">例子</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>先在flume的conf目录下新建一个文件</p>
+<div class="listingblock">
+<div class="title">netcat-logger.conf</div>
+<div class="content">
+<pre class="highlightjs highlight"><code># 定义这个agent中各组件的名字
+a1.sources = r1
+a1.sinks = k1
+a1.channels = c1
+
+# 描述和配置source组件：r1
+a1.sources.r1.type = netcat
+a1.sources.r1.bind = localhost
+a1.sources.r1.port = 44444
+
+# 描述和配置sink组件：k1
+a1.sinks.k1.type = logger
+
+# 描述和配置channel组件，此处使用是内存缓存的方式
+a1.channels.c1.type = memory
+a1.channels.c1.capacity = 1000
+a1.channels.c1.transactionCapacity = 100
+
+# 描述和配置source  channel   sink之间的连接关系
+a1.sources.r1.channels = c1
+a1.sinks.k1.channel = c1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>启动agent去采集数据</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/flume-ng agent -c conf \ <i class="conum" data-value="1"></i><b>(1)</b>
+-f conf/netcat-logger.conf \ <i class="conum" data-value="2"></i><b>(2)</b>
+-n a1 \ <i class="conum" data-value="3"></i><b>(3)</b>
+-Dflume.root.logger=INFO,console</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>-<strong>c</strong> <strong>conf</strong>   指定 <strong>flume</strong> 自身的配置文件所在目录</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>-<strong>f</strong> <strong>conf</strong>/<strong>netcat-logger.con</strong>  指定我们所描述的采集方案</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>-<strong>n</strong> <strong>a1</strong>  指定我们这个*agent*的名字</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>测试
+先要往agent采集监听的端口上发送数据，让agent有数据可采
+随便在一个能跟agent节点联网的机器上</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>telnet anget-hostname  port   （telnet localhost 44444）</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image009.png" alt="image009">
+</div>
+</div>
+<hr>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_采集案例">2.2. 采集案例</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Q &amp; A </dt>
+<dd>
+<p><a href="http://www.voidcn.com/blog/lmh94604/article/p-6042484.html" class="bare">http://www.voidcn.com/blog/lmh94604/article/p-6042484.html</a></p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_采集目录到hdfs">2.2.1. 采集目录到HDFS</h4>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>采集需求：某服务器的某特定目录下，会不断产生新的文件，每当有新文件出现，就需要把文件采集到HDFS中去</p>
+</div>
+</blockquote>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>根据需求，首先定义以下3大要素</p>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>采集源</strong>，即 <strong>source</strong> ——监控文件目录 :  <strong>spooldir</strong></p>
+</li>
+<li>
+<p><strong>下沉目标</strong>，即 <strong>sink</strong>——<strong>HDFS</strong> 文件系统  :  <strong>hdfs</strong> <strong>sink</strong></p>
+</li>
+<li>
+<p><strong>source</strong> 和 <strong>sink</strong> 之间的传递通道——<strong>channel</strong>，可用 <strong>file</strong> <strong>channel</strong> 也可以用内存 <strong>channel</strong></p>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>配置文件编写</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#定义三大组件的名称
+agent1.sources = source1
+agent1.sinks = sink1
+agent1.channels = channel1
+
+# 配置source组件
+agent1.sources.source1.type = spooldir
+agent1.sources.source1.spoolDir = /home/hadoop/logs/
+agent1.sources.source1.fileHeader = false
+
+#配置拦截器
+agent1.sources.source1.interceptors = i1
+agent1.sources.source1.interceptors.i1.type = host
+agent1.sources.source1.interceptors.i1.hostHeader = hostname
+
+# 配置sink组件
+agent1.sinks.sink1.type = hdfs
+agent1.sinks.sink1.hdfs.path =hdfs://hdp-node-01:9000/weblog/flume-collection/%y-%m-%d/%H-%M
+agent1.sinks.sink1.hdfs.filePrefix = access_log
+agent1.sinks.sink1.hdfs.maxOpenFiles = 5000
+agent1.sinks.sink1.hdfs.batchSize= 100
+agent1.sinks.sink1.hdfs.fileType = DataStream
+agent1.sinks.sink1.hdfs.writeFormat =Text
+agent1.sinks.sink1.hdfs.rollSize = 102400
+agent1.sinks.sink1.hdfs.rollCount = 1000000
+agent1.sinks.sink1.hdfs.rollInterval = 60
+#agent1.sinks.sink1.hdfs.round = true
+#agent1.sinks.sink1.hdfs.roundValue = 10
+#agent1.sinks.sink1.hdfs.roundUnit = minute
+agent1.sinks.sink1.hdfs.useLocalTimeStamp = true
+# Use a channel which buffers events in memory
+agent1.channels.channel1.type = memory
+agent1.channels.channel1.keep-alive = 120 <i class="conum" data-value="3"></i><b>(3)</b>
+agent1.channels.channel1.capacity = 500000 <i class="conum" data-value="1"></i><b>(1)</b>
+agent1.channels.channel1.transactionCapacity = 600 <i class="conum" data-value="2"></i><b>(2)</b>
+
+# Bind the source and sink to the channel
+agent1.sources.source1.channels = channel1
+agent1.sinks.sink1.channel = channel1</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>capacity</strong>：默认该通道中最大的可以存储的 <strong>event</strong> 数量</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>trasactionCapacity</strong>：每次最大可以从 <strong>source</strong> 中拿到或者送到 <strong>sink</strong> 中的 <strong>event</strong> 数量</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>keep-alive</strong>：<strong>event</strong> 添加到通道中或者移出的允许时间</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_采集文件到hdfs">2.2.2. 采集文件到HDFS</h4>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>采集需求：<br>
+比如业务系统使用log4j生成的日志，日志内容不断增加，需要把追加到日志文件中的数据实时采集到hdfs</p>
+</div>
+</blockquote>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>根据需求，首先定义以下3大要素</p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>采集源，即 <strong>source</strong> ——监控文件内容更新 : <strong>exec</strong>  '<strong>tail</strong> -<strong>F</strong> <strong>file</strong>'</p>
+</li>
+<li>
+<p>下沉目标，即 <strong>sink</strong>——<strong>HDFS</strong> 文件系统: <strong>hdfs</strong> <strong>sink</strong></p>
+</li>
+<li>
+<p><strong>Source</strong> 和 <strong>sink</strong> 之间的传递通道—— <strong>channel</strong>，可用 <strong>file</strong> <strong>channel</strong> 也可以用 内存 <strong>channel</strong></p>
+</li>
+</ul>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>配置文件编写</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">agent1.sources = source1
+agent1.sinks = sink1
+agent1.channels = channel1
+
+# Describe/configure tail -F source1
+agent1.sources.source1.type = exec
+agent1.sources.source1.command = tail -F /home/hadoop/logs/access_log
+agent1.sources.source1.channels = channel1
+
+#configure host for source
+agent1.sources.source1.interceptors = i1
+agent1.sources.source1.interceptors.i1.type = host
+agent1.sources.source1.interceptors.i1.hostHeader = hostname
+
+# Describe sink1
+agent1.sinks.sink1.type = hdfs
+#a1.sinks.k1.channel = c1
+agent1.sinks.sink1.hdfs.path =hdfs://hdp-node-01:9000/weblog/flume-collection/%y-%m-%d/%H-%M
+agent1.sinks.sink1.hdfs.filePrefix = access_log
+agent1.sinks.sink1.hdfs.maxOpenFiles = 5000
+agent1.sinks.sink1.hdfs.batchSize= 100
+agent1.sinks.sink1.hdfs.fileType = DataStream
+agent1.sinks.sink1.hdfs.writeFormat =Text
+agent1.sinks.sink1.hdfs.rollSize = 102400
+agent1.sinks.sink1.hdfs.rollCount = 1000000
+agent1.sinks.sink1.hdfs.rollInterval = 60
+agent1.sinks.sink1.hdfs.round = true
+agent1.sinks.sink1.hdfs.roundValue = 10
+agent1.sinks.sink1.hdfs.roundUnit = minute
+agent1.sinks.sink1.hdfs.useLocalTimeStamp = true
+
+# Use a channel which buffers events in memory
+agent1.channels.channel1.type = memory
+agent1.channels.channel1.keep-alive = 120
+agent1.channels.channel1.capacity = 500000
+agent1.channels.channel1.transactionCapacity = 600
+
+# Bind the source and sink to the channel
+agent1.sources.source1.channels = channel1
+agent1.sinks.sink1.channel = channel1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_更多source和sink组件">2.2.3. 更多source和sink组件</h4>
+<div class="paragraph">
+<p>Flume支持众多的source和sink类型，详细手册可参考官方文档
+<a href="http://flume.apache.org/FlumeUserGuide.html">FlumeUserGuide</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_工作流调度器azkaban">3. 工作流调度器azkaban</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_为什么需要工作流调度系统">3.1. 为什么需要工作流调度系统</h3>
+<div class="ulist circle">
+<ul class="circle">
+<li>
+<p>一个完整的数据分析系统通常都是由大量任务单元组成：
+<strong>shell</strong> 脚本程序，<strong>java</strong> 程序，<strong>mapreduce</strong> 程序、<strong>hive</strong> 脚本等</p>
+</li>
+<li>
+<p>各任务单元之间存在时间先后及前后依赖关系</p>
+</li>
+<li>
+<p>为了很好地组织起这样的复杂执行计划，需要一个工作流调度系统来调度执行；</p>
+</li>
+</ul>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>例如，我们可能有这样一个需求，某个业务系统每天产生20G原始数据，我们每天都要对其进行处理，处理步骤如下所示：</p>
+</div>
+</div>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p>通过 <strong>Hadoop</strong> 先将原始数据同步到 <strong>HDFS</strong> 上；</p>
+</li>
+<li>
+<p>借助 <strong>MapReduce</strong> 计算框架对原始数据进行转换，生成的数据以分区表的形式存储到多张 <strong>Hive</strong> 表中；</p>
+</li>
+<li>
+<p>需要对 <strong>Hive</strong> 中多个表的数据进行 <strong>JOIN</strong> 处理，得到一个明细数据 <strong>Hive</strong> 大表；</p>
+</li>
+<li>
+<p>将明细数据进行复杂的统计分析，得到结果报表信息；</p>
+</li>
+<li>
+<p>需要将统计分析得到的结果数据同步到业务系统中，供业务调用使用。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_工作流调度实现方式">3.2. 工作流调度实现方式</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">简单的任务调度</dt>
+<dd>
+<p>直接使用linux的crontab来定义；</p>
+</dd>
+<dt class="hdlist1">复杂的任务调度</dt>
+<dd>
+<p>开发调度平台<br>
+或使用现成的开源调度系统，比如ooize、azkaban等</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_常见工作流调度系统">3.3. 常见工作流调度系统</h3>
+<div class="paragraph">
+<p>在hadoop领域，常见的工作流调度器有Oozie, Azkaban,Cascading,Hamake等</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_azkaban与oozie对比">3.4. Azkaban与Oozie对比</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>对市面上最流行的两种调度器，给出以下详细对比，以供技术选型参考。总体来说，ooize相比azkaban是一个重量级的任务调度系统，功能全面，但配置使用也更复杂。如果可以不在意某些功能的缺失，轻量级调度器azkaban是很不错的候选对象。
+详情如下：</p>
+</div>
+</blockquote>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p>功能</p>
+<div class="paragraph">
+<p>两者均可以调度mapreduce,pig,java,脚本工作流任务</p>
+</div>
+<div class="paragraph">
+<p>两者均可以定时执行工作流任务</p>
+</div>
+</li>
+<li>
+<p>工作流定义</p>
+<div class="paragraph">
+<p>Azkaban使用Properties文件定义工作流</p>
+</div>
+<div class="paragraph">
+<p>Oozie使用XML文件定义工作流</p>
+</div>
+</li>
+<li>
+<p>工作流传参</p>
+<div class="paragraph">
+<p>Azkaban支持直接传参，例如${input}</p>
+</div>
+<div class="paragraph">
+<p>Oozie支持参数和EL表达式，例如${fs:dirSize(myInputDir)}</p>
+</div>
+</li>
+<li>
+<p>定时执行</p>
+<div class="paragraph">
+<p>Azkaban的定时执行任务是基于时间的</p>
+</div>
+<div class="paragraph">
+<p>Oozie的定时执行任务基于时间和输入数据</p>
+</div>
+</li>
+<li>
+<p>资源管理</p>
+<div class="paragraph">
+<p>Azkaban有较严格的权限控制，如用户对工作流进行读/写/执行等操作</p>
+</div>
+<div class="paragraph">
+<p>Oozie暂无严格的权限控制</p>
+</div>
+</li>
+<li>
+<p>工作流执行</p>
+<div class="paragraph">
+<p>Azkaban有两种运行模式，分别是solo server mode(executor server和web server部署在同一台节点)和multi server mode(executor server和web server可以部署在不同节点)</p>
+</div>
+<div class="paragraph">
+<p>Oozie作为工作流服务器运行，支持多用户和多工作流</p>
+</div>
+</li>
+<li>
+<p>工作流管理</p>
+<div class="paragraph">
+<p>Azkaban支持浏览器以及ajax方式操作工作流</p>
+</div>
+<div class="paragraph">
+<p>Oozie支持命令行、HTTP REST、Java API、浏览器操作工作流</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_azkaban介绍">3.4.1. Azkaban介绍</h4>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Azkaban是由Linkedin开源的一个批量工作流任务调度器。用于在一个工作流内以一个特定的顺序运行一组工作和流程。Azkaban定义了一种KV文件格式来建立任务之间的依赖关系，并提供一个易于使用的web用户界面维护和跟踪你的工作流。</p>
+</div>
+</blockquote>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>它有如下功能特点：</p>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p>Web用户界面</p>
+</li>
+<li>
+<p>方便上传工作流</p>
+</li>
+<li>
+<p>方便设置任务之间的关系</p>
+</li>
+<li>
+<p>调度工作流</p>
+</li>
+<li>
+<p>认证/授权(权限的工作)</p>
+</li>
+<li>
+<p>能够杀死并重新启动工作流</p>
+</li>
+<li>
+<p>模块化和可插拔的插件机制</p>
+</li>
+<li>
+<p>项目工作区</p>
+</li>
+<li>
+<p>工作流和任务的日志记录和审计</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_azkaban安装部署">3.4.2. Azkaban安装部署</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">准备工作</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>Azkaban Web服务器
+    azkaban-web-server-2.5.0.tar.gz
+Azkaban执行服务器
+    azkaban-executor-server-2.5.0.tar.gz</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">MySQL</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>目前azkaban只支持 mysql,需安装mysql服务器,本文档中默认已安装好mysql服务器,并建立了 root用户,密码 root.
+
+下载地址:http://azkaban.github.io/downloads.html</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">安装</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>将安装文件上传到集群,最好上传到安装 hive、sqoop的机器上,方便命令的执行
+在当前用户目录下新建 azkabantools目录,用于存放源安装文件.新建azkaban目录,用于存放azkaban运行程序
+
+azkaban web服务器安装
+解压azkaban-web-server-2.5.0.tar.gz
+命令:
+    tar –zxvf azkaban-web-server-2.5.0.tar.gz
+将解压后的 azkaban-web-server-2.5.0 移动到 azkaban目录中,并重新命名 webserver
+命令:
+    mv azkaban-web-server-2.5.0 ../azkaban
+    cd ../azkaban
+    mv azkaban-web-server-2.5.0  server</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">azkaban 执行服器安装</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>解压 azkaban-executor-server-2.5.0.tar.gz
+命令:
+    tar –zxvf azkaban-executor-server-2.5.0.tar.gz
+将解压后的 azkaban-executor-server-2.5.0 移动到 azkaban目录中,并重新命名 executor
+命令:
+    mv azkaban-executor-server-2.5.0  ../azkaban
+    cd ../azkaban
+    mv azkaban-executor-server-2.5.0  executor</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">azkaban脚本导入</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>解压:
+    azkaban-sql-script-2.5.0.tar.gz
+命令:
+    tar –zxvf azkaban-sql-script-2.5.0.tar.gz
+将解压后的mysql 脚本,导入到mysql中:
+进入mysql
+mysql&gt; create database azkaban;
+mysql&gt; use azkaban;
+Database changed
+mysql&gt; source /home/hadoop/azkaban-2.5.0/create-all-sql-2.5.0.sql;</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">创建SSL配置</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>参考地址:
+    http://docs.codehaus.org/display/JETTY/How+to+configure+SSL
+命令:
+    keytool -keystore keystore -alias jetty -genkey -keyalg RSA
+运行此命令后,会提示输入当前生成 keystor的密码及相应信息,输入的密码请劳记,信息如下:
+
+输入keystore密码：
+再次输入新密码:
+您的名字与姓氏是什么？
+  [Unknown]：
+您的组织单位名称是什么？
+  [Unknown]：
+您的组织名称是什么？
+  [Unknown]：
+您所在的城市或区域名称是什么？
+  [Unknown]：
+您所在的州或省份名称是什么？
+  [Unknown]：
+该单位的两字母国家代码是什么
+  [Unknown]：  CN
+CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=CN 正确吗？
+  [否]：  y
+
+输入&lt;jetty&gt;的主密码
+        （如果和 keystore 密码相同，按回车）：
+再次输入新密码:
+完成上述工作后,将在当前目录生成 keystore 证书文件,将keystore 考贝到 azkaban web服务器根目录中.
+如: cp keystore azkaban/server</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">配置文件</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>注：先配置好服务器节点上的时区
+1、先生成时区配置文件Asia/Shanghai，用交互式命令 tzselect 即可
+2、拷贝该时区文件，覆盖系统本地时区配置
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">azkaban web服务器配置</dt>
+<dd>
+<p>进入azkaban web服务器安装目录 conf目录</p>
+<div class="listingblock">
+<div class="title">azkaban.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>#Azkaban Personalization Settings
+azkaban.name=Test                           #服务器UI名称,用于服务器上方显示的名字
+azkaban.label=My Local Azkaban                               #描述
+azkaban.color=#FF3601                                                 #UI颜色
+azkaban.default.servlet.path=/index                         #
+web.resource.dir=web/                                                 #默认根web目录
+default.timezone.id=Asia/Shanghai                           #默认时区,已改为亚洲/上海 默认为美国
+
+#Azkaban UserManager class
+user.manager.class=azkaban.user.XmlUserManager   #用户权限管理默认类
+user.manager.xml.file=conf/azkaban-users.xml              #用户配置,具体配置参加下文
+
+#Loader for projects
+executor.global.properties=conf/global.properties    # global配置文件所在位置
+azkaban.project.dir=projects                                                #
+
+database.type=mysql                                                              #数据库类型
+mysql.port=3306                                                                       #端口号
+mysql.host=localhost                                                      #数据库连接IP
+mysql.database=azkaban                                                       #数据库实例名
+mysql.user=root                                                                 #数据库用户名
+mysql.password=root                                                          #数据库密码
+mysql.numconnections=100                                                  #最大连接数
+
+# Velocity dev mode
+velocity.dev.mode=false
+# Jetty服务器属性.
+jetty.maxThreads=25                                                               #最大线程数
+jetty.ssl.port=8443                                                                   #Jetty SSL端口
+jetty.port=8081                                                                         #Jetty端口
+jetty.keystore=keystore                                                          #SSL文件名
+jetty.password=123456                                                             #SSL文件密码
+jetty.keypassword=123456                                                      #Jetty主密码 与 keystore文件相同
+jetty.truststore=keystore                                                                #SSL文件名
+jetty.trustpassword=123456                                                   # SSL文件密码
+
+# 执行服务器属性
+executor.port=12321                                                               #执行服务器端口
+
+# 邮件设置
+mail.sender=xxxxxxxx@163.com                                       #发送邮箱
+mail.host=smtp.163.com                                                       #发送邮箱smtp地址
+mail.user=xxxxxxxx                                       #发送邮件时显示的名称
+mail.password=**********                                                 #邮箱密码
+job.failure.email=xxxxxxxx@163.com                              #任务失败时发送邮件的地址
+job.success.email=xxxxxxxx@163.com                            #任务成功时发送邮件的地址
+lockdown.create.projects=false                                           #
+cache.directory=cache                                                            #缓存目录</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">azkaban 执行服务器executor配置 </dt>
+<dd>
+<p>进入执行服务器安装目录conf,修改azkaban.properties</p>
+<div class="listingblock">
+<div class="title">azkaban.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>#Azkaban
+default.timezone.id=Asia/Shanghai                                              #时区
+
+# Azkaban JobTypes 插件配置
+azkaban.jobtype.plugin.dir=plugins/jobtypes                   #jobtype 插件所在位置
+
+#Loader for projects
+executor.global.properties=conf/global.properties
+azkaban.project.dir=projects
+
+#数据库设置
+database.type=mysql                                                                       #数据库类型(目前只支持mysql)
+mysql.port=3306                                                                                #数据库端口号
+mysql.host=192.168.20.200                                                           #数据库IP地址
+mysql.database=azkaban                                                                #数据库实例名
+mysql.user=root                                                                       #数据库用户名
+mysql.password=root #数据库密码
+mysql.numconnections=100                                                           #最大连接数
+
+# 执行服务器配置
+executor.maxThreads=50                                                                #最大线程数
+executor.port=12321                                                               #端口号(如修改,请与web服务中一致)
+executor.flow.threads=30                                                                #线程数</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">用户配置</dt>
+<dd>
+<p>进入azkaban web服务器conf目录,修改azkaban-users.xml
+vi azkaban-users.xml 增加 管理员用户</p>
+<div class="listingblock">
+<div class="title">azkaban-users.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;azkaban-users&gt;
+        &lt;user username="azkaban" password="azkaban" roles="admin" groups="azkaban" /&gt;
+        &lt;user username="metrics" password="metrics" roles="metrics"/&gt;
+        &lt;user username="admin" password="admin" roles="admin,metrics" /&gt;
+        &lt;role name="admin" permissions="ADMIN" /&gt;
+        &lt;role name="metrics" permissions="METRICS"/&gt;
+&lt;/azkaban-users&gt;</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">启动</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>web服务器
+    在azkaban web服务器目录下执行启动命令
+        bin/azkaban-web-start.sh
+    注:在web服务器根目录运行
+或者启动到后台
+    nohup  bin/azkaban-web-start.sh  1&gt;/tmp/azstd.out  2&gt;/tmp/azerr.out &amp;
+执行服务器
+    在执行服务器目录下执行启动命令
+        bin/azkaban-executor-start.sh
+    注:只能要执行服务器根目录运行
+
+启动完成后,在浏览器(建议使用谷歌浏览器)中输入
+https://服务器IP地址:8443 ,即可访问azkaban服务了.
+在登录中输入刚才新的户用名及密码,点击 login.</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_azkaban实战">3.4.3. Azkaban实战</h4>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Azkaba内置的任务类型支持command、java</p>
+</div>
+</blockquote>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Command类型单一job示例</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建job描述文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>vi command.job
+#command.job
+type=command
+command=echo 'hello'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将job资源文件打包成zip文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>zip command.job</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>通过azkaban的web管理平台创建project并上传job压缩包
+首先创建project</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image011.png" alt="image011">
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>上传zip包</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image013.png" alt="image013">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>启动执行该job</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image015.png" alt="image015">
+</div>
+</div>
+<hr>
+<div class="sect4">
+<h5 id="_command类型多job工作流flow">Command类型多job工作流flow</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建有依赖关系的多个job描述
+第一个job：foo.job</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># foo.job
+type=command
+command=echo foo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>第二个job：bar.job依赖foo.job</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># bar.job
+type=command
+dependencies=foo
+command=echo bar</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将所有job资源文件打到一个zip包中</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image017.png" alt="image017">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>在azkaban的web管理界面创建工程并上传zip包</p>
+</li>
+<li>
+<p>启动工作流flow</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_hdfs操作任务">HDFS操作任务</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建job描述文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># fs.job
+type=command
+command=/home/hadoop/apps/hadoop-2.6.1/bin/hadoop fs -mkdir /azaz</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将job资源文件打包成zip文件</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image019.png" alt="image019">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>通过azkaban的web管理平台创建project并上传job压缩包</p>
+</li>
+<li>
+<p>启动执行该job</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapreduce任务">MAPREDUCE任务</h5>
+<div class="paragraph">
+<p>Mr任务依然可以使用command的job类型来执行</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建job描述文件，及mr程序jar包（示例中直接使用hadoop自带的example jar）</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># mrwc.job
+type=command
+command=/home/hadoop/apps/hadoop-2.6.1/bin/hadoop  jar hadoop-mapreduce-examples-2.6.1.jar wordcount /wordcount/input /wordcount/azout</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将所有job资源文件打到一个zip包中</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/hadoop/flume/image021.png" alt="image021">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>在azkaban的web管理界面创建工程并上传zip包</p>
+</li>
+<li>
+<p>启动job</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_hive脚本任务">HIVE脚本任务</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建job描述文件和hive脚本
+Hive脚本： test.sql</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>use default;
+drop table aztest;
+create table aztest(id int,name string) row format delimited fields terminated by ',';
+load data inpath '/aztest/hiveinput' into table aztest;
+create table azres as select * from aztest;
+insert overwrite directory '/aztest/hiveoutput' select count(1) from aztest;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Job描述文件：hivef.job</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># hivef.job
+type=command
+command=/home/hadoop/apps/hive/bin/hive -f 'test.sql'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将所有job资源文件打到一个zip包中</p>
+</li>
+<li>
+<p>在azkaban的web管理界面创建工程并上传zip包</p>
+</li>
+<li>
+<p>启动job</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sqoop数据迁移">4. sqoop数据迁移</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>sqoop是apache旗下一款“Hadoop和关系数据库服务器之间传送数据”的工具。
+导入数据：MySQL，Oracle导入数据到Hadoop的HDFS、HIVE、HBASE等数据存储系统；
+导出数据：从Hadoop的文件系统中导出数据到关系数据库</p>
+</div>
+</blockquote>
+</div>
+<div class="sect2">
+<h3 id="_sqoop安装">4.1. sqoop安装</h3>
+<div class="paragraph">
+<p>安装sqoop的前提是已经具备java和hadoop的环境
+. 下载并解压<br>
+最新版下载地址http://ftp.wayne.edu/apache/sqoop/1.4.6/</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>修改配置文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ cd $SQOOP_HOME/conf
+$ mv sqoop-env-template.sh sqoop-env.sh
+#打开sqoop-env.sh并编辑下面几行：
+export HADOOP_COMMON_HOME=/home/hadoop/apps/hadoop-2.6.1/
+export HADOOP_MAPRED_HOME=/home/hadoop/apps/hadoop-2.6.1/
+export HIVE_HOME=/home/hadoop/apps/hive-1.2.1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>加入mysql的jdbc驱动包</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cp  ~/app/hive/lib/mysql-connector-java-5.1.28.jar   $SQOOP_HOME/lib/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>验证启动</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ cd $SQOOP_HOME/bin
+$ sqoop -version
+# 预期的输出：
+15/12/17 14:52:32 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6
+Sqoop 1.4.6 git commit id 5b34accaca7de251fc91161733f906af2eddbe83
+Compiled by abe on Fri Aug 1 11:19:26 PDT 2015</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>到这里，整个Sqoop安装工作完成。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sqoop的数据导入">4.2. Sqoop的数据导入</h3>
+<div class="paragraph">
+<p>“导入工具”导入单个表从RDBMS到HDFS。表中的每一行被视为HDFS的记录。所有记录都存储为文本文件的文本数据（或者Avro、sequence文件等二进制数据）</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">语法 </dt>
+<dd>
+<p>下面的语法用于将数据导入HDFS。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ sqoop import (generic-args) (import-args)</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_示例">4.2.1. 示例</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">表数据 </dt>
+<dd>
+<p>在mysql中有一个库userdb中三个表：emp, emp_add和emp_contact</p>
+<div class="paragraph">
+<p><strong>表emp</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>id      name    deg     salary  dept
+1201    gopal   manager 50,000  TP
+1202    manisha Proof reader    50,000  TP
+1203    khalil  php dev 30,000  AC
+1204    prasanth    php dev 30,000  AC
+1205    kranthi admin   20,000  TP</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>表emp_add:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>id      hno     street  city
+1201    288A    vgiri   jublee
+1202    108I    aoc sec-bad
+1203    144Z    pgutta  hyd
+1204    78B old city    sec-bad
+1205    720X    hitec   sec-bad</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>表emp_conn:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>id      phno    email
+1201    2356742 gopal@tp.com
+1202    1661663 manisha@tp.com
+1203    8887776 khalil@ac.com
+1204    9988774 prasanth@ac.com
+1205    1231231 kranthi@tp.com</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect4">
+<h5 id="_导入表表数据到hdfs">导入表表数据到HDFS</h5>
+<div class="paragraph">
+<p>下面的命令用于从MySQL数据库服务器中的emp表导入HDFS。</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$bin/sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --table emp   \
+  --m 1</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">为了验证在HDFS导入的数据，请使用以下命令查看导入的数据</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ $HADOOP_HOME/bin/hadoop fs -cat /user/hadoop/emp/part-m-00000</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">emp表的数据和字段之间用逗号(,)表示</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>1201, gopal,    manager, 50000, TP
+1202, manisha,  preader, 50000, TP
+1203, kalil,    php dev, 30000, AC
+1204, prasanth, php dev, 30000, AC
+1205, kranthi,  admin,   20000, TP</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_导入关系表到hive">导入关系表到HIVE</h5>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop import --connect jdbc:mysql://hdp-node-01:3306/test --username root --password root --table emp --hive-import --m 1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_导入到hdfs指定目录">导入到HDFS指定目录</h5>
+<div class="paragraph">
+<p>在导入表数据到HDFS使用Sqoop导入工具，我们可以指定目标目录。
+以下是指定目标目录选项的Sqoop导入命令的语法。::</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>--target-dir &lt;new or exist directory in HDFS&gt;</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">下面的命令是用来导入emp_add表数据到'/queryresult&#8217;目录。</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --target-dir /queryresult \
+  --table emp --m 1</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">下面的命令是用来验证 /queryresult 目录中 emp_add表导入的数据形式。</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$HADOOP_HOME/bin/hadoop fs -cat /queryresult/part-m-*</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">它会用逗号（，）分隔emp_add表的数据和字段。 </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>1201, 288A, vgiri,   jublee
+1202, 108I, aoc,     sec-bad
+1203, 144Z, pgutta,  hyd
+1204, 78B,  oldcity, sec-bad
+1205, 720C, hitech,  sec-bad</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_导入表数据子集">导入表数据子集</h5>
+<div class="paragraph">
+<p>我们可以导入表的使用Sqoop导入工具，"where"子句的一个子集。它执行在各自的数据库服务器相应的SQL查询，并将结果存储在HDFS的目标目录。
+where子句的语法如下。</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>--where &lt;condition&gt;</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">下面的命令用来导入emp_add表数据的子集。子集查询检索员工ID和地址，居住城市为：Secunderabad </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --where "city ='sec-bad'" \
+  --target-dir /wherequery \
+  --table emp_add --m 1</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">按需导入</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --target-dir /wherequery2 \
+  --query 'select id,name,deg from emp WHERE  id&gt;1207 and $CONDITIONS' \
+  --split-by id \
+  --fields-terminated-by '\t' \
+  --m 1</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">下面的命令用来验证数据从emp_add表导入/wherequery目录</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$HADOOP_HOME/bin/hadoop fs -cat /wherequery/part-m-*</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">它用逗号（，）分隔 emp_add表数据和字段。</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre>1202, 108I, aoc, sec-bad
+1204, 78B, oldcity, sec-bad
+1205, 720C, hitech, sec-bad</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_增量导入">增量导入</h5>
+<div class="paragraph">
+<p>增量导入是仅导入新添加的表中的行的技术。
+它需要添加‘incremental’, ‘check-column’, 和 ‘last-value’选项来执行增量导入。
+下面的语法用于Sqoop导入命令增量选项。</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>--incremental &lt;mode&gt;
+--check-column &lt;column name&gt;
+--last value &lt;last check column value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>假设新添加的数据转换成emp表如下：</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>1206, satish p, grp des, 20000, GR</pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">下面的命令用于在EMP表执行增量导入。</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop import \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --table emp --m 1 \
+  --incremental append \
+  --check-column id \
+  --last-value 1208</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">以下命令用于从emp表导入HDFS emp/ 目录的数据验证。</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ $HADOOP_HOME/bin/hadoop fs -cat /user/hadoop/emp/part-m-*</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">它用逗号（，）分隔 emp_add表数据和字段。</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>1201, gopal,    manager, 50000, TP
+1202, manisha,  preader, 50000, TP
+1203, kalil,    php dev, 30000, AC
+1204, prasanth, php dev, 30000, AC
+1205, kranthi,  admin,   20000, TP
+1206, satish p, grp des, 20000, GR</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">下面的命令是从表emp 用来查看修改或新添加的行</dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ $HADOOP_HOME/bin/hadoop fs -cat /emp/part-m-*1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这表示新添加的行用逗号（，）分隔emp表的字段。
+1206, satish p, grp des, 20000, GR</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sqoop的数据导出">4.3. Sqoop的数据导出</h3>
+<div class="listingblock">
+<div class="content">
+<pre>将数据从HDFS导出到RDBMS数据库
+导出前，目标表必须存在于目标数据库中。
+   默认操作是从将文件中的数据使用INSERT语句插入到表中
+   更新模式下，是生成UPDATE语句更新表数据
+语法
+以下是export命令语法。</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ sqoop export (generic-args) (export-args)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>示例
+数据是在HDFS 中“EMP/”目录的emp_data文件中。所述emp_data如下：
+1201, gopal,     manager, 50000, TP
+1202, manisha,   preader, 50000, TP
+1203, kalil,     php dev, 30000, AC
+1204, prasanth,  php dev, 30000, AC
+1205, kranthi,   admin,   20000, TP
+1206, satish p,  grp des, 20000, GR</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>首先需要手动创建mysql中的目标表</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ mysql
+mysql&gt; USE db;
+mysql&gt; CREATE TABLE employee (
+   id INT NOT NULL PRIMARY KEY,
+   name VARCHAR(20),
+   deg VARCHAR(20),
+   salary INT,
+   dept VARCHAR(10));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>然后执行导出命令</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop export \
+  --driver com.mysql.jdbc.Driver \
+  --connect jdbc:mysql://hdp-node-01:3306/test \
+  --username root \
+  --password root \
+  --table employee \
+  --export-dir /user/hadoop/emp/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>验证表mysql命令行。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql&gt;select * from employee;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果给定的数据存储成功，那么可以找到数据在如下的employee表。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>+------+--------------+-------------+-------------------+--------+
+| Id   | Name         | Designation | Salary            | Dept   |
++------+--------------+-------------+-------------------+--------+
+| 1201 | gopal        | manager     | 50000             | TP     |
+| 1202 | manisha      | preader     | 50000             | TP     |
+| 1203 | kalil        | php dev     | 30000             | AC     |
+| 1204 | prasanth     | php dev     | 30000             | AC     |
+| 1205 | kranthi      | admin       | 20000             | TP     |
+| 1206 | satish p     | grp des     | 20000             | GR     |
++------+--------------+-------------+-------------------+--------+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sqoop作业">4.4. Sqoop作业</h3>
+<div class="paragraph">
+<p>注：Sqoop作业——将事先定义好的数据导入导出任务按照指定流程运行
+语法
+以下是创建Sqoop作业的语法。</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ sqoop job (generic-args) (job-args)
+   [-- [subtool-name] (subtool-args)]
+
+$ sqoop-job (generic-args) (job-args)
+   [-- [subtool-name] (subtool-args)]</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">创建作业(--create) </dt>
+<dd>
+<p>在这里，我们创建一个名为myjob，这可以从RDBMS表的数据导入到HDFS作业。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/sqoop job --create myimportjob -- import --connect jdbc:mysql://hdp-node-01:3306/test --username root --password root --table emp --m 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>该命令创建了一个从db库的employee表导入到HDFS文件的作业。</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>验证作业 (--list)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>‘--list’ 参数是用来验证保存的作业。下面的命令用来验证保存Sqoop作业的列表。
+$ sqoop job --list
+它显示了保存作业列表。
+Available jobs:
+myimportjob
+检查作业(--show)
+‘--show’ 参数用于检查或验证特定的工作，及其详细信息。以下命令和样本输出用来验证一个名为myjob的作业。
+$ sqoop job --show myjob
+它显示了工具和它们的选择，这是使用在myjob中作业情况。
+Job: myjob
+ Tool: import Options:
+ ----------------------------
+ direct.import = true
+ codegen.input.delimiters.record = 0
+ hdfs.append.dir = false
+ db.table = employee
+ ...
+ incremental.last.value = 1206
+ ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>执行作业 (--exec)
+‘--exec’ 选项用于执行保存的作业。下面的命令用于执行保存的作业称为myjob。
+$ sqoop job --exec myjob
+它会显示下面的输出。
+10/08/19 13:08:45 INFO tool.CodeGenTool: Beginning code generation
+&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Sqoop的原理
+概述
+Sqoop的原理其实就是将导入导出命令转化为mapreduce程序来执行，sqoop在接收到命令后，都要生成mapreduce程序</p>
+</div>
+<div class="paragraph">
+<p>使用sqoop的代码生成工具可以方便查看到sqoop所生成的java代码，并可在此基础之上进行深入定制开发</p>
+</div>
+<div class="paragraph">
+<p>代码定制
+以下是Sqoop代码生成命令的语法：
+$ sqoop-codegen (generic-args) (codegen-args)
+$ sqoop-codegen (generic-args) (codegen-args)</p>
+</div>
+<div class="paragraph">
+<p>示例：以USERDB数据库中的表emp来生成Java代码为例。
+下面的命令用来生成导入
+$ sqoop-codegen \
+--import
+--connect jdbc:mysql://localhost/userdb \
+--username root \
+--table emp</p>
+</div>
+<div class="paragraph">
+<p>如果命令成功执行，那么它就会产生如下的输出。
+14/12/23 02:34:40 INFO sqoop.Sqoop: Running Sqoop version: 1.4.5
+14/12/23 02:34:41 INFO tool.CodeGenTool: Beginning code generation
+……………….
+14/12/23 02:34:42 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/local/hadoop
+Note: /tmp/sqoop-hadoop/compile/9a300a1f94899df4a9b10f9935ed9f91/emp.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+14/12/23 02:34:47 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-hadoop/compile/9a300a1f94899df4a9b10f9935ed9f91/emp.jar</p>
+</div>
+<div class="paragraph">
+<p>验证: 查看输出目录下的文件
+$ cd /tmp/sqoop-hadoop/compile/9a300a1f94899df4a9b10f9935ed9f91/
+$ ls
+emp.class
+emp.jar
+emp.java</p>
+</div>
+<div class="paragraph">
+<p>如果想做深入定制导出，则可修改上述代码文件</p>
+</div>
+<div class="paragraph">
+<p>flume 小结
+<a href="http://blog.csdn.net/a616413086/article/details/52575182" class="bare">http://blog.csdn.net/a616413086/article/details/52575182</a></p>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/hadoop/hbase/" rel="prev"><span>«Previous</span><p>hbase</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/" rel="next"><span>Next»</span><p>hive详解</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

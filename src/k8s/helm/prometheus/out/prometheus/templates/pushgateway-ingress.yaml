@@ -1,0 +1,21 @@
+---
+# Source: prometheus/templates/pushgateway-ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: prometheus
+    chart: prometheus-7.0.3
+    component: "pushgateway"
+    heritage: Tiller
+    release: RELEASE-NAME
+  name: RELEASE-NAME-prometheus-pushgateway
+spec:
+  rules:
+    - host: dev.cxzx.fabx.com.cn
+      http:
+        paths:
+          - path: /pushgateway
+            backend:
+              serviceName: RELEASE-NAME-prometheus-pushgateway
+              servicePort: 9091

@@ -1,0 +1,44 @@
+---
+# Source: tomcat/templates/appsrv.yaml
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: tomcat
+  labels:
+    app: tomcat
+    chart: tomcat-0.1.0
+    release: tomcat
+    heritage: Tiller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+      release: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+        release: tomcat
+    spec:
+      containers:
+        - name: tomcat
+          image: tomcat:8.5
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: data
+              mountPath: /usr/local/tomcat/webapps/cxzx.war
+              subPath: cxzx.war
+            - name: data
+              mountPath: /usr/local/tomcat/logs
+              subPath: logs
+          ports:
+          ports:
+            - containerPort: 8080
+          
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: tomcat
+

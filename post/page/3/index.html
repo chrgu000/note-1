@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Posts" />
+<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/post/" />
+
+
+<meta property="og:updated_time" content="2017-11-25T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+	<div id="main-content" class="mr-loop mr-content" role="main">
+		
+		<header class="page-header">
+			<h1 class="page-title">Posts</h1>
+		</header>
+		
+		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/jvm/%E5%B8%B8%E7%94%A8JVM%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/" rel="bookmark">常用JVM配置参数</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-11-25 00:00:00 &#43;0000 UTC">November 25, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Trace 跟踪参数-verbose:gc # 打开gc-XX:+printGC可以打印GC的简要信息[GC 4790K-&gt;374K(15872K), 0.0001606 secs]4790K -&gt; GC前的大小374K -&gt; GC后的大小15872K -&gt; 堆大小-XX:+PrintGCDetails打印GC详细信息-XX:+PrintGCTimeStamps打印CG发生的时间戳例[GC[DefNew: 4416K-&gt;0K(4928K), 0.0001897 secs] 4790K-&gt;374K(15872K), 0.0002232 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]新生代GCDefNew: 4416K-&gt;0K(4928K)详细GC信息-XX:+PrintGCDetails的输出-Xloggc:log/gc.log指定GC log的位置，以文件输出帮助开发人员分析问题-XX:+PrintHeapAtGC每次一次GC后，都打印堆信息-XX:+TraceClassLoading监控类的加载-XX:+PrintClassHistogram按下Ctrl+Break后，打印类的信息：
+num #instances #bytes class name1: 890617 470266000 [B2: 890643 21375432 java.util.HashMap$Node3: 890608 14249728 java.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/%E5%9F%BA%E7%A1%80/" rel="bookmark">数据结构与算法</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-11-21 00:00:00 &#43;0000 UTC">November 21, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						数据结构与算法表、栈和队列
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-conf/" rel="bookmark">spark-conf</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-11-15 17:29:44 &#43;0000 UTC">November 15, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark-conf1. spark-defaults.conf2. spark-env.sh1. spark-defaults.confspark.master spark://vm74:7077spark.home /opt/hadoop-2.7.3# 日志spark.eventLog.enabled truespark.eventLog.dir hdfs://vm73:8020/spark-log#spark.serializer org.apache.spark.serializer.KryoSerializerspark.executor.memory 6gspark.driver.memory 6gspark.executor.extraJavaOptions -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"# spark sql 默认task数spark.sql.shuffle.partitions 10--driver-java-options "-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties"--master yarn --deploy-mode client --driver-memory 4G --driver-cores 2 --executor-memory 6G --executor-cores 2 --num-executors 5 --conf spark.sql.shuffle.partitions=20 --driver-java-options "-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties"
+spark.acls.enable # truespark.admin.acls # set to admin usersspark.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/osgi/" rel="bookmark">osgi</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-11-15 15:06:53 &#43;0000 UTC">November 15, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						#几个必须的元素
+Bundle-ManifestVersion:2 // 定义了bundle遵循规范的规则，1表示r3规范 2表示r4和以后的版本
+Manifest-Version:1.0 // 主要的版本号
+Bundle-SymbolicName:org.activiti.designer - help;singleton:=true
+// 唯一的bundle名称，相当于在系统中的id。singleton表示是否使用单启动方式#可选的
+Bundle-Name: Activiti Designer - help // bundel 名称Bundle-Vendor: Activiti //发布商Bundle-RequiredExecutionEnvironment: J2SE-1.6//需要的执行环境
+#下面是一些引用包的信息，包括包名称和版本号，只有引用了这些包，才能让classloader装载
+Import-Package: javax.servlet;version="2.4.0",javax.servlet.http;version="2.4.0",org.apache.commons.logging;version="1.0.4",
+org.osgi.framework;version="1.4.0"#这是直接引用整个bundle，一般不提倡整个引用，这里是用来定义扩展
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.graphiti,org.eclipse.graphiti.ui,org.eclipse.core.resources,org.eclipse.ui.views.properties.tabbed
+#用得较多的几个
+Bundle-ClassPath: .,dom4j-1.6.1.jar // Bundle 的 Classpath
+Export-Package: org.activiti.designer,org.activiti.designer.actions,org.activiti.designer.command //对外暴露的 package
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/hadoop/kafka/" rel="bookmark">kafka</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-10-07 21:07:39 &#43;0000 UTC">October 07, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						kafka1. 练习2. Windowkafka 0.10.0.11. 启动windowsgroup 消费的偏移量获取 topic 的 offset查看topic消费进度1. 错误启动
+sh $TOOLS_HOME/kafka/start-kafka.sh
+nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &amp;
+1&gt;/var/log/hiveserver.log 2&gt;/var/log/hiveserver.err &amp;
+查看kafka-topics.sh --zookeeper djt11:2181 --list
+创建kafka-topics.sh --create --zookeeper djt11:2181 --replication-factor 1 --partitions 1 --topic test
+发送消息kafka-console-producer.sh --broker-list djt11:9092 --topic test
+接收消息kafka-console-consumer.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/" rel="bookmark">离线计算项目</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-09-27 09:58:17 &#43;0000 UTC">September 27, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						离线计算项目1. Flumekill flumeinterceptor.conf1. Mapper Reducer 编写步骤每天收视的总人数yarn创建分区表1. 节目2. 频道3. count1. Flume.
+rm -rf /home/hadoop/flume/flume-collect/checkpoint/* &amp;&amp; \rm -rf /home/hadoop/flume/flume-collect/dataDir/*
+nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/agg.conf &gt; ~/log/flume/${HOSTNAME}-flume.log 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid
+nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/collect.conf &gt; ~/log/flume/${HOSTNAME}-flume.log 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/%E9%97%AE%E9%A2%98/" rel="bookmark">问题总结</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-09-19 08:32:40 &#43;0000 UTC">September 19, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark1. Hbase1. Hbase单节点启动 只有 HMaster 进程
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="bookmark">机器学习与数学基础</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-08-27 12:52:28 &#43;0000 UTC">August 27, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						机器学习与数学基础1. 不明白1. 不明白协方差
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-sql2/" rel="bookmark">SparkSql</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql21. Spark SQL22. 内置函数3. 列名特殊字符处理1. Spark SQL2org.apache.spark.sql.SparkSession#sqlorg.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan
+2. 内置函数floor
+https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/
+每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。
+SessionCalalog 用于管理表和数据库状态的内部目录Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系
+AbstractSqlParserSparkSqlParser
+sparkSession.sql("SELECT * FROM global_temp.people")org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlanorg.apache.spark.sql.execution.SparkSqlParser#parseorg.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse
+SqlBaseLexer 词法分析ANTLRNoCaseStringStreamCommonTokenStreamSqlBaseParser
+Analyzer
+def sql(sqlText: String): DataFrame = {Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))}sessionState.sqlParser.parsePlan(sqlText) -&gt; unresolved logical planSparkSql-1.0org.apache.spark.sql.SQLContext#sql
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/" rel="bookmark">SparkSql</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql21. Spark SQL21. Spark SQL2逻辑查询计划图物理查询计划任务调度任务分布式执行
+前三个阶段 driver端完成
+逻辑执行图完全依赖新生成的RDD的每个Partition完全依赖前一个依赖的某一个Partition部分依赖shuffle新生成的RDD的每一个Partition的部分数据完全依赖前一个依赖的某一个Partition的部分数据
+一对一 全依赖map filter flatMap
+部分依赖 shuffle RddgroupByKeyreduceByKey
+物理查询计划
+划分 stage 以 shuffle 划分
+每一个stage会产生 多个 task将尽可能多的不是一个partition一个task
+几个Action 几个Job
+一个job 多个stage
+每个 stage 有很多个 task
+每个 executer -&#8594; process(进程) -&#8594; task(线程)
+shuffle task 瓶颈所在 网络瓶颈
+					</div>
+				</div>
+			</div>
+		</article>
+		
+
+		
+<div class="mr-loop-pagination clearfix">
+	
+	<a class="page-numbers" href="/post/page/2/">«</a>
+	
+	<span class="page-numbers current">3/32</span>
+	
+	<a class="page-numbers" href="/post/page/4/">»</a>
+	
+</div>
+
+	</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+<div class="mr-widget widget_search navbar-wrapper" >
+	<div class="search-form" role="search" >
+		<label>
+			<span class="screen-reader-text">Search for:</span>
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
+		</label>
+		
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+	</div>
+</div>
+
+	
+	
+
+
+<div class="mr-widget widget_categories">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
+	<ul>
+		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
+		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
+		
+		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
+		
+		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
+		
+		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
+		
+		<li class="cat-item"><a href="/categories/go">Go</a></li>
+		
+		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
+		
+		<li class="cat-item"><a href="/categories/java">Java</a></li>
+		
+		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
+		
+		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
+		
+		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
+		
+		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
+		
+		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
+		
+		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
+		
+		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
+		
+		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
+		
+		<li class="cat-item"><a href="/categories/work">Work</a></li>
+		
+		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
+		
+	</ul>
+</div>
+
+
+
+    
+
+
+<div class="mr-widget widget_tag_cloud">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
+	<div class="tagcloud">
+		
+			<a href="/tags/" class="tag-link" title="" style="font-size: 12px;"></a>
+		
+			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
+		
+			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
+		
+			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
+		
+			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
+		
+			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
+		
+			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
+		
+			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
+		
+			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
+		
+			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
+		
+			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
+		
+			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
+		
+	</div>
+</div>
+
+
+
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

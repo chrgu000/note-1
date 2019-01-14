@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/categories/jvm/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/jvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>常用JVM配置参数</title>
+      <link>/post/java/jvm/%E5%B8%B8%E7%94%A8JVM%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/java/jvm/%E5%B8%B8%E7%94%A8JVM%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/</guid>
+      <description>&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_trace_跟踪参数&#34;&gt;Trace 跟踪参数&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;-verbose:gc     # 打开gc
+-XX:+printGC
+
+可以打印GC的简要信息
+[GC 4790K-&amp;gt;374K(15872K), 0.0001606 secs]
+4790K -&amp;gt; GC前的大小
+374K  -&amp;gt; GC后的大小
+15872K -&amp;gt; 堆大小
+
+
+-XX:+PrintGCDetails
+打印GC详细信息
+-XX:+PrintGCTimeStamps
+打印CG发生的时间戳
+例
+[GC[DefNew: 4416K-&amp;gt;0K(4928K), 0.0001897 secs] 4790K-&amp;gt;374K(15872K), 0.0002232 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
+
+新生代GC
+DefNew: 4416K-&amp;gt;0K(4928K)
+
+详细GC信息
+-XX:+PrintGCDetails的输出
+
+-Xloggc:log/gc.log
+指定GC log的位置，以文件输出
+帮助开发人员分析问题
+
+
+-XX:+PrintHeapAtGC
+每次一次GC后，都打印堆信息
+
+-XX:+TraceClassLoading
+监控类的加载&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-XX:+PrintClassHistogram
+按下Ctrl+Break后，打印类的信息：&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;__num_instances_bytes_class_name&#34;&gt; num     #instances         #bytes  class name&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;1:        890617      470266000  [B
+2:        890643       21375432  java.util.HashMap$Node
+3:        890608       14249728  java.lang.Long
+4:            13        8389712  [Ljava.util.HashMap$Node;
+5:          2062         371680  [C
+6:           463          41904  java.lang.Class&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;分别显示：序号、实例数量、总大小、类型&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-Xmn
+设置新生代大小
+-XX:NewRatio
+新生代（eden+2*s）和老年代（不包含永久区）的比值
+4 表示 新生代:老年代=1:4，即年轻代占堆的1/5
+-XX:SurvivorRatio
+设置两个Survivor区和eden的比
+幸存区  from to
+8表示 两个Survivor :eden=2:8，即一个Survivor占年轻代的1/10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-Xmx20m -Xms20m -Xmn1m  -XX:+PrintGCDetails&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;-Xmx20m : 最大堆内存20m
+-Xms20m : 最小堆内存20m
+-Xmn1m : 新生代1m eden + from + to 一共1m&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,11 @@
+version: '2'
+services:
+  asciinema:
+    image: dishui.io:5000/dishuigit/asciinema:1.3
+    container_name: asciinema
+    volumes:
+      - data:/dishui
+volumes:
+  data:
+    external:
+      name: "192.168.137.2/dishui"

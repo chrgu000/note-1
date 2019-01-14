@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scala Actor编程</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Scala Actor编程" />
+<meta property="og:description" content="Scala Actor编程1. Scala Actor编程1.1. 什么是Scala Actor1.1.1. 概念1.1.2. 传统java并发编程与Scala Actor编程的区别1.1.3. Actor方法执行顺序1.1.4. 发送消息的方式1.2. Actor实战1.2.1. 第一个例子1.2.2. 第二个例子（可以不断地接收消息）1.2.3. 第三个例子（react方式会复用线程，比receive更高效）1.2.4. 第四个例子（结合case class发送消息）1.3. 练习1. Scala Actor编程1.1. 什么是Scala Actor1.1.1. 概念Scala中的Actor能够实现并行编程的强大功能，它是基于事件模型的并发机制，Scala是运用消息（message）的发送、接收来实现多线程的。使用Scala能够更容易地实现多线程应用的开发。
+1.1.2. 传统java并发编程与Scala Actor编程的区别对于Java，我们都知道它的多线程实现需要对共享资源（变量、对象等）使用synchronized 关键字进行代码块同步、对象锁互斥等等。而且，常常一大块的try…catch语句块中加上wait方法、notify方法、notifyAll方法是让人很头疼的。原因就在于Java中多数使用的是可变状态的对象资源，对这些资源进行共享来实现多线程编程的话，控制好资源竞争与防止对象状态被意外修改是非常重要的，而对象状态的不变性也是较难以保证的。 而在Scala中，我们可以通过复制不可变状态的资源（即对象，Scala中一切都是对象，连函数、方法也是）的一个副本，再基于Actor的消息发送、接收机制进行并行编程
+1.1.3. Actor方法执行顺序首先调用start()方法启动Actor
+调用start()方法后其act()方法会被执行
+向Actor发送消息" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/scala/scala-Actor%E7%BC%96%E7%A8%8B/" />
+
+
+<meta property="og:updated_time" content="2017-04-05T09:47:03&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Scala Actor编程</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-04-05 09:47:03 &#43;0000 UTC">April 05, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/scala" rel="category">scala</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Scala Actor编程</div>
+<ul class="sectlevel1">
+<li><a href="#_scala_actor编程">1. Scala Actor编程</a>
+<ul class="sectlevel2">
+<li><a href="#_什么是scala_actor">1.1. 什么是Scala Actor</a>
+<ul class="sectlevel3">
+<li><a href="#_概念">1.1.1. 概念</a></li>
+<li><a href="#_传统java并发编程与scala_actor编程的区别">1.1.2. 传统java并发编程与Scala Actor编程的区别</a></li>
+<li><a href="#_actor方法执行顺序">1.1.3. Actor方法执行顺序</a></li>
+<li><a href="#_发送消息的方式">1.1.4. 发送消息的方式</a></li>
+</ul>
+</li>
+<li><a href="#_actor实战">1.2. Actor实战</a>
+<ul class="sectlevel3">
+<li><a href="#_第一个例子">1.2.1. 第一个例子</a></li>
+<li><a href="#_第二个例子_可以不断地接收消息">1.2.2. 第二个例子（可以不断地接收消息）</a></li>
+<li><a href="#_第三个例子_react方式会复用线程_比receive更高效">1.2.3. 第三个例子（react方式会复用线程，比receive更高效）</a></li>
+<li><a href="#_第四个例子_结合case_class发送消息">1.2.4. 第四个例子（结合case class发送消息）</a></li>
+</ul>
+</li>
+<li><a href="#_练习">1.3. 练习</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_scala_actor编程">1. Scala Actor编程</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_什么是scala_actor">1.1. 什么是Scala Actor</h3>
+<div class="sect3">
+<h4 id="_概念">1.1.1. 概念</h4>
+<div class="paragraph">
+<p>Scala中的Actor能够实现并行编程的强大功能，它是基于事件模型的并发机制，Scala是运用消息（message）的发送、接收来实现多线程的。使用Scala能够更容易地实现多线程应用的开发。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_传统java并发编程与scala_actor编程的区别">1.1.2. 传统java并发编程与Scala Actor编程的区别</h4>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/scala/2017-04-05_095545.png" alt="2017 04 05 095545">
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>对于Java，我们都知道它的多线程实现需要对共享资源（变量、对象等）使用synchronized 关键字进行代码块同步、对象锁互斥等等。而且，常常一大块的try…catch语句块中加上wait方法、notify方法、notifyAll方法是让人很头疼的。原因就在于Java中多数使用的是可变状态的对象资源，对这些资源进行共享来实现多线程编程的话，控制好资源竞争与防止对象状态被意外修改是非常重要的，而对象状态的不变性也是较难以保证的。 而在Scala中，我们可以通过复制不可变状态的资源（即对象，Scala中一切都是对象，连函数、方法也是）的一个副本，再基于Actor的消息发送、接收机制进行并行编程</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_actor方法执行顺序">1.1.3. Actor方法执行顺序</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>首先调用start()方法启动Actor</p>
+</li>
+<li>
+<p>调用start()方法后其act()方法会被执行</p>
+</li>
+<li>
+<p>向Actor发送消息</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_发送消息的方式">1.1.4. 发送消息的方式</h4>
+<div class="paragraph">
+<p>!
+发送异步消息，没有返回值。
+!?
+发送同步消息，等待返回值。
+!!
+发送异步消息，返回值是 Future[Any]。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actor实战">1.2. Actor实战</h3>
+<div class="sect3">
+<h4 id="_第一个例子">1.2.1. 第一个例子</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object MyActor1 extends Actor{
+  //重新act方法
+  def act(){
+    for(i &lt;- 1 to 10){
+      println("actor-1 "+ i)
+      Thread.sleep(2000)
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object MyActor2 extends Actor{
+  //重新act方法
+  def act(){
+    for(i &lt;- 1 to 10){
+      println("actor-2 "+ i)
+      Thread.sleep(2000)
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object ActorTest extends App{
+  //启动Actor
+  MyActor1.start()
+  MyActor2.start()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>说明：上面分别调用了两个单例对象的start()方法，他们的act()方法会被执行，相同与在java中开启了两个线程，线程的run()方法会被执行
+注意：这两个Actor是并行执行的，act()方法中的for循环执行完成后actor程序就退出了</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_第二个例子_可以不断地接收消息">1.2.2. 第二个例子（可以不断地接收消息）</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>class MyActor extends Actor {
+
+  override def act(): Unit = {
+    while (true) {
+      receive {
+        case "start"=&gt; {
+          println("starting ...")
+          Thread.sleep(5000)
+          println("started")
+        }
+        case "stop"=&gt; {
+          println("stopping ...")
+          Thread.sleep(5000)
+          println("stopped ...")
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object MyActor {
+  def main(args: Array[String]) {
+    val actor = new MyActor
+    actor.start()
+    actor ! "start"
+    actor ! "stop"
+    println("消息发送完成！")
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>说明：在act()方法中加入了while (true) 循环，就可以不停的接收消息
+注意：发送start消息和stop的消息是异步的，但是Actor接收到消息执行的过程是同步的按顺序执行</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_第三个例子_react方式会复用线程_比receive更高效">1.2.3. 第三个例子（react方式会复用线程，比receive更高效）</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>class YourActor extends Actor {
+
+  override def act(): Unit = {
+    loop {
+      react {
+        case "start"=&gt; {
+          println("starting ...")
+          Thread.sleep(5000)
+          println("started")
+        }
+        case "stop"=&gt; {
+          println("stopping ...")
+          Thread.sleep(8000)
+          println("stopped ...")
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object YourActor {
+  def main(args: Array[String]) {
+    val actor = new YourActor
+    actor.start()
+    actor ! "start"
+    actor ! "stop"
+    println("消息发送完成！")
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>说明：?react 如果要反复执行消息处理，react外层要用loop，不能用while</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_第四个例子_结合case_class发送消息">1.2.4. 第四个例子（结合case class发送消息）</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>class AppleActor extends Actor {
+
+  def act(): Unit = {
+    while (true) {
+      receive {
+        case "start"=&gt;println("starting ...")
+        case SyncMsg(id, msg) =&gt; {
+          println(id + ",sync "+ msg)
+          Thread.sleep(5000)
+          sender ! ReplyMsg(3,"finished")
+        }
+        case AsyncMsg(id, msg) =&gt; {
+          println(id + ",async "+ msg)
+          Thread.sleep(5000)
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object AppleActor {
+  def main(args: Array[String]) {
+    val a = new AppleActor
+    a.start()
+    //异步消息
+    a ! AsyncMsg(1, "hello actor")
+    println("异步消息发送完成")
+    //同步消息
+    //val content = a.!?(1000, SyncMsg(2, "hello actor"))
+    //println(content)
+    val reply = a !! SyncMsg(2, "hello actor")
+    println(reply.isSet)
+    //println("123")
+    val c = reply.apply()
+    println(reply.isSet)
+    println(c)
+  }
+}
+case class SyncMsg(id : Int, msg: String)
+case class AsyncMsg(id : Int, msg: String)
+case class ReplyMsg(id : Int, msg: String)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_练习">1.3. 练习</h3>
+<div class="paragraph">
+<p>用actor并发编程写一个单机版的WorldCount，将多个文件作为输入，计算完成后将多个任务汇总，得到最终的结果</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>class Task extends Actor {
+
+  override def act(): Unit = {
+    loop {
+      react {
+        case SubmitTask(fileName) =&gt; {
+          val contents = Source.fromFile(new File(fileName)).mkString
+          val arr = contents.split("\r\n")
+          val result = arr.flatMap(_.split("")).map((_, 1)).groupBy(_._1).mapValues(_.length)
+          //val result = arr.flatMap(_.split("")).map((_, 1)).groupBy(_._1).mapValues(_.foldLeft(0)(_ + _._2))
+          sender ! ResultTask(result)
+        }
+        case StopTask =&gt; {
+          exit()
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>object WorkCount {
+  def main(args: Array[String]) {
+    val files = Array("c://words.txt", "c://words.log")
+
+    val replaySet = new mutable.HashSet[Future[Any]]
+    val resultList = new mutable.ListBuffer[ResultTask]
+
+    for(f &lt;- files) {
+      val t = new Task
+      val replay = t.start() !! SubmitTask(f)
+      replaySet += replay
+    }
+
+    while(replaySet.size &gt;0){
+      val toCumpute = replaySet.filter(_.isSet)
+      for(r &lt;- toCumpute){
+        val result = r.apply()
+        resultList += result.asInstanceOf[ResultTask]
+        replaySet.remove(r)
+      }
+      Thread.sleep(100)
+    }
+    val finalResult = resultList.map(_.result).flatten.groupBy(_._1).mapValues(x =&gt; x.foldLeft(0)(_ + _._2))
+    println(finalResult)
+  }
+}
+
+case class SubmitTask(fileName: String)
+case object StopTask
+case class ResultTask(result: Map[String, Int])</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="prev"><span>«Previous</span><p>Scala高级特性</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/scala/scala%E5%9F%BA%E7%A1%80/" rel="next"><span>Next»</span><p>scala基础</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/tags/neo4j/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/tags/neo4j/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>neo4j</title>
+      <link>/post/work/zichuan/neo4j/</link>
+      <pubDate>Mon, 10 Jul 2017 08:54:21 +0000</pubDate>
+      
+      <guid>/post/work/zichuan/neo4j/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例如, 一个可以用来查找 Emil 的朋友的模式:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (ee:Person)-[:KNOWS]-(friends)
+WHERE ee.name = &#34;Emil&#34; RETURN ee, friends&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;MATCH用于描述由已知节点查找节点的模式的子句&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(ee)以 Person 开始模式 (由 WHERE 限制)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;-[:KNOWS]-匹配 &#34;KNOWS&#34; 关系 (任意方向)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(friends)将被绑定到 Emil 的朋友&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;模式匹配可用于做推荐. Johan 正在学习冲浪, 因此他也许希望查找一个已经冲浪的新朋友:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (js:Person)-[:KNOWS]-()-[:KNOWS]-(surfer)
+WHERE js.name = &#34;Johan&#34; AND surfer.hobby = &#34;surfing&#34;
+RETURN DISTINCT surfer&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;()空的圆括符忽略这些节点
+DISTINCT因为多于一条路径将匹配该模式
+冲浪者将包含 Allison, 他是一位冲浪的朋友的朋友&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在查询前面加上 EXPLAIN  或  PROFILE以了解您的查询是如何工作的:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;PROFILE MATCH (js:Person)-[:KNOWS]-()-[:KNOWS]-(surfer)
+WHERE js.name = &#34;Johan&#34; AND surfer.hobby = &#34;surfing&#34;
+RETURN DISTINCT surfer&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheMatrix:Movie {title:&#39;The Matrix&#39;, released:1999, tagline:&#39;Welcome to the Real World&#39;})
+CREATE (Keanu:Person {name:&#39;Keanu Reeves&#39;, born:1964})
+CREATE (Carrie:Person {name:&#39;Carrie-Anne Moss&#39;, born:1967})
+CREATE (Laurence:Person {name:&#39;Laurence Fishburne&#39;, born:1961})
+CREATE (Hugo:Person {name:&#39;Hugo Weaving&#39;, born:1960})
+CREATE (AndyW:Person {name:&#39;Andy Wachowski&#39;, born:1967})
+CREATE (LanaW:Person {name:&#39;Lana Wachowski&#39;, born:1965})
+CREATE (JoelS:Person {name:&#39;Joel Silver&#39;, born:1952})&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE
+  (Keanu)-[:ACTED_IN {roles:[&#39;Neo&#39;]}]&amp;#8594;(TheMatrix),
+  (Carrie)-[:ACTED_IN {roles:[&#39;Trinity&#39;]}]&amp;#8594;(TheMatrix),
+  (Laurence)-[:ACTED_IN {roles:[&#39;Morpheus&#39;]}]&amp;#8594;(TheMatrix),
+  (Hugo)-[:ACTED_IN {roles:[&#39;Agent Smith&#39;]}]&amp;#8594;(TheMatrix),
+  (AndyW)-[:DIRECTED]&amp;#8594;(TheMatrix),
+  (LanaW)-[:DIRECTED]&amp;#8594;(TheMatrix),
+  (JoelS)-[:PRODUCED]&amp;#8594;(TheMatrix)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (Emil:Person {name:&#34;Emil Eifrem&#34;, born:1978})
+CREATE (Emil)-[:ACTED_IN {roles:[&#34;Emil&#34;]}]&amp;#8594;(TheMatrix)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheMatrixReloaded:Movie {title:&#39;The Matrix Reloaded&#39;, released:2003, tagline:&#39;Free your mind&#39;})
+CREATE
+  (Keanu)-[:ACTED_IN {roles:[&#39;Neo&#39;]}]&amp;#8594;(TheMatrixReloaded),
+  (Carrie)-[:ACTED_IN {roles:[&#39;Trinity&#39;]}]&amp;#8594;(TheMatrixReloaded),
+  (Laurence)-[:ACTED_IN {roles:[&#39;Morpheus&#39;]}]&amp;#8594;(TheMatrixReloaded),
+  (Hugo)-[:ACTED_IN {roles:[&#39;Agent Smith&#39;]}]&amp;#8594;(TheMatrixReloaded),
+  (AndyW)-[:DIRECTED]&amp;#8594;(TheMatrixReloaded),
+  (LanaW)-[:DIRECTED]&amp;#8594;(TheMatrixReloaded),
+  (JoelS)-[:PRODUCED]&amp;#8594;(TheMatrixReloaded)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheMatrixRevolutions:Movie {title:&#39;The Matrix Revolutions&#39;, released:2003, tagline:&#39;Everything that has a beginning has an end&#39;})
+CREATE
+  (Keanu)-[:ACTED_IN {roles:[&#39;Neo&#39;]}]&amp;#8594;(TheMatrixRevolutions),
+  (Carrie)-[:ACTED_IN {roles:[&#39;Trinity&#39;]}]&amp;#8594;(TheMatrixRevolutions),
+  (Laurence)-[:ACTED_IN {roles:[&#39;Morpheus&#39;]}]&amp;#8594;(TheMatrixRevolutions),
+  (Hugo)-[:ACTED_IN {roles:[&#39;Agent Smith&#39;]}]&amp;#8594;(TheMatrixRevolutions),
+  (AndyW)-[:DIRECTED]&amp;#8594;(TheMatrixRevolutions),
+  (LanaW)-[:DIRECTED]&amp;#8594;(TheMatrixRevolutions),
+  (JoelS)-[:PRODUCED]&amp;#8594;(TheMatrixRevolutions)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheDevilsAdvocate:Movie {title:&#34;The Devil&amp;#8217;s Advocate&#34;, released:1997, tagline:&#39;Evil has its winning ways&#39;})
+CREATE (Charlize:Person {name:&#39;Charlize Theron&#39;, born:1975})
+CREATE (Al:Person {name:&#39;Al Pacino&#39;, born:1940})
+CREATE (Taylor:Person {name:&#39;Taylor Hackford&#39;, born:1944})
+CREATE
+  (Keanu)-[:ACTED_IN {roles:[&#39;Kevin Lomax&#39;]}]&amp;#8594;(TheDevilsAdvocate),
+  (Charlize)-[:ACTED_IN {roles:[&#39;Mary Ann Lomax&#39;]}]&amp;#8594;(TheDevilsAdvocate),
+  (Al)-[:ACTED_IN {roles:[&#39;John Milton&#39;]}]&amp;#8594;(TheDevilsAdvocate),
+  (Taylor)-[:DIRECTED]&amp;#8594;(TheDevilsAdvocate)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (AFewGoodMen:Movie {title:&#34;A Few Good Men&#34;, released:1992, tagline:&#34;In the heart of the nation&amp;#8217;s capital, in a courthouse of the U.S. government, one man will stop at nothing to keep his honor, and one will stop at nothing to find the truth.&#34;})
+CREATE (TomC:Person {name:&#39;Tom Cruise&#39;, born:1962})
+CREATE (JackN:Person {name:&#39;Jack Nicholson&#39;, born:1937})
+CREATE (DemiM:Person {name:&#39;Demi Moore&#39;, born:1962})
+CREATE (KevinB:Person {name:&#39;Kevin Bacon&#39;, born:1958})
+CREATE (KieferS:Person {name:&#39;Kiefer Sutherland&#39;, born:1966})
+CREATE (NoahW:Person {name:&#39;Noah Wyle&#39;, born:1971})
+CREATE (CubaG:Person {name:&#39;Cuba Gooding Jr.&#39;, born:1968})
+CREATE (KevinP:Person {name:&#39;Kevin Pollak&#39;, born:1957})
+CREATE (JTW:Person {name:&#39;J.T. Walsh&#39;, born:1943})
+CREATE (JamesM:Person {name:&#39;James Marshall&#39;, born:1967})
+CREATE (ChristopherG:Person {name:&#39;Christopher Guest&#39;, born:1948})
+CREATE (RobR:Person {name:&#39;Rob Reiner&#39;, born:1947})
+CREATE (AaronS:Person {name:&#39;Aaron Sorkin&#39;, born:1961})
+CREATE
+  (TomC)-[:ACTED_IN {roles:[&#39;Lt. Daniel Kaffee&#39;]}]&amp;#8594;(AFewGoodMen),
+  (JackN)-[:ACTED_IN {roles:[&#39;Col. Nathan R. Jessup&#39;]}]&amp;#8594;(AFewGoodMen),
+  (DemiM)-[:ACTED_IN {roles:[&#39;Lt. Cdr. JoAnne Galloway&#39;]}]&amp;#8594;(AFewGoodMen),
+  (KevinB)-[:ACTED_IN {roles:[&#39;Capt. Jack Ross&#39;]}]&amp;#8594;(AFewGoodMen),
+  (KieferS)-[:ACTED_IN {roles:[&#39;Lt. Jonathan Kendrick&#39;]}]&amp;#8594;(AFewGoodMen),
+  (NoahW)-[:ACTED_IN {roles:[&#39;Cpl. Jeffrey Barnes&#39;]}]&amp;#8594;(AFewGoodMen),
+  (CubaG)-[:ACTED_IN {roles:[&#39;Cpl. Carl Hammaker&#39;]}]&amp;#8594;(AFewGoodMen),
+  (KevinP)-[:ACTED_IN {roles:[&#39;Lt. Sam Weinberg&#39;]}]&amp;#8594;(AFewGoodMen),
+  (JTW)-[:ACTED_IN {roles:[&#39;Lt. Col. Matthew Andrew Markinson&#39;]}]&amp;#8594;(AFewGoodMen),
+  (JamesM)-[:ACTED_IN {roles:[&#39;Pfc. Louden Downey&#39;]}]&amp;#8594;(AFewGoodMen),
+  (ChristopherG)-[:ACTED_IN {roles:[&#39;Dr. Stone&#39;]}]&amp;#8594;(AFewGoodMen),
+  (AaronS)-[:ACTED_IN {roles:[&#39;Man in Bar&#39;]}]&amp;#8594;(AFewGoodMen),
+  (RobR)-[:DIRECTED]&amp;#8594;(AFewGoodMen),
+  (AaronS)-[:WROTE]&amp;#8594;(AFewGoodMen)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TopGun:Movie {title:&#34;Top Gun&#34;, released:1986, tagline:&#39;I feel the need, the need for speed.&#39;})
+CREATE (KellyM:Person {name:&#39;Kelly McGillis&#39;, born:1957})
+CREATE (ValK:Person {name:&#39;Val Kilmer&#39;, born:1959})
+CREATE (AnthonyE:Person {name:&#39;Anthony Edwards&#39;, born:1962})
+CREATE (TomS:Person {name:&#39;Tom Skerritt&#39;, born:1933})
+CREATE (MegR:Person {name:&#39;Meg Ryan&#39;, born:1961})
+CREATE (TonyS:Person {name:&#39;Tony Scott&#39;, born:1944})
+CREATE (JimC:Person {name:&#39;Jim Cash&#39;, born:1941})
+CREATE
+  (TomC)-[:ACTED_IN {roles:[&#39;Maverick&#39;]}]&amp;#8594;(TopGun),
+  (KellyM)-[:ACTED_IN {roles:[&#39;Charlie&#39;]}]&amp;#8594;(TopGun),
+  (ValK)-[:ACTED_IN {roles:[&#39;Iceman&#39;]}]&amp;#8594;(TopGun),
+  (AnthonyE)-[:ACTED_IN {roles:[&#39;Goose&#39;]}]&amp;#8594;(TopGun),
+  (TomS)-[:ACTED_IN {roles:[&#39;Viper&#39;]}]&amp;#8594;(TopGun),
+  (MegR)-[:ACTED_IN {roles:[&#39;Carole&#39;]}]&amp;#8594;(TopGun),
+  (TonyS)-[:DIRECTED]&amp;#8594;(TopGun),
+  (JimC)-[:WROTE]&amp;#8594;(TopGun)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (JerryMaguire:Movie {title:&#39;Jerry Maguire&#39;, released:2000, tagline:&#39;The rest of his life begins now.&#39;})
+CREATE (ReneeZ:Person {name:&#39;Renee Zellweger&#39;, born:1969})
+CREATE (KellyP:Person {name:&#39;Kelly Preston&#39;, born:1962})
+CREATE (JerryO:Person {name:&#34;Jerry O&amp;#8217;Connell&#34;, born:1974})
+CREATE (JayM:Person {name:&#39;Jay Mohr&#39;, born:1970})
+CREATE (BonnieH:Person {name:&#39;Bonnie Hunt&#39;, born:1961})
+CREATE (ReginaK:Person {name:&#39;Regina King&#39;, born:1971})
+CREATE (JonathanL:Person {name:&#39;Jonathan Lipnicki&#39;, born:1996})
+CREATE (CameronC:Person {name:&#39;Cameron Crowe&#39;, born:1957})
+CREATE
+  (TomC)-[:ACTED_IN {roles:[&#39;Jerry Maguire&#39;]}]&amp;#8594;(JerryMaguire),
+  (CubaG)-[:ACTED_IN {roles:[&#39;Rod Tidwell&#39;]}]&amp;#8594;(JerryMaguire),
+  (ReneeZ)-[:ACTED_IN {roles:[&#39;Dorothy Boyd&#39;]}]&amp;#8594;(JerryMaguire),
+  (KellyP)-[:ACTED_IN {roles:[&#39;Avery Bishop&#39;]}]&amp;#8594;(JerryMaguire),
+  (JerryO)-[:ACTED_IN {roles:[&#39;Frank Cushman&#39;]}]&amp;#8594;(JerryMaguire),
+  (JayM)-[:ACTED_IN {roles:[&#39;Bob Sugar&#39;]}]&amp;#8594;(JerryMaguire),
+  (BonnieH)-[:ACTED_IN {roles:[&#39;Laurel Boyd&#39;]}]&amp;#8594;(JerryMaguire),
+  (ReginaK)-[:ACTED_IN {roles:[&#39;Marcee Tidwell&#39;]}]&amp;#8594;(JerryMaguire),
+  (JonathanL)-[:ACTED_IN {roles:[&#39;Ray Boyd&#39;]}]&amp;#8594;(JerryMaguire),
+  (CameronC)-[:DIRECTED]&amp;#8594;(JerryMaguire),
+  (CameronC)-[:PRODUCED]&amp;#8594;(JerryMaguire),
+  (CameronC)-[:WROTE]&amp;#8594;(JerryMaguire)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (StandByMe:Movie {title:&#34;Stand By Me&#34;, released:1986, tagline:&#34;For some, it&amp;#8217;s the last real taste of innocence, and the first real taste of life. But for everyone, it&amp;#8217;s the time that memories are made of.&#34;})
+CREATE (RiverP:Person {name:&#39;River Phoenix&#39;, born:1970})
+CREATE (CoreyF:Person {name:&#39;Corey Feldman&#39;, born:1971})
+CREATE (WilW:Person {name:&#39;Wil Wheaton&#39;, born:1972})
+CREATE (JohnC:Person {name:&#39;John Cusack&#39;, born:1966})
+CREATE (MarshallB:Person {name:&#39;Marshall Bell&#39;, born:1942})
+CREATE
+  (WilW)-[:ACTED_IN {roles:[&#39;Gordie Lachance&#39;]}]&amp;#8594;(StandByMe),
+  (RiverP)-[:ACTED_IN {roles:[&#39;Chris Chambers&#39;]}]&amp;#8594;(StandByMe),
+  (JerryO)-[:ACTED_IN {roles:[&#39;Vern Tessio&#39;]}]&amp;#8594;(StandByMe),
+  (CoreyF)-[:ACTED_IN {roles:[&#39;Teddy Duchamp&#39;]}]&amp;#8594;(StandByMe),
+  (JohnC)-[:ACTED_IN {roles:[&#39;Denny Lachance&#39;]}]&amp;#8594;(StandByMe),
+  (KieferS)-[:ACTED_IN {roles:[&#39;Ace Merrill&#39;]}]&amp;#8594;(StandByMe),
+  (MarshallB)-[:ACTED_IN {roles:[&#39;Mr. Lachance&#39;]}]&amp;#8594;(StandByMe),
+  (RobR)-[:DIRECTED]&amp;#8594;(StandByMe)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (AsGoodAsItGets:Movie {title:&#39;As Good as It Gets&#39;, released:1997, tagline:&#39;A comedy from the heart that goes for the throat.&#39;})
+CREATE (HelenH:Person {name:&#39;Helen Hunt&#39;, born:1963})
+CREATE (GregK:Person {name:&#39;Greg Kinnear&#39;, born:1963})
+CREATE (JamesB:Person {name:&#39;James L. Brooks&#39;, born:1940})
+CREATE
+  (JackN)-[:ACTED_IN {roles:[&#39;Melvin Udall&#39;]}]&amp;#8594;(AsGoodAsItGets),
+  (HelenH)-[:ACTED_IN {roles:[&#39;Carol Connelly&#39;]}]&amp;#8594;(AsGoodAsItGets),
+  (GregK)-[:ACTED_IN {roles:[&#39;Simon Bishop&#39;]}]&amp;#8594;(AsGoodAsItGets),
+  (CubaG)-[:ACTED_IN {roles:[&#39;Frank Sachs&#39;]}]&amp;#8594;(AsGoodAsItGets),
+  (JamesB)-[:DIRECTED]&amp;#8594;(AsGoodAsItGets)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (WhatDreamsMayCome:Movie {title:&#39;What Dreams May Come&#39;, released:1998, tagline:&#39;After life there is more. The end is just the beginning.&#39;})
+CREATE (AnnabellaS:Person {name:&#39;Annabella Sciorra&#39;, born:1960})
+CREATE (MaxS:Person {name:&#39;Max von Sydow&#39;, born:1929})
+CREATE (WernerH:Person {name:&#39;Werner Herzog&#39;, born:1942})
+CREATE (Robin:Person {name:&#39;Robin Williams&#39;, born:1951})
+CREATE (VincentW:Person {name:&#39;Vincent Ward&#39;, born:1956})
+CREATE
+  (Robin)-[:ACTED_IN {roles:[&#39;Chris Nielsen&#39;]}]&amp;#8594;(WhatDreamsMayCome),
+  (CubaG)-[:ACTED_IN {roles:[&#39;Albert Lewis&#39;]}]&amp;#8594;(WhatDreamsMayCome),
+  (AnnabellaS)-[:ACTED_IN {roles:[&#39;Annie Collins-Nielsen&#39;]}]&amp;#8594;(WhatDreamsMayCome),
+  (MaxS)-[:ACTED_IN {roles:[&#39;The Tracker&#39;]}]&amp;#8594;(WhatDreamsMayCome),
+  (WernerH)-[:ACTED_IN {roles:[&#39;The Face&#39;]}]&amp;#8594;(WhatDreamsMayCome),
+  (VincentW)-[:DIRECTED]&amp;#8594;(WhatDreamsMayCome)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (SnowFallingonCedars:Movie {title:&#39;Snow Falling on Cedars&#39;, released:1999, tagline:&#39;First loves last. Forever.&#39;})
+CREATE (EthanH:Person {name:&#39;Ethan Hawke&#39;, born:1970})
+CREATE (RickY:Person {name:&#39;Rick Yune&#39;, born:1971})
+CREATE (JamesC:Person {name:&#39;James Cromwell&#39;, born:1940})
+CREATE (ScottH:Person {name:&#39;Scott Hicks&#39;, born:1953})
+CREATE
+  (EthanH)-[:ACTED_IN {roles:[&#39;Ishmael Chambers&#39;]}]&amp;#8594;(SnowFallingonCedars),
+  (RickY)-[:ACTED_IN {roles:[&#39;Kazuo Miyamoto&#39;]}]&amp;#8594;(SnowFallingonCedars),
+  (MaxS)-[:ACTED_IN {roles:[&#39;Nels Gudmundsson&#39;]}]&amp;#8594;(SnowFallingonCedars),
+  (JamesC)-[:ACTED_IN {roles:[&#39;Judge Fielding&#39;]}]&amp;#8594;(SnowFallingonCedars),
+  (ScottH)-[:DIRECTED]&amp;#8594;(SnowFallingonCedars)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (YouveGotMail:Movie {title:&#34;You&amp;#8217;ve Got Mail&#34;, released:1998, tagline:&#39;At odds in life&amp;#8230;&amp;#8203; in love on-line.&#39;})
+CREATE (ParkerP:Person {name:&#39;Parker Posey&#39;, born:1968})
+CREATE (DaveC:Person {name:&#39;Dave Chappelle&#39;, born:1973})
+CREATE (SteveZ:Person {name:&#39;Steve Zahn&#39;, born:1967})
+CREATE (TomH:Person {name:&#39;Tom Hanks&#39;, born:1956})
+CREATE (NoraE:Person {name:&#39;Nora Ephron&#39;, born:1941})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Joe Fox&#39;]}]&amp;#8594;(YouveGotMail),
+  (MegR)-[:ACTED_IN {roles:[&#39;Kathleen Kelly&#39;]}]&amp;#8594;(YouveGotMail),
+  (GregK)-[:ACTED_IN {roles:[&#39;Frank Navasky&#39;]}]&amp;#8594;(YouveGotMail),
+  (ParkerP)-[:ACTED_IN {roles:[&#39;Patricia Eden&#39;]}]&amp;#8594;(YouveGotMail),
+  (DaveC)-[:ACTED_IN {roles:[&#39;Kevin Jackson&#39;]}]&amp;#8594;(YouveGotMail),
+  (SteveZ)-[:ACTED_IN {roles:[&#39;George Pappas&#39;]}]&amp;#8594;(YouveGotMail),
+  (NoraE)-[:DIRECTED]&amp;#8594;(YouveGotMail)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (SleeplessInSeattle:Movie {title:&#39;Sleepless in Seattle&#39;, released:1993, tagline:&#39;What if someone you never met, someone you never saw, someone you never knew was the only someone for you?&#39;})
+CREATE (RitaW:Person {name:&#39;Rita Wilson&#39;, born:1956})
+CREATE (BillPull:Person {name:&#39;Bill Pullman&#39;, born:1953})
+CREATE (VictorG:Person {name:&#39;Victor Garber&#39;, born:1949})
+CREATE (RosieO:Person {name:&#34;Rosie O&amp;#8217;Donnell&#34;, born:1962})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Sam Baldwin&#39;]}]&amp;#8594;(SleeplessInSeattle),
+  (MegR)-[:ACTED_IN {roles:[&#39;Annie Reed&#39;]}]&amp;#8594;(SleeplessInSeattle),
+  (RitaW)-[:ACTED_IN {roles:[&#39;Suzy&#39;]}]&amp;#8594;(SleeplessInSeattle),
+  (BillPull)-[:ACTED_IN {roles:[&#39;Walter&#39;]}]&amp;#8594;(SleeplessInSeattle),
+  (VictorG)-[:ACTED_IN {roles:[&#39;Greg&#39;]}]&amp;#8594;(SleeplessInSeattle),
+  (RosieO)-[:ACTED_IN {roles:[&#39;Becky&#39;]}]&amp;#8594;(SleeplessInSeattle),
+  (NoraE)-[:DIRECTED]&amp;#8594;(SleeplessInSeattle)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (JoeVersustheVolcano:Movie {title:&#39;Joe Versus the Volcano&#39;, released:1990, tagline:&#39;A story of love, lava and burning desire.&#39;})
+CREATE (JohnS:Person {name:&#39;John Patrick Stanley&#39;, born:1950})
+CREATE (Nathan:Person {name:&#39;Nathan Lane&#39;, born:1956})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Joe Banks&#39;]}]&amp;#8594;(JoeVersustheVolcano),
+  (MegR)-[:ACTED_IN {roles:[&#39;DeDe&#39;, &#39;Angelica Graynamore&#39;, &#39;Patricia Graynamore&#39;]}]&amp;#8594;(JoeVersustheVolcano),
+  (Nathan)-[:ACTED_IN {roles:[&#39;Baw&#39;]}]&amp;#8594;(JoeVersustheVolcano),
+  (JohnS)-[:DIRECTED]&amp;#8594;(JoeVersustheVolcano)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (WhenHarryMetSally:Movie {title:&#39;When Harry Met Sally&#39;, released:1998, tagline:&#39;At odds in life&amp;#8230;&amp;#8203; in love on-line.&#39;})
+CREATE (BillyC:Person {name:&#39;Billy Crystal&#39;, born:1948})
+CREATE (CarrieF:Person {name:&#39;Carrie Fisher&#39;, born:1956})
+CREATE (BrunoK:Person {name:&#39;Bruno Kirby&#39;, born:1949})
+CREATE
+  (BillyC)-[:ACTED_IN {roles:[&#39;Harry Burns&#39;]}]&amp;#8594;(WhenHarryMetSally),
+  (MegR)-[:ACTED_IN {roles:[&#39;Sally Albright&#39;]}]&amp;#8594;(WhenHarryMetSally),
+  (CarrieF)-[:ACTED_IN {roles:[&#39;Marie&#39;]}]&amp;#8594;(WhenHarryMetSally),
+  (BrunoK)-[:ACTED_IN {roles:[&#39;Jess&#39;]}]&amp;#8594;(WhenHarryMetSally),
+  (RobR)-[:DIRECTED]&amp;#8594;(WhenHarryMetSally),
+  (RobR)-[:PRODUCED]&amp;#8594;(WhenHarryMetSally),
+  (NoraE)-[:PRODUCED]&amp;#8594;(WhenHarryMetSally),
+  (NoraE)-[:WROTE]&amp;#8594;(WhenHarryMetSally)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (ThatThingYouDo:Movie {title:&#39;That Thing You Do&#39;, released:1996, tagline:&#39;In every life there comes a time when that thing you dream becomes that thing you do&#39;})
+CREATE (LivT:Person {name:&#39;Liv Tyler&#39;, born:1977})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Mr. White&#39;]}]&amp;#8594;(ThatThingYouDo),
+  (LivT)-[:ACTED_IN {roles:[&#39;Faye Dolan&#39;]}]&amp;#8594;(ThatThingYouDo),
+  (Charlize)-[:ACTED_IN {roles:[&#39;Tina&#39;]}]&amp;#8594;(ThatThingYouDo),
+  (TomH)-[:DIRECTED]&amp;#8594;(ThatThingYouDo)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheReplacements:Movie {title:&#39;The Replacements&#39;, released:2000, tagline:&#39;Pain heals, Chicks dig scars&amp;#8230;&amp;#8203; Glory lasts forever&#39;})
+CREATE (Brooke:Person {name:&#39;Brooke Langton&#39;, born:1970})
+CREATE (Gene:Person {name:&#39;Gene Hackman&#39;, born:1930})
+CREATE (Orlando:Person {name:&#39;Orlando Jones&#39;, born:1968})
+CREATE (Howard:Person {name:&#39;Howard Deutch&#39;, born:1950})
+CREATE
+  (Keanu)-[:ACTED_IN {roles:[&#39;Shane Falco&#39;]}]&amp;#8594;(TheReplacements),
+  (Brooke)-[:ACTED_IN {roles:[&#39;Annabelle Farrell&#39;]}]&amp;#8594;(TheReplacements),
+  (Gene)-[:ACTED_IN {roles:[&#39;Jimmy McGinty&#39;]}]&amp;#8594;(TheReplacements),
+  (Orlando)-[:ACTED_IN {roles:[&#39;Clifford Franklin&#39;]}]&amp;#8594;(TheReplacements),
+  (Howard)-[:DIRECTED]&amp;#8594;(TheReplacements)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (RescueDawn:Movie {title:&#39;RescueDawn&#39;, released:2006, tagline:&#34;Based on the extraordinary true story of one man&amp;#8217;s fight for freedom&#34;})
+CREATE (ChristianB:Person {name:&#39;Christian Bale&#39;, born:1974})
+CREATE (ZachG:Person {name:&#39;Zach Grenier&#39;, born:1954})
+CREATE
+  (MarshallB)-[:ACTED_IN {roles:[&#39;Admiral&#39;]}]&amp;#8594;(RescueDawn),
+  (ChristianB)-[:ACTED_IN {roles:[&#39;Dieter Dengler&#39;]}]&amp;#8594;(RescueDawn),
+  (ZachG)-[:ACTED_IN {roles:[&#39;Squad Leader&#39;]}]&amp;#8594;(RescueDawn),
+  (SteveZ)-[:ACTED_IN {roles:[&#39;Duane&#39;]}]&amp;#8594;(RescueDawn),
+  (WernerH)-[:DIRECTED]&amp;#8594;(RescueDawn)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheBirdcage:Movie {title:&#39;The Birdcage&#39;, released:1996, tagline:&#39;Come as you are&#39;})
+CREATE (MikeN:Person {name:&#39;Mike Nichols&#39;, born:1931})
+CREATE
+  (Robin)-[:ACTED_IN {roles:[&#39;Armand Goldman&#39;]}]&amp;#8594;(TheBirdcage),
+  (Nathan)-[:ACTED_IN {roles:[&#39;Albert Goldman&#39;]}]&amp;#8594;(TheBirdcage),
+  (Gene)-[:ACTED_IN {roles:[&#39;Sen. Kevin Keeley&#39;]}]&amp;#8594;(TheBirdcage),
+  (MikeN)-[:DIRECTED]&amp;#8594;(TheBirdcage)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (Unforgiven:Movie {title:&#39;Unforgiven&#39;, released:1992, tagline:&#34;It&amp;#8217;s a hell of a thing, killing a man&#34;})
+CREATE (RichardH:Person {name:&#39;Richard Harris&#39;, born:1930})
+CREATE (ClintE:Person {name:&#39;Clint Eastwood&#39;, born:1930})
+CREATE
+  (RichardH)-[:ACTED_IN {roles:[&#39;English Bob&#39;]}]&amp;#8594;(Unforgiven),
+  (ClintE)-[:ACTED_IN {roles:[&#39;Bill Munny&#39;]}]&amp;#8594;(Unforgiven),
+  (Gene)-[:ACTED_IN {roles:[&#39;Little Bill Daggett&#39;]}]&amp;#8594;(Unforgiven),
+  (ClintE)-[:DIRECTED]&amp;#8594;(Unforgiven)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (JohnnyMnemonic:Movie {title:&#39;Johnny Mnemonic&#39;, released:1995, tagline:&#39;The hottest data on earth. In the coolest head in town&#39;})
+CREATE (Takeshi:Person {name:&#39;Takeshi Kitano&#39;, born:1947})
+CREATE (Dina:Person {name:&#39;Dina Meyer&#39;, born:1968})
+CREATE (IceT:Person {name:&#39;Ice-T&#39;, born:1958})
+CREATE (RobertL:Person {name:&#39;Robert Longo&#39;, born:1953})
+CREATE
+  (Keanu)-[:ACTED_IN {roles:[&#39;Johnny Mnemonic&#39;]}]&amp;#8594;(JohnnyMnemonic),
+  (Takeshi)-[:ACTED_IN {roles:[&#39;Takahashi&#39;]}]&amp;#8594;(JohnnyMnemonic),
+  (Dina)-[:ACTED_IN {roles:[&#39;Jane&#39;]}]&amp;#8594;(JohnnyMnemonic),
+  (IceT)-[:ACTED_IN {roles:[&#39;J-Bone&#39;]}]&amp;#8594;(JohnnyMnemonic),
+  (RobertL)-[:DIRECTED]&amp;#8594;(JohnnyMnemonic)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (CloudAtlas:Movie {title:&#39;Cloud Atlas&#39;, released:2012, tagline:&#39;Everything is connected&#39;})
+CREATE (HalleB:Person {name:&#39;Halle Berry&#39;, born:1966})
+CREATE (JimB:Person {name:&#39;Jim Broadbent&#39;, born:1949})
+CREATE (TomT:Person {name:&#39;Tom Tykwer&#39;, born:1965})
+CREATE (DavidMitchell:Person {name:&#39;David Mitchell&#39;, born:1969})
+CREATE (StefanArndt:Person {name:&#39;Stefan Arndt&#39;, born:1961})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Zachry&#39;, &#39;Dr. Henry Goose&#39;, &#39;Isaac Sachs&#39;, &#39;Dermot Hoggins&#39;]}]&amp;#8594;(CloudAtlas),
+  (Hugo)-[:ACTED_IN {roles:[&#39;Bill Smoke&#39;, &#39;Haskell Moore&#39;, &#39;Tadeusz Kesselring&#39;, &#39;Nurse Noakes&#39;, &#39;Boardman Mephi&#39;, &#39;Old Georgie&#39;]}]&amp;#8594;(CloudAtlas),
+  (HalleB)-[:ACTED_IN {roles:[&#39;Luisa Rey&#39;, &#39;Jocasta Ayrs&#39;, &#39;Ovid&#39;, &#39;Meronym&#39;]}]&amp;#8594;(CloudAtlas),
+  (JimB)-[:ACTED_IN {roles:[&#39;Vyvyan Ayrs&#39;, &#39;Captain Molyneux&#39;, &#39;Timothy Cavendish&#39;]}]&amp;#8594;(CloudAtlas),
+  (TomT)-[:DIRECTED]&amp;#8594;(CloudAtlas),
+  (AndyW)-[:DIRECTED]&amp;#8594;(CloudAtlas),
+  (LanaW)-[:DIRECTED]&amp;#8594;(CloudAtlas),
+  (DavidMitchell)-[:WROTE]&amp;#8594;(CloudAtlas),
+  (StefanArndt)-[:PRODUCED]&amp;#8594;(CloudAtlas)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheDaVinciCode:Movie {title:&#39;The Da Vinci Code&#39;, released:2006, tagline:&#39;Break The Codes&#39;})
+CREATE (IanM:Person {name:&#39;Ian McKellen&#39;, born:1939})
+CREATE (AudreyT:Person {name:&#39;Audrey Tautou&#39;, born:1976})
+CREATE (PaulB:Person {name:&#39;Paul Bettany&#39;, born:1971})
+CREATE (RonH:Person {name:&#39;Ron Howard&#39;, born:1954})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Dr. Robert Langdon&#39;]}]&amp;#8594;(TheDaVinciCode),
+  (IanM)-[:ACTED_IN {roles:[&#39;Sir Leight Teabing&#39;]}]&amp;#8594;(TheDaVinciCode),
+  (AudreyT)-[:ACTED_IN {roles:[&#39;Sophie Neveu&#39;]}]&amp;#8594;(TheDaVinciCode),
+  (PaulB)-[:ACTED_IN {roles:[&#39;Silas&#39;]}]&amp;#8594;(TheDaVinciCode),
+  (RonH)-[:DIRECTED]&amp;#8594;(TheDaVinciCode)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (VforVendetta:Movie {title:&#39;V for Vendetta&#39;, released:2006, tagline:&#39;Freedom! Forever!&#39;})
+CREATE (NatalieP:Person {name:&#39;Natalie Portman&#39;, born:1981})
+CREATE (StephenR:Person {name:&#39;Stephen Rea&#39;, born:1946})
+CREATE (JohnH:Person {name:&#39;John Hurt&#39;, born:1940})
+CREATE (BenM:Person {name: &#39;Ben Miles&#39;, born:1967})
+CREATE
+  (Hugo)-[:ACTED_IN {roles:[&#39;V&#39;]}]&amp;#8594;(VforVendetta),
+  (NatalieP)-[:ACTED_IN {roles:[&#39;Evey Hammond&#39;]}]&amp;#8594;(VforVendetta),
+  (StephenR)-[:ACTED_IN {roles:[&#39;Eric Finch&#39;]}]&amp;#8594;(VforVendetta),
+  (JohnH)-[:ACTED_IN {roles:[&#39;High Chancellor Adam Sutler&#39;]}]&amp;#8594;(VforVendetta),
+  (BenM)-[:ACTED_IN {roles:[&#39;Dascomb&#39;]}]&amp;#8594;(VforVendetta),
+  (JamesM)-[:DIRECTED]&amp;#8594;(VforVendetta),
+  (AndyW)-[:PRODUCED]&amp;#8594;(VforVendetta),
+  (LanaW)-[:PRODUCED]&amp;#8594;(VforVendetta),
+  (JoelS)-[:PRODUCED]&amp;#8594;(VforVendetta),
+  (AndyW)-[:WROTE]&amp;#8594;(VforVendetta),
+  (LanaW)-[:WROTE]&amp;#8594;(VforVendetta)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (SpeedRacer:Movie {title:&#39;Speed Racer&#39;, released:2008, tagline:&#39;Speed has no limits&#39;})
+CREATE (EmileH:Person {name:&#39;Emile Hirsch&#39;, born:1985})
+CREATE (JohnG:Person {name:&#39;John Goodman&#39;, born:1960})
+CREATE (SusanS:Person {name:&#39;Susan Sarandon&#39;, born:1946})
+CREATE (MatthewF:Person {name:&#39;Matthew Fox&#39;, born:1966})
+CREATE (ChristinaR:Person {name:&#39;Christina Ricci&#39;, born:1980})
+CREATE (Rain:Person {name:&#39;Rain&#39;, born:1982})
+CREATE
+  (EmileH)-[:ACTED_IN {roles:[&#39;Speed Racer&#39;]}]&amp;#8594;(SpeedRacer),
+  (JohnG)-[:ACTED_IN {roles:[&#39;Pops&#39;]}]&amp;#8594;(SpeedRacer),
+  (SusanS)-[:ACTED_IN {roles:[&#39;Mom&#39;]}]&amp;#8594;(SpeedRacer),
+  (MatthewF)-[:ACTED_IN {roles:[&#39;Racer X&#39;]}]&amp;#8594;(SpeedRacer),
+  (ChristinaR)-[:ACTED_IN {roles:[&#39;Trixie&#39;]}]&amp;#8594;(SpeedRacer),
+  (Rain)-[:ACTED_IN {roles:[&#39;Taejo Togokahn&#39;]}]&amp;#8594;(SpeedRacer),
+  (BenM)-[:ACTED_IN {roles:[&#39;Cass Jones&#39;]}]&amp;#8594;(SpeedRacer),
+  (AndyW)-[:DIRECTED]&amp;#8594;(SpeedRacer),
+  (LanaW)-[:DIRECTED]&amp;#8594;(SpeedRacer),
+  (AndyW)-[:WROTE]&amp;#8594;(SpeedRacer),
+  (LanaW)-[:WROTE]&amp;#8594;(SpeedRacer),
+  (JoelS)-[:PRODUCED]&amp;#8594;(SpeedRacer)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (NinjaAssassin:Movie {title:&#39;Ninja Assassin&#39;, released:2009, tagline:&#39;Prepare to enter a secret world of assassins&#39;})
+CREATE (NaomieH:Person {name:&#39;Naomie Harris&#39;})
+CREATE
+  (Rain)-[:ACTED_IN {roles:[&#39;Raizo&#39;]}]&amp;#8594;(NinjaAssassin),
+  (NaomieH)-[:ACTED_IN {roles:[&#39;Mika Coretti&#39;]}]&amp;#8594;(NinjaAssassin),
+  (RickY)-[:ACTED_IN {roles:[&#39;Takeshi&#39;]}]&amp;#8594;(NinjaAssassin),
+  (BenM)-[:ACTED_IN {roles:[&#39;Ryan Maslow&#39;]}]&amp;#8594;(NinjaAssassin),
+  (JamesM)-[:DIRECTED]&amp;#8594;(NinjaAssassin),
+  (AndyW)-[:PRODUCED]&amp;#8594;(NinjaAssassin),
+  (LanaW)-[:PRODUCED]&amp;#8594;(NinjaAssassin),
+  (JoelS)-[:PRODUCED]&amp;#8594;(NinjaAssassin)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (TheGreenMile:Movie {title:&#39;The Green Mile&#39;, released:1999, tagline:&#34;Walk a mile you&amp;#8217;ll never forget.&#34;})
+CREATE (MichaelD:Person {name:&#39;Michael Clarke Duncan&#39;, born:1957})
+CREATE (DavidM:Person {name:&#39;David Morse&#39;, born:1953})
+CREATE (SamR:Person {name:&#39;Sam Rockwell&#39;, born:1968})
+CREATE (GaryS:Person {name:&#39;Gary Sinise&#39;, born:1955})
+CREATE (PatriciaC:Person {name:&#39;Patricia Clarkson&#39;, born:1959})
+CREATE (FrankD:Person {name:&#39;Frank Darabont&#39;, born:1959})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Paul Edgecomb&#39;]}]&amp;#8594;(TheGreenMile),
+  (MichaelD)-[:ACTED_IN {roles:[&#39;John Coffey&#39;]}]&amp;#8594;(TheGreenMile),
+  (DavidM)-[:ACTED_IN {roles:[&#39;Brutus &#34;Brutal&#34; Howell&#39;]}]&amp;#8594;(TheGreenMile),
+  (BonnieH)-[:ACTED_IN {roles:[&#39;Jan Edgecomb&#39;]}]&amp;#8594;(TheGreenMile),
+  (JamesC)-[:ACTED_IN {roles:[&#39;Warden Hal Moores&#39;]}]&amp;#8594;(TheGreenMile),
+  (SamR)-[:ACTED_IN {roles:[&#39;&#34;Wild Bill&#34; Wharton&#39;]}]&amp;#8594;(TheGreenMile),
+  (GaryS)-[:ACTED_IN {roles:[&#39;Burt Hammersmith&#39;]}]&amp;#8594;(TheGreenMile),
+  (PatriciaC)-[:ACTED_IN {roles:[&#39;Melinda Moores&#39;]}]&amp;#8594;(TheGreenMile),
+  (FrankD)-[:DIRECTED]&amp;#8594;(TheGreenMile)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (FrostNixon:Movie {title:&#39;Frost/Nixon&#39;, released:2008, tagline:&#39;400 million people were waiting for the truth.&#39;})
+CREATE (FrankL:Person {name:&#39;Frank Langella&#39;, born:1938})
+CREATE (MichaelS:Person {name:&#39;Michael Sheen&#39;, born:1969})
+CREATE (OliverP:Person {name:&#39;Oliver Platt&#39;, born:1960})
+CREATE
+  (FrankL)-[:ACTED_IN {roles:[&#39;Richard Nixon&#39;]}]&amp;#8594;(FrostNixon),
+  (MichaelS)-[:ACTED_IN {roles:[&#39;David Frost&#39;]}]&amp;#8594;(FrostNixon),
+  (KevinB)-[:ACTED_IN {roles:[&#39;Jack Brennan&#39;]}]&amp;#8594;(FrostNixon),
+  (OliverP)-[:ACTED_IN {roles:[&#39;Bob Zelnick&#39;]}]&amp;#8594;(FrostNixon),
+  (SamR)-[:ACTED_IN {roles:[&#39;James Reston, Jr.&#39;]}]&amp;#8594;(FrostNixon),
+  (RonH)-[:DIRECTED]&amp;#8594;(FrostNixon)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (Hoffa:Movie {title:&#39;Hoffa&#39;, released:1992, tagline:&#34;He didn&amp;#8217;t want law. He wanted justice.&#34;})
+CREATE (DannyD:Person {name:&#39;Danny DeVito&#39;, born:1944})
+CREATE (JohnR:Person {name:&#39;John C. Reilly&#39;, born:1965})
+CREATE
+  (JackN)-[:ACTED_IN {roles:[&#39;Hoffa&#39;]}]&amp;#8594;(Hoffa),
+  (DannyD)-[:ACTED_IN {roles:[&#39;Robert &#34;Bobby&#34; Ciaro&#39;]}]&amp;#8594;(Hoffa),
+  (JTW)-[:ACTED_IN {roles:[&#39;Frank Fitzsimmons&#39;]}]&amp;#8594;(Hoffa),
+  (JohnR)-[:ACTED_IN {roles:[&#39;Peter &#34;Pete&#34; Connelly&#39;]}]&amp;#8594;(Hoffa),
+  (DannyD)-[:DIRECTED]&amp;#8594;(Hoffa)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (Apollo13:Movie {title:&#39;Apollo 13&#39;, released:1995, tagline:&#39;Houston, we have a problem.&#39;})
+CREATE (EdH:Person {name:&#39;Ed Harris&#39;, born:1950})
+CREATE (BillPax:Person {name:&#39;Bill Paxton&#39;, born:1955})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Jim Lovell&#39;]}]&amp;#8594;(Apollo13),
+  (KevinB)-[:ACTED_IN {roles:[&#39;Jack Swigert&#39;]}]&amp;#8594;(Apollo13),
+  (EdH)-[:ACTED_IN {roles:[&#39;Gene Kranz&#39;]}]&amp;#8594;(Apollo13),
+  (BillPax)-[:ACTED_IN {roles:[&#39;Fred Haise&#39;]}]&amp;#8594;(Apollo13),
+  (GaryS)-[:ACTED_IN {roles:[&#39;Ken Mattingly&#39;]}]&amp;#8594;(Apollo13),
+  (RonH)-[:DIRECTED]&amp;#8594;(Apollo13)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (Twister:Movie {title:&#39;Twister&#39;, released:1996, tagline:&#34;Don&amp;#8217;t Breathe. Don&amp;#8217;t Look Back.&#34;})
+CREATE (PhilipH:Person {name:&#39;Philip Seymour Hoffman&#39;, born:1967})
+CREATE (JanB:Person {name:&#39;Jan de Bont&#39;, born:1943})
+CREATE
+  (BillPax)-[:ACTED_IN {roles:[&#39;Bill Harding&#39;]}]&amp;#8594;(Twister),
+  (HelenH)-[:ACTED_IN {roles:[&#39;Dr. Jo Harding&#39;]}]&amp;#8594;(Twister),
+  (ZachG)-[:ACTED_IN {roles:[&#39;Eddie&#39;]}]&amp;#8594;(Twister),
+  (PhilipH)-[:ACTED_IN {roles:[&#39;Dustin &#34;Dusty&#34; Davis&#39;]}]&amp;#8594;(Twister),
+  (JanB)-[:DIRECTED]&amp;#8594;(Twister)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (CastAway:Movie {title:&#39;Cast Away&#39;, released:2000, tagline:&#39;At the edge of the world, his journey begins.&#39;})
+CREATE (RobertZ:Person {name:&#39;Robert Zemeckis&#39;, born:1951})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Chuck Noland&#39;]}]&amp;#8594;(CastAway),
+  (HelenH)-[:ACTED_IN {roles:[&#39;Kelly Frears&#39;]}]&amp;#8594;(CastAway),
+  (RobertZ)-[:DIRECTED]&amp;#8594;(CastAway)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (OneFlewOvertheCuckoosNest:Movie {title:&#34;One Flew Over the Cuckoo&amp;#8217;s Nest&#34;, released:1975, tagline:&#34;If he&amp;#8217;s crazy, what does that make you?&#34;})
+CREATE (MilosF:Person {name:&#39;Milos Forman&#39;, born:1932})
+CREATE
+  (JackN)-[:ACTED_IN {roles:[&#39;Randle McMurphy&#39;]}]&amp;#8594;(OneFlewOvertheCuckoosNest),
+  (DannyD)-[:ACTED_IN {roles:[&#39;Martini&#39;]}]&amp;#8594;(OneFlewOvertheCuckoosNest),
+  (MilosF)-[:DIRECTED]&amp;#8594;(OneFlewOvertheCuckoosNest)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (SomethingsGottaGive:Movie {title:&#34;Something&amp;#8217;s Gotta Give&#34;, released:2003})
+CREATE (DianeK:Person {name:&#39;Diane Keaton&#39;, born:1946})
+CREATE (NancyM:Person {name:&#39;Nancy Meyers&#39;, born:1949})
+CREATE
+  (JackN)-[:ACTED_IN {roles:[&#39;Harry Sanborn&#39;]}]&amp;#8594;(SomethingsGottaGive),
+  (DianeK)-[:ACTED_IN {roles:[&#39;Erica Barry&#39;]}]&amp;#8594;(SomethingsGottaGive),
+  (Keanu)-[:ACTED_IN {roles:[&#39;Julian Mercer&#39;]}]&amp;#8594;(SomethingsGottaGive),
+  (NancyM)-[:DIRECTED]&amp;#8594;(SomethingsGottaGive),
+  (NancyM)-[:PRODUCED]&amp;#8594;(SomethingsGottaGive),
+  (NancyM)-[:WROTE]&amp;#8594;(SomethingsGottaGive)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (BicentennialMan:Movie {title:&#39;Bicentennial Man&#39;, released:1999, tagline:&#34;One robot&amp;#8217;s 200 year journey to become an ordinary man.&#34;})
+CREATE (ChrisC:Person {name:&#39;Chris Columbus&#39;, born:1958})
+CREATE
+  (Robin)-[:ACTED_IN {roles:[&#39;Andrew Marin&#39;]}]&amp;#8594;(BicentennialMan),
+  (OliverP)-[:ACTED_IN {roles:[&#39;Rupert Burns&#39;]}]&amp;#8594;(BicentennialMan),
+  (ChrisC)-[:DIRECTED]&amp;#8594;(BicentennialMan)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (CharlieWilsonsWar:Movie {title:&#34;Charlie Wilson&amp;#8217;s War&#34;, released:2007, tagline:&#34;A stiff drink. A little mascara. A lot of nerve. Who said they couldn&amp;#8217;t bring down the Soviet empire.&#34;})
+CREATE (JuliaR:Person {name:&#39;Julia Roberts&#39;, born:1967})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Rep. Charlie Wilson&#39;]}]&amp;#8594;(CharlieWilsonsWar),
+  (JuliaR)-[:ACTED_IN {roles:[&#39;Joanne Herring&#39;]}]&amp;#8594;(CharlieWilsonsWar),
+  (PhilipH)-[:ACTED_IN {roles:[&#39;Gust Avrakotos&#39;]}]&amp;#8594;(CharlieWilsonsWar),
+  (MikeN)-[:DIRECTED]&amp;#8594;(CharlieWilsonsWar)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (ThePolarExpress:Movie {title:&#39;The Polar Express&#39;, released:2004, tagline:&#39;This Holiday Season… Believe&#39;})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Hero Boy&#39;, &#39;Father&#39;, &#39;Conductor&#39;, &#39;Hobo&#39;, &#39;Scrooge&#39;, &#39;Santa Claus&#39;]}]&amp;#8594;(ThePolarExpress),
+  (RobertZ)-[:DIRECTED]&amp;#8594;(ThePolarExpress)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (ALeagueofTheirOwn:Movie {title:&#39;A League of Their Own&#39;, released:1992, tagline:&#39;Once in a lifetime you get a chance to do something different.&#39;})
+CREATE (Madonna:Person {name:&#39;Madonna&#39;, born:1954})
+CREATE (GeenaD:Person {name:&#39;Geena Davis&#39;, born:1956})
+CREATE (LoriP:Person {name:&#39;Lori Petty&#39;, born:1963})
+CREATE (PennyM:Person {name:&#39;Penny Marshall&#39;, born:1943})
+CREATE
+  (TomH)-[:ACTED_IN {roles:[&#39;Jimmy Dugan&#39;]}]&amp;#8594;(ALeagueofTheirOwn),
+  (GeenaD)-[:ACTED_IN {roles:[&#39;Dottie Hinson&#39;]}]&amp;#8594;(ALeagueofTheirOwn),
+  (LoriP)-[:ACTED_IN {roles:[&#39;Kit Keller&#39;]}]&amp;#8594;(ALeagueofTheirOwn),
+  (RosieO)-[:ACTED_IN {roles:[&#39;Doris Murphy&#39;]}]&amp;#8594;(ALeagueofTheirOwn),
+  (Madonna)-[:ACTED_IN {roles:[&#39;&#34;All the Way&#34; Mae Mordabito&#39;]}]&amp;#8594;(ALeagueofTheirOwn),
+  (BillPax)-[:ACTED_IN {roles:[&#39;Bob Hinson&#39;]}]&amp;#8594;(ALeagueofTheirOwn),
+  (PennyM)-[:DIRECTED]&amp;#8594;(ALeagueofTheirOwn)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE (PaulBlythe:Person {name:&#39;Paul Blythe&#39;})
+CREATE (AngelaScope:Person {name:&#39;Angela Scope&#39;})
+CREATE (JessicaThompson:Person {name:&#39;Jessica Thompson&#39;})
+CREATE (JamesThompson:Person {name:&#39;James Thompson&#39;})&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE
+  (JamesThompson)-[:FOLLOWS]&amp;#8594;(JessicaThompson),
+  (AngelaScope)-[:FOLLOWS]&amp;#8594;(JessicaThompson),
+  (PaulBlythe)-[:FOLLOWS]&amp;#8594;(AngelaScope)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CREATE
+  (JessicaThompson)-[:REVIEWED {summary:&#39;An amazing journey&#39;, rating:95}]&amp;#8594;(CloudAtlas),
+  (JessicaThompson)-[:REVIEWED {summary:&#39;Silly, but fun&#39;, rating:65}]&amp;#8594;(TheReplacements),
+  (JamesThompson)-[:REVIEWED {summary:&#39;The coolest football movie ever&#39;, rating:100}]&amp;#8594;(TheReplacements),
+  (AngelaScope)-[:REVIEWED {summary:&#39;Pretty funny at times&#39;, rating:62}]&amp;#8594;(TheReplacements),
+  (JessicaThompson)-[:REVIEWED {summary:&#39;Dark, but compelling&#39;, rating:85}]&amp;#8594;(Unforgiven),
+  (JessicaThompson)-[:REVIEWED {summary:&#34;Slapstick redeemed only by the Robin Williams and Gene Hackman&amp;#8217;s stellar performances&#34;, rating:45}]&amp;#8594;(TheBirdcage),
+  (JessicaThompson)-[:REVIEWED {summary:&#39;A solid romp&#39;, rating:68}]&amp;#8594;(TheDaVinciCode),
+  (JamesThompson)-[:REVIEWED {summary:&#39;Fun, but a little far fetched&#39;, rating:65}]&amp;#8594;(TheDaVinciCode),
+  (JessicaThompson)-[:REVIEWED {summary:&#39;You had me at Jerry&#39;, rating:92}]&amp;#8594;(JerryMaguire)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;WITH TomH as a
+MATCH (a)-[:ACTED_IN]&amp;#8594;(m)&amp;#8592;[:DIRECTED]-(d) RETURN a,m,d LIMIT 10
+;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查找名叫 &#34;Tom Hanks&#34; 的演员&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (tom {name: &#34;Tom Hanks&#34;}) RETURN tom&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查找标题为 &#34;Cloud Atlas&#34; 的电影&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (cloudAtlas {title: &#34;Cloud Atlas&#34;}) RETURN cloudAtlas&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查找 10 个人&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (people:Person) RETURN people.name LIMIT 10&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查找 1990 年代里发行的电影&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (nineties:Movie) WHERE nineties.released &amp;gt; 1990 AND nineties.released &amp;lt; 2000 RETURN nineties.title&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (people:Person) WHERE people.born&amp;gt;1970 AND people.born&amp;lt;1980 RETURN people.name LIMIT 100&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;列出 Tom Hanks 的所有电影&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (tom:Person {name: &#34;Tom Hanks&#34;})-[:ACTED_IN]&amp;#8594;(tomHanksMovies) RETURN tom,tomHanksMovies&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;谁导演的 &#34;Cloud Atlas&#34;?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (cloudAtlas {title: &#34;Cloud Atlas&#34;})&amp;#8592;[:DIRECTED]-(directors) RETURN directors.name&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Tom Hanks 的合作演员是&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (tom:Person {name:&#34;Tom Hanks&#34;})-[:ACTED_IN]&amp;#8594;(m)&amp;#8592;[:ACTED_IN]-(coActors) RETURN coActors.name&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;人们与 &#34;Cloud Atlas&#34; 有何关系&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (people:Person)-[relatedTo]-(:Movie {title: &#34;Cloud Atlas&#34;}) RETURN people.name, Type(relatedTo), relatedTo&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;从 Kevin Bacon 起, 电影和导演最多 4 跳&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (bacon:Person {name:&#34;Kevin Bacon&#34;})-[*1..4]-(hollywood)
+RETURN DISTINCT hollywood&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;培根路径, 到 Meg Ryan 任意关系的最短路径&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH p=shortestPath(
+  (bacon:Person {name:&#34;Kevin Bacon&#34;})-[*]-(meg:Person {name:&#34;Meg Ryan&#34;})
+)
+RETURN p&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;为查找没有与 Tom Hanks 一起工作过的联合演员, 扩展 Tom Hanks 的合作演员&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (tom:Person {name:&#34;Tom Hanks&#34;})-[:ACTED_IN]&amp;#8594;(m)&amp;#8592;[:ACTED_IN]-(coActors),
+      (coActors)-[:ACTED_IN]&amp;#8594;(m2)&amp;#8592;[:ACTED_IN]-(cocoActors)
+WHERE NOT (tom)-[:ACTED_IN]&amp;#8594;(m2)
+RETURN cocoActors.name AS Recommended, count(*) AS Strength ORDER BY Strength DESC&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查找将 Tom Hanks 介绍给 Tom Cruise 的人&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (tom:Person {name:&#34;Tom Hanks&#34;})-[:ACTED_IN]&amp;#8594;(m)&amp;#8592;[:ACTED_IN]-(coActors),
+      (coActors)-[:ACTED_IN]&amp;#8594;(m2)&amp;#8592;[:ACTED_IN]-(cruise:Person {name:&#34;Tom Cruise&#34;})
+RETURN tom, m, coActors, m2, cruise&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;删除所有 Movie 和 Person 节点及他们的关系&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (a:Person),(m:Movie) OPTIONAL MATCH (a)-[r1]-(), (m)-[r2]-() DELETE a,r1,m,r2&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;注意, 在首次创建关系时, 您只需像这样比较属性值&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;验证电影图已经已经消失了&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;MATCH (n) RETURN n&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cd /c/Documents and Settings/Administrator/桌面/dishui&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;1. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://neo4j.com/docs/developer-manual/3.2/cypher/&#34; class=&#34;bare&#34;&gt;http://neo4j.com/docs/developer-manual/3.2/cypher/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://neo4j.com/docs/java-reference/current/&#34; class=&#34;bare&#34;&gt;http://neo4j.com/docs/java-reference/current/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/neo4j-examples&#34; class=&#34;bare&#34;&gt;https://github.com/neo4j-examples&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/neo4j/docker-neo4j&#34; class=&#34;bare&#34;&gt;https://github.com/neo4j/docker-neo4j&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://neo4j.com/developer/spring-data-neo4j/&#34; class=&#34;bare&#34;&gt;https://neo4j.com/developer/spring-data-neo4j/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://neo4j.com/developer/java/&#34; class=&#34;bare&#34;&gt;https://neo4j.com/developer/java/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://neo4j.com/docs/cypher-refcard/current/&#34; class=&#34;bare&#34;&gt;https://neo4j.com/docs/cypher-refcard/current/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;start n = node(&lt;strong&gt;) where n.Name =~ &#39;.*SUBSTRING.&lt;/strong&gt;&#39; return n.Name, n;
+7687&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

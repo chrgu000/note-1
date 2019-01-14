@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/categories/js/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/js/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>JS 面向对象</title>
+      <link>/post/js/js-html/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/js/js-html/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_base&#34;&gt;1. base&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_js_面向对象&#34;&gt;1.1. JS 面向对象&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_弹框页面&#34;&gt;1.2. 弹框页面&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_base&#34;&gt;1. base&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_js_面向对象&#34;&gt;1.1. JS 面向对象&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;js&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;$(function(){
+	function T(){
+		//this.a = &#39;a&#39;;
+		_this = this;
+		//初始化
+		this.init();
+	};
+	T.prototype = {
+	    init: function(){
+	        $(&#39;*[data-jump]&#39;).each(function(){
+		        $(this).bind(&#39;click&#39;,{flag:$(this)},_this.jump);
+	        });
+	        $(&#39;*[data-modify]&#39;).each(function(){
+		        $(this).bind(&#39;click&#39;,{flag:$(this)},_this.modify);
+	        });
+	    },
+		save: function(event){
+			var data = event.data.flag;
+			console.log(data.html());
+		},
+		modify: function(event){
+			var data = event.data.flag;
+			var id = data.attr(&#39;data-id&#39;);
+			var flag = data.attr(&#39;data-modify&#39;);
+
+			switch(flag)
+			{
+				case &#39;edit&#39;:
+					window.location.href = &#39;/mgf/toModify.do?id=&#39;+id;
+				  break;
+				case &#39;delete&#39;:
+					window.location.href = &#39;/mgf/delete.do?id=&#39;+id;
+				  break;
+			}
+		},
+		jump: function(event){
+          var data = event.data.flag;
+          window.location.href = &#39;/mgf/to-insert.do&#39;;
+        }
+	};
+	window[&#34;t&#34;] = new T();
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;html&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;//导入文件
+&amp;lt;script type=&#34;text/javascript&#34; src=&#34;js/orderManager.js&#34; /&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_弹框页面&#34;&gt;1.2. 弹框页面&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-jsp:/src/java/alter-page.html```&#34; data-lang=&#34;jsp:/src/java/alter-page.html```&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,14 @@
+    {
+        "keys": ["alt+2"],
+        "command": "chain",
+        "args": {
+            "commands": [
+                ["show_overlay", {"overlay": "goto", "show_files": true}],
+                ["move", {"by": "lines", "forward": true}]
+            ]
+        },
+    },
+
+
+
+{ "keys": ["down"], "command": "move", "args": {"by": "lines", "forward": true} },

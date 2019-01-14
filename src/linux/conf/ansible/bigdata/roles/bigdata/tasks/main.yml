@@ -1,0 +1,63 @@
+---
+
+- name: 创建Hadoop目录
+  file:
+    path: '{{ appdir }}'
+    state: directory
+    owner: hadoop
+    group: hadoop
+    recurse: yes
+
+- name: Copy JDK
+  copy:
+    src: /root/tar/{{ jdk }}
+    dest: /tmp/{{ jdk }}
+
+- unarchive:
+    src: /tmp/{{ jdk }}
+    dest: /home/hadoop/app
+    remote_src: True
+
+- name: Copy Hadoop
+  copy:
+    src: /root/tar/{{ hadoop }}
+    dest: /tmp/{{ hadoop }}
+
+- unarchive:
+    src: /tmp/{{ hadoop }}
+    dest: /home/hadoop/app
+    remote_src: True
+
+- name: Copy Spark
+  copy:
+    src: /root/tar/{{ spark }}
+    dest: /tmp/{{ spark }}
+
+- unarchive:
+    src: /tmp/{{ spark }}
+    dest: /home/hadoop/app
+    remote_src: True
+
+- name: Copy zookeeper
+  copy:
+    src: /root/tar/{{ zookeeper }}
+    dest: /tmp/{{ zookeeper }}
+
+- unarchive:
+    src: /tmp/{{ zookeeper }}
+    dest: /home/hadoop/app
+    remote_src: True
+# - name: Copy Hive
+#   copy:
+#     src: /root/tar/{{ hive }}
+#     dest: /tmp/{{ hive }}
+
+# - unarchive:
+#     src: /tmp/{{ hive }}
+#     dest: {{ jdk }}
+#     remote_src: True
+
+- name: Copy profile
+  copy:
+    src: /root/tar/bigdata.sh
+    dest: /etc/profile.d/

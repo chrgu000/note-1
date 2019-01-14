@@ -1,0 +1,25 @@
+---
+# Source: elastic-stack/charts/elasticsearch/templates/client-ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: elastic-stack-elasticsearch-client
+  labels:
+    app: elasticsearch
+    chart: elasticsearch-1.15.1
+    component: "client"
+    heritage: Tiller
+    release: elastic-stack
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.kubernetes.io/ingress.class: nginx
+    
+spec:
+  rules:
+    - host: "cxzx.fabx.com.cn"
+      http:
+        paths:
+          - path: /es
+            backend:
+              serviceName: elastic-stack-elasticsearch-client
+              servicePort: http

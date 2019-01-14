@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpringMVC</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="SpringMVC" />
+<meta property="og:description" content="MVC_xml springmvc.xml &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd &quot;&gt; &lt;!-- 配置式开发开始=========================================== --&gt; &lt;!-- 处理器 映射器 &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt; --&gt; &lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt; &lt;!-- 集中管理Url --&gt; &lt;property name=&quot;mappings&quot;&gt; &lt;props&gt; &lt;prop key=&quot;/items1.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items2.action &quot;&gt;itemsController&lt;/prop&gt; &lt;prop key=&quot;/items3.action &quot;&gt;items1Controller&lt;/prop&gt; &lt;/props&gt; &lt;/property&gt; &lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现Controller接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 处理器 适配器 要求处理器实现HttpRequestHandler接口--&gt; &lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;&gt;&lt;/bean&gt; &lt;!-- 视图解释器 jspViewResolver 默认支持 jstl --&gt; &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt; &lt;!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/mvcxml_md/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">SpringMVC</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="mvc-xml">MVC_xml</h1>
+
+<h3 id="springmvc-xml"><code>springmvc.xml</code></h3>
+
+<pre><code class="language-xml">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd &quot;&gt;
+
+    &lt;!-- 配置式开发开始=========================================== --&gt;
+    &lt;!-- 处理器 映射器 
+    &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt;
+    --&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt;
+        &lt;!-- 集中管理Url --&gt;
+        &lt;property name=&quot;mappings&quot;&gt;
+            &lt;props&gt;
+                &lt;prop key=&quot;/items1.action &quot;&gt;itemsController&lt;/prop&gt;
+                &lt;prop key=&quot;/items2.action &quot;&gt;itemsController&lt;/prop&gt;
+                &lt;prop key=&quot;/items3.action &quot;&gt;items1Controller&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+    
+    &lt;!-- 处理器 适配器  要求处理器实现Controller接口--&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;&lt;/bean&gt;
+    &lt;!-- 处理器 适配器  要求处理器实现HttpRequestHandler接口--&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;&gt;&lt;/bean&gt;
+    
+    &lt;!-- 视图解释器     jspViewResolver 默认支持 jstl --&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+        &lt;!-- 配置前缀 --&gt;
+        &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+        &lt;!-- 配置后缀 --&gt;
+        &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+    &lt;/bean&gt;
+    
+    &lt;!-- 处理器  
+    &lt;bean name=&quot;/items1.action&quot; class=&quot;cn.itcast.core.controller.ItemsController&quot;&gt;&lt;/bean&gt;
+    --&gt;
+    &lt;bean id=&quot;itemsController&quot; class=&quot;cn.itcast.core.controller.ItemsController&quot;&gt;&lt;/bean&gt;
+    &lt;bean id=&quot;items1Controller&quot; class=&quot;cn.itcast.core.controller.Items1Controller&quot;&gt;&lt;/bean&gt;
+    &lt;!-- 配置式开发结束=========================================== --&gt;
+    
+    
+    &lt;!-- 注解开发 开始============================================ --&gt;
+    &lt;!-- 配置处理器映射器 --&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;&gt;&lt;/bean&gt;
+    &lt;!-- 配置处理器适配器 --&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;&gt;
+        &lt;!-- 配置类型转换 --&gt;
+        &lt;!-- 配置日期转换 Converter --&gt;
+        &lt;property name=&quot;webBindingInitializer&quot; ref=&quot;customBinding&quot;/&gt;
+        &lt;!-- 支持JSON转换 --&gt;
+        &lt;property name=&quot;messageConverters&quot;&gt;
+            &lt;list&gt;
+                &lt;bean class=&quot;org.springframework.http.converter.json.MappingJacksonHttpMessageConverter&quot;/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+    
+    &lt;!-- 自定义参数绑定  spring提供--&gt;
+    &lt;bean id=&quot;customBinding&quot; class=&quot;org.springframework.web.bind.support.ConfigurableWebBindingInitializer&quot;&gt;
+        &lt;!-- 类型转换 --&gt;
+        &lt;property name=&quot;conversionService&quot; ref=&quot;conversionService&quot;/&gt;
+        &lt;!-- 校验JavaBean合法性 --&gt;
+        &lt;property name=&quot;validator&quot; ref=&quot;validator&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;!-- 校验器 --&gt;
+    &lt;bean id=&quot;validator&quot; class=&quot;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&quot;&gt;
+        &lt;!-- 指定由谁来完成此次校验 --&gt;
+        &lt;property name=&quot;providerClass&quot; value=&quot;org.hibernate.validator.HibernateValidator&quot;/&gt;
+        &lt;!-- 指定把提示信息放在配置文件中 --&gt;
+        &lt;property name=&quot;validationMessageSource&quot; ref=&quot;messageSource&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+    &lt;!-- 校验错误信息配置文件 --&gt;
+    &lt;bean id=&quot;messageSource&quot;
+        class=&quot;org.springframework.context.support.ReloadableResourceBundleMessageSource&quot;&gt;
+        &lt;!-- 资源文件名--&gt;
+        &lt;property name=&quot;basenames&quot;&gt;   
+         &lt;list&gt;    
+            &lt;value&gt;classpath:CustomValidationMessages&lt;/value&gt; 
+         &lt;/list&gt;   
+        &lt;/property&gt;
+        &lt;!-- 资源文件编码格式 --&gt;
+        &lt;property name=&quot;fileEncodings&quot; value=&quot;utf-8&quot; /&gt;
+        &lt;!-- 对资源文件内容缓存时间，单位秒 --&gt;
+        &lt;property name=&quot;cacheSeconds&quot; value=&quot;120&quot; /&gt;
+    &lt;/bean&gt;
+    
+    
+    
+    &lt;!-- 参数格式  字符串类型  yyyy-MM-dd HH-mm-ss  格式化  --&gt;
+    &lt;bean id=&quot;conversionService&quot; class=&quot;org.springframework.format.support.FormattingConversionServiceFactoryBean&quot;&gt;
+        &lt;property name=&quot;converters&quot;&gt;
+            &lt;list&gt;
+                &lt;!-- 日期转换 --&gt;
+                &lt;bean class=&quot;cn.itcast.common.converter.CustomDateConverter&quot;/&gt;
+                &lt;!-- 日期转换 --&gt;
+&lt;!--                &lt;bean class=&quot;cn.itcast.common.converter.CustomDate1Converter&quot;/&gt; --&gt;
+                &lt;!-- 参数 传递 前后去掉空格 --&gt;
+                &lt;bean class=&quot;cn.itcast.common.converter.CustomTrimConverter&quot;/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+    
+    &lt;!-- 注解开发第二种配置文式  
+    &lt;mvc:annotation-driven /&gt;
+     --&gt;
+     &lt;mvc:interceptors&gt;
+        &lt;mvc:interceptor&gt;
+            &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+            &lt;bean class=&quot;cn.itcast.common.inteceptor.LoginInteceptor&quot;&gt;&lt;/bean&gt;
+        &lt;/mvc:interceptor&gt;
+     &lt;/mvc:interceptors&gt;
+     &lt;!-- 拦截器 
+     &lt;mvc:interceptors&gt;
+        &lt;mvc:interceptor&gt;
+            &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+            &lt;bean class=&quot;cn.itcast.common.inteceptor.Inteceptor1&quot;&gt;&lt;/bean&gt;
+        &lt;/mvc:interceptor&gt;
+        &lt;mvc:interceptor&gt;
+            &lt;mvc:mapping path=&quot;/**&quot;/&gt;
+            &lt;bean class=&quot;cn.itcast.common.inteceptor.Inteceptor2&quot;&gt;&lt;/bean&gt;
+        &lt;/mvc:interceptor&gt;
+     &lt;/mvc:interceptors&gt;
+    --&gt;
+    &lt;!-- 配置 处理器  本身不用配置这里   配置扫描处理器--&gt;
+    &lt;context:component-scan base-package=&quot;cn.itcast.core.controller&quot;/&gt;
+    
+    &lt;!-- 实例化此异常处理类 --&gt;
+    &lt;bean class=&quot;cn.itcast.common.exception.CustomExceptionResolver&quot;/&gt;
+    
+    &lt;!-- 静态资源不拦截 location : 资源位置--&gt;
+    &lt;mvc:resources location=&quot;/js/&quot; mapping=&quot;/js/**&quot;/&gt;
+    
+    
+    &lt;!-- 配置Springmvc支持上传图片 --&gt;
+    &lt;bean id=&quot;multipartResolver&quot; class=&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;&gt;
+        &lt;!-- 指定上传大小  上传的图片不能超过1M    默认是 B --&gt;
+        &lt;property name=&quot;maxUploadSize&quot; value=&quot;1048576&quot;/&gt;
+    &lt;/bean&gt;
+    
+    &lt;!-- 注解开发 结束============================================ --&gt;
+        
+&lt;/beans&gt;
+</code></pre>
+
+<h3 id="处理器-映射器-注解解析类">处理器 映射器 (注解解析类)</h3>
+
+<pre><code class="language-xml">&lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;&gt;&lt;/bean&gt;
+</code></pre>
+
+<h3 id="处理器-适配器-注解解析类">处理器 适配器 (注解解析类)</h3>
+
+<pre><code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;&gt;
+</code></pre>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/java/spring-conf/" rel="prev"><span>«Previous</span><p>Spring 配置文件</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/vagrant/" rel="next"><span>Next»</span><p>Vagrant常用命令</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

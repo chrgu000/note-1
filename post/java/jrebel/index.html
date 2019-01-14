@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jrebel 热部署</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Jrebel 热部署" />
+<meta property="og:description" content="Contents1. Jrebel 热部署1.1. 安装1.2. 脚本1. Jrebel 热部署1.1. 安装下载地址
+http://196.168.1.33:9080/f/d68fbbf872/
+解压 jrebel_6.2.2.zip 到 tomcat 安装目录
+修改 jrebel_6.2.2 中的 jrebel.properties
+rebel.dirs=/apache-tomcat-7.0.62/webapps/app/WEB-INF/classes/ (1)1修改 classes 编译目录1.2. 脚本在 tomcat/bin 目录下创建文件
+windows startup_jrebel_jvm.bat@echo offrem ---------------------------放入tomcat路径下的bin/catalina.bat同一级目录rem ---------------------------jrebel remoting------------------------------------------------cd ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/jrebel/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Jrebel 热部署</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/java" rel="category">java</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_jrebel_热部署">1. Jrebel 热部署</a>
+<ul class="sectlevel2">
+<li><a href="#_安装">1.1. 安装</a></li>
+<li><a href="#_脚本">1.2. 脚本</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_jrebel_热部署">1. Jrebel 热部署</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_安装">1.1. 安装</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>下载地址<br>
+<a href="http://196.168.1.33:9080/f/d68fbbf872/" class="bare">http://196.168.1.33:9080/f/d68fbbf872/</a></p>
+</li>
+<li>
+<p>解压 <code>jrebel_6.2.2.zip</code> 到 <code>tomcat</code> 安装目录</p>
+</li>
+<li>
+<p>修改 <code>jrebel_6.2.2</code> 中的 <code>jrebel.properties</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>rebel.dirs=/apache-tomcat-7.0.62/webapps/app/WEB-INF/classes/ <i class="conum" data-value="1"></i><b>(1)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>修改 <code>classes</code> 编译目录</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_脚本">1.2. 脚本</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>在 <code>tomcat/bin</code> 目录下创建文件</p>
+</div>
+</blockquote>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>windows</code> <code>startup_jrebel_jvm.bat</code></dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bat" data-lang="bat">@echo off
+rem ---------------------------放入tomcat路径下的bin/catalina.bat同一级目录
+rem ---------------------------jrebel remoting------------------------------------------------
+cd ..
+set "CATALINA_HOME=%cd%"
+set JAVA_OPTS=%JAVA_OPTS% -noverify -javaagent:%CATALINA_HOME%\jrebel_6.2.2\jrebel.jar -Drebel.properties=%CATALINA_HOME%\jrebel_6.2.2\jrebel.properties -Drebel.disable_update=true
+
+rem ---------------------------JVM------------------------------------------------
+REM set JAVA_OPTS=%JAVA_OPTS% -Xms512m -Xmx512m -XX:PermSize=256m -XX:MaxPermSize=256m
+
+call "%CATALINA_HOME%\bin\catalina.bat" %* jpda run</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>linux</code> <code>startup_jrebel_jvm.sh</code> </dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+CATALINA_HOME=/apache-tomcat-7.0.62
+
+export CATALINA_OPTS="$CATALINA_OPTS -noverify -javaagent:$CATALINA_HOME/jrebel_6.2.2/jrebel.jar -Drebel.properties=$CATALINA_HOME/jrebel_6.2.2/jrebel.properties"
+
+$CATALINA_HOME/bin/catalina.sh jpda run</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/java/jprofiler/" rel="prev"><span>«Previous</span><p>Jprofiler</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/js/jsutils/" rel="next"><span>Next»</span><p>Js工具类</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

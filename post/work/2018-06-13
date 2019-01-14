@@ -1,0 +1,12 @@
+  select
+    scity,
+    count(distinct (case when length(imsi) = 15 then 1 else 0 end)) as user_count,
+    count(distinct b.WIRELESSID) as eNodeB,
+    sum(total_traffic) as total_traffic,
+    count(distinct (case when length(imsi) = 15 and total_traffic > 0 then imsi else null end)) as active_count,
+    sum(case when length(a.imsi) = 15 then total_traffic else 0 end) as total_traffic_normal
+  from RPT_LOCATION_IMSI_CI a
+  left join $
+
+
+  select distinct imsi from RPT_LOCATION_IMSI_CI as tmp_a where length(tmp_a.imsi) = 15 and tmp_a.total_traffic > 0

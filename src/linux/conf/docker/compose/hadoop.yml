@@ -1,0 +1,33 @@
+version: '2'
+services:
+  mini1:
+    image: dishui.io:5000/sequenceiq/hadoop-docker:2.4.1
+    container_name: mini1
+    environment:
+      - "HOSTNAME=mini1"
+    ports:
+      - "50070:50070"
+      - "8088:8088"
+    volumes:
+      - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
+      - ./hadoop.sh:/etc/profile.d/hadoop.sh
+    command: /etc/bootstrap.sh -d
+    networks:
+      - hadoop
+  mini2:
+    image: dishui.io:5000/sequenceiq/hadoop-docker:2.4.1
+    container_name: mini2
+    environment:
+      - "HOSTNAME=mini1"
+    volumes:
+      - ./core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
+      - ./hadoop.sh:/etc/profile.d/hadoop.sh
+    command: /usr/sbin/sshd -d
+    networks:
+      - hadoop
+
+networks:
+  hadoop:
+    driver: bridge

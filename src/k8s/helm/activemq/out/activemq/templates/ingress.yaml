@@ -1,0 +1,27 @@
+---
+# Source: activemq/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: activemq
+  labels:
+    app: activemq
+    chart: activemq-0.1.0
+    release: activemq
+    heritage: Tiller
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    proxy_connect_timeout: 12s
+    proxy_read_timeout: 10800s
+    proxy_send_timeout: 12s
+    proxy_set_header: Connection "upgrade"
+    
+spec:
+  rules:
+    - host: dev.cxzx.fabx.com.cn
+      http:
+        paths:
+          - path: /admin
+            backend:
+              serviceName: activemq
+              servicePort: 8161

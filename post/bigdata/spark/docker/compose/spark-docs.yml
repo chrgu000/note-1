@@ -1,0 +1,63 @@
+version: '2'
+services:
+  jekyll:
+    image: jekyll/jekyll:3.5
+    container_name: jekyll
+    volumes:
+      - data:/share
+volumes:
+  data:
+    external:
+      name: "192.168.137.2/share"
+
+
+docker run --rm \
+  --volume=$PWD:/srv/jekyll \
+  -it jekyll/jekyll:$JEKYLL_VERSION \
+  jekyll build
+
+docker run -it --name=jekyll --volume-driver=cifs -v 192.168.137.2/share:/share jekyll/jekyll:3.5 /bin/bash
+
+
+apk update
+apk add python
+
+apk add python py2-pip --update-cache --repository http://dl-3.alpinelinux.org/alpine/v3.5/main/ --allow-untrusted
+
+
+FROM jekyll/jekyll:3.5
+MAINTAINER dishui_git@126.com
+RUN apk add python py2-pip --update-cache --repository http://dl-3.alpinelinux.org/alpine/v3.5/main/ --allow-untrusted
+ \
+    && gem install jekyll -v 2.5 \
+    && gem install jekyll-redirect-from -v 0.11.0 \
+    && gem install pygments.rb \
+    && pip install Pygments
+
+cat > /etc/apt/sources.list <<_EOF_
+deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib
+deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib
+deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib
+_EOF_
+
+mkdir ~/.pip
+cat > ~/.pip/pip.conf <<_EOF_
+[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+
+[install]
+trusted-host=mirrors.aliyun.com
+_EOF_
+
+
+FROM ruby:2.1
+MAINTAINER dishui_git@126.com
+COPY ./t.sh /t.sh
+RUN sh /t.sh \
+    && apt-get update && apt-get -y install python-pip supervisor\
+    && gem install jekyll -v 2.5 \
+    && gem install jekyll-redirect-from -v 0.11.0 \
+    && gem install pygments.rb \
+    && pip install Pygments sphinx 
+CMD ["/usr/bin/supervisord","-n"]

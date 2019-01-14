@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="数据结构：所有种类的数据都是记录在同一个文件中，比如pv、play等数据。每个种类的数据的数据格式都是不一样的，需要通过url区分每个种类的数据参数顺序不一样，需要我们对每个种类的数据定义元数据，数据拆分需要此元数据
+数据采集规范：日志数据记录在多台日志服务器上，每个小时会生成一个文件，文件命名为2017052412.log文件会放到固定的目录，以便flume采集采集数据的时候需要添加文件名头信息，根据文件头解析出天和小时，并设置天和小时的头，在写hdfs时需要用到这些头信息。
+YARN分布式缓存工作流程具体如下:步骤1客户端将应用程序所需的文件资源(外部字典、JAR包、二进制文件等)提交到HDFS上。步骤2客户端将应用程序提交到ResourceManager上。步骤3 ResourceManager与某个NodeManager通信，启动应用程序ApplicationMaster,NodeManager收到命令后，首先从HDFS下载文件(缓存)，然后启动ApplicationMaster步骤4 ApplicationMaster与ResourceManager通信，以请求和获取计算资源。步骤5 ApplicationMaster收到新分配的计算资源后，与对应的NodeManager通信，以启动任务。步骤6如果该应用程序第一次在该节点上启动任务，则NodeManager首先从HDFS上下载文件缓存到本地，然后启动任务。步骤7 NodeManager后续收到启动任务请求后，如果文件以在本地缓存，则直接运行任务，否则等待文件缓存完成后再启动。各节点上的缓存文件由对应的NodeManager管理和维护。考虑到磁盘空间的有限性，NodeManager采用了一定的缓存置换算法定期清理失效文件。
+1、有哪些数据（见excel表格）、总体流程
+pv页面点击
+flum 24台日志机器，24个日志采集agent, 5台聚合agent高可用的拓扑结构
+2、采集的细节3、mapreduce、hdfs、资源管理器
+block 64M 2个10M的文件上传后会有几个block 2个文件上传流程、高可用
+应用程序设计流程、分布式缓存资源管理器种类、队列资源抢占
+4、hive sql
+5.数据量
+每条是0.39K 1*60*24*5000
+hadoop 75节点 8核 32G 4T500G&#43; 20几种日志清洗计算(1小时之内) 500G * 1024 / 64M = 8000 map8000 / 75 = 107 map / 台107 / 16 = 7 并行map64M / 0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E9%9D%A2%E8%AF%95/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>数据结构：
+所有种类的数据都是记录在同一个文件中，比如pv、play等数据。
+每个种类的数据的数据格式都是不一样的，需要通过url区分
+每个种类的数据参数顺序不一样，需要我们对每个种类的数据定义元数据，数据拆分需要此元数据</p>
+</div>
+<div class="paragraph">
+<p>数据采集规范：
+日志数据记录在多台日志服务器上，每个小时会生成一个文件，文件命名为2017052412.log
+文件会放到固定的目录，以便flume采集
+采集数据的时候需要添加文件名头信息，根据文件头解析出天和小时，并设置天和小时的头，在写
+hdfs时需要用到这些头信息。</p>
+</div>
+<div class="paragraph">
+<p>YARN分布式缓存工作流程具体如下:
+步骤1客户端将应用程序所需的文件资源(外部字典、JAR包、二进制文件等)提交到HDFS上。
+步骤2客户端将应用程序提交到ResourceManager上。
+步骤3  ResourceManager与某个NodeManager通信，启动应用程序ApplicationMaster,NodeManager收到命令后，首先从HDFS下载文件
+(缓存)，然后启动ApplicationMaster
+步骤4  ApplicationMaster与ResourceManager通信，以请求和获取计算资源。
+步骤5  ApplicationMaster收到新分配的计算资源后，与对应的NodeManager通信，以启动任务。
+步骤6如果该应用程序第一次在该节点上启动任务，则NodeManager首先从HDFS上下载文件缓存到本地，然后启动任务。
+步骤7  NodeManager后续收到启动任务请求后，如果文件以在本地缓存，则直接运行任务，否则等待文件缓存完成后再启动。
+各节点上的缓存文件由对应的NodeManager管理和维护。考虑到磁盘空间的有限性，NodeManager采用了一定的缓存置换算法定期清理
+失效文件。</p>
+</div>
+<div class="paragraph">
+<p>1、有哪些数据（见excel表格）、总体流程</p>
+</div>
+<div class="paragraph">
+<p>pv
+页面点击</p>
+</div>
+<div class="paragraph">
+<p>flum 24台日志机器，24个日志采集agent, 5台聚合agent
+高可用的拓扑结构</p>
+</div>
+<div class="paragraph">
+<p>2、采集的细节
+3、mapreduce、hdfs、资源管理器</p>
+</div>
+<div class="paragraph">
+<p>block 64M   2个10M的文件上传后会有几个block  2个
+文件上传流程、高可用</p>
+</div>
+<div class="paragraph">
+<p>应用程序设计流程、分布式缓存
+资源管理器种类、队列
+资源抢占</p>
+</div>
+<div class="paragraph">
+<p>4、hive sql</p>
+</div>
+<div class="paragraph">
+<p>5.数据量</p>
+</div>
+<div class="paragraph">
+<p>每条是0.39K   1*60*24*5000</p>
+</div>
+<div class="paragraph">
+<p>hadoop  75节点 8核 32G  4T
+500G+  20几种日志
+清洗计算(1小时之内)  500G * 1024 / 64M = 8000 map
+8000 / 75 = 107 map / 台
+107 / 16 = 7 并行map
+64M / 0.39k = 16.8万条</p>
+</div>
+<div class="paragraph">
+<p>总体来说所有任务在3到4小时完成</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>项目数据是怎么来的, 什么样的格式 有哪些字段属性, 分别代表什么意思
+机顶盒的数据 (外包项目,测试数据(几十G,上百G)) 80G左右的增量数据   xml 半结构化
+爬虫的数据</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>机顶盒号 日期  频道  节目内容 起始时间 结束时间</p>
+</div>
+<div class="paragraph">
+<p>维度
+    频道、频道类别、栏目、栏目类别、节目、
+节目类别、具体频道具体节目 地区
+粒度
+    分钟,小时,天</p>
+</div>
+<div class="paragraph">
+<p>2个10M的文件在一个目录下，此目录是mapreduce的input,那么会生成2个map
+2个10M的文件会生成两个block,每个block一般来说会对应一个split,一个split产生一个map
+70M的文件，会生成2个map</p>
+</div>
+<div class="paragraph">
+<p>本项目主要针对用户充值，金币消耗，钻石消耗等数据，进行实时计算分析，统计出来最近一段时间内用户的消费情况，为运营部门提供运营决策依据</p>
+</div>
+<div class="paragraph">
+<p>为了便于集团实时查看集装箱的信息,便于分析箱子的基本信息
+主要从以下几个维度来分析
+获取某个集装箱</p>
+</div>
+<div class="paragraph">
+<p>本项目主要针对集装箱的定位信息，集装箱的状态信息等数据，进行实时计算分析，统计出来最近一段时间内集装箱的分布情况，为集装箱运营部门提供运营决策依据</p>
+</div>
+<div class="paragraph">
+<p>集装箱定位信息实时分析系统</p>
+</div>
+<div class="paragraph">
+<p>获取某个集装箱一天停留的位置以及每个位置停留的时长
+获取某个集装箱一周停留的位置以及每个位置停留的时长
+获取某个集装箱一周停留的所有位置信息
+获取某个集装箱一月停留的所有位置信息</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>熟悉Hadoop分布式数据集群和YARN分布式缓存，会搭建和配置hadoop集群；</p>
+</li>
+<li>
+<p>熟悉分布式文件系统HDFS和mr分布式计算框架，能够基于mr编程模型开发自己的mr程序去解决实际问题；</p>
+</li>
+<li>
+<p>熟悉Spark RDD算子,SparkStream 窗口函数,了解Spark调优,SparkSql调优</p>
+</li>
+<li>
+<p>熟悉HBase 性能调优，Hbase如何降低IO，冷热数据处理；</p>
+</li>
+<li>
+<p>熟悉Flume拦截器使用及自定义拦截器；</p>
+</li>
+<li>
+<p>熟悉Hive文件存储，Hive高级函数；</p>
+</li>
+<li>
+<p>熟悉Zookeeper分布式进程监控，分布式共享锁；</p>
+</li>
+<li>
+<p>熟悉Hadoop其他相关子项目Hbase、Zookeeper、Flume、Kafka、Sqoop、Hive、Azkaban等，加以运用并解决了实际问题；</p>
+</li>
+<li>
+<p>熟悉（Elasticsearch、Logstash）的使用</p>
+</li>
+<li>
+<p>熟悉Linux系统的基本操作和集群环境的搭建和部署</p>
+</li>
+<li>
+<p>熟悉Docker的基本操作和容器管理Rancher的搭建、部署和使用</p>
+</li>
+<li>
+<p>熟悉JavaEE的开发及常用框架使用，如：Spring、Mybatis、SpringMVC、Jesery、Hibernate、Struts2等</p>
+</li>
+<li>
+<p>了解Neo4J图数据库</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>spark 优化</p>
+</div>
+<div class="paragraph">
+<p>运行环境优化
+    防止不必要的jar包上传与分发</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>提高数据本地性</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>尽可能的把yarn和hdfs部署在同一节点</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>优化存储格式
+    orc
+    parquet</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>优化操作符
+    过滤操作导致产生很多小任务
+        coalesce 性能高  但可能不均匀
+        repartition 性能低 但是很均匀</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>降低单条记录处理开销</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>处理任务倾斜或任务倾斜
+    选择合理的Partition key
+    克服慢节点导致任务运行缓慢()
+    将spark.speculation设为true</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>对复用RDD进行缓存</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>操作符的选择
+    避免使用Cartesian
+    尽可能的避免shuffle
+    如果可能,用reduceByKey替代groupByKey
+    如果可能,用treeReduce代替reduce</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>何时join不会产生shuffle
+    两个join的RDD,分区数是一样的,Hash(partitionKey)也是一样的</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>一个Spark应用程序由多个job构成,如果job之间没有依赖关系,可并行处理(充分利用资源)
+    启用FAIR调度器: spark.scheduler.mode=fair
+    将action相关操作放到单独线程中</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>作业参数调优</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>设置合理的JVM参数
+启动更高效的序列化方法
+增大off heap(堆外) 内存
+shuffle参数调优
+设置reduce task数目
+使用SparkSql写</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>维度
+    频道 节目 地区
+粒度</p>
+</div>
+<div class="paragraph">
+<p>项目有多少人</p>
+</div>
+<div class="paragraph">
+<p>建模时应该存在两张模型表（Pageviews和visits）：</p>
+</div>
+<div class="paragraph">
+<p>1、用于生成点击流的访问日志表
+时间戳 IP地址    Cookie  Session 请求URL   Referal
+2012-01-01 12:31:12 101.0.0.1   User01  S001    /a/&#8230;&#8203;  somesite.com
+2012-01-01 12:31:16 201.0.0.2   User02  S002    /a/&#8230;&#8203;  -
+2012-01-01 12:33:06 101.0.0.2   User03  S002    /b/&#8230;&#8203;  baidu.com
+2012-01-01 15:16:39 234.0.0.3   User01  S003    /c/&#8230;&#8203;  google.com
+2012-01-01 15:17:11 101.0.0.1   User01  S004    /d/&#8230;&#8203;  /c/&#8230;&#8203;
+2012-01-01 15:19:23 101.0.0.1   User01  S004    /e/&#8230;&#8203;  /d/&#8230;&#8203;.</p>
+</div>
+<div class="paragraph">
+<p>2、页面点击流模型Pageviews表
+Session userid  时间  访问页面URL 停留时长    第几步
+S001    User01  2012-01-01 12:31:12 /a/&#8230;&#8203;. 30  1
+S002    User02  2012-01-01 12:31:16 /a/&#8230;&#8203;. 10  1
+S002    User02  2012-01-01 12:33:06 /b/&#8230;&#8203;. 110 2
+S002    User02  2012-01-01 12:35:06 /e/&#8230;&#8203;. 30  3</p>
+</div>
+<div class="paragraph">
+<p>3、点击流模型Visits表
+Session 起始时间    结束时间    进入页面    离开页面    访问页面数   IP  cookie  referal
+S001    2012-01-01 12:31:12 2012-01-01 12:31:12 /a/&#8230;&#8203;  /a/&#8230;&#8203;  1   101.0.0.1   User01  somesite.com
+S002    2012-01-01 12:31:16 2012-01-01 12:35:06 /a/&#8230;&#8203;  /e/&#8230;&#8203;  3   201.0.0.2   User02  -
+S003    2012-01-01 12:35:42 2012-01-01 12:35:42 /c/&#8230;&#8203;  /c/&#8230;&#8203;  1   234.0.0.3   User03  baidu.com
+S003    2012-01-01 15:16:39 2012-01-01 15:19:23 /c/&#8230;&#8203;  /e/&#8230;&#8203;  3   101.0.0.1   User01  google.com</p>
+</div>
+<div class="paragraph">
+<p>流量分析常见指标
+课程中涉及的分析指标主要位于以下几大方面：
+1)基础分析（PV,IP,UV）
+   趋势分析：根据选定的时段，提供网站流量数据，通过流量趋势变化形态，为您分析网站访客的访问规律、网站发展状况提供参考。
+   对比分析：根据选定的两个对比时段，提供网站流量在时间上的纵向对比报表，帮您发现网站发展状况、发展规律、流量变化率等。
+   当前在线：提供当前时刻站点上的访客量，以及最近15分钟流量、来源、受访、访客变化情况等，方便用户及时了解当前网站流量状况。
+   访问明细：提供最近7日的访客访问记录，可按每个PV或每次访问行为（访客的每次会话）显示，并可按照来源、搜索词等条件进行筛选。 通过访问明细，用户可以详细了解网站流量的累计过程，从而为用户快速找出流量变动原因提供最原始、最准确的依据。
+2)来源分析
+   来源分类：提供不同来源形式（直接输入、搜索引擎、其他外部链接、站内来源）、不同来源项引入流量的比例情况。通过精确的量化数据，帮助用户分析什么类型的来路产生的流量多、效果好，进而合理优化推广方案。
+   搜索引擎：提供各搜索引擎以及搜索引擎子产品引入流量的比例情况。从搜索引擎引入流量的的角度，帮助用户了解网站的SEO、SEM效果，从而为制定下一步SEO、SEM计划提供依据。
+   搜索词：提供访客通过搜索引擎进入网站所使用的搜索词，以及各搜索词引入流量的特征和分布。帮助用户了解各搜索词引入流量的质量，进而了解访客的兴趣关注点、网站与访客兴趣点的匹配度，为优化SEO方案及SEM提词方案提供详细依据。
+   最近7日的访客搜索记录，可按每个PV或每次访问行为（访客的每次会话）显示，并可按照访客类型、地区等条件进行筛选。为您搜索引擎优化提供最详细的原始数据。
+   来路域名：提供具体来路域名引入流量的分布情况，并可按“社会化媒体”、“搜索引擎”、“邮箱”等网站类型对来源域名进行分类。 帮助用户了解哪类推广渠道产生的流量多、效果好，进而合理优化网站推广方案。
+   来路页面：提供具体来路页面引入流量的分布情况。 尤其对于通过流量置换、包广告位等方式从其他网站引入流量的用户，该功能可以方便、清晰地展现广告引入的流量及效果，为优化推广方案提供依据。
+   来源升降榜：提供开通统计后任意两日的TOP10000搜索词、来路域名引入流量的对比情况，并按照变化的剧烈程度提供排行榜。 用户可通过此功能快速找到哪些来路对网站流量的影响比较大，从而及时排查相应来路问题。</p>
+</div>
+<div class="paragraph">
+<p>3)受访分析
+   受访域名：提供访客对网站中各个域名的访问情况。 一般情况下，网站不同域名提供的产品、内容各有差异，通过此功能用户可以了解不同内容的受欢迎程度以及网站运营成效。
+   受访页面：提供访客对网站中各个页面的访问情况。 站内入口页面为访客进入网站时浏览的第一个页面，如果入口页面的跳出率较高则需要关注并优化；站内出口页面为访客访问网站的最后一个页面，对于离开率较高的页面需要关注并优化。
+   受访升降榜：提供开通统计后任意两日的TOP10000受访页面的浏览情况对比，并按照变化的剧烈程度提供排行榜。 可通过此功能验证经过改版的页面是否有流量提升或哪些页面有巨大流量波动，从而及时排查相应问题。
+   热点图：记录访客在页面上的鼠标点击行为，通过颜色区分不同区域的点击热度；支持将一组页面设置为"关注范围"，并可按来路细分点击热度。 通过访客在页面上的点击量统计，可以了解页面设计是否合理、广告位的安排能否获取更多佣金等。
+   用户视点：提供受访页面对页面上链接的其他站内页面的输出流量，并通过输出流量的高低绘制热度图，与热点图不同的是，所有记录都是实际打开了下一页面产生了浏览次数（PV）的数据，而不仅仅是拥有鼠标点击行为。
+   访问轨迹：提供观察焦点页面的上下游页面，了解访客从哪些途径进入页面，又流向了哪里。 通过上游页面列表比较出不同流量引入渠道的效果；通过下游页面列表了解用户的浏览习惯，哪些页面元素、内容更吸引访客点击。</p>
+</div>
+<div class="paragraph">
+<p>4)访客分析
+   地区运营商：提供各地区访客、各网络运营商访客的访问情况分布。 地方网站、下载站等与地域性、网络链路等结合较为紧密的网站，可以参考此功能数据，合理优化推广运营方案。
+   终端详情：提供网站访客所使用的浏览终端的配置情况。 参考此数据进行网页设计、开发，可更好地提高网站兼容性，以达到良好的用户交互体验。
+   新老访客：当日访客中，历史上第一次访问该网站的访客记为当日新访客；历史上已经访问过该网站的访客记为老访客。 新访客与老访客进入网站的途径和浏览行为往往存在差异。该功能可以辅助分析不同访客的行为习惯，针对不同访客优化网站，例如为制作新手导航提供数据支持等。
+   忠诚度：从访客一天内回访网站的次数（日访问频度）与访客上次访问网站的时间两个角度，分析访客对网站的访问粘性、忠诚度、吸引程度。 由于提升网站内容的更新频率、增强用户体验与用户价值可以有更高的忠诚度，因此该功能在网站内容更新及用户体验方面提供了重要参考。</p>
+</div>
+<div class="paragraph">
+<p>   活跃度：从访客单次访问浏览网站的时间与网页数两个角度，分析访客在网站上的活跃程度。 由于提升网站内容的质量与数量可以获得更高的活跃度，因此该功能是网站内容分析的关键指标之一。</p>
+</div>
+<div class="paragraph">
+<p>原始数据表:t_origin_weblog
+ETL中间表：t_etl_referurl
+访问日志明细宽表：t_ods_access_detail</p>
+</div>
+<div class="paragraph">
+<p>维度表
+    时间维度    v_year_month_date
+    访客地域维度  t_dim_area
+    网站栏目维度  t_dim_section
+    终端类型维度  t_dim_termination</p>
+</div>
+<div class="paragraph">
+<p>熟悉Hadoop分布式数据集群和YARN分布式缓存，会搭建和配置hadoop集群；
+熟悉分布式文件系统HDFS和MR分布式计算框架和RDD分布式内存计算，能够基于MR/RDD编程模型开发自己的MR/RDD程序去解决实际问题；
+熟悉Spark RDD算子,SparkStream 窗口函数,了解Spark调优,SparkSql调优
+熟悉HBase 性能调优，Hbase如何降低IO，冷热数据处理；
+熟悉Flume拦截器使用及自定义拦截器；
+熟悉Hive文件存储，Hive高级函数；
+熟悉Zookeeper分布式进程监控，分布式共享锁；
+熟悉Hadoop其他相关子项目加以运用并解决了实际问题；
+熟悉（Elasticsearch、Logstash）的使用
+熟悉Docker的基本操作和了解容器管理工具
+熟悉JavaEE的开发及常用框架使用，如：Spring、Mybatis、SpringMVC、Jesery、Hibernate、Struts2等
+了解Neo4J图数据库</p>
+</div>
+<div class="paragraph">
+<p>57.19
+19.1
+155.2+28.5</p>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/djt/%E4%BD%9C%E4%B8%9A/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA3%E8%8A%82%E7%82%B9%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/hadoop/yarn/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

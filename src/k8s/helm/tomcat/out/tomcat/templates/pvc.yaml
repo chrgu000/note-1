@@ -1,0 +1,19 @@
+---
+# Source: tomcat/templates/pvc.yaml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: tomcat
+  labels:
+    app: tomcat
+    chart: "tomcat-0.1.0"
+    release: "tomcat"
+    heritage: "Tiller"
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "8Gi"
+  storageClassName: "cxzx-nfs"

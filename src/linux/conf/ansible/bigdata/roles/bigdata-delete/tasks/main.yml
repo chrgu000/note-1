@@ -1,0 +1,11 @@
+---
+
+- name: 删除zookeeper data目录
+  file:
+    path: '{{ zookeeperdata }}'
+    state: absent
+
+- name: 删除zookeeper log 目录
+  file:
+    path: '{{ zookeeperlog }}'
+    state: absent

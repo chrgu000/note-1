@@ -1,0 +1,18 @@
+{
+  "udf_register": {
+    "desc": "测试",
+    "strategy": "refFunction",
+    "algorithm": [],
+    "ref": [],
+    "compositor": [
+      {
+        "name": "sql.udf",
+        "params": [
+          {
+            "analysis": "streaming.core.compositor.spark.udf.func.Functions"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spark</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Spark" />
+<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/categories/spark/" />
+
+
+<meta property="og:updated_time" content="2018-09-04T09:23:58&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+	<div id="main-content" class="mr-loop mr-content" role="main">
+		
+		<header class="page-header">
+			<h1 class="page-title">Spark</h1>
+		</header>
+		
+		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-sql%E5%86%85%E6%A0%B8%E5%89%96%E6%9E%90/" rel="bookmark">SparkSql内核剖析</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-09-04 09:23:58 &#43;0000 UTC">September 04, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql1. Spark SQL 背景2. Spark SQL逻辑计划概述1. Spark SQL 背景2. Spark SQL逻辑计划概述Spark SQL 逻辑计划在实现层面被定义为 LogicalPlan 类。从SQL语句经过 SparkSqlParser 解析生成 Unresolved LogicalPlan, 到最终优化为 Optimized LogicalPlan,这个流程主要经过三个阶段
+inputSet|missingInput|producedAttributes|output|outputSet
+由 SparkSqlParser 中的 AstBuilder 执行节点访问,将语法树的各种 Context 节点转换成对应的 LogicalPlan 节点, 从而成为一棵未解析的逻辑算子树(Unresolved LogicalPlan),此时的逻辑算子树是最初形态,不包含数据信息与列信息等
+由 Analyzer 将一系列的规则作用在 Unresolved LogicalPlan 上，对树上的节点绑定各种数据信息，生成解析后的逻辑算子树 (Analyzed LogicalPlan)
+由 Spark SQL中的优化器(Optimizer)将一系列规则作用到上一步生成的逻辑算子树中，在确保结果正确的前提下改写其中的低效结构，生成优化后的逻辑算子树 (Optimized LogicalPlan)
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/" rel="bookmark">spark-问题</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-06-20 10:49:12 &#43;0000 UTC">June 20, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						有一个表中，有200+字段 然后我要分别统计每个字段的 空值和非空值的分布情况。 这个表一天的数据大概有24T 目前打算抽样一千万条数据。 想用透视表来做 哪位大神指导一下，要是用spark 的话 怎么写
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/ambari/" rel="bookmark">Ambari</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-02-10 00:00:00 &#43;0000 UTC">February 10, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Ambari1. Ambari2. 参考3. ambari动态添加删除节点3.1. 下线节点3.2. 上线节点1. Ambaricurl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+curl -o /etc/yum.repos.d/ambari.repo http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.0/ambari.repo
+curl -o /etc/yum.repos.d/ambari.repo http://192.168.137.123/ambari/centos7/2.6.1.3-3/ambari.repo
+http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.3/ambari.repo
+curl -o /etc/yum.repos.d/hdp.repo http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.4.0/hdp.repo
+ambari-server setup --jdbc-db=mysql --jdbc-driver=/path/to/mysql/mysql-connector-java.jar
+ambari-server setup --jdbc-db=postgres --jdbc-driver=/root/postgresql-9.4.1211.jar
+admin/admin
+http://192.168.137.123/HDP/centos7/2.6.4.0-91/
+http://192.168.137.123/HDP-UTILS/
+http://192.168.137.123/HDP-GPL/centos7/2.6.4.0-91/
+http://192.168.137.123/HDP/centos7/2.6.4.0-91/HDP-2.6.4.0-91.xml
+2. 参考https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_start_the_ambari_server.html
+Python script has been killed due to timeout after waiting 1800 secs
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/streamingpro/streamingpro/" rel="bookmark">Streampro 学习</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-01-20 18:20:34 &#43;0000 UTC">January 20, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						==
+SHome=/d/sparkSPARK_HOME=/d/env/spark-2.2.1-bin-hadoop2.7
+sh $SPARK_HOME/bin/spark-submit --class streaming.core.StreamingApp \--master local[2] \--name test \$SHome/streamingpro-spark-2.0-1.0.0.jar \-streaming.name test \-streaming.platform spark \-streaming.job.file.path file://$SHome/batch_1.json-streaming.sql.source.a.path file://$SHome/data/source/batch_1.json-streaming.sql.out.b.path file://$SHome/data/out/parquet_1
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-conf/" rel="bookmark">spark-conf</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-11-15 17:29:44 &#43;0000 UTC">November 15, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark-conf1. spark-defaults.conf2. spark-env.sh1. spark-defaults.confspark.master spark://vm74:7077spark.home /opt/hadoop-2.7.3# 日志spark.eventLog.enabled truespark.eventLog.dir hdfs://vm73:8020/spark-log#spark.serializer org.apache.spark.serializer.KryoSerializerspark.executor.memory 6gspark.driver.memory 6gspark.executor.extraJavaOptions -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"# spark sql 默认task数spark.sql.shuffle.partitions 10--driver-java-options "-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties"--master yarn --deploy-mode client --driver-memory 4G --driver-cores 2 --executor-memory 6G --executor-cores 2 --num-executors 5 --conf spark.sql.shuffle.partitions=20 --driver-java-options "-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties"
+spark.acls.enable # truespark.admin.acls # set to admin usersspark.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/%E9%97%AE%E9%A2%98/" rel="bookmark">问题总结</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-09-19 08:32:40 &#43;0000 UTC">September 19, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark1. Hbase1. Hbase单节点启动 只有 HMaster 进程
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="bookmark">机器学习与数学基础</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-08-27 12:52:28 &#43;0000 UTC">August 27, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						机器学习与数学基础1. 不明白1. 不明白协方差
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-sql2/" rel="bookmark">SparkSql</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql21. Spark SQL22. 内置函数3. 列名特殊字符处理1. Spark SQL2org.apache.spark.sql.SparkSession#sqlorg.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan
+2. 内置函数floor
+https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/
+每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。
+SessionCalalog 用于管理表和数据库状态的内部目录Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系
+AbstractSqlParserSparkSqlParser
+sparkSession.sql("SELECT * FROM global_temp.people")org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlanorg.apache.spark.sql.execution.SparkSqlParser#parseorg.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse
+SqlBaseLexer 词法分析ANTLRNoCaseStringStreamCommonTokenStreamSqlBaseParser
+Analyzer
+def sql(sqlText: String): DataFrame = {Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))}sessionState.sqlParser.parsePlan(sqlText) -&gt; unresolved logical planSparkSql-1.0org.apache.spark.sql.SQLContext#sql
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/" rel="bookmark">SparkSql</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						SparkSql21. Spark SQL21. Spark SQL2逻辑查询计划图物理查询计划任务调度任务分布式执行
+前三个阶段 driver端完成
+逻辑执行图完全依赖新生成的RDD的每个Partition完全依赖前一个依赖的某一个Partition部分依赖shuffle新生成的RDD的每一个Partition的部分数据完全依赖前一个依赖的某一个Partition的部分数据
+一对一 全依赖map filter flatMap
+部分依赖 shuffle RddgroupByKeyreduceByKey
+物理查询计划
+划分 stage 以 shuffle 划分
+每一个stage会产生 多个 task将尽可能多的不是一个partition一个task
+几个Action 几个Job
+一个job 多个stage
+每个 stage 有很多个 task
+每个 executer -&#8594; process(进程) -&#8594; task(线程)
+shuffle task 瓶颈所在 网络瓶颈
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-hive/" rel="bookmark">spark hive</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-06-17 14:11:22 &#43;0000 UTC">June 17, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						spark hive1. spark hive1. spark hive$SPARK_HOME/conf/hive-site.xml
+&lt;configuration&gt;&lt;property&gt;&lt;name&gt;hive.metastore.uris&lt;/name&gt;&lt;value&gt;thrift://master:9083&lt;/value&gt;&lt;/property&gt;&lt;/configuration&gt;val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)
+hiveContext.sql("show tables").collect.foreach(println)
+hiveContext.sql("select count(*) from zh_track").collect.foreach(println)
+hiveContext.sql("SELECT COUNT(*) FROM zh_track z GROUP BY z.box_no").collect.foreach(println)
+hiveContext.sql("SELECT z.box_no, COUNT(*) AS num FROM zh_track z GROUP BY z.box_no ORDER BY num DESC limit 10").collect.foreach(println)
+create table t_pp(id string,name string)clustered by (id)sorted by (id)into 4 bucketsrow format delimited fields terminated by ',';
+					</div>
+				</div>
+			</div>
+		</article>
+		
+
+		
+<div class="mr-loop-pagination clearfix">
+	
+	<span class="page-numbers current">1/2</span>
+	
+	<a class="page-numbers" href="/categories/spark/page/2/">»</a>
+	
+</div>
+
+	</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+<div class="mr-widget widget_search navbar-wrapper" >
+	<div class="search-form" role="search" >
+		<label>
+			<span class="screen-reader-text">Search for:</span>
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
+		</label>
+		
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+	</div>
+</div>
+
+	
+	
+
+
+<div class="mr-widget widget_categories">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
+	<ul>
+		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
+		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
+		
+		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
+		
+		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
+		
+		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
+		
+		<li class="cat-item"><a href="/categories/go">Go</a></li>
+		
+		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
+		
+		<li class="cat-item"><a href="/categories/java">Java</a></li>
+		
+		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
+		
+		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
+		
+		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
+		
+		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
+		
+		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
+		
+		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
+		
+		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
+		
+		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
+		
+		<li class="cat-item"><a href="/categories/work">Work</a></li>
+		
+		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
+		
+	</ul>
+</div>
+
+
+
+    
+
+
+<div class="mr-widget widget_tag_cloud">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
+	<div class="tagcloud">
+		
+			<a href="/tags/" class="tag-link" title="" style="font-size: 12px;"></a>
+		
+			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
+		
+			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
+		
+			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
+		
+			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
+		
+			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
+		
+			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
+		
+			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
+		
+			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
+		
+			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
+		
+			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
+		
+			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
+		
+	</div>
+</div>
+
+
+
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

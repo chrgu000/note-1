@@ -1,0 +1,11 @@
+FROM dishui.io:5000/dishuigit/logstash:1.0
+MAINTAINER dishui_git@126.com
+COPY ./es-1.7.tar /
+COPY ./es.conf /etc/supervisord.conf.d/es.conf
+#系统时间
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN tar -xf es-1.7.tar \
+	&& rm -f es-1.7.tar
+COPY ./elasticsearch.yml /elasticsearch-1.7.1/config/elasticsearch.yml
+EXPOSE 9200 9300
+CMD ["/usr/bin/supervisord","-n"]

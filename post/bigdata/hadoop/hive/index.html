@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hive</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="hive" />
+<meta property="og:description" content="hive1. Hive只在一个节点上安装即可2. hive 参考2.1. transactions3. Q &amp; A3.1. beeline 连接 hiveserver 报错3.2. java.lang.OutOfMemoryError: Java heap space with hive3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space4. hive 操作1. Hive只在一个节点上安装即可上传tar包
+解压
+tar -zxvf hive-1.2.1.tar.gz -C /hadoop/安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）
+mysql.ymlversion: &#39;2&#39;services:mysql:image: dishui.io:5000/mysql:5.5.52container_name: mysqlenvironment:- &#34;MYSQL_ROOT_PASSWORD=111111&#34;ports:- &#34;3306:3306&#34;networks:- hadoopnetworks:hadoop:external: true配置 hive" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/hadoop/hive/" />
+
+
+<meta property="og:updated_time" content="2017-03-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">hive</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-16 00:00:00 &#43;0000 UTC">March 16, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/hadoop" rel="category">hadoop</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">hive</div>
+<ul class="sectlevel1">
+<li><a href="#_hive只在一个节点上安装即可">1. Hive只在一个节点上安装即可</a></li>
+<li><a href="#_hive_参考">2. hive 参考</a>
+<ul class="sectlevel2">
+<li><a href="#_transactions">2.1. transactions</a></li>
+</ul>
+</li>
+<li><a href="#_q_a">3. Q &amp; A</a>
+<ul class="sectlevel2">
+<li><a href="#__strong_beeline_strong_连接_strong_hiveserver_strong_报错">3.1. <strong>beeline</strong> 连接 <strong>hiveserver</strong> 报错</a></li>
+<li><a href="#_java_lang_outofmemoryerror_java_heap_space_with_hive">3.2. java.lang.OutOfMemoryError: Java heap space with hive</a></li>
+<li><a href="#_hiveserver2服务异常停止java_lang_outofmemoryerror_java_heap_space">3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space</a></li>
+</ul>
+</li>
+<li><a href="#_hive_操作">4. hive 操作</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_hive只在一个节点上安装即可">1. Hive只在一个节点上安装即可</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>上传tar包</p>
+</li>
+<li>
+<p>解压</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf hive-1.2.1.tar.gz -C /hadoop/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>安装mysql数据库（切换到root用户）（装在哪里没有限制，只有能联通hadoop集群的节点）</p>
+<div class="listingblock">
+<div class="title">mysql.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>version: '2'
+services:
+  mysql:
+    image: dishui.io:5000/mysql:5.5.52
+    container_name: mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=111111"
+    ports:
+      - "3306:3306"
+    networks:
+      - hadoop
+networks:
+  hadoop:
+    external: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>配置 <strong>hive</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>配置 <strong>HIVE_HOME</strong> 环境变量  <strong>vi conf/hive-env.sh</strong> 配置其中的 <strong>$hadoop_home</strong></p>
+</li>
+<li>
+<p>配置元数据库信息   <strong>vi hive-site.xml</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;configuration&gt;
+	&lt;property&gt;
+		&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+		&lt;value&gt;jdbc:mysql://mysql:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+		&lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;
+	&lt;/property&gt;
+
+	&lt;property&gt;
+		&lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+		&lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+		&lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;
+	&lt;/property&gt;
+
+	&lt;property&gt;
+		&lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+		&lt;value&gt;root&lt;/value&gt;
+		&lt;description&gt;username to use against metastore database&lt;/description&gt;
+	&lt;/property&gt;
+
+	&lt;property&gt;
+		&lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+		&lt;value&gt;111111&lt;/value&gt;
+		&lt;description&gt;password to use against metastore database&lt;/description&gt;
+	&lt;/property&gt;
+&lt;/configuration&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>安装 <strong>hive</strong> 和 <strong>mysql</strong> 完成后，将 <strong>mysql</strong> 的连接 <strong>jar</strong> 包拷贝到 <strong>$HIVE_HOME/lib</strong> 目录下</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>如果出现没有权限的问题，在 <strong>mysql</strong> 授权(在安装 <strong>mysql</strong> 的机器上执行)<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mysql -uroot -p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>执行下面的语句  <strong>.</strong>:所有库下的所有表   %：任何IP地址或主机都可以连接</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '111111' WITH GRANT OPTION;
+FLUSH PRIVILEGES;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Jline</strong> 包版本不一致的问题，需要拷贝 <strong>hive</strong> 的 <strong>lib</strong> 目录中 <strong>jline.2.12.jar</strong> 的 <strong>jar</strong> 包替换掉 <strong>hadoop</strong> 中的
+<strong>/home/hadoop/app/hadoop-2.6.4/share/hadoop/yarn/lib/jline-0.9.94.jar</strong></p>
+</li>
+<li>
+<p>启动 <strong>hive</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/hive</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>建表(默认是内部表)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>create table trade_detail(id bigint, account string, income double, expenses double, time string) row format delimited fields terminated by '\t';
+# 建分区表
+create table td_part(id bigint, account string, income double, expenses double, time string) partitioned by (logdate string) row format delimited fields terminated by '\t';
+# 建外部表
+create external table td_ext(id bigint, account string, income double, expenses double, time string) row format delimited fields terminated by '\t' location '/td_ext';</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>创建分区表</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># 普通表和分区表区别：有大量数据增加的需要建分区表
+create table book (id bigint, name string) partitioned by (pubdate string) row format delimited fields terminated by '\t';
+
+# 分区表加载数据
+load data local inpath './book.txt' overwrite into table book partition (pubdate='2010-08-22');
+
+load data local inpath '/root/data.am' into table beauty partition (nation="USA");
+
+select nation, avg(size) from beauties group by nation order by avg(size);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hive_参考">2. hive 参考</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_transactions">2.1. transactions</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://acadgild.com/blog/transactions-in-hive/" class="bare">https://acadgild.com/blog/transactions-in-hive/</a></p>
+</li>
+<li>
+<p><a href="https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started">hive on spark</a></p>
+</li>
+<li>
+<p><a href="https://www.iteblog.com/archives/1493.html" class="bare">https://www.iteblog.com/archives/1493.html</a></p>
+</li>
+<li>
+<p><a href="http://lxw1234.com/archives/2015/06/269.htm" class="bare">http://lxw1234.com/archives/2015/06/269.htm</a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/breg/p/5552342.html" class="bare">http://www.cnblogs.com/breg/p/5552342.html</a></p>
+</li>
+<li>
+<p><a href="http://blog.csdn.net/u014695188/article/details/54646575" class="bare">http://blog.csdn.net/u014695188/article/details/54646575</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_q_a">3. Q &amp; A</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__strong_beeline_strong_连接_strong_hiveserver_strong_报错">3.1. <strong>beeline</strong> 连接 <strong>hiveserver</strong> 报错</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/beeline -u jdbc:hive2://master:10000 -n root
+出现
+2017-06-10T10:00:53,391  WARN [HiveServer2-Handler-Pool: Thread-57] thrift.ThriftCLIService: Error opening session:
+org.apache.hive.service.cli.HiveSQLException: Failed to open new session: java.lang.RuntimeException: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): User: root is not allowed to impersonate root</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改hadoop 配置文件 <strong>$HADOOP_HOME/etc/hadoop/core-site.xml</strong> ,加入如下配置项</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.root.hosts&lt;/name&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.root.groups&lt;/name&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>root</strong> 为用户名,如果是别的用户,替换 <strong>root</strong> 即可</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>重启 <strong>Hadoop</strong> 集群</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_lang_outofmemoryerror_java_heap_space_with_hive">3.2. java.lang.OutOfMemoryError: Java heap space with hive</h3>
+<div class="paragraph">
+<p><a href="https://stackoverflow.com/questions/29673053/java-lang-outofmemoryerror-java-heap-space-with-hive" class="bare">https://stackoverflow.com/questions/29673053/java-lang-outofmemoryerror-java-heap-space-with-hive</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hiveserver2服务异常停止java_lang_outofmemoryerror_java_heap_space">3.3. hiveserver2服务异常停止java.lang.OutOfMemoryError: Java heap space</h3>
+<div class="paragraph">
+<p><a href="http://blog.csdn.net/levy_cui/article/details/53992402" class="bare">http://blog.csdn.net/levy_cui/article/details/53992402</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://aws.mannem.me/?p=1325" class="bare">http://aws.mannem.me/?p=1325</a></p>
+</div>
+<div class="paragraph">
+<p>export HADOOP_OPTS="$HADOOP_OPTS -server -verbose:gc  -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/hive"</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hive_操作">4. hive 操作</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>往分区表中导入数据,首先要要导入原始表,然后从原始表中导入数据到分区表</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive" class="bare">https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://hadooped.blogspot.com/2013/06/apache-sqoop-part-3-data-transfer.html" class="bare">http://hadooped.blogspot.com/2013/06/apache-sqoop-part-3-data-transfer.html</a></p>
+</div>
+<div class="paragraph">
+<p>把 hive 的查询结果 直接导出到 mysql</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>中文乱码</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;property&gt;
+  &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+  &lt;value&gt;jdbc:mysql://djt11:3306/hive?createDatabaseIfNotExsit=true;characterEncoding=UTF-8&lt;/value&gt;
+  &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>&#8201;&#8212;&#8201;修改字段注释字符集
+alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8;&#8201;&#8212;&#8201;修改表注释字符集
+alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;&#8201;&#8212;&#8201;修改分区表参数，以支持分区键能够用中文表示。
+alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;
+alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(4000) character set utf8;</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/hadoop/hive%E8%AF%A6%E8%A7%A3/" rel="prev"><span>«Previous</span><p>hive详解</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/hadoop/hive%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" rel="next"><span>Next»</span><p>hive基础操作</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

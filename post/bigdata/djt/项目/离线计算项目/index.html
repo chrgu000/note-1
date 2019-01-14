@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>离线计算项目</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="离线计算项目" />
+<meta property="og:description" content="离线计算项目1. Flumekill flumeinterceptor.conf1. Mapper Reducer 编写步骤每天收视的总人数yarn创建分区表1. 节目2. 频道3. count1. Flume.
+rm -rf /home/hadoop/flume/flume-collect/checkpoint/* &amp;&amp; \rm -rf /home/hadoop/flume/flume-collect/dataDir/*
+nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/agg.conf &gt; ~/log/flume/${HOSTNAME}-flume.log 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid
+nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/collect.conf &gt; ~/log/flume/${HOSTNAME}-flume.log 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E7%A6%BB%E7%BA%BF%E8%AE%A1%E7%AE%97%E9%A1%B9%E7%9B%AE/" />
+
+
+<meta property="og:updated_time" content="2017-09-27T09:58:17&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">离线计算项目</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-09-27 09:58:17 &#43;0000 UTC">September 27, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/djt" rel="category">djt</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">离线计算项目</div>
+<ul class="sectlevel1">
+<li><a href="#_flume">1. Flume</a></li>
+<li><a href="#_kill_flume">kill flume</a></li>
+<li><a href="#_interceptor_conf">interceptor.conf</a>
+<ul class="sectlevel1">
+<li><a href="#_mapper_reducer_编写步骤">1. Mapper Reducer 编写步骤</a></li>
+</ul>
+</li>
+<li><a href="#_每天收视的总人数">每天收视的总人数</a></li>
+<li><a href="#_yarn">yarn</a></li>
+<li><a href="#_创建分区表">创建分区表</a>
+<ul class="sectlevel1">
+<li><a href="#_节目">1. 节目</a></li>
+<li><a href="#_频道">2. 频道</a></li>
+<li><a href="#_count">3. count</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_flume">1. Flume</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>.</p>
+</div>
+<div class="paragraph">
+<p>rm -rf /home/hadoop/flume/flume-collect/checkpoint/* &amp;&amp; \
+rm -rf /home/hadoop/flume/flume-collect/dataDir/*</p>
+</div>
+<div class="paragraph">
+<p>nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/agg.conf &gt; ~/log/flume/${HOSTNAME}-flume.log 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid</p>
+</div>
+<div class="paragraph">
+<p>nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/collect.conf &gt; ~/log/flume/${HOSTNAME}-flume.log 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid</p>
+</div>
+</div>
+</div>
+<h1 id="_kill_flume" class="sect0">kill flume</h1>
+<div class="paragraph">
+<p>cat ~/log/flume/pid | xargs -I pid kill pid</p>
+</div>
+<div class="paragraph">
+<p>nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/spool.conf &gt; ~/log/flume/djt11-flume.log -Dflume.root.logger=INFO,console 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid</p>
+</div>
+<h1 id="_interceptor_conf" class="sect0">interceptor.conf</h1>
+<div class="paragraph">
+<p>nohup sh $FLUME_HOME/bin/flume-ng agent -n a1 -f ~/flume/conf/interceptor.conf &gt; ~/log/flume/djt11-flume.log -Dflume.root.logger=INFO,console 2&gt;&amp;1 &amp; echo $! &gt; ~/log/flume/pid</p>
+</div>
+<div class="paragraph">
+<p>echo "" &gt; ~/log/flume/$HOSTNAME-flume.log
+tail -f ~/log/flume/${HOSTNAME}-flume.log</p>
+</div>
+<div class="paragraph">
+<p>tail -f ~/log/flume/djt12-flume.log</p>
+</div>
+<div class="paragraph">
+<p>tail -f ~/log/flume/djt13-flume.log</p>
+</div>
+<div class="paragraph">
+<p>mount -t nfs 192.168.137.2:/e/djt /home/hadoop/share</p>
+</div>
+<div class="sect1">
+<h2 id="_mapper_reducer_编写步骤">1. Mapper Reducer 编写步骤</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建Configuration</p>
+</li>
+<li>
+<p>job实例</p>
+</li>
+<li>
+<p>设置输出key value分隔符</p>
+</li>
+<li>
+<p>setJar</p>
+</li>
+<li>
+<p>setMapper</p>
+</li>
+<li>
+<p>setOutputKey</p>
+</li>
+<li>
+<p>setOutputValue
+.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>cat deploy.conf|grep -v '^#'|grep ',all,'|awk -F',' '{print $1}'</p>
+</div>
+<div class="paragraph">
+<p>flume 采集 小文件  sink 到 hdfs 中, 会不会一个小文件一个block块</p>
+</div>
+<div class="paragraph">
+<p>stbNum + "@" + date + "@" + sn + "@" + p+ "@" + s + "@" + e + "@"
+            // + duration</p>
+</div>
+<div class="paragraph">
+<p>stbNum      机顶盒
+date        日期
+sn          频道
+p           节目内容
+s           起始时间
+e           结束时间
+duration    收看时长</p>
+</div>
+<div class="paragraph">
+<p>每个节目每天的收视人数和人均收视时长</p>
+</div>
+<div class="paragraph">
+<p>sn@date</p>
+</div>
+<div class="paragraph">
+<p>收视人数</p>
+</div>
+<div class="paragraph">
+<p>sum(stbNum)</p>
+</div>
+<div class="paragraph">
+<p>mount -t nfs 192.168.137.2:/e/djt /home/hadoop/share</p>
+</div>
+<div class="paragraph">
+<p>mkdir -p /home/hadoop/data/flume/{checkpoint,dataDir}</p>
+</div>
+<div class="paragraph">
+<p>sh $TOOLS_HOME/flume/start-flume.sh
+sh $TOOLS_HOME/flume/stop-flume.sh</p>
+</div>
+<div class="paragraph">
+<p>tail -f $LOG_HOME/flume/${HOSTNAME}-flume.log</p>
+</div>
+<div class="paragraph">
+<p>java -cp tv-1.0-jar-with-dependencies.jar io.dishui.upload.CopyManyFilesToHDFS "hdfs://djt11:9000" "E:\\djt\\resource\\guangdian\\73\\*" "hdfs://djt11:9000/tv/"</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar tv-1.0.jar io.dishui.tv.reducer.ParseAndFilterLog</p>
+</div>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--class ParseAndFilterLog \
+--master spark://djt11:7077 \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 1g \
+--total-executor-cores 4 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/tv/* \
+hdfs://cluster1/output/spark-output-3</p>
+</div>
+<div class="paragraph">
+<p>spark.files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml</a> <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a></p>
+</div>
+<div class="paragraph">
+<p>查看文件的block块数
+hadoop fsck /tv/2012-09-17 -files -blocks</p>
+</div>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--class ParseAndFilterLog \
+--master spark://djt11:7077 \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/tv/* \
+hdfs://cluster1/output/spark-output-1</p>
+</div>
+</div>
+</div>
+<h1 id="_每天收视的总人数" class="sect0">每天收视的总人数</h1>
+<div class="paragraph">
+<p>hadoop jar tv-1.0-jar-with-dependencies.jar io.dishui.my.extract.ProgramNumAndTime \
+/output/spark-output-3/* /output/ProgramNumAndTime-output</p>
+</div>
+<div class="paragraph">
+<p>hdfs dfs -cat /output/ProgramNumAndTime-output/* | wc -l</p>
+</div>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--class ProgramNumAndTime \
+--master spark://djt11:7077 \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 1g \
+--total-executor-cores 4 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/output/spark-output-3/* \
+hdfs://cluster1/output/spark-ProgramNumAndTime-output</p>
+</div>
+<h1 id="_yarn" class="sect0">yarn</h1>
+<div class="paragraph">
+<p>sh $SPARK_HOME/bin/spark-submit \
+--class extract.ProgramAvgAndReachNum \
+--master yarn \
+--deploy-mode client \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 1g \
+--total-executor-cores 4 \
+spark-1.0-jar-with-dependencies.jar \
+hdfs://cluster1/guangdian/2012-09-18/parselog-out/* \
+hdfs://cluster1/output/spark-ProgramAvgAndReachNum-output</p>
+</div>
+<div class="paragraph">
+<p>hdfs dfs -cat /output/spark-ProgramNumAndTime-output2/* | wc -l</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar guangdian.jar io.dishui.tv.reducer.ParseAndFilterLog /tv/2012-09-17 /tmp</p>
+</div>
+<div class="paragraph">
+<p>io.dishui.tv.reducer.ParseAndFilterLog</p>
+</div>
+<h1 id="_创建分区表" class="sect0">创建分区表</h1>
+<div class="sect1">
+<h2 id="_节目">1. 节目</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>columnlog_min</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_min(
+    tvcolumn STRING COMMENT '节目',
+    tvtime STRING COMMENT '日期',
+    tvmin STRING COMMENT '分钟',
+    avgnum INT COMMENT '平均收视人数',
+    reachnum INT COMMENT '到达人数',
+    tvrating DOUBLE COMMENT '收视率',
+    reachrating DOUBLE COMMENT '到达率',
+    marketshare DOUBLE COMMENT '市场份额'
+) PARTITIONED BY (tvdate STRING COMMENT '日期')
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/guangdian_ext';</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_hour LIKE columnlog_min;
+CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_day LIKE columnlog_min;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_频道">2. 频道</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS channellog_min(
+    tvchannel STRING COMMENT '节目',
+    tvtime STRING COMMENT '日期',
+    tvmin STRING COMMENT '分钟',
+    avgnum INT COMMENT '平均收视人数',
+    reachnum INT COMMENT '到达人数',
+    tvrating DOUBLE COMMENT '收视率',
+    reachrating DOUBLE COMMENT '到达率',
+    marketshare DOUBLE COMMENT '市场份额'
+) PARTITIONED BY (tvdate STRING COMMENT '日期')
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/guangdian_ext';</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS channellog_hour LIKE channellog_min;
+CREATE EXTERNAL TABLE IF NOT EXISTS channellog_day LIKE channellog_min;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_count">3. count</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>columnlog_count</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS columnlog_count(
+    tvcolumn STRING COMMENT '节目',
+    tvtime STRING COMMENT '日期',
+    num STRING COMMENT '每天收视人数',
+    avg_timelen INT COMMENT '平均收视时长',
+) PARTITIONED BY (tvdate STRING COMMENT '日期')
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/guangdian_ext';</p>
+</div>
+<div class="paragraph">
+<p>channellog_count</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS channellog_count(
+    tvchannel STRING COMMENT '频道',
+    tvtime STRING COMMENT '日期',
+    num STRING COMMENT '每天收视人数',
+    avg_timelen INT COMMENT '平均收视时长',
+) PARTITIONED BY (tvdate STRING COMMENT '日期')
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/guangdian_ext';</p>
+</div>
+<div class="paragraph">
+<p>truncate table columnlog_min;</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS test_columnlog_min2(
+    tvcolumn STRING COMMENT '节目',
+    tvdate1 STRING ,
+    tvmin STRING COMMENT '分钟',
+    avgnum INT COMMENT '平均收视人数',
+    reachnum INT COMMENT '到达人数',
+    tvrating DOUBLE COMMENT '收视率',
+    reachrating DOUBLE COMMENT '到达率',
+    marketshare DOUBLE COMMENT '市场份额'
+) PARTITIONED BY (tvdate STRING COMMENT '日期')
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/test_guangdian_ext';</p>
+</div>
+<div class="paragraph">
+<p>select * from test_columnlog_min1 where tvdate='2012-09-20' limit 5</p>
+</div>
+<div class="paragraph">
+<p>alter table test_columnlog_min2 add partition (tvdate='2012-09-20');</p>
+</div>
+<div class="paragraph">
+<p>select * from test_columnlog_min2 limit 5;</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS test1(
+    tvcolumn STRING COMMENT '节目',
+    tvmin STRING COMMENT '分钟'
+) PARTITIONED BY (tvdate STRING COMMENT '日期')
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/test_ext';</p>
+</div>
+<div class="paragraph">
+<p>CREATE EXTERNAL TABLE IF NOT EXISTS test2(
+    tvcolumn STRING COMMENT '节目',
+    tvdate STRING COMMENT '日期',
+    tvmin STRING COMMENT '分钟'
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE
+LOCATION '/test_ext2';</p>
+</div>
+<div class="paragraph">
+<p>DJT_TV_OUTPUT=/guangdian
+startdate=2012-09-17</p>
+</div>
+<div class="paragraph">
+<p>hive -e "
+load data inpath '${DJT_TV_OUTPUT}/${startdate}/programRating-out/' into table columnlog_min partition(tvdate='${startdate}');
+exit;
+"</p>
+</div>
+<div class="paragraph">
+<p>load data inpath '/guangdian/2012-09-20/programRating-out/' into table test_columnlog_min1 partition(tvdate='2012-09-20');</p>
+</div>
+<div class="paragraph">
+<p>load data inpath '/test_guangdian_ext/tvdate=2012-09-20' into table test_columnlog_min1 partition(tvdate='2012-09-20');</p>
+</div>
+<div class="paragraph">
+<p>startdate 2012-09-17
+enddate 2012-09-20</p>
+</div>
+<div class="paragraph">
+<p>select tvcolumn,tvdate1,concat(substr(tvmin,0,2),':00'),sum(avgnum)/count(<strong>),sum(reachnum)/count(</strong>),sum(tvrating)/count(<strong>),sum(reachrating)/count(</strong>),sum(marketshare)/count(*) from test_columnlog_min2 where tvdate='2012-09-20' group by  tvcolumn, tvdate1, concat(substr(tvmin,0,2),':00') limit 5;</p>
+</div>
+<div class="paragraph">
+<p>("cat", (1,2)), ("cat", (1,5)), ("mouse", (1,4)), ("cat", (11,2)), ("dog", (11,2)), ("mouse",(1, 2))</p>
+</div>
+<div class="paragraph">
+<p>spark 调优  spark sql 调优 方面的</p>
+</div>
+<div class="paragraph">
+<p>hadoop jar guangdian.jar io.dishui.tv.mapper.ExtractChannelNumAndTimelen ${DJT_TV_OUTPUT}/${startdate}/parselog-out/  ${DJT_TV_OUTPUT}/${startdate}/channelNumAndTimelen-out</p>
+</div>
+<div class="paragraph">
+<p>spark-submit \
+--class extract.ProgramAvgAndReachNum \
+--master yarn \
+--deploy-mode client \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 1g \
+--total-executor-cores 2 \
+spark-1.0-jar-with-dependencies.jar \
+${DJT_TV_OUTPUT}/${startdate}/parselog-out/ \
+${DJT_TV_OUTPUT}/${startdate}/channelNumAndTimelen-out</p>
+</div>
+<div class="paragraph">
+<p>spark-submit \
+--class extract.CurrentNum \
+--master yarn \
+--deploy-mode cluster \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 512m \
+--total-executor-cores 2 \
+guangdian-spark.jar \
+/guangdian-spark/2012-09-17/parselog-out \
+/guangdian-spark/2012-09-17/extractCurrentNum-out</p>
+</div>
+<div class="paragraph">
+<p>spark-submit \
+--class extract.AnalyzeCountProgramRating \
+--master yarn \
+--deploy-mode cluster \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 1g \
+--total-executor-cores 2 \
+guangdian-spark.jar \
+/guangdian-spark/2012-09-17/programAvgAndReach-out/ \
+/guangdian-spark/2012-09-17/programRating-out \
+/guangdian-spark/2012-09-17/extractCurrentNum-out/</p>
+</div>
+<div class="paragraph">
+<p>spark-submit \
+--class extract.AnalyzeCountProgramRating \
+--master spark://djt11:7077 \
+--files <a href="file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml" class="bare">file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml</a> \
+--executor-memory 1g \
+--total-executor-cores 2 \
+guangdian-spark.jar \
+/guangdian-spark/2012-09-17/programAvgAndReach-out/ \
+/guangdian-spark/2012-09-17/programRating-out \
+/guangdian-spark/2012-09-17/extractCurrentNum-out/</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/hadoop/kafka/" rel="prev"><span>«Previous</span><p>kafka</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/%E9%97%AE%E9%A2%98/" rel="next"><span>Next»</span><p>问题总结</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

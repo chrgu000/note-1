@@ -1,0 +1,31 @@
+---
+
+- name: Copy Storm 包
+  copy:
+    src: '{{ srcdir }}/{{ storm }}'
+    dest: /tmp/{{ storm }}
+
+- unarchive:
+    src: '/tmp/{{ storm }}'
+    dest: '{{ appdir }}'
+    remote_src: True
+
+- file:
+    path: '{{ appdir }}/apache-storm-0.9.6'
+    state: directory
+    owner: hadoop
+    group: hadoop
+    recurse: yes
+
+- name: 复制 storm-conf 文件夹
+  copy:
+    src: '{{ srcdir }}/storm-conf/{{ item.src }}'
+    dest: '{{ item.dest }}'
+  with_items:
+    - { src: 'storm.yaml', dest: '{{ stormhome }}' }
+
+
+- name: Copy profile
+  copy:
+    src: '{{ srcdir }}/bigdata.sh'
+    dest: /etc/profile.d/

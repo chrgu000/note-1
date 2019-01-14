@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>采购单模块</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="采购单模块" />
+<meta property="og:description" content="Contents1. 采购单1.1. 采购单列表1.2. 采购单详情1.3. 发布1.3.1. 商品分类1.3.2. 品牌1.3.3. 收货地址1. 采购单1.1. 采购单列表URLhttp://app.mailiqing.com/app/procurement/list?start=1&amp;limit=10&amp;area=北京&amp;sort=1&amp;q=沥青
+支持格式GET JSON
+HTTP请求方式Content-Type: application/json;charset=UTF-8
+携带参数说明start # 起始页limit # 每页个数area # 地区筛选sort # 日期排序 0:降序 1:升序综合排序 传 start limitq # 搜索关键字是否需要登录否" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/app/procurement/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">采购单模块</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/mailiqng-app" rel="category">mailiqng app</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_采购单">1. 采购单</a>
+<ul class="sectlevel2">
+<li><a href="#_采购单列表">1.1. 采购单列表</a></li>
+<li><a href="#_采购单详情">1.2. 采购单详情</a></li>
+<li><a href="#_发布">1.3. 发布</a>
+<ul class="sectlevel3">
+<li><a href="#_商品分类">1.3.1. 商品分类</a></li>
+<li><a href="#_品牌">1.3.2. 品牌</a></li>
+<li><a href="#_收货地址">1.3.3. 收货地址</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_采购单">1. 采购单</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_采购单列表">1.1. 采购单列表</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/procurement/list?start=1&amp;limit=10&amp;area=北京&amp;sort=1&amp;q=沥青" class="bare">http://app.mailiqing.com/app/procurement/list?start=1&amp;limit=10&amp;area=北京&amp;sort=1&amp;q=沥青</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>start # 起始页
+limit # 每页个数
+area # 地区筛选
+sort # 日期排序 0:降序 1:升序
+综合排序 传 start limit
+q # 搜索关键字</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "id": "20150707E245t4x",  #采购单id
+      "title": "国产品牌 沥青4444444444444444", #采购单标题
+      "count": 500.00, #数量
+      "userId": "20160919OR42Yb6", #采购单发布者
+      "receiveAddr": "华北地区", #收货地址
+      "inDate": "2015-07-07 03:43:48", #发布时间
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img", #图片
+      "unit": "吨" #单位
+    },
+    {
+      "id": "201508221gK5Lp5",
+      "title": "东海 沥青",
+      "count": 40.00,
+      "receiveAddr": "华南地区-广西省",
+      "userId": "20160919OR42Yb6",
+      "inDate": "2015-08-22 03:41:24",
+      "img": "http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img",
+      "unit": "吨"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_采购单详情">1.2. 采购单详情</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/procurement/get/{id}" class="bare">http://app.mailiqing.com/app/procurement/get/{id}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id : 20150707E245t4x  # 采购单id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://app.mailiqing.com/app/procurement/get/20150707E245t4x" class="bare">http://app.mailiqing.com/app/procurement/get/20150707E245t4x</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "acTime" : 10, #有效时间
+  "companyName" : "", #公司名称
+  "deliveryType" : 0, #提货方式 0：卖家送货 1：买家自提
+  "count" : 500.00, #采购数量
+  "deliveryDateStart" : "2015-07-13", #起始时间
+  "deliveryDateEnd" : "2015-07-19", #结束时间
+  "inDate" : "2015-07-07 03:43:48", #发布时间
+  "title" : "国产品牌 沥青4444444444444444", #标题
+  "unit" : "吨", #单位
+  "state" : 1, #状态
+  "phone" : "13904650472", # 电话
+  "isCollect" : 0, # 0:未收藏 1:收藏
+  "id" : "20150707E245t4x", #采购单id
+  "desc" : "", #采购单描述
+  "huanxin_no": "20161031je43e0i", # 平台环信号
+  "plat_image": "20161031je43e0i", # 平台头像
+  "image": [ # 图片
+    "http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbb.img_375_230.img",
+    "http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbd.img_375_230.img"
+  ],
+  "imgLarge": [ #图片大图
+    "http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbb.img",
+    "http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbd.img"
+  ],
+  "receiveAddr" : "华北地区", #收货地址
+  "brandName" : "国产品牌" #品牌
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_发布">1.3. 发布</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/procurement/add" class="bare">http://app.mailiqing.com/app/procurement/add</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>POST JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>{
+  "userId": "20151026X3422O5", # s_userId 用户id
+  "companyName": "金兆路华777", # 公司名称
+  "category": "20150914q0asfEw|20150914w7L7oG2|201509140732S22", # 类目
+  "brandName": "东海,国产", # 品牌名
+  "count": "400", # 数量
+  "deliveryDateStart": "2016-08-08", # 交货时间：开始时间 yyyy-MM-dd
+  "deliveryDateEnd": "2016-08-18", # 交货时间：结束时间yyyy-MM-dd
+  "receiveAddr": "北京|北京市", # 收货地址
+  "desc": "70#沥青,行行行", # 描述
+  "img": "img/57e38f32e4b0b02f90bf8a3c.img" # 图片
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state":1,
+  "id":"20160928TyWUN1L" # 采购单id
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "添加失败"
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_商品分类">1.3.1. 商品分类</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/procurement/category" class="bare">http://app.mailiqing.com/app/procurement/category</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+<dd>
+<p>无</p>
+</dd>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "msc_cl": [
+        {
+          "msc_cl": [  # 子类目 数组
+            {
+              "catName": "10#",
+              "catId": "2015091431h7wTV"
+            },
+            {
+              "catName": "60#",
+              "catId": "2015112386UvJoM"
+            },
+            {
+              "catName": "70#",
+              "catId": "201509140732S22"
+            },
+            {
+              "catName": "90#",
+              "catId": "201509144X87wlj"
+            },
+            {
+              "catName": "100#",
+              "catId": "20160112l200k78"
+            },
+            {
+              "catName": "110#",
+              "catId": "2015091482l1w41"
+            },
+            {
+              "catName": "130#",
+              "catId": "20150914L740u1U"
+            },
+            {
+              "catName": "140#",
+              "catId": "20151125460MI7i"
+            },
+            {
+              "catName": "180#",
+              "catId": "20151223iX8q82e,20150914w7L7oG2"
+            }
+          ],
+          "catName": "基质沥青", # 类目名
+          "catId": "20150914w7L7oG2"  # 类目id
+        },
+        {
+          "msc_cl": [
+            {
+              "catName": "SBS类",
+              "catId": "20150914m401ckq"
+            },
+            {
+              "catName": "SBR类",
+              "catId": "2015091418gJ6ub"
+            },
+            {
+              "catName": "橡胶粉",
+              "catId": "20150914pM66574"
+            },
+            {
+              "catName": "PG改性沥青",
+              "catId": "20150914F85313F"
+            },
+            {
+              "catName": "环保橡胶沥青",
+              "catId": "20150914A4mAK2U"
+            },
+            {
+              "catName": "MAC改性沥青",
+              "catId": "201601140E1sgI3"
+            }
+          ],
+          "catName": "改性沥青",
+          "catId": "20150914H6PM003"
+        },
+        {
+          "msc_cl": [
+            {
+              "catName": "公路用乳化沥青",
+              "catId": "20150914165E287"
+            },
+            {
+              "catName": "改性乳化沥青",
+              "catId": "20160318CPQ26JU"
+            },
+            {
+              "catName": "高含固量乳化沥青",
+              "catId": "20150914Wd82123"
+            },
+            {
+              "catName": "高粘度乳化沥青",
+              "catId": ",20150914K6N5Hha"
+            },
+            {
+              "catName": "微表处改性乳化沥青",
+              "catId": "20150914c453WYQ"
+            },
+            {
+              "catName": "冷再生乳化沥青",
+              "catId": "2015091476gmJ1T"
+            },
+            {
+              "catName": "特殊乳化沥青",
+              "catId": "201509146eb8Pyb"
+            },
+            {
+              "catName": "不粘轮乳化沥青",
+              "catId": "20160413Q7Km65j"
+            }
+          ],
+          "catName": "乳化沥青",
+          "catId": "20150914m34mQ5n"
+        },
+        {
+          "msc_cl": [
+            {
+              "catName": "煤沥青",
+              "catId": "20150914eB2cy68"
+            },
+            {
+              "catName": "岩沥青",
+              "catId": "2015091424K8635"
+            },
+            {
+              "catName": "彩色沥青",
+              "catId": "20160106M8nK6iI"
+            },
+            {
+              "catName": "硫化沥青",
+              "catId": "20160106O5tSxi4"
+            },
+            {
+              "catName": "防腐沥青",
+              "catId": "20151019341oqb4"
+            }
+          ],
+          "catName": "其他沥青",
+          "catId": "20150914q48W8K0"
+        }
+      ],
+      "catName": "沥青",
+      "catId": "20150914q0asfEw"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">说明</dt>
+<dd>
+<p>获取的类目是树形结构</p>
+</dd>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_品牌">1.3.2. 品牌</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/app/procurement/brand/{categoryId}" class="bare">http://app.mailiqing.com/app/app/procurement/brand/{categoryId}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>{categoryId} : 201509140732S22 # 类目id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://app.mailiqing.com/app/app/procurement/brand/201509140732S22" class="bare">http://app.mailiqing.com/app/app/procurement/brand/201509140732S22</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "brandId": "20150914NO6768t", # 品牌id
+      "brandName": "韩国SK" # 品牌名称
+    },
+    {
+      "brandId": "201509148O45Q61",
+      "brandName": "齐鲁石化"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_收货地址">1.3.3. 收货地址</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">URL</dt>
+<dd>
+<p><a href="http://app.mailiqing.com/app/procurement/area/{parentId}" class="bare">http://app.mailiqing.com/app/procurement/area/{parentId}</a></p>
+</dd>
+<dt class="hdlist1">支持格式</dt>
+<dd>
+<p>GET JSON</p>
+</dd>
+<dt class="hdlist1">HTTP请求方式</dt>
+<dd>
+<p>Content-Type: application/json;charset=UTF-8</p>
+</dd>
+<dt class="hdlist1">携带参数说明</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>{parentId} : 000000000000000 # 父id</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://app.mailiqing.com/app/procurement/area/000000000000000" class="bare">http://app.mailiqing.com/app/procurement/area/000000000000000</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">是否需要登录</dt>
+<dd>
+<p>否</p>
+</dd>
+<dt class="hdlist1">成功</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state": 1,
+  "list": [
+    {
+      "areaId": "201509237y73e1Y", # 地区id
+      "areaName": "全国" # 地区名
+    },
+    {
+      "areaId": "20150601L2sIhL7",
+      "areaName": "华东地区"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">失败</dt>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "state" : 0,
+  "message" : "查询结果为空！"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/mathematics/mappings-and-functions/" rel="prev"><span>«Previous</span><p>逻辑量词</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/mathematics/xuxiaozhan/gaojie-daoshu/" rel="next"><span>Next»</span><p>高阶导数</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+---
+# Source: elasticsearch/templates/service.yaml
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch-master
+spec:
+  selector:
+    heritage: "Tiller"
+    release: "es"
+    chart: "elasticsearch-6.5.3-alpha1"
+    app: "elasticsearch-master"
+  ports:
+  - name: http
+    protocol: TCP
+    port: 9200
+  - name: transport
+    protocol: TCP
+    port: 9300
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch-master-headless
+  labels:
+    heritage: "Tiller"
+    release: "es"
+    chart: "elasticsearch-6.5.3-alpha1"
+    app: "elasticsearch-master"
+  annotations:
+    # Create endpoints also if the related pod isn't ready
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  clusterIP: None # This is needed for statefulset hostnames like elasticsearch-0 to resolve
+  selector:
+    app: "elasticsearch-master"
+  ports:
+  - name: http
+    port: 9200

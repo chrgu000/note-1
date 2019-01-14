@@ -1,0 +1,24 @@
+---
+# Source: grafana/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: RELEASE-NAME-grafana
+  labels:
+    app: grafana
+    chart: grafana-1.14.3
+    release: RELEASE-NAME
+    heritage: Tiller
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.kubernetes.io/ingress.class: nginx
+    
+spec:
+  rules:
+    - host: monitor.fabx.com.cn
+      http:
+        paths:
+          - path: /grafana
+            backend:
+              serviceName: RELEASE-NAME-grafana
+              servicePort: 80

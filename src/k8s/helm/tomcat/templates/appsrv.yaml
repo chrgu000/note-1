@@ -1,0 +1,37 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "tomcat.fullname" . }}
+  labels:
+    app: {{ template "tomcat.name" . }}
+    chart: {{ template "tomcat.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "tomcat.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "tomcat.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.tomcat.repository }}:{{ .Values.image.tomcat.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: data
+              mountPath: {{ .Values.deploy.directory }}
+          ports:
+            - containerPort: {{ .Values.service.internalPort }}
+          
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ template "tomcat.fullname" . }}
+

@@ -1,0 +1,111 @@
+@startuml
+
+autonumber
+participant MyJobTest as my
+participant SparkContext as sc
+participant HadoopRDD as hr
+participant MapPartitionsRDD as mpr
+participant RDD as r
+participant DAGScheduler as dag
+participant DAGSchedulerEventProcessLoop as dagsep
+participant ActiveJob as aj
+
+my -> my: main()
+activate my #ffffcc
+
+my -> sc
+
+sc -> sc: sc.textFile()
+activate sc #ffffcc
+deactivate my
+sc -> hr
+deactivate sc
+
+hr -> r: filter
+activate r #ffffcc
+
+r -> r: filter()
+r -> mpr: new MapPartitionsRDD()
+deactivate r
+activate mpr #ffffcc
+mpr -> r: count
+deactivate mpr
+
+
+activate r #ffffcc
+r -> r: count
+r -> sc
+deactivate r
+
+sc -> sc: sc.runJob()
+activate sc #ffffcc
+
+sc -> dag: dagScheduler.runJob()
+deactivate sc
+
+activate dag #ffffcc
+dag -> dag: runJob()
+dag -> dag: submitJob()
+activate dag #ffff99
+dag -> dagsep
+deactivate dag
+deactivate dag
+
+activate dagsep #ffffcc
+dagsep -> dagsep: post(JobSubmitted)
+
+dagsep -> dag: onReceive(JobSubmitted)
+deactivate dagsep
+activate dag #ffffcc
+
+dag -> dag: handleJobSubmitted()
+activate dag #ffff99
+deactivate dag
+dag -> dag: newStage()
+dag -> aj: new()
+deactivate dag
+
+@enduml
+
+@startuml
+participant DAGScheduler as dag
+participant LiveListenerBus as llb
+participant SparkListenerBus as slb
+participant TaskSchedulerImpl as tsi
+participant SchedulerBackend as sb
+participant LocalBackend as lb
+participant Executor as e
+participant TaskRunner as tr
+participant ThreadPoolExecutor as tpe
+
+dag -> llb: post(SparkListenerJobStart)
+
+activate llb #ffffcc
+deactivate llb
+
+dag -> dag: submitStage()
+dag -> dag: submitMissingTasks()
+dag -> llb
+llb -> llb: post(SparkListenerStageSubmitted)
+
+dag -> tsi
+tsi -> tsi: submitTasks
+
+activate tsi #ffffcc
+tsi -> sb
+sb -> sb: reviveOffers()
+sb -> lb: receiveWithLogging(case ReviveOffers)
+lb -> lb: reviveOffers()
+lb -> e
+e -> e: launchTask()
+e -> tr: new()
+e -> tpe
+tpe -> tpe: execute(tr)
+
+
+llb -> slb
+slb -> slb: onPostEvent(case jobStart: SparkListenerJobStart)
+
+deactivate dag
+
+@enduml

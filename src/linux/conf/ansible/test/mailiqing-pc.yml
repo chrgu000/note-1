@@ -1,0 +1,8 @@
+---
+
+- name: apply mailiqing-pc
+  hosts: mailiqing-pc
+  remote_user: root
+
+  roles:
+    - mailiqing-pc

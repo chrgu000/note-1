@@ -1,0 +1,88 @@
+
+select
+(case
+    when a.num = 1 then 2
+    when a.num = 2 then 3
+end) as res
+from
+    ( select 2 as num ) as a
+
+
+select
+  sum(1)
+from
+  ( select 2 as num ) as a
+
+
+case when b.ALERTING_TIME>0 then b.ALERTING_TIME ELSE b.ANSWER_TIME end
+
+
+
+
+
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+  sum(case when b.Procedure_Type=1 then 1 end) as INITIAL_REGISTER_ATTEMPT,
+
+
+ sum(case when b.report_id=27561 then 1 end) as total,
+
+
+
+   select
+    substr(phour,1,8),province,scity,
+    sum(SRVCC_RESP_FAIL) as SRVCC_ATTEMPT,
+    sum(SRVCC_RESP_FAIL) as SRVCC_RESP_FAIL,
+    sum(SRVCC_RESP_SUCC) as SRVCC_RESP_SUCC,
+    sum(SRVCC_RESP_LATENCY_ALL) as SRVCC_RESP_LATENCY_ALL,
+    sum(SRVCC_COMP_SUCC) as SRVCC_COMP_SUCC,
+    sum(SRVCC_COMP_FAIL) as SRVCC_COMP_FAIL,
+    sum(SRVCC_COMP_LATENCY_ALL) as SRVCC_COMP_LATENCY_ALL,
+    sum(SRVCC_MEDIA_LATENCY_ALL) as SRVCC_MEDIA_LATENCY_ALL
+  from ${SV_KPI_ALL_SUMMARY}
+  GROUP BY substr(phour,1,8),province,scity
+
+
+
+cat Toolbox.plugins | xargs -I plugin svn co "https://210.22.91.4:7096/svn/DO/trunk/"plugin --username zhoukai
+
+svn co https://210.22.91.4:7096/svn/DO/trunk/com.nsn.web.do.tbox.cmcc.spark.volte
+
+svn list https://210.22.91.4:7096/svn/DO/trunk
+
+(["${]\w*_)D([_\w"}]*)
+IF[ ]*\((.*)\)(.*)
+
+<summary\b[^>]+>([\s\S]*?)</summary>
+
+hive ddl
+([ \w]\w*_)H
+
+
+sh /opt/hive-1.2.2/bin/hive -f /root/tmp/hive-ddl/*.sql
+
+ls|grep "volte"|xargs -I name rm -f name
+
+
+--master yarn --deploy-mode client --driver-memory 4G --driver-cores 2 --executor-memory 6G --executor-cores 2 --num-executors 5 --conf spark.sql.shuffle.partitions=20 --driver-java-options "-Dlog4j.configuration=file:///opt/spark-2.2.1/conf/log4j.properties"
+
+
+
+sh /opt/hadoop-2.7.3/bin/hdfs dfs -ls /output/result/f_v_bxdr_h
+sh /opt/hadoop-2.7.3/bin/hdfs dfs -rm -rf /output/result/f_v_bxdr_h
+
+
+f_v_bxdr_imsi_h
+
+
+load data inpath '/output/dt3/34632/2017112403/F_VOLTE_SIP_Mw_ALL_H/*.csv' into table result.f_volte_sip_mw_h partition(p_hour='2017112403');
+
+
+spark-sql --conf spark.sql.shuffle.partitions=20 --driver-java-options "-Dlog4j.configuration=file:///root/tmp/log4j.properties"

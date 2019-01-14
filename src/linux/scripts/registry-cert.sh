@@ -1,0 +1,28 @@
+﻿#!/bin/bash
+DOMAIN=mailiqing.com:5000
+
+mkdir -p /etc/docker/certs.d/$DOMAIN
+
+cat > /etc/docker/certs.d/$DOMAIN/registry.crt <<_EOF_
+-----BEGIN CERTIFICATE-----
+MIIDAzCCAeugAwIBAgIJAMsKmEFPgZmQMA0GCSqGSIb3DQEBCwUAMBgxFjAUBgNV
+BAMMDW1haWxpcWluZy5jb20wHhcNMTcwNTE1MDMxODU0WhcNMjcwNTEzMDMxODU0
+WjAYMRYwFAYDVQQDDA1tYWlsaXFpbmcuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAuurO4pKcIDgjQ3JMojee+JCvXj3pHqT5PLm+YO6UCTayOKqK
+Jh9Ykfs6NOo73VZXzLc0EPH+bNgNUbX6X7y5iYV/iBu+Yt9gxrSYr3UF8/LbtLGk
+mExWEe+JLVkJQna2mqXGsEq4UdUkQa/5de1ts5go5Uhzq79QYKdgduneh0wwmBjX
+rX2UYB36lBobMGDLnC6mVwavJprpxWpsr5t2L4nH02vLg44vJDz9grzm3EHQ1cOn
+pYsKRbFGptNmwX+/f7kt+jItOsIG+Om3CoM614Y2rzAGT0zfv/3jiyDLLyXiwvnc
+ABqrD9+BriEJd3nfkdF5gNtGn3CPHuq0EGOWkwIDAQABo1AwTjAdBgNVHQ4EFgQU
+jr05uLk9epuxBdo7x5gRjT/zfGwwHwYDVR0jBBgwFoAUjr05uLk9epuxBdo7x5gR
+jT/zfGwwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEArLB0Nbk5153a
+MqWHoLAVnFmVpkKDU4vOr+jw71xKNPlv5/cwppTWO1AagbZoQdyaprspVOvca0E1
+zrNigjuGkVSkb03rE61Kz6v2U0kJ/DTKhDQmvUHf5PqWpfyeZlnu4a+EyHeTPwpI
+U45htOenShJ7QEEfAZ0SxHq0gpu38CeSUIxY2xYXxSDjMSFEmGlekbNKpBO64V/E
+pqBUxAMaTMRczMh9JohN2yFpMcbbUCr87DAIExHJZIeyrYBorBf+sas3DDgbWalv
+CbJ3Q+lRb0nB7tYZerazeshBh3rVmE9eZq5idEVvdmXAIqdV3uZV0mhx0Rw+j2e3
+gHprA9NIog==
+-----END CERTIFICATE-----
+_EOF_
+
+echo 196.168.1.33 mailiqing.com >> /etc/hosts

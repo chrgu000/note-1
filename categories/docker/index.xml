@@ -1,0 +1,1740 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/categories/docker/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>etcd flanneld</title>
+      <link>/post/docker/etcd-flanneld/</link>
+      <pubDate>Wed, 31 May 2017 22:53:49 +0000</pubDate>
+      
+      <guid>/post/docker/etcd-flanneld/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;etcd flanneld&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_环境&#34;&gt;1. 环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动&#34;&gt;2. 启动&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_etcd&#34;&gt;2.1. etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_flanneld&#34;&gt;2.2. flanneld&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_修改docker参数&#34;&gt;2.3. 修改Docker参数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;3. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;4. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_环境&#34;&gt;1. 环境&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3334%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;名称&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;版本&lt;/th&gt;
+&lt;th class=&#34;tableblock halign-left valign-top&#34;&gt;下载地址&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;etcd&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;3.1.8&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/coreos/etcd/releases/download/v3.1.8/etcd-v3.1.8-linux-amd64.tar.gz&#34;&gt;etcd-v3.1.8-linux-amd64.tar.gz&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;flanneld&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;v0.7.1&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/coreos/flannel/releases/download/v0.7.1/flanneld-amd64&#34;&gt;flanneld-amd64&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;mk-docker-opts.sh&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://raw.githubusercontent.com/coreos/flannel/master/dist/mk-docker-opts.sh&#34;&gt;mk-docker-opts.sh&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+etcd flanneld mk-docker-opts.sh 下载到 $HOME/bin 下
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_启动&#34;&gt;2. 启动&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_etcd&#34;&gt;2.1. etcd&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;nohup etcd \
+  --name my-etcd-1 \
+  --data-dir ~/etcd-data \
+  --listen-client-urls http://0.0.0.0:2379 \
+  --advertise-client-urls http://0.0.0.0:2379 \
+  --listen-peer-urls http://0.0.0.0:2380 \
+  --initial-advertise-peer-urls http://0.0.0.0:2380 &amp;amp;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;开机启动&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /usr/lib/systemd/system/etcd.service &amp;lt;&amp;lt;_EOF_
+[Unit]
+Description=etcd
+After=network.target
+After=network-online.target
+[Service]
+ExecStart=/root/bin/etcd \
+  --name my-etcd-1 \
+  --data-dir ~/etcd-data \
+  --listen-client-urls http://0.0.0.0:2379 \
+  --advertise-client-urls http://0.0.0.0:2379 \
+  --listen-peer-urls http://0.0.0.0:2380 \
+  --initial-advertise-peer-urls http://0.0.0.0:2380
+[Install]
+WantedBy=multi-user.target
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;添加网段 确定etcd可以使用之后，我们需要设置分配给docker网络的网段&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;etcdctl mk /coreos.com/network/config &#39;{&#34;Network&#34;:&#34;172.17.0.0/16&#34;, &#34;SubnetMin&#34;: &#34;172.17.1.0&#34;, &#34;SubnetMax&#34;: &#34;172.17.254.0&#34;}&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_flanneld&#34;&gt;2.2. flanneld&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;nohup flanneld -iface=enp4s0f0 \ &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+-etcd-endpoints=http://192.168.123.124:2379 &amp;amp; &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;-iface 网卡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;-etcd-endpoints: etcd 地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; /usr/lib/systemd/system/flanneld.service &amp;lt;&amp;lt;_EOF_
+[Unit]
+After=network.target
+After=network-online.target etcd.service
+Description=flannel
+[Service]
+ExecStart=/root/bin/flanneld \
+-iface=enp4s0f0 \
+-etcd-endpoints=http://196.168.1.34:2379
+[Install]
+WantedBy=multi-user.target
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_修改docker参数&#34;&gt;2.3. 修改Docker参数&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;vi /usr/lib/systemd/system/docker.service
+# 添加
+EnvironmentFile=-/etc/sysconfig/docker
+ExecStart=/usr/bin/dockerd $DOCKER_OPTS&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;EnvironmentFile=-/run/flannel/subnet.env
+ExecStart=/usr/bin/dockerd --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mk-docker-opts.sh -c
+cat /run/docker_opts.env &amp;gt; /etc/sysconfig/docker
+systemctl daemon-reload &amp;amp;&amp;amp; systemctl restart docker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl ls /coreos.com/network/subnets&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_q_a&#34;&gt;3. Q &amp;amp; A&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;重启后 两个主机 flannel ping 不通 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;路由信息丢失&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ip r # 查看路由信息
+
+# 172.17.0.0/16 dev flannel0  proto kernel  scope link  src 172.17.25.0 (例子)
+# 添加路由
+ip route add 172.17.0.0/16 via 172.17.25.0 dev flannel0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mk-docker-opts.sh -i
+source /run/flannel/subnet.env
+rm /var/run/docker.pid
+ifconfig docker0 ${FLANNEL_SUBNET}&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;4. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.jianshu.com/p/a2039a8855ec&#34;&gt;CentOS7安装etcd和flannel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Rancher</title>
+      <link>/post/linux/rancher/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/rancher/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Rancher&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher_storage_nfs&#34;&gt;1. rancher/storage-nfs&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置coreos_nfs_service&#34;&gt;1.1. 配置CoreOS nfs service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动_code_rancher_server_code&#34;&gt;1.2. 启动 &lt;code&gt;Rancher Server&lt;/code&gt;&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_方式启动&#34;&gt;1.2.1. docker 方式启动&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_compose_方式启动&#34;&gt;1.2.2. compose 方式启动&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher_nfs_配置&#34;&gt;1.2.3. Rancher NFS 配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_maxscale_mysql&#34;&gt;1.3. maxscale-mysql&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_镜像&#34;&gt;2. 镜像&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_push_rancher相关镜像到_registry&#34;&gt;2.1. push rancher相关镜像到 registry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher_agent_拉取镜像&#34;&gt;2.2. rancher-agent 拉取镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2.3. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rancher_cli_api&#34;&gt;3. Rancher Cli API&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_rancher_storage_nfs&#34;&gt;1. rancher/storage-nfs&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置coreos_nfs_service&#34;&gt;1.1. 配置CoreOS nfs service&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;image 安装 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo vi /var/lib/coreos-install/user_data&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;vagrant 安装 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data
+
+#cloud-config
+
+coreos:
+  units:
+    - name: &#34;docker.service&#34;
+      drop-ins:
+        - name: &#34;50-insecure-registry.conf&#34;
+          content: |
+            [Service]
+            Environment=DOCKER_OPTS=&#39;--registry-mirror=https://7xefeire.mirror.aliyuncs.com&#39;
+      command: start
+    - name: nfs-server.service  # 开机启动 nfs server
+      command: start
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the time zone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone Asia/Shanghai
+        RemainAfterExit=yes
+        Type=oneshot
+write_files:
+   - path: /etc/hosts
+     content: |
+        127.0.0.1     localhost
+        192.168.137.15    dishui.io&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo coreos-cloudinit --from-file=/var/lib/coreos-vagrant/vagrantfile-user-data&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_启动_code_rancher_server_code&#34;&gt;1.2. 启动 &lt;code&gt;Rancher Server&lt;/code&gt;&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_docker_方式启动&#34;&gt;1.2.1. docker 方式启动&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker run -d --restart=unless-stopped -p 8080:8080 rancher/server&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_compose_方式启动&#34;&gt;1.2.2. compose 方式启动&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;rancher.yml &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+
+services:
+ rancher:
+  image: rancher/server
+  container_name: rancher
+  ports:
+    - &#34;8080:8080&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;启动 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker-compose -f rancher.yml start&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_rancher_nfs_配置&#34;&gt;1.2.3. Rancher NFS 配置&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Rancher-NFS &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/2016-12-16_152104.png&#34; alt=&#34;2016 12 16 152104&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;NFS服务器 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# sudo vi /etc/exports
+/home/core/data/maxscale *(rw,async,no_root_squash,no_subtree_check)
+/home/core/data/mysqlm *(rw,async,no_root_squash,no_subtree_check)
+/home/core/data/mysqls1 *(rw,async,no_root_squash,no_subtree_check)
+/home/core/data/mysqls2 *(rw,async,no_root_squash,no_subtree_check)
+/home/core/data/test  *(rw,async,no_root_squash,no_subtree_check)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_maxscale_mysql&#34;&gt;1.3. maxscale-mysql&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;docker-compose.yml &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  mysql-s1:
+    image: dishui.io:5000/mysql-s1:5.5.52
+    environment:
+      MYSQL_ROOT_PASSWORD: &#39;111111&#39;
+    volume_driver: rancher-nfs
+    stdin_open: true
+    volumes:
+    - mysqls1:/data
+    tty: true
+    links:
+    - mysql-m:mysql-m
+    labels:
+      io.rancher.container.pull_image: always
+  mysql-s2:
+    image: dishui.io:5000/mysql-s2:5.5.52
+    environment:
+      MYSQL_ROOT_PASSWORD: &#39;111111&#39;
+    volume_driver: rancher-nfs
+    stdin_open: true
+    volumes:
+    - mysqls2:/data
+    tty: true
+    links:
+    - mysql-m:mysql-m
+    labels:
+      io.rancher.container.pull_image: always
+  maxscale:
+    image: dishui.io:5000/dishuigit/maxscale:1.4
+    stdin_open: true
+    tty: true
+    links:
+    - mysql-s2:mysql-s2
+    - mysql-s1:mysql-s1
+    - mysql-m:mysql-m
+    ports:
+    - 8003:8003/tcp
+    - 4006:4006/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mysql-m:
+    image: dishui.io:5000/mysql-m:5.5.52
+    environment:
+      MYSQL_ROOT_PASSWORD: &#39;111111&#39;
+    volume_driver: rancher-nfs
+    stdin_open: true
+    volumes:
+    - mysqlmdata:/data
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;rancher-compose.yml &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  mysql-s1:
+    scale: 1
+  mysql-s2:
+    scale: 1
+  maxscale:
+    scale: 1
+  mysql-m:
+    scale: 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;注意 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/2016-12-16_153835.png&#34; alt=&#34;2016 12 16 153835&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_镜像&#34;&gt;2. 镜像&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_push_rancher相关镜像到_registry&#34;&gt;2.1. push rancher相关镜像到 registry&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;push.sh&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash
+
+docker tag $1 dishui.io:5000/$1
+docker push dishui.io:5000/$1
+docker rmi dishui.io:5000/$1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker images --format &#34;{{.Repository}}:{{.Tag}}&#34; | xargs -I t sh push.sh t&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vi image-list
+elasticsearch:5
+kibana:5
+logstash:5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat image-list | xargs -I t sh push.sh t&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_rancher_agent_拉取镜像&#34;&gt;2.2. rancher-agent 拉取镜像&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;image-list&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;rancher/healthcheck:v0.1.0
+rancher/net:v0.7.5
+rancher/metadata:v0.6.8
+rancher/network-manager:v0.2.17
+rancher/scheduler:v0.4.0
+rancher/agent:v1.1.1
+rancher/storage-nfs:v0.6.0
+rancher/dns:v0.10.8&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;pull.sh&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash
+docker pull dishui.io:5000/$1
+docker tag dishui.io:5000/$1 $1
+docker rmi dishui.io:5000/$1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat image-list | xargs -I t sh pull.sh t&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;pull-push.sh&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sh pull-push.sh nginx:stable-alpine&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;pull.sh&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash
+
+for var in $@
+do
+  echo &#34;$var&#34;
+  docker pull dishui.io:5000/$var
+  docker tag dishui.io:5000/$var $var
+  docker rmi dishui.io:5000/$var
+done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;push.sh&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash
+
+for var in $@
+do
+    echo &#34;$var&#34;
+    docker tag $var dishui.io:5000/$var
+    docker push dishui.io:5000/$var
+    docker rmi dishui.io:5000/$var
+done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;2.3. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://rancher.com/setting-shared-volumes-convoy-nfs/&#34;&gt;nfs&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_rancher_cli_api&#34;&gt;3. Rancher Cli API&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;ps &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;rancher ps --format &#34;{{.ID}}: {{.Name}}&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.130 --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.1.3 http://192.168.1.129:8080/v1/scripts/B7D394CB68CD1BF72E75:1487556000000:1zAXp5yjztfAb1NoXSzU8SbBfw
+
+sudo docker run -d -e CATTLE_AGENT_IP=192.168.1.129 --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.1.3 http://192.168.1.129:8080/v1/scripts/B7D394CB68CD1BF72E75:1487556000000:1zAXp5yjztfAb1NoXSzU8SbBfw&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>docker 参考</title>
+      <link>/post/linux/docker-ref/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/docker-ref/</guid>
+      <description>&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[docker format | &lt;a href=&#34;https://docs.docker.com/engine/admin/formatting/&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/engine/admin/formatting/&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[容器界大事件：深度解析 containerd | &lt;a href=&#34;https://yq.aliyun.com/articles/66626&#34; class=&#34;bare&#34;&gt;https://yq.aliyun.com/articles/66626&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>docker-compose</title>
+      <link>/post/linux/docker-compose/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/docker-compose/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;docker-compose&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_compose&#34;&gt;1. docker-compose&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_docker_compose_zookeeper_集群搭建&#34;&gt;2. Docker+Docker-Compose+Zookeeper 集群搭建&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_环境&#34;&gt;2.1. 环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_compose_2&#34;&gt;2.2. docker-compose&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_pipework&#34;&gt;2.3. pipework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_zookeeper_集群&#34;&gt;2.4. zookeeper 集群&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_compose_3&#34;&gt;2.5. docker-compose&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_registry&#34;&gt;3. Docker Registry&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置&#34;&gt;3.1. 配置&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_registry_server&#34;&gt;3.1.1. registry server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_client端&#34;&gt;3.1.2. docker client端&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_compose_code_文件&#34;&gt;3.2. &lt;code&gt;compose&lt;/code&gt; 文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_api&#34;&gt;3.3. api&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;3.4. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;3.5. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker_compose&#34;&gt;1. docker-compose&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/compose/compose-file/&#34;&gt;docker-compose.yml &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://my.oschina.net/Laily/blog/678926&#34;&gt;CoreOS 安装 docker-compose &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/docker/compose/releases&#34;&gt;docker-compose &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/compose/compose-file&#34;&gt;compose-file&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://dockone.io/article/1545&#34; class=&#34;bare&#34;&gt;http://dockone.io/article/1545&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker_docker_compose_zookeeper_集群搭建&#34;&gt;2. Docker+Docker-Compose+Zookeeper 集群搭建&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_环境&#34;&gt;2.1. 环境&lt;/h3&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Linux&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;CoreOS stable (899.15.0)&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker version 1.9.1, build 9894698&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker Image&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;centos7+java_x64+zookeeper+pipework&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Docker Compose&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/docker/compose/releases/&#34;&gt;docker-compose version 1.6.2, build 4d72027&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Pipework&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;https://github.com/dishuiGit/pipework&#34;&gt;pipework&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Zookeeper&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://www.apache.org/dyn/closer.cgi/zookeeper/&#34;&gt;Zookeeper&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_docker_compose_2&#34;&gt;2.2. docker-compose&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` &amp;gt; docker-compose
+cp docker-compose /opt/bin/
+chmod +x /opt/bin/docker-compose&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检测是否安装成功&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ docker-compose --version
+docker-compose version 1.6.2, build 4d72027&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_pipework&#34;&gt;2.3. pipework&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;install -m 755 pipework /opt/bin/pipework&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检测是否安装成功&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ pipework -h
+Syntax:
+pipework &amp;lt;hostinterface&amp;gt; [-i containerinterface] [-l localinterfacename] &amp;lt;guest&amp;gt; &amp;lt;ipaddr&amp;gt;/&amp;lt;subnet&amp;gt;[@default_gateway] [macaddr][@vlan]
+pipework &amp;lt;hostinterface&amp;gt; [-i containerinterface] [-l localinterfacename] &amp;lt;guest&amp;gt; dhcp [macaddr][@vlan]
+pipework route &amp;lt;guest&amp;gt; &amp;lt;route_command&amp;gt;
+pipework --wait [-i containerinterface]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_zookeeper_集群&#34;&gt;2.4. zookeeper 集群&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -zxf zookeeper-3.4.8.tar.gz -C /&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# zookeeper-3.4.8/bin/zkServer.sh -h
+ZooKeeper JMX enabled by default
+Using config: /zookeeper-3.4.8/bin/../conf/zoo.cfg
+Usage: zookeeper-3.4.8/bin/zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-cmd}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vi zookeeper-3.4.8/conf/zoo.cfg
+tickTime=2000
+initLimit=10
+syncLimit=5
+clientPort=2181
+dataDir=/zookeeper/data
+server.1=192.168.138.11:2888:3888
+server.2=192.168.138.22:2888:3888
+server.3=192.168.138.33:2888:3888&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;myid&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对每个 &lt;code&gt;zookeeper&lt;/code&gt; 主机,添加 &lt;code&gt;myid&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;echo &#34;1&#34; &amp;gt; /zookeeper/data/myid&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker&lt;/code&gt; 中的 &lt;code&gt;myid&lt;/code&gt; ,通过环境 &lt;code&gt;env&lt;/code&gt; 传入 &lt;code&gt;myid&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_docker_compose_3&#34;&gt;2.5. docker-compose&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;docker-compose.yml&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  zk1:
+    ports:
+     - &#34;2181:2181&#34;
+    command: /usr/bin/sh init.sh
+    container_name: zk1
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 1
+      ZK_HOST1: &#34;192.168.137.11    zk1&#34;
+      ZK_HOST2: &#34;192.168.137.22    zk2&#34;
+      ZK_HOST3: &#34;192.168.137.33    zk3&#34;
+    image: zookeeper-t:1.2
+  zk2:
+    ports:
+     - &#34;2182:2181&#34;
+    command: /usr/bin/sh init.sh
+    container_name: zk2
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 2
+      ZK_HOST1: &#34;192.168.137.11    zk1&#34;
+      ZK_HOST2: &#34;192.168.137.22    zk2&#34;
+      ZK_HOST3: &#34;192.168.137.33    zk3&#34;
+    image: zookeeper-t:1.2
+  zk3:
+    ports:
+     - &#34;2183:2181&#34;
+    command: /usr/bin/sh init.sh
+    container_name: zk3
+    environment:
+      JAVA_HOME: /usr/local/java/jdk1.7.0_79
+      MYID: 3
+      ZK_HOST1: &#34;192.168.137.11    zk1&#34;
+      ZK_HOST2: &#34;192.168.137.22    zk2&#34;
+      ZK_HOST3: &#34;192.168.137.33    zk3&#34;
+    image: zookeeper-t:1.2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;init.sh&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#! /bin/bash
+
+# init eth1 network
+pipework --wait -i eth1
+
+# add myid
+echo $MYID &amp;gt; /zookeeper/data/myid
+# add hosts
+echo $ZK_HOST1 &amp;gt;&amp;gt; /etc/hosts
+echo $ZK_HOST2 &amp;gt;&amp;gt; /etc/hosts
+echo $ZK_HOST3 &amp;gt;&amp;gt; /etc/hosts
+# start zookeeper
+/zookeeper-3.4.8/bin/zkServer.sh start-foreground&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;network
+version2 ::
+不用加 `links` 各个容器之间可以互通
+
+version1 ::
+加 `links` 可以单通,但是不可以互通&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_docker_registry&#34;&gt;3. Docker Registry&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置&#34;&gt;3.1. 配置&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_registry_server&#34;&gt;3.1.1. registry server&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;生成自签名证书&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd ~/
+
+mkdir registry &amp;amp;&amp;amp; cd registry &amp;amp;&amp;amp; mkdir certs &amp;amp;&amp;amp; cd certs
+
+openssl req -x509 -days 3650 -subj &#39;/CN=dishui.io/&#39; -nodes -newkey rsa:2048 -keyout registry.key -out registry.crt&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+CN=dishui.io 这里是域名
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;启动 &lt;code&gt;registry server&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_docker_client端&#34;&gt;3.1.2. docker client端&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;创建证书目录(没有此目录自己创建，注意端口号)&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo mkdir -p /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载证书&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo cp ~/registry.crt /etc/docker/certs.d/dishui.io:5000&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;域名解析&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo sh -c &#34;echo 192.168.137.15 dishui.io &amp;gt;&amp;gt; /etc/hosts&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo mkdir -p /etc/docker/certs.d/dishui.io:5000 &amp;amp;&amp;amp; \
+sudo cp ~/registry.crt /etc/docker/certs.d/dishui.io:5000 &amp;amp;&amp;amp; \
+sudo sh -c &#34;echo 192.168.137.15 dishui.io &amp;gt;&amp;gt; /etc/hosts&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;镜像 &lt;code&gt;tag&lt;/code&gt; 标签&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker tag 9a6db89 dishui.io:5000/dishuigit/codis:1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;上传镜像到 &lt;code&gt;registry&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker push dishui.io:5000/dishuigit/codis:1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除 &lt;strong&gt;registry&lt;/strong&gt; 镜像&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/burnettk/delete-docker-registry-image&#34; class=&#34;bare&#34;&gt;https://github.com/burnettk/delete-docker-registry-image&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__code_compose_code_文件&#34;&gt;3.2. &lt;code&gt;compose&lt;/code&gt; 文件&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;gollum&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;gollum:
+  privileged: true
+  image: dishuigit/gollum:2.0
+  container_name: gollum1
+  ports:
+   - &#34;80:4567&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;registry&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  registry1:
+    image: registry:2.5
+    container_name: registry1
+    ports:
+      - &#34;5000:5000&#34;
+    environment:
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/registry.key
+    volumes:
+      - /home/core/registry:/var/lib/registry
+      - /home/core/certs:/certs&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;registry-web&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;version: &#39;2&#39;
+services:
+  registry2:
+    image: registry:2.5
+    container_name: registry2
+    volumes:
+      - /home/core/conf/registry:/etc/docker/registry
+      - /home/core/registry:/var/lib/registry
+  registry-ui:
+    image: hyper/docker-registry-web
+    container_name: registry-ui
+    ports:
+      - &#34;8080:8080&#34;
+    volumes:
+      - /home/core/conf/registry-web:/conf:ro
+    extra_hosts:
+      - &#34;dishui.io:192.168.137.15&#34;
+    depends_on:
+      - registry2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_api&#34;&gt;3.3. api&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;查看仓库 镜像列表&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://192.168.137.15:5000/v2/_catalog&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v2/_catalog&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看 &lt;code&gt;tag&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v2/dishuigit/elastic/tags/list&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;3.4. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;registry 部署&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/registry/configuration/&#34;&gt;registry 配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/mkuchin/docker-registry-web&#34;&gt;docker-registry-web&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/registry/insecure/&#34;&gt;Insecure Registry&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.tuicool.com/articles/vMZZveM&#34; class=&#34;bare&#34;&gt;http://www.tuicool.com/articles/vMZZveM&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_q_a&#34;&gt;3.5. Q &amp;amp; A&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;core@coreos ~/compose $ docker push 192.168.137.15:5000/dishuigit/docker-registry-web:1.0
+The push refers to a repository [192.168.137.15:5000/dishuigit/docker-registry-web]
+unable to ping registry endpoint &lt;a href=&#34;https://192.168.137.15:5000/v0/&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v0/&lt;/a&gt;
+v2 ping attempt failed with error: Get &lt;a href=&#34;https://192.168.137.15:5000/v2/&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v2/&lt;/a&gt;: tls: oversized record received with length 20527
+ v1 ping attempt failed with error: Get &lt;a href=&#34;https://192.168.137.15:5000/v1/_ping&#34; class=&#34;bare&#34;&gt;https://192.168.137.15:5000/v1/_ping&lt;/a&gt;: tls: oversized record received with length 20527&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>swarm</title>
+      <link>/post/linux/docker-swarm/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/docker-swarm/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_swarm&#34;&gt;1. Swarm&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_环境&#34;&gt;1.1. 环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_版本&#34;&gt;1.2. docker 版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker_swarm_命令详情&#34;&gt;1.3. docker swarm 命令详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_创建_strong_swarm_strong_集群&#34;&gt;1.4. 创建 &lt;strong&gt;Swarm&lt;/strong&gt; 集群&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_初始化&#34;&gt;1.4.1. 初始化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看结果&#34;&gt;1.4.2. 查看结果&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_把_strong_agent_strong_strong_swarm_01_strong_添加到_strong_swarm_strong_集群&#34;&gt;1.4.3. 把 &lt;strong&gt;agent&lt;/strong&gt; &lt;strong&gt;swarm-01&lt;/strong&gt; 添加到 &lt;strong&gt;swarm&lt;/strong&gt; 集群&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_部署应用&#34;&gt;1.4.4. 部署应用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_tmp&#34;&gt;2. TMP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_swarm&#34;&gt;1. Swarm&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_环境&#34;&gt;1.1. 环境&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;linux主机CoreOS Alpha 1214.0.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3333%;&#34;&gt;
+&lt;col style=&#34;width: 33.3334%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;主机名&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;IP&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;类型&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;swarm-manager&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.137.16&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;manager&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;swarm-01&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;192.168.137.17&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;agent&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_docker_版本&#34;&gt;1.2. docker 版本&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;$ docker version
+Client:
+ Version:      1.12.1
+ API version:  1.24
+ Go version:   go1.6.3
+ Git commit:   7a86f89
+ Built:
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.12.1
+ API version:  1.24
+ Go version:   go1.6.3
+ Git commit:   7a86f89
+ Built:
+ OS/Arch:      linux/amd64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_docker_swarm_命令详情&#34;&gt;1.3. docker swarm 命令详情&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker swarm&lt;/code&gt;：集群管理，子命令有 &lt;code&gt;init&lt;/code&gt;, &lt;code&gt;join&lt;/code&gt;,&lt;code&gt;join-token&lt;/code&gt;, &lt;code&gt;leave&lt;/code&gt;, &lt;code&gt;update&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker node&lt;/code&gt;：节点管理，子命令有 &lt;code&gt;demote&lt;/code&gt;, &lt;code&gt;inspect&lt;/code&gt;,&lt;code&gt;ls&lt;/code&gt;, &lt;code&gt;promote&lt;/code&gt;, &lt;code&gt;rm&lt;/code&gt;, &lt;code&gt;ps&lt;/code&gt;, &lt;code&gt;update&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker service&lt;/code&gt;：服务管理，子命令有 &lt;code&gt;create&lt;/code&gt;, &lt;code&gt;inspect&lt;/code&gt;, &lt;code&gt;ps&lt;/code&gt;, &lt;code&gt;ls&lt;/code&gt; ,&lt;code&gt;rm&lt;/code&gt; , &lt;code&gt;scale&lt;/code&gt;, &lt;code&gt;update&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker stack/deploy&lt;/code&gt;：试验特性，用于多应用部署&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_创建_strong_swarm_strong_集群&#34;&gt;1.4. 创建 &lt;strong&gt;Swarm&lt;/strong&gt; 集群&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_初始化&#34;&gt;1.4.1. 初始化&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker swarm init --listen-addr 192.168.137.16:2377 &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    --advertise-addr 192.168.137.16  &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;监听地址和端口&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;广播地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_查看结果&#34;&gt;1.4.2. 查看结果&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;$ docker node ls
+ID                           HOSTNAME    STATUS  AVAILABILITY  MANAGER STATUS
+4cq8ppe7gpf8tvvqcdp6nqty8    swarm-01    Ready   Active
+56sak7fpfts2tihvc5wpfhbt6 *  coreostest  Ready   Active        Leader&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_把_strong_agent_strong_strong_swarm_01_strong_添加到_strong_swarm_strong_集群&#34;&gt;1.4.3. 把 &lt;strong&gt;agent&lt;/strong&gt; &lt;strong&gt;swarm-01&lt;/strong&gt; 添加到 &lt;strong&gt;swarm&lt;/strong&gt; 集群&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker swarm join --token SWMTKN-1-4orz6854t4zhmbwigvqw1i2js5agediqfxm3hglunw9njw2rsu-5296wwmly6c6j5scorkrkmxz8     192.168.137.16:2377&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_部署应用&#34;&gt;1.4.4. 部署应用&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker service create --replicas 3 --name my-web -p 80:80 dishui.io:5000/nginx:stable&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考&lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;[[&lt;a href=&#34;https://docs.docker.com/engine/swarm&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/engine/swarm&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[使用docker 1.12 搭建多主机docker swarm集群 | &lt;a href=&#34;http://www.lxy520.net/2016/07/02/shi-yong-docker-1-12-da-jian-duo-zhu-ji-docker-swarmji-qun/&#34; class=&#34;bare&#34;&gt;http://www.lxy520.net/2016/07/02/shi-yong-docker-1-12-da-jian-duo-zhu-ji-docker-swarmji-qun/&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[[docker 1.12 的服务自动发现 | &lt;a href=&#34;http://www.lxy520.net/2016/09/03/docker-1-12-de-fu-wu-zi-dong-fa-xian/&#34; class=&#34;bare&#34;&gt;http://www.lxy520.net/2016/09/03/docker-1-12-de-fu-wu-zi-dong-fa-xian/&lt;/a&gt;]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_tmp&#34;&gt;2. TMP&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;docker swarm join \
+    --token SWMTKN-1-4orz6854t4zhmbwigvqw1i2js5agediqfxm3hglunw9njw2rsu-5296wwmly6c6j5scorkrkmxz8 \
+    192.168.137.16:2377&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>docker 基础命令</title>
+      <link>/post/docker/docker-base/</link>
+      <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/docker/docker-base/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;docker-base&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_阿里云加速&#34;&gt;1. 阿里云加速&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_dockerfile_参考&#34;&gt;2. Dockerfile 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_使用&#34;&gt;3. 使用&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取容器_ip&#34;&gt;3.1. 获取容器 ip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_list_镜像&#34;&gt;3.2. list 镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_list_容器&#34;&gt;3.3. list 容器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_启动_code_docker_code&#34;&gt;3.4. 启动 &lt;code&gt;docker&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_操作_code_docker_code&#34;&gt;4. 操作 &lt;code&gt;Docker&lt;/code&gt;&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_build_code&#34;&gt;4.1. &lt;code&gt;build&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_run_code&#34;&gt;4.2. &lt;code&gt;run&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_log_code&#34;&gt;4.3. &lt;code&gt;log&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_删除镜像&#34;&gt;4.4. 删除镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_批量删除镜像&#34;&gt;4.5. 批量删除镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_删除容器&#34;&gt;4.6. 删除容器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_关闭所有容器&#34;&gt;4.7. 关闭所有容器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_进入一个容器的交互模式&#34;&gt;4.8. 进入一个容器的交互模式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_挂载目录&#34;&gt;4.9. 挂载目录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_载入镜像&#34;&gt;4.10. 载入镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看_code_docker_code_网络&#34;&gt;4.11. 查看 &lt;code&gt;docker&lt;/code&gt; 网络&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_容器生成镜像&#34;&gt;4.12. 容器生成镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_从主机到容器&#34;&gt;4.13. 从主机到容器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_从容器到主机&#34;&gt;4.14. 从容器到主机&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_删除不是_code_dishui_io_code_开头的镜像&#34;&gt;4.15. 删除不是 &lt;code&gt;dishui.io&lt;/code&gt; 开头的镜像&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_修改_code_docker_code_镜像的存储位置&#34;&gt;5. 修改 &lt;code&gt;Docker&lt;/code&gt; 镜像的存储位置&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_备份fstab文件&#34;&gt;5.1. 备份fstab文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_停止_code_docker_code_用_code_rsync_code_同步_code_var_lib_docker_code_到新位置_如果_code_rsync_code_没有安装&#34;&gt;5.2. 停止 &lt;code&gt;docker&lt;/code&gt; ， 用 &lt;code&gt;rsync&lt;/code&gt; 同步 &lt;code&gt;/var/lib/docker&lt;/code&gt; 到新位置 如果 &lt;code&gt;rsync&lt;/code&gt; 没有安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_停止_code_docker_code&#34;&gt;5.3. 停止 &lt;code&gt;docker&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_同步数据&#34;&gt;5.4. 同步数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_修改_code_fstab_code&#34;&gt;5.5. 修改 &lt;code&gt;fstab&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;6. Mount AWS EFS, NFS or CIFS/Samba volumes in Docker&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_阿里云加速&#34;&gt;1. 阿里云加速&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;https://7xefeire.mirror.aliyuncs.com&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_dockerfile_参考&#34;&gt;2. Dockerfile 参考&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/engine/reference/builder/&#34; class=&#34;bare&#34;&gt;https://docs.docker.com/engine/reference/builder/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_使用&#34;&gt;3. 使用&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_获取容器_ip&#34;&gt;3.1. 获取容器 ip&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker inspect --format=&#39;{{.NetworkSettings.IPAddress}} {{.Config.Hostname}}&#39; $CONTAINER_ID
+
+docker ps --format=&#39;{{.ID}}&#39;|xargs -I id docker inspect --format=&#39;{{.NetworkSettings.IPAddress}} {{.Config.Hostname}}&#39; id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_list_镜像&#34;&gt;3.2. list 镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker images --format &#34;{{.ID}}: {{.Repository}}:{{.Tag}}&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_list_容器&#34;&gt;3.3. list 容器&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker ps --format &#34;{{.ID}}: {{.Names}}&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_启动_code_docker_code&#34;&gt;3.4. 启动 &lt;code&gt;docker&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -t -i ubuntu:14.04 /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_操作_code_docker_code&#34;&gt;4. 操作 &lt;code&gt;Docker&lt;/code&gt;&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_build_code&#34;&gt;4.1. &lt;code&gt;build&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker build -t csphere/centos:7.1 .&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_run_code&#34;&gt;4.2. &lt;code&gt;run&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;-it 前台,交互模式&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_log_code&#34;&gt;4.3. &lt;code&gt;log&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker logs -f &amp;lt;ID&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_删除镜像&#34;&gt;4.4. 删除镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker rmi [-f] &amp;lt;ID&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_批量删除镜像&#34;&gt;4.5. 批量删除镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker images | awk &#39;{if($1 ~ &#34;^zookeeper&#34;&amp;amp;&amp;amp;$2 != &#34;1.4&#34; ){print $1&#34;:&#34;$2}}&#39; | xargs docker rmi&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker images --format &#34;{{.ID}} {{.Repository}}:{{.Tag}}&#34; | awk &#39;{if($0 ~ &#34;&amp;lt;none&amp;gt;&#34; &amp;amp;&amp;amp; NR != 1){print $1}}&#39; | xargs docker rmi&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_删除容器&#34;&gt;4.6. 删除容器&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;=删除所有容器
+docker rm $(docker ps -a -q)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_关闭所有容器&#34;&gt;4.7. 关闭所有容器&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker stop $(docker ps -a -q)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_进入一个容器的交互模式&#34;&gt;4.8. 进入一个容器的交互模式&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker exec -it &amp;lt;CONTAINER Name&amp;gt; /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_挂载目录&#34;&gt;4.9. 挂载目录&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -it -v /src/webapp:/opt/webapp ubuntu:14.04 /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_载入镜像&#34;&gt;4.10. 载入镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker load &amp;lt; ubuntu_14.04.tar&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_查看_code_docker_code_网络&#34;&gt;4.11. 查看 &lt;code&gt;docker&lt;/code&gt; 网络&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker network ls&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_容器生成镜像&#34;&gt;4.12. 容器生成镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker commit 614122c0aabb aoct/apache2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_从主机到容器&#34;&gt;4.13. 从主机到容器&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo docker cp ./default.conf nginx:/etc/nginx/conf.d/suffusedDomain.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_从容器到主机&#34;&gt;4.14. 从容器到主机&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo docker cp centos7:/tmp/docker-compose-Linux-x86_64 ./docker-compose-Linux-x86_64&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_删除不是_code_dishui_io_code_开头的镜像&#34;&gt;4.15. 删除不是 &lt;code&gt;dishui.io&lt;/code&gt; 开头的镜像&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker images | awk &#39;{if($1 ~ &#34;&amp;lt;none&amp;gt;&#34; &amp;amp;&amp;amp; NR != 1){print $3}}&#39; | xargs docker rmi&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_修改_code_docker_code_镜像的存储位置&#34;&gt;5. 修改 &lt;code&gt;Docker&lt;/code&gt; 镜像的存储位置&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_备份fstab文件&#34;&gt;5.1. 备份fstab文件&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cp /etc/fstab /etc/fstab.$(date +%Y-%m-%d)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_停止_code_docker_code_用_code_rsync_code_同步_code_var_lib_docker_code_到新位置_如果_code_rsync_code_没有安装&#34;&gt;5.2. 停止 &lt;code&gt;docker&lt;/code&gt; ， 用 &lt;code&gt;rsync&lt;/code&gt; 同步 &lt;code&gt;/var/lib/docker&lt;/code&gt; 到新位置 如果 &lt;code&gt;rsync&lt;/code&gt; 没有安装&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yum -y install rsync&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_停止_code_docker_code&#34;&gt;5.3. 停止 &lt;code&gt;docker&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;service docker stop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_同步数据&#34;&gt;5.4. 同步数据&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;=在数据分区中建立要挂载的目录
+mkdir /data/docker
+=使用rsync工具同步
+rsync -aXS /var/lib/docker/.  /data/docker/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_修改_code_fstab_code&#34;&gt;5.5. 修改 &lt;code&gt;fstab&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;=vi /etc/fstab
+/data/docker /var/lib/docker  none bind 0 0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;6. Mount AWS EFS, NFS or CIFS/Samba volumes in Docker&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载 插件 百度网盘&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;src/docker/docker-volume-netshare_0.32_linux_amd64-bin&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动 插件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo nohup docker-volume-netshare cifs --username dishui --password dishui --domain storage &amp;amp;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动容器&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker run -i -t --volume-driver=cifs -v 192.168.137.2/hugo:/hugo centos:7 /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;参考&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://netshare.containx.io/&#34;&gt;docker-volume-netshare&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;qlist qanda&#34;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;重启后 cifs 创建的volume丢失 &lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;docker-volume-netshare&lt;/code&gt; 插件机制引起的&lt;br&gt;
+CoreOS 开机启动创建volume&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;    - name: docker-volume-netshare.service
+      command: start
+      content: |
+        [Unit]
+        Description=docker-volume-netshare
+        After=docker.service
+        [Service]
+        User=root
+        ExecStart=/opt/bin/docker-volume-netshare cifs --username dishui --password dishui --domain storage
+        ExecStartPost=/usr/bin/docker volume create -d cifs --name 192.168.137.2/dishui
+        LimitNOFILE=40000
+        TimeoutStartSec=0
+
+        [Install]
+        WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

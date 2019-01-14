@@ -1,0 +1,4950 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/categories/mailiqng-app/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/mailiqng-app/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>商品模块</title>
+      <link>/post/work/app/goods/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/goods/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_商品模块&#34;&gt;1. 商品模块&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_商品列表统一接口&#34;&gt;1.1. 商品列表统一接口&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_进入现货市场&#34;&gt;1.2. 进入现货市场&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_搜索框&#34;&gt;1.3. 搜索框&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_品牌过滤&#34;&gt;1.4. 品牌过滤&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_供应商过滤&#34;&gt;1.5. 供应商过滤&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_型号过滤&#34;&gt;1.6. 型号过滤&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_类目过滤&#34;&gt;1.7. 类目过滤&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_价格排序&#34;&gt;1.8. 价格排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_添加商品&#34;&gt;1.9. 添加商品&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_商品分类&#34;&gt;1.9.1. 商品分类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_品牌&#34;&gt;1.9.2. 品牌&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_立即购买_结算&#34;&gt;1.10. 立即购买 结算&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_筛选&#34;&gt;1.11. 筛选&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取_品牌_型号_供应商&#34;&gt;1.11.1. 获取 品牌 型号 供应商&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_首页_轮播&#34;&gt;1.12. 首页 轮播&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_首页_类目&#34;&gt;1.13. 首页 类目&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_商品详情&#34;&gt;1.14. 商品详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_进入店铺&#34;&gt;1.15. 进入店铺&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_搜索框_2&#34;&gt;1.16. 搜索框&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_首页_通知&#34;&gt;1.17. 首页 通知&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_商品模块&#34;&gt;1. 商品模块&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_商品列表统一接口&#34;&gt;1.1. 商品列表统一接口&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST&lt;br&gt;
+Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;from&#34;:0,  # 起始页数
+  &#34;searchKey&#34;:&#34;&#34;,  # 搜索框
+  &#34;catId&#34;:&#34;&#34;,  # 管理类目id
+  &#34;brandName&#34;:&#34;&#34;,  # 品牌
+  &#34;productName&#34;:&#34;&#34;,  # 型号
+  &#34;region&#34;:&#34;&#34;,  # 出库地
+  &#34;sellerNick&#34;:&#34;&#34;,  # 供应商
+  &#34;priceFrom&#34;:&#34;&#34;,  # 起始价格
+  &#34;priceTo&#34;:&#34;&#34;, # 结束价格
+  &#34;category&#34;:&#34;&#34;,  # 商品类目
+  &#34;shopId&#34;:&#34;&#34;,  # 店铺id
+  &#34;shopCat&#34;:&#34;&#34;,  # 店铺类目
+  &#34;sort&#34;:0  # 价格排序 0:升序 1:降序
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;参照 搜索 返回数据格式&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_进入现货市场&#34;&gt;1.2. 进入现货市场&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;br&gt;
+Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;brandNames&#34;: [ #品牌
+    &#34;国产品牌&#34;,
+    &#34;东海&#34;,
+    &#34;中海油36-1&#34;,
+    &#34;昆仑&#34;,
+    &#34;韩国SK&#34;,
+    &#34;进口品牌&#34;
+  ],
+  &#34;productNames&#34;: [ #型号
+    &#34;70#&#34;,
+    &#34;弹性体SBS改性沥青防水卷材&#34;,
+    &#34;90#&#34;,
+    &#34;聚氨脂防水涂料&#34;,
+    &#34;自粘防水卷材&#34;,
+    &#34;SBS类&#34;
+  ],
+  &#34;sellerNicks&#34;: [ #供应商
+    &#34;北京市政路桥建材集团有限公司&#34;,
+    &#34;Mai沥青自营&#34;,
+    &#34;山东大山路桥工程有限公司&#34;,
+    &#34;山东高速物资储运有限公司&#34;,
+    &#34;江苏中路新材料科技发展有限公司&#34;,
+    &#34;山东华瑞道路材料技术有限公司&#34;
+  ],
+  &#34;hots&#34;: [   #热门推荐
+    &#34;国产品牌&#34;,
+    &#34;东海&#34;,
+    &#34;中海油36-1&#34;,
+    &#34;昆仑&#34;,
+    &#34;韩国SK&#34;,
+    &#34;进口品牌&#34;
+  ],
+  &#34;categorys&#34;: [
+    {
+      &#34;catId&#34;: &#34;201509145a8o761&#34;,
+      &#34;catName&#34;: &#34;沥青&#34;
+    },
+    {
+      &#34;catId&#34;: &#34;20150915a006n2x&#34;,
+      &#34;catName&#34;: &#34;沥青添加剂&#34;
+    },
+    {
+      &#34;catId&#34;: &#34;20150915H047E36&#34;,
+      &#34;catName&#34;: &#34;沥青混合料&#34;
+    },
+    {
+      &#34;catId&#34;: &#34;20150915H3y0520&#34;,
+      &#34;catName&#34;: &#34;防水材料&#34;
+    },
+    {
+      &#34;catId&#34;: &#34;2015091534715Do&#34;,
+      &#34;catName&#34;: &#34;设备/检测&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_搜索框&#34;&gt;1.3. 搜索框&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;JSON&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST  Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;searchKey&#34; : &#34;沥青&#34;  &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;string 必须&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;openblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;list&#34;: [
+    {
+      &#34;goodsId&#34;: &#34;201512308RLi6w2&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+      &#34;title&#34;: &#34;70#基质沥青&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+      &#34;imgOriginal&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+      &#34;productPrice&#34;: &#34;1800.00&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+      &#34;unit&#34;: &#34;吨&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+      &#34;minQuantity&#34;: &#34;5000&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;6&#34;&gt;&lt;/i&gt;&lt;b&gt;(6)&lt;/b&gt;
+      &#34;repositoryRegion&#34;: &#34;华东地区,江苏省,泰州市&#34;, &lt;i class=&#34;conum&#34; data-value=&#34;7&#34;&gt;&lt;/i&gt;&lt;b&gt;(7)&lt;/b&gt;
+      &#34;url&#34;: &#34;/product/get/201512308RLi6w2&#34; &lt;i class=&#34;conum&#34; data-value=&#34;8&#34;&gt;&lt;/i&gt;&lt;b&gt;(8)&lt;/b&gt;
+    },
+    {
+      &#34;id&#34;: &#34;201509155okjh81&#34;,
+      &#34;title&#34;: &#34;海韵牌70#沥青&#34;,
+      &#34;imgOriginal&#34;: null,
+      &#34;productPrice&#34;: &#34;1745.00&#34;,
+      &#34;unit&#34;: &#34;吨&#34;,
+      &#34;minQuantity&#34;: &#34;50000&#34;,
+      &#34;repositoryRegion&#34;: &#34;华东地区,山东省&#34;,
+      &#34;url&#34;: &#34;/product/get/201509155okjh81&#34;
+    }
+  ],
+  &#34;totalCount&#34;: 719, &lt;i class=&#34;conum&#34; data-value=&#34;9&#34;&gt;&lt;/i&gt;&lt;b&gt;(9)&lt;/b&gt;
+  &#34;totalPages&#34;: 72, &lt;i class=&#34;conum&#34; data-value=&#34;10&#34;&gt;&lt;/i&gt;&lt;b&gt;(10)&lt;/b&gt;
+  &#34;state&#34;: 1 &lt;i class=&#34;conum&#34; data-value=&#34;11&#34;&gt;&lt;/i&gt;&lt;b&gt;(11)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;商品id&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;2&#34;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;商品名称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;3&#34;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;图片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;4&#34;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;商品价格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;5&#34;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;单位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;6&#34;&gt;&lt;/i&gt;&lt;b&gt;6&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;最小起订量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;7&#34;&gt;&lt;/i&gt;&lt;b&gt;7&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;出库地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;8&#34;&gt;&lt;/i&gt;&lt;b&gt;8&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;商品详情链接&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;9&#34;&gt;&lt;/i&gt;&lt;b&gt;9&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;总数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;10&#34;&gt;&lt;/i&gt;&lt;b&gt;10&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;总页数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;11&#34;&gt;&lt;/i&gt;&lt;b&gt;11&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;1:成功 0:失败&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_品牌过滤&#34;&gt;1.4. 品牌过滤&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;[[/uploads/2-1.png]]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;点击 品牌 跳转到 现货市场列表页  携带 &lt;strong&gt;brandName&lt;/strong&gt; 到列表页&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST  Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;brandName&#34; : &#34;东海&#34;,  #品牌
+  &#34;from&#34; : 2 # 页数(列表页,翻页时 携带)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;参照 搜索 返回数据格式&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_供应商过滤&#34;&gt;1.5. 供应商过滤&lt;/h3&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;点击 供应商 跳转到 现货市场列表页  携带 &lt;strong&gt;sellerNick&lt;/strong&gt; 到列表页&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST  Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;sellerNick&#34; : &#34;北京市政路桥建材集团有限公司&#34;,  #供应商
+  &#34;from&#34; : 2 # 页数(列表页,翻页时 携带)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;参照 搜索 返回数据格式&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_型号过滤&#34;&gt;1.6. 型号过滤&lt;/h3&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;点击 型号 跳转到 现货市场列表页  携带 &lt;strong&gt;productName&lt;/strong&gt; 到列表页&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST  Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;productName&#34; : &#34;SBS&#34;,  #型号
+  &#34;from&#34; : 2 # 页数(列表页,翻页时 携带)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;参照 搜索 返回数据格式&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_类目过滤&#34;&gt;1.7. 类目过滤&lt;/h3&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;点击左侧类目 右侧更新数据&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search/category&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search/category&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST  Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;catId&#34; : &#34;201509145a8o761&#34; #类目id
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;brandNames&#34;: [
+    &#34;国产品牌&#34;,
+    &#34;山西兰亭&#34;,
+    &#34;艾施姆&#34;
+  ],
+  &#34;productNames&#34;: [
+    &#34;沥青混凝土&#34;,
+    &#34;橡胶（ARAC）&#34;,
+    &#34;沥青玛蹄脂碎石&#34;,
+    &#34;环保橡胶&#34;,
+    &#34;排水降噪&#34;,
+    &#34;防冰融雪&#34;
+  ],
+  &#34;sellerNicks&#34;: [
+    &#34;北京市政路桥建材集团有限公司&#34;,
+    &#34;江苏中路新材料科技发展有限公司&#34;,
+    &#34;兰亭商社&#34;,
+    &#34;北京塞北路通商贸有限公司&#34;,
+    &#34;北京岭北筑路材料有限公司&#34;,
+    &#34;北京艾施姆科技有限公司&#34;
+  ],
+  &#34;hots&#34;: [
+    &#34;国产品牌&#34;,
+    &#34;山西兰亭&#34;,
+    &#34;艾施姆&#34;
+  ],
+  &#34;categorys&#34;: [
+    {
+      &#34;catName&#34;: &#34;沥青&#34;,
+      &#34;catId&#34;: &#34;20150914q0asfEw&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;沥青添加剂&#34;,
+      &#34;catId&#34;: &#34;20150914i3J058e&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;沥青混合料&#34;,
+      &#34;catId&#34;: &#34;20150914m348342&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;防水材料&#34;,
+      &#34;catId&#34;: &#34;201509140qX823u&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;设备/检测&#34;,
+      &#34;catId&#34;: &#34;20150914K2Mm1LN&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_价格排序&#34;&gt;1.8. 价格排序&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST  Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;sort&#34; : 0,    // 0:升序 1:降序
+  &#34;from&#34; : 2 # 页数(列表页,翻页时 携带)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;参照 搜索 返回数据格式&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_添加商品&#34;&gt;1.9. 添加商品&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/add&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/add&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;userId&#34; : &#34;2015091886Hi8X7&#34;, #用户id
+  &#34;shopId&#34; : &#34;201509187M0Cv51&#34;, #店铺id
+  &#34;title&#34; : &#34;东风70#&#34;, #商品名称
+  &#34;catCode&#34; : &#34;20150914q0asfEw|20150914w7L7oG2|201509140732S22&#34;, #类目
+  &#34;repositoryAddr&#34; : &#34;北京|北京市&#34;, #出库地址
+  &#34;price&#34; : 3400,   # 价格 double
+  &#34;inventory&#34; : 400,  # 库存 int
+  &#34;saleAddr&#34; : &#34;北京|北京市&#34;, # 销售区域
+  &#34;delivery&#34; : 3, # 交货天数
+  &#34;minMount&#34; : 45,  # 最小起订量
+  &#34;logisticsType&#34; : 0, # 物流信息 0:买家自提 1:卖家送货
+  &#34;goodsDesc&#34; : &#34;70# 沥青好东西&#34;, # 商品描述
+  &#34;img&#34; : &#34;img/509476613293148127.jpg|img/624472029306431674&#34; # 图片 多张图片使用 | 分割
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;添加商品失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_商品分类&#34;&gt;1.9.1. 商品分类&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/category&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/category&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;无&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;msc_cl&#34;: [
+        {
+          &#34;msc_cl&#34;: [  # 子类目 数组
+            {
+              &#34;catName&#34;: &#34;10#&#34;,
+              &#34;catId&#34;: &#34;2015091431h7wTV&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;60#&#34;,
+              &#34;catId&#34;: &#34;2015112386UvJoM&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;70#&#34;,
+              &#34;catId&#34;: &#34;201509140732S22&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;90#&#34;,
+              &#34;catId&#34;: &#34;201509144X87wlj&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;100#&#34;,
+              &#34;catId&#34;: &#34;20160112l200k78&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;110#&#34;,
+              &#34;catId&#34;: &#34;2015091482l1w41&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;130#&#34;,
+              &#34;catId&#34;: &#34;20150914L740u1U&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;140#&#34;,
+              &#34;catId&#34;: &#34;20151125460MI7i&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;180#&#34;,
+              &#34;catId&#34;: &#34;20151223iX8q82e,20150914w7L7oG2&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;基质沥青&#34;, # 类目名
+          &#34;catId&#34;: &#34;20150914w7L7oG2&#34;  # 类目id
+        },
+        {
+          &#34;msc_cl&#34;: [
+            {
+              &#34;catName&#34;: &#34;SBS类&#34;,
+              &#34;catId&#34;: &#34;20150914m401ckq&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;SBR类&#34;,
+              &#34;catId&#34;: &#34;2015091418gJ6ub&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;橡胶粉&#34;,
+              &#34;catId&#34;: &#34;20150914pM66574&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;PG改性沥青&#34;,
+              &#34;catId&#34;: &#34;20150914F85313F&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;环保橡胶沥青&#34;,
+              &#34;catId&#34;: &#34;20150914A4mAK2U&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;MAC改性沥青&#34;,
+              &#34;catId&#34;: &#34;201601140E1sgI3&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;改性沥青&#34;,
+          &#34;catId&#34;: &#34;20150914H6PM003&#34;
+        },
+        {
+          &#34;msc_cl&#34;: [
+            {
+              &#34;catName&#34;: &#34;公路用乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20150914165E287&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;改性乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20160318CPQ26JU&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;高含固量乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20150914Wd82123&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;高粘度乳化沥青&#34;,
+              &#34;catId&#34;: &#34;,20150914K6N5Hha&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;微表处改性乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20150914c453WYQ&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;冷再生乳化沥青&#34;,
+              &#34;catId&#34;: &#34;2015091476gmJ1T&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;特殊乳化沥青&#34;,
+              &#34;catId&#34;: &#34;201509146eb8Pyb&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;不粘轮乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20160413Q7Km65j&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;乳化沥青&#34;,
+          &#34;catId&#34;: &#34;20150914m34mQ5n&#34;
+        },
+        {
+          &#34;msc_cl&#34;: [
+            {
+              &#34;catName&#34;: &#34;煤沥青&#34;,
+              &#34;catId&#34;: &#34;20150914eB2cy68&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;岩沥青&#34;,
+              &#34;catId&#34;: &#34;2015091424K8635&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;彩色沥青&#34;,
+              &#34;catId&#34;: &#34;20160106M8nK6iI&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;硫化沥青&#34;,
+              &#34;catId&#34;: &#34;20160106O5tSxi4&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;防腐沥青&#34;,
+              &#34;catId&#34;: &#34;20151019341oqb4&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;其他沥青&#34;,
+          &#34;catId&#34;: &#34;20150914q48W8K0&#34;
+        }
+      ],
+      &#34;catName&#34;: &#34;沥青&#34;,
+      &#34;catId&#34;: &#34;20150914q0asfEw&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;说明&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;获取的类目是树形结构&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_品牌&#34;&gt;1.9.2. 品牌&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app/procurement/brand/{categoryId}&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app/procurement/brand/{categoryId}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{categoryId} : 201509140732S22 # 类目id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app/procurement/brand/201509140732S22&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app/procurement/brand/201509140732S22&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;brandId&#34;: &#34;20150914NO6768t&#34;, # 品牌id
+      &#34;brandName&#34;: &#34;韩国SK&#34; # 品牌名称
+    },
+    {
+      &#34;brandId&#34;: &#34;201509148O45Q61&#34;,
+      &#34;brandName&#34;: &#34;齐鲁石化&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_立即购买_结算&#34;&gt;1.10. 立即购买 结算&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app_order/insertOrder.shtml&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app_order/insertOrder.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;consignee&#34;: &#34;77777777&#34;, # 联系人
+  &#34;consigneeContact&#34;: &#34;177777777&#34;, # 联系方式
+  &#34;placeOfDelivery&#34;: &#34;277777777&#34;, # 收货地址
+  &#34;tihuoType&#34;: &#34;1&#34;, # 配送方式 0卖家运输，1买家自提
+  &#34;shipRemark&#34;: &#34;dsssdsdds&#34;, # 备注
+  &#34;invoiceType&#34;: &#34;0&#34;, # 发票类型 0增值税专用发票，1增值税普通发票
+  &#34;kaijuType&#34;: &#34;1&#34;, # 开据类型 0一票制，1两票制
+  &#34;buyerId&#34;: &#34;20150828QYY07uh&#34;, # 买家Id (s_custId)
+  &#34;buyerName&#34;: &#34;测试账号_买家1&#34;, # 买家名称
+  &#34;goodsId&#34;: &#34;201509233SiR651&#34;, # 商品ID
+  &#34;goodsNum&#34;: &#34;10&#34;, # 购买数量
+  &#34;goodsPrice&#34;: &#34;12.34&#34; # 商品单价
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34;: &#34;201610131634428&#34;, # 订单id
+  &#34;bankNo&#34;: &#34;862182325910001&#34;, # 账号
+  &#34;totalShipFee&#34;: &#34;0.0&#34;, # 订单运费
+  &#34;totalOrderAmount&#34;: &#34;123.40&#34;, # 订单总额
+  &#34;state&#34;: 1,
+  &#34;userName&#34;: &#34;北京金兆路华电子商务有限公司&#34;, # 户名
+  &#34;bank&#34;: &#34;招商银行 朝阳门支行&#34;, # 开户行
+  &#34;totalGoodsAmount&#34;: &#34;123.40&#34; # 订单金额
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;新增订单失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_筛选&#34;&gt;1.11. 筛选&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;from&#34;:1,  # 起始页
+  &#34;searchKey&#34;:&#34;沥青&#34;, # 搜索关键字
+  &#34;brandName&#34;:&#34;国产品牌&#34;, # 品牌
+  &#34;productName&#34;:&#34;SBS&#34;, # 型号
+  &#34;region&#34;:&#34;北京市&#34;, # 地区
+  &#34;sellerNick&#34;:&#34;北京市政路桥建材集团有限公司&#34;, # 供应商
+  &#34;priceFrom&#34;: 1000, # 起始价格
+  &#34;priceTo&#34;: 2000, # 结束价格
+  &#34;sort&#34;:0 # 0:升序 1:降序
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;参照 搜索 返回数据格式&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_获取_品牌_型号_供应商&#34;&gt;1.11.1. 获取 品牌 型号 供应商&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/filter&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/filter&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;brandNames&#34;: [   #品牌
+    &#34;国产品牌&#34;,
+    &#34;东海&#34;,
+    &#34;中海油36-1&#34;,
+    &#34;昆仑&#34;
+  ],
+  &#34;productNames&#34;: [   #型号
+    &#34;70#&#34;,
+    &#34;弹性体SBS改性沥青防水卷材&#34;,
+    &#34;90#&#34;,
+    &#34;聚氨脂防水涂料&#34;
+  ],
+  &#34;sellerNicks&#34;: [   #供应商
+    &#34;北京市政路桥建材集团有限公司&#34;,
+    &#34;Mai沥青自营&#34;,
+    &#34;山东大山路桥工程有限公司&#34;,
+    &#34;山东高速物资储运有限公司&#34;
+  ],
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_首页_轮播&#34;&gt;1.12. 首页 轮播&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/carousel?userId=20160919OR42Yb6&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/carousel?userId=20160919OR42Yb6&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;空&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;carousel&#34;: [ # 轮播图
+    {
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;url&#34;: &#34;http://www.mailiqing.com/special/zhyyingkou/zhyyingkou.html&#34;
+    },
+    {
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;url&#34;: &#34;http://www.mailiqing.com/special/ziyuandan/ziyuandan.html&#34;
+    }
+  ],
+  &#34;recommend&#34;: [ # 热卖推荐
+    {
+      &#34;title&#34;: &#34;70#&#34;, # 标题
+      &#34;clickCount&#34;: &#34;2&#34;, # 点击量
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;, # 图片
+      &#34;userName&#34;: &#34;小明&#34;, # 发布者
+      &#34;type&#34;: &#34;商品&#34;,  # 类型 资源单|采购单|商品
+      &#34;url&#34;: &#34;http://www.mailiqing.com/special/zhyyingkou/zhyyingkou.html&#34; # url
+    },
+    {
+      &#34;title&#34;: &#34;70#&#34;,
+      &#34;clickCount&#34;: &#34;2&#34;,
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;userName&#34;: &#34;小明&#34;,
+      &#34;type&#34;: &#34;商品&#34;,
+      &#34;url&#34;: &#34;http://www.mailiqing.com/special/ziyuandan/ziyuandan.html&#34;
+    }
+  ],
+  &#34;dynamic&#34;: [
+    {
+      &#34;imgs&#34;: [ &#34;img/57e8efdbe4b09d52039ce4c4.img&#34; ],   # 图片地址
+      &#34;clist&#34;: [], # 评论列表
+      &#34;likeCount&#34;: 0, # 点赞数量
+      &#34;collectionCount&#34;: 0, # 收藏数量
+      &#34;inDate&#34;: &#34;2016-09-26 17:52:27.0&#34;, # 时间
+      &#34;mood&#34;: &#34;呵呵&#34;, # 动态详情
+      &#34;userImage&#34;: &#34;&#34;, # 用户头像
+      &#34;type&#34;: &#34;2&#34;, # 动态
+      &#34;commentCount&#34;: 0, # 评论数
+      &#34;id&#34;: &#34;20160926g4V6j65&#34;,  # 动态ID
+      &#34;user_name&#34;: &#34;ceshi_buyer&#34;, # 用户名
+      &#34;isLike&#34;: &#34;1&#34;, # 是否已点赞 0:是 1:否
+      &#34;isCollection&#34;: &#34;1&#34;, # 是否收藏 0:是 1:否
+      &#34;user_id&#34;: &#34;20150828QYY07uh&#34; # 用户ID
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_首页_类目&#34;&gt;1.13. 首页 类目&lt;/h3&gt;
+&lt;div class=&#34;admonitionblock important&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-important&#34; title=&#34;Important&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;点击类目 携带类目id 跳转现货市场列表页&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;URL&lt;br&gt;
+&lt;a href=&#34;http://app.mailiqing.com/app/goods/search&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;携带参数说明&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{&#34;category&#34;:&#34;沥青&#34;}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/goods/category&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/goods/category&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;无&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;catName&#34;: &#34;沥青&#34;, # 类目名 点击时  携带
+      &#34;catId&#34;: &#34;20150914q0asfEw&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;沥青添加剂&#34;,
+      &#34;catId&#34;: &#34;20150914i3J058e&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;沥青混合料&#34;,
+      &#34;catId&#34;: &#34;20150914m348342&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;防水材料&#34;,
+      &#34;catId&#34;: &#34;201509140qX823u&#34;
+    },
+    {
+      &#34;catName&#34;: &#34;设备/检测&#34;,
+      &#34;catId&#34;: &#34;20150914K2Mm1LN&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_商品详情&#34;&gt;1.14. 商品详情&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/product/get/{id}?userId=20160919OR42Yb6&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/product/get/{id}?userId=20160919OR42Yb6&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;id: 20160308fqkgw2G # 商品id
+userId: 20160919OR42Yb6 # 用户id (如果登录,需要携带)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/product/get/20160308fqkgw2G&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/product/get/20160308fqkgw2G&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;title&#34;: &#34;秦皇岛90#&#34;, # 商品名称
+  &#34;unit&#34;: &#34;吨&#34;, # 单位
+  &#34;imgLarge&#34;: [ # 图片大图
+    &#34;http://116.90.81.68:80/koto/img/57e352dee4b0b02f90bf8995.img&#34;
+  ],
+  &#34;imgs&#34;: [
+    &#34;http://116.90.81.68:80/koto/img/57e352dee4b0b02f90bf8995.img_300_300.img&#34; # 图片
+  ],
+  &#34;sellerNick&#34;: &#34;北京通力正实&#34;, # 公司名称
+  &#34;productPrice&#34;: &#34;1580.00&#34;, # 商品价格
+  &#34;stockQuantity&#34;: &#34;5000&#34;, # 库存量
+  &#34;packageType&#34;: &#34;散装 &#34;, # 包装类型
+  &#34;deliveryDay&#34;: &#34;7&#34;, # 备货周期 天
+  &#34;saleRegion&#34;: &#34;全国&#34;,  # 销售区域
+  &#34;minQuantity&#34;: &#34;35&#34;, # 最小起订量
+  &#34;repositoryRegion&#34;: &#34;华北地区,河北省&#34;, # 出库地
+  &#34;isSelf&#34;: &#34;0&#34;, # 是否是自营 0：否 1：是
+  &#34;shopId&#34;: &#34;20151119v4N0775&#34;,  # 店铺id
+  &#34;phone&#34;: &#34;400-187-1158&#34;, # 客服电话
+  &#34;goodsDesc&#34;:&#34;/h5/goodsDesc/20160308fqkgw2G&#34; # 商品描述
+  &#34;huanxin_no&#34;: &#34;20161031je43e0i&#34;, # 平台环信号
+  &#34;m_huanxin_no&#34;: &#34;20161031je43e0i&#34;, # 卖家环信号
+  &#34;plat_image&#34;: &#34;20161031je43e0i&#34;, # 平台客服头像
+  &#34;member_image&#34;: &#34;20161031je43e0i&#34;, # 卖家头像
+  &#34;shopInfo&#34;: { # 店铺信息
+    &#34;id&#34;: &#34;20151119v4N0775&#34;, # 店铺id
+    &#34;shopName&#34;: &#34;北京通力正实&#34;, # 店铺名称
+    &#34;shopLogo&#34;: &#34;http://116.90.81.68/data/upload_image/shop/0/7/f082080de6d54d3492f5f57348aacfbe.jpg&#34;, # 店铺logo
+    &#34;shopDesc&#34;: &#34;\n    北京通力正实贸易有限公司，成立于2009年，公司依法从事沥青、燃料油、危险品等专业贸易。公司注册资金500万元，拥有天津塘沽沥青库（2万库容），北京沥青库（2万库容），有一支管理经验丰富，技术力量雄厚的专业团队，各类专业人才近百名。\n公司年销售、配送能力七十万吨以上。主要经销、配送中国石油秦皇岛、辽河、任丘、呼和浩特等炼厂生产的《昆仑》牌道路沥青、渣油、油浆、焦化料、催化料、塔顶油、燃料油及一线、二线、三线防水助剂；中海油滨州炼厂生产的《中海36-1》道路沥青、蜡油及200#焦化油；中国石油保定、镇海、齐鲁、南京金陵、西安、燕化等炼厂生产的《东海牌》道路沥青、油浆及渣油。在三大央企以上产品销量名列前茅。\n在公司全体员工的积极努力下，公司先后获得：2010年中国石化炼油上海销售有限公司“东海牌”沥青稳定发展奖，河北省A级经销商等荣誉；获得中油燃料油股份有限公司、中海油中海沥青股份有限公司的大客户待遇。 公司以“科技为先、质量为本、信誉为金”为宗旨，以创新发展，靠质量求市场，用诚信求合作，竭诚为各界朋友提供优质的产品和诚信的服务。&#34;, # 店铺简介
+    &#34;url&#34;: &#34;/shop/get/20151119v4N0775&#34; # 店铺链接
+    &#34;collectCount&#34;: 12, # 收藏数量
+    &#34;isCollect&#34;: 1, # 是否收藏 0:否 1:是
+    &#34;goodsCount&#34;: 17, # 商品数量
+    &#34;saleCount&#34;: 11.5 # 销售量
+  },
+  &#34;services&#34;: [ # 服务
+    {
+      &#34;icon&#34;: &#34;http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a7.img&#34;,
+      &#34;text&#34;: &#34;物流&#34;
+    },
+    {
+      &#34;icon&#34;: &#34;http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a3.img&#34;,
+      &#34;text&#34;: &#34;金融&#34;
+    },
+    {
+      &#34;icon&#34;: &#34;http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a1.img&#34;,
+      &#34;text&#34;: &#34;委托找货&#34;
+    },
+    {
+      &#34;icon&#34;: &#34;http://116.90.81.68:80/koto/img/57ff2868e4b09d52039ce5a5.img&#34;,
+      &#34;text&#34;: &#34;加工&#34;
+    }
+  ],
+  &#34;recommandGoods&#34;: [ # 热门推荐
+    {
+      &#34;title&#34;: &#34;辽河石化70#&#34;,
+      &#34;imgOriginal&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;productPrice&#34;: &#34;1610.00&#34;,
+      &#34;unit&#34;: &#34;吨&#34;,
+      &#34;minQuantity&#34;: &#34;35&#34;,
+      &#34;repositoryRegion&#34;: &#34;华北地区,河北省&#34;,
+      &#34;url&#34;: &#34;/product/get/2016030874s56CG&#34;,
+      &#34;goodsId&#34;: &#34;2016030874s56CG&#34;
+    },
+    {
+      &#34;title&#34;: &#34;石家庄炼厂90#&#34;,
+      &#34;imgOriginal&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;productPrice&#34;: &#34;1550.00&#34;,
+      &#34;unit&#34;: &#34;吨&#34;,
+      &#34;minQuantity&#34;: &#34;35&#34;,
+      &#34;repositoryRegion&#34;: &#34;华北地区,河北省&#34;,
+      &#34;url&#34;: &#34;/product/get/20160308La441Oe&#34;,
+      &#34;goodsId&#34;: &#34;20160308La441Oe&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_进入店铺&#34;&gt;1.15. 进入店铺&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/shop/get/{id}?userId=20160919OR42Yb6&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/shop/get/{id}?userId=20160919OR42Yb6&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{id} : 2015091404A3ol8 # 店铺id
+userId: 20160919OR42Yb6 # 用户id (如果登录,需要携带)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/shop/get/2015091404A3ol8&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/shop/get/2015091404A3ol8&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34; : &#34;2015091404A3ol8&#34;, # 店铺id
+  &#34;shopName&#34; : &#34;北京中物振华贸易有限公司&#34;, # 店铺名称
+  &#34;shopLogo&#34; : &#34;http://116.90.81.68/data/upload_image/shop/13/0/016a6e2b4da14457b1da90ed39ed27c7.jpg&#34;, # 店铺logo
+  &#34;shopDesc&#34; : &#34;北京中物振华贸易有限公司是以经营道路沥青、石化产品等为主的专业性贸易公司。公司拥有进出口企业许可证。近年来，公司在市场实践中积累了丰富的市场运作经验，拥有一支专业化、高素质、稳定团结的职工队伍。公司经营进口70号、90号道路沥青及乳化沥青和改性沥青。公司在天津塘沽建有12000吨散装沥青储存库区，年周转能力20余万吨，在山西平遥建有10000吨散装沥青库区。我公司是华北地区第一家经销进口散装道路沥青的企业，同时还是韩国“SK”沥青在部分地区的独家代理商，公司平均每年自销进口沥青20万吨以上，外贸进口额在8亿元人民币／年以上。 多年来，公司秉承“真诚、守信”的经营理念，以严谨务实的做事风格，在客户中赢得了充分的信誉和支持。&#34;, # 店铺描述
+  &#34;url&#34; : &#34;/shop/get/2015091404A3ol8&#34;,
+  &#34;collectCount&#34; : &#34;12&#34;, # 收藏数量
+  &#34;goodsCount&#34; : &#34;12&#34;, # 商品数量
+  &#34;saleCount&#34; : &#34;11.5&#34;, # 销售量
+  &#34;isCollect&#34; : &#34;1&#34;, # 是否收藏 0:否 1:是
+  &#34;shopStandardLogo&#34; : &#34;http://116.90.81.68/data/upload_image/shop/14/8/3a858e0536244ac9a8ede39792fe9ebe.png&#34;, # 店铺描述 图片
+  &#34;state&#34; : 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_搜索框_2&#34;&gt;1.16. 搜索框&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/search?q=沥青&amp;amp;type=0&amp;amp;from=2&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/search?q=沥青&amp;amp;type=0&amp;amp;from=2&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;q : 沥青 # 请求参数
+type : 0:全部(默认) 1:采购单搜索框 2:资源单搜索框
+from : 1 (起始页)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+&#34;dynamics&#34;: [
+    {
+      &#34;imgs&#34;: [ &#34;img/57e8efdbe4b09d52039ce4c4.img&#34; ],   # 图片地址
+      &#34;clist&#34;: [], # 评论列表
+      &#34;likeCount&#34;: 0, # 点赞数量
+      &#34;collectionCount&#34;: 0, # 收藏数量
+      &#34;inDate&#34;: &#34;2016-09-26 17:52:27.0&#34;, # 时间
+      &#34;mood&#34;: &#34;呵呵&#34;, # 动态详情
+      &#34;userImage&#34;: &#34;&#34;, # 用户头像
+      &#34;type&#34;: &#34;2&#34;, # 动态
+      &#34;commentCount&#34;: 0, # 评论数
+      &#34;id&#34;: &#34;20160926g4V6j65&#34;,  # 动态ID
+      &#34;user_name&#34;: &#34;ceshi_buyer&#34;, # 用户名
+      &#34;isLike&#34;: &#34;1&#34;, # 是否已点赞 0:是 1:否
+      &#34;isCollection&#34;: &#34;1&#34;, # 是否收藏 0:是 1:否
+      &#34;user_id&#34;: &#34;20150828QYY07uh&#34; # 用户ID
+    }
+  ],
+  &#34;goods&#34;: [
+    {
+      &#34;title&#34;: &#34;70#优质沥青&#34;,
+      &#34;imgOriginal&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;productPrice&#34;: &#34;3500.00&#34;,
+      &#34;unit&#34;: &#34;吨&#34;,
+      &#34;minQuantity&#34;: &#34;35&#34;,
+      &#34;repositoryRegion&#34;: &#34;华东地区,上海市&#34;,
+      &#34;url&#34;: &#34;/product/get/20160614I6PXp42&#34;,
+      &#34;goodsId&#34;: &#34;20160614I6PXp42&#34;
+    }
+  ],
+  &#34;procurements&#34;: [ # 采购单
+   {
+      &#34;id&#34;: &#34;201508221gK5Lp5&#34;, # 采购单id
+      &#34;title&#34;: &#34;东海 沥青&#34;, # 标题
+      &#34;receiveAddr&#34;: &#34;华南地区-广西省&#34;, # 地址
+      &#34;inDate&#34;: &#34;2015-08-22 03:41:24&#34;, # 发布时间
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;, # 图片
+      &#34;unit&#34;: &#34;吨&#34;, # 单位
+      &#34;count&#34;: &#34;40.00&#34; # 数量
+    },
+    {
+      &#34;id&#34;: &#34;20150928R564b43&#34;,
+      &#34;title&#34;: &#34;国产品牌 沥青&#34;,
+      &#34;receiveAddr&#34;: &#34;华东地区-浙江省-丽水市-青田县&#34;,
+      &#34;inDate&#34;: &#34;2015-09-28 08:04:50&#34;,
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;unit&#34;: &#34;吨&#34;,
+      &#34;count&#34;: &#34;1.00&#34;
+    }
+  ],
+  &#34;resources&#34;: [ # 资源单
+    {
+      &#34;id&#34;: &#34;20160425Iyf0al0&#34;, # 资源单id
+      &#34;rs_name&#34;: &#34;山东金石沥青股份有限公司&#34;, # 公司名称
+      &#34;rs_state&#34;: &#34;金石沥青，质量保证，欢迎给我来我司考察。&#34;,# 公司介绍
+      &#34;rs_area&#34;: &#34;华东地区,山东省,日照市&#34;, # 所在地
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34; # 图片
+    },
+    {
+      &#34;id&#34;: &#34;201604267Rds4pK&#34;,
+      &#34;rs_name&#34;: &#34;东北兰亭轩飞沥青技术推广有限公司&#34;,
+      &#34;rs_state&#34;: &#34;公司销售以下产品《双龙70#、双龙90#、彩色沥青、高铁和隧道专用防水板、改性沥青设备、再生沥青混凝土拌合站》；欢迎各位咨询购买\r\n&#34;,
+      &#34;rs_area&#34;: &#34;东北地区&#34;,
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;
+    }
+  ],
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_首页_通知&#34;&gt;1.17. 首页 通知&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/alter/list?userId=201610175a7YJ3K&amp;amp;start=1&amp;amp;limit=10&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/alter/list?userId=201610175a7YJ3K&amp;amp;start=1&amp;amp;limit=10&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;userId : 用户ID
+start: 起始页
+limit: 每页个数&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;list&#34;: [
+    {
+      &#34;dynamic&#34;: {
+        &#34;id&#34;: &#34;20161207X3T4722&#34;,
+        &#34;imgs&#34;: [
+          &#34;http://116.90.81.68:80/koto/img/5847b775e4b028b1d2a46f76.img_300_300_1.img&#34;
+        ],
+        &#34;isFriend&#34;: 1,
+        &#34;user_name&#34;: &#34;建华&#34;,
+        &#34;collectionCount&#34;: 0,
+        &#34;likeCount&#34;: 0,
+        &#34;clist&#34;: [],
+        &#34;isLike&#34;: &#34;1&#34;,
+        &#34;isCollection&#34;: &#34;1&#34;,
+        &#34;userImage&#34;: &#34;http://116.90.81.68:80/koto/img/5829375be4b02a49b7a089d1.img_100_100_1.img&#34;,
+        &#34;mood&#34;: &#34;这次行不行&#34;,
+        &#34;user_id&#34;: &#34;20161031Je43e0i&#34;,
+        &#34;commentCount&#34;: 10
+      },
+
+      &#34;id&#34;: 34, #消息id
+      &#34;moodId&#34;: &#34;201612050UoG265&#34;, # 动态ID
+      &#34;comment&#34;: &#34;回复内容&#34;, # 评论内容
+      &#34;image&#34;: &#34;http://116.90.81.68:80/koto/img/583570ffe4b03366a5caf6e2.img_220_220_1.img&#34;, # 评论者的头像
+      &#34;nickname&#34;: &#34;行行行&#34;, # 评论者的昵称
+      &#34;inDate&#34;: &#34;2016-12-07 10:48:18&#34;, # 评论时间
+      &#34;type&#34;: 2 # 评论的消息
+    },
+    {
+      &#34;id&#34;: 1, #消息id
+      &#34;msgAlter&#34;: &#34;测试0&#34;,
+      &#34;msgTitle&#34;: &#34;测试0&#34;,  #消息标题
+      &#34;inDate&#34;: &#34;2016-11-04 10:08:42&#34;, # 时间
+      &#34;msgContent&#34;: &#34;测试0&#34;, #消息内容
+      &#34;type&#34; : 1, #系统消息
+      &#34;url&#34;:&#34;http://app.mailiqing.com/app/h5/alter/1&#34;
+    },
+    {
+      &#34;id&#34;: 4,
+      &#34;msgAlter&#34;: &#34;测试3&#34;,
+      &#34;msgTitle&#34;: &#34;测试3&#34;,
+      &#34;inDate&#34;: &#34;2016-11-04 10:09:04&#34;,
+      &#34;msgContent&#34;: &#34;测试3&#34;,
+      &#34;type&#34; : 1,
+      &#34;url&#34;:&#34;http://app.mailiqing.com/app/h5/alter/1&#34;
+    },
+    {
+      &#34;id&#34;:&#34;20160817K5r07Pt&#34;, # 主键ID
+      &#34;addStatus&#34;:1, # 添加状态：0已申请，1已添加，2已拒绝
+      &#34;inDate&#34;:&#34;2016-08-17 09:30:30&#34;, # 时间
+      &#34;addedUserId&#34;:&#34;201608153822qIE&#34;, # 被添加用户ID
+      &#34;userId&#34;:&#34;20150828p8jr40S&#34;, # 申请人用户ID
+      &#34;image&#34;:&#34;&#34;, # 申请人头像
+      &#34;nickname&#34;:&#34;&#34;, # 申请人昵称
+      &#34;userName&#34;:&#34;ceshi_buyer&#34;, # 申请人用户名称
+      &#34;addedUserName&#34;:&#34;bqlq&#34; # 被添加用户名称
+      &#34;additional&#34;:&#34;我是谁啊&#34; # 附加信息
+      &#34;type&#34; : 0 # 添加好友信息
+    }
+  ],
+  &#34;totalsize&#34;:13, #总数
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>圈层模块</title>
+      <link>/post/work/app/quanceng/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/quanceng/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_圈层&#34;&gt;1. 圈层&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_发布动态&#34;&gt;1.1. 发布动态&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_圈层&#34;&gt;1. 圈层&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_发布动态&#34;&gt;1.1. 发布动态&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_user_mood/insert.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_user_mood/insert.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;user_id&#34;: &#34;201512116eSr5i4&#34;, # 用户id
+  &#34;user_name&#34;: &#34;20160928TyWUN1L&#34;, # 用户名
+  &#34;mood&#34;: &#34;兆华&#34;, # 动态详情
+  &#34;img&#34;: &#34;img/asdlfjl13345431231.img&#34; # 图片 多张用 | 拼接
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{&#34;state&#34;:1}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>客服管理</title>
+      <link>/post/work/app/cservice/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/cservice/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_客服管理&#34;&gt;1. 客服管理&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_动态&#34;&gt;1.1. 动态&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_动态详情&#34;&gt;1.1.1. 动态详情&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_采购单&#34;&gt;1.2. 采购单&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_资源单&#34;&gt;1.3. 资源单&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_审核&#34;&gt;2. 审核&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_审核动态&#34;&gt;2.1. 审核动态&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_审核评论&#34;&gt;2.2. 审核评论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_审核采购单&#34;&gt;2.3. 审核采购单&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取客服信息&#34;&gt;3. 获取客服信息&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取平台客服&#34;&gt;3.1. 获取平台客服&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取卖家客服&#34;&gt;3.2. 获取卖家客服&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_客服管理&#34;&gt;1. 客服管理&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_动态&#34;&gt;1.1. 动态&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/cservice/dynamic?start=1&amp;amp;limit=10&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/dynamic?start=1&amp;amp;limit=10&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;start : 起始页
+limit : 每页显示个数&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;list&#34;: [
+    {
+      &#34;imgs&#34;: [ &#34;http://116.90.81.68:80/koto/img/58216823e4b05f43ef7356df.img_300_300.img&#34; ],   # 图片地址
+      &#34;clist&#34;: [], # 评论列表
+      &#34;likeCount&#34;: 0, # 点赞数量
+      &#34;collectionCount&#34;: 0, # 收藏数量
+      &#34;inDate&#34;: &#34;2016-09-26 17:52:27.0&#34;, # 时间
+      &#34;mood&#34;: &#34;呵呵&#34;, # 动态详情
+      &#34;userImage&#34;: &#34;&#34;, # 用户头像
+      &#34;type&#34;: &#34;2&#34;, # 动态
+      &#34;commentCount&#34;: 0, # 评论数
+      &#34;id&#34;: &#34;20160926g4V6j65&#34;,  # 动态ID
+      &#34;user_name&#34;: &#34;ceshi_buyer&#34;, # 用户名
+      &#34;isLike&#34;: &#34;1&#34;, # 是否已点赞 0:是 1:否
+      &#34;isCollection&#34;: &#34;1&#34;, # 是否收藏 0:是 1:否
+      &#34;user_id&#34;: &#34;20150828QYY07uh&#34; # 用户ID
+    },
+    {
+      &#34;imgs&#34;: [
+        &#34;http://116.90.81.68:80/koto/img/582537a0e4b02a49b7a089bf.img_300_300.img&#34;
+      ],
+      &#34;clist&#34;: [],
+      &#34;likeCount&#34;: 0,
+      &#34;collectionCount&#34;: 0,
+      &#34;inDate&#34;: &#34;2016-11-11 11:14:40.0&#34;,
+      &#34;mood&#34;: &#34;发布时间&#34;,
+      &#34;userImage&#34;: &#34;http://116.90.81.68:80/koto/img/58216823e4b05f43ef7356df.img_300_300.img&#34;,
+      &#34;type&#34;: &#34;2&#34;,
+      &#34;commentCount&#34;: 0,
+      &#34;id&#34;: &#34;20161111205Q3Bj&#34;,
+      &#34;user_name&#34;: &#34;沥沥&#34;,
+      &#34;isFriend&#34;: 1,
+      &#34;isLike&#34;: &#34;1&#34;,
+      &#34;isCollection&#34;: &#34;1&#34;,
+      &#34;user_id&#34;: &#34;20161021E0f8Ro0&#34;
+    }
+  ],
+  &#34;state&#34;: 1,
+  &#34;totalsize&#34;: 560
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_动态详情&#34;&gt;1.1.1. 动态详情&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app_pitchcircle/getMoodDetail?id=201611177Gs0Cn3&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app_pitchcircle/getMoodDetail?id=201611177Gs0Cn3&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;searchKey&#34; : &#34;沥青&#34;  #搜索值
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;searchKey&#34; : &#34;沥青&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_采购单&#34;&gt;1.2. 采购单&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/cservice/procurement?start=1&amp;amp;limit=10&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/procurement?start=1&amp;amp;limit=10&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;start : 起始页
+limit : 每页显示个数&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;list&#34;: [
+    {
+      &#34;id&#34;: &#34;20161111866mgN0&#34;,
+      &#34;userId&#34;: &#34;20161021E0f8Ro0&#34;,
+      &#34;title&#34;: &#34;韩国大宇 稳定剂&#34;,
+      &#34;receiveAddr&#34;: &#34;北京市-北京市-大兴区&#34;,
+      &#34;inDate&#34;: &#34;2016-11-11 14:14:20&#34;,
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/582561bbe4b02a49b7a089c5.img_100_100_1.img&#34;,
+      &#34;unit&#34;: &#34;吨&#34;,
+      &#34;count&#34;: &#34;25.00&#34;
+    },
+    {
+      &#34;id&#34;: &#34;20150707E245t4x&#34;,  #采购单id
+      &#34;title&#34;: &#34;国产品牌 沥青4444444444444444&#34;, #采购单标题
+      &#34;count&#34;: 500.00, #数量
+      &#34;userId&#34;: &#34;20160919OR42Yb6&#34;, #采购单发布者
+      &#34;receiveAddr&#34;: &#34;华北地区&#34;, #收货地址
+      &#34;inDate&#34;: &#34;2015-07-07 03:43:48&#34;, #发布时间
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;, #图片
+      &#34;unit&#34;: &#34;吨&#34; #单位
+    },
+  ],
+  &#34;totalsize&#34;: 114,
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_资源单&#34;&gt;1.3. 资源单&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/cservice/resource?start=1&amp;amp;limit=10&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/resource?start=1&amp;amp;limit=10&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;start : 起始页
+limit : 每页显示个数&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;total&#34;: 173,
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;id&#34;:&#34;20161027D87f7q7&#34;,//资源单id
+      &#34;rs_name&#34;:&#34;吃吃吃&#34;,//公司名称
+      &#34;img&#34;:&#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;rs_area&#34;:&#34;北京市|北京市|东城区&#34;,
+      &#34;rs_state&#34;:&#34;沥青路面湿滑&#34;,//介绍
+    },
+    {
+      &#34;rs_state&#34;: &#34;啦啦啦啦&#34;,
+      &#34;id&#34;: &#34;20161111M0F55G3&#34;,
+      &#34;rs_name&#34;: &#34;啊啊啊&#34;,
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/5825197de4b05f43ef735756.img_300_300.img&#34;,
+      &#34;rs_area&#34;: &#34;北京市|北京市|朝阳区&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_审核&#34;&gt;2. 审核&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_审核动态&#34;&gt;2.1. 审核动态&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/cservice/audit/dynamic?id=20161111x4D6266&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/audit/dynamic?id=20161111x4D6266&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;id : 动态id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例子: &lt;a href=&#34;http://app.mailiqing.com/app/cservice/audit/dynamic?id=20161111x4D6266&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/audit/dynamic?id=20161111x4D6266&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;操作失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_审核评论&#34;&gt;2.2. 审核评论&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/cservice/audit/comment?id=2016111154QPF31&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/audit/comment?id=2016111154QPF31&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;id : 评论id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例子: &lt;a href=&#34;http://app.mailiqing.com/app/cservice/audit/comment?id=2016111154QPF31&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/audit/comment?id=2016111154QPF31&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;操作失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_审核采购单&#34;&gt;2.3. 审核采购单&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/cservice/audit/procurement?id=20169029yi2o2e3&amp;amp;state=0&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/audit/procurement?id=20169029yi2o2e3&amp;amp;state=0&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;id : 采购单id
+state : 0:不通过 1:通过&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例子: &lt;a href=&#34;http://app.mailiqing.com/app/cservice/audit/procurement?id=20169029yi2o2e3&amp;amp;state=0&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/cservice/audit/procurement?id=20169029yi2o2e3&amp;amp;state=0&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;操作失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_获取客服信息&#34;&gt;3. 获取客服信息&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_获取平台客服&#34;&gt;3.1. 获取平台客服&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app_customerService/getPlatCustomerService?custId=201512116eSr235&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app_customerService/getPlatCustomerService?custId=201512116eSr235&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&#34;custId&#34;: &#34;201512116eSr235&#34; # s_custId 卖家&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+&#34;state&#34;:1,
+&#34;id&#34;:&#34;20161031je43e0i&#34; //环信ID
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;获取卖家客服失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_获取卖家客服&#34;&gt;3.2. 获取卖家客服&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app_customerService/getMemberCustomerService?custId=201512116eSr235&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app_customerService/getMemberCustomerService?custId=201512116eSr235&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&#34;custId&#34;: &#34;201512116eSr235&#34; # s_custId 卖家&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+&#34;state&#34;:1,
+&#34;id&#34;:&#34;20161031je43e0i&#34; //环信ID
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;获取卖家客服失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>店铺模块</title>
+      <link>/post/work/app/shop/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/shop/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_店铺&#34;&gt;1. 店铺&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_我的店铺&#34;&gt;1.1. 我的店铺&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_店铺_商品管理&#34;&gt;1.2. 店铺 商品管理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_商品管理_上架_下架&#34;&gt;1.3. 商品管理 (上架,下架)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_店铺&#34;&gt;1. 店铺&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_我的店铺&#34;&gt;1.1. 我的店铺&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/shop/{userId}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/shop/{userId}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-url&#34; data-lang=&#34;url&#34;&gt;{userId} : 用户Id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/shop/20150615uo7jE40&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/shop/20150615uo7jE40&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34;: &#34;2015091404A3ol8&#34;, # 店铺id
+  &#34;shopName&#34;: &#34;北京中物振华贸易有限公司&#34;, # 店铺名称
+  &#34;shopLogo&#34;: &#34;196.168.1.31/data/upload_image/shop/13/0/016a6e2b4da14457b1da90ed39ed27c7.jpg&#34;, # 店铺logo
+  &#34;shopStandardLogo&#34;: &#34;196.168.1.31/data/upload_image/shop/14/8/3a858e0536244ac9a8ede39792fe9ebe.png&#34;, # 店铺介绍 图片
+  &#34;shopDesc&#34;: &#34;北京中物振华贸易有限公司是以经营道路沥青、石化产品等为主的专业性贸易公司。公司拥有进出口企业许可证。近年来，公司在市场实践中积累了丰富的市场运作经验，拥有一支专业化、高素质、稳定团结的职工队伍。公司经营进口70号、90号道路沥青及乳化沥青和改性沥青。公司在天津塘沽建有12000吨散装沥青储存库区，年周转能力20余万吨，在山西平遥建有10000吨散装沥青库区。我公司是华北地区第一家经销进口散装道路沥青的企业，同时还是韩国“SK”沥青在部分地区的独家代理商，公司平均每年自销进口沥青20万吨以上，外贸进口额在8亿元人民币／年以上。 多年来，公司秉承“真诚、守信”的经营理念，以严谨务实的做事风格，在客户中赢得了充分的信誉和支持。&#34;, # 店铺介绍
+
+  &#34;collectCount&#34;: 12, # 收藏
+  &#34;goodsCount&#34; : 9, # 商品数量
+  &#34;saleCount&#34;: 11.5, # 销量
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 0,
+  &#34;message&#34;: &#34;尚未开通店铺,请联系客服&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_店铺_商品管理&#34;&gt;1.2. 店铺 商品管理&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/shop/list?shopId=2015091404A3ol8&amp;amp;start=1&amp;amp;limit=10&amp;amp;state=c&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/shop/list?shopId=2015091404A3ol8&amp;amp;start=1&amp;amp;limit=10&amp;amp;state=c&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;shopId : 店铺id
+start : 起始 1
+limit : 每页个数 10
+state : 商品状态 c:销售中 d:已下架 a:未审核&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;list&#34;: [
+    {
+      &#34;id&#34;: &#34;201509141hs732H&#34;, # 商品 id
+      &#34;title&#34;: &#34;东海牌70#沥青&#34;, # 商品 标题
+      &#34;stockQuantity&#34;: &#34;2000&#34;, # 库存
+      &#34;goodsPrice&#34;: &#34;1850.0&#34;, # 商品价格
+      &#34;img&#34; : &#34;http://116.90.81.68:80/koto/img/57e351f7e4b0b02f90bf7b09.img_300_300.img&#34;, # 图片
+      &#34;repositoryAddr&#34; : &#34;华北地区 天津市 塘沽区&#34;, # 出库地
+      &#34;saleCount&#34;: 3 # 销售量
+    },
+    {
+      &#34;id&#34;: &#34;20150914JPCi4n8&#34;,
+      &#34;title&#34;: &#34;昆仑牌70#沥青&#34;,
+      &#34;stockQuantity&#34;: &#34;2000&#34;,
+      &#34;goodsPrice&#34;: &#34;1850.0&#34;,
+	  &#34;img&#34; : &#34;http://116.90.81.68:80/koto/img/57e351f7e4b0b02f90bf7b09.img_300_300.img&#34;, # 图片
+	  &#34;repositoryAddr&#34; : &#34;华北地区 天津市 塘沽区&#34;, # 出库地
+      &#34;saleCount&#34;: 3
+    },
+    {
+      &#34;id&#34;: &#34;20150915TR2F8rq&#34;,
+      &#34;title&#34;: &#34;中海油36-1 70#沥青&#34;,
+      &#34;stockQuantity&#34;: &#34;2000&#34;,
+      &#34;goodsPrice&#34;: &#34;1750.0&#34;,
+      &#34;img&#34; : &#34;http://116.90.81.68:80/koto/img/57e351f7e4b0b02f90bf7b09.img_300_300.img&#34;, # 图片
+      &#34;repositoryAddr&#34; : &#34;华北地区 天津市 塘沽区&#34;, # 出库地
+      &#34;saleCount&#34;: 3
+    }
+  ],
+  &#34;totalsize&#34;: 9,
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_商品管理_上架_下架&#34;&gt;1.3. 商品管理 (上架,下架)&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/goods/edit&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/goods/edit&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34;:&#34;201509184CW5802&#34;, # 商品id
+  &#34;state&#34;:&#34;d&#34; # 商品状态 d:下架 a: 上架
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{&#34;state&#34;:1}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;编辑失败!&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>报价单模块</title>
+      <link>/post/work/app/quoteprice/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/quoteprice/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_报价单&#34;&gt;1. 报价单&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_报价单发布&#34;&gt;1.1. 报价单发布&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_收到的报价&#34;&gt;1.2. 收到的报价&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_报价单_详情&#34;&gt;1.3. 报价单 详情&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_报价单&#34;&gt;1. 报价单&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_报价单发布&#34;&gt;1.1. 报价单发布&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/quoteprice/add&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/quoteprice/add&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;userId&#34; : &#34;201512116eSr5i4&#34; # 用户id
+  &#34;procurId&#34; : &#34;20160928TyWUN1L&#34;, # 采购单id
+  &#34;factoryName&#34; : &#34;兆华&#34;, # 公司名称
+  &#34;repositoryAddr&#34; : &#34;北京|北京市&#34;, # 出库地址
+  &#34;desc&#34; : &#34;70#沥青好东西&#34;, # 报价描述
+  &#34;contact&#34; : &#34;小明&#34;, # 联系人
+  &#34;phone&#34; : &#34;13345431231&#34;, # 电话
+  &#34;img&#34; : &#34;img/asdlfjl13345431231.img&#34; # 图片 多张使用 | 拼接
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 1,
+  &#34;id&#34; : &#34;201609281332179&#34; # 报价单 id
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;添加报价单失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_收到的报价&#34;&gt;1.2. 收到的报价&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/quoteprice/list?userId=201512116eSr5i4&amp;amp;start=1&amp;amp;limit=10&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/quoteprice/list?userId=201512116eSr5i4&amp;amp;start=1&amp;amp;limit=10&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;userId : 201512116eSr5i4 # 用户id
+start : 1 # 起始页
+limit : 10 # 每页显示个数&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/quoteprice/list?userId=201512116eSr5i4&amp;amp;start=1&amp;amp;limit=10&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/quoteprice/list?userId=201512116eSr5i4&amp;amp;start=1&amp;amp;limit=10&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;[
+  {
+    &#34;id&#34;: &#34;201609281326083&#34;, # 报价单id
+    &#34;title&#34;: &#34;沥青|基质沥青|70# 东海,国产&#34;, # 标题
+    &#34;receiveAddr&#34;: &#34;北京-北京市&#34;, # 所在地
+    &#34;inDate&#34;: &#34;2016-09-28 02:04:29&#34;, # 发布时间
+    &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/asdlfjl13345431231.img_300_300.img&#34;, # 图片
+    &#34;factoryName&#34;: &#34;兆华&#34;, # 公司名称
+    &#34;repositoryAddr&#34;: &#34;北京-北京市&#34;, # 出库地
+    &#34;count&#34;: 400
+  },
+  {
+    &#34;id&#34;: &#34;201609281332179&#34;,
+    &#34;title&#34;: &#34;沥青|基质沥青|70#东海,国产&#34;,
+    &#34;receiveAddr&#34;: &#34;北京-北京市&#34;,
+    &#34;inDate&#34;: &#34;2016-09-28 02:04:29&#34;,
+    &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/asdlfjl13345431231.img_300_300.img&#34;,
+    &#34;factoryName&#34;: &#34;兆华&#34;,
+    &#34;repositoryAddr&#34;: &#34;北京-北京市&#34;,
+    &#34;count&#34;: 400
+  }
+]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_报价单_详情&#34;&gt;1.3. 报价单 详情&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/quoteprice/get/{id}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/quoteprice/get/{id}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{id} : 201609281326083  # 报价单id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例子: &lt;a href=&#34;http://116.90.81.68/app/quoteprice/get/201609281326083&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/quoteprice/get/201609281326083&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;title&#34;: &#34;沥青|基质沥青|70# 东海,国产&#34;, # 商品名称
+  &#34;receiveAddr&#34;: &#34;北京-北京市&#34;, # 收货地址
+  &#34;inDate&#34;: &#34;2016-09-28 02:04:29&#34;, # 发布时间
+  &#34;imgs&#34;: [ # 图片
+    &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;
+  ],
+  &#34;factoryName&#34;: &#34;兆华&#34;, # 公司名称
+  &#34;repositoryAddr&#34;: &#34;北京-北京市&#34;, # 出库地址
+  &#34;desc&#34;: &#34;70#沥青好东西&#34;, # 报价描述
+  &#34;contact&#34;: &#34;小明&#34;, # 联系人
+  &#34;phone&#34;: &#34;13345431231&#34;, # 电话
+  &#34;state&#34;: &#34;1&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>接口模板</title>
+      <link>/post/work/app/template/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/template/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_搜索框&#34;&gt;1. 搜索框&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_搜索框&#34;&gt;1. 搜索框&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http:///goods/search&#34; class=&#34;bare&#34;&gt;http:///goods/search&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;searchKey&#34; : &#34;沥青&#34;  #搜索值
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;searchKey&#34; : &#34;沥青&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>消息模块</title>
+      <link>/post/work/app/xiaoxi/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/xiaoxi/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_十四_消息聊天&#34;&gt;1. 十四、消息聊天&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_14_1添加好友列表&#34;&gt;1.1. 14.1添加好友列表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_14_2用户搜索列表&#34;&gt;1.2. 14.2用户搜索列表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_14_3我的群列表&#34;&gt;1.3. 14.3我的群列表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_14_4群用户列表&#34;&gt;1.4. 14.4群用户列表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_14_5好友主页&#34;&gt;1.5. 14.5好友主页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_14_6我的圈层列表&#34;&gt;1.6. 14.6我的圈层列表&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_十四_消息聊天&#34;&gt;1. 十四、消息聊天&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.1添加好友列表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/addFriendList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/addFriendList.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.2用户搜索列表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/searchUserList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/searchUserList.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.3我的群列表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/groupList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/groupList.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.4群用户列表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/groupUserList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/groupUserList.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.5好友主页&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_userHome/userDetail.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_userHome/userDetail.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.6我的圈层列表&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_pitchcircle/myPitchcirclelist.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_pitchcircle/myPitchcirclelist.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.7申请添加好友&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/addFriend.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/addFriend.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.8同意好友添加请求&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/agreeAddFriend.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/agreeAddFriend.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.9删除好友&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/deleteFriend.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/deleteFriend.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.10创建群组&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/creatGroup.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/creatGroup.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.11添加群用户&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/addGroupuser.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/addGroupuser.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.12删除群用户&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/deleteGroupuser.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/deleteGroupuser.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.13退出群组&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/outGroup.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/outGroup.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.14删除群组&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/deleteGroup.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/deleteGroup.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.15设置群名称&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/setGroupName.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/setGroupName.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.16设置群公告&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/setGroupNotice.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/setGroupNotice.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.17群投诉&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/groupComplain.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/groupComplain.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;14.18设置好友备注&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-left valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;a href=&#34;http://116.90.81.68/app/app_userHome/setRemarkName.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_userHome/setRemarkName.shtml&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_14_1添加好友列表&#34;&gt;1.1. 14.1添加好友列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/addFriendList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/addFriendList.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;特殊说明&lt;/dt&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;userId&#34; : &#34;20150828QYY07uh&#34;//当前用户ID
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+&#34;list&#34;:[
+{
+&#34;id&#34;:&#34;20160817K5r07Pt&#34;, //主键ID
+&#34;addStatus&#34;:1, //添加状态：0已申请，1已添加，2已拒绝
+&#34;inDate&#34;:&#34;2016-08-17 09:30:30&#34;, //时间
+&#34;addedUserId&#34;:&#34;201608153822qIE&#34;, //被添加用户ID
+&#34;userId&#34;:&#34;20150828p8jr40S&#34;, //用户ID
+&#34;image&#34;:&#34;&#34;, //申请人头像
+&#34;userName&#34;:&#34;ceshi_buyer&#34;, //用户名称
+&#34;addedUserName&#34;:&#34;bqlq&#34; //被添加用户名称
+}
+]
+&#34;state&#34;:1 //1:成功 0:失败
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+	&#34;state&#34; : 0, //1:成功 0:失败
+	&#34;message&#34; : &#34;获取列表失败&#34; //state为0时需返回的错误说明信息
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_14_2用户搜索列表&#34;&gt;1.2. 14.2用户搜索列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/searchUserList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/searchUserList.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;特殊说明&lt;/dt&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;keyword&#34; : &#34;ceshi&#34;//搜索关键字
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+&#34;list&#34;:[
+{
+&#34;user_name&#34;:&#34;ceshijingyan&#34;, //用户名称
+&#34;image&#34;:&#34;&#34;, //用户头像
+&#34;user_id&#34;:&#34;20151110vbO0kFg&#34; //用户ID
+}
+]
+&#34;state&#34;:1 //1:成功 0:失败
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+	&#34;state&#34; : 0, //1:成功 0:失败
+	&#34;message&#34; : &#34;获取列表失败&#34; //state为0时需返回的错误说明信息
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_14_3我的群列表&#34;&gt;1.3. 14.3我的群列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/groupList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/groupList.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;特殊说明&lt;/dt&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;userId&#34; : &#34;20150828QYY07uh&#34; //用户ID
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+&#34;list&#34;:[
+{
+&#34;id&#34;:&#34;20160823E654813&#34;, //群ID
+&#34;groupName&#34;:&#34;闲聊&#34; //群名称
+}
+]
+&#34;state&#34;:1 //1:成功 0:失败
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+	&#34;state&#34; : 0, //1:成功 0:失败
+	&#34;message&#34; : &#34;获取列表失败&#34; //state为0时需返回的错误说明信息
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_14_4群用户列表&#34;&gt;1.4. 14.4群用户列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_message/groupUserList.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_message/groupUserList.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;特殊说明&lt;/dt&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;groupId&#34; : &#34;20160823E654813&#34; //群组ID
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+&#34;list&#34;:[
+{
+&#34;nickName&#34;:&#34;&#34;, //昵称
+&#34;userId&#34;:&#34;2016060350a651k&#34;, //用户ID
+&#34;image&#34;:&#34;&#34;, //用户头像
+&#34;userName&#34;:&#34;18611522653&#34; //用户名
+}
+]
+&#34;state&#34;:1 //1:成功 0:失败
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+	&#34;state&#34; : 0, //1:成功 0:失败
+	&#34;message&#34; : &#34;获取列表失败&#34; //state为0时需返回的错误说明信息
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_14_5好友主页&#34;&gt;1.5. 14.5好友主页&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_userHome/userDetail.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_userHome/userDetail.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;特殊说明&lt;/dt&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;userId&#34; : &#34;20150828QYY07uh&#34; //好友ID
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+&#34;list&#34;:[
+{
+&#34;areaName&#34;:&#34;&#34;, //地区名称
+&#34;nickName&#34;:&#34;&#34;, //昵称
+&#34;userId&#34;:&#34;20150828QYY07uh&#34;, //用户ID
+&#34;image&#34;:&#34;&#34;, //用户头像
+&#34;userName&#34;:&#34;&#34;, //用户名
+&#34;moodIamges&#34;:&#34;http://196.168.1.31:80/koto/img/57c77d8ce4b098a789a30f30.img,http://196.168.1.31:80/koto/img/57c77d8ce4b098a789a30f2d.img&#34; //动态图片
+&#34;signature&#34;:&#34;&#34; //个性签名
+}
+]
+&#34;state&#34;:1 //1:成功 0:失败
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+	&#34;state&#34; : 0, //1:成功 0:失败
+	&#34;message&#34; : &#34;获取列表失败&#34; //state为0时需返回的错误说明信息
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_14_6我的圈层列表&#34;&gt;1.6. 14.6我的圈层列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/app_pitchcircle/myPitchcirclelist.shtml&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/app_pitchcircle/myPitchcirclelist.shtml&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;特殊说明&lt;/dt&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;userId&#34; : &#34;20150828QYY07uh&#34;, //当前用户ID
+  &#34;iStart&#34; : &#34;1&#34;, //开始的页数
+  &#34;limit&#34; : &#34;5&#34; //显示的条数
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+&#34;list&#34;:[
+{
+&#34;user_id&#34;:&#34;20150828QYY07uh&#34;, //发布用户ID
+&#34;in_date&#34;:&#34;2016-09-01 09:04:07.0&#34;, //时间
+&#34;relation_id&#34;:&#34;2016090126fHv0p&#34;, //该圈层关联ID
+&#34;type&#34;:&#34;2&#34;, //圈层类型：0资源单，1采购单，2动态
+&#34;detail&#34;:&#34;2345&#34;, //信息详情
+&#34;title&#34;:&#34;&#34;, //信息标题
+&#34;id&#34;:&#34;201609015BX350y&#34; //该信息ID
+}
+]
+&#34;state&#34;:1 //1:成功 0:失败
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+	&#34;state&#34; : 0, //1:成功 0:失败
+	&#34;message&#34; : &#34;获取列表失败&#34; //state为0时需返回的错误说明信息
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>购物车</title>
+      <link>/post/work/app/cart/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/cart/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_购物车&#34;&gt;1. 购物车&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_购物车_列表&#34;&gt;1.1. 购物车 列表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_添加购物车&#34;&gt;1.2. 添加购物车&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取库存&#34;&gt;1.2.1. 获取库存&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编辑购物车&#34;&gt;1.3. 编辑购物车&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_删除&#34;&gt;1.4. 删除&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_收货地址&#34;&gt;1.5. 收货地址&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取收获地址&#34;&gt;1.5.1. 获取收获地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_默认收货地址&#34;&gt;1.5.2. 默认收货地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_添加收获地址&#34;&gt;1.5.3. 添加收获地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_编辑收货地址&#34;&gt;1.5.4. 编辑收货地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_设置默认地址&#34;&gt;1.5.5. 设置默认地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_删除地址&#34;&gt;1.5.6. 删除地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_购物车&#34;&gt;1. 购物车&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_购物车_列表&#34;&gt;1.1. 购物车 列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/list?start=1&amp;amp;limit=10&amp;amp;userId=201506242J080J3&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/list?start=1&amp;amp;limit=10&amp;amp;userId=201506242J080J3&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;start # 起始页
+limit # 每页显示个数
+userId # 移动端 本地保存的用户ID&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;totalsize&#34; : 4
+  &#34;list&#34;: [
+    {
+      &#34;sellerNick&#34;: &#34;廊坊通泰公路材料有限公司&#34;, #供应商
+      &#34;shopName&#34;: &#34;廊坊通泰公路材料有限公司&#34;, #店铺名
+      &#34;productPrice&#34;: &#34;4250.00&#34;, # 价格
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e351fce4b0b02f90bf7b20.img_300_300.img&#34;,
+      &#34;userId&#34;: &#34;201506242J080J3&#34;, # 用户id
+      &#34;userName&#34;: &#34;tjzh&#34;, # 用户名
+      &#34;productId&#34;: &#34;20160224dD6HNuc&#34;, # 商品id
+      &#34;productName&#34;: &#34;70#&#34;, # 商品名称
+      &#34;productQuantity&#34;: 35, # 购买数量
+      &#34;minQuantity&#34;: &#34;35&#34;, # 最小起订量
+      &#34;accessTime&#34;: &#34;2016-03-29 06:49:14&#34;, # 添加时间
+      &#34;deliveryType&#34;: 0, #提货方式 0：卖家送货 1：买家自提
+      &#34;id&#34;: &#34;20160329303v668&#34; # 购物车id
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_添加购物车&#34;&gt;1.2. 添加购物车&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/add&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/add&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;userId&#34; : &#34;201506242J080J3&#34;, #用户id
+  &#34;productId&#34; : &#34;20151026X3422O5&#34;, #商品id
+  &#34;productName&#34; : &#34;兆华 70#&#34;, #商品名称
+  &#34;productQuantity&#34; : 45, #购买数量
+  &#34;deliveryType&#34; : 1 #提货方式 0：卖家送货 1：买家自提
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;添加失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_获取库存&#34;&gt;1.2.1. 获取库存&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/product/getStock/{id}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/product/getStock/{id}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{id} : 20150915P303OF7 # 商品id
+http://{host}/product/getStock/20150915P303OF7&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;stockQuantity&#34;: &#34;5000&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;获取库存失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_编辑购物车&#34;&gt;1.3. 编辑购物车&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/edit&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/edit&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34; : &#34;20151026X3422O5&#34;, # 购物车id
+  &#34;productQuantity&#34; : 450 # 商品数量
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &#34;state&#34;: 1
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+	&#34;state&#34; : 0,
+	&#34;message&#34; : &#34;编辑失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_删除&#34;&gt;1.4. 删除&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/del/{id}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/del/{id}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{id} : 2015062545V2OHQ # 商品id
+http://{host}/cart/del/2015062545V2OHQ&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;{
+    &#34;state&#34;: 1
+}&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+	&#34;state&#34; : 0,
+	&#34;message&#34; : &#34;删除失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_收货地址&#34;&gt;1.5. 收货地址&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_获取收获地址&#34;&gt;1.5.1. 获取收获地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/get/addr/list/{userId}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/get/addr/list/{userId}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{userId} : 用户id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例：http://116.90.81.68/app/cart/get/addr/list/20150615uo7jE40&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;需要&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;consignee&#34;: &#34;娃哈哈222&#34;, # 联系人
+      &#34;cellphone&#34;: &#34;1234567845&#34;, # 联系电话
+      &#34;levelNo&#34;: 0, # 是否是默认地址 0：是  -1：否
+      &#34;area&#34;: &#34;北京 北京市4&#34;, # 地址
+      &#34;address&#34;: &#34;xxxxee&#34; # 详细地址
+      &#34;id&#34;: &#34;201610081534403&#34; # 地址id
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_默认收货地址&#34;&gt;1.5.2. 默认收货地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/get/addr/default/{userId}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/get/addr/default/{userId}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;userId : 用户id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;例: &lt;a href=&#34;http://116.90.81.68/app/cart/get/addr/default/20160920GY3Pm85444&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/get/addr/default/20160920GY3Pm85444&lt;/a&gt;
+是否需要登录::
+否&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;consignee&#34; : &#34;陆陆&#34;,
+  &#34;cellphone&#34; : &#34;18840853787&#34;,
+  &#34;levelNo&#34; : 0,
+  &#34;address&#34; : &#34;啦啦队&#34;,
+  &#34;area&#34; : &#34;河北省|秦皇岛市|抚宁县&#34;,
+  &#34;state&#34; : 1,
+  &#34;id&#34; : &#34;201610140328269&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;没有默认地址！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_添加收获地址&#34;&gt;1.5.3. 添加收获地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/add/addr&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/add/addr&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;userId&#34;:&#34;20150615uo7jE40&#34;, # 用户id
+  &#34;consignee&#34; : &#34;娃哈哈2&#34;, # 联系人
+  &#34;area&#34; : &#34;北京|北京市&#34;, # 地址
+  &#34;address&#34; : &#34;xxxxee&#34;, # 详细地址
+  &#34;cellphone&#34; : &#34;12345678&#34; # 电话
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;是&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;id&#34;: &#34;201610120452124&#34;, # 地址id
+  &#34;levelNo&#34;: &#34;0&#34; # 是否默认 0:默认 -1:不是默认
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;添加失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_编辑收货地址&#34;&gt;1.5.4. 编辑收货地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/edit/addr&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/edit/addr&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34; : &#34;201610081534403&#34;, # 收货地址id
+  &#34;userId&#34;:&#34;20150615uo7jE40&#34;, # 用户id
+  &#34;consignee&#34; : &#34;娃哈哈2&#34;, # 联系人
+  &#34;area&#34; : &#34;北京|北京市4&#34;, # 地址
+  &#34;address&#34; : &#34;xxxxee&#34;, # 详细地址
+  &#34;cellphone&#34; : &#34;1234567845&#34; # 电话
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;searchKey&#34; : &#34;沥青&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_设置默认地址&#34;&gt;1.5.5. 设置默认地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/edit/addr&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/edit/addr&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;id&#34; : &#34;201610081534403&#34;, # 收货地址id
+  &#34;levelNo&#34;:0 # 设置默认地址
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{&#34;state&#34;:1}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;编辑失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_删除地址&#34;&gt;1.5.6. 删除地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/del/addr/{id}&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/del/addr/{id}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{id} : id # 地址id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://116.90.81.68/app/cart/del/addr/201610081608294&#34; class=&#34;bare&#34;&gt;http://116.90.81.68/app/cart/del/addr/201610081608294&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{&#34;state&#34;:1}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;删除失败！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>采购单模块</title>
+      <link>/post/work/app/procurement/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work/app/procurement/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_采购单&#34;&gt;1. 采购单&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_采购单列表&#34;&gt;1.1. 采购单列表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_采购单详情&#34;&gt;1.2. 采购单详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_发布&#34;&gt;1.3. 发布&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_商品分类&#34;&gt;1.3.1. 商品分类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_品牌&#34;&gt;1.3.2. 品牌&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_收货地址&#34;&gt;1.3.3. 收货地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_采购单&#34;&gt;1. 采购单&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_采购单列表&#34;&gt;1.1. 采购单列表&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/list?start=1&amp;amp;limit=10&amp;amp;area=北京&amp;amp;sort=1&amp;amp;q=沥青&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/list?start=1&amp;amp;limit=10&amp;amp;area=北京&amp;amp;sort=1&amp;amp;q=沥青&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;start # 起始页
+limit # 每页个数
+area # 地区筛选
+sort # 日期排序 0:降序 1:升序
+综合排序 传 start limit
+q # 搜索关键字&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;id&#34;: &#34;20150707E245t4x&#34;,  #采购单id
+      &#34;title&#34;: &#34;国产品牌 沥青4444444444444444&#34;, #采购单标题
+      &#34;count&#34;: 500.00, #数量
+      &#34;userId&#34;: &#34;20160919OR42Yb6&#34;, #采购单发布者
+      &#34;receiveAddr&#34;: &#34;华北地区&#34;, #收货地址
+      &#34;inDate&#34;: &#34;2015-07-07 03:43:48&#34;, #发布时间
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;, #图片
+      &#34;unit&#34;: &#34;吨&#34; #单位
+    },
+    {
+      &#34;id&#34;: &#34;201508221gK5Lp5&#34;,
+      &#34;title&#34;: &#34;东海 沥青&#34;,
+      &#34;count&#34;: 40.00,
+      &#34;receiveAddr&#34;: &#34;华南地区-广西省&#34;,
+      &#34;userId&#34;: &#34;20160919OR42Yb6&#34;,
+      &#34;inDate&#34;: &#34;2015-08-22 03:41:24&#34;,
+      &#34;img&#34;: &#34;http://116.90.81.68:80/koto/img/57e38f32e4b0b02f90bf8a3c.img_300_300.img&#34;,
+      &#34;unit&#34;: &#34;吨&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_采购单详情&#34;&gt;1.2. 采购单详情&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/get/{id}&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/get/{id}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;id : 20150707E245t4x  # 采购单id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/get/20150707E245t4x&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/get/20150707E245t4x&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;acTime&#34; : 10, #有效时间
+  &#34;companyName&#34; : &#34;&#34;, #公司名称
+  &#34;deliveryType&#34; : 0, #提货方式 0：卖家送货 1：买家自提
+  &#34;count&#34; : 500.00, #采购数量
+  &#34;deliveryDateStart&#34; : &#34;2015-07-13&#34;, #起始时间
+  &#34;deliveryDateEnd&#34; : &#34;2015-07-19&#34;, #结束时间
+  &#34;inDate&#34; : &#34;2015-07-07 03:43:48&#34;, #发布时间
+  &#34;title&#34; : &#34;国产品牌 沥青4444444444444444&#34;, #标题
+  &#34;unit&#34; : &#34;吨&#34;, #单位
+  &#34;state&#34; : 1, #状态
+  &#34;phone&#34; : &#34;13904650472&#34;, # 电话
+  &#34;isCollect&#34; : 0, # 0:未收藏 1:收藏
+  &#34;id&#34; : &#34;20150707E245t4x&#34;, #采购单id
+  &#34;desc&#34; : &#34;&#34;, #采购单描述
+  &#34;huanxin_no&#34;: &#34;20161031je43e0i&#34;, # 平台环信号
+  &#34;plat_image&#34;: &#34;20161031je43e0i&#34;, # 平台头像
+  &#34;image&#34;: [ # 图片
+    &#34;http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbb.img_375_230.img&#34;,
+    &#34;http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbd.img_375_230.img&#34;
+  ],
+  &#34;imgLarge&#34;: [ #图片大图
+    &#34;http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbb.img&#34;,
+    &#34;http://116.90.81.68:80/koto/img/5811873ae4b0c62d90aa8fbd.img&#34;
+  ],
+  &#34;receiveAddr&#34; : &#34;华北地区&#34;, #收货地址
+  &#34;brandName&#34; : &#34;国产品牌&#34; #品牌
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_发布&#34;&gt;1.3. 发布&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/add&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/add&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;POST JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{
+  &#34;userId&#34;: &#34;20151026X3422O5&#34;, # s_userId 用户id
+  &#34;companyName&#34;: &#34;金兆路华777&#34;, # 公司名称
+  &#34;category&#34;: &#34;20150914q0asfEw|20150914w7L7oG2|201509140732S22&#34;, # 类目
+  &#34;brandName&#34;: &#34;东海,国产&#34;, # 品牌名
+  &#34;count&#34;: &#34;400&#34;, # 数量
+  &#34;deliveryDateStart&#34;: &#34;2016-08-08&#34;, # 交货时间：开始时间 yyyy-MM-dd
+  &#34;deliveryDateEnd&#34;: &#34;2016-08-18&#34;, # 交货时间：结束时间yyyy-MM-dd
+  &#34;receiveAddr&#34;: &#34;北京|北京市&#34;, # 收货地址
+  &#34;desc&#34;: &#34;70#沥青,行行行&#34;, # 描述
+  &#34;img&#34;: &#34;img/57e38f32e4b0b02f90bf8a3c.img&#34; # 图片
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;:1,
+  &#34;id&#34;:&#34;20160928TyWUN1L&#34; # 采购单id
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;添加失败&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_商品分类&#34;&gt;1.3.1. 商品分类&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/category&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/category&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;无&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;msc_cl&#34;: [
+        {
+          &#34;msc_cl&#34;: [  # 子类目 数组
+            {
+              &#34;catName&#34;: &#34;10#&#34;,
+              &#34;catId&#34;: &#34;2015091431h7wTV&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;60#&#34;,
+              &#34;catId&#34;: &#34;2015112386UvJoM&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;70#&#34;,
+              &#34;catId&#34;: &#34;201509140732S22&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;90#&#34;,
+              &#34;catId&#34;: &#34;201509144X87wlj&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;100#&#34;,
+              &#34;catId&#34;: &#34;20160112l200k78&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;110#&#34;,
+              &#34;catId&#34;: &#34;2015091482l1w41&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;130#&#34;,
+              &#34;catId&#34;: &#34;20150914L740u1U&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;140#&#34;,
+              &#34;catId&#34;: &#34;20151125460MI7i&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;180#&#34;,
+              &#34;catId&#34;: &#34;20151223iX8q82e,20150914w7L7oG2&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;基质沥青&#34;, # 类目名
+          &#34;catId&#34;: &#34;20150914w7L7oG2&#34;  # 类目id
+        },
+        {
+          &#34;msc_cl&#34;: [
+            {
+              &#34;catName&#34;: &#34;SBS类&#34;,
+              &#34;catId&#34;: &#34;20150914m401ckq&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;SBR类&#34;,
+              &#34;catId&#34;: &#34;2015091418gJ6ub&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;橡胶粉&#34;,
+              &#34;catId&#34;: &#34;20150914pM66574&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;PG改性沥青&#34;,
+              &#34;catId&#34;: &#34;20150914F85313F&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;环保橡胶沥青&#34;,
+              &#34;catId&#34;: &#34;20150914A4mAK2U&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;MAC改性沥青&#34;,
+              &#34;catId&#34;: &#34;201601140E1sgI3&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;改性沥青&#34;,
+          &#34;catId&#34;: &#34;20150914H6PM003&#34;
+        },
+        {
+          &#34;msc_cl&#34;: [
+            {
+              &#34;catName&#34;: &#34;公路用乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20150914165E287&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;改性乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20160318CPQ26JU&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;高含固量乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20150914Wd82123&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;高粘度乳化沥青&#34;,
+              &#34;catId&#34;: &#34;,20150914K6N5Hha&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;微表处改性乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20150914c453WYQ&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;冷再生乳化沥青&#34;,
+              &#34;catId&#34;: &#34;2015091476gmJ1T&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;特殊乳化沥青&#34;,
+              &#34;catId&#34;: &#34;201509146eb8Pyb&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;不粘轮乳化沥青&#34;,
+              &#34;catId&#34;: &#34;20160413Q7Km65j&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;乳化沥青&#34;,
+          &#34;catId&#34;: &#34;20150914m34mQ5n&#34;
+        },
+        {
+          &#34;msc_cl&#34;: [
+            {
+              &#34;catName&#34;: &#34;煤沥青&#34;,
+              &#34;catId&#34;: &#34;20150914eB2cy68&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;岩沥青&#34;,
+              &#34;catId&#34;: &#34;2015091424K8635&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;彩色沥青&#34;,
+              &#34;catId&#34;: &#34;20160106M8nK6iI&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;硫化沥青&#34;,
+              &#34;catId&#34;: &#34;20160106O5tSxi4&#34;
+            },
+            {
+              &#34;catName&#34;: &#34;防腐沥青&#34;,
+              &#34;catId&#34;: &#34;20151019341oqb4&#34;
+            }
+          ],
+          &#34;catName&#34;: &#34;其他沥青&#34;,
+          &#34;catId&#34;: &#34;20150914q48W8K0&#34;
+        }
+      ],
+      &#34;catName&#34;: &#34;沥青&#34;,
+      &#34;catId&#34;: &#34;20150914q0asfEw&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;说明&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;获取的类目是树形结构&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_品牌&#34;&gt;1.3.2. 品牌&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app/procurement/brand/{categoryId}&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app/procurement/brand/{categoryId}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{categoryId} : 201509140732S22 # 类目id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/app/procurement/brand/201509140732S22&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/app/procurement/brand/201509140732S22&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;brandId&#34;: &#34;20150914NO6768t&#34;, # 品牌id
+      &#34;brandName&#34;: &#34;韩国SK&#34; # 品牌名称
+    },
+    {
+      &#34;brandId&#34;: &#34;201509148O45Q61&#34;,
+      &#34;brandName&#34;: &#34;齐鲁石化&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_收货地址&#34;&gt;1.3.3. 收货地址&lt;/h4&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;URL&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/area/{parentId}&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/area/{parentId}&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;支持格式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;GET JSON&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;HTTP请求方式&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Content-Type: application/json;charset=UTF-8&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;携带参数说明&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;{parentId} : 000000000000000 # 父id&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://app.mailiqing.com/app/procurement/area/000000000000000&#34; class=&#34;bare&#34;&gt;http://app.mailiqing.com/app/procurement/area/000000000000000&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;是否需要登录&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;否&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;成功&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34;: 1,
+  &#34;list&#34;: [
+    {
+      &#34;areaId&#34;: &#34;201509237y73e1Y&#34;, # 地区id
+      &#34;areaName&#34;: &#34;全国&#34; # 地区名
+    },
+    {
+      &#34;areaId&#34;: &#34;20150601L2sIhL7&#34;,
+      &#34;areaName&#34;: &#34;华东地区&#34;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;失败&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+  &#34;state&#34; : 0,
+  &#34;message&#34; : &#34;查询结果为空！&#34;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

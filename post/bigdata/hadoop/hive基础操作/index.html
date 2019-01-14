@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hive基础操作</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="hive基础操作" />
+<meta property="og:description" content="Hive 操作（一）表操作
+Hive 和 Mysql 的表操作语句类似，如果熟悉 Mysql，学习Hive 的表操作就非常容易了，下面对 Hive 的表操作进行深入讲解。(1)先来创建一个表名为student1的内部表
+hive&gt; CREATE TABLE IF NOT EXISTS student1&gt; (sno INT,sname STRING,age INT,sex STRING)&gt; ROW FORMAT DELIMITED&gt; FIELDS TERMINATED BY &#39;\t&#39;&gt; STORED AS TEXTFILE;
+建表规则如下：
+CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name[(col_name data_type [COMMENT col_comment], &#8230;&#8203;)][COMMENT table_comment][PARTITIONED BY (col_name data_type [COMMENT col_comment], &#8230;&#8203;)][CLUSTERED BY (col_name, col_name, &#8230;&#8203;)[SORTED BY (col_name [ASC|DESC], &#8230;&#8203;)] INTO num_buckets BUCKETS][ROW FORMAT row_format][STORED AS file_format][LOCATION hdfs_path]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/hadoop/hive%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" />
+
+
+<meta property="og:updated_time" content="2017-03-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">hive基础操作</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-16 00:00:00 &#43;0000 UTC">March 16, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/hadoop" rel="category">hadoop</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>Hive 操作
+（一）表操作</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Hive 和 Mysql 的表操作语句类似，如果熟悉 Mysql，学习Hive 的表操作就非常容易了，下面对 Hive 的表操作进行深入讲解。</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(1)先来创建一个表名为student1的内部表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; CREATE TABLE IF NOT EXISTS student1
+    &gt; (sno INT,sname STRING,age INT,sex STRING)
+    &gt; ROW FORMAT DELIMITED
+    &gt; FIELDS TERMINATED BY '\t'
+    &gt; STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>建表规则如下：</p>
+</div>
+<div class="paragraph">
+<p>CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name
+  [(col_name data_type [COMMENT col_comment], &#8230;&#8203;)]
+  [COMMENT table_comment]
+  [PARTITIONED BY (col_name data_type [COMMENT col_comment], &#8230;&#8203;)]
+  [CLUSTERED BY (col_name, col_name, &#8230;&#8203;)
+  [SORTED BY (col_name [ASC|DESC], &#8230;&#8203;)] INTO num_buckets BUCKETS]
+  [ROW FORMAT row_format]
+  [STORED AS file_format]
+  [LOCATION hdfs_path]</p>
+</div>
+<div class="paragraph">
+<p>•CREATE TABLE 创建一个指定名字的表。如果相同名字的表已经存在，则抛出异常；用户可以用 IF NOT EXIST 选项来忽略这个异常</p>
+</div>
+<div class="paragraph">
+<p>•EXTERNAL 关键字可以让用户创建一个外部表，在建表的同时指定一个指向实际数据的路径（LOCATION）</p>
+</div>
+<div class="paragraph">
+<p>•LIKE 允许用户复制现有的表结构，但是不复制数据</p>
+</div>
+<div class="paragraph">
+<p>•COMMENT可以为表与字段增加描述</p>
+</div>
+<div class="paragraph">
+<p>•ROW FORMAT DELIMITED [FIELDS TERMINATED BY char] [COLLECTION ITEMS TERMINATED BY char]</p>
+</div>
+<div class="paragraph">
+<p>| SERDE serde_name [WITH SERDEPROPERTIES (property_name=property_value, property_name=property_value, &#8230;&#8203;)]</p>
+</div>
+<div class="paragraph">
+<p>用户在建表的时候可以自定义 SerDe 或者使用自带的 SerDe。如果没有指定 ROW FORMAT 或者 ROW FORMAT DELIMITED，将会使用自带的 SerDe。在建表的时候，用户还需要为表指定列，用户在指定表的列的同时也会指定自定义的 SerDe，Hive 通过 SerDe 确定表的具体的列的数据。</p>
+</div>
+<div class="paragraph">
+<p>•STORED AS</p>
+</div>
+<div class="paragraph">
+<p>SEQUENCEFILE</p>
+</div>
+<div class="paragraph">
+<p>| TEXTFILE</p>
+</div>
+<div class="paragraph">
+<p>| RCFILE</p>
+</div>
+<div class="paragraph">
+<p>| INPUTFORMAT input_format_classname OUTPUTFORMAT output_format_classname</p>
+</div>
+<div class="paragraph">
+<p>如果文件数据是纯文本，可以使用 STORED AS TEXTFILE。如果数据需要压缩，使用 STORED AS SEQUENCE 。</p>
+</div>
+<div class="paragraph">
+<p>（2）创建外部表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; CREATE EXTERNAL TABLE IF NOT EXISTS student2
+    &gt; (sno INT,sname STRING,age INT,sex STRING)
+    &gt; ROW FORMAT DELIMITED
+    &gt; FIELDS TERMINATED BY '\t'
+    &gt; STORED AS TEXTFILE
+    &gt; LOCATION '/user/external';
+OK
+Time taken: 0.331 seconds</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; show tables;
+OK
+student1
+student2
+Time taken: 0.06 seconds, Fetched: 12 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（3）删除表</p>
+</div>
+<div class="paragraph">
+<p>首先创建一个表名为test1的表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; CREATE TABLE IF NOT EXISTS test1
+    &gt; (id INT,name STRING);
+OK
+Time taken: 0.07 seconds</p>
+</div>
+<div class="paragraph">
+<p>然后查看一下是否有test1表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SHOW TABLES;
+OK
+student1
+student2
+test1
+Time taken: 0.042 seconds, Fetched: 12 row(s)</p>
+</div>
+<div class="paragraph">
+<p>用命令删test1表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; DROP TABLE test1;
+OK
+Time taken: 0.191 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看test1表是否删除</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SHOW TABLES;
+OK
+student1
+student2
+Time taken: 0.027 seconds, Fetched: 11 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（4）修改表的结构，比如为表增加字段</p>
+</div>
+<div class="paragraph">
+<p>首先看一下student1表的结构</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; DESC student1;
+OK
+sno                     int
+sname                   string
+age                     int
+sex                     string
+Time taken: 0.886 seconds, Fetched: 4 row(s)</p>
+</div>
+<div class="paragraph">
+<p>为表student1增加两个字段</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; ALTER TABLE student1 ADD COLUMNS
+    &gt; (address STRING,grade STRING);
+OK
+Time taken: 0.241 seconds</p>
+</div>
+<div class="paragraph">
+<p>再查看一下表的结构，看是否增加</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; DESC student1;
+OK
+sno                     int
+sname                   string
+age                     int
+sex                     string
+address                 string
+grade                   string
+Time taken: 0.154 seconds, Fetched: 6 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（5）修改表名student1为student3</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; ALTER TABLE student1 RENAME TO student3;
+OK
+Time taken: 0.172 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看一下</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SHOW TABLES;
+OK
+student2
+student3
+Time taken: 0.088 seconds, Fetched: 11 row(s)</p>
+</div>
+<div class="paragraph">
+<p>下面我们再改回来</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; ALTER TABLE student3 RENAME TO student1;
+OK
+Time taken: 0.153 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看一下</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SHOW TABLES;
+OK
+student1
+student2
+Time taken: 0.064 seconds, Fetched: 11 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（6）创建和已知表相同结构的表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; CREATE TABLE copy_student1 LIKE student1;
+OK
+Time taken: 1.109 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看一下</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SHOW TABLES;
+OK
+copy_student1
+student1
+student2
+Time taken: 0.083 seconds, Fetched: 12 row(s)</p>
+</div>
+<div class="paragraph">
+<p>2、加入导入数据的方法，（数据里可以包含重复记录），只有导入了数据，才能供后边的查询使用</p>
+</div>
+<div class="paragraph">
+<p>（1）加载本地数据load</p>
+</div>
+<div class="paragraph">
+<p>首先看一下表的结构</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; DESC student1;
+OK
+sno                     int
+sname                   string
+age                     int
+sex                     string
+address                 string
+grade                   string
+Time taken: 1.018 seconds, Fetched: 6 row(s)</p>
+</div>
+<div class="paragraph">
+<p>创建/home/hadoop/data目录，并在该目录下创建student1.txt文件，添加如下内容</p>
+</div>
+<div class="paragraph">
+<p>201501001       张三    22      男      北京    大三
+201501003       李四    23      男      上海    大二
+201501004       王娟    22      女      广州    大三
+201501010       周王    24      男      深圳    大四
+201501011       李红    23      女      北京    大三</p>
+</div>
+<div class="paragraph">
+<p>加载数据到student1表中</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; LOAD DATA LOCAL INPATH '/home/hadoop/data/student1.txt' INTO TABLE student1;
+Loading data to table default.student1
+Table default.student1 stats: [numFiles=1, numRows=0, totalSize=191, rawDataSize=0]
+OK
+Time taken: 0.766 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看是否加载成功</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM student1;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+201501011   李红  23  女   北京  大三
+Time taken: 0.512 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（2）加载hdfs中的文件</p>
+</div>
+<div class="paragraph">
+<p>首先将文件student1.txt上传到hdfs文件系统对应目录上</p>
+</div>
+<div class="paragraph">
+<p>[hadoop@djt01 hadoop]$ hadoop fs -put /home/hadoop/data/student1.txt /user/hive
+16/05/16 17:15:43 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform&#8230;&#8203; using builtin-java classes where applicable
+[hadoop@djt01 hadoop]$ hadoop fs -ls /user/hive
+16/05/16 17:16:15 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform&#8230;&#8203; using builtin-java classes where applicable
+Found 2 items
+-rw-r&#8212;&#8203;r--   3 hadoop supergroup        191 2016-05-19 03:27 /user/hive/student1.txt
+drwxr-xr-x   - hadoop supergroup          0 2016-05-19 02:46 /user/hive/warehouse</p>
+</div>
+<div class="paragraph">
+<p>加载hdfs中的文件数据到copy_student1表中</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; LOAD DATA INPATH '/user/hive/student1.txt' INTO TABLE copy_student1;
+Loading data to table default.copy_student1
+Table default.copy_student1 stats: [numFiles=1, totalSize=191]
+OK
+Time taken: 1.354 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看是否加载成功</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM copy_student1;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+201501011   李红  23  女   北京  大三
+Time taken: 0.44 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（3）表插入数据（单表插入、多表插入）</p>
+</div>
+<div class="paragraph">
+<p>1）单表插入</p>
+</div>
+<div class="paragraph">
+<p>首先创建一个表copy_student2,表结构和student1相同</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; CREATE TABLE copy_student2 LIKE student1;
+OK
+Time taken: 0.586 seconds</p>
+</div>
+<div class="paragraph">
+<p>查看一下是否创建成功</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SHOW TABLES;
+OK
+copy_student1
+copy_student2
+student1
+student2
+Time taken: 0.073 seconds, Fetched: 13 row(s)</p>
+</div>
+<div class="paragraph">
+<p>看一下copy_student2表的表结构</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; DESC copy_student2;
+OK
+sno                     int
+sname                   string
+age                     int
+sex                     string
+address                 string
+grade                   string
+Time taken: 0.121 seconds, Fetched: 6 row(s)</p>
+</div>
+<div class="paragraph">
+<p>把表student1中的数据插入到copy_student2表中</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; INSERT OVERWRITE TABLE copy_student2 SELECT * FROM student1;</p>
+</div>
+<div class="paragraph">
+<p>查看数据是否插入</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM copy_student2;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+201501011   李红  23  女   北京  大三
+Time taken: 0.107 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>2）多表插入</p>
+</div>
+<div class="paragraph">
+<p>先创建两个表</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; CREATE TABLE copy_student3 LIKE student1;        OK
+Time taken: 0.622 seconds
+hive&gt; CREATE TABLE copy_student4 LIKE student1;
+OK
+Time taken: 0.162 seconds</p>
+</div>
+<div class="paragraph">
+<p>向多表插入数据</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; FROM student1
+    &gt; INSERT OVERWRITE TABLE copy_student3
+    &gt; SELECT *
+    &gt; INSERT OVERWRITE TABLE copy_student4
+    &gt; SELECT *;</p>
+</div>
+<div class="paragraph">
+<p>查看结果</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM copy_student3;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+201501011   李红  23  女   北京  大三
+Time taken: 0.103 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM copy_student4;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+201501011   李红  23  女   北京  大三
+Time taken: 0.071 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>3、有关表的内容的查询</p>
+</div>
+<div class="paragraph">
+<p>（1）查表的所有内容</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM student1;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+201501011   李红  23  女   北京  大三
+Time taken: 1.201 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（2）查表的某个字段的属性</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT sname FROM student1;
+OK
+张三
+李四
+王娟
+周王
+李红
+Time taken: 1.22 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（3）where条件查询</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM student1 WHERE sno&gt;201501004 AND address="北京";
+OK
+201501011   李红  23  女   北京  大三
+Time taken: 0.873 seconds, Fetched: 1 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（4）all和distinct的区别（这就要求表中要有重复的记录，或者某个字段要有重复的数据）</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT ALL age,grade FROM student1;
+OK
+22  大三
+23  大二
+22  大三
+24  大四
+23  大三
+Time taken: 0.448 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT age,grade FROM student1;
+OK
+22  大三
+23  大二
+22  大三
+24  大四
+23  大三
+Time taken: 0.072 seconds, Fetched: 5 row(s)</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT DISTINCT age,grade FROM student1;
+OK
+22  大三
+23  大三
+23  大二
+24  大四
+Time taken: 127.397 seconds, Fetched: 4 row(s)</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT DISTINCT age FROM student1;
+OK
+22
+23
+24
+Time taken: 106.21 seconds, Fetched: 3 row(s)</p>
+</div>
+<div class="paragraph">
+<p>（5）limit限制查询</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; SELECT * FROM student1 LIMIT 4;
+OK
+201501001   张三  22  男   北京  大三
+201501003   李四  23  男   上海  大二
+201501004   王娟  22  女   广州  大三
+201501010   周王  24  男   深圳  大四
+Time taken: 0.253 seconds, Fetched: 4 row(s)</p>
+</div>
+<div class="paragraph">
+<p>(6) GROUP BY 分组查询</p>
+</div>
+<div class="paragraph">
+<p>group by 分组查询在数据统计时比较常用，接下来讲解 group by 的使用。</p>
+</div>
+<div class="paragraph">
+<p>1) 创建一个表 group_test，表的内容如下。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; create table group_test(uid STRING,gender STRING,ip STRING) row format delimited fields terminated by '\t'  STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>向 group_test 表中导入数据。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; LOAD DATA LOCAL INPATH '/home/hadoop/djt/user.txt'  INTO TABLE group_test;</p>
+</div>
+<div class="paragraph">
+<p>2) 计算表的行数命令如下。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; select count(*) from group_test;</p>
+</div>
+<div class="paragraph">
+<p>3) 根据性别计算去重用户数。</p>
+</div>
+<div class="paragraph">
+<p>首先创建一个表 group_gender_sum</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; create table group_gender_sum(gender STRING,sum INT);</p>
+</div>
+<div class="paragraph">
+<p>将表 group_test 去重后的数据导入表 group_gender_sum。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; insert overwrite table group_gender_sum select group_test.gender,count(distinct group_test.uid) from group_test group by group_test.gender;</p>
+</div>
+<div class="paragraph">
+<p>同时可以做多个聚合操作，但是不能有两个聚合操作有不同的 distinct 列。下面正确合法的聚合操作语句。</p>
+</div>
+<div class="paragraph">
+<p>首先创建一个表 group_gender_agg</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; create table group_gender_agg(gender STRING,sum1 INT,sum2 INT,sum3 INT);</p>
+</div>
+<div class="paragraph">
+<p>将表 group_test 聚合后的数据插入表 group_gender_agg。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; insert overwrite table group_gender_agg select group_test.gender,count(distinct group_test.uid),count(*),sum(distinct group_test.uid) from group_test group by group_test.gender;</p>
+</div>
+<div class="paragraph">
+<p>但是，不允许在同一个查询内有多个 distinct 表达式。下面的查询是不允许的。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; insert overwrite table group_gender_agg select group_test.gender,count(distinct group_test.uid),count(distinct group_test.ip) from group_test group by group_test.gender;</p>
+</div>
+<div class="paragraph">
+<p>这条查询语句是不合法的，因为 distinct group_test.uid 和 distinct group_test.ip 操作了uid 和 ip 两个不同的列。</p>
+</div>
+<div class="paragraph">
+<p>(7) ORDER BY 排序查询</p>
+</div>
+<div class="paragraph">
+<p>ORDER BY 会对输入做全局排序，因此只有一个 Reduce（多个 Reduce 无法保证全局有序）会导致当输入规模较大时，需要较长的计算时间。使用 ORDER BY 查询的时候，为了优化查询的速度，使用 hive.mapred.mode 属性。</p>
+</div>
+<div class="paragraph">
+<p>hive.mapred.mode = nonstrict;(default value/默认值)
+hive.mapred.mode=strict;</p>
+</div>
+<div class="paragraph">
+<p>与数据库中 ORDER BY 的区别在于，在 hive.mapred.mode=strict 模式下必须指定limit ，否则执行会报错。</p>
+</div>
+<div class="paragraph">
+<p>hive&gt; set hive.mapred.mode=strict;
+hive&gt; select * from group_test order by uid limit 5;
+Total jobs = 1</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Total MapReduce CPU Time Spent: 4 seconds 340 msec
+OK
+01      male    192.168.1.2
+01      male    192.168.1.32
+01      male    192.168.1.26
+01      male    192.168.1.22
+02      female  192.168.1.3
+Time taken: 58.04 seconds, Fetched: 5 row(s)
+
+(8) SORT BY 查询
+
+sort by 不受 hive.mapred.mode 的值是否为 strict 和 nostrict 的影响。sort by 的数据只能保证在同一个 Reduce 中的数据可以按指定字段排序。
+
+使用 sort by 可以指定执行的 Reduce 个数（set mapred.reduce.tasks=&lt; number&gt;）这样可以输出更多的数据。对输出的数据再执行归并排序，即可以得到全部结果。
+
+hive&gt; set hive.mapred.mode=strict;
+hive&gt; select * from group_test sort by uid ;
+Total MapReduce CPU Time Spent: 4 seconds 450 msec
+OK
+01      male    192.168.1.2
+01      male    192.168.1.32
+01      male    192.168.1.26
+01      male    192.168.1.22
+02      female  192.168.1.3
+03      male    192.168.1.23
+03      male    192.168.1.5
+04      male    192.168.1.9
+05      male    192.168.1.8
+05      male    192.168.1.29
+06      female  192.168.1.201
+06      female  192.168.1.52
+06      female  192.168.1.7
+07      female  192.168.1.11
+08      female  192.168.1.21
+08      female  192.168.1.62
+08      female  192.168.1.88
+08      female  192.168.1.42
+Time taken: 77.875 seconds, Fetched: 18 row(s)
+
+(9) DISTRIBUTE BY 排序查询
+
+按照指定的字段对数据划分到不同的输出 Reduce 文件中，操作如下。
+
+hive&gt; insert overwrite local directory '/home/hadoop/djt/test' select * from group_test distribute by length(gender);
+
+此方法根据 gender 的长度划分到不同的 Reduce 中，最终输出到不同的文件中。length 是内建函数，也可以指定其它的函数或者使用自定义函数。
+
+hive&gt; insert overwrite local directory '/home/hadoop/djt/test' select * from group_test order by gender  distribute by length(gender);
+
+order by gender 与 distribute by length(gender) 不能共用。
+
+(10) CLUSTER BY 查询
+
+cluster by 除了具有 distribute by 的功能外还兼具 sort by 的功能。
+(二)视图操作
+
+1) 创建一个测试表。
+
+hive&gt; create table test(id int,name string);
+OK
+Time taken: 0.385 seconds
+hive&gt; desc test;
+OK
+id                      int
+name                    string
+Time taken: 0.261 seconds, Fetched: 2 row(s)
+
+2) 基于表 test 创建一个 test_view 视图。
+
+hive&gt; create view test_view(id,name_length) as select id,length(name) from test;
+
+3) 查看 test_view 视图属性。
+
+hive&gt; desc test_view;
+
+4) 查看视图结果。
+
+hive&gt; select * from test_view;
+
+（三）索引操作
+
+1) Hive 创建索引。
+
+hive&gt; create index user_index on table user(id) as 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' with deferred rebuild IN TABLE user_index_table;
+
+2) 更新数据。
+
+hive&gt; alter index user_index on user rebuild;
+
+3) 删除索引
+
+hive&gt; drop index user_index on user;
+
+4) 查看索引
+
+hive&gt; show index on user;
+
+5) 创建表和索引案例
+
+hive&gt; create table index_test(id INT,name STRING) PARTITIONED BY (dt STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+创建一个索引测试表 index_test，dt作为分区属性，“ROW FORMAT DELIMITED FIELDS TERMINATED BY ','” 表示用逗号分割字符串，默认为‘\001’。
+
+6) 创建一个临时索引表 index_tmp。
+
+hive&gt; create table index_tmp(id INT,name STRING,dt STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+7) 加载本地数据到 index_tmp 表中。
+
+hive&gt; load data local inpath '/home/hadoop/djt/test.txt' into table index_tmp;
+
+设置 Hive 的索引属性来优化索引查询，命令如下。
+
+hive&gt; set hive.exec.dynamic.partition.mode=nonstrict;----设置所有列为 dynamic partition
+hive&gt; set hive.exec.dynamic.partition=true;----使用动态分区
+
+8) 查询index_tmp 表中的数据，插入 table_test 表中。
+
+hive&gt; insert overwrite table index_test partition(dt) select id,name,dt from index_tmp;
+
+9) 使用 index_test 表，在属性 id 上创建一个索引 index1_index_test 。
+
+hive&gt; create index index1_index_test on table index_test(id) as 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD;
+
+10) 填充索引数据。
+
+hive&gt; alter index index1_index_test on index_test rebuild;
+
+11) 查看创建的索引。
+
+hive&gt; show index on index_test
+
+12) 查看分区信息。
+
+hive&gt; show partitions index_test;
+
+13) 查看索引数据。
+
+$ hadoop fs -ls /usr/hive/warehouse/default_index_test_index1_index_test_
+
+14) 删除索引。
+
+hive&gt; drop index index1_index_test on index_test;
+show index on index_test;
+
+15) 索引数据也被删除。
+
+$ hadoop fs -ls /usr/hive/warehouse/default_index_test_index1_index_test_
+no such file or directory
+
+&amp;16) 修改配置文件信息。
+
+&lt; property&gt;
+    &lt; name&gt;hive.optimize.index.filter&lt; /name&gt;
+    &lt; value&gt;true&lt; /value&gt;
+&lt; /property&gt;
+&lt; property&gt;
+    &lt; name&gt;hive.optimize.index.groupby&lt; /name&gt;
+    &lt; value&gt;true&lt; /value&gt;
+&lt; /property&gt;
+&lt; property&gt;
+    &lt; name&gt;hive.optimize.index.filter.compact.minsize&lt; /name&gt;
+    &lt; value&gt;5120&lt; /value&gt;
+&lt; /property&gt;
+
+hive.optimize.index.filter 和 hive.optimize.index.groupby 参数默认是 false。使用索引的时候必须把这两个参数开启，才能起到作用。
+
+hive.optimize.index.filter.compact.minsize 参数为输入一个紧凑的索引将被自动采用最小尺寸、默认5368709120（以字节为单位）。
+（四）分区操作
+
+Hive 的分区通过在创建表时启动 PARTITION BY 实现，用来分区的维度并不是实际数据的某一列，具体分区的标志是由插入内容时给定的。当要查询某一分区的内容时可以采用 WHERE 语句， 例如使用 “WHERE tablename.partition_key&gt;a” 创建含分区的表。创建分区语法如下。
+
+CREATE TABLE table_name(
+...
+)
+PARTITION BY (dt STRING,country STRING)
+
+1、 创建分区
+
+Hive 中创建分区表没有什么复杂的分区类型（范围分区、列表分区、hash 分区，混合分区等）。分区列也不是表中的一个实际的字段，而是一个或者多个伪列。意思是说，在表的数据文件中实际并不保存分区列的信息与数据。
+
+创建一个简单的分区表。
+
+hive&gt; create table partition_test(member_id string,name string) partitioned by (stat_date string,province string) row format delimited fields terminated by ',';
+
+这个例子中创建了 stat_date 和 province 两个字段作为分区列。通常情况下需要预先创建好分区，然后才能使用该分区。例如：
+
+hive&gt; alter table partition_test add partition (stat_date='2015-01-18',province='beijing');
+
+这样就创建了一个分区。这时会看到 Hive 在HDFS 存储中创建了一个相应的文件夹。
+
+$ hadoop fs -ls /user/hive/warehouse/partition_test/stat_date=2015-01-18
+/user/hive/warehouse/partition_test/stat_date=2015-01-18/province=beijing----显示刚刚创建的分区
+
+每一个分区都会有一个独立的文件夹，在上面例子中，stat_date 是主层次，province 是 副层次。
+
+2、 插入数据
+
+使用一个辅助的非分区表 partition_test_input 准备向 partition_test 中插入数据，实现步骤如下。
+
+1) 查看 partition_test_input 表的结构，命令如下。
+
+hive&gt; desc partition_test_input;
+
+2) 查看 partition_test_input 的数据，命令如下。
+
+hive&gt; select * from partition_test_input;
+
+3) 向 partition_test 的分区中插入数据，命令如下。
+
+insert overwrite table partition_test partition(stat_date='2015-01-18',province='jiangsu') select member_id,name from partition_test_input where stat_date='2015-01-18' and province='jiangsu';
+
+向多个分区插入数据，命令如下。
+
+hive&gt; from partition_test_input
+insert overwrite table partition_test partition(stat_date='2015-01-18',province='jiangsu') select member_id,name from partition_test_input where stat_date='2015-01-18' and province='jiangsu'
+insert overwrite table partition_test partition(stat_date='2015-01-28',province='sichuan') select member_id,name from partition_test_input where stat_date='2015-01-28' and province='sichuan'
+insert overwrite table partition_test partition(stat_date='2015-01-28',province='beijing') select member_id,name from partition_test_input where stat_date='2015-01-28' and province='beijing';
+
+3、 动态分区
+
+按照上面的方法向分区表中插入数据，如果数据源很大，针对一个分区就要写一个 insert ，非常麻烦。使用动态分区可以很好地解决上述问题。动态分区可以根据查询得到的数据自动匹配到相应的分区中去。
+
+动态分区可以通过下面的设置来打开：
+
+ set hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+动态分区的使用方法很简单，假设向 stat_date='2015-01-18' 这个分区下插入数据，至于 province 插到哪个子分区下让数据库自己来判断。stat_date 叫做静态分区列，province 叫做动态分区列。
+
+hive&gt; insert overwrite table partition_test partition(stat_date='2015-01-18',province)
+select member_id,name province from partition_test_input where stat_date='2015-01-18';
+
+注意，动态分区不允许主分区采用动态列而副分区采用静态列，这样将导致所有的主分区都要创建副分区静态列所定义的分区。
+
+hive.exec.max.dynamic.partitions.pernode：每一个 MapReduce Job 允许创建的分区的最大数量，如果超过这个数量就会报错（默认值100）。
+
+hive.exec.max.dynamic.partitions：一个 dml 语句允许创建的所有分区的最大数量（默认值100）。
+
+hive.exec.max.created.files：所有 MapReduce Job 允许创建的文件的最大数量（默认值10000）。
+
+尽量让分区列的值相同的数据在同一个 MapReduce 中，这样每一个 MapReduce 可以尽量少地产生新的文件夹，可以通过 DISTRIBUTE BY 将分区列值相同的数据放到一起，命令如下。
+
+hive&gt; insert overwrite table partition_test partition(stat_date,province)
+select memeber_id,name,stat_date,province from partition_test_input distribute by stat_date,province;
+
+（五）桶操作
+
+Hive 中 table 可以拆分成 Partition table 和 桶（BUCKET），桶操作是通过 Partition 的 CLUSTERED BY 实现的，BUCKET 中的数据可以通过 SORT BY 排序。
+
+BUCKET 主要作用如下。
+
+1)数据 sampling；
+
+2)提升某些查询操作效率，例如 Map-Side Join。
+
+需要特别主要的是，CLUSTERED BY 和 SORT BY 不会影响数据的导入，这意味着，用户必须自己负责数据的导入，包括数据额分桶和排序。 'set hive.enforce.bucketing=true' 可以自动控制上一轮 Reduce 的数量从而适配 BUCKET 的个数，当然，用户也可以自主设置 mapred.reduce.tasks 去适配 BUCKET 个数，推荐使用：
+
+hive&gt; set hive.enforce.bucketing=true;
+
+操作示例如下。
+
+1) 创建临时表 student_tmp，并导入数据。
+
+hive&gt; desc student_tmp;
+hive&gt; select * from student_tmp;
+
+2) 创建 student 表。
+
+hive&gt; create table student(id int,age int,name string)
+partitioned by (stat_date string)
+clustered by (id) sorted by(age) into 2 bucket
+row format delimited fields terminated by ',';
+
+3) 设置环境变量。
+
+hive&gt; set hive.enforce.bucketing=true;
+
+4) 插入数据。
+
+hive&gt; from student_tmp
+insert overwrite table student partition(stat_date='2015-01-19')
+select id,age,name where stat_date='2015-01-18' sort by age;
+
+5) 查看文件目录。
+
+$ hadoop fs -ls /usr/hive/warehouse/student/stat_date=2015-01-19/
+
+6) 查看 sampling 数据。
+
+hive&gt; select * from student tablesample(bucket 1 out of 2 on id);
+
+tablesample 是抽样语句，语法如下。
+
+tablesample(bucket x out of y)
+
+y 必须是 table 中 BUCKET 总数的倍数或者因子。
+Hive 复合类型
+
+ hive提供了复合数据类型：
+
+ 1)Structs： structs内部的数据可以通过DOT（.）来存取。例如，表中一列c的类型为STRUCT{a INT; b INT}，我们可以通过c.a来访问域a。
+
+ 2)Map（K-V对）：访问指定域可以通过["指定域名称"]进行。例如，一个Map M包含了一个group-》gid的kv对，gid的值可以通过M['group']来获取。
+
+ 3)Array：array中的数据为相同类型。例如，假如array A中元素['a','b','c']，则A[1]的值为'b'
+1、Struct使用
+
+ 1) 建表
+
+hive&gt; create table student_test(id INT, info struct&lt; name:STRING, age:INT&gt;)
+&gt; ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+&gt; COLLECTION ITEMS TERMINATED BY ':';
+
+ 'FIELDS TERMINATED BY' ：字段与字段之间的分隔符。'COLLECTION ITEMS TERMINATED BY' ：一个字段各个item的分隔符。
+
+ 2) 导入数据
+
+$ cat test5.txt
+1,zhou:30
+2,yan:30
+3,chen:20
+4,li:80
+hive&gt; LOAD DATA LOCAL INPATH '/home/hadoop/djt/test5.txt' INTO TABLE student_test;
+
+ 3) 查询数据
+
+hive&gt; select info.age from student_test;
+
+2、Array使用
+
+ 1) 建表
+
+hive&gt; create table class_test(name string, student_id_list array&lt; INT&gt;)
+&gt; ROW FORMAT DELIMITED
+&gt; FIELDS TERMINATED BY ','
+&gt; COLLECTION ITEMS TERMINATED BY ':';
+
+ 2) 导入数据
+
+$ cat test6.txt
+034,1:2:3:4
+035,5:6
+036,7:8:9:10
+hive&gt;  LOAD DATA LOCAL INPATH '/home/work/data/test6.txt' INTO TABLE class_test ;
+
+ 3) 查询
+
+hive&gt; select student_id_list[3] from class_test;
+
+3、Map使用
+
+ 1) 建表
+
+hive&gt; create table employee(id string, perf map&lt; string, int&gt;)
+&gt; ROW FORMAT DELIMITED
+&gt; FIELDS TERMINATED BY '\t'
+&gt; COLLECTION ITEMS TERMINATED BY ','
+&gt; MAP KEYS TERMINATED BY ':';
+
+ ‘MAP KEYS TERMINATED BY’ ：key value分隔符
+
+ 2) 导入数据
+
+$ cat test7.txt
+1       job:80,team:60,person:70
+2       job:60,team:80
+3       job:90,team:70,person:100
+hive&gt;  LOAD DATA LOCAL INPATH '/home/work/data/test7.txt' INTO TABLE employee;
+
+ 3) 查询
+
+hive&gt; select perf['person'] from employee;
+
+Hive 的 JOIN 用法
+
+ hive只支持等连接，外连接，左半连接。hive不支持非相等的join条件（通过其他方式实现，如left outer join），因为它很难在map/reduce job实现这样的条件。而且，hive可以join两个以上的表。
+1、等连接
+
+ 只有等连接才允许
+
+hive&gt; SELECT a.* FROM a JOIN b ON (a.id = b.id)
+hive&gt; SELECT a.* FROM a JOIN b ON (a.id = b.id AND a.department = b.department)
+
+2、多表连接
+
+ 同个查询，可以join两个以上的表
+
+hive&gt; SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
+
+3、join的缓存和任务转换
+
+ hive转换多表join时，如果每个表在join字句中，使用的都是同一个列，只会转换为一个单独的map/reduce。
+
+hive&gt; SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
+
+ 被转换为两个map/reduce任务，因为b的key1列在第一个join条件使用，而b表的key2列在第二个join条件使用。第一个map/reduce任务join a和b。第二个任务是第一个任务的结果join c。
+
+hive&gt; SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
+
+ 在join的每个map/reduce阶段，序列中的最后一个表，当其他被缓存时，它会流到reducers。所以，reducers需要缓存join关键字的特定值组成的行，通过组织最大的表出现在序列的最后，有助于减少reducers的内存。
+
+hive&gt; SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
+
+ 三个表，在同一个独立的map/reduce任务做join。a和b的key对应的特定值组成的行，会缓存在reducers的内存。然后reducers接受c的每一行，和缓存的每一行做join计算。
+
+hive&gt; SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
+
+ 这里有两个map/reduce任务在join计算被调用。第一个是a和b做join，然后reducers缓存a的值，另一边，从流接收b的值。第二个阶段，reducers缓存第一个join的结果，另一边从流接收c的值。
+
+ 在join的每个map/reduce阶段，通过关键字，可以指定哪个表从流接收。
+
+hive&gt; SELECT /*+ STREAMTABLE(a) */ a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
+
+ 三个表的连接，会转换为一个map/reduce任务，reducer会把b和c的key的特定值缓存在内存里，然后从流接收a的每一行，和缓存的行做join。
+4、join的结果
+
+ LEFT，RIGHT，FULL OUTER连接存在是为了提供ON语句在没有匹配时的更多控制。例如，这个查询：
+
+hive&gt; SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key)
+
+ 将会返回a的每一行。如果b.key等于a.key,输出将是a.val,b.val,如果a没有和b.key匹配，输出的行将是 a.val,NULL。如果b的行没有和a.key匹配上，将被抛弃。语法"FROM a LEFT OUTER JOIN b"必须写在一行，为了理解它如何工作——这个查询，a是b的左边，a的所有行会被保持；RIGHT OUTER JOIN将保持b的所有行， FULL OUTER JOIN将会保存a和b的所有行。OUTER JOIN语义应该符合标准的SQL规范。
+5、join的过滤
+
+ Joins发生在where字句前，所以，如果要限制join的输出，需要写在where字句，否则写在JOIN字句。现在讨论的一个混乱的大点，就是分区表
+
+hive&gt; SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key)  WHERE a.ds='2009-07-07' AND b.ds='2009-07-07'
+
+ 将会连接a和b，产生a.val和b.val的列表。WHERE字句，也可以引用join的输出列，然后过滤他们。 但是，无论何时JOIN的行找到a的key，但是找不到b的key时，b的所有列会置成NULL，包括ds列。这就是说，将过滤join输出的所有行，包括没有合法的b.key的行。然后你会在LEFT OUTER的要求扑空。 也就是说，如果你在WHERE字句引用b的任何列，LEFT OUTER的部分join结果是不相关的。所以，当外连接时，使用这个语句
+
+hive&gt; SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key AND b.ds='2009-07-07' AND a.ds='2009-07-07';
+
+ join的输出会预先过滤，然后你不用对有a.key而没有b.key的行做过滤。RIGHT和FULL join也是一样的逻辑。
+6、join的顺序
+
+ join是不可替换的，连接是从左到右，不管是LEFT或RIGHT join。
+
+hive&gt;  SELECT a.val1, a.val2, b.val, c.val  FROM a  JOIN b ON (a.key = b.key)  LEFT OUTER JOIN c ON (a.key = c.key)
+
+ 首先，连接a和b，扔掉a和b中没有匹配的key的行。结果表再连接c。这提供了直观的结果，如果有一个键都存在于A和C，但不是B：完整行(包括 a.val1,a.val2,a.key)会在"a jOIN b"步骤，被丢弃，因为它不在b中。结果没有a.key，所以当它和c做LEFT OUTER JOIN,c.val也无法做到，因为没有c.key匹配a.key(因为a的行都被移除了)。类似的，RIGHT OUTER JOIN(替换为LEFT),我们最终会更怪的效果,NULL, NULL, NULL, c.val。因为尽管指定了join key是a.key=c.key，我们已经在第一个JOIN丢弃了不匹配的a的所有行。
+
+ 为了达到更直观的效果，相反，我们应该从
+
+hive&gt; FROM c LEFT OUTER JOIN a ON (c.key = a.key) LEFT OUTER JOIN b ON (c.key = b.key).
+
+ LEFT SEMI JOIN实现了相关的IN / EXISTS的子查询语义的有效途径。由于Hive目前不支持IN / EXISTS的子查询，所以你可以用 LEFT SEMI JOIN 重写你的子查询语句。LEFT SEMI JOIN 的限制是， JOIN 子句中右边的表只能在 ON 子句中设置过滤条件，在 WHERE 子句、SELECT 子句或其他地方过滤都不行。
+
+hive&gt; SELECT a.key, a.value FROM a WHERE a.key in (SELECT b.key FROM B);
+
+ 可以重写为
+
+hive&gt; SELECT a.key, a.val FROM a LEFT SEMI JOIN b on (a.key = b.key)
+
+7、map 端 join
+
+ 但如果所有被连接的表是小表，join可以被转换为只有一个map任务。查询是
+
+hive&gt; SELECT /*+ MAPJOIN(b) */ a.key, a.value FROM a join b on a.key = b.key
+
+ 不需要reducer。对于每一个mapper,A和B已经被完全读出。限制是a FULL/RIGHT OUTER JOIN b不能使用。
+
+ 如果表在join的列已经分桶了，其中一张表的桶的数量，是另一个表的桶的数量的整倍，那么两者可以做桶的连接。如果A有4个桶，表B有4个桶，下面的连接：
+
+hive&gt; SELECT /*+ MAPJOIN(b) */ a.key, a.value FROM a join b on a.key = b.key
+
+ 只能在mapper工作。为了为A的每个mapper完整抽取B。对于上面的查询，mapper处理A的桶1，只会抽取B的桶1，这不是默认行为，要使用以下参数：
+
+hive&gt; set hive.optimize.bucketmapjoin = true;
+
+ 如果表在join的列经过排序，分桶，而且他们有相同数量的桶，可以使用排序-合并 join。每个mapper，相关的桶会做连接。如果A和B有4个桶
+
+hive&gt; SELECT /*+ MAPJOIN(b) */ a.key, a.value FROM A a join B b on a.key = b.key
+
+ 只能在mapper使用。使用A的桶的mapper，也会遍历B相关的桶。这个不是默认行为，需要配置以下参数：
+
+hive&gt; set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
+hive&gt; set hive.optimize.bucketmapjoin = true;
+hive&gt; set hive.optimize.bucketmapjoin.sortedmerge = true;
+
+Hive 内置操作符与函数
+字符串函数
+
+ 1)字符串长度函数：length
+
+语法: length(string A)
+返回值: int
+说明：返回字符串A的长度
+举例：
+hive&gt; select length(‘abcedfg’) from dual;
+7
+
+ 2)字符串反转函数：reverse
+
+语法: reverse(string A)
+返回值: string
+说明：返回字符串A的反转结果
+举例：
+hive&gt; select reverse(‘abcedfg’) from dual;
+gfdecba
+
+ 3)字符串连接函数：concat
+
+语法: concat(string A, string B…)
+返回值: string
+说明：返回输入字符串连接后的结果，支持任意个输入字符串
+举例：
+hive&gt; select concat(‘abc’,'def’,'gh’) from dual;
+abcdefgh
+
+ 4)带分隔符字符串连接函数：concat_ws
+
+语法: concat_ws(string SEP, string A, string B…)
+返回值: string
+说明：返回输入字符串连接后的结果，SEP表示各个字符串间的分隔符
+举例：
+hive&gt; select concat_ws(‘,’,'abc’,'def’,'gh’) from dual;
+abc,def,gh
+
+ 5)字符串截取函数：substr,substring
+
+语法: substr(string A, int start),substring(string A, int start)
+返回值: string
+说明：返回字符串A从start位置到结尾的字符串
+举例：
+hive&gt; select substr(‘abcde’,3) from dual;
+cde
+hive&gt; select substring(‘abcde’,3) from dual;
+cde
+hive&gt;  select substr(‘abcde’,-1) from dual;  （和ORACLE相同）
+e
+
+ 6)字符串截取函数：substr,substring
+
+语法: substr(string A, int start, int len),substring(string A, int start, int len)
+返回值: string
+说明：返回字符串A从start位置开始，长度为len的字符串
+举例：
+hive&gt; select substr(‘abcde’,3,2) from dual;
+cd
+hive&gt; select substring(‘abcde’,3,2) from dual;
+cd
+hive&gt;select substring(‘abcde’,-2,2) from dual;
+de
+
+ 7)字符串转大写函数：upper,ucase
+
+语法: upper(string A) ucase(string A)
+返回值: string
+说明：返回字符串A的大写格式
+举例：
+hive&gt; select upper(‘abSEd’) from dual;
+ABSED
+hive&gt; select ucase(‘abSEd’) from dual;
+ABSED
+
+ 8)字符串转小写函数：lower,lcase
+
+语法: lower(string A) lcase(string A)
+返回值: string
+说明：返回字符串A的小写格式
+举例：
+hive&gt; select lower(‘abSEd’) from dual;
+absed
+hive&gt; select lcase(‘abSEd’) from dual;
+absed
+
+ 9)去空格函数：trim
+
+语法: trim(string A)
+返回值: string
+说明：去除字符串两边的空格
+举例：
+hive&gt; select trim(‘ abc ‘) from dual;
+abc
+
+ 10)左边去空格函数：ltrim
+
+语法: ltrim(string A)
+返回值: string
+说明：去除字符串左边的空格
+举例：
+hive&gt; select ltrim(‘ abc ‘) from dual;
+abc
+
+ 11)右边去空格函数：rtrim
+
+语法: rtrim(string A)
+返回值: string
+说明：去除字符串右边的空格
+举例：
+hive&gt; select rtrim(‘ abc ‘) from dual;
+abc
+
+集合统计函数
+
+ 1) 个数统计函数 count。
+
+语法：count(*),count(expr),count(distinct expr)
+返回值 int。
+count(*)统计检索出行的个数，包括 NULL 值的行；
+count(expr)返回指定字段的非空值的个数；
+count(distinct expr)返回指定字段的不同的非空值的个数。
+举例：
+hive&gt; select count(*) from user;
+hive&gt; select count(distinct age);
+
+ 2) 总和统计函数 sum。
+
+语法：sum(col),sum(distinct col)
+返回值 double。
+sum(col) 统计结果集中 col 的相加的结果；
+sum(distinct col) 统计结果中 col 不同值相加的结果。
+举例：
+hive&gt; select sum(age) from user;
+hive&gt; select sum(distinct age) from user;
+
+ 3) 平均值统计函数avg。
+
+语法：avg(col),avg(distinct col)
+返回值 double。
+avg(col) 统计结果集中的平均值；
+avg(distinct col) 统计结果中 col 不同值相加的平均值。
+举例：
+hive&gt; select avg(mark) from user;
+select avg(distinct mark) from user;
+
+ 4) 最小值统计函数 min。统计结果集中 col 字段的最小值。
+
+语法：min(col)
+返回值double。
+举例：
+hive&gt;select min(mark) from user;
+
+ 5) 最大值统计函数 max。统计结果集中 col 字段的最大值。
+
+语法：max(col)
+返回值 double。
+举例：
+hive&gt; select max(mark) from user;
+
+复合类型操作
+
+ 1) Map 类型构建。根据输入的 Key-Value 对构建 Map 类型。
+
+语法：map(key1, value1, key2, value2,...)
+举例：
+hive&gt;create table map_test as select map('100','jay','200','liu') from student;
+hive&gt;describe map_test;
+hive&gt;select map_test from student;
+
+ 2) Struct 类型构建。根据输入的参数构建结构体 Struct 类型。
+
+语法：struct(val1, val2, val3, ...)
+举例：
+hive&gt;create table struct_test as select struct('jay','liu','gang') from student;
+hive&gt;describe struct_test;
+hive&gt;select struct_test from student;
+
+ 3) Array 类型构建。根据输入的参数构建数组 Array 类型。
+
+语法：array(val1,val2, ...)
+举例：
+hive&gt; create table array_test as select array('jay','liu','gang') from student;
+hive&gt; describe array_test;
+hive&gt; select array_test from array_test;
+
+用户自定义函数 UDF
+
+ UDF(User Defined Function,用户自定义函数) 对数据进行处理。UDF 函数可以直接应用于 select 语句，对查询结构做格式化处理后，再输出内容。
+
+ Hive可以允许用户编写自己定义的函数UDF，来在查询中使用。Hive中有3种UDF：
+
+ 1)UDF：操作单个数据行，产生单个数据行。
+
+ 2)UDAF：操作多个数据行，产生一个数据行。
+
+ 3)UDTF：操作一个数据行，产生多个数据行一个表作为输出。
+
+ 用户构建的UDF使用过程如下：
+
+ 第一步：继承UDF或者UDAF或者UDTF，实现特定的方法。
+
+ 第二步：将写好的类打包为jar。如hivefirst.jar。
+
+ 第三步：进入到Hive外壳环境中，利用add jar /home/hadoop/hivefirst.jar 注册该jar文件。
+
+ 第四步：为该类起一个别名，create temporary function mylength as 'com.whut.StringLength';这里注意UDF只是为这个Hive会话临时定义的。
+
+ 第五步：在select中使用mylength()。
+
+ 自定义UDF
+
+package whut;
+import org.apache.commons.lang.StringUtils;
+import org.apache.hadoop.hive.ql.exec.UDF;
+import org.apache.hadoop.io.Text;
+//UDF是作用于单个数据行，产生一个数据行
+//用户必须要继承UDF，且必须至少实现一个evalute方法，该方法并不在UDF中
+//但是Hive会检查用户的UDF是否拥有一个evalute方法
+public class Strip extends UDF{
+    private Text result=new Text();
+    //自定义方法
+    public Text evaluate(Text str)
+    {
+        if(str==null)
+        return null;
+        result.set(StringUtils.strip(str.toString()));
+        return result;
+    }
+    public Text evaluate(Text str,String stripChars)
+    {
+        if(str==null)
+        return null;
+        result.set(StringUtils.strip(str.toString(),stripChars));
+        return result;
+    }
+}
+
+
+ 注意事项：
+
+ 1、一个用户UDF必须继承org.apache.hadoop.hive.ql.exec.UDF;
+
+ 2、一个UDF必须要包含有evaluate()方法，但是该方法并不存在于UDF中。evaluate的参数个数以及类型都是用户自己定义的。在使用的时候，Hive会调用UDF的evaluate()方法。
+
+ 自定义UDAF找到最大值
+
+package whut;
+import org.apache.hadoop.hive.ql.exec.UDAF;
+import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
+import org.apache.hadoop.io.IntWritable;
+//UDAF是输入多个数据行，产生一个数据行
+//用户自定义的UDAF必须是继承了UDAF，且内部包含多个实现了exec的静态类
+public class MaxiNumber extends UDAF{
+    public static class MaxiNumberIntUDAFEvaluator implements UDAFEvaluator{
+    //最终结果
+    private IntWritable result;
+    //负责初始化计算函数并设置它的内部状态，result是存放最终结果的
+    @Override
+    public void init() {
+        result=null;
+    }
+    //每次对一个新值进行聚集计算都会调用iterate方法
+    public boolean iterate(IntWritable value)
+    {
+        if(value==null)
+            return false;
+        if(result==null)
+            result=new IntWritable(value.get());
+        else
+            result.set(Math.max(result.get(), value.get()));
+        return true;
+    }
+
+    //Hive需要部分聚集结果的时候会调用该方法
+    //会返回一个封装了聚集计算当前状态的对象
+    public IntWritable terminatePartial()
+    {
+        return result;
+    }
+    //合并两个部分聚集值会调用这个方法
+    public boolean merge(IntWritable other)
+    {
+        return iterate(other);
+    }
+    //Hive需要最终聚集结果时候会调用该方法
+    public IntWritable terminate()
+    {
+        return result;
+    }
+    }
+}
+
+
+
+ 注意事项：
+
+ 1、用户的UDAF必须继承了org.apache.hadoop.hive.ql.exec.UDAF。
+
+ 2、用户的UDAF必须包含至少一个实现了org.apache.hadoop.hive.ql.exec的静态类，诸如常见的实现了 UDAFEvaluator。
+
+ 3、一个计算函数必须实现的5个方法的具体含义如下：
+
+  init()：主要是负责初始化计算函数并且重设其内部状态，一般就是重设其内部字段。一般在静态类中定义一个内部字段来存放最终的结果。
+
+  iterate()：每一次对一个新值进行聚集计算时候都会调用该方法，计算函数会根据聚集计算结果更新内部状态。当输入值合法或者正确计算了，则就返回true。
+
+  terminatePartial()：Hive需要部分聚集结果的时候会调用该方法，必须要返回一个封装了聚集计算当前状态的对象。
+
+  merge()：Hive进行合并一个部分聚集和另一个部分聚集的时候会调用该方法。
+
+  terminate()：Hive最终聚集结果的时候就会调用该方法。计算函数需要把状态作为一个值返回给用户。
+
+ 4、部分聚集结果的数据类型和最终结果的数据类型可以不同。
+Hive 的权限控制
+
+ Hive从0.10可以通过元数据控制权限。但是Hive的权限控制并不是完全安全的。基本的授权方案的目的是防止用户不小心做了不合适的事情。
+
+ 为了使用Hive的授权机制，有两个参数必须在hive-site.xml中设置：
+
+&lt; property&gt;
+    &lt; name&gt;hive.security.authorization.enabled&lt; /name&gt;
+    &lt; value&gt;true&lt; /value&gt;
+     &lt; description&gt;enable or disable the hive client authorization&lt; /description&gt;
+ &lt; /property&gt;
+
+&lt; property&gt;
+     &lt; name&gt;hive.security.authorization.createtable.owner.grants&lt; /name&gt;
+     &lt; value&gt;ALL&lt; /value&gt;
+     &lt; description&gt;the privileges automatically granted to the owner whenever a table gets created. An example like "select,drop" will grant select and drop privilege to the owner of the table&lt; /description&gt;
+&lt; /property&gt;
+
+ hive.security.authorization.enabled //参数是开启权限验证，默认为 false。
+
+ hive.security.authorization.createtable.owner.grants //参数是指表的创建者对表拥有所有权限。
+角色的创建和删除
+
+ Hive 中的角色定义与关系型数据库中角色的定义类似，它是一种机制，给予那些没有适当权限的用户分配一定的权限。
+
+ 1) 创建角色。
+
+语法：hive&gt; create role role_name;
+示例：hive&gt; create role role_tes1;
+
+ 2) 删除角色。
+
+语法：drop role role_name
+示例：drop role role_test1;
+
+角色的授权和撤销
+
+ 1) 把 role_test1 角色授权给 xiaojiang 用户，命令如下。
+
+hive&gt; grant role role_test1 to user xiaojiang;
+
+ 2) 查看 xiaojiang 用户被授权的角色，命令如下。
+
+show role grant user xiaojiang;
+
+ 3) 取消 xiaojiang 用户的 role_test1 角色，命令如下。
+
+hive&gt; revoke role role_test1 from user xiaojiang;
+
+Hive 支持的权限控制。
+
+ 1) 把 select 权限授权给 xiaojiang 用户，命令如下。
+
+hive&gt; grant select on database default to user xiaojiang;
+
+ 2) 查看 xiaojiang 被授予那些操作权限，命令如下。
+
+hive&gt; show grant user xiaojiang on database default;
+
+ 3) 收回 xiaojiang 的 select 权限，操作如下。
+
+hive&gt; revoke select on database default from user xiaojiang;
+
+ 4) 查看 xiaojiang 用户拥有哪些权限，命令如下。
+
+hive&gt; show grant user xiaojiang on database default;
+
+超级管理权限
+
+ HIVE本身有权限管理功能，需要通过配置开启。
+
+&lt; property&gt;
+    &lt; name&gt;hive.metastore.authorization.storage.checks&lt; /name&gt;
+    &lt; value&gt;true&lt; /value&gt;
+&lt; /property&gt;
+
+&lt; property&gt;
+    &lt; name&gt;hive.metastore.execute.setugi&lt; /name&gt;
+    &lt; value&gt;false&lt; /value&gt;
+&lt; /property&gt;
+
+&lt; property&gt;
+    &lt; name&gt;hive.security.authorization.enabled&lt; /name&gt;
+    &lt; value&gt;true&lt; /value&gt;
+&lt; /property&gt;
+
+&lt; property&gt;
+    &lt; name&gt;hive.security.authorization.createtable.owner.grants&lt; /name&gt;
+    &lt; value&gt;ALL&lt; /value&gt;
+&lt; /property&gt;
+
+ 其中hive.security.authorization.createtable.owner.grants设置成ALL表示用户对自己创建的表是有所有权限的（这样是比较合理地）。
+
+ 开启权限控制有Hive的权限功能还有一个需要完善的地方，那就是“超级管理员”。 Hive中没有超级管理员，任何用户都可以进行Grant/Revoke操作，为了完善“超级管理员”，必须添加hive.semantic.analyzer.hook配置，并实现自己的权限控制类。
+
+ 编写权限控制类，代码如下所示。
+
+package com.xxx.hive;
+import org.apache.hadoop.hive.ql.parse.ASTNode;
+import org.apache.hadoop.hive.ql.parse.AbstractSemanticAnalyzerHook;
+import org.apache.hadoop.hive.ql.parse.HiveParser;
+import org.apache.hadoop.hive.ql.parse.HiveSemanticAnalyzerHookContext;
+import org.apache.hadoop.hive.ql.parse.SemanticException;
+import org.apache.hadoop.hive.ql.session.SessionState;
+/**
+    * 设置Hive超级管理员   *
+    * @author
+    * @version $Id: AuthHook.java,v 0.1 2013-6-13 下午3:32:12 yinxiu Exp $
+    */
+public class AuthHook extends AbstractSemanticAnalyzerHook {
+    private static String admin = "admin";
+    @Override 27 public ASTNode preAnalyze(HiveSemanticAnalyzerHookContext context, 28 ASTNode ast) throws SemanticException {
+    switch (ast.getToken().getType()) {
+        case HiveParser.TOK_CREATEDATABASE:
+        case HiveParser.TOK_DROPDATABASE:
+        case HiveParser.TOK_CREATEROLE:
+        case HiveParser.TOK_DROPROLE:
+        case HiveParser.TOK_GRANT:
+        case HiveParser.TOK_REVOKE:
+        case HiveParser.TOK_GRANT_ROLE:
+        case HiveParser.TOK_REVOKE_ROLE:
+        String userName = null;
+        if (SessionState.get() != null  &amp;&amp; SessionState.get().getAuthenticator() != null) {
+            userName = SessionState.get().getAuthenticator().getUserName();
+        }
+        if (!admin.equalsIgnoreCase(userName)) {
+            throw new SemanticException(userName + " can't use ADMIN options, except " + admin + ".");
+         }
+        break;
+        default:
+        break;
+        }
+        return ast;
+    }
+}
+
+ 添加了控制类之后还必须添加下面的配置：
+
+&lt; property&gt;
+    &lt; name&gt;hive.semantic.analyzer.hook&lt; /name&gt;
+    &lt; value&gt;com.xxx.AuthHook&lt; /value&gt;
+&lt; /property&gt;
+
+ 若有使用hiveserver，hiveserver必须重启。
+
+ 至此，只有admin用户可以进行Grant/Revoke操作。
+ 权限操作示例：
+
+grant select on database default to user xiaojiang;
+revoke all on database default from user xiaojiang;
+show grant user xiaojiang on database default;
+
+Hive与JDBC示例
+
+ 在使用 JDBC 开发 Hive 程序时, 必须首先开启 Hive 的远程服务接口。使用下面命令进行开启:
+
+hive -service hiveserver &amp;  //Hive低版本提供的服务是：hiveserver
+hive --service hiveserver2 &amp;    //Hive0.11.0以上版本提供了的服务是：hiveserver2
+
+本课程我们使用的hive1.0版本，故我们使用hiveserver2服务，下面我使用 Java 代码通过JDBC连接Hiveserver。
+
+ 1) 测试数据
+
+ 本地目录/home/hadoop/下的djt.txt文件内容(每行数据之间用tab键隔开)如下所示:
+
+1   dajiangtai
+2   hadoop
+3   hive
+4   hbase
+5   spark
+
+ 2) 程序代码
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class Hive {
+    private static String driverName = "org.apache.hive.jdbc.HiveDriver";//hive驱动名称
+    private static String url = "jdbc:hive2://djt11:10000/default";//连接hive2服务的连接地址，Hive0.11.0以上版本提供了一个全新的服务：HiveServer2
+    private static String user = "hadoop";//对HDFS有操作权限的用户
+    private static String password = "";//在非安全模式下，指定一个用户运行查询，忽略密码
+    private static String sql = "";
+    private static ResultSet res;
+    public static void main(String[] args) {
+        try {
+            Class.forName(driverName);//加载HiveServer2驱动程序
+            Connection conn = DriverManager.getConnection(url, user, password);//根据URL连接指定的数据库
+            Statement stmt = conn.createStatement();
+
+            //创建的表名
+            String tableName = "testHiveDriverTable";
+
+            /** 第一步:表存在就先删除 **/
+            sql = "drop table " + tableName;
+            stmt.execute(sql);
+
+            /** 第二步:表不存在就创建 **/
+            sql = "create table " + tableName + " (key int, value string)  row format delimited fields terminated by '\t' STORED AS TEXTFILE";
+            stmt.execute(sql);
+
+            // 执行“show tables”操作
+            sql = "show tables '" + tableName + "'";
+            res = stmt.executeQuery(sql);
+            if (res.next()) {
+                System.out.println(res.getString(1));
+            }
+
+            // 执行“describe table”操作
+            sql = "describe " + tableName;
+            res = stmt.executeQuery(sql);
+            while (res.next()) {
+                System.out.println(res.getString(1) + "\t" + res.getString(2));
+            }
+
+            // 执行“load data into table”操作
+            String filepath = "/home/hadoop/djt.txt";//hive服务所在节点的本地文件路径
+            sql = "load data local inpath '" + filepath + "' into table " + tableName;
+            stmt.execute(sql);
+
+            // 执行“select * query”操作
+            sql = "select * from " + tableName;
+            res = stmt.executeQuery(sql);
+            while (res.next()) {
+                System.out.println(res.getInt(1) + "\t" + res.getString(2));
+            }
+
+            // 执行“regular hive query”操作，此查询会转换为MapReduce程序来处理
+            sql = "select count(*) from " + tableName;
+            res = stmt.executeQuery(sql);
+            while (res.next()) {
+                System.out.println(res.getString(1));
+            }
+            conn.close();
+            conn = null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+}
+
+ 3) 运行结果(右击--&gt;Run as--&gt;Run on Hadoop)
+
+ 执行“show tables”运行结果:
+
+testhivedrivertable
+
+ 执行“describe table”运行结果:
+
+key    int
+value    string
+
+ 执行“select * query”运行结果:
+
+1   dajiangtai
+2   hadoop
+3   hive
+4   hbase
+5   spark
+
+ 执行“regular hive query”运行结果:
+
+5
+
+hive性能调优
+(一)Hadoop 计算框架的特性
+
+什么是数据倾斜
+
+由于数据的不均衡原因，导致数据分布不均匀，造成数据大量的集中到一点，造成数据热点
+
+Hadoop框架的特性
+
+不怕数据大，怕数据倾斜
+
+jobs数比较多的作业运行效率相对比较低，比如即使有几百行的表，如果多次关联多次汇总，产生十几个jobs，耗时很长。原因是map reduce作业初始化的时间是比较长的
+
+sum,count,max,min等UDAF，不怕数据倾斜问题,hadoop在map端的汇总合并优化，使数据倾斜不成问题
+
+count(distinct ),在数据量大的情况下，效率较低，因为count(distinct)是按group by 字段分组，按distinct字段排序，一般这种分布方式是很倾斜的
+(二)优化的常用手段
+
+解决数据倾斜问题
+
+减少job数
+
+设置合理的map reduce的task数，能有效提升性能。
+
+了解数据分布，自己动手解决数据倾斜问题是个不错的选择
+
+数据量较大的情况下，慎用count(distinct)。
+
+对小文件进行合并，是行至有效的提高调度效率的方法。
+
+优化时把握整体，单个作业最优不如整体最优。
+(三)Hive的数据类型方面的优化
+
+优化原则
+
+按照一定规则分区（例如根据日期）。通过分区，查询的时候指定分区，会大大减少在无用数据上的扫描, 同时也非常方便数据清理。
+
+合理的设置Buckets。在一些大数据join的情况下，map join有时候会内存不够。如果使用Bucket Map Join的话，可以只把其中的一个bucket放到内存中，内存中原来放不下的内存表就变得可以放下。这需要使用buckets的键进行join的条件连结，并且需要如下设置
+
+set hive.optimize.bucketmapjoin = true
+(四)Hive的操作方面的优化
+(1)全排序
+
+Hive的排序关键字是SORT BY，它有意区别于传统数据库的ORDER BY也是为了强调两者的区别–SORT BY只能在单机范围内排序
+(2)怎样做笛卡尔积
+
+当Hive设定为严格模式（hive.mapred.mode=strict）时，不允许在HQL语句中出现笛卡尔积
+
+MapJoin是的解决办法
+
+MapJoin，顾名思义，会在Map端完成Join操作。这需要将Join操作的一个或多个表完全读入内存
+
+MapJoin的用法是在查询/子查询的SELECT关键字后面添加/*+ MAPJOIN(tablelist) */提示优化器转化为MapJoin（目前Hive的优化器不能自动优化MapJoin）
+
+其中tablelist可以是一个表，或以逗号连接的表的列表。tablelist中的表将会读入内存，应该将小表写在这里
+
+在大表和小表做笛卡尔积时，规避笛卡尔积的方法是，给Join添加一个Join key，原理很简单：将小表扩充一列join key，并将小表的条目复制数倍，join key各不相同；将大表扩充一列join key为随机数
+(3)控制Hive的Map数
+
+通常情况下，作业会通过input的目录产生一个或者多个map任务
+
+主要的决定因素有： input的文件总个数，input的文件大小，集群设置的文件块大小(目前为128M, 可在hive中通过set dfs.block.size;命令查看到，该参数不能自定义修改)
+
+是不是map数越多越好
+
+答案是否定的。如果一个任务有很多小文件（远远小于块大小128m）,则每个小文件也会被当做一个块，用一个map任务来完成，而一个map任务启动和初始化的时间远远大于逻辑处理的时间，就会造成很大的资源浪费。而且，同时可执行的map数是受限的。
+
+是不是保证每个map处理接近128m的文件块，就高枕无忧了？
+
+答案也是不一定。比如有一个127m的文件，正常会用一个map去完成，但这个文件只有一个或者两个小字段，却有几千万的记录，如果map处理的逻辑比较复杂，用一个map任务去做，肯定也比较耗时。
+
+针对上面的问题3和4，我们需要采取两种方式来解决：即减少map数和增加map数；
+
+举例
+
+a) 假设input目录下有1个文件a,大小为780M,那么hadoop会将该文件a分隔成7个块（6个128m的块和1个12m的块），从而产生7个map数
+
+b)假设input目录下有3个文件a,b,c,大小分别为10m，20m，130m，那么hadoop会分隔成4个块（10m,20m,128m,2m）,从而产生4个map数
+
+即如果文件大于块大小(128m),那么会拆分，如果小于块大小，则把该文件当成一个块
+(4)怎样决定reducer个数
+
+Hadoop MapReduce程序中，reducer个数的设定极大影响执行效率
+
+不指定reducer个数的情况下，Hive会猜测确定一个reducer个数，基于以下两个设定：
+
+参数1：hive.exec.reducers.bytes.per.reducer（默认为1G)
+
+参数2 ：hive.exec.reducers.max（默认为999）
+
+计算reducer数的公式
+
+N=min(参数2，总输入数据量/参数1)
+
+依据Hadoop的经验，可以将参数2设定为0.95*(集群中TaskTracker个数)
+
+reduce个数并不是越多越好
+
+同map一样，启动和初始化reduce也会消耗时间和资源；
+
+另外，有多少个reduce,就会有多少个输出文件，如果生成了很多个小文件，那么如果这些小文件作为下一个任务的输入，则也会出现小文件过多的问题
+
+什么情况下只有一个reduce
+
+很多时候你会发现任务中不管数据量多大，不管你有没有设置调整reduce个数的参数，任务中一直都只有一个reduce任务；
+
+其实只有一个reduce任务的情况，除了数据量小于
+
+hive.exec.reducers.bytes.per.reducer参数值的情况外，还有以下原因：
+
+a)没有group by的汇总
+
+b)用了Order by
+(5)合并 MapReduce 操作
+
+Multi-group by
+
+Multi-group by是Hive的一个非常好的特性，它使得Hive中利用中间结果变得非常方便
+
+FROM log
+
+insert overwrite table test1 select log.id group by log.id
+
+insert overwrite table test2 select log.name group by log.name
+
+上述查询语句使用了Multi-group by特性连续group by了2次数据，使用不同的group by key。这一特性可以减少一次MapReduce操作。
+
+Bucket 与 Sampling
+
+Bucket是指将数据以指定列的值为key进行hash，hash到指定数目的桶中。这样就可以支持高效采样了
+
+Sampling可以在全体数据上进行采样，这样效率自然就低，它还是要去访问所有数据。而如果一个表已经对某一列制作了bucket，就可以采样所有桶中指定序号的某个桶，这就减少了访问量。
+
+如下例所示就是采样了test中32个桶中的第三个桶。
+
+SELECT * FROM test 、、、TABLESAMPLE(BUCKET 3 OUT OF 32);
+(6)JOIN 原则
+
+在使用写有 Join 操作的查询语句时有一条原则：应该将条目少的表/子查询放在 Join 操作符的左边
+
+原因是在 Join 操作的 Reduce 阶段，位于 Join 操作符左边的表的内容会被加载进内存，将条目少的表放在左边，可以有效减少发生 OOM 错误的几率
+
+Map Join
+
+Join 操作在 Map 阶段完成，不再需要Reduce，前提条件是需要的数据在 Map 的过程中可以访问到
+
+例如：
+
+INSERT OVERWRITE TABLE phone_traffic
+
+SELECT /*+ MAPJOIN(phone_location) */ l.phone,p.location,l.traffic from phone_location p join log l on (p.phone=l.phone)
+
+相关的参数为：
+
+hive.join.emit.interval = 1000 How many rows in the right-most join operand Hive should buffer before emitting the join result.
+
+hive.mapjoin.size.key = 10000
+
+hive.mapjoin.cache.numrows = 10000
+(7)Group By
+
+Map 端部分聚合
+
+并不是所有的聚合操作都需要在 Reduce 端完成，很多聚合操作都可以先在 Map 端进行部分聚合，最后在 Reduce 端得出最终结果
+
+基于 Hash
+
+参数包括：
+
+hive.map.aggr = true 是否在 Map 端进行聚合，默认为 True
+
+hive.groupby.mapaggr.checkinterval = 100000 在 Map 端进行聚合操作的条目数目
+
+有数据倾斜的时候进行负载均衡
+
+hive.groupby.skewindata = false
+
+当选项设定为 true，生成的查询计划会有两个 MR Job。第一个 MR Job 中，Map 的输出结果集合会随机分布到 Reduce 中，每个 Reduce 做部分聚合操作，并输出结果，这样处理的结果是相同的 Group By Key 有可能被分发到不同的 Reduce 中，从而达到负载均衡的目的；第二个 MR Job 再根据预处理的数据结果按照 Group By Key 分布到 Reduce 中（这个过程可以保证相同的 Group By Key 被分布到同一个 Reduce 中），最后完成最终的聚合操作。
+(8)合并小文件
+
+文件数目过多，会给 HDFS 带来压力，并且会影响处理效率，可以通过合并 Map 和 Reduce 的结果文件来消除这样的影响：
+
+hive.merge.mapfiles = true 是否和并 Map 输出文件，默认为 True
+
+hive.merge.mapredfiles = false 是否合并 Reduce 输出文件，默认为 False
+
+hive.merge.size.per.task = 256*1000*1000 合并文件的大小
+Hive 案例分析
+
+这里我们以机顶盒产生的用户收视数据为例，来具体分析如何使用Hive。
+
+1、机顶盒产生的用户原始数据都有一定的格式，包含机顶盒号、收看的频道、收看的节目、收看的时间等信息。
+
+2、用户的原始数据通常不直接交给hive处理，而是需要经过一个清洗和转化的过程。这个过程一般是通过Hadoop 作业来实现，转化成与hive表对应的格式。
+
+这个案例的具体步骤如下：
+
+步骤1：用户数据预处理
+
+通过MapReduce作业将日志转化为固定的格式。
+
+用户的原始数据如下所示。
+
+&lt; GHApp&gt;&lt; WIC cardNum="1370695139" stbNum="03111108020232488" date="2012-09-21" pageWidgetVersion="1.0"&gt;&lt; A e="13:55:11" s="13:50:10" n="104" t="1" pi="789" p="%E5%86%8D%E5%9B%9E%E9%A6%96(21)" sn="BTV影视" /&gt;&lt; /WIC&gt;&lt; /GHApp&gt;
+
+转化之后的数据如下所示，每个字段我们使用"@"分割符号。
+
+1370695139@03111108020232488@2012-09-21@BTV影视@再回首@13:50:10@13:55:11@301
+
+上面的字段分别代表：机顶盒号、用户编号、收看日期、频道、栏目、起始时间、结束时间、收视时长。
+
+步骤2：创建hive表
+
+我们根据对应字段，使用hive创建表。
+
+create table tvdata(cardnum string,stbnum string,date string,sn string,p string ,s string,e string,duration int) row format delimited fields terminated by '@' stored as textfile;
+
+步骤3：将hdfs中的数据导入表中
+
+我们使用以下命令，将hdfs中的数据导入表中。
+
+ load data inpath '/media/tvdata/part-r-00000' into table tvdata;
+
+步骤4：编写HQL，分析数据
+
+使用HQL语句，统计每个的频道的人均收视时长。
+
+select sn,sum(duration)/count(*) from tvdata group by sn;
+
+这里我们使用HQL只是从一个角度分析数据，大家可以尝试从多个角度来分析数据。
+
+删除
+ALTER TABLE shphonefeature DROP IF EXISTS PARTITION(year = 2015, month = 10, day = 1);</pre>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/hadoop/hive/" rel="prev"><span>«Previous</span><p>hive</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/hadoop/log-analysis/" rel="next"><span>Next»</span><p>log</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

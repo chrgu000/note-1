@@ -1,0 +1,734 @@
+VD_NAT_VDNET_D
+VD_NAT_VDNET_H
+VD_PROV_VDNET_D
+VD_PROV_VDNET_H
+VD_CITY_VDNET_D
+VD_CITY_VDNET_H
+
+
+
+
+<summary id="VD_NAT_VDNET_H_SUMMARY" in="F_VOLTE_KPI,TEMP_NAT_H_SUMMARY,VD_1_SNIPPET,VD_2_SNIPPET">
+    <body><![CDATA[
+        select
+            a.country,
+            a.sdate,
+            a.shour,
+            a.vendor_net,
+            (select count(1) from celllist) as lte_cell,
+            (select count(distinct site_id) from celllist) as lte_enb,
+            (select register_user_mw FROM ${TEMP_NAT_H_SUMMARY}) as register_user_mw,
+            (select localcity_user_mw FROM ${TEMP_NAT_H_SUMMARY}) as localcity_user_mw,
+            (select roaming_user_mw FROM ${TEMP_NAT_H_SUMMARY}) as roaming_user_mw,
+            (select inter_roaming_user_mw FROM ${TEMP_NAT_H_SUMMARY}) as inter_roaming_user_mw,
+            (select domestic_roaming_user_gm FROM ${TEMP_NAT_H_SUMMARY}) as domestic_roaming_user_gm,
+            a.call_duration_a,
+            (select roaming_user_mw FROM ${TEMP_NAT_H_SUMMARY}) / (select register_user_mw FROM ${TEMP_NAT_H_SUMMARY}) as roaming_user_rate,
+            a.callsetup_a_mo_attempt,
+            a.callsetup_a_mt_attempt,
+            a.initial_register_srate,
+            a.callsetup_suc_a_mo_ex_usr_rate,
+            a.callsetup_srate,
+            a.volte_drop_asr_a_rate,
+            a.callsetup_a_mo_vtv_latency,
+            a.callsetup_a_mo_latency,
+            a.srvcc_comp_srate,
+            a.srvcc_all_comp_srate_union,
+            a.initial_register_srate_union,
+            a.register_srate_sbc,
+            a.register_srate_scscf,
+            a.mar_srate,
+            a.callsetup_a_mo_srate_union,
+            a.callsetup_a_sbc_srate,
+            a.callsetup_a_scscf_srate,
+            a.callsetup_a_as_srate,
+            a.callsetup_a_mgcf_srate,
+            a.callsetup_srate_vt10086,
+            a.volte_drop_asr_v_rate_vt10086,
+            a.callsetup_vt10086_latency_all,
+            a.volte_drop_asr_rate_union,
+            a.volte_drop_asr_mo_rate,
+            a.volte_drop_asr_mt_rate,
+            a.asrvcc_comp_srate,
+            a.bsrvcc_comp_srate,
+            a.esrvcc_comp_srate,
+            a.srvcc_succ_latency,
+            a.srvcc_rsp_latency,
+            a.srvcc_media_latency,
+            a.callsetup_suc_a_mo_sbc_delay,
+            a.callsetup_suc_a_mo_scscf_delay,
+            a.callsetup_suc_a_mo_as_delay,
+            a.initial_register_srate_inclu_usr,
+            a.callsetup_a_mo_srate_incl_usr,
+            a.volte_drop_asr_rate,
+            a.srvcc_all_comp_srate_exp,
+            a.callsetup_suc_delay_vtv,
+            a.callsetup_suc_a_mo_delay
+         from (
+            select '全国' as country,
+              sdate,
+              shour,
+              ${VD_1_SNIPPET}
+          from ${F_VOLTE_KPI} al
+          group by sdate,shour
+        ) a
+    ]]></body>
+</summary>
+
+
+
+<summary id="VD_PROV_VDNET_H_SUMMARY" in="F_VOLTE_KPI,TEMP_PROV_H_SUMMARY,VD_1_SNIPPET">
+        <body><![CDATA[
+             select
+                a.province,
+                a.sdate,
+                a.shour,
+                a.vendor_net,
+                (select count(1) from celllist) as lte_cell,
+                (select count(distinct site_id) from celllist) as lte_enb,
+                c.register_user_mw,
+                c.localcity_user_mw,
+                c.roaming_user_mw,
+                c.inter_roaming_user_mw,
+                c.domestic_roaming_user_gm,
+                a.call_duration_a,
+                c.roaming_user_mw / c.register_user_mw as roaming_user_rate,
+                a.callsetup_a_mo_attempt,
+                a.callsetup_a_mt_attempt,
+                a.initial_register_srate,
+                a.callsetup_suc_a_mo_ex_usr_rate,
+                a.callsetup_srate,
+                a.volte_drop_asr_a_rate,
+                a.callsetup_a_mo_vtv_latency,
+                a.callsetup_a_mo_latency,
+                a.srvcc_comp_srate,
+                a.srvcc_all_comp_srate_union,
+                a.initial_register_srate_union,
+                a.register_srate_sbc,
+                a.register_srate_scscf,
+                a.mar_srate,
+                a.callsetup_a_mo_srate_union,
+                a.callsetup_a_sbc_srate,
+                a.callsetup_a_scscf_srate,
+                a.callsetup_a_as_srate,
+                a.callsetup_a_mgcf_srate,
+                a.callsetup_srate_vt10086,
+                a.volte_drop_asr_v_rate_vt10086,
+                a.callsetup_vt10086_latency_all,
+                a.volte_drop_asr_rate_union,
+                a.volte_drop_asr_mo_rate,
+                a.volte_drop_asr_mt_rate,
+                a.asrvcc_comp_srate,
+                a.bsrvcc_comp_srate,
+                a.esrvcc_comp_srate,
+                a.srvcc_succ_latency,
+                a.srvcc_rsp_latency,
+                a.srvcc_media_latency,
+                a.callsetup_suc_a_mo_sbc_delay,
+                a.callsetup_suc_a_mo_scscf_delay,
+                a.callsetup_suc_a_mo_as_delay,
+                a.initial_register_srate_inclu_usr,
+                a.callsetup_a_mo_srate_incl_usr,
+                a.volte_drop_asr_rate,
+                a.srvcc_all_comp_srate_exp,
+                a.callsetup_suc_delay_vtv,
+                a.callsetup_suc_a_mo_delay
+             from (
+                select
+                  province,
+                  sdate,
+                  shour,
+                  vendor_net,
+                  ${VD_1_SNIPPET}
+              from ${F_VOLTE_KPI} al
+              group by province,sdate,shour,vendor_net
+            ) a left join ${TEMP_PROV_H_SUMMARY} c on a.province=c.province
+        ]]></body>
+    </summary>
+
+
+<summary id="VD_CITY_VDNET_H_SUMMARY" in="F_VOLTE_KPI,TEMP_CITY_H_SUMMARY,VD_1_SNIPPET,VD_2_SNIPPET">
+        <body><![CDATA[
+            select
+                a.province,
+                a.scity,
+                a.sdate,
+                a.shour,
+                a.vendor_net,
+                ${VD_2_SNIPPET}
+             from (
+                  select
+                  province,
+                  scity,
+                  sdate,
+                  shour,
+                  vendor_net,
+                  ${VD_1_SNIPPET}
+              from ${F_VOLTE_KPI} al
+              group by province,scity,sdate,shour,vendor_net
+            ) a left join (select city,count(1) as lte_cell,count(distinct site_id) as lte_enb from celllist group by city) b on a.scity = b.city
+                left join ${TEMP_CITY_H_SUMMARY} c on a.scity=c.scity
+        ]]></body>
+    </summary>
+
+<result id="VD_NAT_VDNET_H" for="VD_NAT_VDNET_H_SUMMARY" to="spark1" title="spark1"/>
+<result id="VD_PROV_VDNET_H" for="VD_PROV_VDNET_H_SUMMARY" to="spark1" title="spark1"/>
+<result id="VD_CITY_VDNET_H" for="VD_CITY_VDNET_H_SUMMARY" to="spark1" title="spark1"/>
+
+
+
+
+
+
+- F_VOLTE_SIP_Mw_CITY_AREA_VD_H_SUMMARY
+- F_VOLTE_SIP_SV_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_DROP_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_SRVCC_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_VTV_CITY_AREA_H_SUMMARY
+
+
+
+
+
+
+
+
+
+https://gitee.com/binary/weixin-java-tools
+
+https://gitee.com/binary/weixin-java-miniapp-demo
+
+
+
+
+
+
+<summary id="VD_NAT_VDNET_D_SUMMARY" in="F_VOLTE_KPI_D_SUMMARY,TEMP_NAT_D_SUMMARY,WRITE_D_SNIPPET">
+        <body><![CDATA[
+            select
+                a.country,
+                a.sdate,
+                a.vendor_net,
+                (select count(1) from celllist) as lte_cell,
+                (select count(distinct site_id) from celllist) as lte_enb,
+                (select register_user_mw FROM ${TEMP_NAT_D_SUMMARY}) as register_user_mw,
+                (select localcity_user_mw FROM ${TEMP_NAT_D_SUMMARY}) as localcity_user_mw,
+                (select roaming_user_mw FROM ${TEMP_NAT_D_SUMMARY}) as roaming_user_mw,
+                (select inter_roaming_user_mw FROM ${TEMP_NAT_D_SUMMARY}) as inter_roaming_user_mw,
+                (select domestic_roaming_user_gm FROM ${TEMP_NAT_D_SUMMARY}) as domestic_roaming_user_gm,
+                a.call_duration_a,
+                (select roaming_user_mw FROM ${TEMP_NAT_D_SUMMARY}) / (select register_user_mw FROM ${TEMP_NAT_D_SUMMARY}) as roaming_user_rate,
+                a.callsetup_a_mo_attempt,
+                a.callsetup_a_mt_attempt,
+                a.initial_register_srate,
+                a.callsetup_suc_a_mo_ex_usr_rate,
+                a.callsetup_srate,
+                a.volte_drop_asr_a_rate,
+                a.callsetup_a_mo_vtv_latency,
+                a.callsetup_a_mo_latency,
+                a.srvcc_comp_srate,
+                a.srvcc_all_comp_srate_union,
+                a.initial_register_srate_union,
+                a.register_srate_sbc,
+                a.register_srate_scscf,
+                a.mar_srate,
+                a.callsetup_a_mo_srate_union,
+                a.callsetup_a_sbc_srate,
+                a.callsetup_a_scscf_srate,
+                a.callsetup_a_as_srate,
+                a.callsetup_a_mgcf_srate,
+                a.callsetup_srate_vt10086,
+                a.volte_drop_asr_v_rate_vt10086,
+                a.callsetup_vt10086_latency_all,
+                a.volte_drop_asr_rate_union,
+                a.volte_drop_asr_mo_rate,
+                a.volte_drop_asr_mt_rate,
+                a.asrvcc_comp_srate,
+                a.bsrvcc_comp_srate,
+                a.esrvcc_comp_srate,
+                a.srvcc_succ_latency,
+                a.srvcc_rsp_latency,
+                a.srvcc_media_latency,
+                a.callsetup_suc_a_mo_sbc_delay,
+                a.callsetup_suc_a_mo_scscf_delay,
+                a.callsetup_suc_a_mo_as_delay,
+                a.initial_register_srate_inclu_usr,
+                a.callsetup_a_mo_srate_incl_usr,
+                a.volte_drop_asr_rate,
+                a.srvcc_all_comp_srate_exp,
+                a.callsetup_suc_delay_vtv,
+                a.callsetup_suc_a_mo_delay
+             from (
+                select '全国' as country,
+                  sdate,
+                  vendor_net,
+                  ${WRITE_D_SNIPPET}
+              from ${F_VOLTE_KPI_D_SUMMARY} al
+              group by sdate,vendor_net
+            ) a
+        ]]></body>
+    </summary>
+
+<summary id="VD_PROV_VDNET_D_SUMMARY" in="F_VOLTE_KPI_D_SUMMARY,TEMP_PROV_D_SUMMARY,WRITE_D_SNIPPET">
+        <body><![CDATA[
+             select
+                a.province,
+                a.sdate,
+                a.vendor_net,
+                (select count(1) from celllist) as lte_cell,
+                (select count(distinct site_id) from celllist) as lte_enb,
+                c.register_user_mw,
+                c.localcity_user_mw,
+                c.roaming_user_mw,
+                c.inter_roaming_user_mw,
+                c.domestic_roaming_user_gm,
+                a.call_duration_a,
+                c.roaming_user_mw / c.register_user_mw as roaming_user_rate,
+                a.callsetup_a_mo_attempt,
+                a.callsetup_a_mt_attempt,
+                a.initial_register_srate,
+                a.callsetup_suc_a_mo_ex_usr_rate,
+                a.callsetup_srate,
+                a.volte_drop_asr_a_rate,
+                a.callsetup_a_mo_vtv_latency,
+                a.callsetup_a_mo_latency,
+                a.srvcc_comp_srate,
+                a.srvcc_all_comp_srate_union,
+                a.initial_register_srate_union,
+                a.register_srate_sbc,
+                a.register_srate_scscf,
+                a.mar_srate,
+                a.callsetup_a_mo_srate_union,
+                a.callsetup_a_sbc_srate,
+                a.callsetup_a_scscf_srate,
+                a.callsetup_a_as_srate,
+                a.callsetup_a_mgcf_srate,
+                a.callsetup_srate_vt10086,
+                a.volte_drop_asr_v_rate_vt10086,
+                a.callsetup_vt10086_latency_all,
+                a.volte_drop_asr_rate_union,
+                a.volte_drop_asr_mo_rate,
+                a.volte_drop_asr_mt_rate,
+                a.asrvcc_comp_srate,
+                a.bsrvcc_comp_srate,
+                a.esrvcc_comp_srate,
+                a.srvcc_succ_latency,
+                a.srvcc_rsp_latency,
+                a.srvcc_media_latency,
+                a.callsetup_suc_a_mo_sbc_delay,
+                a.callsetup_suc_a_mo_scscf_delay,
+                a.callsetup_suc_a_mo_as_delay,
+                a.initial_register_srate_inclu_usr,
+                a.callsetup_a_mo_srate_incl_usr,
+                a.volte_drop_asr_rate,
+                a.srvcc_all_comp_srate_exp,
+                a.callsetup_suc_delay_vtv,
+                a.callsetup_suc_a_mo_delay
+             from (
+                select
+                  province,
+                  sdate,
+                  vendor_net,
+                  ${WRITE_D_SNIPPET}
+              from ${F_VOLTE_KPI_D_SUMMARY} al
+              group by province,sdate,vendor_net
+            ) a left join ${TEMP_PROV_D_SUMMARY} c on a.province=c.province
+        ]]></body>
+    </summary>
+
+<summary id="VD_CITY_VDNET_D_SUMMARY" in="F_VOLTE_KPI_D_SUMMARY,TEMP_CITY_D_SUMMARY,WRITE_D_SNIPPET">
+        <body><![CDATA[
+            select
+                a.province,
+                a.scity,
+                a.sdate,
+                a.vendor_net,
+                b.lte_enb,
+                b.lte_cell,
+                c.register_user_mw,
+                c.localcity_user_mw,
+                c.roaming_user_mw,
+                c.inter_roaming_user_mw,
+                c.domestic_roaming_user_gm,
+                a.call_duration_a,
+                c.roaming_user_mw / c.register_user_mw as roaming_user_rate,
+                a.callsetup_a_mo_attempt,
+                a.callsetup_a_mt_attempt,
+                a.initial_register_srate,
+                a.callsetup_suc_a_mo_ex_usr_rate,
+                a.callsetup_srate,
+                a.volte_drop_asr_a_rate,
+                a.callsetup_a_mo_vtv_latency,
+                a.callsetup_a_mo_latency,
+                a.srvcc_comp_srate,
+                a.srvcc_all_comp_srate_union,
+                a.initial_register_srate_union,
+                a.register_srate_sbc,
+                a.register_srate_scscf,
+                a.mar_srate,
+                a.callsetup_a_mo_srate_union,
+                a.callsetup_a_sbc_srate,
+                a.callsetup_a_scscf_srate,
+                a.callsetup_a_as_srate,
+                a.callsetup_a_mgcf_srate,
+                a.callsetup_srate_vt10086,
+                a.volte_drop_asr_v_rate_vt10086,
+                a.callsetup_vt10086_latency_all,
+                a.volte_drop_asr_rate_union,
+                a.volte_drop_asr_mo_rate,
+                a.volte_drop_asr_mt_rate,
+                a.asrvcc_comp_srate,
+                a.bsrvcc_comp_srate,
+                a.esrvcc_comp_srate,
+                a.srvcc_succ_latency,
+                a.srvcc_rsp_latency,
+                a.srvcc_media_latency,
+                a.callsetup_suc_a_mo_sbc_delay,
+                a.callsetup_suc_a_mo_scscf_delay,
+                a.callsetup_suc_a_mo_as_delay,
+                a.initial_register_srate_inclu_usr,
+                a.callsetup_a_mo_srate_incl_usr,
+                a.volte_drop_asr_rate,
+                a.srvcc_all_comp_srate_exp,
+                a.CALLSETUP_SUC_DELAY_VTV,
+                a.callsetup_suc_a_mo_delay
+             from (
+                  select
+                  province,
+                  scity,
+                  sdate,
+                  vendor_net,
+                  ${WRITE_D_SNIPPET}
+              from ${F_VOLTE_KPI_D_SUMMARY} al
+              group by province,scity,sdate,vendor_net
+            ) a left join (select city,count(1) as lte_cell,count(distinct site_id) as lte_enb from celllist group by city) b on a.scity = b.city
+                left join ${TEMP_CITY_D_SUMMARY} c on a.scity=c.scity
+        ]]></body>
+    </summary>
+
+
+<result id="VD_NAT_VDNET_D" for="VD_NAT_VDNET_D_SUMMARY" to="spark1" title="spark1"/>
+<result id="VD_PROV_VDNET_D" for="VD_PROV_VDNET_D_SUMMARY" to="spark1" title="spark1"/>
+<result id="VD_CITY_VDNET_D" for="VD_CITY_VDNET_D_SUMMARY" to="spark1" title="spark1"/>
+
+
+
+
+
+- F_VOLTE_SIP_SV_CITY_AREA_VD_H_SUMMARY
+- F_VOLTE_SIP_MW_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_SRVCC_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_DROP_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_VTV_CITY_AREA_VD_H_SUMMARY
+- F_VOLTE_KPI
+F_VOLTE_SIP_MW_CITY_AREA_VD_IMSI_H
+
+
+
+TEMP_NAT_H_SUMMARY
+VD_NAT_VDNET_H_SUMMARY
+
+
+
+
+
+F_VOLTE_KPI_D
+F_VOLTE_KPI_D_SUMMARY
+F_VOLTE_SIP_MW_CITY_AREA_VD_IMSI_D
+TEMP_NAT_D_SUMMARY
+VD_NAT_VDNET_D_SUMMARY
+TEMP_PROV_D_SUMMARY
+VD_PROV_VDNET_D_SUMMARY
+TEMP_CITY_D_SUMMARY
+VD_CITY_VDNET_D_SUMMARY
+
+
+
+
+
+
+
+
+
+
+
+
+
+select count(*),sum(case when procedure_status=1 then 1 else 0 end) from XXXXXXX where procedure_type=13
+
+
+select * from BIGXDRCMCC_2017122209 where Procedure Type=5 and Mw_ALERTING_TIME is not null
+
+
+
+select count(1) from bigxdrcmcc
+where Procedure_Type=5
+and Mw_ALERTING_TIME is not null
+and phour=2017122209
+
+
+
+select * from bigxdrcmcc
+where procedure_type=5
+and mw_alerting_time is not null
+and phour=2017122209
+limit 10000
+
+
+select count(*),sum(case when procedure_status=1 then 1 else 0 end) from tmp.mme
+where procedure_type=13
+and phour=2017122209
+limit 10000
+
+
+
+
+
+- F_V_BXDR_H_SUMMARY
+- F_V_BXDR_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_DROP_H_SUMMARY
+- F_V_BXDR_DROP_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_SRVCC_H_SUMMARY
+- F_V_BXDR_SRVCC_CITY_AREA_VD_H_SUMMARY
+- F_VOLTE_SIP_MW_H_SUMMARY
+- F_VOLTE_SIP_Mw_CITY_AREA_VD_H_SUMMARY
+- F_VOLTE_SIP_SV_H_SUMMARY
+- F_VOLTE_SIP_SV_CITY_AREA_VD_H_SUMMARY
+- F_V_BXDR_VTV_ALL_H_SUMMARY
+- F_V_BXDR_VTV_CITY_AREA_VD_H_SUMMARY
+
+
+
+
+
+MapOutputTrackerMasterEndpoint
+
+
+f_volte_sip_mw_city_area_vd_h
+
+
+
+f_volte_sip_mw_h
+f_v_bxdr_h
+f_v_bxdr_drop_h
+srvcc
+f_volte_sip_sv_h
+f_v_bxdr_vtv_all_h
+
+vd_nat_vdnet_h
+vd_prov_vdnet_h
+vd_city_vdnet_h
+
+
+vd_nat_vdnet_h vd_prov_vdnet_h vd_city_vdnet_h
+
+
+http://localhost:8088/proxy/application_1517322944645_0096
+
+
+
+select flow_status,count(*) from bigxdrcmcc
+where procedure_type=5
+and call_side=1
+and (mw_alerting_time is not null or mw_answer_time is  not null)
+and (s1u_alerting_time is null and s1u_answer_time is null)
+and (alerting_time is null and answer_time is null and call_duration is null)
+and phour=2017122209
+group by flow_status
+
+
+
+select flow_status,count(*) from bigxdrcmcc
+where procedure_type=5
+and call_side=2
+and (mw_alerting_time is not null or mw_answer_time is  not null)
+and (s1u_alerting_time is null and s1u_answer_time is null)
+and (alerting_time is null and answer_time is null and call_duration is null)
+and phour=2017122209
+group by flow_status
+
+
+select procedure_type,call_side
+from bigxdrcmcc
+where  phour=2017122209
+group by procedure_type,call_side
+
+
+
+
+
+select * from bigxdrcmcc
+where procedure_type=5
+and call_side=1
+and (mw_alerting_time is not null or mw_answer_time is  not null)
+and (alerting_time = '' and answer_time = '' and call_duration = '')
+and (s1u_alerting_time = '' and s1u_answer_time = '')
+and phour=2017122209
+limit 100
+
+
+select alerting_time,answer_time,call_duration,s1u_alerting_time,s1u_answer_time
+from bigxdrcmcc
+where phour=2017122209
+group by alerting_time,answer_time,call_duration,s1u_alerting_time,s1u_answer_time
+
+
+
+
+select flow_status,count(*) from bigxdrcmcc
+where procedure_type=5
+and call_side=1
+and (mw_alerting_time != '' or mw_answer_time != '')
+and (s1u_alerting_time = '' and s1u_answer_time = '')
+and (alerting_time = '' and answer_time = '' and call_duration = '')
+and phour=2017122209
+group by flow_status
+limit 100
+
+
+关于依据IMS网元表，厂家分类上需要增加IMS厂家，
+需要在 bigxdrcmcc,bigxdrcmccdrop 添加字段,数据需要重跑
+先出 2017122209 一个小时的数据,数据跑完请告知
+
+
+
+select count(*) from bigxdrcmcc where procedure_type=1 and mw_flow_status=1 and s1u_flow_status<>1 and flow_status<>1 and phour=2017122209
+
+select count(*) from bigxdrcmcc where procedure_type=1 and flow_status<>1 and phour=2017122209
+
+select flow_status,count(*) from bigxdrcmcc where procedure_type=1 and mw_flow_status=1 and s1u_flow_status<>1 and flow_status<>1 and phour=2017122209 group by flow_status
+
+select count(*) from bigxdrcmcc where procedure_type=1  and phour=2017122209
+
+
+
+
+
+
+指标根表    CMCC_BIGXDR     F_V_BXDR_H  SDATE   SHOUR   PROVINCE    SCITY   AREA    VENDOR  VENDOR_NET  GRID    longitude   latitude    PCSCF_IP    IS_CSCF_IP  FLOW_FIRFAIL_NETYPE FLOW_FIRFAIL_NENAME     CI  TERMINAL    IMSI    指标类型    是否输出    用途
+
+
+
+pcscf_ip
+(Procedure_Type IN (1,2,3,4,9),取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=1 取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=2 取Mw_Dest_NENAME
+
+
+(Procedure_Type IN (1,2,3,4,9),取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=1 取Mw_Source_NENAME;    CMCC_BIGXDR_DROP
+Procedure_Type=5 AND CALL_SIDE=2 取Mw_Dest_NENAME
+
+
+(Procedure_Type IN (1,2,3,4,9),取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=1 取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=2 取Mw_Dest_NENAME
+
+IS_CSCF_IP
+Procedure_Type=5 AND CALL_SIDE=1 取Mw_Dest_NENAME
+Procedure_Type=5 AND CALL_SIDE=2 取Mw_Source_NENAME
+
+Procedure_Type=5 AND CALL_SIDE=1 取Mw_Dest_NENAME
+Procedure_Type=5 AND CALL_SIDE=2 取Mw_Source_NENAME
+
+
+
+(Procedure_Type IN (1,2,3,4,9),取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=1 取Mw_Source_NENAME;
+Procedure_Type=5 AND CALL_SIDE=2 取Mw_Dest_NENAME
+
+
+application_1517322944645_0056
+
+
+
+
+CREATE TABLE tmp.cell_id_count
+    AS select cell_id,count(*),sum(case when procedure_status=1 then 1 else 0 end) from tmp.mme where procedure_type=13 and bearer_qci_1=1 group by cell_id limit 157504;
+
+select
+    initial_register_succ_xdr/initial_register_attempt_xdr as initial_register_srate_union,
+    sbc_register_succ / sbc_register_succ_attempt as register_srate_sbc,
+    scscf_register_succ / scscf_register_succ_attempt as register_srate_scscf,
+    mar_succ / mar_attempt as mar_s
+from (select
+  xdr.initial_register_succ as initial_register_succ_xdr,
+  xdr.initial_register_attempt as initial_register_attempt_xdr,
+  xdr.sbc_register_succ,
+  xdr.sbc_register_succ_attempt,
+  xdr.scscf_register_succ,
+  xdr.scscf_register_succ_attempt,
+  xdr.mar_succ,
+  xdr.mar_attempt
+from result.f_v_bxdr_h as xdr ) a
+limit 10
+
+
+
+select
+  xdr.initial_register_succ as initial_register_succ_xdr,
+  xdr.initial_register_attempt as initial_register_attempt_xdr,
+  xdr.sbc_register_succ,
+  xdr.sbc_register_succ_attempt,
+  xdr.scscf_register_succ,
+  xdr.scscf_register_succ_attempt,
+  xdr.mar_succ,
+  xdr.mar_attempt
+from result.f_v_bxdr_h as xdr
+limit 10
+
+select
+  sum(xdr.initial_register_succ) as initial_register_succ_xdr,
+  sum(xdr.initial_register_attempt) as initial_register_attempt_xdr,
+  sum(xdr.sbc_register_succ),
+  sum(xdr.sbc_register_succ_attempt),
+  sum(xdr.scscf_register_succ),
+  sum(xdr.scscf_register_succ_attempt),
+  sum(xdr.mar_succ),
+  sum(xdr.mar_attempt)
+from result.f_v_bxdr_h as xdr
+limit 10
+
+
+
+, nc.vendor as vendor_net
+
+inner join (select ne_name,vendor from netconf group by ne_name,vendor) nc
+          on a.pcscf_ip = nc.ne_name
+
+
+sh /opt/spark-2.2.1/sbin/my-start-thriftserver.sh \
+  --hiveconf hive.server2.thrift.port=10016 \
+  --master yarn \
+/root/tmp/test/jars/mythriftserver.jar
+
+/root/tmp/test/jars/mythriftserver.jar
+
+--hiveconf hive.server2.thrift.bind.host=192.168.168.105 \
+
+
+
+and al.vendor_net = mw.vendor_net
+and al.vendor_net = sv.vendor_net
+and al.vendor_net = xdr.vendor_net
+and al.vendor_net = dro.vendor_net
+and al.vendor_net = srvcc.vendor_net
+and al.vendor_net = vtv.vendor_net
+
+BIGXDRCMCC 关联网元配置表后，initial_register_srate_union,register_srate_sbc,register_srate_scscf,mar_srate 为0
+
+SELECT a.*, b.city as scity, b.areatype as area, b.vendor, nc.vendor as vendor_net
+FROM BIGXDRCMCC a
+inner join celllist b
+on a.ci = b.cell_id
+inner join (select ne_name,vendor from netconf group by ne_name,vendor) nc
+on a.pcscf_ip = nc.ne_name
+
+initial_register_srate_union
+register_srate_sbc
+register_srate_scscf
+mar_srate
+
+

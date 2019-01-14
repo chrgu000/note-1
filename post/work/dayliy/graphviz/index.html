@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>graphviz</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="graphviz" />
+<meta property="og:description" content="graphviz1. 参考2. graphviz-43. graphviz-54. graphviz-65. graphviz-76. 3.17.53-17. 监控 hdfs 文件,触发消息8. graphviz-89. graphviz-910. graphviz-1011. graphviz-1112. graphviz-1213. graphviz-1314. graphviz-1415. graphviz-1516. graphviz-1617. graphviz-17Erd1. Erd 11. 参考https://renenyffenegger.ch/notes/tools/Graphviz/examples/index
+http://tonyballantyne.com/graphs.html
+2. graphviz-43. graphviz-54." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/dayliy/graphviz/" />
+
+
+<meta property="og:updated_time" content="2018-04-14T21:33:54&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">graphviz</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">graphviz</div>
+<ul class="sectlevel1">
+<li><a href="#_参考">1. 参考</a></li>
+<li><a href="#_graphviz_4">2. graphviz-4</a></li>
+<li><a href="#_graphviz_5">3. graphviz-5</a></li>
+<li><a href="#_graphviz_6">4. graphviz-6</a></li>
+<li><a href="#_graphviz_7">5. graphviz-7</a></li>
+<li><a href="#_3_17_53_1">6. 3.17.53-1</a></li>
+<li><a href="#_监控_hdfs_文件_触发消息">7. 监控 hdfs 文件,触发消息</a></li>
+<li><a href="#_graphviz_8">8. graphviz-8</a></li>
+<li><a href="#_graphviz_9">9. graphviz-9</a></li>
+<li><a href="#_graphviz_10">10. graphviz-10</a></li>
+<li><a href="#_graphviz_11">11. graphviz-11</a></li>
+<li><a href="#_graphviz_12">12. graphviz-12</a></li>
+<li><a href="#_graphviz_13">13. graphviz-13</a></li>
+<li><a href="#_graphviz_14">14. graphviz-14</a></li>
+<li><a href="#_graphviz_15">15. graphviz-15</a></li>
+<li><a href="#_graphviz_16">16. graphviz-16</a></li>
+<li><a href="#_graphviz_17">17. graphviz-17</a></li>
+<li><a href="#_erd">Erd</a>
+<ul class="sectlevel1">
+<li><a href="#_erd_1">1. Erd 1</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_参考">1. 参考</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://renenyffenegger.ch/notes/tools/Graphviz/examples/index" class="bare">https://renenyffenegger.ch/notes/tools/Graphviz/examples/index</a></p>
+</li>
+<li>
+<p><a href="http://tonyballantyne.com/graphs.html" class="bare">http://tonyballantyne.com/graphs.html</a></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-1.svg" alt="graphviz 1" width="541" height="170">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-2.svg" alt="graphviz 2" width="968" height="315">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-3.svg" alt="graphviz 3" width="178" height="154">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_4">2. graphviz-4</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-4.svg" alt="graphviz 4" width="715" height="543">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_5">3. graphviz-5</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-5.svg" alt="graphviz 5" width="215" height="155">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_6">4. graphviz-6</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-6.svg" alt="graphviz 6" width="413" height="204">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_7">5. graphviz-7</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_17_53_1">6. 3.17.53-1</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/3.17.53-1.svg" alt="3.17.53 1" width="2133" height="442">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/3.17.53-1-1.svg" alt="3.17.53 1 1" width="1141" height="97">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/3.17.53-1-2.svg" alt="3.17.53 1 2" width="1034" height="264">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_监控_hdfs_文件_触发消息">7. 监控 hdfs 文件,触发消息</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/3.17.53-2.svg" alt="3.17.53 2" width="824" height="534">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_8">8. graphviz-8</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_9">9. graphviz-9</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-9.svg" alt="graphviz 9" width="3890" height="3888">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_10">10. graphviz-10</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-10.svg" alt="graphviz 10" width="449" height="345">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_11">11. graphviz-11</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-11.svg" alt="graphviz 11" width="178" height="174">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_12">12. graphviz-12</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-12.svg" alt="graphviz 12" width="425" height="331">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_13">13. graphviz-13</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-13.svg" alt="graphviz 13" width="441" height="325">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_14">14. graphviz-14</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-14.svg" alt="graphviz 14" width="535" height="574">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_15">15. graphviz-15</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-15.svg" alt="graphviz 15" width="264" height="228">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_16">16. graphviz-16</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-16.svg" alt="graphviz 16" width="329" height="212">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graphviz_17">17. graphviz-17</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/graphviz-17.svg" alt="graphviz 17" width="82" height="103">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_erd" class="sect0">Erd</h1>
+<div class="sect1">
+<h2 id="_erd_1">1. Erd 1</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/erd-graphvi-1.svg" alt="erd graphvi 1" width="554" height="417">
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/scala/g8/" rel="prev"><span>«Previous</span><p>Scala g8 模板</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/work/nokia/yunnan-lt/yunnan-lt/" rel="next"><span>Next»</span><p>yunnan-lt</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

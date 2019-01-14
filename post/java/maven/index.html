@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maven</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="Maven" />
+<meta property="og:description" content="Contents1. maven设置2. 导入本地`jar`3. 解决 JAR 依赖冲突4. Jetty 配置1. maven设置仓库设置 ‪C:\Users\dishui\.m2\settings.xml
+&lt;mirrors&gt;&lt;mirror&gt;&lt;id&gt;alimaven&lt;/id&gt;&lt;name&gt;aliyun maven&lt;/name&gt;&lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;&lt;/mirror&gt;&lt;/mirrors&gt;&#43; 导出`jar包`到默认目录 targed/dependency 
+在eclipse中，选择项目的`pom.xml`文件，点击右键菜单中的`RunAs`,在弹出的`Configuration`窗口中，在`Goals`输入 `dependency:copy-dependencies`后，点击运行2. 导入本地`jar`mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar3. 解决 JAR 依赖冲突 &lt;dependency&gt;&lt;groupId&gt;javax.mail&lt;/groupId&gt;&lt;artifactId&gt;mail&lt;/artifactId&gt;&lt;version&gt;${mail.version}&lt;/version&gt;&lt;exclusions&gt;&lt;exclusion&gt; (1)&lt;artifactId&gt;spring&lt;/artifactId&gt;&lt;groupId&gt;org." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/java/maven/" />
+
+
+<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Maven</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel3">
+<li><a href="#_maven设置">1. maven设置</a></li>
+<li><a href="#_导入本地_jar">2. 导入本地`jar`</a></li>
+<li><a href="#_解决_jar_依赖冲突">3. 解决 JAR 依赖冲突</a></li>
+<li><a href="#_jetty_配置">4. Jetty 配置</a></li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_maven设置">1. maven设置</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>仓库设置 <code>‪C:\Users\dishui\.m2\settings.xml</code></strong></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">  &lt;mirrors&gt;
+    &lt;mirror&gt;
+      &lt;id&gt;alimaven&lt;/id&gt;
+      &lt;name&gt;aliyun maven&lt;/name&gt;
+      &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+    &lt;/mirror&gt;
+  &lt;/mirrors&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+ <strong>导出`jar包`到默认目录 <code>targed/dependency</code> </strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>在eclipse中，选择项目的`pom.xml`文件，
+点击右键菜单中的`RunAs`,
+在弹出的`Configuration`窗口中，
+在`Goals`输入 `dependency:copy-dependencies`后，点击运行</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_导入本地_jar">2. 导入本地`jar`</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_解决_jar_依赖冲突">3. 解决 JAR 依赖冲突</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>    &lt;dependency&gt;
+        &lt;groupId&gt;javax.mail&lt;/groupId&gt;
+        &lt;artifactId&gt;mail&lt;/artifactId&gt;
+        &lt;version&gt;${mail.version}&lt;/version&gt;
+        &lt;exclusions&gt;
+            &lt;exclusion&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+                &lt;artifactId&gt;spring&lt;/artifactId&gt;
+                &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>排除需要忽略的jar</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jetty_配置">4. Jetty 配置</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;build&gt;
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;
+        &lt;artifactId&gt;jetty-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;9.2.19.v20160908&lt;/version&gt;
+        &lt;configuration&gt;
+            &lt;webApp&gt;
+                &lt;contextPath&gt;/&lt;/contextPath&gt;
+                &lt;webInfIncludeJarPattern&gt;.*/classes/.*&lt;/webInfIncludeJarPattern&gt;
+                &lt;descriptor&gt;${basedir}/src/main/webapp/WEB-INF/web.xml&lt;/descriptor&gt;
+            &lt;/webApp&gt;
+            &lt;stopKey&gt;exit&lt;/stopKey&gt;
+            &lt;stopPort&gt;9091&lt;/stopPort&gt;
+            &lt;webAppSourceDirectory&gt;${project.basedir}/src/main/webapp&lt;/webAppSourceDirectory&gt;
+            &lt;scanIntervalSeconds&gt;0&lt;/scanIntervalSeconds&gt;
+            &lt;httpConnector&gt;
+                &lt;port&gt;8080&lt;/port&gt;
+            &lt;/httpConnector&gt;
+          &lt;loginServices&gt;
+            &lt;loginService implementation="org.eclipse.jetty.security.HashLoginService"&gt;
+              &lt;name&gt;MySecurityRealm&lt;/name&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+              &lt;config&gt;${basedir}/src/test/resources/jetty-realm.properties&lt;/config&gt;
+            &lt;/loginService&gt;
+          &lt;/loginServices&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+&lt;/build&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>和 <code>web.xml中配置的&lt;realm-name&gt; 一样</code></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>mvn dependency:copy-dependencies</p>
+</div>
+<div class="paragraph">
+<p>mvn dependency:copy-dependencies -f pom2.xml</p>
+</div>
+<div class="paragraph">
+<p>&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.4&lt;/version&gt;
+  &lt;executions&gt;
+      &lt;execution&gt;
+          &lt;phase&gt;package&lt;/phase&gt;
+          &lt;goals&gt;
+              &lt;goal&gt;shade&lt;/goal&gt;
+          &lt;/goals&gt;
+          &lt;configuration&gt;
+              &lt;filters&gt;
+                  &lt;filter&gt;
+                      &lt;artifact&gt;*:*&lt;/artifact&gt;
+                      &lt;excludes&gt;
+                          &lt;exclude&gt;META-INF/<strong>.SF&lt;/exclude&gt;
+                          &lt;exclude&gt;META-INF/</strong>.DSA&lt;/exclude&gt;
+                          &lt;exclude&gt;META-INF/*.RSA&lt;/exclude&gt;
+                      &lt;/excludes&gt;
+                  &lt;/filter&gt;
+              &lt;/filters&gt;
+              &lt;transformers&gt;
+                  &lt;transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+                      &lt;manifestEntries&gt;
+                          &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt;
+                          &lt;Export-Package&gt;
+                              org.apache.hadoop;
+                          &lt;/Export-Package&gt;
+                          &lt;Import-Package&gt;org.osgi.framework;version="1.3.0"&lt;/Import-Package&gt;
+                          &lt;!--&lt;Private-Package&gt;org.modelmapper.internal &#8230;&#8203;&lt;/Private-Package&gt;-&#8594;
+                      &lt;/manifestEntries&gt;
+                  &lt;/transformer&gt;
+              &lt;/transformers&gt;
+          &lt;/configuration&gt;
+      &lt;/execution&gt;
+  &lt;/executions&gt;
+  &lt;configuration&gt;
+      &lt;finalName&gt;${project.artifactId}&lt;/finalName&gt;
+      &lt;outputDirectory&gt;${osgi_plugins_home}&lt;/outputDirectory&gt;
+  &lt;/configuration&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;/plugin&gt;</p>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/mailiqing/" rel="prev"><span>«Previous</span><p>Mailiqing 服务器配置</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/linux/mongod/" rel="next"><span>Next»</span><p>Mongod</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

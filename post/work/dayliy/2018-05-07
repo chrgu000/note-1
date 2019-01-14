@@ -1,0 +1,185 @@
+
+Spark Streaming 架构
+
+https://www.cnblogs.com/liuliliuli2017/p/6809094.html[]
+
+
+基本概念：
+
+Application =>Spark的应用程序，包含一个Driver program和若干Executor
+
+SparkContext => Spark应用程序的入口，负责调度各个运算资源，协调各个Worker Node上的Executor
+
+Driver Program => 运行Application的main()函数并且创建SparkContext
+
+Executor => 是为Application运行在Worker node上的一个进程，该进程负责运行Task，并且负责将数据存在内存或者磁盘上。每个Application都会申请各自的Executor来处理任务
+
+Cluster Manager =>在集群上获取资源的外部服务 (例如：Standalone、Mesos、Yarn)
+
+Worker Node => 集群中任何可以运行Application代码的节点，运行一个或多个Executor进程
+
+Task => 运行在Executor上的工作单元
+
+Job => SparkContext提交的具体Action操作，常和Action对应
+
+Stage => 每个Job会被拆分很多组task，每组任务被称为Stage，也称TaskSet
+
+RDD => 是Resilient distributed datasets的简称，中文为弹性分布式数据集;是Spark最核心的模块和类
+
+DAGScheduler => 根据Job构建基于Stage的DAG，并提交Stage给TaskScheduler
+
+TaskScheduler => 将Taskset提交给Worker node集群运行并返回结果
+
+Transformations => 是Spark API的一种类型，Transformation返回值还是一个RDD，所有的Transformation采用的都是懒策略，如果只是将Transformation提交是不会执行计算的
+
+Action => 是Spark API的一种类型，Action返回值不是一个RDD，而是一个scala集合；计算只有在Action被提交的时候计算才被触发。
+
+
+kafka-topics.sh --zookeeper vm28:2181/kt2 --describe --topic wordcountt1
+
+kafka-topics.sh --zookeeper vm28:2181/kt2 --create --topic wordcountt1 --partitions 3 --replication-factor 1
+
+kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list vm26:6667 --topic "HNCMCC" --time -1 --partitions 0
+
+
+
+
+
+pip install faker -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install jep -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+报错： failed to create process
+
+解决方法：执行
+python -m pip install --upgrade pip --force-reinstall
+
+
+# 安装Jep到本地maven仓库
+mvn install:install-file -Dfile=jep-3.7.1.jar -DgroupId=jep -DartifactId=jep -Dversion=3.7.1 -Dpackaging=jar
+
+<dependency>
+    <groupId>jep</groupId>
+    <artifactId>jep</artifactId>
+    <version>3.7.1</version>
+</dependency>
+
+在IDEA中测试
+VM parameters:
+-Djava.library.path=D:\env\Python27\Lib\site-packages\jep\
+
+`pip install jep -i https://pypi.tuna.tsinghua.edu.cn/simple` 安装后 jep.jar 所在目录
+
+
+
+name: ${name} ,
+phone_number: ${phone_number} ,
+address: ${address} ,
+email: ${email} ,
+ipv4: ${ipv4} ,
+str: ${str}
+
+{
+    "id": "${id}" ,
+    "name": "${name}" ,
+    "phone_number": "${phone_number}" ,
+    "address": "${address}" ,
+    "email": "${email}" ,
+    "ipv4": "${ipv4}" ,
+    "str": "${str}"
+}
+
+data = {
+        'id' : fake.random_int(min=0, max=9999),
+        'name' : fake.name(),
+        'phone_number' : fake.phone_number(),
+        'address' : fake.address(),
+        'email' : fake.email(),
+        'ipv4' : fake.ipv4(),
+        'str' : fake.pystr(min_chars=6, max_chars=8)
+    }
+
+
+bigxdrdrops1mme = xdr_id:bigint:8, length:int:4, local_province:varchar:2, local_city:varchar:2, owner_province:varchar:2, owner_city:varchar:2, roaming_type:smallint:2, rat:int:4, imsi:bigint:8, msisdn:bigint:16, imei:varchar:8, brand:varchar:32, product:varchar:32, call_side:int:4, service_type:int:4, eci:bigint:8, xdr_number:bigint:8, flow_starttime:datetime:8, flow_endtime:datetime:8, flow_firfailtime:datetime:8, flow_firfailinterface:int:4, flow_firfail_neipname:varchar:16, flow_firfail_nename:varchar:64, flow_firfail_netype:varchar:8, rx_xdrid:varchar:16, rx_asr_time:datetime:8, rx_abort_cause:int:4, rx_media_type:int:4, mw_xdrid:varchar:16, mw_procedure_start_time:datetime:8, mw_procedure_end_time:datetime:8, mw_answer_time:datetime:8, mw_source_ne_ip:varchar:16, mw_source_ne_name:varchar:32, mw_dest_ne_ip:varchar:16, mw_dest_ne_name:varchar:32, mw_response_code:int:4, mw_finish_warning_code:int:4, mw_finish_reason_protocol:int:4, mw_finish_reason_cause:int:4, mw_firfailtime:datetime:8, mw_first_fail_ne_ip:varchar:8, mw_first_fail_netype:varchar:16, mw_first_fail_transaction:smallint:2, s1mme_xdrid:varchar:16, s1mme_ffailtime:datetime:8, s1mme_ff_proceduretype:int:4, s1mme_ff_procedureprotocol:tinyint:1, s1mme_ff_procedurestatus:smallint:2, s1mme_ff_keyword1:smallint:2, s1mme_ff_causegroup:smallint:2, s1mme_ff_causespecific:smallint:2, s1mmebearer_ff_causegroup:smallint:2, s1mmebearer_ff_causespecific:smallint:2, last_eci:varchar:4, mw_icid:varchar:64, gz_drop_flag:varchar:16
+
+
+
+bigxdrdrops1mmemro = xdr_id:bigint:8, length:bigint:8, local_province:varchar:2, local_city:varchar:2, owner_province:varchar:2, owner_city:varchar:2, roaming_type:int:4, rat:bigint:8, imsi:bigint:8, msisdn:bigint:8, imei:varchar:8, brand:varchar:32, product:varchar:32, call_side:bigint:8, service_type:bigint:8, eci:bigint:8, xdr_number:bigint:8, flow_starttime:datetime:8, flow_endtime:datetime:8, flow_firfailtime:datetime:8, flow_firfailinterface:bigint:8, flow_firfail_neipname:varchar:16, flow_firfail_nename:varchar:64, flow_firfail_netype:varchar:8, rx_xdrid:varchar:16, rx_asr_time:datetime:8, rx_abort_cause:bigint:8, rx_media_type:bigint:8, mw_xdrid:varchar:16, mw_procedure_start_time:datetime:8, mw_procedure_end_time:datetime:8, mw_answer_time:datetime:8, mw_source_ne_ip:varchar:16, mw_source_ne_name:varchar:32, mw_dest_ne_ip:varchar:16, mw_dest_ne_name:varchar:32, mw_response_code:bigint:8, mw_finish_warning_code:bigint:8, mw_finish_reason_protocol:bigint:8, mw_finish_reason_cause:bigint:8, mw_firfailtime:datetime:8, mw_first_fail_ne_ip:varchar:8, mw_first_fail_netype:varchar:16, mw_first_fail_transaction:int:4, s1mme_xdrid:varchar:16, s1mme_ffailtime:datetime:8, s1mme_ff_proceduretype:bigint:8, s1mme_ff_procedurestatus:int:4, s1mme_ff_keyword1:int:4, s1mme_ff_causegroup:int:4, s1mme_ff_causespecific:int:4, s1mmebearer_ff_causegroup:int:4, s1mmebearer_ff_causespecific:int:4, last_eci:varchar:4, mw_icid:varchar:64, s1mme_ff_procedureprotocol:smallint:2, gz_drop_flag:varchar:16, gridid:varchar:14, height:bigint:8, lon:varchar:18, lat:varchar:18, ltescrsrp:bigint:8
+
+
+
+. Executor 与 Kafka Topic Partition 的关系
+
+
+. sparklinstener
+
+
+
+
+
+
+docker pull moredip/giter8
+
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out moredip/giter8 foundweekends/giter8.g8 --name=my-new-website
+
+# 本地
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/spark-mvn.g8/ --name=spark-mvn
+
+
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/java-scala-mvn.g8/ --name=my-mvn-1
+
+
+二分查找的时间复杂度
+
+
+(select
+INITIAL_REGISTER_ATTEMPT AS INITIAL_REGISTER_ATTEMPT_MW,
+INITIAL_REGISTER_SUCC AS INITIAL_REGISTER_SUCC_MW,
+CALL_SETUP_A_MO_SUCC AS CALL_SETUP_A_MO_SUCC_MW,
+CALL_SETUP_A_MT_SUCC AS CALL_SETUP_A_MT_SUCC_MW,
+CALL_SETUP_ANS_A_MO_SUCC,
+CALL_SETUP_ANS_A_MT_SUCC,
+CALL_SETUP_A_MT_ATTEMPT AS CALL_SETUP_A_MT_ATTEMPT_MW,
+CALL_SETUP_A_MO_ATTEMPT AS CALL_SETUP_A_MO_ATTEMPT_MW,
+CALL_SETUP_FAIL_A_MO_CMCC_USR,
+CALL_SETUP_FAIL_A_MT_CMCC_USR,
+CALL_SETUP_A_MO_LATENCY_ALL AS CALL_SETUP_A_MO_LATENCY_ALL_MW
+from result.f_volte_sip_sv_city_imsi_h
+where p_hour=2017122209) as a
+
+
+
+
+
+
+select
+    phour,province,scity,imsi,
+    sum(INITIAL_REGISTER_SUCC_MW) AS INITIAL_REGISTER_SUCC_MW,
+    sum(CALL_SETUP_A_MO_ATTEMPT_MW-CALL_SETUP_FAIL_A_MO_CMCC_USR) AS SETUP_A_MO_ATP_EXUSR_MW,
+    sum(CALL_SETUP_A_MT_ATTEMPT_MW-CALL_SETUP_FAIL_A_MT_CMCC_USR) AS SETUP_A_MT_ATP_EXUSR_MW,
+    sum(CALL_SETUP_A_MO_SUCC_MW) AS SETUP_A_MO_SUCC_MW,
+    sum(CALL_SETUP_A_MT_SUCC_MW) AS SETUP_A_MT_SUCC_MW,
+    sum(CALL_SETUP_ANS_A_MO_SUCC) AS SETUP_ANS_A_MO_SUCC_MW,
+    sum(CALL_SETUP_ANS_A_MT_SUCC) AS SETUP_ANS_A_MT_SUCC_MW
+from (select
+phour,province,scity,imsi,
+INITIAL_REGISTER_ATTEMPT AS INITIAL_REGISTER_ATTEMPT_MW,
+INITIAL_REGISTER_SUCC AS INITIAL_REGISTER_SUCC_MW,
+CALL_SETUP_A_MO_SUCC AS CALL_SETUP_A_MO_SUCC_MW,
+CALL_SETUP_A_MT_SUCC AS CALL_SETUP_A_MT_SUCC_MW,
+CALL_SETUP_ANS_A_MO_SUCC,
+CALL_SETUP_ANS_A_MT_SUCC,
+CALL_SETUP_A_MT_ATTEMPT AS CALL_SETUP_A_MT_ATTEMPT_MW,
+CALL_SETUP_A_MO_ATTEMPT AS CALL_SETUP_A_MO_ATTEMPT_MW,
+CALL_SETUP_FAIL_A_MO_CMCC_USR,
+CALL_SETUP_FAIL_A_MT_CMCC_USR,
+CALL_SETUP_A_MO_LATENCY_ALL AS CALL_SETUP_A_MO_LATENCY_ALL_MW
+from result.f_volte_sip_mw_city_area_vd_imsi_h
+where p_hour=2017122209) as a
+GROUP BY phour,province,scity,imsi limit 100;
+
+
+
+select distinct phour,province,scity,imsi
+from result.f_volte_sip_mw_city_area_vd_imsi_h
+where p_hour=2017122209  limit 100

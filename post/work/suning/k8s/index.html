@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>k8s 命令</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="k8s 命令" />
+<meta property="og:description" content="k8s 部署参考文档" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/suning/k8s/" />
+
+
+<meta property="og:updated_time" content="2018-08-28T09:23:58&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">k8s 命令</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2018-08-28 09:23:58 &#43;0000 UTC">August 28, 2018</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_参考">1. 参考</a></li>
+<li><a href="#_k8s_命令">2. k8s 命令</a></li>
+<li><a href="#_k8s_yaml">3. k8s yaml</a></li>
+<li><a href="#_etcd">4. etcd</a></li>
+<li><a href="#_helm">5. helm</a></li>
+<li><a href="#_k8s_问题">6. k8s 问题</a></li>
+<li><a href="#_k8s_master_重新分配ip">7. k8s master 重新分配ip</a></li>
+<li><a href="#_linux">8. linux</a>
+<ul class="sectlevel2">
+<li><a href="#_nfs">8.1. nfs</a></li>
+</ul>
+</li>
+<li><a href="#_etcd_2">9. etcd</a></li>
+<li><a href="#_清除k8s">10. 清除k8s</a></li>
+<li><a href="#_firewalld_操作">11. Firewalld 操作</a></li>
+<li><a href="#_kubeadm_join_错误">12. kubeadm join 错误</a></li>
+<li><a href="#_docker">13. docker</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_参考">1. 参考</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.kubernetes.org.cn/1414.html">k8s yaml</a></p>
+</li>
+<li>
+<p><a href="https://jimmysong.io/kubernetes-handbook/concepts/concepts.html">k8s 概念</a></p>
+</li>
+<li>
+<p><a href="https://www.weave.works/docs/scope/latest/installing/#k8s">weave</a></p>
+</li>
+<li>
+<p><a href="https://kubernetes.github.io/ingress-nginx/">ingress</a></p>
+</li>
+<li>
+<p><a href="https://help.aliyun.com/document_detail/58587.html?spm=a2c4e.11153940.blogcont159601.76.6703174aXbVxHD">利用 Helm 简化应用部署</a></p>
+</li>
+<li>
+<p><a href="https://jimmysong.io/posts/manage-kubernetes-native-app-with-helm/" class="bare">https://jimmysong.io/posts/manage-kubernetes-native-app-with-helm/</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/A632189007/article/details/78909835">开启iptables情况下Swarm、kubernetes等组件正常工作的配置</a></p>
+</li>
+<li>
+<p><a href="https://ramitsurana.github.io/awesome-kubernetes/">awesome-kubernetes</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_k8s_命令">2. k8s 命令</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>docker pull quay.io/coreos/flannel:v0.10.0-amd64
+docker pull quay.io/coreos/flannel:v0.10.0-arm
+docker pull quay.io/coreos/flannel:v0.10.0-ppc64le
+docker pull quay.io/coreos/flannel:v0.10.0-s390x
+
+
+docker tag [ImageId] registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:[镜像版本号]
+docker push registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:[镜像版本号]
+
+
+docker tag 463654e4ed2d registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-s390x
+docker tag e2f67d69dd84 registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-ppc64le
+docker tag c663d02f7966 registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-arm
+docker tag f0fad859c909 registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-amd64
+
+
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-s390x
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-ppc64le
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-arm
+docker pull registry.cn-zhangjiakou.aliyuncs.com/k8scx/flannel:v0.10.0-amd64
+
+
+docker pull xiyangxixia/k8s-flannel:v0.10.0-s390x
+docker pull xiyangxixia/k8s-flannel:v0.10.0-ppc64le
+docker pull xiyangxixia/k8s-flannel:v0.10.0-arm
+docker pull xiyangxixia/k8s-flannel:v0.10.0-amd64
+
+
+
+docker tag xiyangxixia/k8s-flannel:v0.10.0-s390x quay.io/coreos/flannel:v0.10.0-amd64
+docker tag xiyangxixia/k8s-flannel:v0.10.0-ppc64le quay.io/coreos/flannel:v0.10.0-arm
+docker tag xiyangxixia/k8s-flannel:v0.10.0-arm quay.io/coreos/flannel:v0.10.0-ppc64le
+docker tag xiyangxixia/k8s-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-s390x
+
+
+kubectl get pod --all-namespaces -o wide
+
+delete
+
+kubectl delete pod tiller-deploy-67d8b477f7-8b4r6 -n kube-system --grace-period=0 --force
+
+kubectl delete pods,services -n kube-system -l k8s-app=kube-dns
+
+describe
+
+kubectl -n kube-system describe secret kubernetes-dashboard
+kubectl -n default describe ingress-release-nginx-ingress-controller-cb646488f-rksrp
+
+
+
+kubectl get pods &lt;pod-name&gt; -o=custom-columns=NAME:.metadata.name
+
+
+kubectl get svc -n kube-system -o wide
+
+kubectl logs -p &lt;Pod Name&gt;
+
+按顺序启动如下服务：etcd, docker, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, kube-proxy
+
+
+sed -i s@k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.0@registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64:v1.10.0@ kubernetes-dashboard.yaml
+
+kubectl proxy --address='192.168.137.21' --port=8086 --accept-hosts='^*$'
+
+
+http://192.168.137.21:8086/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+
+kubectl -n kube-system describe secret kubernetes-dashboard
+
+http://192.168.137.21:8086/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/workload?namespace=default
+
+
+kubectl label node k8s02 node-role.kubernetes.io/node=node</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>重启容器</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl exec POD_NAME -c CONTAINER_NAME /sbin/kill 1</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_k8s_yaml">3. k8s yaml</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>apiVersion: v1              #指定api版本，此值必须在kubectl apiversion中
+kind: Pod                   #指定创建资源的角色/类型
+metadata:                   #资源的元数据/属性
+  name: web04-pod           #资源的名字，在同一个namespace中必须唯一
+  labels:                   #设定资源的标签，详情请见http://blog.csdn.net/liyingke112/article/details/77482384
+    k8s-app: apache
+    version: v1
+    kubernetes.io/cluster-service: "true"
+  annotations:              #自定义注解列表
+    - name: String          #自定义注解名字
+spec:                       #specification of the resource content 指定该资源的内容
+  restartPolicy: Always     #表明该容器一直运行，默认k8s的策略，在此容器退出后，会立即创建一个相同的容器
+  nodeSelector:             #节点选择，先给主机打标签kubectl label nodes kube-node1 zone=node1
+    zone: node1
+  containers:
+  - name: web04-pod         #容器的名字
+    image: web:apache       #容器使用的镜像地址
+    imagePullPolicy: Never  #三个选择Always、Never、IfNotPresent，每次启动时检查和更新（从registery）images的策略，
+                            # Always，每次都检查
+                            # Never，每次都不检查（不管本地是否有）
+                            # IfNotPresent，如果本地有就不检查，如果没有就拉取
+    command: ['sh']         #启动容器的运行命令，将覆盖容器中的Entrypoint,对应Dockefile中的ENTRYPOINT
+    args: ["$(str)"]        #启动容器的命令参数，对应Dockerfile中CMD参数
+    env:                    #指定容器中的环境变量
+    - name: str             #变量的名字
+      value: "/etc/run.sh"  #变量的值
+    resources:              #资源管理，请求请见http://blog.csdn.net/liyingke112/article/details/77452630
+      requests:             #容器运行时，最低资源需求，也就是说最少需要多少资源容器才能正常运行
+        cpu: 0.1            #CPU资源（核数），两种方式，浮点数或者是整数+m，0.1=100m，最少值为0.001核（1m）
+        memory: 32Mi        #内存使用量
+      limits:               #资源限制
+        cpu: 0.5
+        memory: 32Mi
+    ports:
+    - containerPort: 80     #容器开发对外的端口
+      name: httpd           #名称
+      protocol: TCP
+    livenessProbe:          #pod内容器健康检查的设置，详情请见http://blog.csdn.net/liyingke112/article/details/77531584
+      httpGet:              #通过httpget检查健康，返回200-399之间，则认为容器正常
+        path: /             #URI地址
+        port: 80
+        #host: 127.0.0.1    #主机地址
+        scheme: HTTP
+      initialDelaySeconds: 180 #表明第一次检测在容器启动后多长时间后开始
+      timeoutSeconds: 5     #检测的超时时间
+      periodSeconds: 15     #检查间隔时间
+      #也可以用这种方法
+      #exec: 执行命令的方法进行监测，如果其退出码不为0，则认为容器正常
+      #  command:
+      #    - cat
+      #    - /tmp/health
+      #也可以用这种方法
+      #tcpSocket: //通过tcpSocket检查健康
+      #  port: number
+    lifecycle:              #生命周期管理
+      postStart:            #容器运行之前运行的任务
+        exec:
+          command:
+            - 'sh'
+            - 'yum upgrade -y'
+      preStop:              #容器关闭之前运行的任务
+        exec:
+          command: ['service httpd stop']
+    volumeMounts:           #详情请见http://blog.csdn.net/liyingke112/article/details/76577520
+    - name: volume          #挂载设备的名字，与volumes[*].name 需要对应
+      mountPath: /data      #挂载到容器的某个路径下
+      readOnly: True
+  volumes:                  #定义一组挂载设备
+  - name: volume            #定义一个挂载设备的名字
+    #meptyDir: {}
+    hostPath:
+      path: /opt            #挂载设备类型为hostPath，路径为宿主机下的/opt,这里设备类型支持很多种</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>kubectl label nodes myweb dedicated=master</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_etcd">4. etcd</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>etcd --endpoints http://192.168.137.21:2379</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_helm">5. helm</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre># 在kube-system命名空间中创建tiller账户
+kubectl create serviceaccount --namespace kube-system tiller
+
+# 创建角色并授予cluster-admin权限
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+helm init --service-account tiller -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.10.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+
+安装ingress
+nginx-ingress  修改 values.yaml 166行 externalIPs 为主机 IP
+
+helm install --name ingress --namespace kube-common ./
+
+安装dashboard
+
+helm install --name k8s-dashboard --namespace kube-common ./
+
+登陆 dashboard 输入 Token
+
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
+开启10250端口
+iptables -I INPUT -p tcp --dport 10250 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+
+
+helm upgrade tomcat-t1 .
+
+helm install --name tomcat-t1 .
+
+#删除
+helm delete --purge tomcat-t1</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_k8s_问题">6. k8s 问题</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>在 master 节点上部署应用</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl taint nodes --all node-role.kubernetes.io/master-</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_k8s_master_重新分配ip">7. k8s master 重新分配ip</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux">8. linux</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>#修改时区
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#同步时间
+ntpdate -ud 10.200.169.32
+
+
+#查看完整错误信息
+journalctl -xefu kubelet</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nfs">8.1. nfs</h3>
+<div class="listingblock">
+<div class="content">
+<pre>yum install nfs-utils rpcbind -y
+echo "/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)" &gt;&gt; /etc/exports
+
+仅在nfs服务器上 systemctl start rpcbind nfs</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_etcd_2">9. etcd</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>版本2连接server查看不到信息</p>
+</div>
+<div class="paragraph">
+<p>export ETCDCTL_API=3</p>
+</div>
+<div class="paragraph">
+<p>etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only</p>
+</div>
+<div class="paragraph">
+<p>etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep flannel|xargs -i sh -c 'etcdctl --endpoints=http://10.200.169.32:2379 del {}'</p>
+</div>
+<div class="paragraph">
+<p>etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep -E "coredns|kube-apiserver|kube-scheduler|kube-dns|flannel|kube-system|tiller|kube-public|minions"|xargs -i sh -c 'etcdctl --endpoints=http://10.200.169.32:2379 del {}'</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_清除k8s">10. 清除k8s</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>删除etcd目录 /var/lib/etcd</p>
+</div>
+<div class="paragraph">
+<p>kubectl get pvc|grep elas|xargs -i sh -c 'kubectl delete pvc {}'</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_firewalld_操作">11. Firewalld 操作</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://blog.51cto.com/754599082/2046537">firewalld的9个zonefirewalld关于zone和service的操作</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>vi /etc/sysconfig/iptables</p>
+</div>
+<div class="paragraph">
+<p>-A INPUT -p tcp -m state --state NEW -m tcp --dport 6443 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>-A INPUT -i flannel.1 -j ACCEPT
+-A FORWARD -i flannel.1 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>-A INPUT -i docker0 -j ACCEPT
+-A FORWARD -i docker0 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>-A INPUT -i cni0 -j ACCEPT
+-A FORWARD -i cni0 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>-A INPUT -s 10.244.0.0/0 -j ACCEPT
+-A FORWARD -s 10.244.0.0/0 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>-A INPUT -s 10.254.0.0/0 -j ACCEPT
+-A FORWARD -s 10.254.0.0/0 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>systemctl stop firewalld
+systemctl mask firewalld</p>
+</div>
+<div class="paragraph">
+<p>查看已添加的iptables规则
+iptables -L -n -v</p>
+</div>
+<div class="paragraph">
+<p>service iptables save</p>
+</div>
+<div class="paragraph">
+<p>iptables -A OUTPUT -j ACCEPT
+iptables -I INPUT -p tcp --dport 10250 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT</p>
+</div>
+<div class="paragraph">
+<p>iptables -I INPUT -s 10.96.0.1/0 -j ACCEPT
+iptables -I FORWARD -s 10.96.0.1/0 -j ACCEPT</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kubeadm_join_错误">12. kubeadm join 错误</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>unable to check if the container runtime at "/var/run/dockershim.sock" is running
+yum remove cri-tools</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="mailto:ss@rohankdd.com">ss@rohankdd.com</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker">13. docker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>cat /etc/docker/daemon.json
+{
+    "graph": "/home/data/docker"
+}</p>
+</div>
+</div>
+</div>
+
+		</div>
+		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags//" rel="tag"></a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/suning/work/" rel="prev"><span>«Previous</span><p>suning001</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/scala/akka-%E6%A6%82%E5%BF%B5/" rel="next"><span>Next»</span><p>akka-概念</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

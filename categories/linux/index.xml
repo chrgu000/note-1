@@ -1,0 +1,4133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>零零碎碎</title>
+    <link>/categories/linux/index.xml</link>
+    <description>Recent content on 零零碎碎</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>clustershell</title>
+      <link>/post/linux/clustershell/</link>
+      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/clustershell/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;clustershell&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_clustershell&#34;&gt;1. clustershell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_clustershell&#34;&gt;1. clustershell&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;cat &amp;gt; /etc/clustershell/groups.conf &amp;lt;&amp;lt;_EOF_
+
+# ClusterShell node groups main configuration file
+#
+# Please see `man 5 groups.conf` and
+# http://clustershell.readthedocs.org/en/latest/config.html#node-groups
+# for further details.
+#
+# NOTE: This is a simple group configuration example file, not a
+#       default config file. Please edit it to fit your own needs.
+#
+[Main]
+
+# Default group source
+default: local
+
+# Group source config directory list (space separated, use quotes if needed).
+# Examples are provided. Copy them from *.conf.example to *.conf to enable.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default confdir value enables both system-wide and user configuration.
+confdir: /etc/clustershell/groups.conf.d $CFGDIR/groups.conf.d
+
+# New in 1.7, autodir defines a directory list (space separated, use quotes if
+# needed) where group data files will be auto-loaded.
+# Only *.yaml file are loaded. Copy *.yaml.example files to enable.
+# Group data files avoid the need of external calls for static config files.
+#
+# $CFGDIR is replaced by the highest priority config directory found.
+# Default autodir value enables both system-wide and user configuration.
+autodir: /etc/clustershell/groups.d $CFGDIR/groups.d
+
+# Sections below also define group sources.
+#
+# NOTE: /etc/clustershell/groups is deprecated since version 1.7, thus if it
+#       doesn&#39;t exist, the &#34;local.cfg&#34; file from autodir will be used.
+#
+# See the documentation for $CFGDIR, $SOURCE, $GROUP and $NODE upcall special
+# variables. Please remember that they are substitued before the shell command
+# is effectively executed.
+#
+[local]
+# flat file &#34;group: nodeset&#34; based group source using $CFGDIR/groups.d/local.cfg
+# with backward support for /etc/clustershell/groups
+map: [ -f $CFGDIR/groups ] &amp;amp;&amp;amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n &#39;s/^$GROUP:\(.*\)/\1/p&#39; $f
+all: [ -f $CFGDIR/groups ] &amp;amp;&amp;amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n &#39;s/^all:\(.*\)/\1/p&#39; $f
+list: [ -f $CFGDIR/groups ] &amp;amp;&amp;amp; f=$CFGDIR/groups || f=$CFGDIR/groups.d/local.cfg; sed -n &#39;s/^\([0-9A-Za-z_-]*\):.*/\1/p&#39; $f
+
+_EOF_&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat &amp;gt; /etc/clustershell/groups.d/cluster.yaml &amp;lt;&amp;lt;_EOF_
+kafkas:
+    brokers: &#39;hadoop[1,2]&#39;
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;执行命令&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;clush -g kafkas:brokers uptime&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_参考&#34;&gt;2. 参考&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://clustershell.readthedocs.io/en/latest/tools/clush.html&#34; class=&#34;bare&#34;&gt;http://clustershell.readthedocs.io/en/latest/tools/clush.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;clush -g kafkas:brokers &#39;mkdir -p ~/tmp/{bin,tar}&#39;
+
+clush -g kafkas:brokers -c /root/tmp/tar/kafka_2.11-0.8.2.2.tgz --dest ~/tmp/tar
+clush -g kafkas:brokers -c /root/tmp/bin/set_kafka_config.sh --dest ~/tmp/bin
+
+clush -g kafkas:brokers &#39;ls ~/tmp/tar&#39;
+
+CMD=&#39;tar -zxf /root/tmp/tar/kafka_2.11-0.8.2.2.tgz -C /root/tmp/&#39;
+clush -v -g kafkas:brokers $CMD
+
+#!/bin/bash
+
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+KAFKA_HOST_NAME=`hostname`
+KAFKA_NUM_PARTITIONS=3
+KAFKA_ZK_URL=&#39;vm73:2181,vm74:2181,vm75:2181&#39;
+
+# host.name
+sed -i &#34;s/^\#\?host.name=.*/host.name=${KAFKA_HOST_NAME}/&#34; $KAFKA_HOME/config/server.properties
+# num.partitions
+sed -i &#34;s/^\#\?num.partitions=.*/num.partitions=${KAFKA_NUM_PARTITIONS}/&#34; $KAFKA_HOME/config/server.properties
+# zookeeper.connect=localhost:2181
+sed -i &#34;s/^\#\?zookeeper.connect=.*/zookeeper.connect=${KAFKA_ZK_URL}/&#34; $KAFKA_HOME/config/server.properties
+
+
+clush -w vm74
+
+clush -g kafkas:brokers &#39;sh /root/tmp/bin/set_kafka_config.sh&#39;
+
+KAFKA_HOME=/root/tmp/kafka_2.11-0.8.2.2
+CMD=&#34;cat ${KAFKA_HOME}/config/server.properties|grep &#39;host.name|zookeeper.connect&#39;&#34;
+CMD=&#34;cat ${KAFKA_HOME}/config/server.properties|grep &#39;zookeeper.connect&#39;&#34;
+clush -g kafkas:brokers $CMD
+
+declare -A map=([&#34;vm74&#34;]=&#34;1&#34; [&#34;vm75&#34;]=&#34;2&#34; [&#34;vm76&#34;]=&#34;3&#34;)
+
+for key in ${!map[@]}
+  do
+    echo ${map[$key]}
+    CMD=&#34;sed -i \&#34;s/^\#\?broker.id=.*/broker.id=${map[$key]}/\&#34; $KAFKA_HOME/config/server.properties&#34;
+    clush -w $key $CMD
+  done
+
+for i in 1 2 3
+  do
+    echo &#34;$i--&amp;gt;$(uptime)&#34;
+  done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -w vm76 &#39;tail -200 ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -w vm75 &#39;tail -200 ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -w vm74 &#39;tail -200 ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;clush -g kafkas:brokers &#39;tail -f ~/tmp/logs/kafka.log&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CentOS7</title>
+      <link>/post/linux/CentOS7/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/CentOS7/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;CentOS7&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_centos7&#34;&gt;1. CentOS7&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_挂载_linux_目录&#34;&gt;1.1. 挂载 linux 目录&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_centos7使用firewalld打开关闭防火墙与端口&#34;&gt;2. CentOS7使用firewalld打开关闭防火墙与端口&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_内网访问外网&#34;&gt;2.1. 内网访问外网&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_centos7&#34;&gt;1. CentOS7&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_挂载_linux_目录&#34;&gt;1.1. 挂载 linux 目录&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;安装 &lt;strong&gt;cifs-utils&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;yum install -y cifs-utils&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;挂载&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mount -t cifs --verbose -o user=dishui,pass=dishui //192.168.123.199/dishui /root/dishui/mount/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_centos7使用firewalld打开关闭防火墙与端口&#34;&gt;2. CentOS7使用firewalld打开关闭防火墙与端口&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;firewalld的基本使用&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#启动：
+systemctl start firewalld
+#查看状态：
+systemctl status firewalld
+#停止：
+systemctl disable firewalld
+#禁用：
+systemctl stop firewalld&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#启动一个服务：
+systemctl start firewalld.service
+#关闭一个服务：
+systemctl stop firewalld.service
+#重启一个服务：
+systemctl restart firewalld.service
+#显示一个服务的状态：
+systemctl status firewalld.service
+#在开机时启用一个服务：
+systemctl enable firewalld.service
+#在开机时禁用一个服务：
+systemctl disable firewalld.service
+#查看服务是否开机启动：
+systemctl is-enabled firewalld.service
+#查看已启动的服务列表：
+systemctl list-unit-files|grep enabled
+#查看启动失败的服务列表：
+systemctl --failed&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置 &lt;strong&gt;firewalld-cmd&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#查看版本：
+firewall-cmd --version
+#查看帮助：
+firewall-cmd --help
+#显示状态：
+firewall-cmd --state
+#查看所有打开的端口：
+firewall-cmd --zone=public --list-ports
+#更新防火墙规则：
+firewall-cmd --reload
+#查看区域信息:
+firewall-cmd --get-active-zones
+#查看指定接口所属区域：
+firewall-cmd --get-zone-of-interface=eth0
+#拒绝所有包：
+firewall-cmd --panic-on
+#取消拒绝状态：
+firewall-cmd --panic-off
+#查看是否拒绝：
+firewall-cmd --query-panic
+
+#那怎么开启一个端口呢
+#添加
+firewall-cmd --zone=public --add-port=80/tcp --permanent    （--permanent永久生效，没有此参数重启后失效）
+#重新载入
+firewall-cmd --reload
+#查看
+firewall-cmd --zone= public --query-port=80/tcp
+#删除
+firewall-cmd --zone= public --remove-port=80/tcp --permanent&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_内网访问外网&#34;&gt;2.1. 内网访问外网&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.chinaunix.net/uid-30185720-id-4928427.html&#34; class=&#34;bare&#34;&gt;http://blog.chinaunix.net/uid-30185720-id-4928427.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>log</title>
+      <link>/post/linux/log/</link>
+      <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/log/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Log&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_elk&#34;&gt;1. ELK&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_rsyslog&#34;&gt;2. Rsyslog&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_supervisord发送log日志到rsyslog&#34;&gt;2.1. Supervisord发送log日志到Rsyslog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_logrotate_日志分割&#34;&gt;3. Logrotate 日志分割&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_dockerfile&#34;&gt;3.1. Dockerfile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_脚本&#34;&gt;3.2. 脚本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置文件&#34;&gt;3.3. 配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_定时器&#34;&gt;3.4. 定时器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_elk&#34;&gt;1. ELK&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;下载&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/gaoyingju/article/details/23750563&#34;&gt;开源分布式搜索平台ELK(Elasticsearch+Logstash+Kibana)入门学习资源索引&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.linuxea.com/1204.html&#34;&gt;日志实时收集分析-ELK Stack&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_rsyslog&#34;&gt;2. Rsyslog&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_supervisord发送log日志到rsyslog&#34;&gt;2.1. Supervisord发送log日志到Rsyslog&lt;/h3&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;supervisor conf &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;[eventlistener:logging]
+command = supervisor_logging
+events = PROCESS_LOG
+
+[program:wuliu]
+command=/apache-tomcat-7.0.62/bin/catalina.sh run
+user=root
+autostart=true
+stdout_events_enabled = true
+stderr_events_enabled = true&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;rsyslog server &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ModLoad imudp
+$UDPServerRun 514 #开启UDP
+
+$ModLoad imtcp
+$InputTCPServerRun 514 #开启TCP
+
+#$template TraditionalFormat,&#34;%programname% %syslogtag% %msg%\n&#34;
+#$template TraditionalFormat,&#34;%programname% %hostname% %msg%\n&#34;
+$template TraditionalFormat,&#34;%fromhost-ip% %msg%\n&#34;
+
+
+$ActionFileDefaultTemplate TraditionalFormat # 默认日志格式模板与client端发送的日志格式模板保持一致
+
+$template Remote, &#34;~/log/%fromhost-ip%.log&#34;
+
+:fromhost-ip, !isequal, &#34;127.0.0.1&#34; ?Remote
+
+#:syslogtag, isequal, &#34;wuliu-log&#34; ?Remote
+#:syslogtag, isequal, &#34;wuliu-error-log&#34; ?Remote-error&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/hanyifeng/p/5463338.html&#34;&gt;Linux 之 rsyslog 系统日志转发&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.biglog.cn/tomcat-syslog/&#34;&gt;Tomcat日志配置远程Syslog采集&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_logrotate_日志分割&#34;&gt;3. Logrotate 日志分割&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.sina.com.cn/s/blog_5f54f0be0101h6y8.html&#34;&gt;Logrotate 日志分割&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_dockerfile&#34;&gt;3.1. Dockerfile&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;FROM blacklabelops/centos
+
+RUN yum install -y \
+    vi rsyslog &amp;amp;&amp;amp; \
+    yum install crontabs -y &amp;amp;&amp;amp; \
+    yum clean all &amp;amp;&amp;amp; rm -rf /var/cache/yum/* &amp;amp;&amp;amp; \
+    echo &#34;30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&#34; &amp;gt;&amp;gt; /var/spool/cron/root &amp;amp;&amp;amp; \
+    mkdir -p ~/log
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./rsyslog.conf /etc/rsyslog.d/listen.conf
+COPY ./wuliu /etc/logrotate.d/wuliu
+
+EXPOSE 514
+ENTRYPOINT [&#34;/docker-entrypoint.sh&#34;]
+CMD [&#34;rsyslogd&#34;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_脚本&#34;&gt;3.2. 脚本&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/bash -x
+#
+# A helper script for ENTRYPOINT.
+
+set -e
+
+if [ &#34;$1&#34; = &#39;rsyslogd&#39; ]; then
+  crond
+  rsyslogd -n
+fi
+
+exec &#34;$@&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置文件&#34;&gt;3.3. 配置文件&lt;/h3&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;vi /etc/logrotate.d/wuliu&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;~/log/wuliu.log {
+  daily
+  rotate 5
+  sharedscripts
+  postrotate
+    /bin/kill -HUP `cat /var/run/syslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true
+    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true
+  endscript
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_定时器&#34;&gt;3.4. 定时器&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 每天晚上 10点30 执行一次
+30 22 * * * . /usr/sbin/logrotate /etc/logrotate.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ansible</title>
+      <link>/post/linux/ansible/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/ansible/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;ansible&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装&#34;&gt;2. 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装git&#34;&gt;3. 安装git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;1. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ansible/ansible-examples&#34;&gt;ansible-examples&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://docs.ansible.com/ansible/&#34;&gt;ansible-doc&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/rwxwsblog/p/5667772.html&#34;&gt;jenkins结合ansible用shell实现自动化部署和回滚&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/&#34;&gt;ansible yum源&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_安装&#34;&gt;2. 安装&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;yum install https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.6.3-1.el7.ans.noarch.rpm -y&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_安装git&#34;&gt;3. 安装git&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;yum install https://centos7.iuscommunity.org/ius-release.rpm
+yum remove -y git | yum -y install git2u
+yum update nss curl -y&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;查看系统变量&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ansible all -m setup -u root&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CentOS基础设置</title>
+      <link>/post/linux/ji_chu_she_zhi/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/ji_chu_she_zhi/</guid>
+      <description>
+
+&lt;!-- toc --&gt;
+
+&lt;h1 id=&#34;linux基础设置&#34;&gt;Linux基础设置&lt;/h1&gt;
+
+&lt;h5 id=&#34;linux主机名设置&#34;&gt;Linux主机名设置&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#主机名设置
+[root@localhost ~]# vim /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=Web-01
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;添加多张网卡&#34;&gt;添加多张网卡&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#eth1变成eth0
+vim /etc/udev/rules.d/70-persistent-net.rules
+
+#编辑eth0 IP地址
+vim /etc/sysconfig/network-scripts/ifcfg-eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;virtual-box-网卡mac地址&#34;&gt;Virtual Box 网卡MAC地址&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CentOS-1
+
+&lt;ul&gt;
+&lt;li&gt;MAC:
+&lt;code&gt;
+eth0    08:00:27:3F:48:85       HostOnly    ipaddr    192.168.137.101
+eth1    08:00:27:e1:36:70       Nat         ipaddr    10.0.2.101
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CentOS-2
+
+&lt;ul&gt;
+&lt;li&gt;MAC:
+&lt;code&gt;
+eth0    08:00:27:A2:B9:68       HostOnly    ipaddr    192.168.137.102
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CentOS-3
+
+&lt;ul&gt;
+&lt;li&gt;MAC:
+&lt;code&gt;
+eth0    08:00:27:16:DB:38       HostOnly    ipaddr    192.168.137.103
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CentOS-4
+
+&lt;ul&gt;
+&lt;li&gt;MAC:
+&lt;code&gt;
+eth0    08:00:27:4C:AA:E5       HostOnly    ipaddr    192.168.137.104
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CentOS-Web-01
+
+&lt;ul&gt;
+&lt;li&gt;MAC:
+&lt;code&gt;
+eth0    08:00:27:60:BC:F8       HostOnly    ipaddr    192.168.137.107
+eth1    08:00:27:92:53:06       Nat         ipaddr    10.0.2.107
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CentOS-Web-02
+
+&lt;ul&gt;
+&lt;li&gt;MAC:
+&lt;code&gt;
+eth0    08:00:27:60:BC:F9       HostOnly    ipaddr    192.168.137.108
+eth1    08:00:27:09:2F:95       Nat         ipaddr    10.0.2.108
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;linux网络&#34;&gt;Linux网络&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;ifconfig [ethX]
+    -a: 显示所有接口的配置住处
+
+ifconfig ethX IP/MASK [up|down]
+    配置的地址立即生效，但重启网络服务或主机，都会失效；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;网络服务：
+RHEL5:  /etc/init.d/network {start|stop|restart|status}
+RHEL6: /etc/init.d/NetworkManager {start|stop|restart|status}&lt;/p&gt;
+
+&lt;h6 id=&#34;网关&#34;&gt;网关：&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;route
+    add: 添加
+        -host: 主机路由
+        -net：网络路由
+            -net 0.0.0.0
+    route add -net|-host DEST gw NEXTHOP
+    route add default gw NEXTHOP
+
+del：删除
+    -host
+    -net
+
+    route del -net 10.0.0.0/8
+    route del -net 0.0.0.0
+    route del default
+
+    所做出的改动重启网络服务或主机后失效；
+
+查看：
+    route -n: 以数字方式显示各主机或端口等相关信息
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;网络配置文件&#34;&gt;网络配置文件：&lt;/h5&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/sysconfig/network&lt;/code&gt;&lt;/p&gt;
+
+&lt;h6 id=&#34;网络接口配置文件&#34;&gt;网络接口配置文件：&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;/etc/sysconfig/network-scripts/ifcfg-INTERFACE_NAME
+DEVICE=: 关联的设备名称，要与文件名的后半部“INTERFACE_NAME”保持一致;
+BOOTPROTO={static|none|dhcp|bootp}: 引导协议；要使用静态地址，使用static或none；dhcp表示使用DHCP服务器获取地址；
+IPADDR=: IP地址
+NETMASK=：子网掩码
+GATEWAY=：设定默认网关；
+ONBOOT=：开机时是否自动激活此网络接口；
+HWADDR=： 硬件地址，要与硬件中的地址保持一致；可省；
+USERCTL={yes|no}: 是否允许普通用户控制此接口；
+PEERDNS={yes|no}: 是否在BOOTPROTO为dhcp时接受由DHCP服务器指定的DNS地址；
+
+不会立即生效，但重启网络服务或主机都会生效；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;路由&#34;&gt;路由：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;/etc/sysconfig/network-scripts/route-ethX
+添加格式一：
+DEST    via     NEXTHOP
+
+添加格式二：
+ADDRESS0=
+NETMASK0=
+GATEWAY0=
+
+
+DNS服务器指定方法只有一种：
+/etc/resolv.conf
+nameserver DNS_IP_1
+nameserver DNS_IP_2
+
+指定本地解析：
+/etc/hosts
+主机IP    主机名 主机别名
+172.16.0.1      www.magedu.com      www
+
+DNS--&amp;gt;/etc/hosts--&amp;gt;DNS
+
+
+配置主机名：
+hostname HOSTNAME
+
+立即生效，但不是永久有效；
+
+/etc/sysconfig/network
+HOSTNAME=
+RHEL5：
+    setup: system-config-network-tui
+    system-config-network-gui
+
+ifconfig, 老旧
+
+iproute2
+    ip
+        link: 网络接口属性
+        addr: 协议地址
+        route: 路由
+
+    link
+        show
+            ip -s link show
+        set
+            ip link set DEV {up|down}
+
+    addr
+        add
+            ip addr add ADDRESS dev DEV
+        del
+            ip addr del ADDRESS dev DEV
+        show
+            ip addr show dev DEV to PREFIX
+        flush
+            ip addr flush dev DEV to PREFIX
+
+
+一块网卡可以使用多个地址：
+网络设备可以别名：
+eth0
+    ethX:X, eth0:0, eth0:1, ...
+
+配置方法：
+    ifconfig ethX:X IP/NETMASK
+
+    /etc/sysconfig/network-scripts/ifcfg-ethX:X
+    DEVICE=ethX:X
+
+    非主要地址不能使用DHCP动态获取;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;#####ip&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eth1, 添加个地址192.168.100.1
+
+ip addr add 192.168.100.1/24 dev eth1 label eth1:0
+primary address
+secondary adress
+
+192.168.100.6
+
+10.0.1.0/24, 192.168.100.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;路由-1&#34;&gt;路由:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;route add -net 10.0.1.0/24 gw 192.168.100.6
+
+ip route add to 10.0.1.0/24 dev eth1 via 192.168.100.6
+    add, change, show, flush, replace
+
+ifconfig eth0, 172.16.200.33/16
+
+ifconfig eth0:0 172.16.200.33/16
+
+TCP:
+    URG
+    SYN
+    ACK
+    PSH
+    RST
+    FIN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;linux-openssh&#34;&gt;Linux: openSSH&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;    C/S
+        服务器端：sshd, 配置文件/etc/ssh/sshd_config
+        客户端：ssh, 配置文件/etc/ssh/ssh_config
+            ssh-keygen: 密钥生成器
+            ssh-copy-id: 将公钥传输至远程服务器
+            scp：跨主机安全复制工具
+
+
+        ssh:
+            ssh USERNAME@HOST
+            ssh -l USERNAME HOST
+            ssh USERNAME@HOST &#39;COMMAND&#39;
+
+        scp:
+            scp SRC DEST
+                -r
+                -a
+            scp USERNAME@HOST:/path/to/somefile  /path/to/local
+            scp /path/to/local  USERNAME@HOST:/path/to/somewhere
+
+        ssh-keygen
+            -t rsa
+                ~/.ssh/id_rsa
+                ~/.ssh/id_rsa.pub
+            -f /path/to/KEY_FILE
+            -P &#39;&#39;: 指定加密私钥的密码
+
+
+        公钥追加保存到远程主机某用户的家目录下的.ssh/authorized_keys文件或.ssh/authorized_keys2文件中
+
+        ssh-copy-id
+            -i ~/.ssh/id_rsa.pub
+            ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@HOST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;centos-6-7-升级内核-源码编译&#34;&gt;&lt;code&gt;CentOS 6.7&lt;/code&gt;升级内核(源码编译)&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;下载源码包
+网址：&lt;code&gt;http://www.kernel.org&lt;/code&gt;
+在首页可以看到有 &lt;code&gt;stable&lt;/code&gt;，&lt;code&gt;longterm&lt;/code&gt; 等版本，一般选择下载 &lt;code&gt;longterm&lt;/code&gt; 版本，因为此版本为提供长期支持的稳定版，因此我选择 &lt;code&gt;3.10.96&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# wget https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.10.96.tar.xz
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;解压并进入目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# tar -xf linux-3.12.16.tar.xz
+# cd linux-3.12.16
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;更新当前系统&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# yum update
+# yum upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;安装编译内核所需要的软件包&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# yum groupinstall &amp;quot;Development Tools&amp;quot;
+# yum install ncurses-devel
+# yum install qt-devel
+# yum install hmaccalc zlib-devel binutils-devel elfutils-libelf-devel
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;查看当前系统内核&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# uname -r
+2.6.32-358.11.1.el6.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;将当前系统内核的配置文件拷贝到当前目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# cp /boot/config-2.6.32-358.11.1.el6.x86_64 .config
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用当前系统内核配置，并自动接受每个新增选项的默认设置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# sh -c &#39;yes &amp;quot;&amp;quot; | make oldconfig&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;编译&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# make bzImage
+# make modules
+# make modules_install
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# make install
+如果出现少量 ERROR 可以忽略
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改 Grub 引导顺序&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# vim /etc/grub.conf
+一般新内核的位置都在第一个，所以设置 default=0.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;重启后查看内核版本号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# uname -r
+3.12.16
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果失败，转至第 5 步，在重新开始之前，需要清理上次编译的现场&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# make mrproper
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;centos-6-7-升级内核-rpm安装&#34;&gt;&lt;code&gt;CentOS 6.7&lt;/code&gt;升级内核(rpm安装)&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在yum的ELRepo源中，有mainline（3.13.1）、long-term（3.10.28）这2个内核版本，考虑到long-term更稳定，会长期更新，所以选择这个版本。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+&lt;li&gt;安装&lt;code&gt;ELRepo&lt;/code&gt;到&lt;code&gt;CentOS-6.7&lt;/code&gt;中
+&lt;code&gt;bash
+rpm -ivh http://www.elrepo.org/elrepo-release-6-5.el6.elrepo.noarch.rpm
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装&lt;strong&gt;kernel-lt（lt=long-term）&lt;/strong&gt;
+&lt;code&gt;bash
+yum --enablerepo=elrepo-kernel install kernel-lt -y
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;或者安装&lt;strong&gt;kernel-ml（ml=mainline）&lt;/strong&gt;
+&lt;code&gt;bash
+yum --enablerepo=elrepo-kernel install kernel-ml -y
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编辑&lt;code&gt;grub.conf&lt;/code&gt;文件，修改&lt;code&gt;Grub&lt;/code&gt;引导顺序
+&lt;code&gt;
+vim /etc/grub.conf
+修改default=0
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CoreOS</title>
+      <link>/post/linux/CoreOS/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/CoreOS/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;CoreOS&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_coreos&#34;&gt;1. CoreOS&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_升级策略&#34;&gt;1.1. 升级策略&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_window_主机_启动脚本_code&#34;&gt;1.1.1. &lt;code&gt;Window 主机 启动脚本&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_problem_003_code_unix_var_run_supervisor_sock_refused_connection_code&#34;&gt;1.2. Problem 003 - &lt;code&gt;unix:///var/run/supervisor.sock refused connection&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_uml&#34;&gt;2. UML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_coreos_安装_docker_compose&#34;&gt;3. CoreOS 安装 docker-compose&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_coreos_硬盘安装&#34;&gt;4. CoreOS 硬盘安装&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_镜像&#34;&gt;4.1. 镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_http_服务器&#34;&gt;4.2. Http 服务器&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;4.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置文件&#34;&gt;4.2.2. 配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_操作&#34;&gt;4.3. 操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_设置_core_密码&#34;&gt;4.4. 设置 core 密码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;4.5. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_python&#34;&gt;5. 安装 Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_coreos&#34;&gt;1. CoreOS&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_升级策略&#34;&gt;1.1. 升级策略&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;修改升级策略&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ sudo vi /etc/coreos/update.conf
+GROUP=stable
+REBOOT_STRATEGY=reboot&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;升级策略主要与自动升级后的重启更新方式有关。它的值可以是 &lt;strong&gt;best-effort&lt;/strong&gt;（默认值）、 &lt;strong&gt;etcd-lock&lt;/strong&gt;、 &lt;strong&gt;reboot&lt;/strong&gt; 和 &lt;strong&gt;off&lt;/strong&gt;。其作用依次解释如下：&lt;/p&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;best-effort&lt;/strong&gt;：如果Etcd运行正常则相当于 etcd-lock，否则相当于reboot&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;etcd-lock&lt;/strong&gt;：自动升级后自动重启，使用LockSmith 服务调度重启过程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;reboot&lt;/strong&gt;：自动升级后立即自动重启系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;off&lt;/strong&gt;：自动升级后等待用户手工重启&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;手动升级&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;update_engine_client -update&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_window_主机_启动脚本_code&#34;&gt;1.1.1. &lt;code&gt;Window 主机 启动脚本&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
+
+COREOS=/d/vagrant/CoreOS
+SWARM=/d/vagrant/CoreOS-Cluster-Test
+SWARM01=/d/vagrant/CoreOS-1214
+CentOS=/d/vagrant/CentOS
+
+gollum() {
+    cd $COREOS &amp;amp;&amp;amp; vagrant $1
+}
+
+swarm() {
+    cd $SWARM &amp;amp;&amp;amp; vagrant $1
+}
+
+swarm01() {
+    cd $SWARM01 &amp;amp;&amp;amp; vagrant $1
+}
+
+centos() {
+    cd $CentOS &amp;amp;&amp;amp; vagrant $1
+}
+
+case &#34;$1&#34; in
+    gollum)
+        gollum $2 || exit 0
+        ;;
+    swarm)
+        swarm $2 || exit 0
+        ;;
+    swarm01)
+        swarm01 $2 || exit 0
+        ;;
+    centos)
+        centos $2 || exit 0
+        ;;
+  status)
+        gollum status | awk &#39;{if(NR==3){print $1&#34; &#34;$2}}&#39;
+        swarm status | awk &#39;{if(NR==3){print $1&#34; &#34;$2}}&#39;
+        swarm01 status | awk &#39;{if(NR==3){print $1&#34; &#34;$2}}&#39;
+        centos status | awk &#39;{if(NR==3){print $1&#34; &#34;$2}}&#39;
+        ;;
+    *)
+        echo $&#34;Usage: $0 {gollum|swarm|swarm01|centos} {up|halt|reload|status}&#34;
+        exit 2
+esac&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_problem_003_code_unix_var_run_supervisor_sock_refused_connection_code&#34;&gt;1.2. Problem 003 - &lt;code&gt;unix:///var/run/supervisor.sock refused connection&lt;/code&gt;&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Reference: [[docker-issues#651|https://github.com/sameersbn/docker-gitlab/issues/651&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;init.sh&lt;/code&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
+sed -i &#39;s#/run/supervisord.sock#/dev/shm/supervisor.sock#g&#39;  /etc/supervisord.conf
+touch /dev/shm/supervisor.sock
+/usr/bin/supervisord -c /etc/supervisord.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;修改 &lt;code&gt;supervisord&lt;/code&gt; 配置文件&lt;br&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# /etc/supervisord.conf
+[supervisord]
+
+nodaemon=true  ;  前台运行&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://coreos.com/docs/launching-containers/launching/getting-started-with-systemd/&#34;&gt;systemd&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://coreos.com/os/docs/latest/cloud-config-locations.html&#34;&gt;cloud-config-locations&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#cloud-config
+
+coreos:
+  units:
+    - name: &#34;docker.service&#34;
+      drop-ins:
+        - name: &#34;50-insecure-registry.conf&#34;
+          content: |
+            [Service]
+            Environment=DOCKER_OPTS=&#39;--registry-mirror=http://0821f5e0.m.daocloud.io&#39;
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the time zone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone Asia/Shanghai
+        RemainAfterExit=yes
+        Type=oneshot
+
+    - name: &#34;docker-gollum.service&#34;
+      command: &#34;start&#34;
+      content: |
+        [Unit]
+        Description=Gollum container
+        Author=Me
+        After=docker.service
+        [Service]
+        Restart=always
+        ExecStart=/opt/bin/docker-compose -f /home/core/gollum.yml start gollum
+    - name: soft.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/soft
+        Type=ext4
+    - name: home-core-registry2.mount
+      command: start
+      content: |
+        [Mount]
+        What=/dev/sdb1
+        Where=/home/core/registry2
+        Type=ext4
+write_files:
+  - path: /etc/hosts
+    content: |
+      127.0.0.1     localhost
+      192.168.137.15    dishui.io
+  - path: &#34;/etc/resolv.conf&#34;
+    permissions: &#34;0644&#34;
+    owner: &#34;root&#34;
+    content: |
+      nameserver 114.114.114.114
+      nameserver 172.17.0.1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo vi /var/lib/coreos-vagrant/vagrantfile-user-data
+sudo coreos-cloudinit -from-file=/var/lib/coreos-vagrant/vagrantfile-user-data&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://coreos.com/os/docs/latest/reading-the-system-log.html&#34;&gt;journalctl&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_uml&#34;&gt;2. UML&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;中文乱码&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 安装中文字体
+apt-get install fonts-droid&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;gollum&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#启动 plantuml
+docker run -d -p 8080:8080 -v ~/opt/src/tomcat/plantuml:/tomcat/webapps --name plantuml-1 tomcat7
+# 启动 gollum  --privileged 以root 用户启动 docker
+docker run -d -p 80:4567 --privileged  --name gollum gollum:1.7&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_coreos_安装_docker_compose&#34;&gt;3. CoreOS 安装 docker-compose&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;参考 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://my.oschina.net/Laily/blog/678926&#34;&gt;CoreOS 安装 docker-compose &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/docker/compose/releases&#34;&gt;docker-compose&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/waixin/article/details/50212079&#34;&gt;docker centos7 sshd&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_coreos_硬盘安装&#34;&gt;4. CoreOS 硬盘安装&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_镜像&#34;&gt;4.1. 镜像&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://stable.release.core-os.net/amd64-usr/current/&#34;&gt;Coreos image&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt; coreos_production_iso_image.iso
+ coreos_production_image.bin.bz2
+ coreos_production_image.bin.bz2.sig&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_http_服务器&#34;&gt;4.2. Http 服务器&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__a_href_http_rejetto_com_hfs_f_dl_hfs_a&#34;&gt;4.2.1. &lt;a href=&#34;http://rejetto.com/hfs/?f=dl&#34;&gt;HFS&lt;/a&gt;&lt;/h4&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_配置文件&#34;&gt;4.2.2. 配置文件&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#cloud-config
+
+hostname: coreos01
+
+coreos:
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+    - name: docker.service
+      command: start
+    - name: static.network
+      content: |
+        [Match]
+        Name=enp0s3
+
+        [Network]
+        Address=192.168.137.111/24
+        Gateway=192.168.137.1
+        DNS=114.114.114.114
+
+users:
+  - name: core
+    ssh-authorized-keys:
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVIo204k9BWPVJCd2zA/3fQmrJLwtDAiolw1Lqh2gOspgqiy5cDNIZSIgFhcIGazPQvGc31yNLbLnnxE9K6PpF7LuZQQsiycNTew+BLXD00enYX8+9QVeqC3sN3ln7gg7AO97eLAHrWMshp0s5wZJVMw4mNBt1XL0cSyFQ4xq4roahtrnVnfZA33RLFKAPO4J/jDP+XLxope259jsW+6q4AJsA9MmtXwPP97fYWkEX4fKhAl0ZVJK3n3t1BKrDa4y2FxBbUxHThhRvsnMXffx3NWkQc8kO0q9Fy9/PkLnDogzHpjyunBbMOqh/VvEy0wPYRz1549osUDVIZonQ3K0T Administrator@WIN-JBJARACQS7U
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDROpatjJDC8mECbuv2v/uuKbhwMWxtedTcpyi42kO2jimcz7pLursYdpiCy8h7+lPkczz9b13MTexApFq23OI2MIe/K2tR+C9Mb2TDsKMcZv9ma1BZLUpWyBcS1KA3bL/U4loHPnmbak9WNvT/gBo1Wdg676kJtyTabXDhQi6Mv8OfmfMiW0AQsRns88osoAoCQGYG8gOi7nJlgXNPjw7VmPS2rU4VBU0mL4vD823OfyWmdBdD1ZCXXlMQmAhY8+PrHJ3V6IDberg3oLa37z8x4/YGeZCid0s19NUH4g5MXlLOcoHhPW5kX7nOqZS15/M+t/sIwAzjNq245hopRD2V dishui@LENOVO-PC
+  - groups:
+     - sudo
+     - docker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;/src/img/2016-08-30_113636.png&#34; alt=&#34;2016 08 30 113636&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;配置文件&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#cloud-config
+
+hostname: coreos01
+
+coreos:
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+    - name: docker.service
+      command: start
+    - name: static.network
+      content: |
+        [Match]
+        Name=enp0s3
+
+        [Network]
+        Address=192.168.137.111/24
+        Gateway=192.168.137.1
+        DNS=114.114.114.114
+
+users:
+  - name: core
+    ssh-authorized-keys:
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVIo204k9BWPVJCd2zA/3fQmrJLwtDAiolw1Lqh2gOspgqiy5cDNIZSIgFhcIGazPQvGc31yNLbLnnxE9K6PpF7LuZQQsiycNTew+BLXD00enYX8+9QVeqC3sN3ln7gg7AO97eLAHrWMshp0s5wZJVMw4mNBt1XL0cSyFQ4xq4roahtrnVnfZA33RLFKAPO4J/jDP+XLxope259jsW+6q4AJsA9MmtXwPP97fYWkEX4fKhAl0ZVJK3n3t1BKrDa4y2FxBbUxHThhRvsnMXffx3NWkQc8kO0q9Fy9/PkLnDogzHpjyunBbMOqh/VvEy0wPYRz1549osUDVIZonQ3K0T Administrator@WIN-JBJARACQS7U
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDROpatjJDC8mECbuv2v/uuKbhwMWxtedTcpyi42kO2jimcz7pLursYdpiCy8h7+lPkczz9b13MTexApFq23OI2MIe/K2tR+C9Mb2TDsKMcZv9ma1BZLUpWyBcS1KA3bL/U4loHPnmbak9WNvT/gBo1Wdg676kJtyTabXDhQi6Mv8OfmfMiW0AQsRns88osoAoCQGYG8gOi7nJlgXNPjw7VmPS2rU4VBU0mL4vD823OfyWmdBdD1ZCXXlMQmAhY8+PrHJ3V6IDberg3oLa37z8x4/YGeZCid0s19NUH4g5MXlLOcoHhPW5kX7nOqZS15/M+t/sIwAzjNq245hopRD2V dishui@LENOVO-PC
+  - groups:
+     - sudo
+     - docker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_操作&#34;&gt;4.3. 操作&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 切换 root
+sudo su - root
+# 在 /etc/systemd/network 目录下创建 static.network文件,示例内容如下
+[Match]
+Name=enp0s3     # 网卡地址
+[Network]
+DNS=114.114.114.114
+Address=192.168.200.12/24
+Gateway=192.168.200.11
+# 重启网络
+systemctl restart systemd-networkd
+# 下载 配置文件
+wget 192.168.137.2/cloud-config.yaml
+# 安装Coreos到硬盘
+coreos-install -d /dev/sda -C stable -c cloud-config.yaml -b http://192.168.137.2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_设置_core_密码&#34;&gt;4.4. 设置 core 密码&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;开机,按 &lt;kbd&gt;↓&lt;/kbd&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{imagesdir}/img/2016-08-30_125508.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;添加 &lt;code&gt;coreos.autologin=tty1&lt;/code&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;image::{imagesdir}/img/2016-08-30_125711.png[]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;kbd&gt;F10&lt;/kbd&gt; 启动,设置 &lt;code&gt;core&lt;/code&gt; 密码&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;4.5. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://stable.release.core-os.net/amd64-usr/current/&#34;&gt;Coreos image &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/coreos/coreos-cloudinit/&#34;&gt;coreos-cloudinit &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/slightboy/p/5774050.html&#34;&gt;CoreOS Hyper-V 安装, Install to disck &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.vultr.com/docs/boot-into-single-user-mode-reset-root-password&#34;&gt; Access Single User Mode (Reset Root Password)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://ju.outofmemory.cn/entry/137308&#34;&gt;Coreos 安装及配置 &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://livedig.com/379&#34;&gt;VMware 下 CoreOS OVA 镜像的安装与配置 &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://coreos.com/os/docs/latest/configuring-date-and-timezone.html&#34;&gt; 设置系统时间&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.linuxidc.com/wap.aspx?nid=117024&amp;amp;p=1&amp;amp;cp=2&amp;amp;cid=5&amp;amp;sp=149&#34; class=&#34;bare&#34;&gt;http://www.linuxidc.com/wap.aspx?nid=117024&amp;amp;p=1&amp;amp;cp=2&amp;amp;cid=5&amp;amp;sp=149&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://coreos.com/os/docs/latest/using-systemd-drop-in-units.html&#34;&gt; 重写CoreOS中的unit &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_安装_python&#34;&gt;5. 安装 Python&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;下载 pypy&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;百度网盘 &lt;strong&gt;&lt;code&gt;src&lt;/code&gt;&lt;/strong&gt; 目录下&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行脚本&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#/bin/bash
+
+set -e
+
+cd
+
+if [[ -e $HOME/.bootstrapped ]]; then
+  exit 0
+fi
+
+PYPY_VERSION=v5.6.0
+
+if [[ -e $HOME/pypy2-$PYPY_VERSION-linux64.tar.bz2 ]]; then
+  tar -xjf $HOME/pypy2-$PYPY_VERSION-linux64.tar.bz2
+  rm -rf $HOME/pypy2-$PYPY_VERSION-linux64.tar.bz2
+else
+  wget -O - https://bitbucket.org/pypy/pypy/downloads/pypy2-$PYPY_VERSION-linux64.tar.bz2 |tar -xjf -
+fi
+
+mv -n pypy2-$PYPY_VERSION-linux64 pypy
+
+## library fixup
+mkdir -p pypy/lib
+ln -snf /lib64/libncurses.so.5.9 $HOME/pypy/lib/libtinfo.so.5
+
+mkdir -p $HOME/bin
+
+cat &amp;gt; $HOME/bin/python &amp;lt;&amp;lt;EOF
+#!/bin/bash
+LD_LIBRARY_PATH=$HOME/pypy/lib:$LD_LIBRARY_PATH exec $HOME/pypy/bin/pypy &#34;\$@&#34;
+EOF
+
+chmod +x $HOME/bin/python
+$HOME/bin/python --version
+
+touch $HOME/.bootstrapped&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>NFS配置</title>
+      <link>/post/linux/nfsjian_1/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/nfsjian_1/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents&lt;/p&gt;
+
+&lt;h1 id=&#34;nfs配置&#34;&gt;NFS配置&lt;/h1&gt;
+
+&lt;p&gt;####一、 &lt;strong&gt;系统环境&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;系统平台：CentOS 6.5
+
+NFS Server IP：192.168.137.101
+
+防火墙已关闭/iptables: Firewall is not running.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####二、 &lt;strong&gt;安装NFS服务&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;查看系统是否已安装NFS(系统默认安装)&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;bash
+[root@c1 tmp]# rpm -qa|grep nfs
+nfs-utils-lib-1.1.5-6.el6.i686
+nfs4-acl-tools-0.3.3-6.el6.i686
+nfs-utils-1.2.3-39.el6.i686
+&lt;/code&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####三、 &lt;strong&gt;NFS服务器的配置&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;NFS服务器的配置相对比较简单，只需要在相应的配置文件中进行设置，然后启动NFS服务器即可。&lt;/p&gt;
+
+&lt;p&gt;NFS的常用目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/etc/exports                     NFS服务的主要配置文件
+/usr/sbin/exportfs               NFS服务的管理命令
+/usr/sbin/showmount              客户端的查看命令
+/var/lib/nfs/etab                记录NFS分享出来的目录的完整权限设定值
+/var/lib/nfs/xtab                记录曾经登录过的客户端信息
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NFS服务的配置文件为 &lt;strong&gt;&lt;code&gt;/etc/exports&lt;/code&gt;&lt;/strong&gt;，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;/etc/exports&lt;/code&gt;&lt;/strong&gt;文件内容格式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;输出目录&amp;gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;a. 输出目录：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;输出目录是指NFS系统中需要共享给客户机使用的目录；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;b. 客户端：&lt;/p&gt;
+
+&lt;p&gt;客户端是指网络中可以访问这个NFS输出目录的计算机&lt;/p&gt;
+
+&lt;p&gt;客户端常用的指定方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;指定ip地址的主机：192.168.0.200
+指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0
+指定域名的主机：david.bsmart.cn
+指定域中的所有主机：*.bsmart.cn
+所有主机：*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;c. 选项：&lt;/p&gt;
+
+&lt;p&gt;选项用来设置输出目录的访问权限、用户映射等。&lt;/p&gt;
+
+&lt;p&gt;NFS主要有3类选项：&lt;/p&gt;
+
+&lt;p&gt;访问权限选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;设置输出目录只读：ro
+设置输出目录读写：rw
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用户映射选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；
+no_all_squash：与all_squash取反（默认设置）；
+root_squash：将root用户及所属组都映射为匿名用户或用户组（默认设置）；
+no_root_squash：与rootsquash取反；
+anonuid=xxx：将远程访问的所有用户都映射为匿名用户，并指定该用户为本地用户（UID=xxx）；
+anongid=xxx：将远程访问的所有用户组都映射为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=xxx）；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其它选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;secure：限制客户端只能从小于1024的tcp/ip端口连接nfs服务器（默认设置）；
+insecure：允许客户端从大于1024的tcp/ip端口连接服务器；
+sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性；
+async：将数据先保存在内存缓冲区中，必要时才写入磁盘；
+wdelay：检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可以提高效率（默认设置）；
+no_wdelay：若有写操作则立即执行，应与sync配合使用；
+subtree：若输出目录是一个子目录，则nfs服务器将检查其父目录的权限(默认设置)；
+no_subtree：即使输出目录是一个子目录，nfs服务器也不检查其父目录的权限，这样可以提高效率；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####四、 NFS服务器的启动与停止&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt; #service rpcbind status
+ #rpcbind (pid  3514) 正在运行...
+ #PS:默认开机rpcbind开启
+ 
+ #启动nfs
+ service nfs start
+ #查询nfs状态
+ service nfs status
+ #关闭nfs
+ service nfs stop
+ 
+ #查询nfs自启动状态
+ chkconfig --list nfs
+ nfs             0:关闭  1:关闭  2:关闭  3:关闭  4:关闭  5:关闭  6:关闭
+ #设置nfs服务在系统运行级别3和5自动启动
+ chkconfig --level 35 nfs on
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####五、实例
+1. 将NFS Server 的&lt;code&gt;/tmp&lt;/code&gt; 共享给&lt;code&gt;192.168.1.0/24&lt;/code&gt;网段，权限读写
+    ```bash
+    vi /etc/exports&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/tmp 192.168.1.0/24(rw)
+```
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;重启nfs服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;service nfs restart
+    
+exportfs
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;服务器端使用&lt;code&gt;showmount&lt;/code&gt;命令查询NFS的共享状态&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[root@c2 ~]# showmount -e      //默认查看自己共享的服务，前提是要DNS能解析自己，不然容易报错
+Export list for c1:
+/tmp *
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;客户端使用&lt;code&gt;showmount&lt;/code&gt;命令查询NFS的共享状态
+&lt;code&gt;bash
+[root@c2 ~]# showmount -e 192.168.137.101
+Export list for 192.168.137.101:
+/tmp *
+&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;客户端挂载NFS服务器中的共享目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# mount NFS服务器IP:共享目录 本地挂载点目录
+[root@c2 ~]# mount 192.168.137.101:/tmp /nfs-mount
+[root@c2 ~]# mount |grep nfs
+    
+sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)
+nfsd on /proc/fs/nfsd type nfsd (rw)
+192.168.137.101:/tmp on /nfs-mount type nfs (rw,vers=4,addr=192.168.137.101,clientaddr=192.168.137.102)
+    
+挂载成功
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NFS的共享权限和访问控制&lt;/p&gt;
+
+&lt;p&gt;客户端出现&lt;code&gt;Permission denied&lt;/code&gt;，是因为NFS 服务器端共享的目录本身的写权限没有开放给其他用户，在服务器端打开该权限。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# chmod 777 -R /tmp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####六、启动自动挂载nfs文件系统&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+1、&amp;lt;server&amp;gt;:&amp;lt;/remote/export&amp;gt; &amp;lt;/local/directory&amp;gt; nfs &amp;lt; options&amp;gt; 0 0
+# 例子
+192.168.137.101:/tmp    /nfs-mount              nfs     defaults        0 0
+
+2、手动挂载命令加入到/etc/rc.local中
+    mount 10.0.2.107:/tmp/rpm /tmp/rpm/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####七、问题
+&lt;strong&gt;解决NFS&lt;/strong&gt;：clnt_create: RPC: Port mapper failure - Unable to receive: errno 113 (No route to host)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 关闭防火墙
+service iptables stop
+# 开启不启动防火墙
+chkconfig iptables off
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Nginx 安装配置</title>
+      <link>/post/linux/nginx/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/nginx/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents&lt;/p&gt;
+
+&lt;h1 id=&#34;nginx&#34;&gt;nginx&lt;/h1&gt;
+
+&lt;p&gt;平台为：rhel 6.4/CentOS-6.5 32bit&lt;/p&gt;
+
+&lt;h3 id=&#34;一-安装nginx&#34;&gt;一、安装Nginx：&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-解决依赖关系&#34;&gt;1、解决依赖关系&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 方法1
+yum groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Server Platform Deveopment&amp;quot;
+yum install openssl-devel pcre-devel
+
+# 方法2
+#安装make
+yum -y install gcc automake autoconf libtool make
+
+#安装g++
+yum -y install gcc gcc-c++
+#安装pcre
+yum install openssl-devel pcre-devel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-安装&#34;&gt;2、安装&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;首先添加用户&lt;code&gt;nginx&lt;/code&gt;，实现以之运行nginx服务进程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# groupadd -r nginx
+# useradd -r -g nginx nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;接着开始编译和安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# ./configure \
+--prefix=/usr \
+--sbin-path=/usr/sbin/nginx \
+--conf-path=/etc/nginx/nginx.conf \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--pid-path=/var/run/nginx/nginx.pid  \
+--lock-path=/var/lock/nginx.lock \
+--user=nginx \
+--group=nginx \
+--with-http_ssl_module \
+--with-http_flv_module \
+--with-http_stub_status_module \
+--with-http_gzip_static_module \
+--http-client-body-temp-path=/var/tmp/nginx/client/ \
+--http-proxy-temp-path=/var/tmp/nginx/proxy/ \
+--http-fastcgi-temp-path=/var/tmp/nginx/fcgi/ \
+--http-uwsgi-temp-path=/var/tmp/nginx/uwsgi \
+--http-scgi-temp-path=/var/tmp/nginx/scgi \
+--with-pcre
+# make &amp;amp;&amp;amp; make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Nginx可以使用Tmalloc(快速、多线程的malloc库及优秀性能分析工具)来加速内存分配，使用此功能需要事先安装gperftools，而后在编译nginx添加&amp;ndash;with-google_perftools_module选项即可。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果想使用nginx的perl模块，可以通过为configure脚本添加&amp;ndash;with-http_perl_module选项来实现，但目前此模块仍处于实验性使用阶段，可能会在运行中出现意外，因此，其实现方式这里不再介绍。如果想使用基于nginx的cgi功能，也可以基于FCGI来实现，具体实现方法请参照网上的文档。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;为nginx提供SysV init脚本:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;新建文件/etc/rc.d/init.d/nginx，内容如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+#
+# nginx - this script starts and stops the nginx daemon
+#
+# chkconfig:   - 85 15 
+# description:  Nginx is an HTTP(S) server, HTTP(S) reverse \
+#               proxy and IMAP/POP3 proxy server
+# processname: nginx
+# config:      /etc/nginx/nginx.conf
+# config:      /etc/sysconfig/nginx
+# pidfile:     /var/run/nginx.pid
+ 
+# Source function library.
+. /etc/rc.d/init.d/functions
+ 
+# Source networking configuration.
+. /etc/sysconfig/network
+ 
+# Check that networking is up.
+[ &amp;quot;$NETWORKING&amp;quot; = &amp;quot;no&amp;quot; ] &amp;amp;&amp;amp; exit 0
+ 
+nginx=&amp;quot;/usr/sbin/nginx&amp;quot;
+prog=$(basename $nginx)
+ 
+NGINX_CONF_FILE=&amp;quot;/etc/nginx/nginx.conf&amp;quot;
+ 
+[ -f /etc/sysconfig/nginx ] &amp;amp;&amp;amp; . /etc/sysconfig/nginx
+ 
+lockfile=/var/lock/subsys/nginx
+ 
+make_dirs() {
+   # make required directories
+   user=`nginx -V 2&amp;gt;&amp;amp;1 | grep &amp;quot;configure arguments:&amp;quot; | sed &#39;s/[^*]*--user=\([^ ]*\).*/\1/g&#39; -`
+   options=`$nginx -V 2&amp;gt;&amp;amp;1 | grep &#39;configure arguments:&#39;`
+   for opt in $options; do
+       if [ `echo $opt | grep &#39;.*-temp-path&#39;` ]; then
+           value=`echo $opt | cut -d &amp;quot;=&amp;quot; -f 2`
+           if [ ! -d &amp;quot;$value&amp;quot; ]; then
+               # echo &amp;quot;creating&amp;quot; $value
+               mkdir -p $value &amp;amp;&amp;amp; chown -R $user $value
+           fi
+       fi
+   done
+}
+ 
+start() {
+    [ -x $nginx ] || exit 5
+    [ -f $NGINX_CONF_FILE ] || exit 6
+    make_dirs
+    echo -n $&amp;quot;Starting $prog: &amp;quot;
+    daemon $nginx -c $NGINX_CONF_FILE
+    retval=$?
+    echo
+    [ $retval -eq 0 ] &amp;amp;&amp;amp; touch $lockfile
+    return $retval
+}
+ 
+stop() {
+    echo -n $&amp;quot;Stopping $prog: &amp;quot;
+    killproc $prog -QUIT
+    retval=$?
+    echo
+    [ $retval -eq 0 ] &amp;amp;&amp;amp; rm -f $lockfile
+    return $retval
+}
+ 
+restart() {
+    configtest || return $?
+    stop
+    sleep 1
+    start
+}
+ 
+reload() {
+    configtest || return $?
+    echo -n $&amp;quot;Reloading $prog: &amp;quot;
+    killproc $nginx -HUP
+    RETVAL=$?
+    echo
+}
+ 
+force_reload() {
+    restart
+}
+ 
+configtest() {
+  $nginx -t -c $NGINX_CONF_FILE
+}
+ 
+rh_status() {
+    status $prog
+}
+ 
+rh_status_q() {
+    rh_status &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+}
+ 
+case &amp;quot;$1&amp;quot; in
+    start)
+        rh_status_q &amp;amp;&amp;amp; exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart|configtest)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+            ;;
+    *)
+        echo $&amp;quot;Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}&amp;quot;
+        exit 2
+esac
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;而后为此脚本赋予执行权限：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# chmod +x /etc/rc.d/init.d/nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;添加至服务管理列表，并让其开机自动启动：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# chkconfig --add nginx
+# chkconfig nginx on
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;而后就可以启动服务并测试了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# service nginx start
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;二-配置nginx&#34;&gt;二、配置Nginx&lt;/h3&gt;
+
+&lt;p&gt;Nginx的代码是由一个核心和一系列的模块组成, 核心主要用于提供Web Server的基本功能，以及Web和Mail反向代理的功能；还用于启用网络协议，创建必要的运行时环境以及确保不同的模块之间平滑地进行交互。不过，大多跟协议相关的功能和某应用特有的功能都是由nginx的模块实现的。这些功能模块大致可以分为事件模块、阶段性处理器、输出过滤器、变量处理器、协议、upstream和负载均衡几个类别，这些共同组成了nginx的http功能。事件模块主要用于提供OS独立的(不同操作系统的事件机制有所不同)事件通知机制如kqueue或epoll等。协议模块则负责实现nginx通过http、tls/ssl、smtp、pop3以及imap与对应的客户端建立会话。&lt;/p&gt;
+
+&lt;p&gt;Nginx的核心模块为Main和Events，此外还包括标准HTTP模块、可选HTTP模块和邮件模块，其还可以支持诸多第三方模块。Main用于配置错误日志、进程及权限等相关的参数，Events用于配置IO模型，如epoll、kqueue、select或poll等，它们是必备模块。&lt;/p&gt;
+
+&lt;p&gt;Nginx的主配置文件由几个段组成，这个段通常也被称为nginx的上下文，每个段的定义格式如下所示。需要注意的是，其每一个指令都必须使用分号(;)结束，否则为语法错误。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;section&amp;gt; {
+    &amp;lt;directive&amp;gt; &amp;lt;parameters&amp;gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-1-配置main模块&#34;&gt;2.1 配置main模块&lt;/h4&gt;
+
+&lt;p&gt;下面说明main模块中的几个关键参数。&lt;/p&gt;
+
+&lt;h5 id=&#34;2-1-1-error-log&#34;&gt;2.1.1 error_log&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;用于配置错误日志，可用于main、http、server及location上下文中；语法格式为：
+
+error_log file | stderr [ debug | info | notice | warn | error | crit | alert | emerg ]
+
+如果在编译nginx时使用了--with-debug选项，还可以使用如下格式打开调试功能。
+
+error_log LOGFILE [debug_core | debug_alloc | debug_mutex | debug_event | debug_http | debug_imap];
+
+要禁用错误日志，不能使用“error_log off;”，而要使用类似如下选项：
+
+error_log /dev/null crit;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-1-2-timer-resolution&#34;&gt;2.1.2 timer_resolution&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;用于降低gettimeofday()系统调用的次数。默认情况下，每次从kevent()、epoll、/dev/poll、select()或poll()返回时都会执行此系统调用。语法格式为：
+
+timer_resolution interval
+
+例如：
+
+timer_resolution  100ms;
+
+2.1.3 worker_cpu_affinity
+
+通过sched_setaffinity()将worker绑定至CPU上，只能用于main上下文。语法格式为：
+
+worker_cpu_affinity cpumask ...
+
+例如：
+worker_processes     4;
+worker_cpu_affinity 0001 0010 0100 1000;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-1-4-worker-priority&#34;&gt;2.1.4 worker_priority&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;为worker进程设定优先级(指定nice值)，此参数只能用于main上下文中，默认为0；语法格式为：
+
+worker_priority number
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-1-5-worker-processes&#34;&gt;2.1.5 worker_processes&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;worker进程是单线程进程。如果Nginx用于CPU密集型的场景中，如SSL或gzip，且主机上的CPU个数至少有2个，那么应该将此参数值设定为与CPU核心数相同；如果Nginx用于大量静态文件访问的场景中，且所有文件的总大小大于可用内存时，应该将此参数的值设定得足够大以充分利用磁盘带宽。
+
+此参数与Events上下文中的work_connections变量一起决定了maxclient的值：
+maxclients = work_processes * work_connections
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-1-6-worker-rlimit-nofile&#34;&gt;2.1.6 worker_rlimit_nofile&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;设定worker进程所能够打开的文件描述符个数的最大值。语法格式：
+
+worker_rlimit_nofile number
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-2-配置events模块&#34;&gt;2.2 配置Events模块&lt;/h3&gt;
+
+&lt;h5 id=&#34;2-2-1-worker-connections&#34;&gt;2.2.1 worker_connections&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;设定每个worker所处理的最大连接数，它与来自main上下文的worker_processes一起决定了maxclients的值。
+
+max clients = worker_processes * worker_connections
+
+而在反向代理场景中，其计算方法与上述公式不同，因为默认情况下浏览器将打开2个连接，而nginx会为每一个连接打开2个文件描述符，因此，其maxclients的计算方法为：
+
+max clients = worker_processes * worker_connections/4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-2-2-use&#34;&gt;2.2.2 use&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;在有着多于一个的事件模型IO的应用场景中，可以使用此指令设定nginx所使用的IO机制，默认为./configure脚本选定的各机制中最适用当前OS的版本。语法格式：
+
+use [ kqueue | rtsig | epoll | /dev/poll | select | poll | eventport ]
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;2-3-一个配置示例&#34;&gt;2.3 一个配置示例&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;user nginx;
+# the load is CPU-bound and we have 16 cores
+worker_processes 16;
+error_log /var/log/nginx/error.log;
+pid /var/run/nginx.pid;
+
+events {
+    use epoll;
+    worker_connections 2048;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;2-4-http服务的相关配置&#34;&gt;2.4 HTTP服务的相关配置&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;http上下文专用于配置用于http的各模块，此类指令非常的多，每个模块都有其专用指定，具体请参数nginx官方wiki关于模块部分的说明。大体上来讲，这些模块所提供的配置指令还可以分为如下几个类别。
+
+客户端类指令：如client_body_buffer_size、client_header_buffer_size、client_header_timeout和keepalive_timeout等；
+文件IO类指令：如aio、directio、open_file_cache、open_file_cache_min_uses、open_file_cache_valid和sendfile等；
+hash类指令：用于定义Nginx为某特定的变量分配多大的内存空间，如types_hash_bucket_size、server_names_hash_bucket_size和variables_hash_bucket_size等；
+套接字类指令：用于定义Nginx如何处理tcp套接字相关的功能，如tcp_nodelay(用于keepalive功能启用时)和tcp_nopush(用于sendfile启用时)等；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;2-5-虚拟服务器相关配置&#34;&gt;2.5 虚拟服务器相关配置&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;server {
+    &amp;lt;directive&amp;gt; &amp;lt;parameters&amp;gt;;
+}
+用于定义虚拟服务器相关的属性，常见的指令有backlog、rcvbuf、bind及sndbuf等。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;2-6-location相关的配置&#34;&gt;2.6 location相关的配置&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;location [modifier] uri {...} 或 location @name {…}
+
+通常用于server上下文中，用于设定某URI的访问属性。location可以嵌套。
+
+The prefix &amp;quot;@&amp;quot; specifies a named location. Such locations are not used during normal processing of requests, they are intended only to process internally redirected requests (see error_page, try_files). 如下面关于memcached的相关配置。
+
+server {
+  location / {
+    set $memcached_key $uri;
+    memcached_pass     name:11211;
+    default_type       text/html;
+    error_page         404 @fallback;
+  }
+ 
+  location @fallback {
+    proxy_pass http://backend;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;三-nginx反向代理&#34;&gt;三、Nginx反向代理&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Nginx通过proxy模块实现反向代理功能。在作为web反向代理服务器时，nginx负责接收客户请求，并能够根据URI、客户端参数或其它的处理逻辑将用户请求调度至上游服务器上(upstream server)。nginx在实现反向代理功能时的最重要指令为proxy_pass，它能够将location定义的某URI代理至指定的上游服务器(组)上。如下面的示例中，location的/uri将被替换为上游服务器上的/newuri。
+
+location /uri {
+    proxy_pass http://www.magedu.com:8080/newuri;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;不过，这种处理机制中有两个例外。一个是如果location的URI是通过模式匹配定义的，其URI将直接被传递至上游服务器，而不能为其指定转换的另一个URI。例如下面示例中的/forum将被代理为&lt;a href=&#34;http://www.magedu.com/forum。&#34;&gt;http://www.magedu.com/forum。&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;location ~ ^/bbs {
+    proxy_pass http://www.magedu.com;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第二个例外是，如果在loation中使用的URL重定向，那么nginx将使用重定向后的URI处理请求，而不再考虑上游服务器上定义的URI。如下面所示的例子中，传送给上游服务器的URI为/index.php?page=&lt;match&gt;，而不是/index。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;location / {
+    rewrite /(.*)$ /index.php?page=$1 break;
+    proxy_pass http://localhost:8080/index;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3.1 proxy模块的指令&lt;/p&gt;
+
+&lt;p&gt;proxy模块的可用配置指令非常多，它们分别用于定义proxy模块工作时的诸多属性，如连接超时时长、代理时使用http协议版本等。下面对常用的指令做一个简单说明。&lt;/p&gt;
+
+&lt;p&gt;proxy_connect_timeout：nginx将一个请求发送至upstream server之前等待的最大时长；
+proxy_cookie_domain：将upstream server通过Set-Cookie首部设定的domain属性修改为指定的值，其值可以为一个字符串、正则表达式的模式或一个引用的变量；
+proxy_cookie_path: 将upstream server通过Set-Cookie首部设定的path属性修改为指定的值，其值可以为一个字符串、正则表达式的模式或一个引用的变量；
+proxy_hide_header：设定发送给客户端的报文中需要隐藏的首部；
+proxy_pass：指定将请求代理至upstream server的URL路径；
+proxy_set_header：将发送至upsream server的报文的某首部进行重写；
+proxy_redirect：重写location并刷新从upstream server收到的报文的首部；
+proxy_send_timeout：在连接断开之前两次发送至upstream server的写操作的最大间隔时长；
+proxy_read_timeout：在连接断开之前两次从接收upstream server接收读操作的最大间隔时长；&lt;/p&gt;
+
+&lt;p&gt;如下面的一个示例：
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    client_max_body_size 10m;
+    client_body_buffer_size 128k;
+    proxy_connect_timeout 30;
+    proxy_send_timeout 15;
+    proxy_read_timeout 15;&lt;/p&gt;
+
+&lt;p&gt;3.2 upstream模块&lt;/p&gt;
+
+&lt;p&gt;与proxy模块结合使用的模块中，最常用的当属upstream模块。upstream模块可定义一个新的上下文，它包含了一组宝岛upstream服务器，这些服务器可能被赋予了不同的权重、不同的类型甚至可以基于维护等原因被标记为down。&lt;/p&gt;
+
+&lt;p&gt;upstream模块常用的指令有：
+ip_hash：基于客户端IP地址完成请求的分发，它可以保证来自于同一个客户端的请求始终被转发至同一个upstream服务器；
+keepalive：每个worker进程为发送到upstream服务器的连接所缓存的个数；
+least_conn：最少连接调度算法；
+server：定义一个upstream服务器的地址，还可包括一系列可选参数，如：
+    weight：权重；
+    max_fails：最大失败连接次数，失败连接的超时时长由fail_timeout指定；
+    fail_timeout：等待请求的目标服务器发送响应的时长；
+    backup：用于fallback的目的，所有服务均故障时才启动此服务器；
+    down：手动标记其不再处理任何请求；&lt;/p&gt;
+
+&lt;p&gt;例如：
+    upstream backend {
+      server www.magedu.com weight=5;
+      server www2.magedu.com:8080       max_fails=3  fail_timeout=30s;
+    }&lt;/p&gt;
+
+&lt;p&gt;upstream模块的负载均衡算法主要有三种，轮调(round-robin)、ip哈希(ip_hash)和最少连接(least_conn)三种。&lt;/p&gt;
+
+&lt;p&gt;此外，upstream模块也能为非http类的应用实现负载均衡，如下面的示例定义了nginx为memcached服务实现负载均衡之目的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;upstream memcachesrvs {
+    server 172.16.100.6:11211;
+    server 172.16.100.7:11211;
+}
+
+server {
+    location / {
+    set $memcached_key &amp;quot;$uri?$args&amp;quot;;
+    memcached_pass memcachesrvs;
+    error_page 404 = @fallback;
+    }
+
+    location @fallback {
+         proxy_pass http://127.0.0.1:8080;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3.3 if判断语句&lt;/p&gt;
+
+&lt;p&gt;在location中使用if语句可以实现条件判断，其通常有一个return语句，且一般与有着last或break标记的rewrite规则一同使用。但其也可以按需要使用在多种场景下，需要注意的是，不当的使用可能会导致不可预料的后果。&lt;/p&gt;
+
+&lt;p&gt;location / {
+    if ($request_method == “PUT”) {
+        proxy_pass &lt;a href=&#34;http://upload.magedu.com:8080&#34;&gt;http://upload.magedu.com:8080&lt;/a&gt;;
+    }&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if ($request_uri ~ &amp;quot;\.(jpg|gif|jpeg|png)$&amp;quot;) {
+    proxy_pass http://imageservers;
+    break;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;upstream imageservers {
+    server 172.16.100.8:80 weight 2;
+    server 172.16.100.9:80 weight 3;
+}&lt;/p&gt;
+
+&lt;p&gt;3.3.1 if语句中的判断条件&lt;/p&gt;
+
+&lt;p&gt;正则表达式匹配：
+    ~：与指定正则表达式模式匹配时返回“真”，判断匹配与否时区分字符大小写；
+    ~*：与指定正则表达式模式匹配时返回“真”，判断匹配与否时不区分字符大小写；
+    !~：与指定正则表达式模式不匹配时返回“真”，判断匹配与否时区分字符大小写；
+    !~*：与指定正则表达式模式不匹配时返回“真”，判断匹配与否时不区分字符大小写；&lt;/p&gt;
+
+&lt;p&gt;文件及目录匹配判断：
+    -f, !-f：判断指定的路径是否为存在且为文件；
+    -d, !-d：判断指定的路径是否为存在且为目录；
+    -e, !-e：判断指定的路径是否存在，文件或目录均可；
+    -x, !-x：判断指定路径的文件是否存在且可执行；&lt;/p&gt;
+
+&lt;p&gt;3.3.2 nginx常用的全局变量&lt;/p&gt;
+
+&lt;p&gt;下面是nginx常用的全局变量中的一部分，它们经常用于if语句中实现条件判断。&lt;/p&gt;
+
+&lt;p&gt;$args
+$content_length
+$content_type
+$document_root
+$document_uri
+$host
+$http_user_agent
+$http_cookie
+$limit_rate
+$request_body_file
+$request_method
+$remote_addr
+$remote_port
+$remote_user
+$request_filename
+$request_uri
+$query_string
+$scheme
+$server_protocol
+$server_addr
+$server_name
+$server_port
+$uri&lt;/p&gt;
+
+&lt;p&gt;四、反向代理性能优化&lt;/p&gt;
+
+&lt;p&gt;在反向代理场景中，nginx有一系列指令可用于定义其工作特性，如缓冲区大小等，给这些指令设定一个合理的值，可以有效提升其性能。&lt;/p&gt;
+
+&lt;p&gt;4.1 缓冲区设定&lt;/p&gt;
+
+&lt;p&gt;nginx在默认情况下在将其响应给客户端之前会尽可能地接收来upstream服务器的响应报文，它会将这些响应报文存暂存于本地并尽量一次性地响应给客户端。然而，在来自于客户端的请求或来自upsteam服务器的响应过多时，nginx会试图将之存储于本地磁盘中，这将大大降低nginx的性能。因此，在有着更多可用内存的场景中，应该将用于暂存这些报文的缓冲区调大至一个合理的值。&lt;/p&gt;
+
+&lt;p&gt;proxy_buffer_size size：设定用于暂存来自于upsteam服务器的第一个响应报文的缓冲区大小；
+proxy_buffering on|off：启用缓冲upstream服务器的响应报文，否则，如果proxy_max_temp_file_size指令的值为0，来自upstream服务器的响应报文在接收到的那一刻将同步发送至客户端；一般情况下，启用proxy_buffering并将proxy_max_temp_file_size设定为0能够启用缓存响应报文的功能，并能够避免将其缓存至磁盘中；
+proxy_buffers 8 4k|8k：用于缓冲来自upstream服务器的响应报文的缓冲区大小；&lt;/p&gt;
+
+&lt;p&gt;4.2 缓存&lt;/p&gt;
+
+&lt;p&gt;nginx做为反向代理时，能够将来自upstream的响应缓存至本地，并在后续的客户端请求同样内容时直接从本地构造响应报文。&lt;/p&gt;
+
+&lt;p&gt;proxy_cache zone|off：定义一个用于缓存的共享内存区域，其可被多个地方调用；缓存将遵从upstream服务器的响应报文首部中关于缓存的设定，如 &amp;ldquo;Expires&amp;rdquo;、&amp;rdquo;Cache-Control: no-cache&amp;rdquo;、 &amp;ldquo;Cache-Control: max-age=XXX&amp;rdquo;、&amp;rdquo;private&amp;rdquo;和&amp;rdquo;no-store&amp;rdquo; 等，但nginx在缓存时不会考虑响应报文的&amp;rdquo;Vary&amp;rdquo;首部。为了确保私有信息不被缓存，所有关于用户的私有信息可以upstream上通过&amp;rdquo;no-cache&amp;rdquo; or &amp;ldquo;max-age=0&amp;rdquo;来实现，也可在nginx设定proxy_cache_key必须包含用户特有数据如$cookie_xxx的方式实现，但最后这种方式在公共缓存上使用可能会有风险。因此，在响应报文中含有以下首部或指定标志的报文将不会被缓存。
+    Set-Cookie
+    Cache-Control containing &amp;ldquo;no-cache&amp;rdquo;, &amp;ldquo;no-store&amp;rdquo;, &amp;ldquo;private&amp;rdquo;, or a &amp;ldquo;max-age&amp;rdquo; with a non-numeric or 0 value
+    Expires with a time in the past
+    X-Accel-Expires: 0
+proxy_cache_key：设定在存储及检索缓存时用于“键”的字符串，可以使用变量为其值，但使用不当时有可能会为同一个内容缓存多次；另外，将用户私有信息用于键可以避免将用户的私有信息返回给其它用户；
+proxy_cache_lock：启用此项，可在缓存未命令中阻止多个相同的请求同时发往upstream，其生效范围为worker级别；
+proxy_cache_lock_timeout：proxy_cache_lock功能的锁定时长；
+proxy_cache_min_uses：某响应报文被缓存之前至少应该被请求的次数；
+proxy_cache_path：定义一个用记保存缓存响应报文的目录，及一个保存缓存对象的键及响应元数据的共享内存区域(keys_zone=name:size)，其可选参数有：
+    levels：每级子目录名称的长度，有效值为1或2，每级之间使用冒号分隔，最多为3级；
+    inactive：非活动缓存项从缓存中剔除之前的最大缓存时长；
+    max_size：缓存空间大小的上限，当需要缓存的对象超出此空间限定时，缓存管理器将基于LRU算法对其进行清理；
+    loader_files：缓存加载器(cache_loader)的每次工作过程最多为多少个文件加载元数据；
+    loader_sleep：缓存加载器的每次迭代工作之后的睡眠时长；
+    loader_threashold：缓存加载器的最大睡眠时长；
+    例如：  proxy_cache_path  /data/nginx/cache/one    levels=1      keys_zone=one:10m;
+            proxy_cache_path  /data/nginx/cache/two    levels=2:2    keys_zone=two:100m;
+            proxy_cache_path  /data/nginx/cache/three  levels=1:1:2  keys_zone=three:1000m;
+proxy_cache_use_stale：在无法联系到upstream服务器时的哪种情形下(如error、timeout或http_500等)让nginx使用本地缓存的过期的缓存对象直接响应客户端请求；其格式为：
+    proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_404 | off
+proxy_cache_valid [ code &amp;hellip;] time：用于为不同的响应设定不同时长的有效缓存时长，例如：proxy_cache_valid  200 302  10m;
+proxy_cache_methods [GET HEAD POST]：为哪些请求方法启用缓存功能；
+proxy_cache_bypass string：设定在哪种情形下，nginx将不从缓存中取数据；例如：
+     proxy_cache_bypass $cookie_nocache $arg_nocache $arg_comment;
+    proxy_cache_bypass $http_pragma $http_authorization;&lt;/p&gt;
+
+&lt;p&gt;4.2.1 使用示例&lt;/p&gt;
+
+&lt;p&gt;http {
+    proxy_cache_path  /data/nginx/cache  levels=1:2    keys_zone=STATIC:10m
+                                         inactive=24h  max_size=1g;
+    server {
+        location / {
+            proxy_pass             &lt;a href=&#34;http://www.magedu.com&#34;&gt;http://www.magedu.com&lt;/a&gt;;
+            proxy_set_header       Host $host;
+            proxy_cache            STATIC;
+            proxy_cache_valid      200  1d;
+            proxy_cache_valid      301 302 10m;
+            proxy_cache_vaild      any 1m;
+            proxy_cache_use_stale  error timeout invalid_header updating
+                                   http_500 http_502 http_503 http_504;
+        }
+    }
+}&lt;/p&gt;
+
+&lt;p&gt;4.3 压缩&lt;/p&gt;
+
+&lt;p&gt;nginx将响应报文发送至客户端之前可以启用压缩功能，这能够有效地节约带宽，并提高响应至客户端的速度。通常编译nginx默认会附带gzip压缩的功能，因此，可以直接启用之。&lt;/p&gt;
+
+&lt;p&gt;http {
+    gzip on;
+    gzip_http_version 1.0;
+    gzip_comp_level 2;
+    gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript application/json;
+    gzip_disable msie6;
+}&lt;/p&gt;
+
+&lt;p&gt;gzip_proxied指令可以定义对客户端请求哪类对象启用压缩功能，如“expired”表示对由于使用了expire首部定义而无法缓存的对象启用压缩功能，其它可接受的值还有“no-cache”、“no-store”、“private”、“no_last_modified”、“no_etag”和“auth”等，而“off”则表示关闭压缩功能。&lt;/p&gt;
+
+&lt;p&gt;五、配置示例&lt;/p&gt;
+
+&lt;p&gt;5.1 反向代理&lt;/p&gt;
+
+&lt;p&gt;server {
+        listen       80;
+        server_name  www.magedu.com;
+        add_header X-Via $server_addr;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    location / {
+        root   html;
+        index  index.html index.htm;
+        if ($request_method ~* &amp;quot;PUT&amp;quot;) {
+            proxy_pass http://172.16.100.12;
+            break;
+        }
+    }
+
+    location /bbs {
+        proxy_pass http://172.16.100.11/;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;此例中，对&lt;a href=&#34;http://www.magedu.com/bbs/的请求将被转发至http://172.16.100.11/这个URL，切记最后的/不应该省去；而/匹配的URL中请求方法为“PUT”时，将被转发至http://172.16.100.12/这个URL。&#34;&gt;http://www.magedu.com/bbs/的请求将被转发至http://172.16.100.11/这个URL，切记最后的/不应该省去；而/匹配的URL中请求方法为“PUT”时，将被转发至http://172.16.100.12/这个URL。&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;另外，add_header用于让nginx在响应给用户的报文中构造自定义首部，其使用格式为“add_header NAME VALUE”。&lt;/p&gt;
+
+&lt;p&gt;可以使用curl命令对配置好的服务进行请求，以验正其效果。如：&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-i-http-www-magedu-com-bbs&#34;&gt;curl -I &lt;a href=&#34;http://www.magedu.com/bbs/&#34;&gt;http://www.magedu.com/bbs/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;HTTP/1.1 200 OK
+Server: nginx/1.4.1
+Date: Tue, 14 May 2013 10:19:10 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 15
+Connection: keep-alive
+Last-Modified: Tue, 30 Apr 2013 09:34:09 GMT
+ETag: &amp;ldquo;186e9f-f-b4076640&amp;rdquo;
+X-Via: 172.16.100.107
+Accept-Ranges: bytes&lt;/p&gt;
+
+&lt;p&gt;在后端服务器172.16.100.12上装载dav模块，并开放其dav功能，而后验正文件上传效果。开放dav功能的方法如下：&lt;/p&gt;
+
+&lt;p&gt;首先启用如下两个模块：
+LoadModule dav_module modules/mod_dav.so
+LoadModule dav_fs_module modules/mod_dav_fs.so&lt;/p&gt;
+
+&lt;p&gt;而后配置相应主机的目录如下所示，关键是其中的dav一行。
+&lt;Directory &#34;/var/www/html&#34;&gt;
+    dav on
+    Options Indexes FollowSymLinks
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;&lt;/p&gt;
+
+&lt;p&gt;接着尝试访问代理服务器：&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-i-t-etc-inittab-http-www-magedu-com&#34;&gt;curl -I -T /etc/inittab &lt;a href=&#34;http://www.magedu.com/&#34;&gt;http://www.magedu.com/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;HTTP/1.1 100 Continue&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.1 201 Created
+Server: nginx/1.4.1
+Date: Tue, 14 May 2013 10:20:15 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 261
+Location: &lt;a href=&#34;http://172.16.100.107/inittab&#34;&gt;http://172.16.100.107/inittab&lt;/a&gt;
+Connection: keep-alive
+X-Via: 172.16.100.107&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE HTML PUBLIC &amp;ldquo;-//IETF//DTD HTML 2.0//EN&amp;rdquo;&amp;gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;201 Created&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Created&lt;/h1&gt;
+&lt;p&gt;Resource /inittab has been created.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;address&gt;Apache/2.2.3 (Red Hat) Server at 172.16.100.12 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;&lt;/p&gt;
+
+&lt;p&gt;5.2 启用缓存
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;proxy_cache_path /nginx/cache/first  levels=1:2   keys_zone=first:10m max_size=512m;
+
+server {
+    listen       80;
+    server_name  www.magedu.com;
+
+    location / {
+        root   html;
+        index  index.html index.htm;
+        if ($request_method ~* &amp;quot;PUT&amp;quot;) {
+            proxy_pass http://172.16.100.12;
+            break;
+        }
+    }
+
+    location /bbs {
+        proxy_pass http://172.16.100.11/;
+        proxy_cache first;
+        proxy_cache_valid 200 1d;
+        proxy_cache_valid 301 302 10m;
+        proxy_cache_valid any 1m;
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;5.3 使用upstream&lt;/p&gt;
+
+&lt;p&gt;5.3.1 不启用缓存&lt;/p&gt;
+
+&lt;p&gt;http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;upstream websrv {
+    server 172.16.100.11 weight=1;
+    server 172.16.100.12 weight=1;
+    server 127.0.0.1:8080 backup;
+}
+server {
+    listen       80;
+    server_name  www.magedu.com;
+
+    add_header X-Via $server_addr;
+
+    location / {
+        proxy_pass http://websrv;
+        index  index.html index.htm;
+
+        if ($request_method ~* &amp;quot;PUT&amp;quot;) {
+            proxy_pass http://172.16.100.12;
+            break;
+        }
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
+
+server {
+    listen 8080;
+    server_name localhost;
+    root /nginx/htdocs;
+    index index.html;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;测试效果：默认情况下，nginx对定义了权重的upstream服务器使用加权轮调的方法调度访问，因此，其多次访问应该由不同的服务器进行响应。如下所示。&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-http-172-16-100-107&#34;&gt;curl  &lt;a href=&#34;http://172.16.100.107/&#34;&gt;http://172.16.100.107/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;RS2.magedu.com&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-http-172-16-100-107-1&#34;&gt;curl  &lt;a href=&#34;http://172.16.100.107/&#34;&gt;http://172.16.100.107/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;RS1.magedu.com&lt;/p&gt;
+
+&lt;p&gt;根据上面的配置，如果172.16.100.11和172.16.100.12两个upstream服务器均宕机时，将由本地监听在8080端口的虚拟主机进行响应。&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-http-172-16-100-107-2&#34;&gt;curl  &lt;a href=&#34;http://172.16.100.107/&#34;&gt;http://172.16.100.107/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;Sorry&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;5.3.2 为upstream启用缓存&lt;/p&gt;
+
+&lt;p&gt;http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;proxy_cache_path /nginx/cache/first  levels=1:2   keys_zone=first:10m max_size=512m;
+
+upstream websrv {
+    server 172.16.100.11 weight=1;
+    server 172.16.100.12 weight=1;
+    server 127.0.0.1:8080 backup;
+}
+server {
+    listen       80;
+    server_name  www.magedu.com;
+
+    add_header X-Via $server_addr;
+    add_header X-Cache-Status $upstream_cache_status;
+
+    location / {
+        proxy_pass http://websrv;
+        proxy_cache first;
+        proxy_cache_valid 200 1d;
+        proxy_cache_valid 301 302 10m;
+        proxy_cache_valid any 1m;
+        index  index.html index.htm;
+
+        if ($request_method ~* &amp;quot;PUT&amp;quot;) {
+            proxy_pass http://172.16.100.12;
+            break;
+        }
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
+
+server {
+    listen 8080;
+    server_name localhost;
+    root /nginx/htdocs;
+    index index.html;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;第一次访问某可缓存资源时，在本地缓存中尚未有其对应的缓存对象，因此，其一定为未命中状态。而第二次请求时，则可以直接从本地缓存构建响应报文。&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-i-http-www-magedu-com&#34;&gt;curl -I &lt;a href=&#34;http://www.magedu.com/&#34;&gt;http://www.magedu.com/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;HTTP/1.1 200 OK
+Server: nginx/1.4.1
+Date: Tue, 14 May 2013 10:53:07 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 15
+Connection: keep-alive
+Last-Modified: Tue, 30 Apr 2013 09:34:09 GMT
+ETag: &amp;ldquo;186e9f-f-b4076640&amp;rdquo;
+Accept-Ranges: bytes
+X-Via: 172.16.100.107
+X-Cache-Status: MISS&lt;/p&gt;
+
+&lt;h1 id=&#34;curl-i-http-www-magedu-com-1&#34;&gt;curl -I &lt;a href=&#34;http://www.magedu.com/&#34;&gt;http://www.magedu.com/&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;HTTP/1.1 200 OK
+Server: nginx/1.4.1
+Date: Tue, 14 May 2013 10:53:09 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 15
+Connection: keep-alive
+Last-Modified: Tue, 30 Apr 2013 09:34:09 GMT
+ETag: &amp;ldquo;186e9f-f-b4076640&amp;rdquo;
+X-Via: 172.16.100.107
+X-Cache-Status: HIT
+Accept-Ranges: bytes&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>linux tip</title>
+      <link>/post/linux/linux-tip/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/linux-tip/</guid>
+      <description>&lt;p&gt;##1、nohup命令及其输出文件&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;　　nohup命令：如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。nohup就是不挂起的意思( n ohang up)。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;该命令的一般形式为：nohup command &amp;amp;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;bash
+ls xxx 1&amp;gt;out.txt 2&amp;gt;&amp;amp;1 
+nohup /mnt/Nand3/H2000G &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp; 
+&lt;/code&gt;
+&amp;gt;对于&amp;amp; 1 更准确的说应该是文件描述符 1,而1 一般代表的就是&lt;code&gt;STDOUT_FILENO&lt;/code&gt;,实际上这个操作就是一个&lt;code&gt;dup2(2)&lt;/code&gt;调用.他标准输出到&lt;code&gt;all_result&lt;/code&gt;,然后复制标准输出到文件描述符&lt;code&gt;2(STDERR_FILENO)&lt;/code&gt;,其后果就是文件描述符1和2指向同一个文件表项,也可以说错误的输出被合并了.其中0 表示键盘输入 1表示屏幕输出2表示错误输出.把标准出错重定向到标准输出,然后扔到&lt;code&gt;/DEV/NULL&lt;/code&gt;下面去。通俗的说，就是把所有标准输出和标准出错都扔到垃圾桶里面。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;command &amp;gt;out.file 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;command &amp;gt;out.file&lt;/code&gt;是将&lt;code&gt;command&lt;/code&gt;的输出重定向到&lt;code&gt;out.file&lt;/code&gt;文件，即输出内容不打印到屏幕上，而是输出到&lt;code&gt;out.file&lt;/code&gt;文件中。 &lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt; 是将标准出错重定向到标准输出，这里的标准输出已经重定向到了&lt;code&gt;out.file&lt;/code&gt;文件，即将标准出错也输出到&lt;code&gt;out.file&lt;/code&gt;文件中。最后一个&lt;code&gt;&amp;amp;&lt;/code&gt; ， 是让该命令在后台执行。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;试想&lt;code&gt;2&amp;gt;1&lt;/code&gt;代表什么，&lt;code&gt;2&lt;/code&gt;与&lt;code&gt;&amp;gt;&lt;/code&gt;结合代表错误重定向，而&lt;code&gt;1&lt;/code&gt;则代表错误重定向到一个文件&lt;code&gt;1&lt;/code&gt;，而不代表标准输出；
+换成&lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt;，&lt;code&gt;&amp;amp;&lt;/code&gt;与&lt;code&gt;1&lt;/code&gt;结合就代表标准输出了，就变成错误重定向到标准输出.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;你可以用&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ls 2&amp;gt;1&lt;/code&gt;测试一下，不会报没有&lt;code&gt;2&lt;/code&gt;文件的错误，但会输出一个空的文件&lt;code&gt;1&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ls xxx 2&amp;gt;1&lt;/code&gt;测试，没有&lt;code&gt;xxx&lt;/code&gt;这个文件的错误输出到了&lt;code&gt;1&lt;/code&gt;中；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ls xxx 2&amp;gt;&amp;amp;1&lt;/code&gt;测试，不会生成&lt;code&gt;1&lt;/code&gt;这个文件了，不过错误跑到标准输出了；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ls xxx &amp;gt;out.txt 2&amp;gt;&amp;amp;1&lt;/code&gt;, 实际上可换成 &lt;code&gt;ls xxx 1&amp;gt;out.txt 2&amp;gt;&amp;amp;1&lt;/code&gt;；重定向符号&amp;gt;默认是1,错误和输出都传到&lt;code&gt;out.txt&lt;/code&gt;了。
+为何&lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt;要写在后面？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;command &amp;gt; file 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+首先是&lt;code&gt;command &amp;gt; file&lt;/code&gt;将标准输出重定向到&lt;code&gt;file&lt;/code&gt;中， &lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt; 是标准错误拷贝了标准输出的行为，也就是同样被重定向到&lt;code&gt;file&lt;/code&gt;中，最终结果就是标准输出和错误都被重定向到&lt;code&gt;file&lt;/code&gt;中。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;command 2&amp;gt;&amp;amp;1 &amp;gt;file&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt; 标准错误拷贝了标准输出的行为，但此时标准输出还是在终端。&amp;gt;&lt;code&gt;file&lt;/code&gt; 后输出才被重定向到&lt;code&gt;file&lt;/code&gt;，但标准错误仍然保持在终端。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;用&lt;code&gt;strace&lt;/code&gt;可以看到：&lt;/strong&gt;
+1. &lt;code&gt;command &amp;gt; file 2&amp;gt;&amp;amp;1&lt;/code&gt;
+这个命令中实现重定向的关键系统调用序列是：
+&lt;code&gt;open(file) == 3&lt;/code&gt;
+&lt;code&gt;dup2(3,1)&lt;/code&gt;
+&lt;code&gt;dup2(1,2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;command 2&amp;gt;&amp;amp;1 &amp;gt;file&lt;/code&gt;
+这个命令中实现重定向的关键系统调用序列是：
+&lt;code&gt;dup2(1,2)&lt;/code&gt;
+&lt;code&gt;open(file) == 3&lt;/code&gt;
+&lt;code&gt;dup2(3,1)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;为什么要用 &lt;code&gt;/dev/null 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;这样的写法.这条命令的意思是将标准输出和错误输出全部重定向到&lt;code&gt;/dev/null&lt;/code&gt;中,也就是将产生的所有信息丢弃.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;下面我就为大家来说一下, &lt;code&gt;command &amp;gt; file 2&amp;gt;file&lt;/code&gt;   与&lt;code&gt;command &amp;gt; file 2&amp;gt;&amp;amp;1&lt;/code&gt; 有什么不同的地方.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先&lt;code&gt;~command &amp;gt; file 2&amp;gt;file&lt;/code&gt; 的意思是将命令所产生的标准输出信息,和错误的输出信息送到file 中.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;command   &amp;gt; file 2&amp;gt;file&lt;/code&gt; 这样的写法,stdout和stderr都直接送到file中, &lt;code&gt;file&lt;/code&gt;会被打开两次,这样&lt;code&gt;stdout&lt;/code&gt;和&lt;code&gt;stderr&lt;/code&gt;会互相覆盖,这样写相当使用了&lt;code&gt;FD1&lt;/code&gt;和&lt;code&gt;FD2&lt;/code&gt;两个同时去抢占&lt;code&gt;file&lt;/code&gt; 的管道.&lt;/li&gt;
+&lt;li&gt;而&lt;code&gt;command &amp;gt;file 2&amp;gt;&amp;amp;1&lt;/code&gt; 这条命令就将stdout直接送向&lt;code&gt;file&lt;/code&gt;, &lt;code&gt;stderr&lt;/code&gt; 继承了&lt;code&gt;FD1&lt;/code&gt;管道后,再被送往&lt;code&gt;file&lt;/code&gt;,此时,&lt;code&gt;file&lt;/code&gt; 只被打开了一次,也只使用了一个管道&lt;code&gt;FD1&lt;/code&gt;,它包括了&lt;code&gt;stdout&lt;/code&gt;和st&lt;code&gt;derr&lt;/code&gt;的内容.&lt;/li&gt;
+&lt;li&gt;从&lt;code&gt;IO&lt;/code&gt;效率上,前一条命令的效率要比后面一条的命令效率要低,所以在编写&lt;code&gt;shell&lt;/code&gt;脚本的时候,较多的时候我们会用&lt;code&gt;command &amp;gt; file 2&amp;gt;&amp;amp;1&lt;/code&gt; 这样的写法.&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>linux 基础命令</title>
+      <link>/post/linux/basic/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/basic/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_命令历史的使用技巧&#34;&gt;1. 命令历史的使用技巧：&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看_code_linux_code_系统信息&#34;&gt;2. 查看 &lt;code&gt;linux&lt;/code&gt; 系统信息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取_code_ip_code_地址&#34;&gt;3. 获取 &lt;code&gt;ip&lt;/code&gt; 地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_端口查看&#34;&gt;4. 端口查看&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_时间同步&#34;&gt;5. 时间同步&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_ntp_code_时间服务器设置&#34;&gt;5.1. &lt;code&gt;NTP&lt;/code&gt; 时间服务器设置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;5.2. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_rsync_code&#34;&gt;6. &lt;code&gt;Rsync&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_dns_服务器&#34;&gt;7. DNS 服务器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看日志&#34;&gt;8. 查看日志&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考_2&#34;&gt;9. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;10. Q &amp;amp; A&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_failed_host_is_down&#34;&gt;10.1. failed: Host is down&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_systemd&#34;&gt;11. systemd&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_mount&#34;&gt;11.1. mount&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看整个日志&#34;&gt;查看整个日志&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看_mytimer_timer_的日志&#34;&gt;查看 mytimer.timer 的日志&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_查看_mytimer_timer_和_mytimer_service_的日志&#34;&gt;查看 mytimer.timer 和 mytimer.service 的日志&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_从结尾开始查看最新日志&#34;&gt;从结尾开始查看最新日志&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_从结尾开始查看_mytimer_timer_的日志&#34;&gt;从结尾开始查看 mytimer.timer 的日志&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_命令历史的使用技巧&#34;&gt;1. 命令历史的使用技巧：&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;!n&lt;/code&gt;:执行命令历史中的第n条命令；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;!-n&lt;/code&gt;:执行命令历史中的倒数第n条命令；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;!!&lt;/code&gt;: 执行上一条命令；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;!string&lt;/code&gt;:执行命令历史中最近一个以指定字符串开头的命令&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;!$&lt;/code&gt;:引用前一个命令的最后一个参数;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;`Esc, `.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Alt+.&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_查看_code_linux_code_系统信息&#34;&gt;2. 查看 &lt;code&gt;linux&lt;/code&gt; 系统信息&lt;/h3&gt;
+&lt;table class=&#34;tableblock frame-all grid-all spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;col style=&#34;width: 50%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看文件夹大小&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;code&gt;du -sh docker-training/&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看系统硬盘信息和使用情况&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;code&gt;df -h&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看主板信息等&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;code&gt;lspci&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;CPU信息&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;code&gt;cat /proc/cpuinfo&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;内存信息&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;code&gt;cat /proc/meminfo&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;Linux下通过端口查看进程&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;`lsof -Pnl +M -i4&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-right valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;grep 8453`&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;查看监听状态的的TCP端口&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_获取_code_ip_code_地址&#34;&gt;3. 获取 &lt;code&gt;ip&lt;/code&gt; 地址&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ifconfig|grep &#34;inet addr:&#34;|grep -v &#34;127.0.0.1&#34;|cut -d: -f2|awk &#39;{print $1}&#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_端口查看&#34;&gt;4. 端口查看&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;linux&lt;/code&gt; 查询某个端口被什么进程占用的命令&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;lsof -i|grep 80 = 端口号即可获取进程号&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;linux&lt;/code&gt; 查询进程占用哪些端口&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;netstat -nlap&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_时间同步&#34;&gt;5. 时间同步&lt;/h3&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_ntp_code_时间服务器设置&#34;&gt;5.1. &lt;code&gt;NTP&lt;/code&gt; 时间服务器设置&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://vbird.dic.ksu.edu.tw/linux_server/0440ntp_2.php&#34;&gt;鸟哥ntp时间同步设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ntp.conf&lt;/code&gt; 配置文件&lt;br&gt;
+&lt;code&gt;vi /etc/npt.conf&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# Permit time synchronization with our time source, but do not
+# permit the source to query or modify the service on this system.
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+restrict 110.75.186.247
+restrict 110.75.186.248
+# Permit all access over the loopback interface.  This could
+# be tightened as well, but to do so would effect some of
+# the administrative functions.
+restrict 127.0.0.1
+restrict -6 ::1
+
+# Hosts on local network are less restricted.
+#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+restrict 196.168.1.0 mask 255.255.255.0 nomodify
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+#server 0.centos.pool.ntp.org
+#server 1.centos.pool.ntp.org
+#server 2.centos.pool.ntp.org
+#server 3.centos.pool.ntp.org
+
+server cn.ntp.org.cn
+
+#broadcast 192.168.1.255 key 42		# broadcast server
+#broadcastclient			# broadcast client
+#broadcast 224.0.1.1 key 42		# multicast server
+#multicastclient 224.0.1.1		# multicast client
+#manycastserver 239.255.254.254		# manycast server
+#manycastclient 239.255.254.254 key 42	# manycast client
+
+# Undisciplined Local Clock. This is a fake driver intended for backup
+# and when no outside source of synchronized time is available.
+server	127.127.1.0	# local clock
+fudge	127.127.1.0 stratum 10
+
+# Drift file.  Put this in a directory which the daemon can write to.
+# No symbolic links allowed, either, since the daemon updates the file
+# by creating a temporary in the same directory and then rename()&#39;ing
+# it to the file.
+driftfile /var/lib/ntp/drift
+
+# Key file containing the keys and key identifiers used when operating
+# with symmetric key cryptography.
+keys /etc/ntp/keys
+
+# Specify the key identifiers which are trusted.
+#trustedkey 4 8 42
+
+# Specify the key identifier to use with the ntpdc utility.
+#requestkey 8
+
+# Specify the key identifier to use with the ntpq utility.
+#controlkey 8&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;NTP&lt;/code&gt; 的启动与观察&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 1. 启动 NTP
+service ntpd start
+/etc/init.d/ntpd start
+chkconfig ntpd on
+tail /var/log/messages  &amp;lt;==自行检查看看有无错误
+# 观察启动的端口
+netstat -tlunp | grep ntp&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;局域网机器时间同步&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 删除本地时间并设置时区为上海
+rm -rf /etc/localtime &amp;amp;&amp;amp;\
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# 更新时间
+ntpdate &amp;lt;NTP IP&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;联网机器同步时间&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ sudo ntpdate cn.ntp.org.cn
+ 7 May 17:32:01 ntpdate[2286]: adjust time server 110.75.190.198 offset -0.021447 sec&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定时更新时间&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vim /etc/crontab
+30 * * * * ntpdate 196.168.1.30
+/sbin/service crond start //启动服务
+/sbin/service crond stop //关闭服务
+/sbin/service crond restart //重启服务
+/sbin/service crond reload //重新载入配置&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每10秒更新一次&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;* * * * * /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 10; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 20; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 30; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 40; /usr/bin/rsync -a /wiki_src/ /wiki/
+* * * * * sleep 50; /usr/bin/rsync -a /wiki_src/ /wiki/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_参考&#34;&gt;5.2. 参考&lt;/h4&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.linuxidc.com/Linux/2015-01/111466.htm&#34;&gt;系统时间&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;__code_rsync_code&#34;&gt;6. &lt;code&gt;Rsync&lt;/code&gt;&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# vi /etc/rsyncd.conf
+uid = root
+gid = root
+log file = /var/log/rsyncd.log
+[svn_sync]
+path = /home/svn
+read only = no&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动服务&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo rsync --daemon --config=/etc/rsyncd.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;Ref &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.jb51.net/article/59034.htm&#34;&gt;在Windows中配置Rsync同步文件的方法&lt;/a&gt;
+&lt;a href=&#34;http://blog.csdn.net/penglonghu/article/details/7005728&#34;&gt;通过rsync远程增量备份(差异备份)&lt;/a&gt;
+&lt;a href=&#34;http://blog.csdn.net/niushuai666/article/details/16880061&#34;&gt;rsync同步常用命令&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;rsync -a rsync://196.168.1.32:873/svn_sync /cygdrive/e/Mlq-bak/ceshi&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;inotify&lt;/code&gt; + &lt;code&gt;rsync&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000002427568&#34;&gt; &lt;code&gt;Linux&lt;/code&gt; 下同步工具 &lt;code&gt;inotify&lt;/code&gt; + &lt;code&gt;rsync&lt;/code&gt; 使用详解&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;本机文件夹同步 &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;rsync -aurtzopg /wiki_src/ /test/&lt;/code&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;&lt;code&gt;inotifywait&lt;/code&gt; &lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;inotifywait -mrq --timefmt &#39;%Y/%m/%d-%H:%M:%S&#39; --format &#39;%T %w %f&#39; \
+ -e modify,delete,create,move,attrib /root/tmp/&lt;/code&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_dns_服务器&#34;&gt;7. DNS 服务器&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker run -d -v /root/dishui/data/conf/dnsmasq.hosts:/etc/hosts -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN --name dns-server andyshinn/dnsmasq:2.75 &lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;colist arabic&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&#34;conum&#34; data-value=&#34;1&#34;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;dnsmasq.hosts&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat &amp;gt; dnsmasq.hosts &amp;lt;&amp;lt;_EOF_
+172.17.11.2 master
+172.17.11.3 woker
+172.17.80.4 nginx
+_EOF_&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_查看日志&#34;&gt;8. 查看日志&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34; class=&#34;bare&#34;&gt;http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考_2&#34;&gt;9. 参考&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://c.biancheng.net/cpp/view/7004.html&#34;&gt;Shell Test&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_q_a&#34;&gt;10. Q &amp;amp; A&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_failed_host_is_down&#34;&gt;10.1. failed: Host is down&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mount -t cifs //192.168.137.2/dishui /dishui -o username=dishui,domain=storage,password=dishui,uid=0,gid=0 -o vers=2.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_systemd&#34;&gt;11. systemd&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/usr/lib/systemd/system/gitlab-backup.service&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;[Unit]
+Description=gitlab-backup
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/echo 1
+#ExecStart=/opt/gitlab/bin/gitlab-rake gitlab:backup:create&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/usr/lib/systemd/system/gitlab-backup.timer&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;[Unit]
+Description=Runs gitlab-backup every hour
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=2s
+Unit=gitlab-backup.service
+
+[Install]
+WantedBy=multi-user.target&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_mount&#34;&gt;11.1. mount&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;$ cat /etc/systemd/system/mnt-scratch.automount
+[Unit]
+Description=Automount Scratch
+
+[Automount]
+Where=/mnt/scratch
+
+[Install]
+WantedBy=multi-user.target
+
+$ cat /etc/systemd/system/mnt-scratch.mount
+[Unit]
+Description=Scratch
+
+[Mount]
+What=nfs.example.com:/export/scratch
+Where=/mnt/scratch
+Type=nfs
+
+[Install]
+WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_查看整个日志&#34; class=&#34;sect0&#34;&gt;查看整个日志&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$ sudo journalctl&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_查看_mytimer_timer_的日志&#34; class=&#34;sect0&#34;&gt;查看 mytimer.timer 的日志&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$ sudo journalctl -u mytimer.timer&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_查看_mytimer_timer_和_mytimer_service_的日志&#34; class=&#34;sect0&#34;&gt;查看 mytimer.timer 和 mytimer.service 的日志&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$ sudo journalctl -u mytimer&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_从结尾开始查看最新日志&#34; class=&#34;sect0&#34;&gt;从结尾开始查看最新日志&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$ sudo journalctl -f&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_从结尾开始查看_mytimer_timer_的日志&#34; class=&#34;sect0&#34;&gt;从结尾开始查看 mytimer.timer 的日志&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$ journalctl -f -u timer.timer&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>linux 系统分区</title>
+      <link>/post/linux/fen_qu/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/fen_qu/</guid>
+      <description>
+
+&lt;p&gt;include::content/post/base.adoc[]
+:toc-title: Contents
+&lt;!-- toc --&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;分区&#34;&gt;分区&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;首先查看机器上有多少块硬盘：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ fdisk -l
+#
+Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes
+255 heads, 63 sectors/track, 121601 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+#
+#
+Disk /dev/sdd doesn&#39;t contain a valid partition table
+#
+Disk /dev/sdh: 1000.2 GB, 1000204886016 bytes
+255 heads, 63 sectors/track, 121601 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xd54c485e
+#
+#
+Device Boot      Start         End      Blocks   Id  System
+/dev/sdh1               1      121601   976760001   83  Linux
+#
+我的服务器上有很多块，有上述信息可知，目前sdd硬盘还为挂载
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;硬盘分区&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ fdisk /dev/sdd
+-
+n-&amp;gt;p-&amp;gt;1-&amp;gt;回车-&amp;gt;回车
+-
+意思就是新建一个主分区，大小是整个sdd磁盘
+-
+最后执行w，写入磁盘
+-
+此时磁盘已经分区，但是还没有文件系统，磁盘依然不能用
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;格式化磁盘并写入文件系统&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkfs.ext4 /dev/sdd1 
+-
+等待命令执行完成
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;挂载新硬盘到操作系统的某个节点上&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /mnt/sdd
+-
+$ mount /dev/sdd1 /mnt/sdd
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;执行df命令查看磁盘信息，确认挂载新硬盘成功&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ df
+-
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/sda3            928204272   4191296 876862896   1% /
+tmpfs                 32981876        12  32981864   1% /dev/shm
+/dev/sda1               198337     31960    156137  17% /boot
+/dev/sdh1            961432072    204436 912389636   1% /mnt/sdh
+/dev/sdd1            961432072    204436 912389636   1% /mnt/sdd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;以上加粗字体就是新增磁盘。&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;开机挂载硬盘&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;手动挂载：
+      mount /dev/sdb5 /mnt/ljp1
+      mount /dev/sdb6 /mnt/ljp2
+自动挂载：
+      vi /etc/fstab
+      /dev/sda3 /mnt/sda2  ext4     defaults     0 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>sed</title>
+      <link>/post/linux/linux-sed/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/linux-sed/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_sed&#34;&gt;1. sed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_sed&#34;&gt;1. sed&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;admonitionblock tip&#34;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&#34;icon&#34;&gt;
+&lt;i class=&#34;fa icon-tip&#34; title=&#34;Tip&#34;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&#34;content&#34;&gt;
+sed [options] &#39;AddressCommand&#39; file &amp;#8230;&amp;#8203;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&#34;dlist&#34;&gt;
+&lt;dl&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;删除行&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;sed &#39;1,2d&#39; ~/tmp/fstab&lt;/code&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;行中包含d删除&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;sed &#39;/e/d&#39; ~/tmp/fstab&lt;/code&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;第1行开始,往后删除2行&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;`sed &#39;1,+2d&#39; ~/tmp/fstab&lt;/code&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class=&#34;hdlist1&#34;&gt;查找行首空白,替换为空&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;&lt;code&gt;history | sed &#39;s#^&lt;a id=&#34;:space:&#34;&gt;&lt;/a&gt;*##g&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>shell</title>
+      <link>/post/linux/shell/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/shell/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_shell&#34;&gt;1. shell&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_获取当前目录&#34;&gt;1.1. 获取当前目录&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_shell&#34;&gt;1. shell&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_获取当前目录&#34;&gt;1.1. 获取当前目录&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;DIR=&#34;$( cd &#34;$( dirname &#34;${BASH_SOURCE[0]}&#34; )&#34; &amp;amp;&amp;amp; pwd )&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;变量&lt;/p&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;for var in $@
+do
+  echo &#34;$var&#34;
+  docker tag $var dishui.io:5000/$var
+  docker push dishui.io:5000/$var
+  docker rmi dishui.io:5000/$var
+done&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;参考&lt;/p&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://c.biancheng.net/cpp/view/2739.html&#34;&gt;Shell $0, $#, $*, $@, $?, $$和命令行参数&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>/post/linux/ssh/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/ssh/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装&#34;&gt;1. 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_25个必须记住的ssh命令&#34;&gt;2. 25个必须记住的SSH命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_ssh_copy_id&#34;&gt;3. ssh-copy-id&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_安装&#34;&gt;1. 安装&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CentOS7 64&lt;/code&gt; 系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;yum install openssh-server -y&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;启动 &lt;code&gt;ssh&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-session&#34; data-lang=&#34;session&#34;&gt;# /usr/sbin/sshd
+Could not load host key: /etc/ssh/ssh_host_rsa_key
+Could not load host key: /etc/ssh/ssh_host_ecdsa_key
+Could not load host key: /etc/ssh/ssh_host_ed25519_key&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;解决办法&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key # 重新建立 ssh_host_dsa_key 文件
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key # 重新建立 ssh_host_rsa_key 文件&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_25个必须记住的ssh命令&#34;&gt;2. 25个必须记住的SSH命令&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;OpenSSH是SSH连接工具的免费版本。telnet，rlogin和ftp用户可能还没意识到他们在互联网上传输的密码是未加密的，但SSH是加密的，OpenSSH加密所有通信（包括密码），有效消除了窃听，连接劫持和其它攻击。此外，OpenSSH提供了安全隧道功能和多种身份验证方法，支持SSH协议的所有版本。
+SSH是一个非常伟大的工具，如果你要在互联网上远程连接到服务器，那么SSH无疑是最佳的候选。下面是通过网络投票选出的25个最佳SSH命令，你必须牢记于心。
+（注：有些内容较长的命令，在本文中会显示为截断的状态。如果你需要阅读完整的命令，可以把整行复制到您的记事本当中阅读。）&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;复制SSH密钥到目标主机，开启无密码SSH登录&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh-copy-id user@host
+//如果还没有密钥，请使用ssh-keygen命令生成。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;从某主机的80端口开启到本地主机2001端口的隧道&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -N -L2001:localhost:80 somemachine
+#现在你可以直接在浏览器中输入http://localhost:2001访问这个网站。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;从A主机的60022端口,通过跳板B主机,copy文件到C主机&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 开启端口
+# B: root@116.90.81.70
+# C: 192.168.1.125
+ssh -Nf -L 60022:192.168.1.125:22 root@116.90.81.70 dev/null 21
+scp -P 60022 1.txt root@127.0.0.1:~/opt/path&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;@startuml&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;(跳板) &amp;lt;&amp;lt; B &amp;gt;&amp;gt;
+(本地) &amp;lt;&amp;lt; A &amp;gt;&amp;gt;
+(目标主机) &amp;lt;&amp;lt; C &amp;gt;&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;left to right direction
+(本地) -&amp;#8594; (跳板)
+(跳板) -&amp;#8594; (目标主机)
+@enduml&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;将你的麦克风输出到远程计算机的扬声器&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;dd if=/dev/dsp | ssh -c arcfour -C username@host dd of=/dev/dsp
+#这样来自你麦克风端口的声音将在SSH目标计算机的扬声器端口输出，但遗憾的是，声音质量很差，你会听到很多嘶嘶声。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;比较远程和本地文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh user@host cat /path/to/remotefile | diff /path/to/localfile –
+#在比较本地文件和远程文件是否有差异时这个命令很管用。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;通过SSH挂载目录/文件系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sshfs name@server:/path/to/folder /path/to/mount/point
+#从http://fuse.sourceforge.net/sshfs.html下载sshfs，它允许你跨网络安全挂载一个目录。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;通过中间主机建立SSH连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -t reachable_host ssh unreachable_host
+#Unreachable_host表示从本地网络无法直接访问的主机，但可以从reachable_host所在网络访问，这个命令通过到reachable_host的“隐藏”连接，创建起到unreachable_host的连接。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;将你的SSH公钥复制到远程主机，开启无密码登录 – 简单的方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh-copy-id username@hostname&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;直接连接到只能通过主机B连接的主机A&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -t hostA ssh hostB
+#当然，你要能访问主机A才行。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;创建到目标主机的持久化连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -MNf &amp;lt;user&amp;lt;host#在后台创建到目标主机的持久化连接，将这个命令和你~/.ssh/config中的配置结合使用：
+#Host host
+#ControlPath ~/.ssh/master-%r@%h:%p
+#ControlMaster no
+#所有到目标主机的SSH连接都将使用持久化SSH套接字，如果你使用SSH定期同步文件（使用rsync/sftp/cvs/svn），这个命令将非常有用，因为每次打开一个SSH连接时不会创建新的套接字。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;通过SSH连接屏幕&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -t remote_host screen –r
+#直接连接到远程屏幕会话（节省了无用的父bash进程）。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;端口检测（敲门）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;knock &amp;lt;host3000 4000 5000 &amp;amp;&amp;amp; ssh -p &amp;lt;portuser@host &amp;amp;&amp;amp; knock &amp;lt;host5000 4000 3000
+#在一个端口上敲一下打开某个服务的端口（如SSH），再敲一下关闭该端口，需要先安装knockd，下面是一个配置文件示例。
+#[options]
+#logfile = /var/log/knockd.log
+#[openSSH]
+#sequence = 3000,4000,5000
+#seq_timeout = 5
+#command = /sbin/iptables -A INPUT -i eth0 -s %IP% -p tcp –dport 22 -j ACCEPT
+#tcpflags = syn
+#[closeSSH]
+#sequence = 5000,4000,3000
+#seq_timeout = 5
+#command = /sbin/iptables -D INPUT -i eth0 -s %IP% -p tcp –dport 22 -j ACCEPT
+#tcpflags = syn&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;删除文本文件中的一行内容，有用的修复&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh-keygen -R &amp;lt;the_offending_host#在这种情况下，最好使用专业的工具。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;通过SSH运行复杂的远程shell命令&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh host -l user $(&amp;lt;cmd.txt)
+#更具移植性的版本：
+ssh host -l user “`cat cmd.txt`”&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;通过SSH将MySQL数据库复制到新服务器&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;mysqldump –add-drop-table –extended-insert –force –log-error=error.log -uUSER -pPASS OLD_DB_NAME | ssh -C user@newhost “mysql -uUSER -pPASS NEW_DB_NAME”
+#通过压缩的SSH隧道Dump一个MySQL数据库，将其作为输入传递给mysql命令，我认为这是迁移数据库到新服务器最快最好的方法。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;删除文本文件中的一行，修复“SSH主机密钥更改”的警告&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sed -i 8d ~/.ssh/known_hosts&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;从一台没有SSH-COPY-ID命令的主机将你的SSH公钥复制到服务器&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cat ~/.ssh/id_rsa.pub | ssh user@machine “mkdir ~/.ssh; cat ~/.ssh/authorized_keys”
+如果你使用Mac OS X或其它没有ssh-copy-id命令的*nix变种，这个命令可以将你的公钥复制到远程主机，因此你照样可以实现无密码SSH登录。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;实时SSH网络吞吐量测试&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;yes | pv | ssh $host “cat /dev/null”
+#通过SSH连接到主机，显示实时的传输速度，将所有传输数据指向/dev/null，需要先安装pv。
+#如果是Debian：
+apt-get install pv
+#如果是Fedora：
+yum install pv
+#（可能需要启用额外的软件仓库）。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;如果建立一个可以重新连接的远程GNU screen&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -t user@some.domain.com /usr/bin/screen –xRR
+#人们总是喜欢在一个文本终端中打开许多shell，如果会话突然中断，或你按下了“Ctrl-a d”，远程主机上的shell不会受到丝毫影响，你可以重新连接，其它有用的screen命令有“Ctrl-a c”（打开新的shell）和“Ctrl-a a”（在shell之间来回切换），请访问http://aperiodic.net/screen/quick_reference阅读更多关于screen命令的快速参考。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;继续SCP大文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file
+#它可以恢复失败的rsync命令，当你通过VPN传输大文件，如备份的数据库时这个命令非常有用，需要在两边的主机上安装rsync。
+rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file local -remote
+#或
+rsync –partial –progress –rsh=ssh $user@$host:$remote_file $destination_file remote -local&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;通过SSH W/ WIRESHARK分析流量&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh root@server.com ‘tshark -f “port !22″ -w -&#39; | wireshark -k -i –
+#使用tshark捕捉远程主机上的网络通信，通过SSH连接发送原始pcap数据，并在wireshark中显示，按下CtrlC将停止捕捉，但也会关闭wireshark窗口，可以传递一个“-c #”参数给tshark，让它只捕捉“#”指定的数据包类型，或通过命名管道重定向数据，而不是直接通过SSH传输给wireshark，我建议你过滤数据包，以节约带宽，tshark可以使用tcpdump替代：
+ssh root@example.com tcpdump -w – ‘port !22′ | wireshark -k -i –&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;保持SSH会话永久打开&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;autossh -M50000 -t server.example.com ‘screen -raAd mysession’
+打开一个SSH会话后，让其保持永久打开，对于使用笔记本电脑的用户，如果需要在Wi-Fi热点之间切换，可以保证切换后不会丢失连接。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;更稳定，更快，更强的SSH客户端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh -4 -C -c blowfish-cbc
+强制使用IPv4，压缩数据流，使用Blowfish加密。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;使用cstream控制带宽&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;tar -cj /backup | cstream -t 777k | ssh host ‘tar -xj -C /backup’
+#使用bzip压缩文件夹，然后以777k bit/s速率向远程主机传输。Cstream还有更多的功能，请访问http://www.cons.org/cracauer/cstream.html#usage了解详情，例如：
+echo w00t, i’m 733 | cstream -b1 -t2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;一步将SSH公钥传输到另一台机器&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh-keygen; ssh-copy-id user@host; ssh user@host
+#这个命令组合允许你无密码SSH登录，注意，如果在本地机器的~/.ssh目录下已经有一个SSH密钥对，ssh-keygen命令生成的新密钥可能会覆盖它们，ssh-copy-id将密钥复制到远程主机，并追加到远程账号的~/.ssh/authorized_keys文件中，使用SSH连接时，如果你没有使用密钥口令，调用ssh user@host后不久就会显示远程shell。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;将标准输入（stdin）复制到你的X11缓冲区&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh user@host cat /path/to/some/file | xclip
+#你是否使用scp将文件复制到工作用电脑上，以便复制其内容到电子邮件中？xclip可以帮到你，它可以将标准输入复制到X11缓冲区，你需要做的就是点击鼠标中键粘贴缓冲区中的内容。&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_ssh_copy_id&#34;&gt;3. ssh-copy-id&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;2222 端口&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;ssh-copy-id -i ~/.ssh/id_rsa.pub &#34;-p 2222 core@196.168.1.173&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>supervisor</title>
+      <link>/post/linux/supervisord/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux/supervisord/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_supervisord&#34;&gt;1. supervisord&lt;/a&gt;
+&lt;ul class=&#34;sectlevel3&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#__code_centos_6_5_code_开机启动脚本&#34;&gt;1.1. &lt;code&gt;CentOS-6.5&lt;/code&gt; 开机启动脚本&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_epel_扩展源_python_pip&#34;&gt;安装 epel 扩展源 python-pip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_安装_supervisor_logging&#34;&gt;安装 supervisor-logging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_清理&#34;&gt;清理&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_supervisord&#34;&gt;1. supervisord&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在线安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bashsession&#34; data-lang=&#34;bashsession&#34;&gt;# yum install python-setuptools
+# easy_install -i http://pypi.doubanio.com/simple supervisor&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;软件安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;#! /bin/bash
+
+# 目录 /root/opt/src
+mkdir -p /root/opt &amp;amp;&amp;amp; \
+tar -zxf supervisor-4.0.0.tar.gz -C /root/opt &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/elementtree-1.2.6-20050316 &amp;amp;&amp;amp; python setup.py install &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/setuptools-20.6.7 &amp;amp;&amp;amp; python setup.py install &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/meld3-1.0.0 &amp;amp;&amp;amp; python setup.py install &amp;amp;&amp;amp; \
+cd /root/opt/supervisor/supervisor-master &amp;amp;&amp;amp; python setup.py install
+mkdir -p /etc/supervisord.conf.d &amp;amp;&amp;amp;\
+echo_supervisord_conf &amp;gt; /etc/supervisord.conf &amp;amp;&amp;amp;\
+echo -e &#34;[include]\nfiles = /etc/supervisord.conf.d/*.conf&#34; &amp;gt;&amp;gt; /etc/supervisord.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo mkdir -p /etc/supervisord.conf.d&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件 sudo vi /etc/supervisord.conf.d/gollum.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:gollum]
+command=gollum /wiki --config /wiki/config.rb --css /wiki/custom.css
+user =root
+autostart=true
+stdout_logfile=/tmp/gollum.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/gollum-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件 sudo vi /etc/supervisord.conf.d/redis.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:redis]
+command=/root/opt/redis-3.0.7/redis-server
+user=root
+autostart=true
+stdout_logfile=/tmp/redis.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/redis-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置文件 sudo vi /etc/supervisord.conf.d/es.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:es]
+command=/root/opt/elasticsearch-1.7.1/bin/elasticsearch -Xmx2g -Xms2g
+user=root
+autostart=true
+stdout_logfile=/tmp/es.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/es-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Tomcat&lt;/code&gt;&lt;br&gt;
+配置文件 sudo vi /etc/supervisord.conf.d/tomcat.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:tomcat]
+command=/usr/tomcat/apache-tomcat-7.0.62/bin/catalina.sh run
+user=root
+autostart=true
+stdout_logfile=/tmp/tomcat.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/tomcat-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Mysql&lt;/code&gt; 配置文件 sudo vi /etc/supervisord.conf.d/mysql.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:mysql]
+command= /usr/bin/pidproxy /var/lib/mysql/mysql.pid /usr/bin/mysqld_safe --pid-file=/var/lib/mysql/mysql.pid
+user = mysql
+stdout_logfile=/tmp/mysql.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/mysql-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;zookeeper&lt;/code&gt; 配置文件 sudo vi /etc/supervisord.conf.d/zkServer.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:zkServer]
+command=/zookeeper-3.4.8/bin/zkServer.sh start-foreground
+stdout_logfile=/tmp/zk.log
+stdout_logfile_maxbytes=1MB
+stderr_logfile=/tmp/zkServer-error.log
+stderr_logfile_maxbytes=1MB&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;__code_centos_6_5_code_开机启动脚本&#34;&gt;1.1. &lt;code&gt;CentOS-6.5&lt;/code&gt; 开机启动脚本&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-bash:/linux/scripts/supervisor-centos6.5-init.sh```&#34; data-lang=&#34;bash:/linux/scripts/supervisor-centos6.5-init.sh```&#34;&gt;== supervisor-logging&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_安装_epel_扩展源_python_pip&#34; class=&#34;sect0&#34;&gt;安装 epel 扩展源 python-pip&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum -y install epel-release python-pip&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_安装_supervisor_logging&#34; class=&#34;sect0&#34;&gt;安装 supervisor-logging&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;pip install supervisor-logging&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_清理&#34; class=&#34;sect0&#34;&gt;清理&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;yum remove epel-release python-pip -y
+yum clean all&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

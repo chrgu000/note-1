@@ -1,0 +1,9 @@
+[nifi-hdfs]
+nifi02 ansible_ssh_host=10.198.102.92 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi03 ansible_ssh_host=10.198.102.93 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi04 ansible_ssh_host=10.198.102.94 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi05 ansible_ssh_host=10.198.102.95 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi06 ansible_ssh_host=10.198.102.96 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi07 ansible_ssh_host=10.198.102.97 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi08 ansible_ssh_host=10.198.102.98 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs
+nifi09 ansible_ssh_host=10.198.102.99 ansible_ssh_user=hdfs ansible_ssh_pass=hdfs

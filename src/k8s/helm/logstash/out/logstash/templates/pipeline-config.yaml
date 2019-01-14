@@ -1,0 +1,52 @@
+---
+# Source: logstash/templates/pipeline-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-pipeline
+  labels:
+    app: logstash
+    chart: logstash-1.4.1
+    release: logstash
+    heritage: Tiller
+data:
+  input_main: |-
+    input {
+      jdbc {
+        type => "team_player_info"
+        jdbc_connection_string => "jdbc:mysql://10.200.169.5:3306/pptv_test" 
+        jdbc_user => "root" 
+        jdbc_password => "111111" 
+        jdbc_driver_library => "${PATH_DATA}/data/mysql-connector-java-5.1.30.jar"
+        jdbc_driver_class => "com.mysql.jdbc.Driver"
+        jdbc_paging_enabled => "true"
+        jdbc_page_size => "50000"
+        schedule => "* * * * *"
+        statement_filepath => "${PATH_DATA}/data/sql/team_player_info.sql"
+      }
+    }
+  filter_main: |-
+    # filter{
+    #   json{
+    #       source => "message"
+    #   }
+    # }
+  output_main: |-
+    output {
+      stdout { codec => rubydebug }
+      # elasticsearch {
+      #   hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+      #   manage_template => false
+      #   index => "F"
+      #   document_type => "f24"
+      # }
+      if [type] == "team_player_info" {
+        elasticsearch {
+          hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+          index => "base"
+          document_type => "team_player_info"
+          document_id => "%{player_id}"
+          sniffing => true
+        }
+      }
+    }

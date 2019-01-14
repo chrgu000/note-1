@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>storm集群部署,单词计数,Stream Grouping</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="storm集群部署,单词计数,Stream Grouping" />
+<meta property="og:description" content="storm1. 集群部署的基本流程2. 集群部署的基础环境准备3. Storm集群部署4. Storm常用操作命令5. Storm集群的进程及日志熟悉6. Storm源码下载及目录熟悉7. Storm单词技术案例（重点掌握）1. 集群部署的基本流程集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群注意：所有的集群上都需要配置hostsvi /etc/hosts192.168.239.128 storm01 zk01 hadoop01192.168.239.129 storm02 zk02 hadoop02192.168.239.130 storm03 zk03 hadoop032. 集群部署的基础环境准备安装前的准备工作（zk集群已经部署完毕）
+关闭防火墙
+chkconfig iptables off &amp;&amp; setenforce 0创建用户
+groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime创建工作目录并赋权" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/storm/storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2,%E5%8D%95%E8%AF%8D%E8%AE%A1%E6%95%B0,Stream%20Grouping/" />
+
+
+<meta property="og:updated_time" content="2017-03-28T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">storm集群部署,单词计数,Stream Grouping</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-03-28 00:00:00 &#43;0000 UTC">March 28, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/storm" rel="category">storm</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">storm</div>
+<ul class="sectlevel1">
+<li><a href="#_集群部署的基本流程">1. 集群部署的基本流程</a></li>
+<li><a href="#_集群部署的基础环境准备">2. 集群部署的基础环境准备</a></li>
+<li><a href="#_storm集群部署">3. Storm集群部署</a></li>
+<li><a href="#_storm常用操作命令">4. Storm常用操作命令</a></li>
+<li><a href="#_storm集群的进程及日志熟悉">5. Storm集群的进程及日志熟悉</a></li>
+<li><a href="#_storm源码下载及目录熟悉">6. Storm源码下载及目录熟悉</a></li>
+<li><a href="#_storm单词技术案例_重点掌握">7. Storm单词技术案例（重点掌握）</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_集群部署的基本流程">1. 集群部署的基本流程</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>集群部署的流程：下载安装包、解压安装包、修改配置文件、分发安装包、启动集群
+注意：
+    所有的集群上都需要配置hosts</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>vi  /etc/hosts
+192.168.239.128 storm01 zk01 hadoop01
+192.168.239.129 storm02 zk02 hadoop02
+192.168.239.130 storm03 zk03 hadoop03</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_集群部署的基础环境准备">2. 集群部署的基础环境准备</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>安装前的准备工作（zk集群已经部署完毕）</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>关闭防火墙</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>chkconfig iptables off  &amp;&amp; setenforce 0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>创建用户</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>groupadd realtime &amp;&amp;　useradd realtime　&amp;&amp; usermod -a -G realtime realtime</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>创建工作目录并赋权</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mkdir /export
+mkdir /export/servers
+chmod 755 -R /export</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>切换到realtime用户下</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>su realtime</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm集群部署">3. Storm集群部署</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>下载安装包</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>wget http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>解压安装包</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tar -zxvf apache-storm-0.9.5.tar.gz -C /export/servers/
+cd /export/servers/
+ln -s apache-storm-0.9.5 storm</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>修改配置文件</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mv /export/servers/storm/conf/storm.yaml /export/servers/storm/conf/storm.yaml.bak
+vi /export/servers/storm/conf/storm.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>输入以下内容：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-01.png" alt="2017 03 28 01">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>分发安装包</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>scp -r /export/servers/apache-storm-0.9.5 storm02:/export/servers
+#然后分别在各机器上创建软连接
+cd /export/servers/
+ln -s apache-storm-0.9.5 storm</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>启动集群</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>#在nimbus.host所属的机器上启动 nimbus服务
+cd /export/servers/storm/bin/
+nohup ./storm nimbus &amp;
+#在nimbus.host所属的机器上启动ui服务
+cd /export/servers/storm/bin/
+nohup ./storm ui &amp;
+#在其它个点击上启动supervisor服务
+cd /export/servers/storm/bin/
+nohup ./storm supervisor &amp;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>查看集群
+访问nimbus.host:/8080，即可看到storm的ui界面。</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-02.png" alt="2017 03 28 02">
+</div>
+</div>
+<hr>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm常用操作命令">4. Storm常用操作命令</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>有许多简单且有用的命令可以用来管理拓扑，它们可以提交、杀死、禁用、再平衡拓扑。</p>
+</div>
+</blockquote>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">提交任务命令格式</dt>
+<dd>
+<p>storm jar 【jar路径】 【拓扑包名.拓扑类名】 【拓扑名称】</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/storm jar examples/storm-starter/storm-starter-topologies-0.9.6.jar storm.starter.WordCountTopology wordcount</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">杀死任务命令格式</dt>
+<dd>
+<p>storm kill 【拓扑名称】 -w 10（执行kill命令时可以通过-w [等待秒数]指定拓扑停用以后的等待时间）</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>storm kill topology-name -w 10</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">停用任务命令格式</dt>
+<dd>
+<p>storm deactivte  【拓扑名称】</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>storm deactivte topology-name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们能够挂起或停用运行中的拓扑。当停用拓扑时，所有已分发的元组都会得到处理，但是spouts的nextTuple方法不会被调用。销毁一个拓扑，可以使用kill命令。它会以一种安全的方式销毁一个拓扑，首先停用拓扑，在等待拓扑消息的时间段内允许拓扑完成当前的数据流。</p>
+</div>
+</dd>
+<dt class="hdlist1">启用任务命令格式</dt>
+<dd>
+<p>storm activate【拓扑名称】</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>storm activate topology-name</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">重新部署任务命令格式</dt>
+<dd>
+<p>storm rebalance  【拓扑名称】</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>storm rebalance topology-name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>再平衡使你重分配集群任务。这是个很强大的命令。比如，你向一个运行中的集群增加了节点。再平衡命令将会停用拓扑，然后在相应超时时间之后重分配工人，并重启拓扑。</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm集群的进程及日志熟悉">5. Storm集群的进程及日志熟悉</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>部署成功之后，启动storm集群。
+依次启动集群的各种角色</p>
+</li>
+<li>
+<p>查看nimbus的日志信息
+在nimbus的服务器上</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/nimbus.log</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>查看ui运行日志信息
+在ui的服务器上，一般和nimbus一个服务器</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/ui.log</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>查看supervisor运行日志信息
+在supervisor服务上</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/supervisor.log</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>查看supervisor上worker运行日志信息
+在supervisor服务上</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cd /export/servers/storm/logs
+tail -100f /export/servers/storm/logs/worker-6702.log</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-03.png" alt="2017 03 28 03">
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>(该worker正在运行wordcount程序)</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm源码下载及目录熟悉">6. Storm源码下载及目录熟悉</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>在Storm官方网站上寻找源码地址<br>
+<a href="http://storm.apache.org/downloads.html" class="bare">http://storm.apache.org/downloads.html</a></p>
+</li>
+<li>
+<p>点击文字标签进入github<br>
+点击Apache/storm文字标签，进入github
+      <a href="https://github.com/apache/storm" class="bare">https://github.com/apache/storm</a></p>
+</li>
+<li>
+<p>拷贝storm源码地址<br>
+在网页右侧，拷贝storm源码地址</p>
+</li>
+<li>
+<p>使用Subversion客户端下载<br>
+<a href="https://github.com/apache/storm/tags/v0.9.5" class="bare">https://github.com/apache/storm/tags/v0.9.5</a></p>
+</li>
+<li>
+<p>Storm源码目录分析（重要）<br>
+扩展包中的三个项目，使storm能与hbase、hdfs、kafka交互</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storm单词技术案例_重点掌握">7. Storm单词技术案例（重点掌握）</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>功能说明</p>
+<div class="listingblock">
+<div class="content">
+<pre>设计一个topology，来实现对文档里面的单词出现的频率进行统计。
+整个topology分为三个部分：
+RandomSentenceSpout：
+    数据源，在已知的英文句子中，随机发送一条句子出去。
+SplitSentenceBolt：
+    负责将单行文本记录（句子）切分成单词
+WordCountBolt：
+    负责对单词的频率进行累加</pre>
+</div>
+</div>
+</li>
+<li>
+<p>项目主要流程</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-04.png" alt="2017 03 28 04">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>RandomSentenceSpout的实现及生命周期</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-05.png" alt="2017 03 28 05">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>SplitSentenceBolt的实现及生命周期</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-06.png" alt="2017 03 28 06">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>WordCountBolt的实现及生命周期</p>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/storm/2017-03-28-07.png" alt="2017 03 28 07">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>Stream Grouping详解<br>
+Storm里面有7种类型的stream grouping</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Shuffle Grouping</dt>
+<dd>
+<p>随机分组， 随机派发stream里面的tuple，保证每个bolt接收到的tuple数目大致相同。</p>
+</dd>
+<dt class="hdlist1">Fields Grouping</dt>
+<dd>
+<p>按字段分组，比如按userid来分组，具有同样userid的tuple会被分到相同的Bolts里的一个task，而不同的userid则会被分配到不同的bolts里的task。</p>
+</dd>
+<dt class="hdlist1">All Grouping</dt>
+<dd>
+<p>广播发送，对于每一个tuple，所有的bolts都会收到。</p>
+</dd>
+<dt class="hdlist1">Global Grouping</dt>
+<dd>
+<p>全局分组， 这个tuple被分配到storm中的一个bolt的其中一个task。再具体一点就是分配给id值最低的那个task。</p>
+</dd>
+<dt class="hdlist1">Non Grouping</dt>
+<dd>
+<p>不分组，这stream grouping个分组的意思是说stream不关心到底谁会收到它的tuple。目前这种分组和Shuffle grouping是一样的效果， 有一点不同的是storm会把这个bolt放到这个bolt的订阅者同一个线程里面去执行。</p>
+</dd>
+<dt class="hdlist1">Direct Grouping</dt>
+<dd>
+<p>直接分组， 这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个task处理这个消息。只有被声明为Direct Stream的消息流可以声明这种分组方法。而且这种消息tuple必须使用emitDirect方法来发射。消息处理者可以通过TopologyContext来获取处理它的消息的task的id （OutputCollector.emit方法也会返回task的id）。</p>
+</dd>
+<dt class="hdlist1">Local or shuffle grouping</dt>
+<dd>
+<p>如果目标bolt有一个或者多个task在同一个工作进程中，tuple将会被随机发生给这些tasks。否则，和普通的Shuffle Grouping行为一致。</p>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/bigdata/storm/Storm%E7%9B%AE%E5%BD%95%E6%A0%91%E3%80%81%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E3%80%81%E6%B6%88%E6%81%AF%E5%AE%B9%E9%94%99/" rel="prev"><span>«Previous</span><p>Storm目录树、任务提交、消息容错</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/bigdata/storm/storm/" rel="next"><span>Next»</span><p>storm</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

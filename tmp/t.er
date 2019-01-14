@@ -1,0 +1,24 @@
+title {label: "wuliu ¹ØÏµ", size: "14",font:"ËÎÌå"}
+
+# Entities
+
+[zh_asphalt_repertory] {bgcolor: "#d0e0d0"}
+  *id
+  reservoir_code
+  storage_code
+
+[zh_reservoir_area] {bgcolor: "#d0e0d0"}
+  *id {label:"varchar(32) NOT NULL"}
+  reservoir_code {label:"varchar(32) DEFAULT NULL"}
+  abbreviation {label:"varchar(64) DEFAULT NULL"}
+  reservoir_name {label:"varchar(256) DEFAULT NULL"}
+
+[zh_storage] {bgcolor: "#d0e0d0"}
+  *id {label:"varchar(32) NOT NULL"}
+  storage_code {label:"varchar(32) DEFAULT NULL"}
+  storage_name {label:"varchar(128) DEFAULT NULL"}
+  reservoir_code {label:"varchar(32) DEFAULT NULL"}
+  storage_capacity {label:"double(8,0) DEFAULT NULL"}
+
+zh_asphalt_repertory      1--1 zh_reservoir_area {label: "reservoir_code"}
+zh_asphalt_repertory      1--1 zh_storage {label: "storage_code"}

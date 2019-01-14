@@ -1,0 +1,2 @@
+# wuliu increment tar file
+app_stable_i_tar: app-stable-path{{ ansible_date_time.date }}.tar.gz

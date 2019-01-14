@@ -1,0 +1,18 @@
+---
+# Source: logstash/templates/poddisruptionbudget.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: logstash
+  labels:
+    app: logstash
+    chart: logstash-1.4.1
+    release: logstash
+    heritage: Tiller
+spec:
+  selector:
+    matchLabels:
+      app: logstash
+      release: logstash
+  maxUnavailable: 1
+  

@@ -1,0 +1,98 @@
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/coredns-7997f8864c-gklq6
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/coredns-7997f8864c-thmmj
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/kube-apiserver-k8s01
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/kube-controller-manager-k8s01
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/kube-flannel-ds-amd64-9r527
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/kube-proxy-znjx6
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/kube-scheduler-k8s01
+etcdctl --endpoints=http://10.200.169.32:2379 del /registry/pods/kube-system/tiller-deploy-76d9f467fd-97tkc
+
+
+
+coredns|kube-apiserver|kube-scheduler|kube-dns|flannel|kube-system|tiller|kube-public
+
+
+etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep coredns|xargs -I x sh -c "etcdctl --endpoints=http://10.200.169.32:2379 del " x
+
+
+etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|xargs -i sh -c 'etcdctl --endpoints=http://10.200.169.32:2379 del {}'
+
+
+etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep -E "coredns|kube-apiserver|kube-scheduler|kube-dns|flannel|kube-system|tiller|kube-public|minions"|xargs -i sh -c 'etcdctl --endpoints=http://10.200.169.32:2379 del {}'
+
+
+kubeadm reset
+systemctl stop kubelet
+systemctl stop docker
+rm -rf /var/lib/cni/
+rm -rf /var/lib/kubelet/*
+rm -rf /etc/cni/
+ifconfig cni0 down
+ifconfig flannel.1 down
+ifconfig docker0 down
+ip link delete cni0
+ip link delete flannel.1
+
+
+kubectl get deployment -n kube-common -o=custom-columns=NAME:.metadata.name
+
+kubectl delete deployment k8s-dashboard-kubernetes-dashboard --force=true --grace-period=0 --namespace=kube-common
+
+
+kubectl get deployment -n kube-common -o=custom-columns=NAME:.metadata.name|awk '{if(NR>1){print $0}}'|xargs -i sh -c 'kubectl delete deployment {} --force=true --grace-period=0 --namespace=kube-common'
+
+
+
+
+
+kubelet-1.10.5-0.x86_64
+
+
+
+
+nfs-client-provisioner heapster kubernetes-dashboard nginx-ingress prometheus grafana
+
+
+
+
+http://api.bbbbbb.me/jx/?url=http://www.iqiyi.com/w_19s3ax2hs9.html
+
+
+
+http://api.bbbbbb.me/jx/?url=https://v.qq.com/x/page/q0789egstsj.html
+http://api.bbbbbb.me/jx/?url=https://v.qq.com/x/page/c0518j2jf1t.html
+http://api.bbbbbb.me/jx/?url=https://v.youku.com/v_show/id_XMzI0ODc5ODA0MA==.html
+
+
+
+
+
+
+ nodejieba.cut(str).split('@')
+
+
+
+
+
+if(typeof module !== 'undefined' && module.exports){
+  nodejieba = require("nodejieba");
+  console.log(nodejieba);
+}
+lunr.tokenizer = function (obj) {
+  if (!arguments.length || obj == null || obj == undefined) return []
+  if (Array.isArray(obj)) return obj.map(function (t) { return lunr.utils.asString(t).toLowerCase() })
+
+  var str = obj.toString().trim().toLowerCase()
+
+  if(typeof nodejieba !== "undefined"){
+    return nodejieba.cut(str, true);
+  }else{
+    return str.split(lunr.tokenizer.seperator)
+  }
+}
+
+
+
+nodejieba.cut(n).split('@')
+
+n.split(e.tokenizer.seperator)

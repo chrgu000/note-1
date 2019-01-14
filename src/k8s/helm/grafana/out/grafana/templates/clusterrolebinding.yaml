@@ -1,0 +1,20 @@
+---
+# Source: grafana/templates/clusterrolebinding.yaml
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: RELEASE-NAME-grafana-clusterrolebinding
+  labels:
+    app: grafana
+    chart: grafana-1.14.3
+    release: RELEASE-NAME
+    heritage: Tiller
+subjects:
+  - kind: ServiceAccount
+    name: RELEASE-NAME-grafana
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: RELEASE-NAME-grafana-clusterrole
+  apiGroup: rbac.authorization.k8s.io

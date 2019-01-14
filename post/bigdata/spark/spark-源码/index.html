@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>spark-源码</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="spark-源码" />
+<meta property="og:description" content="spark-基础1. SparkContext2. job的提交和运行3. SparkSteaming 源码3.1. JobScheduler1. SparkContext2. job的提交和运行3. SparkSteaming 源码StreamingContext
+new DStreamGraphnew AtomicInteger(0)new JobScheduler(this)new ContextWaiternew StreamingJobProgressListener(this)new StreamingSource(this)NetworkAddressUtils.java
+org.apache.spark.util.ClosureCleaner
+org.apache.spark.streaming.DStreamGraph
+org.apache.spark.streaming.dstream.SocketInputDStream
+org.apache.spark.streaming.dstream.DStreamCheckpointData
+org.apache.spark.streaming.dstream.ForEachDStream
+org." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bigdata/spark/spark-%E6%BA%90%E7%A0%81/" />
+
+
+<meta property="og:updated_time" content="2017-04-26T15:43:39&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">spark-源码</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-04-26 15:43:39 &#43;0000 UTC">April 26, 2017</time>
+				<span class="entry-meta-categories">
+					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+					<a class="meta-categories" href="/categories/spark" rel="category">spark</a></span>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">spark-基础</div>
+<ul class="sectlevel1">
+<li><a href="#_sparkcontext">1. SparkContext</a></li>
+<li><a href="#_job的提交和运行">2. job的提交和运行</a></li>
+<li><a href="#_sparksteaming_源码">3. SparkSteaming 源码</a>
+<ul class="sectlevel2">
+<li><a href="#_jobscheduler">3.1. JobScheduler</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_sparkcontext">1. SparkContext</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/post/bigdata/spark/uml/sparkContext.svg" alt="sparkContext">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_job的提交和运行">2. job的提交和运行</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/spark-job-1.svg" alt="spark job 1" width="1112" height="947">
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/spark-job-2.svg" alt="spark job 2" width="1575" height="714">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sparksteaming_源码">3. SparkSteaming 源码</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>StreamingContext</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new DStreamGraph</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new AtomicInteger(0)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new JobScheduler(this)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new ContextWaiter</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new StreamingJobProgressListener(this)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new StreamingSource(this)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>NetworkAddressUtils.java</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.util.ClosureCleaner</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.DStreamGraph</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.dstream.SocketInputDStream</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.dstream.DStreamCheckpointData</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.dstream.ForEachDStream</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.dstream.DStreamCheckpointData</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.dstream.MappedDStream</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.dstream.FlatMappedDStream</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.scheduler.JobScheduler</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.scheduler.ReceiverTracker</p>
+</div>
+<div class="paragraph">
+<p>ssc.start()
+  org.apache.spark.streaming.scheduler.JobScheduler#start
+    org.apache.spark.util.EventLoop[JobSchedulerEvent]#start
+      org.apache.spark.streaming.scheduler.JobScheduler#processEvent</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>org.apache.spark.streaming.scheduler.JobGenerator#start
+  org.apache.spark.util.EventLoop[JobGeneratorEvent]#start
+    org.apache.spark.streaming.scheduler.JobGenerator#processEvent</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.util.RecurringTimer 58 - Started timer for JobGenerator at time 1498617282000</p>
+</div>
+<div class="paragraph">
+<p>org.apache.spark.streaming.scheduler.JobGenerator 58 - Started JobGenerator at 1498617282000 ms
+org.apache.spark.streaming.scheduler.JobScheduler 58 - Started JobScheduler</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">org.apache.spark.util.ClosureCleaner
+private def clean(func: AnyRef,
+                  checkSerializable: Boolean,
+                  cleanTransitively: Boolean,
+                  accessedFields: Map[Class[_], Set[String]]): Unit
+Helper method to clean the given closure in place. The mechanism is to traverse the hierarchy of enclosing closures and null out any references along the way that are not actually used by the starting closure, but are nevertheless included in the compiled anonymous classes. Note that it is unsafe to simply mutate the enclosing closures in place, as other code paths may depend on them. Instead, we clone each enclosing closure and set the parent pointers accordingly. By default, closures are cleaned transitively. This means we detect whether enclosing objects are actually referenced by the starting one, either directly or transitively, and, if not, sever these closures from the hierarchy. In other words, in addition to nulling out unused field references, we also null out any parent pointers that refer to enclosing objects not actually needed by the starting closure. We determine transitivity by tracing through the tree of all methods ultimately invoked by the inner closure and record all the fields referenced in the process. For instance, transitive cleaning is necessary in the following scenario: class SomethingNotSerializable { def someValue = 1 def scope(name: String)(body: =&gt; Unit) = body def someMethod(): Unit = scope("one") { def x = someValue def y = 2 scope("two") { println(y + 1) } } } In this example, scope "two" is not serializable because it references scope "one", which references SomethingNotSerializable. Note that, however, the body of scope "two" does not actually depend on SomethingNotSerializable. This means we can safely null out the parent pointer of a cloned scope "one" and set it the parent of scope "two", such that scope "two" no longer references SomethingNotSerializable transitively.
+Parameters:
+func - the starting closure to clean
+checkSerializable - whether to verify that the closure is serializable after cleaning
+cleanTransitively - whether to clean enclosing closures transitively
+accessedFields - a map from a class to a set of its fields that are accessed by the starting closure</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>org.apache.spark.util
+private[org.apache.spark] abstract class EventLoop[E](name: String)
+extends Logging
+
+An event loop to receive events from the caller and process all events in the event thread. It will start an exclusive event thread to process all events. Note: The event queue will grow indefinitely. So subclasses should make sure onReceive can handle events in time to avoid the potential OOM.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>MapOutputTrackerMasterEndpoint
+TaskSetManager</p>
+</div>
+<div class="paragraph">
+<p>Dispatcher
+  ThreadPoolExecutor#execute(new MessageLoop)
+    MessageLoop
+      Inbox#process
+        RpcMessage
+        OneWayMessage
+        OnStart
+        OnStop
+        RemoteProcessConnected
+        RemoteProcessDisconnected
+        RemoteProcessConnectionError</p>
+</div>
+<div class="paragraph">
+<p>Endpoint
+  RpcEndpointVerifier
+  MapOutputTrackerMasterEndpoint
+  BlockManagerMasterEndpoint
+  BlockManagerSlaveEndpoint
+  OutputCommitCoordinatorEndpoint
+  HeartbeatReceiver</p>
+</div>
+<div class="paragraph">
+<p>JobGenerator</p>
+</div>
+<div class="paragraph">
+<p>JobScheduler#start
+  JobGenerator#start
+  DStreamGraph#start
+  RecurringTimer#start(long)
+    RecurringTimer#loop
+      RecurringTimer#triggerActionForNextInterval   //循环调用
+        JobGenerator#processEvent
+          JobGenerator#generateJobs
+            JobScheduler#submitJobSet
+        JobScheduler#processEvent</p>
+</div>
+<div class="sect2">
+<h3 id="_jobscheduler">3.1. JobScheduler</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler-1.svg" alt="JobScheduler 1" width="1440" height="638">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler3.svg" alt="JobScheduler3" width="1024" height="502">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler5.svg" alt="JobScheduler5" width="2793" height="335">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/src/img/plantuml/JobScheduler6.svg" alt="JobScheduler6" width="2588" height="597">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{rank=same;bg -&gt; p8 [arrowhead=None]};
+{p8 -&gt; m7 [label="blockPushingThread.start()#120",arrowhead=None]};
+{rank=same;p8 -&gt; m10 [arrowhead=None]};
+{m6 -&gt; p8 [label="blockIntervalTimer.start()#119" ,arrowhead=None]};
+{rt -&gt; m6 [label="RecurringTimer#start#59" ,arrowhead=None, dir=back]};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>{rt &#8594; bg [xlabel="loop#103\ntriggerActionForNextInterval#103"]};</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>subgraph BlockGenerator {</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  label = "BlockGenerator";
+  color=blue
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/wuliu/jiaojie/" rel="prev"><span>«Previous</span><p>文档</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/tmp/wuliuxiugai/" rel="next"><span>Next»</span><p>wuliu项目</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

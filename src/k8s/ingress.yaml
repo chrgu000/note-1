@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: k8s01
+    http:
+      paths:
+      - path: /myweb
+        backend:
+          serviceName: myweb
+          servicePort: 8080
+      # - path: /bar
+      #   backend:
+      #     serviceName: s2
+      #     servicePort: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.org/ssl-backends: "kubernetes-dashboard"
+    kubernetes.io/ingress.allow-http: "false"
+  name: dashboard-ingress
+  namespace: kube-system
+spec:
+  tls:
+  - hosts:
+    - k8s01
+    secretName: kubernetes-dashboard-certs
+  rules:
+  - host: k8s01
+  - http:
+      paths:
+      - path: /dashboard
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 443
