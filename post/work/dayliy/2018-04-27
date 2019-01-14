@@ -1,9 +1,0 @@
-
-http PUT localhost:5000/events event=RHCP nrOfTickets:=10
-
-
-curl -v -X PUT -d "event=RHCP&nrOfTickets=10" localhost:5000/events
-
-
-
-P80504-140310.jpg

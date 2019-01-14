@@ -1,8 +1,0 @@
----
-
-- name: apply common configuration to all nodes
-  hosts: app-stable
-  remote_user: core
-
-  roles:
-    - app-stable-restart

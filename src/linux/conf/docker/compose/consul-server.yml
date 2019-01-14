@@ -1,9 +1,0 @@
-version: '2'
-services:
-  dns:
-    container_name: dns
-    image: dishui.io:5000/tonistiigi/dnsdock:latest
-    volumes:
-      - ./hugo-project:/hugo-project
-    ports:
-      - "${COREOS_PRIVATE_IPV4}:53:53/udp"

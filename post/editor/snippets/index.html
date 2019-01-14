@@ -1,457 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sublime tabTrigger</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="sublime tabTrigger" />
-<meta property="og:description" content="Contents1. quml2. qdot3. bash4. bash session5. table6. asciinema7. a8. javasAsciidoctor1. stem2. quote3. img4. src5. c6. c11. quml&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml$1@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;&lt;/snippet&gt;
-2. qdot&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[@startuml@startdot$1@enddot@enduml]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;qdot&lt;/tabTrigger&gt;&lt;/snippet&gt;
-3. bash&lt;snippet&gt;&lt;content&gt;&lt;![CDATA[
-$1]]&gt;&lt;/content&gt;&lt;tabTrigger&gt;bash&lt;/tabTrigger&gt;&lt;/snippet&gt;" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/editor/snippets/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
-	<article class="post">
-		<header class="entry-header clearfix">
-			<h1 class="entry-title">sublime tabTrigger</h1>
-			<p class="mr-meta entry-meta">
-				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-			</p>
-		</header>
-		<div class="entry-content clearfix">
-			
-			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_quml">1. quml</a></li>
-<li><a href="#_qdot">2. qdot</a></li>
-<li><a href="#_bash">3. bash</a></li>
-<li><a href="#_bash_session">4. bash session</a></li>
-<li><a href="#_table">5. table</a></li>
-<li><a href="#_asciinema">6. asciinema</a></li>
-<li><a href="#_a">7. a</a></li>
-<li><a href="#_javas">8. javas</a></li>
-<li><a href="#_asciidoctor">Asciidoctor</a>
-<ul class="sectlevel1">
-<li><a href="#_stem">1. stem</a></li>
-<li><a href="#_quote">2. quote</a></li>
-<li><a href="#_img">3. img</a></li>
-<li><a href="#_src">4. src</a></li>
-<li><a href="#_c">5. c</a></li>
-<li><a href="#_c1">6. c1</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_quml">1. quml</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-@startuml
-$1
-@enduml
-]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;quml&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_qdot">2. qdot</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-@startuml
-@startdot
-$1
-@enddot
-@enduml
-]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;qdot&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bash">3. bash</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">$1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;bash&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bash_session">4. bash session</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bashsession" data-lang="bashsession">$1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;bashs&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_table">5. table</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-right valign-top">$1</th>
-<th class="tableblock halign-center valign-top">$2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-right valign-top"></td>
-<td class="tableblock halign-center valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;table&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_asciinema">6. asciinema</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-asciinema::slave["/src/records/$1","95","22","2"]
-]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;asc&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_a">7. a</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-[[$1 | ]]
-]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;a&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_javas">8. javas</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">$1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;javas&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<h1 id="_asciidoctor" class="sect0">Asciidoctor</h1>
-<div class="sect1">
-<h2 id="_stem">1. stem</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[$1\]
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;stem&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_quote">2. quote</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$1</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;quote&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_img">3. img</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-image::/src/img/$1[]
-]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;img&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_src">4. src</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>Unresolved directive in &lt;stdin&gt; - include::content/src/$1[]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;src&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_c">5. c</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$SELECTION</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;c&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_c1">6. c1</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$1</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;c1&lt;/tabTrigger&gt;
-&lt;/snippet&gt;</p>
-</div>
-</div>
-</div>
-
-		</div>
-		
-<div class="entry-tags clearfix">
-	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
-	<ul>
-		<li><a href="/tags/sublime/" rel="tag">sublime</a></li>
-		
-	</ul>
-</div>
-	</article>
-	
-<div class="mr-author-box clearfix">
-	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
-	</figure>
-	<div class="mr-author-box-header">
-		<span class="mr-author-box-name">About dishui</span>
-	</div>
-	<div class="mr-author-box-bio">
-		辛勤的搬运工!!!
-	</div>
-</div>
-
-	
-
-	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/linux/ssh/" rel="prev"><span>«Previous</span><p>ssh</p></a>
-		</div>
-		
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/editor/sublime/" rel="next"><span>Next»</span><p>sublime 配置</p></a>
-		</div>
-		
-	</nav>
-
-
-	
-</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-<div class="mr-widget widget_search navbar-wrapper" >
-    <div class="search-form">
-        <label>
-            <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
-        </label>
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-    </div>
-    <div id="side-toc" class="entry-content">
-
-    </div>
-</div>
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

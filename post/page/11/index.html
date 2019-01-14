@@ -1,457 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Posts</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/post/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-	<div id="main-content" class="mr-loop mr-content" role="main">
-		
-		<header class="page-header">
-			<h1 class="page-title">Posts</h1>
-		</header>
-		
-		
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/ji_chu_she_zhi/" rel="bookmark">CentOS基础设置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Linux基础设置 Linux主机名设置 #主机名设置 [root@localhost ~]# vim /etc/sysconfig/network NETWORKING=yes HOSTNAME=Web-01  添加多张网卡 #eth1变成eth0 vim /etc/udev/rules.d/70-persistent-net.rules #编辑eth0 IP地址 vim /etc/sysconfig/network-scripts/ifcfg-eth0  Virtual Box 网卡MAC地址  CentOS-1  MAC:  eth0 08:00:27:3F:48:85 HostOnly ipaddr 192.168.137.101 eth1 08:00:27:e1:36:70 Nat ipaddr 10.0.2.101   CentOS-2  MAC:  eth0 08:00:27:A2:B9:68 HostOnly ipaddr 192.168.137.102   CentOS-3  MAC:  eth0 08:00:27:16:DB:38 HostOnly ipaddr 192.168.137.103   CentOS-4  MAC:  eth0 08:00:27:4C:AA:E5 HostOnly ipaddr 192.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/CoreOS/" rel="bookmark">CoreOS</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						CoreOS1. CoreOS1.1. 升级策略1.1.1. Window 主机 启动脚本1.2. Problem 003 - unix:///var/run/supervisor.sock refused connection2. UML3. CoreOS 安装 docker-compose4. CoreOS 硬盘安装4.1. 镜像4.2. Http 服务器4.2.1. HFS4.2.2. 配置文件4.3. 操作4.4. 设置 core 密码4.5. 参考5. 安装 Python1. CoreOS1.1. 升级策略修改升级策略
-$ sudo vi /etc/coreos/update.confGROUP=stableREBOOT_STRATEGY=reboot升级策略主要与自动升级后的重启更新方式有关。它的值可以是 best-effort（默认值）、 etcd-lock、 reboot 和 off。其作用依次解释如下：
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/es/elasticsearch/" rel="bookmark">Elasticsearch</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Elasticsearch2. logstash2.1. jdbc 数据同步2.1.1. test mappingQ &amp; A1. Elasticsearch启动添加内存参数
-~/opt/elasticsearch-1.7.1/bin/elasticsearch -Xms512m -Xmx1g -d动态脚本支持
-script.disable_dynamic: false#关闭marvelmarvel.agent.enabled: falseb2b(正试)
-curl -XPOST "http://192.168.1.126:9200/b2b" -d'{"mappings": {"mlq_shop_info": {"properties": {"shop_name": {"type": "string","store": true,"analyzer": "
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/gc/" rel="bookmark">GC日志分析</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						参考http://blog.csdn.net/yxc135/article/details/12137663
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/git-tips/" rel="bookmark">Git的奇技淫巧</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Git的奇技淫巧:see_no_evil:  Git常用命令集合，Fork于tips项目
- Git是一个“分布式版本管理工具”，简单的理解版本管理工具：大家在写东西的时候都用过“回撤”这个功能，但是回撤只能回撤几步，假如想要找回我三天之前的修改，光用“回撤”是找不回来的。而“版本管理工具”能记录每次的修改，只要提交到版本仓库，你就可以找到之前任何时刻的状态（文本状态）。
-下面的内容就是列举了常用的git命令和一些小技巧，可以通过&rdquo;页面内查找&rdquo;的方式进行快速查询：Ctrl/Command+f。
-开卷必读 如果之前未使用过Git，可以学习廖老师的免费Git教程入门
- 一定要先测试命令的效果后，再用于工作环境中，以防造成不能弥补的后果！到时候别拿着砍刀来找我 所有的命令都在git version 2.7.4 (Apple Git-66)下测试通过 统一概念：  工作区：改动（增删文件和内容） 暂存区：输入命令：git add 改动的文件名，此次改动就放到了‘暂存区’ 本地仓库(简称：本地)：输入命令：git commit 此次修改的描述，此次改动就放到了’本地仓库’，每个commit，我叫它为一个‘版本’。 远程仓库(简称：远程)：输入命令：git push 远程仓库，此次改动就放到了‘远程仓库’（github等) commit-id：输出命令：git log，最上面那行commit xxxxxx，后面的字符串就是commit-id  如果喜欢这个项目，欢迎Star、提交Pr、反馈问题😊  目录  展示帮助信息 回到远程仓库的状态 重设第一个commit 展示工作区和暂存区的不同 展示暂存区和最近版本的不同 展示暂存区、工作区和最近版本的不同 快速切换分支 删除已经合并到master的分支 展示所有的分支关联的远程仓库 关联远程分支 删除本地分支 删除远程分支 查看标签 本地创建标签 推送标签到远程仓库 删除本地标签 删除远程标签 放弃工作区的修改 回到某一个commit的状态，并重新增添一个commit 回到某个commit的状态，并删除后面的commit 修改上一个commit的描述 查看commit历史 显示本地执行过git命令 修改作者名 修改远程仓库的url 列出所有远程仓库 列出本地和远程分支 列出远程分支 查看两个星期内的改动 把A分支的某一个commit，放到B分支上 给git命令起别名 存储当前的修改，但不用提交commit 保存当前状态，包括untracked的文件 展示所有stashes 回到某个stash的状态 回到最后一个stash的状态，并删除这个stash 删除所有的stash 从stash中拿出某个文件的修改 展示所有tracked的文件 展示所有untracked的文件 展示所有忽略的文件 强制删除untracked的文件 强制删除untracked的目录 重命名分支 展示简化的commit历史 查看某段代码是谁写的 把某一个分支到导出成一个文件 从包中导入分支 执行rebase之前自动stash 从远程仓库根据ID，拉下某一状态，到本地分支 详细展示一行中的修改 清除.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/mathematics/mathjax-ref/" rel="bookmark">Greek letters</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						==Greek letters
-参考 [[http://blog.csdn.net/garfielder007/article/details/51646604]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/editor/Intellij-keymap/" rel="bookmark">IntelliJ IDEA 快捷键</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						快捷键 &lt;&lt;转自极客学院&gt;&gt; 说明 IntelliJ IDEA 的便捷操作性，快捷键的功劳占了一大半，对于各个快捷键组合请认真对待。IntelliJ IDEA 本身的设计思维是提倡键盘优先于鼠标的，所以各种快捷键组合层出不穷，对于快捷键设置也有各种支持，对于其他 IDE 的快捷键组合也有预设模板进行支持。
-关于各个快捷键的频率分类上可能每个人都有各自的看法，下面的整理也只是以我个人的使用习惯来划分的，而我应该是可以代表某一部分小众人员。但是我个人还是强烈建议你可以在我的基础上整理一份属于你的快捷键目录（删除掉多余的字眼，只保留快捷键内容），本篇文章也只是起到一个工具和引子的作用。
-对于下面各个快捷键的使介绍描述也许用我个人语言翻译起来不够准确或是不全面，且在不同的文件类型上按出来的效果也可能结果不太一样,所以 强烈建议 你自己把各个快捷键都亲自操作下体会下各个快捷键的实际用法。
-前提 由于文化的不同，我们使用的电脑必备一个软件就是中文输入法，而目前大多数人都使用搜狗拼音输入法或是其他类似的。而这些输入法跟 IntelliJ IDEA 有一个万恶的冲突永恒不变：快捷键冲突。所以为了配合 IntelliJ IDEA，我们要去掉这些输入法下的所有快捷键。
-  如上图红色圈住内容所示，默认是 逗号 我改为了 ESC 键下的 波浪号，Ctrl + 逗号 这个快捷键适合做智能提示用，下面的快捷键列表会讲。     如上图红色圈住内容所示，这些快捷键很容易跟 IntelliJ IDEA 快捷键冲突，需要全部去掉。     如上图红色圈住内容所示，QQ 这些快捷键也很容易跟 IntelliJ IDEA 快捷键冲突，需要全部去掉，最多保持一个截图功能即可。   可能还有其他一些软件，比如网易云音乐、有道词典等等这些软件都可能存在快捷键冲突，所以为了 IntelliJ IDEA 这些软件的快捷键都是值得舍弃的，如果你在开发的时候。
-Ctrl    快捷键 介绍     Ctrl + F 在当前文件进行文本查找 （必备）   Ctrl + R 在当前文件进行文本替换 （必备）   Ctrl + Z 撤销 （必备）   Ctrl + Y 删除光标所在行 或 删除选中的行 （必备）   Ctrl + X 剪切光标所在行 或 剪切选择内容   Ctrl + C 复制光标所在行 或 复制选择内容   Ctrl + D 复制光标所在行 或 复制选择内容，并把复制内容插入光标位置下面 （必备）   Ctrl + W 递进式选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展选中范围 （必备）   Ctrl + E 显示最近打开的文件记录列表   Ctrl + N 根据输入的 类名 查找类文件   Ctrl + G 在当前文件跳转到指定行处   Ctrl + J 插入自定义动态代码模板   Ctrl + P 方法参数提示显示   Ctrl + Q 光标所在的变量 / 类名 / 方法名等上面（也可以在提示补充的时候按），显示文档内容   Ctrl + U 前往当前光标所在的方法的父类的方法 / 接口定义   Ctrl + B 进入光标所在的方法/变量的接口或是定义处，等效于 Ctrl + 左键单击   Ctrl + K 版本控制提交项目，需要此项目有加入到版本控制才可用   Ctrl + T 版本控制更新项目，需要此项目有加入到版本控制才可用   Ctrl + H 显示当前类的层次结构   Ctrl + O 选择可重写的方法   Ctrl + I 选择可继承的方法   Ctrl + + 展开代码   Ctrl + - 折叠代码   Ctrl + / 注释光标所在行代码，会根据当前不同文件类型使用不同的注释符号 （必备）   Ctrl + [ 移动光标到当前所在代码的花括号开始位置   Ctrl + ] 移动光标到当前所在代码的花括号结束位置   Ctrl + F1 在光标所在的错误代码处显示错误信息   Ctrl + F3 调转到所选中的词的下一个引用位置   Ctrl + F4 关闭当前编辑文件   Ctrl + F8 在 Debug 模式下，设置光标当前行为断点，如果当前已经是断点则去掉断点   Ctrl + F9 执行 Make Project 操作   Ctrl + F11 选中文件 / 文件夹，使用助记符设定 / 取消书签   Ctrl + F12 弹出当前文件结构层，可以在弹出的层上直接输入，进行筛选   Ctrl + Tab 编辑窗口切换，如果在切换的过程又加按上delete，则是关闭对应选中的窗口   Ctrl + Enter 智能分隔行   Ctrl + End 跳到文件尾   Ctrl + Home 跳到文件头   Ctrl + Space 基础代码补全，默认在 Windows 系统上被输入法占用，需要进行修改，建议修改为 Ctrl + 逗号 （必备）   Ctrl + Delete 删除光标后面的单词或是中文句   Ctrl + BackSpace 删除光标前面的单词或是中文句   Ctrl + 1,2,3&hellip;9 定位到对应数值的书签位置   Ctrl + 左键单击 在打开的文件标题上，弹出该文件路径   Ctrl + 光标定位 按 Ctrl 不要松开，会显示光标所在的类信息摘要   Ctrl + 左方向键 光标跳转到当前单词 / 中文句的左侧开头位置   Ctrl + 右方向键 光标跳转到当前单词 / 中文句的右侧开头位置   Ctrl + 前方向键 等效于鼠标滚轮向前效果   Ctrl + 后方向键 等效于鼠标滚轮向后效果    Alt    快捷键 介绍     Alt + ` 显示版本控制常用操作菜单弹出层   Alt + Q 弹出一个提示，显示当前类的声明 / 上下文信息   Alt + F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择   Alt + F2 对于前面页面，显示各类浏览器打开目标选择弹出层   Alt + F3 选中文本，逐个往下查找相同文本，并高亮显示   Alt + F7 查找光标所在的方法 / 变量 / 类被调用的地方   Alt + F8 在 Debug 的状态下，选中对象，弹出可输入计算表达式调试框，查看该输入内容的调试结果   Alt + Home 定位 / 显示到当前文件的 Navigation Bar   Alt + Enter IntelliJ IDEA 根据光标所在问题，提供快速修复选择，光标放在的位置不同提示的结果也不同 （必备）   Alt + Insert 代码自动生成，如生成对象的 set / get 方法，构造函数，toString() 等   Alt + 左方向键 按左方向切换当前已打开的文件视图   Alt + 右方向键 按右方向切换当前已打开的文件视图   Alt + 前方向键 当前光标跳转到当前文件的前一个方法名位置   Alt + 后方向键 当前光标跳转到当前文件的后一个方法名位置   Alt + 1,2,3&hellip;9 显示对应数值的选项卡，其中 1 是 Project 用得最多    Shift    快捷键 介绍     Shift + F1 如果有外部文档可以连接外部文档   Shift + F2 跳转到上一个高亮错误 或 警告位置   Shift + F3 在查找模式下，查找匹配上一个   Shift + F4 对当前打开的文件，使用新Windows窗口打开，旧窗口保留   Shift + F6 对文件 / 文件夹 重命名   Shift + F7 在 Debug 模式下，智能步入。断点所在行上有多个方法调用，会弹出进入哪个方法   Shift + F8 在 Debug 模式下，跳出，表现出来的效果跟 F9 一样   Shift + F9 等效于点击工具栏的 Debug 按钮   Shift + F10 等效于点击工具栏的 Run 按钮   Shift + F11 弹出书签显示层   Shift + Tab 取消缩进   Shift + ESC 隐藏当前 或 最后一个激活的工具窗口   Shift + End 选中光标到当前行尾位置   Shift + Home 选中光标到当前行头位置   Shift + Enter 开始新一行。光标所在行下空出一行，光标定位到新行位置   Shift + 左键单击 在打开的文件名上按此快捷键，可以关闭当前打开文件   Shift + 滚轮前后滚动 当前文件的横向滚动轴滚动    Ctrl + Alt    快捷键 介绍     Ctrl + Alt + L 格式化代码，可以对当前文件和整个包目录使用 （必备）   Ctrl + Alt + O 优化导入的类，可以对当前文件和整个包目录使用 （必备）   Ctrl + Alt + I 光标所在行 或 选中部分进行自动代码缩进，有点类似格式化   Ctrl + Alt + T 对选中的代码弹出环绕选项弹出层   Ctrl + Alt + J 弹出模板选择窗口，将选定的代码加入动态模板中   Ctrl + Alt + H 调用层次   Ctrl + Alt + B 在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口   Ctrl + Alt + V 快速引进变量   Ctrl + Alt + Y 同步、刷新   Ctrl + Alt + S 打开 IntelliJ IDEA 系统设置   Ctrl + Alt + F7 显示使用的地方。寻找被该类或是变量被调用的地方，用弹出框的方式找出来   Ctrl + Alt + F11 切换全屏模式   Ctrl + Alt + Enter 光标所在行上空出一行，光标定位到新行   Ctrl + Alt + Home 弹出跟当前文件有关联的文件弹出层   Ctrl + Alt + Space 类名自动完成   Ctrl + Alt + 左方向键 退回到上一个操作的地方 （必备）   Ctrl + Alt + 右方向键 前进到上一个操作的地方 （必备）   Ctrl + Alt + 前方向键 在查找模式下，跳到上个查找的文件   Ctrl + Alt + 后方向键 在查找模式下，跳到下个查找的文件    Ctrl + Shift    快捷键 介绍     Ctrl + Shift + F 根据输入内容查找整个项目 或 指定目录内文件 （必备）   Ctrl + Shift + R 根据输入内容替换对应内容，范围为整个项目 或 指定目录内文件 （必备）   Ctrl + Shift + J 自动将下一行合并到当前行末尾 （必备）   Ctrl + Shift + Z 取消撤销 （必备）   Ctrl + Shift + W 递进式取消选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展取消选中范围 （必备）   Ctrl + Shift + N 通过文件名定位 / 打开文件 / 目录，打开目录需要在输入的内容后面多加一个正斜杠 （必备）   Ctrl + Shift + U 对选中的代码进行大 / 小写轮流转换 （必备）   Ctrl + Shift + T 对当前类生成单元测试类，如果已经存在的单元测试类则可以进行选择   Ctrl + Shift + C 复制当前文件磁盘路径到剪贴板   Ctrl + Shift + V 弹出缓存的最近拷贝的内容管理器弹出层   Ctrl + Shift + E 显示最近修改的文件列表的弹出层   Ctrl + Shift + H 显示方法层次结构   Ctrl + Shift + B 跳转到类型声明处   Ctrl + Shift + I 快速查看光标所在的方法 或 类的定义   Ctrl + Shift + A 查找动作 / 设置   Ctrl + Shift + / 代码块注释 （必备）   Ctrl + Shift + [ 选中从光标所在位置到它的顶部中括号位置   Ctrl + Shift + ] 选中从光标所在位置到它的底部中括号位置   Ctrl + Shift + + 展开所有代码   Ctrl + Shift + - 折叠所有代码   Ctrl + Shift + F7 高亮显示所有该选中文本，按Esc高亮消失   Ctrl + Shift + F8 在 Debug 模式下，指定断点进入条件   Ctrl + Shift + F9 编译选中的文件 / 包 / Module   Ctrl + Shift + F12 编辑器最大化   Ctrl + Shift + Space 智能代码提示   Ctrl + Shift + Enter 自动结束代码，行末自动添加分号 （必备）   Ctrl + Shift + Backspace 退回到上次修改的地方   Ctrl + Shift + 1,2,3&hellip;9 快速添加指定数值的书签   Ctrl + Shift + 左方向键 在代码文件上，光标跳转到当前单词 / 中文句的左侧开头位置，同时选中该单词 / 中文句   Ctrl + Shift + 右方向键 在代码文件上，光标跳转到当前单词 / 中文句的右侧开头位置，同时选中该单词 / 中文句   Ctrl + Shift + 左方向键 在光标焦点是在工具选项卡上，缩小选项卡区域   Ctrl + Shift + 右方向键 在光标焦点是在工具选项卡上，扩大选项卡区域   Ctrl + Shift + 前方向键 光标放在方法名上，将方法移动到上一个方法前面，调整方法排序   Ctrl + Shift + 后方向键 光标放在方法名上，将方法移动到下一个方法前面，调整方法排序    Alt + Shift    快捷键 介绍     Alt + Shift + N 选择 / 添加 task   Alt + Shift + F 显示添加到收藏夹弹出层 / 添加到收藏夹   Alt + Shift + C 查看最近操作项目的变化情况列表   Alt + Shift + I 查看项目当前文件   Alt + Shift + F7 在 Debug 模式下，下一步，进入当前方法体内，如果方法体还有方法，则会进入该内嵌的方法中，依此循环进入   Alt + Shift + F9 弹出 Debug 的可选择菜单   Alt + Shift + F10 弹出 Run 的可选择菜单   Alt + Shift + 左键双击 选择被双击的单词 / 中文句，按住不放，可以同时选择其他单词 / 中文句   Alt + Shift + 前方向键 移动光标所在行向上移动   Alt + Shift + 后方向键 移动光标所在行向下移动    Ctrl + Shift + Alt    快捷键 介绍     Ctrl + Shift + Alt + V 无格式黏贴   Ctrl + Shift + Alt + N 前往指定的变量 / 方法   Ctrl + Shift + Alt + S 打开当前项目设置   Ctrl + Shift + Alt + C 复制参考信息    其他    快捷键 介绍     F2 跳转到下一个高亮错误 或 警告位置 （必备）   F3 在查找模式下，定位到下一个匹配处   F4 编辑源   F7 在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中   F8 在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则不进入当前方法体内   F9 在 Debug 模式下，恢复程序运行，但是如果该断点下面代码还有断点则停在下一个断点上   F11 添加书签   F12 回到前一个工具窗口   Tab 缩进   ESC 从工具窗口进入代码文件窗口   连按两次Shift 弹出 Search Everywhere 弹出层    官网快捷键资料   Windows / Linux：https://www.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/editor/Intellij/" rel="bookmark">Intellij</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						IDEA1. Intellij IDEA 151.1. 配置2. Q &amp; A1. Intellij IDEA 15破解地址(二选一) Intellij IDEA 15 Crack(1)
-Intellij IDEA 15 Crack(2)
-http://idea.lanyus.com/dishuidishui19950316@gmail.com
-1.1. 配置主题 主题1
-主题2
-部署 部署Tomcat
-Ref Intellij 教程
-YouMeek
-2. Q &amp; Aintellij IDEA Properties 中文unicode转码问题
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/js/js-html/" rel="bookmark">JS 面向对象</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. base1.1. JS 面向对象1.2. 弹框页面1. base1.1. JS 面向对象js
-$(function(){function T(){//this.a = 'a';_this = this;//初始化this.init();};T.prototype = {init: function(){$('*[data-jump]').each(function(){$(this).bind('click',{flag:$(this)},_this.jump);});$('*[data-modify]').each(function(){$(this).bind('click',{flag:$(this)},_this.modify);});},save: function(event){var data = event.data.flag;console.log(data.html());},modify: function(event){var data = event.data.flag;var id = data.attr('data-id');var flag = data.attr('data-modify');switch(flag){case 'edit':window.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jackson/" rel="bookmark">Jackson</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Jackson1.1. 参考1. Jackson注解
-说明
-java@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")private Date inDate;
-输出日期格式
-1.1. 参考[[Jackson-Annotations | https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-
-		
-<div class="mr-loop-pagination clearfix">
-	
-	<a class="page-numbers" href="/post/page/10/">«</a>
-	
-	<span class="page-numbers current">11/31</span>
-	
-	<a class="page-numbers" href="/post/page/12/">»</a>
-	
-</div>
-
-	</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-	
-<div class="mr-widget widget_search navbar-wrapper" >
-	<div class="search-form" role="search" >
-		<label>
-			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
-		</label>
-		
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-	</div>
-</div>
-
-	
-	
-
-
-<div class="mr-widget widget_categories">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
-	<ul>
-		
-		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
-		
-		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
-		
-		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
-		
-		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
-		
-		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
-		
-		<li class="cat-item"><a href="/categories/go">Go</a></li>
-		
-		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
-		
-		<li class="cat-item"><a href="/categories/java">Java</a></li>
-		
-		<li class="cat-item"><a href="/categories/js">Js</a></li>
-		
-		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
-		
-		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
-		
-		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
-		
-		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
-		
-		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
-		
-		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
-		
-		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
-		
-		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
-		
-		<li class="cat-item"><a href="/categories/work">Work</a></li>
-		
-		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
-		
-		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
-		
-		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
-		
-	</ul>
-</div>
-
-
-
-    
-
-
-<div class="mr-widget widget_tag_cloud">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
-	<div class="tagcloud">
-		
-			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
-		
-			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
-		
-			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
-		
-			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
-		
-			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
-		
-			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
-		
-			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
-		
-			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
-		
-			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
-		
-			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
-		
-			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
-		
-	</div>
-</div>
-
-
-
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

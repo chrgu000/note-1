@@ -1,263 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Git</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="Git" />
-<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/git/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-	<div id="main-content" class="mr-loop mr-content" role="main">
-		
-		<header class="page-header">
-			<h1 class="page-title">Git</h1>
-		</header>
-		
-		
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/git-tips/" rel="bookmark">Git的奇技淫巧</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Git的奇技淫巧:see_no_evil:  Git常用命令集合，Fork于tips项目
- Git是一个“分布式版本管理工具”，简单的理解版本管理工具：大家在写东西的时候都用过“回撤”这个功能，但是回撤只能回撤几步，假如想要找回我三天之前的修改，光用“回撤”是找不回来的。而“版本管理工具”能记录每次的修改，只要提交到版本仓库，你就可以找到之前任何时刻的状态（文本状态）。
-下面的内容就是列举了常用的git命令和一些小技巧，可以通过&rdquo;页面内查找&rdquo;的方式进行快速查询：Ctrl/Command+f。
-开卷必读 如果之前未使用过Git，可以学习廖老师的免费Git教程入门
- 一定要先测试命令的效果后，再用于工作环境中，以防造成不能弥补的后果！到时候别拿着砍刀来找我 所有的命令都在git version 2.7.4 (Apple Git-66)下测试通过 统一概念：  工作区：改动（增删文件和内容） 暂存区：输入命令：git add 改动的文件名，此次改动就放到了‘暂存区’ 本地仓库(简称：本地)：输入命令：git commit 此次修改的描述，此次改动就放到了’本地仓库’，每个commit，我叫它为一个‘版本’。 远程仓库(简称：远程)：输入命令：git push 远程仓库，此次改动就放到了‘远程仓库’（github等) commit-id：输出命令：git log，最上面那行commit xxxxxx，后面的字符串就是commit-id  如果喜欢这个项目，欢迎Star、提交Pr、反馈问题😊  目录  展示帮助信息 回到远程仓库的状态 重设第一个commit 展示工作区和暂存区的不同 展示暂存区和最近版本的不同 展示暂存区、工作区和最近版本的不同 快速切换分支 删除已经合并到master的分支 展示所有的分支关联的远程仓库 关联远程分支 删除本地分支 删除远程分支 查看标签 本地创建标签 推送标签到远程仓库 删除本地标签 删除远程标签 放弃工作区的修改 回到某一个commit的状态，并重新增添一个commit 回到某个commit的状态，并删除后面的commit 修改上一个commit的描述 查看commit历史 显示本地执行过git命令 修改作者名 修改远程仓库的url 列出所有远程仓库 列出本地和远程分支 列出远程分支 查看两个星期内的改动 把A分支的某一个commit，放到B分支上 给git命令起别名 存储当前的修改，但不用提交commit 保存当前状态，包括untracked的文件 展示所有stashes 回到某个stash的状态 回到最后一个stash的状态，并删除这个stash 删除所有的stash 从stash中拿出某个文件的修改 展示所有tracked的文件 展示所有untracked的文件 展示所有忽略的文件 强制删除untracked的文件 强制删除untracked的目录 重命名分支 展示简化的commit历史 查看某段代码是谁写的 把某一个分支到导出成一个文件 从包中导入分支 执行rebase之前自动stash 从远程仓库根据ID，拉下某一状态，到本地分支 详细展示一行中的修改 清除.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/git/" rel="bookmark">git基础命令</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						git1. git2. 拉取git项目中的特定文件夹2.1. 命令2.1.1. 远程分支2.2. 本地目录(存在文件),上传到码云2.2.1. 综合使用2.2.2. Q &amp; A1. git2. 拉取git项目中的特定文件夹# svn list &lt;repositry-url&gt; 查看文件夹svn list https://github.com/apache/spark.git# 拉取git项目中的特定文件夹svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.62.1. 命令2.1.1. 远程分支查看远程分支
-$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
-git remote add origin git@git.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-
-		
-	</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-	
-<div class="mr-widget widget_search navbar-wrapper" >
-	<div class="search-form" role="search" >
-		<label>
-			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
-		</label>
-		
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-	</div>
-</div>
-
-	
-	
-
-
-<div class="mr-widget widget_categories">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
-	<ul>
-		
-		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
-		
-		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
-		
-		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
-		
-		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
-		
-		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
-		
-		<li class="cat-item"><a href="/categories/go">Go</a></li>
-		
-		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
-		
-		<li class="cat-item"><a href="/categories/java">Java</a></li>
-		
-		<li class="cat-item"><a href="/categories/js">Js</a></li>
-		
-		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
-		
-		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
-		
-		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
-		
-		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
-		
-		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
-		
-		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
-		
-		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
-		
-		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
-		
-		<li class="cat-item"><a href="/categories/work">Work</a></li>
-		
-		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
-		
-		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
-		
-		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
-		
-	</ul>
-</div>
-
-
-
-    
-
-
-<div class="mr-widget widget_tag_cloud">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
-	<div class="tagcloud">
-		
-			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
-		
-			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
-		
-			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
-		
-			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
-		
-			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
-		
-			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
-		
-			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
-		
-			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
-		
-			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
-		
-			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
-		
-			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
-		
-	</div>
-</div>
-
-
-
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

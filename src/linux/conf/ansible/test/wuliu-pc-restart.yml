@@ -1,8 +1,0 @@
----
-
-- name: apply common configuration to wuliu-pc nodes
-  hosts: wuliu-pc
-  remote_user: core
-
-  roles:
-    - wuliu-pc-restart

@@ -1,350 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jenkins 构建工具</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="jenkins 构建工具" />
-<meta property="og:description" content="Contents1. Jenkins1.1. 增量构建1.1.1. 配置2. Ant3. Svn 增量更新1. Jenkins1.1. 增量构建1.1.1. 配置1 [[/src/img/2016-11-18-02.png]]
-2 [[/src/img/2016-11-18-03.png]]
-3 [[/src/img/2016-11-18-04.png]]
-4 [[/src/img/2016-11-18-05.png]]
-5 [[/src/img/2016-11-18-01.png]]==== 脚本
-#!/bin/bashsource /etc/profilebase=&#34;/root/.jenkins/workspace/mailiqing-increment&#34;#更新文件列表update_list=&#34;$base/update.txt&#34;#日期date=$(date &#43;%Y-%m-%d)#增量打包文件tar_file=&#34;$base/path/app-path$date.tar.gz&#34;#本地svn仓库地址svn_repo_url=&#34;$base/app&#34;#编译后的class文件路径path=&#34;$svn_repo_url/WebRoot/WEB-INF/classes&#34;webroot=&#34;$svn_repo_url/WebRoot&#34;remote_cmd=&#34;" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/linux/jenkins/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
-	<article class="post">
-		<header class="entry-header clearfix">
-			<h1 class="entry-title">jenkins 构建工具</h1>
-			<p class="mr-meta entry-meta">
-				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-			</p>
-		</header>
-		<div class="entry-content clearfix">
-			
-			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_jenkins">1. Jenkins</a>
-<ul class="sectlevel2">
-<li><a href="#_增量构建">1.1. 增量构建</a>
-<ul class="sectlevel3">
-<li><a href="#_配置">1.1.1. 配置</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#__strong_ant_strong">2. <strong>Ant</strong></a></li>
-<li><a href="#__code_svn_code_增量更新">3. <code>Svn</code> 增量更新</a></li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_jenkins">1. Jenkins</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_增量构建">1.1. 增量构建</h3>
-<div class="sect3">
-<h4 id="_配置">1.1.1. 配置</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">1 </dt>
-<dd>
-<p>[[/src/img/2016-11-18-02.png]]</p>
-</dd>
-<dt class="hdlist1">2 </dt>
-<dd>
-<p>[[/src/img/2016-11-18-03.png]]</p>
-</dd>
-<dt class="hdlist1">3 </dt>
-<dd>
-<p>[[/src/img/2016-11-18-04.png]]</p>
-</dd>
-<dt class="hdlist1">4 </dt>
-<dd>
-<p>[[/src/img/2016-11-18-05.png]]</p>
-</dd>
-<dt class="hdlist1">5 </dt>
-<dd>
-<p>[[/src/img/2016-11-18-01.png]]
-==== 脚本</p>
-</dd>
-</dl>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
-
-source /etc/profile
-
-base="/root/.jenkins/workspace/mailiqing-increment"
-
-#更新文件列表
-update_list="$base/update.txt"
-
-#日期
-date=$(date +%Y-%m-%d)
-#增量打包文件
-tar_file="$base/path/app-path$date.tar.gz"
-#本地svn仓库地址
-svn_repo_url="$base/app"
-#编译后的class文件路径
-path="$svn_repo_url/WebRoot/WEB-INF/classes"
-webroot="$svn_repo_url/WebRoot"
-
-remote_cmd="nohup sh /home/core/opt/src/scripts/unpack.sh &gt;/dev/null 2&gt;&amp;1"
-remote_cmd_no_reboot="nohup sh /home/core/opt/src/scripts/unpack-no-reboot.sh &gt;/dev/null 2&gt;&amp;1"
-
-
-function exar() {
-    #awk -F'.' '{if($NF ~ "java"){print $0}}' $1 | xargs -I t getLs t
-    while read LINE
-    do
-    	# 获取目录
-        local t_dir=`echo $LINE | awk -F'.' '{if($NF == "class"){print $0}}' | xargs -I t dirname t`
-        # 获取内部类
-        ls $t_dir | awk '{print $1}' | awk -F'.' '{if($1 ~ /\$/){print dir"/"$1".class"}}' dir="$t_dir" &gt;&gt; $webroot/filelist1
-    done &lt; $1
-}
-
-# 清空
-if [ -d "$svn_repo_url/build" ];then
-    cd $svn_repo_url &amp;&amp;\
-    rm -rf build &amp;&amp;\
-    cd $path &amp;&amp;\
-    rm -rf *
-fi
-
-cd $svn_repo_url &amp;&amp;\
-#本地版与最新版的差异
-svn diff --summarize -r $revision_start:$revision_end * | awk '{if($1 != "D"){print $2}}' | awk -F '.' '{if($NF ~ "jsp|js|java|xml|css|properties|png|jpg|html|jar|ftl"){print $0}}' &gt; $update_list
-cat $update_list
-#判断 是否有更新
-if [ -s $update_list ];then
-    # svn 更新
-    svn update -r HEAD * &amp;&amp;\
-    #记录版本号
-    #svn info WebRoot | awk -F':' '{if($1 == "Revision"){gsub(/ /,"",$2);print $2}}' &gt; $revision &amp;&amp;\
-    # ant 编译
-    ant -f ./build.xml &amp;&amp;\
-    cat $update_list | awk '{gsub("WebRoot/",webroot);gsub("^src/",path);gsub("^conf/",path);gsub(".java",".class");print $0}' path="$path/" webroot="$webroot/" | awk -F 'WebRoot/' '{print $2}' &gt; $webroot/filelist
-    #
-    if [ -s $webroot/filelist ];then
-
-        cd $webroot &amp;&amp;\
-    	exar $webroot/filelist &amp;&amp;\
-    	cat $webroot/filelist1 &gt;&gt; $webroot/filelist &amp;&amp;\
-        #cat $webroot/filelist &amp;&amp;\
-		#增量打包
-        awk '!a[$0]++' filelist| xargs tar -czf $tar_file &amp;&amp;\
-        rm -f filelist filelist1 &amp;&amp;\
-        cd $path &amp;&amp;\
-        rm -rf * &amp;&amp;\
-        cd $svn_repo_url &amp;&amp;\
-        rm -rf build &amp;&amp;\
-        tar -tPvf $tar_file | awk '{print $6}' &amp;&amp;\
-        echo "增量更新文件打包OK!路径:$tar_file" &amp;&amp;\
-        scp -P 2222 $tar_file core@$scp_ip:~/opt/path &amp;&amp;\
-        echo "增量包copy到$scp_ip成功" &amp;&amp;\
-        if [ $restart = true ];then
-        	echo "重启Tomcat"
-        	ssh -t -p 2222 core@$scp_ip $remote_cmd
-        else
-        	ssh -t -p 2222 core@$scp_ip $remote_cmd_no_reboot
-        fi
-        echo "$scp_ip增量包解压成功"
-    else
-        echo "增量打包文件列表为空!"
-    fi
-else
-    echo "没有最新的文件了!"
-fi</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="__strong_ant_strong">2. <strong>Ant</strong></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>[[ant打包参考|http://www.cnblogs.com/hoojo/p/ant_increment_svn_diff_diffSummarize.html]]</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="__code_svn_code_增量更新">3. <code>Svn</code> 增量更新</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>增量更新</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-awk" data-lang="awk">svn diff --summarize -r HEAD * | awk '{print $2}' | awk '!a[$0]++' |</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>脚本</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash:/linux/scripts/jenkins.sh```" data-lang="bash:/linux/scripts/jenkins.sh```"></code></pre>
-</div>
-</div>
-</div>
-</div>
-
-		</div>
-		
-	</article>
-	
-<div class="mr-author-box clearfix">
-	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
-	</figure>
-	<div class="mr-author-box-header">
-		<span class="mr-author-box-name">About dishui</span>
-	</div>
-	<div class="mr-author-box-bio">
-		辛勤的搬运工!!!
-	</div>
-</div>
-
-	
-
-	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/java/codes/" rel="prev"><span>«Previous</span><p>java编程题</p></a>
-		</div>
-		
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/java/jesery/" rel="next"><span>Next»</span><p>jesery</p></a>
-		</div>
-		
-	</nav>
-
-
-	
-</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-<div class="mr-widget widget_search navbar-wrapper" >
-    <div class="search-form">
-        <label>
-            <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
-        </label>
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-    </div>
-    <div id="side-toc" class="entry-content">
-
-    </div>
-</div>
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

@@ -1,4 +1,0 @@
----
-
-- name: start nginx
-  raw: /usr/bin/docker run -d dishui.io:5000/nginx:stable

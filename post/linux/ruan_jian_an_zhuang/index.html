@@ -1,348 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>软件安装</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="软件安装" />
-<meta property="og:description" content="Contents1. RPM 安装软件2. 安装 Java3. Vanish4. Python31. RPM 安装软件指定安装目录
-rpm -ivh --prefix=/opt/temp xxx.rpm2. 安装 Java查看 Linux 自带的 JDK 是否已安装
-java -versionps:如果出现 openjdk ，最好还是先卸载掉 openjdk ,在安装 sun 公司的 jdk .
-查看 jdk 安装信息
-rpm -qa|grep javarpm -qa|grep jdk卸载`OpenJDK` ，执行以下操作" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/linux/ruan_jian_an_zhuang/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
-	<article class="post">
-		<header class="entry-header clearfix">
-			<h1 class="entry-title">软件安装</h1>
-			<p class="mr-meta entry-meta">
-				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-				<span class="entry-meta-categories">
-					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/categories/linux" rel="category">linux</a></span>
-			</p>
-		</header>
-		<div class="entry-content clearfix">
-			
-			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
-<ul class="sectlevel1">
-<li><a href="#__code_rpm_code_安装软件">1. <code>RPM</code> 安装软件</a></li>
-<li><a href="#_安装_code_java_code">2. 安装 <code>Java</code></a></li>
-<li><a href="#__code_vanish_code">3. <code>Vanish</code></a></li>
-<li><a href="#_python3">4. Python3</a></li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="__code_rpm_code_安装软件">1. <code>RPM</code> 安装软件</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>指定安装目录</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">rpm -ivh --prefix=/opt/temp  xxx.rpm</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_安装_code_java_code">2. 安装 <code>Java</code></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>查看 <code>Linux</code> 自带的 <code>JDK</code> 是否已安装</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">java -version</code></pre>
-</div>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>ps:如果出现 <code>openjdk</code> ，最好还是先卸载掉 <code>openjdk</code> ,在安装 <code>sun</code> 公司的 <code>jdk</code> .</p>
-</div>
-</blockquote>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>查看 <code>jdk</code> 安装信息</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">rpm -qa|grep java
-rpm -qa|grep jdk</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>卸载`OpenJDK` ，执行以下操作</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">rpm -e --nodeps tzdata-java-2012c-1.el6.noarch
-rpm -e --nodeps java-1.7.0-openjdk-1.7.0.45-1.45.1.11.1.el6.x86_64</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>新建 <code>java</code> 安装目录</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">mkdir /usr/java</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>将之前下载的 <code>jdk</code> 解压缩并安装</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">=源码
-tar -zxvf  jdk-7u71-linux-i586.tar.gz
-=rpm
-rpm -ivh jdk-7u79-linux-i586.rpm --prefix=/usr/java/</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>在 <code>profile</code> 文件中加入 <code>java</code> 环境变量</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">vi /etc/profile
-=
-export JAVA_HOME=/usr/java/jdk1.7.0_71
-export CLASSPATH=.:%JAVA_HOME%/lib/dt.jar:%JAVA_HOME%/lib/tools.jar
-export PATH=$PATH:$JAVA_HOME/bin</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>使文件立即生效</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">source /etc/profile</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="__code_vanish_code">3. <code>Vanish</code></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>vanish 4.1</code></p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">yum install epel-release
-rpm --nosignature -i https://repo.varnish-cache.org/redhat/varnish-4.1.el7.rpm
-(or: rpm --nosignature -i https://repo.varnish-cache.org/redhat/varnish-4.1.el6.rpm for RHEL6)
-yum install varnish</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Ref</strong><br>
-[[Installation on RedHat|http://www.varnish-cache.org/releases/install_redhat.html]]</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_python3">4. Python3</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>CentOS7</code> 编译安装</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">yum groupinstall "Development Tools" &amp;&amp;\
-yum install openssl-devel
-tar -zxf Python-3.5.2.tgz
-cd Python-3.5.2
-./configure --prefix=/usr/local/python3/
-make &amp;&amp; make install
-# 链接
-ln -s /usr/local/python3/bin/python3 /usr/bin/python3</code></pre>
-</div>
-</div>
-</div>
-</div>
-
-		</div>
-		
-	</article>
-	
-<div class="mr-author-box clearfix">
-	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
-	</figure>
-	<div class="mr-author-box-header">
-		<span class="mr-author-box-name">About dishui</span>
-	</div>
-	<div class="mr-author-box-bio">
-		辛勤的搬运工!!!
-	</div>
-</div>
-
-	
-
-	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/work/app/cart/" rel="prev"><span>«Previous</span><p>购物车</p></a>
-		</div>
-		
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/mathematics/mappings-and-functions/" rel="next"><span>Next»</span><p>逻辑量词</p></a>
-		</div>
-		
-	</nav>
-
-
-	
-</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-<div class="mr-widget widget_search navbar-wrapper" >
-    <div class="search-form">
-        <label>
-            <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
-        </label>
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-    </div>
-    <div id="side-toc" class="entry-content">
-
-    </div>
-</div>
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

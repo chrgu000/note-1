@@ -1,4 +1,0 @@
-FROM mailiqing.com:5000/tomcat:1.1
-COPY ./setenv.sh /apache-tomcat-7.0.62/bin/setenv.sh
-EXPOSE 8080
-CMD ["/usr/bin/supervisord","-n"]

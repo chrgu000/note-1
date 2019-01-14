@@ -1,2 +1,0 @@
-# wuliu increment tar file
-pc_wuliu_i_tar: pc-wuliu-path{{ ansible_date_time.date }}.tar.gz

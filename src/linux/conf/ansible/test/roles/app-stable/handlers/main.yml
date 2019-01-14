@@ -1,4 +1,0 @@
----
-
-- name: restart web
-  raw: /usr/bin/docker restart web-stable

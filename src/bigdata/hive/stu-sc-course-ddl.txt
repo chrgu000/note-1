@@ -1,9 +1,0 @@
-create table student(Sno int,Sname string,Sex string,Sage int,Sdept string)row format delimited fields terminated by ','stored as textfile;
-create table course(Cno int,Cname string) row format delimited fields terminated by ',' stored as textfile;
-create table sc(Sno int,Cno int,Grade int)row format delimited fields terminated by ',' stored as textfile;
-
-
-
-load data local inpath '/home/hadoop/hivedata/students.txt' overwrite into table student;
-load data local inpath '/home/hadoop/hivedata/sc.txt' overwrite into table sc;
-load data local inpath '/home/hadoop/hivedata/course.txt' overwrite into table course;

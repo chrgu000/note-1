@@ -1,8 +1,0 @@
----
-
-- name: apply common configuration to all nodes
-  hosts: wuliu-pc
-  remote_user: core
-
-  roles:
-    - wuliu-pc

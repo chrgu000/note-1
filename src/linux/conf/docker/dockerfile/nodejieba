@@ -1,7 +1,0 @@
-FROM node
-MAINTAINER dishui_git@126.com
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org \
-    && cnpm install nodejieba \
-    && cnpm install hugo-lunr \
-    && npm cache clean
-    

@@ -1,8 +1,0 @@
-version: '2'
-services:
-  test:
-    image: dishui.io:5000/nginx:stable
-    volume_driver: convoy-nfs
-    tty: true
-    volumes:
-      - test_volume:/data

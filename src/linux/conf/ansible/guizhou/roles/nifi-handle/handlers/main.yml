@@ -1,4 +1,0 @@
----
-
-- name: restart nifi
-  raw: sh /opt/do/hdf/nifi/bin/nifi.sh restart

@@ -1,450 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>零零碎碎</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="零零碎碎" />
-<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-	<div id="main-content" class="mr-loop mr-content" role="main">
-		
-		
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jetty/" rel="bookmark">Jetty</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Jetty1. Jetty1.1. 代码内启动 web1.1.1. Jetty pom 依赖1.1.2. Jetty 测试文件2. 参考1. Jetty1.1. 代码内启动 web1.1.1. Jetty pom 依赖&lt;properties&gt;&lt;jetty-version&gt;9.2.19.v20160908&lt;/jetty-version&gt;&lt;/properties&gt;&lt;dependencies&gt;&lt;dependency&gt;&lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;&lt;artifactId&gt;jetty-webapp&lt;/artifactId&gt;&lt;version&gt;${jetty-version}&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;&lt;artifactId&gt;jetty-jsp&lt;/artifactId&gt;&lt;version&gt;${jetty-version}&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;org.eclipse.jetty&lt;/groupId&gt;&lt;artifactId&gt;apache-jstl&lt;/artifactId&gt; (1)&lt;version&gt;${jetty-version}&lt;/version&gt;&lt;/dependency&gt;&lt;/dependencies&gt;1如果没有,会引起 The absolute uri: http://java.sun.com/jsp/jstl/core cannot be resolved1.1.2. Jetty 测试文件import org.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jmeter/" rel="bookmark">Jmeter</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. JMeter2. 参考1. JMeter2. 参考[[http://www.cnblogs.com/TankXiao/p/4059378.html | ]]
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jprofiler/" rel="bookmark">Jprofiler</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Jprofiler1.1. 注册码1. Jprofiler1.1. 注册码L-Larry_Lau@163.com#23874-hrwpdp1sh1wrn#0620L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257L-Larry_Lau@163.com#5481-ucjn4a16rvd98#6038L-Larry_Lau@163.com#99016-hli5ay1ylizjj#27215L-Larry_Lau@163.com#40775-3wle0g1uin5c1#0674
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/jrebel/" rel="bookmark">Jrebel 热部署</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Jrebel 热部署1.1. 安装1.2. 脚本1. Jrebel 热部署1.1. 安装下载地址
-http://196.168.1.33:9080/f/d68fbbf872/
-解压 jrebel_6.2.2.zip 到 tomcat 安装目录
-修改 jrebel_6.2.2 中的 jrebel.properties
-rebel.dirs=/apache-tomcat-7.0.62/webapps/app/WEB-INF/classes/ (1)1修改 classes 编译目录1.2. 脚本在 tomcat/bin 目录下创建文件
-windows startup_jrebel_jvm.bat@echo offrem ---------------------------放入tomcat路径下的bin/catalina.bat同一级目录rem ---------------------------jrebel remoting------------------------------------------------cd .
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/js/jsutils/" rel="bookmark">Js工具类</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						JSUtils JS绑定模板 /*---------- -----start----------------*/ $(document).ready(function(){ $(&quot;#f_btn_id&quot;).each(function(){ $(this).bind(&quot;click&quot;,{flag:$(this)},jumpToUrl); }); function jumpToUrl(event){ var data = event.data.flag; console.log(data.attr(&quot;a_user_id&quot;)); window.location.href = &quot;fabu.jsp?cust_id=&quot;+data.attr(&quot;a_cust_id&quot;); }; }); /*---------- -----end----------------*/ //页面全部加载后执行 $(document).ready(function(){ $(&quot;.wrap_con_r&quot;).find(&quot;*[a_flag]&quot;).each(function(){ alert('a'); $(this).bind(&quot;click&quot;,{flag:$(this)},toSupply); }); });  在div中查找具有attr属性的所有元素 function genProAttr2(obj,fifter,attr_id,attr_code,attr_name){ var tmp_str = &quot;&quot;; //在div中查找具有attr属性的所有元素 obj.find(&quot;*[&quot;+fifter+&quot;]&quot;).each(function(){ var tmp1 = &quot;&quot;; if($(this).val()!=&quot;&quot; &amp;&amp; $(this).val()!=&quot;-1&quot;){ tmp1 = {attr_id:$(this).attr(attr_id),attr_code:$(this).attr(attr_code),attr_name:$(this).attr(attr_name),attr_value:$(this).val()}; tmp_str =$.toJSON(tmp1)+&quot;|&quot;+ tmp_str; }; }); //替换,号 return tmp_str.replace(/\&quot;/g, &quot;@&quot;); }  字符串去重复 function ArrayRemoveByValue(str_value,arr_remove){ var num_to_del =new RegExp(str_value); var db_d =new RegExp('\,{2}'); var se_d =new RegExp('(^\,)|(\,$)'); arr_ret = arr_remove.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/cluster/" rel="bookmark">LVS 集群配置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. 机群1.1. LVS1.1.1. ipvsadm1. 机群1.1. LVS1.1.1. ipvsadm开启转发
-cat /proc/sys/net/ipv4/ip_forwardecho 1 &gt; /proc/sys/net/ipv4/ip_forward添加VIP
-ipvsadm -A -t 172.16.100.1:80 -s rr添加`RealServer`
-ipvsadm -a -t 172.16.100.1:80 -r 192.168.10.8 -mipvsadm -a -t 172.16.100.1:80 -r 192.168.10.9 -m查看
-ipvsadm -L -n测试
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/mailiqing/" rel="bookmark">Mailiqing 服务器配置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Mai沥青1.1. 正式服务器详情1.2. 启动步骤2. 216测试服务器3. app3.1. ssh4. 网盘4.1. 地址4.2. 用户名/密码5. Mai沥青 物流5.1. 数据库5.2. 正式服务器详情 21. Mai沥青1.1. 正式服务器详情服务器名称IP类型Mlq-Web-Zhengshi
-192.168.1.128(内),116.90.81.70(外)
-LVS+Keepalive
-Mlq-Web-R2
-192.168.1.125
-Nginx+Web
-Mlq-Web-R1
-192.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/maven/" rel="bookmark">Maven</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. maven设置2. 导入本地`jar`3. 解决 JAR 依赖冲突4. Jetty 配置1. maven设置仓库设置 ‪C:\Users\dishui\.m2\settings.xml
-&lt;mirrors&gt;&lt;mirror&gt;&lt;id&gt;alimaven&lt;/id&gt;&lt;name&gt;aliyun maven&lt;/name&gt;&lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;&lt;/mirror&gt;&lt;/mirrors&gt;+ 导出`jar包`到默认目录 targed/dependency 
-在eclipse中，选择项目的`pom.xml`文件，点击右键菜单中的`RunAs`,在弹出的`Configuration`窗口中，在`Goals`输入 `dependency:copy-dependencies`后，点击运行2. 导入本地`jar`mvn install:install-file -Dfile=koto-share-1.0.0.jar -DgroupId=com.koto -DartifactId=koto -Dversion=1.0.0 -Dpackaging=jar3. 解决 JAR 依赖冲突 &lt;dependency&gt;&lt;groupId&gt;javax.mail&lt;/groupId&gt;&lt;artifactId&gt;mail&lt;/artifactId&gt;&lt;version&gt;${mail.version}&lt;/version&gt;&lt;exclusions&gt;&lt;exclusion&gt; (1)&lt;artifactId&gt;spring&lt;/artifactId&gt;&lt;groupId&gt;org.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mongod/" rel="bookmark">Mongod</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Deploy a Replica Set1.1. 安装 &amp; 下载2. 参考1. Deploy a Replica Set1.1. 安装 &amp; 下载3.2.8
-[[mongodb-linux-x86_64-rhel70-3.2.8.tgz|https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.8.tgz]]
-创建软链接
-ln -s /mongod/bin/mongod /usr/bin/mongodln -s /mongod/bin/mongo /usr/bin/mongo创建数据存储路径
-mkdir -p /srv/mongodb/rs0-0 /srv/mongodb/rs0-1 /srv/mongodb/rs0-2配置文件
-rs1.conf
-systemLog:destination: filepath: "
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mysql/" rel="bookmark">Mysql 常用操作</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. Mysql 查询1.1. MySQL拼音首字母查询2. Mysql-table3. 复制一条数据4. 根据 某一列的值 if else5. Mysql 子查询优化6. Issues7. 参考1. Mysql 查询1.1. MySQL拼音首字母查询英文26个字母中除了i,u,v三个字母不能成为汉语拼音的首字母外，其它的字母都可以。如果我们需要查询结果集中以A或者其它字母开头的汉语，实现方法如下
-SELECT*FROMmlq_shop_infoWHERE CONV(HEX(LEFT(CONVERT(shop_name USING gbk), 1)),16,10) BETWEEN 45253AND 45760参考
-字母起值止值A
-					</div>
-				</div>
-			</div>
-		</article>
-		
-
-		
-<div class="mr-loop-pagination clearfix">
-	
-	<a class="page-numbers" href="/page/11/">«</a>
-	
-	<span class="page-numbers current">12/31</span>
-	
-	<a class="page-numbers" href="/page/13/">»</a>
-	
-</div>
-
-	</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-	
-<div class="mr-widget widget_search navbar-wrapper" >
-	<div class="search-form" role="search" >
-		<label>
-			<span class="screen-reader-text">Search for:</span>
-			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
-		</label>
-		
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-	</div>
-</div>
-
-	
-	
-
-
-<div class="mr-widget widget_categories">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
-	<ul>
-		
-		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
-		
-		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
-		
-		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
-		
-		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
-		
-		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
-		
-		<li class="cat-item"><a href="/categories/go">Go</a></li>
-		
-		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
-		
-		<li class="cat-item"><a href="/categories/java">Java</a></li>
-		
-		<li class="cat-item"><a href="/categories/js">Js</a></li>
-		
-		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
-		
-		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
-		
-		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
-		
-		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
-		
-		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
-		
-		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
-		
-		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
-		
-		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
-		
-		<li class="cat-item"><a href="/categories/work">Work</a></li>
-		
-		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
-		
-		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
-		
-		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
-		
-	</ul>
-</div>
-
-
-
-    
-
-
-<div class="mr-widget widget_tag_cloud">
-	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
-	<div class="tagcloud">
-		
-			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
-		
-			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
-		
-			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
-		
-			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
-		
-			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
-		
-			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
-		
-			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
-		
-			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
-		
-			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
-		
-			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
-		
-			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
-		
-			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
-		
-	</div>
-</div>
-
-
-
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

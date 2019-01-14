@@ -1,368 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>物流</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="物流" />
-<meta property="og:description" content="Contents1. SVN2. 数据库3. 物流服务器4. Q &amp; A4.1. 物流项目发布5. 仓储5.1. 表关系1. SVN仓库地址 svn://196.168.1.32/wuliu
-账户密码 姓名
-账号
-密码
-田小飞
-tianxiaofei
-tianxiaofei
-尚冬雷
-shangdonglei
-shangdonglei
-刘斌
-liubin
-liubin123
-李震" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/work/wuliu/basic/" />
-
-
-<meta property="og:updated_time" content="2017-01-01T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
-	<article class="post">
-		<header class="entry-header clearfix">
-			<h1 class="entry-title">物流</h1>
-			<p class="mr-meta entry-meta">
-				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-				<span class="entry-meta-categories">
-					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/categories/work" rel="category">work</a></span>
-			</p>
-		</header>
-		<div class="entry-content clearfix">
-			
-			<div id="toc" class="toc">
-<div id="toctitle">Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_svn">1. SVN</a></li>
-<li><a href="#_数据库">2. 数据库</a></li>
-<li><a href="#_物流服务器">3. 物流服务器</a></li>
-<li><a href="#_q_a">4. Q &amp; A</a>
-<ul class="sectlevel2">
-<li><a href="#_物流项目发布">4.1. 物流项目发布</a></li>
-</ul>
-</li>
-<li><a href="#_仓储">5. 仓储</a>
-<ul class="sectlevel2">
-<li><a href="#_表关系">5.1. 表关系</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_svn">1. SVN</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">仓库地址 </dt>
-<dd>
-<p>svn://196.168.1.32/wuliu</p>
-</dd>
-<dt class="hdlist1">账户密码 </dt>
-</dl>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">姓名</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">账号</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">密码</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">田小飞</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tianxiaofei</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tianxiaofei</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">尚冬雷</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">shangdonglei</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">shangdonglei</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">刘斌</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liubin</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liubin123</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">李震</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lizhen</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lizhen123</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">刘辉</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liuhui</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liuhui123</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">吕少楠</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lvshaonan</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lvshaonan123</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_数据库">2. 数据库</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">数据库地址</dt>
-<dd>
-<p>196.168.1.31</p>
-</dd>
-<dt class="hdlist1">账户密码</dt>
-</dl>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">账号</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">密码</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">wuliu</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">123456</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_物流服务器">3. 物流服务器</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">账号 </dt>
-<dd>
-<p>wuliu</p>
-</dd>
-<dt class="hdlist1">密码 </dt>
-<dd>
-<p>wuliu</p>
-</dd>
-<dt class="hdlist1">部署脚本</dt>
-<dd>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>sh ~/opt/src/version2/depoly.sh</code></pre>
-</div>
-</div>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_q_a">4. Q &amp; A</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>Exception: java.lang.OutOfMemoryError</code> </dt>
-<dd>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>windows 下</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>set JAVA_OPTS=-Xms1024m -Xmx4096m -XX:PermSize=128m -XX:MaxPermSize=256m</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>linux 下</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>CATALINA_OPTS="-Xms2048m -Xmx2048m -XX:PermSize=512M -XX:MaxNewSize=256m -XX:MaxPermSize=1024m"</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</dd>
-</dl>
-</div>
-<div class="sect2">
-<h3 id="_物流项目发布">4.1. 物流项目发布</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>cd ~/opt/src/version2/ &amp;&amp;
-docker-compose -f nginx.yml stop wuliu &amp;&amp;
-docker exec ant rm -rf /svn-data/code/tky/WebRoot/WEB-INF/classes/* &amp;&amp;
-docker exec svn svn up /svn-data/code/tky/ &amp;&amp;
-docker exec ant /apache-ant-1.9.7/bin/ant -f /svn-data/code/tky/build.xml &amp;&amp;
-docker-compose -f nginx.yml restart wuliu</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_仓储">5. 仓储</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_表关系">5.1. 表关系</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/work/wuliu/2017-02-28_110200.png" alt="2017 02 28 110200">
-</div>
-</div>
-<hr>
-</div>
-</div>
-</div>
-
-		</div>
-		
-	</article>
-	
-<div class="mr-author-box clearfix">
-	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
-	</figure>
-	<div class="mr-author-box-header">
-		<span class="mr-author-box-name">About dishui</span>
-	</div>
-	<div class="mr-author-box-bio">
-		辛勤的搬运工!!!
-	</div>
-</div>
-
-	
-
-	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/work/app/xiaoxi/" rel="prev"><span>«Previous</span><p>消息模块</p></a>
-		</div>
-		
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/work/app/cart/" rel="next"><span>Next»</span><p>购物车</p></a>
-		</div>
-		
-	</nav>
-
-
-	
-</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-<div class="mr-widget widget_search navbar-wrapper" >
-    <div class="search-form">
-        <label>
-            <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
-        </label>
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-    </div>
-    <div id="side-toc" class="entry-content">
-
-    </div>
-</div>
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

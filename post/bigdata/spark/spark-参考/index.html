@@ -1,259 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>spark参考</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="spark参考" />
-<meta property="og:description" content="spark1. 参数2. RDD1. 参数--master yarn --deploy-mode client --driver-memory 14G --driver-cores 3 --executor-memory 14G --executor-cores 4 --num-executors 52 --conf spark.sql.shuffle.partitions=50
-2. RDDSparkRDDAPIExamples
-https://zhuanlan.zhihu.com/p/21483985
-http://tech.meituan.com/spark-tuning-basic.html
-https://www.zhihu.com/question/23655827?rf=27642986
-Apache Spark源码走读
-spark 1.5.1 docs
-spark hive
-building-spark
-https://cwiki.apache.org//confluence/display/Hive/Hive&#43;on&#43;Spark:&#43;Getting&#43;Started#HiveonSpark:GettingStarted-SparkInstallation
-https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;search=y
-张包峰
-高彦杰的博客
-赛赛的网络日志" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/bigdata/spark/spark-%E5%8F%82%E8%80%83/" />
-
-
-<meta property="og:updated_time" content="2017-04-08T18:42:52&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
-	<article class="post">
-		<header class="entry-header clearfix">
-			<h1 class="entry-title">spark参考</h1>
-			<p class="mr-meta entry-meta">
-				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-04-08 18:42:52 &#43;0000 UTC">April 08, 2017</time>
-				<span class="entry-meta-categories">
-					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/categories/spark" rel="category">spark</a></span>
-			</p>
-		</header>
-		<div class="entry-content clearfix">
-			
-			<div id="toc" class="toc">
-<div id="toctitle">spark</div>
-<ul class="sectlevel1">
-<li><a href="#_参数">1. 参数</a></li>
-<li><a href="#_rdd">2. RDD</a></li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_参数">1. 参数</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>--master yarn --deploy-mode client --driver-memory 14G --driver-cores 3 --executor-memory 14G --executor-cores 4 --num-executors 52 --conf spark.sql.shuffle.partitions=50</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_rdd">2. RDD</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="http://homepage.cs.latrobe.edu.au/zhe/ZhenHeSparkRDDAPIExamples.html">SparkRDDAPIExamples</a></p>
-</li>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/21483985" class="bare">https://zhuanlan.zhihu.com/p/21483985</a></p>
-</li>
-<li>
-<p><a href="http://tech.meituan.com/spark-tuning-basic.html" class="bare">http://tech.meituan.com/spark-tuning-basic.html</a></p>
-</li>
-<li>
-<p><a href="https://www.zhihu.com/question/23655827?rf=27642986" class="bare">https://www.zhihu.com/question/23655827?rf=27642986</a></p>
-</li>
-<li>
-<p><a href="http://www.cnblogs.com/hseagle/category/569175.html">Apache Spark源码走读</a></p>
-</li>
-<li>
-<p><a href="http://spark.apache.org/docs/1.5.1/quick-start.html">spark 1.5.1 docs</a></p>
-</li>
-<li>
-<p><a href="http://spark.apache.org/docs/1.5.1/sql-programming-guide.html">spark hive</a></p>
-</li>
-<li>
-<p><a href="http://spark.apache.org/docs/latest/building-spark.html">building-spark</a></p>
-</li>
-<li>
-<p><a href="https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation" class="bare">https://cwiki.apache.org//confluence/display/Hive/Hive+on+Spark:+Getting+Started#HiveonSpark:GettingStarted-SparkInstallation</a></p>
-</li>
-<li>
-<p><a href="https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;search=y" class="bare">https://shop400921694.taobao.com/search.htm?spm=2013.1.0.0.t9TbCM&amp;search=y</a></p>
-</li>
-<li>
-<p><a href="http://blog.csdn.net/zbf8441372/article/category/1556747">张包峰</a></p>
-</li>
-<li>
-<p><a href="http://blog.csdn.net/gaoyanjie55">高彦杰的博客</a></p>
-</li>
-<li>
-<p><a href="http://jerryshao.me/">赛赛的网络日志</a></p>
-</li>
-<li>
-<p><a href="http://blog.csdn.net/melodyishere/article/details/32353929">Spark运行调试方法与学习资源汇总</a></p>
-</li>
-<li>
-<p><a href="https://stackoverflow.com/questions/tagged/apache-spark" class="bare">https://stackoverflow.com/questions/tagged/apache-spark</a></p>
-</li>
-<li>
-<p><a href="http://blog.csdn.net/u012318074/article/details/56835532" class="bare">http://blog.csdn.net/u012318074/article/details/56835532</a></p>
-</li>
-<li>
-<p><a href="http://lxw1234.com/archives/2015/12/593.htm">Spark动态资源分配</a></p>
-</li>
-<li>
-<p><a href="https://spark-internals.books.yourtion.com/">Spark设计与实现</a></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_spark-component-guide/content/dra-properties.html" class="bare">https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_spark-component-guide/content/dra-properties.html</a></p>
-</div>
-</div>
-</div>
-
-		</div>
-		
-	</article>
-	
-<div class="mr-author-box clearfix">
-	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
-	</figure>
-	<div class="mr-author-box-header">
-		<span class="mr-author-box-name">About dishui</span>
-	</div>
-	<div class="mr-author-box-bio">
-		辛勤的搬运工!!!
-	</div>
-</div>
-
-	
-
-	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/bigdata/spark/spark-%E5%9F%BA%E7%A1%80/" rel="prev"><span>«Previous</span><p>spark-基础</p></a>
-		</div>
-		
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/" rel="next"><span>Next»</span><p>Scala实战</p></a>
-		</div>
-		
-	</nav>
-
-
-	
-</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-<div class="mr-widget widget_search navbar-wrapper" >
-    <div class="search-form">
-        <label>
-            <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
-        </label>
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-    </div>
-    <div id="side-toc" class="entry-content">
-
-    </div>
-</div>
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>

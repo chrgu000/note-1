@@ -1,2 +1,0 @@
-# mailiqing-pc increment tar file
-mailiqing_pc_i_tar: stable-path{{ ansible_date_time.date }}.tar.gz

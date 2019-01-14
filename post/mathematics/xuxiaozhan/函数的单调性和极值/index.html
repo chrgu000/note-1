@@ -1,502 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>函数的单调性和极值</title>
-<meta name="description" content=" John Doe&#39;s Personal blog about everything">
-<meta name="generator" content="Hugo 0.17" />
-<meta property="og:title" content="函数的单调性和极值" />
-<meta property="og:description" content="函数的单调性和极值1. 函数的单调性和极值1.1. 函数单调性的判定定理1.2. 函数的极值1.2.1. 极值的必要条件极值的第一充分条件极值的第二充分条件1.2.2. 最值例11.3. 推论1.3.1. 例11.4. 函数单调性应用1.4.1. 例61.5. 利用单调性证明函数为正函数1.6. 利用函数的最值证明不等式1.7. 单调性证明方程有唯一的实根1. 函数的单调性和极值1.1. 函数单调性的判定定理1.2. 函数的极值1.2.1. 极值的必要条件极值的第一充分条件极值的第二充分条件1." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/mathematics/xuxiaozhan/%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E5%92%8C%E6%9E%81%E5%80%BC/" />
-
-
-<meta property="og:updated_time" content="2017-02-12T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
-
-<link rel="stylesheet" href="/css/railscasts.css">
-<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
-<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<script type="text/javascript" src="/js/scripts.js"></script>
-<!--[if lt IE 9]>
-	<script src="/js/css3-mediaqueries.js"></script>
-<![endif]-->
-
-</head>
-<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-	<div class="mr-container mr-container-outer">
-		<div class="mr-header-mobile-nav clearfix"></div>
-			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-				<div class="mr-container mr-container-inner mr-row clearfix">
-					<div class="mr-custom-header clearfix">
-						<div class="mr-site-identity">
-							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
-								<div class="mr-header-text">
-									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
-										<h1 class="mr-header-title">零零碎碎</h1>
-										<h2 class="mr-header-tagline">点滴记录</h2>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mr-main-nav-wrap">
-					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<ul class="menu__list">
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
-        
-            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
-        
-	</ul>
-</nav>
-				</div>
-			</header>
-		<div class="mr-wrapper clearfix">
-
-
-<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
-	<article class="post">
-		<header class="entry-header clearfix">
-			<h1 class="entry-title">函数的单调性和极值</h1>
-			<p class="mr-meta entry-meta">
-				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="entry-meta-date updated" datetime="2017-02-12 00:00:00 &#43;0000 UTC">February 12, 2017</time>
-				<span class="entry-meta-categories">
-					<svg class="icon icon-category" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-					<a class="meta-categories" href="/categories/%e9%ab%98%e6%95%b0" rel="category">高数</a></span>
-			</p>
-		</header>
-		<div class="entry-content clearfix">
-			
-			<div id="toc" class="toc">
-<div id="toctitle">函数的单调性和极值</div>
-<ul class="sectlevel1">
-<li><a href="#_函数的单调性和极值">1. 函数的单调性和极值</a>
-<ul class="sectlevel2">
-<li><a href="#_函数单调性的判定定理">1.1. 函数单调性的判定定理</a></li>
-<li><a href="#_函数的极值">1.2. 函数的极值</a>
-<ul class="sectlevel3">
-<li><a href="#_极值的必要条件">1.2.1. 极值的必要条件</a>
-<ul class="sectlevel4">
-<li><a href="#_极值的第一充分条件">极值的第一充分条件</a></li>
-<li><a href="#_极值的第二充分条件">极值的第二充分条件</a></li>
-</ul>
-</li>
-<li><a href="#_最值">1.2.2. 最值</a>
-<ul class="sectlevel4">
-<li><a href="#_例1">例1</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_推论">1.3. 推论</a>
-<ul class="sectlevel3">
-<li><a href="#_例1_2">1.3.1. 例1</a></li>
-</ul>
-</li>
-<li><a href="#_函数单调性应用">1.4. 函数单调性应用</a>
-<ul class="sectlevel3">
-<li><a href="#_例6">1.4.1. 例6</a></li>
-</ul>
-</li>
-<li><a href="#_利用单调性证明函数为正函数">1.5. 利用单调性证明函数为正函数</a></li>
-<li><a href="#_利用函数的最值证明不等式">1.6. 利用函数的最值证明不等式</a></li>
-<li><a href="#_单调性证明方程有唯一的实根">1.7. 单调性证明方程有唯一的实根</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_函数的单调性和极值">1. 函数的单调性和极值</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_函数单调性的判定定理">1.1. 函数单调性的判定定理</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_084154.png" alt="2017 02 12 084154">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_084351.png" alt="2017 02 12 084351">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_084521.png" alt="2017 02 12 084521">
-</div>
-</div>
-<hr>
-</div>
-<div class="sect2">
-<h3 id="_函数的极值">1.2. 函数的极值</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_084903.png" alt="2017 02 12 084903">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_084938.png" alt="2017 02 12 084938">
-</div>
-</div>
-<hr>
-<div class="sect3">
-<h4 id="_极值的必要条件">1.2.1. 极值的必要条件</h4>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_085202.png" alt="2017 02 12 085202">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_085425.png" alt="2017 02 12 085425">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_085543.png" alt="2017 02 12 085543">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_085634.png" alt="2017 02 12 085634">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_090200.png" alt="2017 02 12 090200">
-</div>
-</div>
-<hr>
-<div class="sect4">
-<h5 id="_极值的第一充分条件">极值的第一充分条件</h5>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_090748.png" alt="2017 02 12 090748">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_091226.png" alt="2017 02 12 091226">
-</div>
-</div>
-<hr>
-</div>
-<div class="sect4">
-<h5 id="_极值的第二充分条件">极值的第二充分条件</h5>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_092546.png" alt="2017 02 12 092546">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_093558.png" alt="2017 02 12 093558">
-</div>
-</div>
-<hr>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_最值">1.2.2. 最值</h4>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_142739.png" alt="2017 02 12 142739">
-</div>
-</div>
-<hr>
-<div class="sect4">
-<h5 id="_例1">例1</h5>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_142940.png" alt="2017 02 12 142940">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_143217.png" alt="2017 02 12 143217">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_143515.png" alt="2017 02 12 143515">
-</div>
-</div>
-<hr>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_推论">1.3. 推论</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_162957.png" alt="2017 02 12 162957">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_163216.png" alt="2017 02 12 163216">
-</div>
-</div>
-<hr>
-<div class="sect3">
-<h4 id="_例1_2">1.3.1. 例1</h4>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_163216.png" alt="2017 02 12 163216">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_163457.png" alt="2017 02 12 163457">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_163906.png" alt="2017 02 12 163906">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_164054.png" alt="2017 02 12 164054">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_164155.png" alt="2017 02 12 164155">
-</div>
-</div>
-<hr>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_函数单调性应用">1.4. 函数单调性应用</h3>
-<div class="sect3">
-<h4 id="_例6">1.4.1. 例6</h4>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_164417.png" alt="2017 02 12 164417">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_164700.png" alt="2017 02 12 164700">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_164840.png" alt="2017 02 12 164840">
-</div>
-</div>
-<hr>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_利用单调性证明函数为正函数">1.5. 利用单调性证明函数为正函数</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_165116.png" alt="2017 02 12 165116">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_165452.png" alt="2017 02 12 165452">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_165549.png" alt="2017 02 12 165549">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_165914.png" alt="2017 02 12 165914">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_170039.png" alt="2017 02 12 170039">
-</div>
-</div>
-<hr>
-</div>
-<div class="sect2">
-<h3 id="_利用函数的最值证明不等式">1.6. 利用函数的最值证明不等式</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_170234.png" alt="2017 02 12 170234">
-</div>
-</div>
-<hr>
-</div>
-<div class="sect2">
-<h3 id="_单调性证明方程有唯一的实根">1.7. 单调性证明方程有唯一的实根</h3>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_170453.png" alt="2017 02 12 170453">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_170650.png" alt="2017 02 12 170650">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_170758.png" alt="2017 02 12 170758">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_171026.png" alt="2017 02 12 171026">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_171103.png" alt="2017 02 12 171103">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_171131.png" alt="2017 02 12 171131">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_171347.png" alt="2017 02 12 171347">
-</div>
-</div>
-<hr>
-<div class="imageblock">
-<div class="content">
-<img src="/src/img/gaoshu/2017-02-12_171516.png" alt="2017 02 12 171516">
-</div>
-</div>
-<hr>
-</div>
-</div>
-</div>
-
-		</div>
-		
-	</article>
-	
-<div class="mr-author-box clearfix">
-	<figure class="mr-author-box-avatar">
-		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
-	</figure>
-	<div class="mr-author-box-header">
-		<span class="mr-author-box-name">About dishui</span>
-	</div>
-	<div class="mr-author-box-bio">
-		辛勤的搬运工!!!
-	</div>
-</div>
-
-	
-
-	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
-			<a href="/post/mathematics/xuxiaozhan/%E6%9C%89%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86/" rel="prev"><span>«Previous</span><p>有理函数的积分</p></a>
-		</div>
-		
-		
-		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
-			<a href="/post/mathematics/xuxiaozhan/%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95/" rel="next"><span>Next»</span><p>换元积分法</p></a>
-		</div>
-		
-	</nav>
-
-
-	
-</div>
-
-<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-<div class="mr-widget widget_search navbar-wrapper" >
-    <div class="search-form">
-        <label>
-            <span class="screen-reader-text">Search for:</span>
-            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
-        </label>
-        <div id="list-container" class="bdsug" style="height: auto; display: block;">
-        </div>
-    </div>
-    <div id="side-toc" class="entry-content">
-
-    </div>
-</div>
-</aside>
-	</div>
-		<div class="mr-copyright-wrap">
-			<div class="mr-container mr-container-inner clearfix">
-				<p class="mr-copyright">&copy; 2018 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
-			</div>
-		</div>
-	</div>
-
-<script>
-	var navigation = responsiveNav(".menu", {
-		navClass: "menu--collapse",
-	});
-</script>
-<script src="/js/asciinema-player.js"></script>
-<script data-main="/js/app.js" src="/js/require.js"></script>
-
-
-</body>
-</html>
