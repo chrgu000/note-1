@@ -59,7 +59,7 @@
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre&gt;mkdir bin &amp;amp;&amp;amp; cd bin
-cmake -G &#34;Visual Studio 15 2017 Win64&#34; -DCRYPTO_BACKEND=OpenSSL -DCMAKE_INSTALL_PREFIX=D:\\libssh2 -DENABLE_ZLIB_COMPRESSION=OFF -DBUILD_SHARED_LIBS=ON ..
+cmake -G &#34;Visual Studio 15 2017 Win64&#34; -DCRYPTO_BACKEND=OpenSSL -DCMAKE_INSTALL_PREFIX=E:/libssh2 -DOPENSSL_ROOT_DIR=C:/dishui/env/openssl-OpenSSL_1_1_1 -DENABLE_ZLIB_COMPRESSION=OFF -DBUILD_SHARED_LIBS=ON ..
 cmake --build . --target install&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;

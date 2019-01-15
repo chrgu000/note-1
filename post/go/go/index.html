@@ -430,7 +430,10 @@ http_proxy=http://127.0.0.1:7777 go get -u honnef.co/go/tools/cmd/staticcheck</p
 <p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\g++.exe &amp;&amp; go build -ldflags="-H windowsgui""</p>
 </div>
 <div class="paragraph">
-<p>CGO_ENABLED=1 &amp;&amp; CC=/d/msys64/mingw64/bin/gcc.exe &amp;&amp; CXX=/d/msys64/mingw64/bin/g++.exe</p>
+<p>CGO_ENABLED=1 &amp;&amp; CC=/d/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe &amp;&amp; CXX=/d/msys64/mingw64/bin/x86_64-w64-mingw32-g++.exe &amp;&amp; PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/d/libgit2/lib/pkgconfig</p>
+</div>
+<div class="paragraph">
+<p>CGO_ENABLED=1 &amp;&amp; CC=/d/msys64/mingw64/bin/gcc.exe &amp;&amp; CXX=/d/msys64/mingw64/bin/g++.exe &amp;&amp; PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/d/libgit2/lib/pkgconfig</p>
 </div>
 <div class="paragraph">
 <p>go build -ldflags="-H windowsgui" externalwidgets.go</p>
@@ -439,6 +442,13 @@ http_proxy=http://127.0.0.1:7777 go get -u honnef.co/go/tools/cmd/staticcheck</p
 <h3 id="_gopm">2.1. gopm</h3>
 <div class="paragraph">
 <p>gopm.exe get -g -u github.com/hattya/otto.module</p>
+</div>
+<div class="paragraph">
+<p>411222199103150587   孙娜</p>
+</div>
+<div class="paragraph">
+<p>pacman -S --needed base-devel mingw-w64-x86_64-toolchain \
+                    mingw-w64-x86_64-cmake</p>
 </div>
 </div>
 </div>

@@ -351,7 +351,10 @@ http_proxy=http://127.0.0.1:7777 go get -u honnef.co/go/tools/cmd/staticcheck&lt
 &lt;p&gt;cmd /C &#34;set CGO_ENABLED=1&amp;amp;&amp;amp; set CC=D:\msys64\mingw64\bin\gcc.exe &amp;amp;&amp;amp; set CXX=D:\msys64\mingw64\bin\g++.exe &amp;amp;&amp;amp; go build -ldflags=&#34;-H windowsgui&#34;&#34;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;CGO_ENABLED=1 &amp;amp;&amp;amp; CC=/d/msys64/mingw64/bin/gcc.exe &amp;amp;&amp;amp; CXX=/d/msys64/mingw64/bin/g++.exe&lt;/p&gt;
+&lt;p&gt;CGO_ENABLED=1 &amp;amp;&amp;amp; CC=/d/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe &amp;amp;&amp;amp; CXX=/d/msys64/mingw64/bin/x86_64-w64-mingw32-g++.exe &amp;amp;&amp;amp; PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/d/libgit2/lib/pkgconfig&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CGO_ENABLED=1 &amp;amp;&amp;amp; CC=/d/msys64/mingw64/bin/gcc.exe &amp;amp;&amp;amp; CXX=/d/msys64/mingw64/bin/g++.exe &amp;amp;&amp;amp; PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/d/libgit2/lib/pkgconfig&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;go build -ldflags=&#34;-H windowsgui&#34; externalwidgets.go&lt;/p&gt;
@@ -360,6 +363,13 @@ http_proxy=http://127.0.0.1:7777 go get -u honnef.co/go/tools/cmd/staticcheck&lt
 &lt;h3 id=&#34;_gopm&#34;&gt;2.1. gopm&lt;/h3&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;gopm.exe get -g -u github.com/hattya/otto.module&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;411222199103150587   孙娜&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;pacman -S --needed base-devel mingw-w64-x86_64-toolchain \
+                    mingw-w64-x86_64-cmake&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

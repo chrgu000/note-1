@@ -99,7 +99,7 @@
 						Contents1. 编译git2go2. 编译1. 编译git2go下载
 go get gopkg.in/libgit2/git2go.v25安装 gcc
 pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-pkg-config下载 libssh2 1.8
-mkdir bin &amp;&amp; cd bincmake -G "Visual Studio 15 2017 Win64" -DCRYPTO_BACKEND=OpenSSL -DCMAKE_INSTALL_PREFIX=D:\\libssh2 -DENABLE_ZLIB_COMPRESSION=OFF -DBUILD_SHARED_LIBS=ON ..cmake --build . --target install编译 libgit2
+mkdir bin &amp;&amp; cd bincmake -G "Visual Studio 15 2017 Win64" -DCRYPTO_BACKEND=OpenSSL -DCMAKE_INSTALL_PREFIX=E:/libssh2 -DOPENSSL_ROOT_DIR=C:/dishui/env/openssl-OpenSSL_1_1_1 -DENABLE_ZLIB_COMPRESSION=OFF -DBUILD_SHARED_LIBS=ON ..cmake --build . --target install编译 libgit2
 # 打开 MSYS2 MinGW 64-bitcd $GOPATH/src/gopkg.
 					</div>
 				</div>
