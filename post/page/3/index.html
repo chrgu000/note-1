@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2017-11-25T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-11-27T15:43:47&#43;00:00"/>
 
 
 
@@ -85,6 +85,29 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/java/algorithm/1-10/" rel="bookmark">leetcode算法</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-11-27 15:43:47 &#43;0000 UTC">November 27, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Longest Substring Without Repeating Characters(最长的子串不重复的字符)Intuition
+Check all the substring one by one to see if it has no duplicate character.
+Algorithm
+Suppose we have a function boolean allUnique(String substring) which will return true if the characters in the substring are all unique, otherwise false. We can iterate through all the possible substrings of the given string s and call the function allUnique. If it turns out to be true, then we update our answer of the maximum length of substring without duplicate characters.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -297,38 +320,6 @@
 SqlBaseLexer 词法分析ANTLRNoCaseStringStreamCommonTokenStreamSqlBaseParser
 Analyzer
 def sql(sqlText: String): DataFrame = {Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))}sessionState.sqlParser.parsePlan(sqlText) -&gt; unresolved logical planSparkSql-1.0org.apache.spark.sql.SQLContext#sql
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/xiaoxiang/xiaoxiang-spark/" rel="bookmark">SparkSql</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						SparkSql21. Spark SQL21. Spark SQL2逻辑查询计划图物理查询计划任务调度任务分布式执行
-前三个阶段 driver端完成
-逻辑执行图完全依赖新生成的RDD的每个Partition完全依赖前一个依赖的某一个Partition部分依赖shuffle新生成的RDD的每一个Partition的部分数据完全依赖前一个依赖的某一个Partition的部分数据
-一对一 全依赖map filter flatMap
-部分依赖 shuffle RddgroupByKeyreduceByKey
-物理查询计划
-划分 stage 以 shuffle 划分
-每一个stage会产生 多个 task将尽可能多的不是一个partition一个task
-几个Action 几个Job
-一个job 多个stage
-每个 stage 有很多个 task
-每个 executer -&#8594; process(进程) -&#8594; task(线程)
-shuffle task 瓶颈所在 网络瓶颈
 					</div>
 				</div>
 			</div>

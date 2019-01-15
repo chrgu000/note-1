@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Redis Redis is an advanced key-value cache and store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets, sorted sets, bitmaps and hyperloglogs.
+TL;DR # Testing configuration $ helm install stable/redis  # Production configuration $ helm install stable/redis --values values-production.yaml  Introduction This chart bootstraps a Redis deployment on a Kubernetes cluster using the Helm package manager.
+Bitnami charts can be used with Kubeapps for deployment and management of Helm Charts in clusters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/redis/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="redis">Redis</h1>
+
+<p><a href="http://redis.io/">Redis</a> is an advanced key-value cache and store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets, sorted sets, bitmaps and hyperloglogs.</p>
+
+<h2 id="tl-dr">TL;DR</h2>
+
+<pre><code class="language-bash"># Testing configuration
+$ helm install stable/redis
+</code></pre>
+
+<pre><code class="language-bash"># Production configuration
+$ helm install stable/redis --values values-production.yaml
+</code></pre>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This chart bootstraps a <a href="https://github.com/bitnami/bitnami-docker-redis">Redis</a> deployment on a <a href="http://kubernetes.io">Kubernetes</a> cluster using the <a href="https://helm.sh">Helm</a> package manager.</p>
+
+<p>Bitnami charts can be used with <a href="https://kubeapps.com/">Kubeapps</a> for deployment and management of Helm Charts in clusters.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>Kubernetes 1.8+</li>
+<li>PV provisioner support in the underlying infrastructure</li>
+</ul>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-bash">$ helm install --name my-release stable/redis
+</code></pre>
+
+<p>The command deploys Redis on the Kubernetes cluster in the default configuration. The <a href="#configuration">configuration</a> section lists the parameters that can be configured during installation.</p>
+
+<blockquote>
+<p><strong>Tip</strong>: List all releases using <code>helm list</code></p>
+</blockquote>
+
+<h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
+
+<p>To uninstall/delete the <code>my-release</code> deployment:</p>
+
+<pre><code class="language-bash">$ helm delete my-release
+</code></pre>
+
+<p>The command removes all the Kubernetes components associated with the chart and deletes the release.</p>
+
+<h2 id="upgrading-an-existing-release-to-a-new-major-version">Upgrading an existing Release to a new major version</h2>
+
+<p>A major chart version change (like v1.2.3 -&gt; v2.0.0) indicates that there is an
+incompatible breaking change needing manual actions.</p>
+
+<h3 id="5-0-0">5.0.0</h3>
+
+<p>The default image in this release may be switched out for any image containing the <code>redis-server</code>
+and <code>redis-cli</code> binaries. If <code>redis-server</code> is not the default image ENTRYPOINT, <code>master.command</code>
+must be specified.</p>
+
+<h4 id="breaking-changes">Breaking changes</h4>
+
+<ul>
+<li><code>master.args</code> and <code>slave.args</code> are removed. Use <code>master.command</code> or <code>slave.command</code> instead in order to override the image entrypoint, or <code>master.extraFlags</code> to pass additional flags to <code>redis-server</code>.</li>
+<li><code>disableCommands</code> is now interpreted as an array of strings instead of a string of comma separated values.</li>
+<li><code>master.persistence.path</code> now defaults to <code>/data</code>.</li>
+</ul>
+
+<h3 id="4-0-0">4.0.0</h3>
+
+<p>This version removes the <code>chart</code> label from the <code>spec.selector.matchLabels</code>
+which is immutable since <code>StatefulSet apps/v1beta2</code>. It has been inadvertently
+added, causing any subsequent upgrade to fail. See <a href="https://github.com/helm/charts/issues/7726">https://github.com/helm/charts/issues/7726</a>.</p>
+
+<p>It also fixes <a href="https://github.com/helm/charts/issues/7726">https://github.com/helm/charts/issues/7726</a> where a deployment <code>extensions/v1beta1</code> can not be upgraded if <code>spec.selector</code> is not explicitly set.</p>
+
+<p>Finally, it fixes <a href="https://github.com/helm/charts/issues/7803">https://github.com/helm/charts/issues/7803</a> by removing mutable labels in <code>spec.VolumeClaimTemplate.metadata.labels</code> so that it is upgradable.</p>
+
+<p>In order to upgrade, delete the Redis StatefulSet before upgrading:</p>
+
+<pre><code class="language-bash">$ kubectl delete statefulsets.apps --cascade=false my-release-redis-master
+</code></pre>
+
+<p>And edit the Redis slave (and metrics if enabled) deployment:</p>
+
+<pre><code class="language-bash">kubectl patch deployments my-release-redis-slave --type=json -p='[{&quot;op&quot;: &quot;remove&quot;, &quot;path&quot;: &quot;/spec/selector/matchLabels/chart&quot;}]'
+kubectl patch deployments my-release-redis-metrics --type=json -p='[{&quot;op&quot;: &quot;remove&quot;, &quot;path&quot;: &quot;/spec/selector/matchLabels/chart&quot;}]'
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following table lists the configurable parameters of the Redis chart and their default values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>global.imageRegistry</code></td>
+<td>Global Docker image registry</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>image.registry</code></td>
+<td>Redis Image registry</td>
+<td><code>docker.io</code></td>
+</tr>
+
+<tr>
+<td><code>image.repository</code></td>
+<td>Redis Image name</td>
+<td><code>bitnami/redis</code></td>
+</tr>
+
+<tr>
+<td><code>image.tag</code></td>
+<td>Redis Image tag</td>
+<td><code>{VERSION}</code></td>
+</tr>
+
+<tr>
+<td><code>image.pullPolicy</code></td>
+<td>Image pull policy</td>
+<td><code>Always</code></td>
+</tr>
+
+<tr>
+<td><code>image.pullSecrets</code></td>
+<td>Specify docker-registry secret names as an array</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.enabled</code></td>
+<td>Use master-slave topology</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.slaveCount</code></td>
+<td>Number of slaves</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>existingSecret</code></td>
+<td>Name of existing secret object (for password authentication)</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>usePassword</code></td>
+<td>Use password</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>password</code></td>
+<td>Redis password (ignored if existingSecret set)</td>
+<td>Randomly generated</td>
+</tr>
+
+<tr>
+<td><code>configmap</code></td>
+<td>Redis configuration file to be used</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>networkPolicy.enabled</code></td>
+<td>Enable NetworkPolicy</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>networkPolicy.allowExternal</code></td>
+<td>Don&rsquo;t require client label for connections</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccount.create</code></td>
+<td>Specifies whether a ServiceAccount should be created</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccount.name</code></td>
+<td>The name of the ServiceAccount to create</td>
+<td>Generated using the fullname template</td>
+</tr>
+
+<tr>
+<td><code>rbac.create</code></td>
+<td>Specifies whether RBAC resources should be created</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>rbac.role.rules</code></td>
+<td>Rules to create</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.enabled</code></td>
+<td>Start a side-car prometheus exporter</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.image.registry</code></td>
+<td>Redis exporter image registry</td>
+<td><code>docker.io</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.image.repository</code></td>
+<td>Redis exporter image name</td>
+<td><code>oliver006/redis_exporter</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.image.tag</code></td>
+<td>Redis exporter image tag</td>
+<td><code>v0.20.2</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.image.pullPolicy</code></td>
+<td>Image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.image.pullSecrets</code></td>
+<td>Specify docker-registry secret names as an array</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.extraArgs</code></td>
+<td>Extra arguments for the binary; possible values <a href="https://github.com/oliver006/redis_exporter#flags">here</a></td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>metrics.podLabels</code></td>
+<td>Additional labels for Metrics exporter pod</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>metrics.podAnnotations</code></td>
+<td>Additional annotations for Metrics exporter pod</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>metrics.service.type</code></td>
+<td>Kubernetes Service type (redis metrics)</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.service.annotations</code></td>
+<td>Annotations for the services to monitor  (redis master and redis slave service)</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>metrics.service.loadBalancerIP</code></td>
+<td>loadBalancerIP if redis metrics service type is <code>LoadBalancer</code></td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.resources</code></td>
+<td>Exporter resource requests/limit</td>
+<td>Memory: <code>256Mi</code>, CPU: <code>100m</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.serviceMonitor.enabled</code></td>
+<td>if <code>true</code>, creates a Prometheus Operator ServiceMonitor (also requires <code>metrics.enabled</code> to be <code>true</code>)</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.serviceMonitor.namespace</code></td>
+<td>Optional namespace which Prometheus is running in</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.serviceMonitor.interval</code></td>
+<td>How frequently to scrape metrics (use by default, falling back to Prometheus&rsquo; default)</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.serviceMonitor.selector</code></td>
+<td>Default to kube-prometheus install (CoreOS recommended), but should be set according to Prometheus install</td>
+<td><code>{ prometheus: kube-prometheus }</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.existingClaim</code></td>
+<td>Provide an existing PersistentVolumeClaim</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.enabled</code></td>
+<td>Use a PVC to persist data (master node)</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.path</code></td>
+<td>Path to mount the volume at, to use other images</td>
+<td><code>/data</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.subPath</code></td>
+<td>Subdirectory of the volume to mount at</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.storageClass</code></td>
+<td>Storage class of backing PVC</td>
+<td><code>generic</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.accessModes</code></td>
+<td>Persistent Volume Access Modes</td>
+<td><code>[ReadWriteOnce]</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.size</code></td>
+<td>Size of data volume</td>
+<td><code>8Gi</code></td>
+</tr>
+
+<tr>
+<td><code>master.statefulset.updateStrategy</code></td>
+<td>Update strategy for StatefulSet</td>
+<td>onDelete</td>
+</tr>
+
+<tr>
+<td><code>master.statefulset.rollingUpdatePartition</code></td>
+<td>Partition update strategy</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.podLabels</code></td>
+<td>Additional labels for Redis master pod</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>master.podAnnotations</code></td>
+<td>Additional annotations for Redis master pod</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>master.port</code></td>
+<td>Redis master port</td>
+<td><code>6379</code></td>
+</tr>
+
+<tr>
+<td><code>master.command</code></td>
+<td>Redis master entrypoint array. The docker image&rsquo;s ENTRYPOINT is used if this is not provided.</td>
+<td>[]</td>
+</tr>
+
+<tr>
+<td><code>master.disableCommands</code></td>
+<td>Array of Redis commands to disable (master)</td>
+<td><code>[&quot;FLUSHDB&quot;, &quot;FLUSHALL&quot;]</code></td>
+</tr>
+
+<tr>
+<td><code>master.extraFlags</code></td>
+<td>Redis master additional command line flags</td>
+<td>[]</td>
+</tr>
+
+<tr>
+<td><code>master.nodeSelector</code></td>
+<td>Redis master Node labels for pod assignment</td>
+<td>{&ldquo;beta.kubernetes.io/arch&rdquo;: &ldquo;amd64&rdquo;}</td>
+</tr>
+
+<tr>
+<td><code>master.tolerations</code></td>
+<td>Toleration labels for Redis master pod assignment</td>
+<td>[]</td>
+</tr>
+
+<tr>
+<td><code>master.affinity</code></td>
+<td>Affinity settings for Redis master pod assignment</td>
+<td>[]</td>
+</tr>
+
+<tr>
+<td><code>master.schedulerName</code></td>
+<td>Name of an alternate scheduler</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.service.type</code></td>
+<td>Kubernetes Service type (redis master)</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>master.service.port</code></td>
+<td>Kubernetes Service port (redis master)</td>
+<td><code>6379</code></td>
+</tr>
+
+<tr>
+<td><code>master.service.nodePort</code></td>
+<td>Kubernetes Service nodePort (redis master)</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.service.annotations</code></td>
+<td>annotations for redis master service</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>master.service.loadBalancerIP</code></td>
+<td>loadBalancerIP if redis master service type is <code>LoadBalancer</code></td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.securityContext.enabled</code></td>
+<td>Enable security context (redis master pod)</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>master.securityContext.fsGroup</code></td>
+<td>Group ID for the container (redis master pod)</td>
+<td><code>1001</code></td>
+</tr>
+
+<tr>
+<td><code>master.securityContext.runAsUser</code></td>
+<td>User ID for the container (redis master pod)</td>
+<td><code>1001</code></td>
+</tr>
+
+<tr>
+<td><code>master.resources</code></td>
+<td>Redis master CPU/Memory resource requests/limits</td>
+<td>Memory: <code>256Mi</code>, CPU: <code>100m</code></td>
+</tr>
+
+<tr>
+<td><code>master.livenessProbe.enabled</code></td>
+<td>Turn on and off liveness probe (redis master pod)</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>master.livenessProbe.initialDelaySeconds</code></td>
+<td>Delay before liveness probe is initiated (redis master pod)</td>
+<td><code>30</code></td>
+</tr>
+
+<tr>
+<td><code>master.livenessProbe.periodSeconds</code></td>
+<td>How often to perform the probe (redis master pod)</td>
+<td><code>30</code></td>
+</tr>
+
+<tr>
+<td><code>master.livenessProbe.timeoutSeconds</code></td>
+<td>When the probe times out (redis master pod)</td>
+<td><code>5</code></td>
+</tr>
+
+<tr>
+<td><code>master.livenessProbe.successThreshold</code></td>
+<td>Minimum consecutive successes for the probe to be considered successful after having failed (redis master pod)</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>master.livenessProbe.failureThreshold</code></td>
+<td>Minimum consecutive failures for the probe to be considered failed after having succeeded.</td>
+<td><code>5</code></td>
+</tr>
+
+<tr>
+<td><code>master.readinessProbe.enabled</code></td>
+<td>Turn on and off readiness probe (redis master pod)</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>master.readinessProbe.initialDelaySeconds</code></td>
+<td>Delay before readiness probe is initiated (redis master pod)</td>
+<td><code>5</code></td>
+</tr>
+
+<tr>
+<td><code>master.readinessProbe.periodSeconds</code></td>
+<td>How often to perform the probe (redis master pod)</td>
+<td><code>10</code></td>
+</tr>
+
+<tr>
+<td><code>master.readinessProbe.timeoutSeconds</code></td>
+<td>When the probe times out (redis master pod)</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>master.readinessProbe.successThreshold</code></td>
+<td>Minimum consecutive successes for the probe to be considered successful after having failed (redis master pod)</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>master.readinessProbe.failureThreshold</code></td>
+<td>Minimum consecutive failures for the probe to be considered failed after having succeeded.</td>
+<td><code>5</code></td>
+</tr>
+
+<tr>
+<td><code>volumePermissions.image.registry</code></td>
+<td>Init container volume-permissions image registry</td>
+<td><code>docker.io</code></td>
+</tr>
+
+<tr>
+<td><code>volumePermissions.image.repository</code></td>
+<td>Init container volume-permissions image name</td>
+<td><code>bitnami/minideb</code></td>
+</tr>
+
+<tr>
+<td><code>volumePermissions.image.tag</code></td>
+<td>Init container volume-permissions image tag</td>
+<td><code>latest</code></td>
+</tr>
+
+<tr>
+<td><code>volumePermissions.image.pullPolicy</code></td>
+<td>Init container volume-permissions image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>slave.service.type</code></td>
+<td>Kubernetes Service type (redis slave)</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>slave.service.nodePort</code></td>
+<td>Kubernetes Service nodePort (redis slave)</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>slave.service.annotations</code></td>
+<td>annotations for redis slave service</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>slave.service.loadBalancerIP</code></td>
+<td>LoadBalancerIP if Redis slave service type is <code>LoadBalancer</code></td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>slave.port</code></td>
+<td>Redis slave port</td>
+<td><code>master.port</code></td>
+</tr>
+
+<tr>
+<td><code>slave.command</code></td>
+<td>Redis slave entrypoint array. The docker image&rsquo;s ENTRYPOINT is used if this is not provided.</td>
+<td><code>master.command</code></td>
+</tr>
+
+<tr>
+<td><code>slave.disableCommands</code></td>
+<td>Array of Redis commands to disable (slave)</td>
+<td><code>master.disableCommands</code></td>
+</tr>
+
+<tr>
+<td><code>slave.extraFlags</code></td>
+<td>Redis slave additional command line flags</td>
+<td><code>master.extraFlags</code></td>
+</tr>
+
+<tr>
+<td><code>slave.livenessProbe.enabled</code></td>
+<td>Turn on and off liveness probe (redis slave pod)</td>
+<td><code>master.livenessProbe.enabled</code></td>
+</tr>
+
+<tr>
+<td><code>slave.livenessProbe.initialDelaySeconds</code></td>
+<td>Delay before liveness probe is initiated (redis slave pod)</td>
+<td><code>master.livenessProbe.initialDelaySeconds</code></td>
+</tr>
+
+<tr>
+<td><code>slave.livenessProbe.periodSeconds</code></td>
+<td>How often to perform the probe (redis slave pod)</td>
+<td><code>master.livenessProbe.periodSeconds</code></td>
+</tr>
+
+<tr>
+<td><code>slave.livenessProbe.timeoutSeconds</code></td>
+<td>When the probe times out (redis slave pod)</td>
+<td><code>master.livenessProbe.timeoutSeconds</code></td>
+</tr>
+
+<tr>
+<td><code>slave.livenessProbe.successThreshold</code></td>
+<td>Minimum consecutive successes for the probe to be considered successful after having failed (redis slave pod)</td>
+<td><code>master.livenessProbe.successThreshold</code></td>
+</tr>
+
+<tr>
+<td><code>slave.livenessProbe.failureThreshold</code></td>
+<td>Minimum consecutive failures for the probe to be considered failed after having succeeded.</td>
+<td><code>master.livenessProbe.failureThreshold</code></td>
+</tr>
+
+<tr>
+<td><code>slave.readinessProbe.enabled</code></td>
+<td>Turn on and off slave.readiness probe (redis slave pod)</td>
+<td><code>master.readinessProbe.enabled</code></td>
+</tr>
+
+<tr>
+<td><code>slave.readinessProbe.initialDelaySeconds</code></td>
+<td>Delay before slave.readiness probe is initiated (redis slave pod)</td>
+<td><code>master.readinessProbe.initialDelaySeconds</code></td>
+</tr>
+
+<tr>
+<td><code>slave.readinessProbe.periodSeconds</code></td>
+<td>How often to perform the probe (redis slave pod)</td>
+<td><code>master.readinessProbe.periodSeconds</code></td>
+</tr>
+
+<tr>
+<td><code>slave.readinessProbe.timeoutSeconds</code></td>
+<td>When the probe times out (redis slave pod)</td>
+<td><code>master.readinessProbe.timeoutSeconds</code></td>
+</tr>
+
+<tr>
+<td><code>slave.readinessProbe.successThreshold</code></td>
+<td>Minimum consecutive successes for the probe to be considered successful after having failed (redis slave pod)</td>
+<td><code>master.readinessProbe.successThreshold</code></td>
+</tr>
+
+<tr>
+<td><code>slave.readinessProbe.failureThreshold</code></td>
+<td>Minimum consecutive failures for the probe to be considered failed after having succeeded. (redis slave pod)</td>
+<td><code>master.readinessProbe.failureThreshold</code></td>
+</tr>
+
+<tr>
+<td><code>slave.podLabels</code></td>
+<td>Additional labels for Redis slave pod</td>
+<td><code>master.podLabels</code></td>
+</tr>
+
+<tr>
+<td><code>slave.podAnnotations</code></td>
+<td>Additional annotations for Redis slave pod</td>
+<td><code>master.podAnnotations</code></td>
+</tr>
+
+<tr>
+<td><code>slave.schedulerName</code></td>
+<td>Name of an alternate scheduler</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>slave.securityContext.enabled</code></td>
+<td>Enable security context (redis slave pod)</td>
+<td><code>master.securityContext.enabled</code></td>
+</tr>
+
+<tr>
+<td><code>slave.securityContext.fsGroup</code></td>
+<td>Group ID for the container (redis slave pod)</td>
+<td><code>master.securityContext.fsGroup</code></td>
+</tr>
+
+<tr>
+<td><code>slave.securityContext.runAsUser</code></td>
+<td>User ID for the container (redis slave pod)</td>
+<td><code>master.securityContext.runAsUser</code></td>
+</tr>
+
+<tr>
+<td><code>slave.resources</code></td>
+<td>Redis slave CPU/Memory resource requests/limits</td>
+<td><code>master.resources</code></td>
+</tr>
+
+<tr>
+<td><code>slave.affinity</code></td>
+<td>Enable node/pod affinity for slaves</td>
+<td>{}</td>
+</tr>
+</tbody>
+</table>
+
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release \
+  --set password=secretpassword \
+    stable/redis
+</code></pre>
+
+<p>The above command sets the Redis server password to <code>secretpassword</code>.</p>
+
+<p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release -f values.yaml stable/redis
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="values.yaml">values.yaml</a></p>
+
+<p><strong>Note for minikube users</strong>: Current versions of minikube (v0.24.1 at the time of writing) provision <code>hostPath</code> persistent volumes that are only writable by root. Using chart defaults cause pod failure for the Redis pod as it attempts to write to the <code>/bitnami</code> directory. Consider installing Redis with <code>--set persistence.enabled=false</code>. See minikube issue <a href="https://github.com/kubernetes/minikube/issues/1990">1990</a> for more information.</p>
+</blockquote>
+
+<h2 id="networkpolicy">NetworkPolicy</h2>
+
+<p>To enable network policy for Redis, install
+<a href="https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy#before-you-begin">a networking plugin that implements the Kubernetes NetworkPolicy spec</a>,
+and set <code>networkPolicy.enabled</code> to <code>true</code>.</p>
+
+<p>For Kubernetes v1.5 &amp; v1.6, you must also turn on NetworkPolicy by setting
+the DefaultDeny namespace annotation. Note: this will enforce policy for <em>all</em> pods in the namespace:</p>
+
+<pre><code>kubectl annotate namespace default &quot;net.beta.kubernetes.io/network-policy={\&quot;ingress\&quot;:{\&quot;isolation\&quot;:\&quot;DefaultDeny\&quot;}}&quot;
+</code></pre>
+
+<p>With NetworkPolicy enabled, only pods with the generated client label will be
+able to connect to Redis. This label will be displayed in the output
+after a successful install.</p>
+
+<h2 id="persistence">Persistence</h2>
+
+<p>By default, the chart mounts a <a href="http://kubernetes.io/docs/user-guide/persistent-volumes/">Persistent Volume</a> at the <code>/data</code> path. The volume is created using dynamic volume provisioning. If a Persistent Volume Claim already exists, specify it during installation.</p>
+
+<h3 id="existing-persistentvolumeclaim">Existing PersistentVolumeClaim</h3>
+
+<ol>
+<li>Create the PersistentVolume</li>
+<li>Create the PersistentVolumeClaim</li>
+<li>Install the chart</li>
+</ol>
+
+<pre><code class="language-bash">$ helm install --set persistence.existingClaim=PVC_NAME stable/redis
+</code></pre>
+
+<h2 id="metrics">Metrics</h2>
+
+<p>The chart optionally can start a metrics exporter for <a href="https://prometheus.io">prometheus</a>. The metrics endpoint (port 9121) is exposed in the service. Metrics can be scraped from within the cluster using something similar as the described in the <a href="https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml">example Prometheus scrape configuration</a>. If metrics are to be scraped from outside the cluster, the Kubernetes API proxy can be utilized to access the endpoint.</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/prometheus/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/tomcat/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

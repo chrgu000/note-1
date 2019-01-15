@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="MySQL MySQL is one of the most popular database servers in the world. Notable users include Wikipedia, Facebook and Google.
+Introduction This chart bootstraps a single node MySQL deployment on a Kubernetes cluster using the Helm package manager.
+Prerequisites  Kubernetes 1.6&#43; with Beta APIs enabled PV provisioner support in the underlying infrastructure  Installing the Chart To install the chart with the release name my-release:
+$ helm install --name my-release stable/mysql  The command deploys MySQL on the Kubernetes cluster in the default configuration." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/mysql/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="mysql">MySQL</h1>
+
+<p><a href="https://MySQL.org">MySQL</a> is one of the most popular database servers in the world. Notable users include Wikipedia, Facebook and Google.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This chart bootstraps a single node MySQL deployment on a <a href="http://kubernetes.io">Kubernetes</a> cluster using the <a href="https://helm.sh">Helm</a> package manager.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>Kubernetes 1.6+ with Beta APIs enabled</li>
+<li>PV provisioner support in the underlying infrastructure</li>
+</ul>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-bash">$ helm install --name my-release stable/mysql
+</code></pre>
+
+<p>The command deploys MySQL on the Kubernetes cluster in the default configuration. The <a href="#configuration">configuration</a> section lists the parameters that can be configured during installation.</p>
+
+<p>By default a random password will be generated for the root user. If you&rsquo;d like to set your own password change the mysqlRootPassword
+in the values.yaml.</p>
+
+<p>You can retrieve your root password by running the following command. Make sure to replace [YOUR_RELEASE_NAME]:</p>
+
+<pre><code>printf $(printf '\%o' `kubectl get secret [YOUR_RELEASE_NAME]-mysql -o jsonpath=&quot;{.data.mysql-root-password[*]}&quot;`)
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: List all releases using <code>helm list</code></p>
+</blockquote>
+
+<h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
+
+<p>To uninstall/delete the <code>my-release</code> deployment:</p>
+
+<pre><code class="language-bash">$ helm delete my-release
+</code></pre>
+
+<p>The command removes all the Kubernetes components associated with the chart and deletes the release.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following table lists the configurable parameters of the MySQL chart and their default values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>image</code></td>
+<td><code>mysql</code> image repository.</td>
+<td><code>mysql</code></td>
+</tr>
+
+<tr>
+<td><code>imageTag</code></td>
+<td><code>mysql</code> image tag.</td>
+<td><code>5.7.14</code></td>
+</tr>
+
+<tr>
+<td><code>imagePullPolicy</code></td>
+<td>Image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>existingSecret</code></td>
+<td>Use Existing secret for Password details</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>extraVolumes</code></td>
+<td>Additional volumes as a string to be passed to the <code>tpl</code> function</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>extraVolumeMounts</code></td>
+<td>Additional volumeMounts as a string to be passed to the <code>tpl</code> function</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>extraInitContainers</code></td>
+<td>Additional init containers as a string to be passed to the <code>tpl</code> function</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>mysqlRootPassword</code></td>
+<td>Password for the <code>root</code> user. Ignored if existing secret is provided</td>
+<td>Random 10 characters</td>
+</tr>
+
+<tr>
+<td><code>mysqlUser</code></td>
+<td>Username of new user to create.</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>mysqlPassword</code></td>
+<td>Password for the new user. Ignored if existing secret is provided</td>
+<td>Random 10 characters</td>
+</tr>
+
+<tr>
+<td><code>mysqlDatabase</code></td>
+<td>Name for new database to create.</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>livenessProbe.initialDelaySeconds</code></td>
+<td>Delay before liveness probe is initiated</td>
+<td>30</td>
+</tr>
+
+<tr>
+<td><code>livenessProbe.periodSeconds</code></td>
+<td>How often to perform the probe</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td><code>livenessProbe.timeoutSeconds</code></td>
+<td>When the probe times out</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td><code>livenessProbe.successThreshold</code></td>
+<td>Minimum consecutive successes for the probe to be considered successful after having failed.</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td><code>livenessProbe.failureThreshold</code></td>
+<td>Minimum consecutive failures for the probe to be considered failed after having succeeded.</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td><code>readinessProbe.initialDelaySeconds</code></td>
+<td>Delay before readiness probe is initiated</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td><code>readinessProbe.periodSeconds</code></td>
+<td>How often to perform the probe</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td><code>readinessProbe.timeoutSeconds</code></td>
+<td>When the probe times out</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td><code>readinessProbe.successThreshold</code></td>
+<td>Minimum consecutive successes for the probe to be considered successful after having failed.</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td><code>readinessProbe.failureThreshold</code></td>
+<td>Minimum consecutive failures for the probe to be considered failed after having succeeded.</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td><code>persistence.enabled</code></td>
+<td>Create a volume to store data</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td><code>persistence.size</code></td>
+<td>Size of persistent volume claim</td>
+<td>8Gi RW</td>
+</tr>
+
+<tr>
+<td><code>persistence.storageClass</code></td>
+<td>Type of persistent volume claim</td>
+<td>nil  (uses alpha storage class annotation)</td>
+</tr>
+
+<tr>
+<td><code>persistence.accessMode</code></td>
+<td>ReadWriteOnce or ReadOnly</td>
+<td>ReadWriteOnce</td>
+</tr>
+
+<tr>
+<td><code>persistence.existingClaim</code></td>
+<td>Name of existing persistent volume</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.subPath</code></td>
+<td>Subdirectory of the volume to mount</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.annotations</code></td>
+<td>Persistent Volume annotations</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>nodeSelector</code></td>
+<td>Node labels for pod assignment</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td><code>metrics.enabled</code></td>
+<td>Start a side-car prometheus exporter</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.image</code></td>
+<td>Exporter image</td>
+<td><code>prom/mysqld-exporter</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.imageTag</code></td>
+<td>Exporter image</td>
+<td><code>v0.10.0</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.imagePullPolicy</code></td>
+<td>Exporter image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.resources</code></td>
+<td>Exporter resource requests/limit</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>metrics.livenessProbe.initialDelaySeconds</code></td>
+<td>Delay before metrics liveness probe is initiated</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td><code>metrics.livenessProbe.timeoutSeconds</code></td>
+<td>When the probe times out</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td><code>metrics.readinessProbe.initialDelaySeconds</code></td>
+<td>Delay before metrics readiness probe is initiated</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td><code>metrics.readinessProbe.timeoutSeconds</code></td>
+<td>When the probe times out</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td><code>resources</code></td>
+<td>CPU/Memory resource requests/limits</td>
+<td>Memory: <code>256Mi</code>, CPU: <code>100m</code></td>
+</tr>
+
+<tr>
+<td><code>configurationFiles</code></td>
+<td>List of mysql configuration files</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>ssl.enabled</code></td>
+<td>Setup and use SSL for MySQL connections</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>ssl.secret</code></td>
+<td>Name of the secret containing the SSL certificates</td>
+<td>mysql-ssl-certs</td>
+</tr>
+
+<tr>
+<td><code>ssl.certificates[0].name</code></td>
+<td>Name of the secret containing the SSL certificates</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>ssl.certificates[0].ca</code></td>
+<td>CA certificate</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>ssl.certificates[0].cert</code></td>
+<td>Server certificate (public key)</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>ssl.certificates[0].key</code></td>
+<td>Server key (private key)</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>imagePullSecrets</code></td>
+<td>Name of Secret resource containing private registry credentials</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>initializationFiles</code></td>
+<td>List of SQL files which are run after the container started</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>timezone</code></td>
+<td>Container and mysqld timezone (TZ env)</td>
+<td><code>nil</code> (UTC depending on image)</td>
+</tr>
+
+<tr>
+<td><code>podAnnotations</code></td>
+<td>Map of annotations to add to the pods</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Some of the parameters above map to the env variables defined in the <a href="https://hub.docker.com/_/mysql/">MySQL DockerHub image</a>.</p>
+
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release \
+  --set mysqlRootPassword=secretpassword,mysqlUser=my-user,mysqlPassword=my-password,mysqlDatabase=my-database \
+    stable/mysql
+</code></pre>
+
+<p>The above command sets the MySQL <code>root</code> account password to <code>secretpassword</code>. Additionally it creates a standard database user named <code>my-user</code>, with the password <code>my-password</code>, who has access to a database named <code>my-database</code>.</p>
+
+<p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release -f values.yaml stable/mysql
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="values.yaml">values.yaml</a></p>
+</blockquote>
+
+<h2 id="persistence">Persistence</h2>
+
+<p>The <a href="https://hub.docker.com/_/mysql/">MySQL</a> image stores the MySQL data and configurations at the <code>/var/lib/mysql</code> path of the container.</p>
+
+<p>By default a PersistentVolumeClaim is created and mounted into that directory. In order to disable this functionality
+you can change the values.yaml to disable persistence and use an emptyDir instead.</p>
+
+<blockquote>
+<p><em>&ldquo;An emptyDir volume is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node. When a Pod is removed from a node for any reason, the data in the emptyDir is deleted forever.&rdquo;</em></p>
+</blockquote>
+
+<h2 id="custom-mysql-configuration-files">Custom MySQL configuration files</h2>
+
+<p>The <a href="https://hub.docker.com/_/mysql/">MySQL</a> image accepts custom configuration files at the path <code>/etc/mysql/conf.d</code>. If you want to use a customized MySQL configuration, you can create your alternative configuration files by passing the file contents on the <code>configurationFiles</code> attribute. Note that according to the MySQL documentation only files ending with <code>.cnf</code> are loaded.</p>
+
+<pre><code class="language-yaml">configurationFiles:
+  mysql.cnf: |-
+    [mysqld]
+    skip-host-cache
+    skip-name-resolve
+    sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+  mysql_custom.cnf: |-
+    [mysqld]
+</code></pre>
+
+<h2 id="mysql-initialization-files">MySQL initialization files</h2>
+
+<p>The <a href="https://hub.docker.com/_/mysql/">MySQL</a> image accepts *.sh, *.sql and *.sql.gz files at the path <code>/docker-entrypoint-initdb.d</code>.
+These files are being run exactly once for container initialization and ignored on following container restarts.
+If you want to use initialization scripts, you can create initialization files by passing the file contents on the <code>initializationFiles</code> attribute.</p>
+
+<pre><code class="language-yaml">initializationFiles:
+  first-db.sql: |-
+    CREATE DATABASE IF NOT EXISTS first DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+  second-db.sql: |-
+    CREATE DATABASE IF NOT EXISTS second DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+</code></pre>
+
+<h2 id="ssl">SSL</h2>
+
+<p>This chart supports configuring MySQL to use <a href="https://dev.mysql.com/doc/refman/5.7/en/encrypted-connections.html">encrypted connections</a> with TLS/SSL certificates provided by the user. This is accomplished by storing the required Certificate Authority file, the server public key certificate, and the server private key as a Kubernetes secret. The SSL options for this chart support the following use cases:</p>
+
+<ul>
+<li>Manage certificate secrets with helm</li>
+<li>Manage certificate secrets outside of helm</li>
+</ul>
+
+<h2 id="manage-certificate-secrets-with-helm">Manage certificate secrets with helm</h2>
+
+<p>Include your certificate data in the <code>ssl.certificates</code> section. For example:</p>
+
+<pre><code>ssl:
+  enabled: false
+  secret: mysql-ssl-certs
+  certificates:
+  - name: mysql-ssl-certs
+    ca: |-
+      -----BEGIN CERTIFICATE-----
+      ...
+      -----END CERTIFICATE-----
+    cert: |-
+      -----BEGIN CERTIFICATE-----
+      ...
+      -----END CERTIFICATE-----
+    key: |-
+      -----BEGIN RSA PRIVATE KEY-----
+      ...
+      -----END RSA PRIVATE KEY-----
+</code></pre>
+
+<blockquote>
+<p><strong>Note</strong>: Make sure your certificate data has the correct formatting in the values file.</p>
+</blockquote>
+
+<h2 id="manage-certificate-secrets-outside-of-helm">Manage certificate secrets outside of helm</h2>
+
+<ol>
+<li>Ensure the certificate secret exist before installation of this chart.</li>
+<li>Set the name of the certificate secret in <code>ssl.secret</code>.</li>
+<li>Make sure there are no entries underneath <code>ssl.certificates</code>.</li>
+</ol>
+
+<p>To manually create the certificate secret from local files you can execute:</p>
+
+<pre><code>kubectl create secret generic mysql-ssl-certs \
+  --from-file=ca.pem=./ssl/certificate-authority.pem \
+  --from-file=server-cert.pem=./ssl/server-public-key.pem \
+  --from-file=server-key.pem=./ssl/server-private-key.pem
+</code></pre>
+
+<blockquote>
+<p><strong>Note</strong>: <code>ca.pem</code>, <code>server-cert.pem</code>, and <code>server-key.pem</code> <strong>must</strong> be used as the key names in this generic secret.</p>
+</blockquote>
+
+<p>If you are using a certificate your configurationFiles must include the three ssl lines under [mysqld]</p>
+
+<pre><code>[mysqld]
+    ssl-ca=/ssl/ca.pem
+    ssl-cert=/ssl/server-cert.pem
+    ssl-key=/ssl/server-key.pem
+</code></pre>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/logstash/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/nfs-client-provisioner/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

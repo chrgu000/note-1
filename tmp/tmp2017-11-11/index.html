@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="CREATE TABLE IF NOT EXISTS test(sno INT,sname STRING,age INT,sex STRING)ROW FORMAT DELIMITEDFIELDS TERMINATED BY &#39;@&#39;STORED AS TEXTFILE;
+LOAD DATA LOCAL INPATH &#39;/home/hadoop/share/tmp/1&#39; INTO TABLE test;
+$JAVA_HOME/bin/java -DNAME=FRAMEWORK -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/urandom $TURNING_OPTION $DEBUG_GC $DEBUG_OPTION $EXTRA_OPTION -DFRAMEWORK_HOME=$FRAMEWORK_HOME -Dfile.encoding=UTF-8 -classpath $FRAMEWORK_HOME/bin:$FRAMEWORK_HOME/lib/commons-io-2.1.jar:$FRAMEWORK_HOME/lib/org.apache.felix.main-5.6.2.jar com.nsn.framework.Main
+select&#39;4&#39; as network,&#39;2g&#39; AS bsc_rnc_enb_ip,destination_ip as dip,tai as tac,replycode as reply_code,duration,record_close_cause as rec_close_cause,imsi,ecgi_3gpp2_bsid as cell,sgw_hsgw_ip_addr as sgw_ipfrom anhui." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/tmp/tmp2017-11-11/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>CREATE TABLE IF NOT EXISTS test
+(sno INT,sname STRING,age INT,sex STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '@'
+STORED AS TEXTFILE;</p>
+</div>
+<div class="paragraph">
+<p>LOAD DATA LOCAL INPATH '/home/hadoop/share/tmp/1' INTO TABLE test;</p>
+</div>
+<div class="paragraph">
+<p>$JAVA_HOME/bin/java -DNAME=FRAMEWORK -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/urandom $TURNING_OPTION $DEBUG_GC $DEBUG_OPTION $EXTRA_OPTION -DFRAMEWORK_HOME=$FRAMEWORK_HOME -Dfile.encoding=UTF-8 -classpath $FRAMEWORK_HOME/bin:$FRAMEWORK_HOME/lib/commons-io-2.1.jar:$FRAMEWORK_HOME/lib/org.apache.felix.main-5.6.2.jar com.nsn.framework.Main</p>
+</div>
+<div class="paragraph">
+<p>select
+    '4' as network,
+    '2g' AS bsc_rnc_enb_ip,
+    destination_ip as dip,
+    tai as tac,
+    replycode as reply_code,
+    duration,
+    record_close_cause as rec_close_cause,
+    imsi,
+    ecgi_3gpp2_bsid as cell,
+    sgw_hsgw_ip_addr as sgw_ip
+from anhui.s1u_dns
+limit 5;</p>
+</div>
+<div class="paragraph">
+<p>select
+    distinct(sgw_ip) as sgw_ip
+from anhui.s1u_dns
+limit 5;</p>
+</div>
+<div class="paragraph">
+<p>select count(*) from anhui.s1u_dns</p>
+</div>
+<div class="paragraph">
+<p>export SPARK_DIST_CLASSPATH=$(/opt/hadoop-2.7.3/bin/hadoop classpath)
+export JAVA_HOME=/usr/java/jdk1.8.0_131/
+export HADOOP_HOME=/opt/hadoop-2.7.3
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export SPARK_MASTER_IP=vm74
+export SPARK_MASTER_PORT=7077
+export SPARK_LOCAL_IP=vm74</p>
+</div>
+<div class="paragraph">
+<p>spark.master                     spark://vm74:7077
+spark.home                       /opt/hadoop-2.7.3
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://vm74:9000/spark-log
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.executor.memory            6g
+spark.driver.memory              6g
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"</p>
+</div>
+<div class="paragraph">
+<p>lsof -p PID</p>
+</div>
+<div class="paragraph">
+<p>datamining_s1u_dns.xml
+    &lt;database id="spark1" type="XDR-CMCC-SPARK" name="HADOOP Env 1"
+        runtime="true" /&gt;</p>
+</div>
+<div class="paragraph">
+<p>datasource.properties
+    datasources=spark1</p>
+</div>
+<div class="paragraph">
+<p>COPY f_do_s1_ho_imsi_ci_anhui2 FROM '/tmp/F_DO_S1_HO_IMSI_CI_ANHUI2_2017-11-13_09000093519660531340467.csv' DELIMITER AS ',' NULL AS 'null';
+COPY t1 FROM 'D:\tmp\files\F_DO_S1_HO_IMSI_CI_ANHUI2_2017-11-13_0900008392860789826925871.csv' DELIMITER AS ',' NULL AS 'null';</p>
+</div>
+<div class="paragraph">
+<p><a href="http://vm74:8899/tbox/callback?token=s1u_dns.27920&amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;window=20171113090000-20171113100000&amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;id=27920" class="bare">http://vm74:8899/tbox/callback?token=s1u_dns.27920&amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;window=20171113090000-20171113100000&amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;id=27920</a>
+<a href="http://localhost:8899/tbox/callback?token=s1u_dns.27920&amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;window=20171113090000-20171113100000&amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;id=27920" class="bare">http://localhost:8899/tbox/callback?token=s1u_dns.27920&amp;result=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;window=20171113090000-20171113100000&amp;table=F_DO_S1_HO_IMSI_CI_ANHUI2&amp;id=27920</a></p>
+</div>
+<div class="paragraph">
+<p>VD_CITY_VDNET_D</p>
+</div>
+<div class="paragraph">
+<p>useradd git
+passwd git</p>
+</div>
+<div class="paragraph">
+<p>kill $(jps|grep Spark|awk '{print $1}')</p>
+</div>
+<div class="paragraph">
+<p>LD_LIBRARY_PATH=/usr/pgsql-9.6/lib/:/usr/lib64/
+export LD_LIBRARY_PATH</p>
+</div>
+<div class="paragraph">
+<p>export LD_LIBRARY_PATH=/usr/local/greenplum-db-4.3.14.0/lib/</p>
+</div>
+<div class="paragraph">
+<p>create user anhui with login password 'password'</p>
+</div>
+<div class="paragraph">
+<p>service postgresql-9.6 restart</p>
+</div>
+<div class="paragraph">
+<p>create schema test;</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE "test"."t1" (
+    "sgw_ip" varchar(60) COLLATE "default",
+    "sdate" timestamp(6),
+    "report_id" int8
+)
+WITH (OIDS=FALSE)
+;</p>
+</div>
+<div class="paragraph">
+<p>ALTER TABLE "test"."t1" OWNER TO "postgres";</p>
+</div>
+<div class="paragraph">
+<p>CREATE TABLE "test"."t2" (
+    "sgw_ip2" varchar(60) COLLATE "default",
+    "sdate" timestamp(6),
+    "report_id" int8
+)
+WITH (OIDS=FALSE)
+;</p>
+</div>
+<div class="paragraph">
+<p>ALTER TABLE "test"."t2" OWNER TO "postgres";</p>
+</div>
+<div class="paragraph">
+<p>D:\\tar\\eclipse-jee-indigo-SR2-win32-x86_64\\eclipse\\plugins\\org.eclipse.equinox.launcher_1.2.0.v20110502.jar</p>
+</div>
+<div class="paragraph">
+<p>java -jar D:\\tar\\eclipse-jee-indigo-SR2-win32-x86_64\\eclipse\\plugins\\org.eclipse.equinox.launcher_1.2.0.v20110502.jar -application org.eclipse.ant.core.antRunner -data D:\\project\\Framework\\plugins2 -buildfile build_plugins.xml</p>
+</div>
+<div class="paragraph">
+<p>svn.exe co <a href="https://github.com/apache/spark.git/branches/branch-2.1/examples" class="bare">https://github.com/apache/spark.git/branches/branch-2.1/examples</a> /d/idea-project/spark-examples-2.1</p>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/tmp/tmp2017-08-30/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/tmp/wuliuxiugai/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -338,7 +338,8 @@ MSYS2_PATH_TYPE=inherit</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64/</code></pre>
+<pre class="highlightjs highlight"><code>Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64/
+Server = https://cdn.repo.archlinuxcn.org/x86_64</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -424,6 +425,12 @@ http_proxy=http://127.0.0.1:7777 go get -u honnef.co/go/tools/cmd/staticcheck</p
 <div class="sectionbody">
 <div class="paragraph">
 <p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\x86_64-w64-mingw32-gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\x86_64-w64-mingw32-g++.exe &amp;&amp; go build -ldflags="-H windowsgui""</p>
+</div>
+<div class="paragraph">
+<p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\g++.exe &amp;&amp; go build -ldflags="-H windowsgui""</p>
+</div>
+<div class="paragraph">
+<p>CGO_ENABLED=1 &amp;&amp; CC=/d/msys64/mingw64/bin/gcc.exe &amp;&amp; CXX=/d/msys64/mingw64/bin/g++.exe</p>
 </div>
 <div class="paragraph">
 <p>go build -ldflags="-H windowsgui" externalwidgets.go</p>

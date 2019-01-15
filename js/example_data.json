@@ -3,271 +3,271 @@
         "description": "",
         "tags": null,
         "title": "bug",
-        "uri": "/post/app/bug"
+        "uri": "post/app/bug"
     },
     {
         "description": "",
         "tags": [],
         "title": "Ambari",
-        "uri": "/post/bigdata/ambari"
+        "uri": "post/bigdata/ambari"
     },
     {
         "description": "",
         "tags": [],
         "title": "大数据仓库构建-实体关系（ER）建模理论及应用场景案例1维度建模理论及应用场景案例1",
-        "uri": "/post/bigdata/bigdata-warehouse/er"
+        "uri": "post/bigdata/bigdata-warehouse/er"
     },
     {
         "description": "",
         "tags": [],
         "title": "数据采集与同步",
-        "uri": "/post/bigdata/bigdata-warehouse/数据采集与同步"
+        "uri": "post/bigdata/bigdata-warehouse/数据采集与同步"
     },
     {
         "description": "",
         "tags": [],
         "title": "离线计算项目",
-        "uri": "/post/bigdata/djt/项目/离线计算项目"
+        "uri": "post/bigdata/djt/项目/离线计算项目"
     },
     {
         "description": "",
         "tags": [],
         "title": "hadoop-docker",
-        "uri": "/post/bigdata/hadoop/docker/hadoop-docker"
+        "uri": "post/bigdata/hadoop/docker/hadoop-docker"
     },
     {
         "description": "",
         "tags": [],
         "title": "flume-sqoop",
-        "uri": "/post/bigdata/hadoop/flume-sqoop"
+        "uri": "post/bigdata/hadoop/flume-sqoop"
     },
     {
         "description": "",
         "tags": [],
         "title": "hadoop-shell",
-        "uri": "/post/bigdata/hadoop/hadoop-shell"
+        "uri": "post/bigdata/hadoop/hadoop-shell"
     },
     {
         "description": "",
         "tags": [],
         "title": "hadoop2.4.1集群搭建",
-        "uri": "/post/bigdata/hadoop/hadoop2"
+        "uri": "post/bigdata/hadoop/hadoop2"
     },
     {
         "description": "",
         "tags": [],
         "title": "hbase",
-        "uri": "/post/bigdata/hadoop/hbase"
+        "uri": "post/bigdata/hadoop/hbase"
     },
     {
         "description": "",
         "tags": [],
         "title": "hive on spark",
-        "uri": "/post/bigdata/hadoop/hive-on-spark"
+        "uri": "post/bigdata/hadoop/hive-on-spark"
     },
     {
         "description": "",
         "tags": [],
         "title": "hive",
-        "uri": "/post/bigdata/hadoop/hive"
+        "uri": "post/bigdata/hadoop/hive"
     },
     {
         "description": "",
         "tags": [],
         "title": "hive基础操作",
-        "uri": "/post/bigdata/hadoop/hive基础操作"
+        "uri": "post/bigdata/hadoop/hive基础操作"
     },
     {
         "description": "",
         "tags": [],
         "title": "hive详解",
-        "uri": "/post/bigdata/hadoop/hive详解"
+        "uri": "post/bigdata/hadoop/hive详解"
     },
     {
         "description": "",
         "tags": [],
         "title": "kafka",
-        "uri": "/post/bigdata/hadoop/kafka"
+        "uri": "post/bigdata/hadoop/kafka"
     },
     {
         "description": "",
         "tags": [],
         "title": "log",
-        "uri": "/post/bigdata/hadoop/log-analysis"
+        "uri": "post/bigdata/hadoop/log-analysis"
     },
     {
         "description": "",
         "tags": [],
         "title": "akka-概念",
-        "uri": "/post/bigdata/scala/akka-概念"
+        "uri": "post/bigdata/scala/akka-概念"
     },
     {
         "description": "",
         "tags": [],
         "title": "Scala g8 模板",
-        "uri": "/post/bigdata/scala/g8"
+        "uri": "post/bigdata/scala/g8"
     },
     {
         "description": "",
         "tags": [],
         "title": "Scala Actor编程",
-        "uri": "/post/bigdata/scala/scala-Actor编程"
+        "uri": "post/bigdata/scala/scala-Actor编程"
     },
     {
         "description": "",
         "tags": [],
         "title": "Scala 参考",
-        "uri": "/post/bigdata/scala/scala-ref"
+        "uri": "post/bigdata/scala/scala-ref"
     },
     {
         "description": "",
         "tags": [],
         "title": "scala基础",
-        "uri": "/post/bigdata/scala/scala基础"
+        "uri": "post/bigdata/scala/scala基础"
     },
     {
         "description": "",
         "tags": [],
         "title": "Scala实战",
-        "uri": "/post/bigdata/scala/scala实战"
+        "uri": "post/bigdata/scala/scala实战"
     },
     {
         "description": "",
         "tags": [],
         "title": "Scala高级特性",
-        "uri": "/post/bigdata/scala/scala高级特性"
+        "uri": "post/bigdata/scala/scala高级特性"
     },
     {
         "description": "",
         "tags": [],
         "title": "快学Scala",
-        "uri": "/post/bigdata/scala/快学Scala"
+        "uri": "post/bigdata/scala/快学Scala"
     },
     {
         "description": "",
         "tags": [],
         "title": "采集日志服务 nginx log",
-        "uri": "/post/bigdata/spark/nginx-log"
+        "uri": "post/bigdata/spark/nginx-log"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark-conf",
-        "uri": "/post/bigdata/spark/spark-conf"
+        "uri": "post/bigdata/spark/spark-conf"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark hive",
-        "uri": "/post/bigdata/spark/spark-hive"
+        "uri": "post/bigdata/spark/spark-hive"
     },
     {
         "description": "",
         "tags": [],
         "title": "Zhen He spark rdd api",
-        "uri": "/post/bigdata/spark/spark-rdd-api"
+        "uri": "post/bigdata/spark/spark-rdd-api"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark-rdd",
-        "uri": "/post/bigdata/spark/spark-rdd"
+        "uri": "post/bigdata/spark/spark-rdd"
     },
     {
         "description": "",
         "tags": [],
         "title": "SparkSql",
-        "uri": "/post/bigdata/spark/spark-sql"
+        "uri": "post/bigdata/spark/spark-sql"
     },
     {
         "description": "",
         "tags": [],
         "title": "SparkSql",
-        "uri": "/post/bigdata/spark/spark-sql2"
+        "uri": "post/bigdata/spark/spark-sql2"
     },
     {
         "description": "",
         "tags": [],
         "title": "SparkSql内核剖析",
-        "uri": "/post/bigdata/spark/spark-sql内核剖析"
+        "uri": "post/bigdata/spark/spark-sql内核剖析"
     },
     {
         "description": "",
         "tags": [],
         "title": "SparkStreaming",
-        "uri": "/post/bigdata/spark/spark-streaming"
+        "uri": "post/bigdata/spark/spark-streaming"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark参考",
-        "uri": "/post/bigdata/spark/spark-参考"
+        "uri": "post/bigdata/spark/spark-参考"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark-基础",
-        "uri": "/post/bigdata/spark/spark-基础"
+        "uri": "post/bigdata/spark/spark-基础"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark-源码",
-        "uri": "/post/bigdata/spark/spark-源码"
+        "uri": "post/bigdata/spark/spark-源码"
     },
     {
         "description": "",
         "tags": [],
         "title": "spark-问题",
-        "uri": "/post/bigdata/spark/spark-问题"
+        "uri": "post/bigdata/spark/spark-问题"
     },
     {
         "description": "",
         "tags": [],
         "title": "Streampro 学习",
-        "uri": "/post/bigdata/spark/streamingpro/streamingpro"
+        "uri": "post/bigdata/spark/streamingpro/streamingpro"
     },
     {
         "description": "",
         "tags": [],
         "title": "SparkSql",
-        "uri": "/post/bigdata/spark/xiaoxiang/xiaoxiang-spark"
+        "uri": "post/bigdata/spark/xiaoxiang/xiaoxiang-spark"
     },
     {
         "description": "",
         "tags": [],
         "title": "Kafka负载均衡-自定义Partition-文件存储机制",
-        "uri": "/post/bigdata/storm/Kafka负载均衡-自定义Partition-文件存储机制"
+        "uri": "post/bigdata/storm/Kafka负载均衡-自定义Partition-文件存储机制"
     },
     {
         "description": "",
         "tags": [],
         "title": "Storm目录树、任务提交、消息容错",
-        "uri": "/post/bigdata/storm/Storm目录树、任务提交、消息容错"
+        "uri": "post/bigdata/storm/Storm目录树、任务提交、消息容错"
     },
     {
         "description": "",
         "tags": [],
         "title": "Kafka集群安装部署、Kafka生产者、Kafka消费者",
-        "uri": "/post/bigdata/storm/kafka"
+        "uri": "post/bigdata/storm/kafka"
     },
     {
         "description": "",
         "tags": [],
         "title": "storm",
-        "uri": "/post/bigdata/storm/storm"
+        "uri": "post/bigdata/storm/storm"
     },
     {
         "description": "",
         "tags": [],
         "title": "storm集群部署,单词计数,Stream Grouping",
-        "uri": "/post/bigdata/storm/storm集群部署,单词计数,Stream Grouping"
+        "uri": "post/bigdata/storm/storm集群部署,单词计数,Stream Grouping"
     },
     {
         "description": "",
         "tags": [],
         "title": "问题总结",
-        "uri": "/post/bigdata/问题"
+        "uri": "post/bigdata/问题"
     },
     {
         "description": "",
@@ -275,7 +275,7 @@
             "docker"
         ],
         "title": "docker 基础命令",
-        "uri": "/post/docker/docker-base"
+        "uri": "post/docker/docker-base"
     },
     {
         "description": "",
@@ -283,19 +283,19 @@
             "docker"
         ],
         "title": "etcd flanneld",
-        "uri": "/post/docker/etcd-flanneld"
+        "uri": "post/docker/etcd-flanneld"
     },
     {
         "description": "",
         "tags": [],
         "title": "IntelliJ IDEA 快捷键",
-        "uri": "/post/editor/Intellij-keymap"
+        "uri": "post/editor/Intellij-keymap"
     },
     {
         "description": "",
         "tags": [],
         "title": "Intellij",
-        "uri": "/post/editor/Intellij"
+        "uri": "post/editor/Intellij"
     },
     {
         "description": "",
@@ -303,7 +303,7 @@
             "sublime"
         ],
         "title": "sublime tabTrigger",
-        "uri": "/post/editor/snippets"
+        "uri": "post/editor/snippets"
     },
     {
         "description": "",
@@ -311,7 +311,7 @@
             "sublime"
         ],
         "title": "sublime 配置",
-        "uri": "/post/editor/sublime"
+        "uri": "post/editor/sublime"
     },
     {
         "description": "",
@@ -319,43 +319,43 @@
             "源码分析"
         ],
         "title": "understand",
-        "uri": "/post/editor/understand"
+        "uri": "post/editor/understand"
     },
     {
         "description": "cmake libgit2",
         "tags": [],
         "title": "cmake",
-        "uri": "/post/go/cmake"
+        "uri": "post/go/cmake"
     },
     {
         "description": "go pacman",
         "tags": [],
         "title": "go 基础配置",
-        "uri": "/post/go/go"
+        "uri": "post/go/go"
     },
     {
         "description": "",
         "tags": [],
         "title": "ActiveMq",
-        "uri": "/post/java/activemq"
+        "uri": "post/java/activemq"
     },
     {
         "description": "",
         "tags": [],
         "title": "leetcode算法",
-        "uri": "/post/java/algorithm/1-10"
+        "uri": "post/java/algorithm/1-10"
     },
     {
         "description": "",
         "tags": [],
         "title": "Btrace",
-        "uri": "/post/java/btrace"
+        "uri": "post/java/btrace"
     },
     {
         "description": "",
         "tags": [],
         "title": "java编程题",
-        "uri": "/post/java/codes"
+        "uri": "post/java/codes"
     },
     {
         "description": "elasticsearch-jdbc-importer",
@@ -363,7 +363,7 @@
             "elasticsearch"
         ],
         "title": "elasticsearch-jdbc-importer",
-        "uri": "/post/java/es/elasticsearch-jdbc-importer"
+        "uri": "post/java/es/elasticsearch-jdbc-importer"
     },
     {
         "description": "",
@@ -371,7 +371,7 @@
             "elasticsearch"
         ],
         "title": "Elasticsearch",
-        "uri": "/post/java/es/elasticsearch"
+        "uri": "post/java/es/elasticsearch"
     },
     {
         "description": "",
@@ -379,7 +379,7 @@
             "elasticsearch"
         ],
         "title": "es 基础",
-        "uri": "/post/java/es/es-book-note"
+        "uri": "post/java/es/es-book-note"
     },
     {
         "description": "",
@@ -387,7 +387,7 @@
             "elasticsearch"
         ],
         "title": "es 问题",
-        "uri": "/post/java/es/es-issues"
+        "uri": "post/java/es/es-issues"
     },
     {
         "description": "",
@@ -395,7 +395,7 @@
             "elasticsearch"
         ],
         "title": "es 代码片段",
-        "uri": "/post/java/es/es-snippet"
+        "uri": "post/java/es/es-snippet"
     },
     {
         "description": "",
@@ -403,241 +403,241 @@
             "elasticsearch"
         ],
         "title": "es 插件安装",
-        "uri": "/post/java/es/escha_jian_an_zhuang"
+        "uri": "post/java/es/escha_jian_an_zhuang"
     },
     {
         "description": "",
         "tags": [],
         "title": "java 框架",
-        "uri": "/post/java/framework"
+        "uri": "post/java/framework"
     },
     {
         "description": "",
         "tags": [],
         "title": "freemarker",
-        "uri": "/post/java/freemarker"
+        "uri": "post/java/freemarker"
     },
     {
         "description": "",
         "tags": [],
         "title": "GC日志分析",
-        "uri": "/post/java/gc"
+        "uri": "post/java/gc"
     },
     {
         "description": "",
         "tags": [],
         "title": "guava API",
-        "uri": "/post/java/guava"
+        "uri": "post/java/guava"
     },
     {
         "description": "",
         "tags": [],
         "title": "Spring IOC",
-        "uri": "/post/java/iocxml_md"
+        "uri": "post/java/iocxml_md"
     },
     {
         "description": "",
         "tags": [],
         "title": "Jackson",
-        "uri": "/post/java/jackson"
+        "uri": "post/java/jackson"
     },
     {
         "description": "",
         "tags": [],
         "title": "java class",
-        "uri": "/post/java/java-class"
+        "uri": "post/java/java-class"
     },
     {
         "description": "",
         "tags": [],
         "title": "java",
-        "uri": "/post/java/java"
+        "uri": "post/java/java"
     },
     {
         "description": "",
         "tags": [],
         "title": "jesery",
-        "uri": "/post/java/jesery"
+        "uri": "post/java/jesery"
     },
     {
         "description": "",
         "tags": [],
         "title": "Jetty",
-        "uri": "/post/java/jetty"
+        "uri": "post/java/jetty"
     },
     {
         "description": "",
         "tags": [],
         "title": "Jmeter",
-        "uri": "/post/java/jmeter"
+        "uri": "post/java/jmeter"
     },
     {
         "description": "",
         "tags": [],
         "title": "Jprofiler",
-        "uri": "/post/java/jprofiler"
+        "uri": "post/java/jprofiler"
     },
     {
         "description": "",
         "tags": [],
         "title": "Jrebel 热部署",
-        "uri": "/post/java/jrebel"
+        "uri": "post/java/jrebel"
     },
     {
         "description": "",
         "tags": [],
         "title": "单元测试",
-        "uri": "/post/java/junit"
+        "uri": "post/java/junit"
     },
     {
         "description": "",
         "tags": [],
         "title": "常用JVM配置参数",
-        "uri": "/post/java/jvm/常用JVM配置参数"
+        "uri": "post/java/jvm/常用JVM配置参数"
     },
     {
         "description": "",
         "tags": [],
         "title": "Maven",
-        "uri": "/post/java/maven"
+        "uri": "post/java/maven"
     },
     {
         "description": "",
         "tags": [],
         "title": "mockito 单元测试",
-        "uri": "/post/java/mockito"
+        "uri": "post/java/mockito"
     },
     {
         "description": "",
         "tags": [],
         "title": "SpringMVC",
-        "uri": "/post/java/mvcxml_md"
+        "uri": "post/java/mvcxml_md"
     },
     {
         "description": "",
         "tags": [],
         "title": "Netty",
-        "uri": "/post/java/netty"
+        "uri": "post/java/netty"
     },
     {
         "description": "",
         "tags": [],
         "title": "Spring 配置文件",
-        "uri": "/post/java/spring-conf"
+        "uri": "post/java/spring-conf"
     },
     {
         "description": "",
         "tags": [],
         "title": "多线程",
-        "uri": "/post/java/thread"
+        "uri": "post/java/thread"
     },
     {
         "description": "",
         "tags": [],
         "title": "数据结构与算法",
-        "uri": "/post/java/基础"
+        "uri": "post/java/基础"
     },
     {
         "description": "",
         "tags": [],
         "title": "Java 面试题",
-        "uri": "/post/java/面试题"
+        "uri": "post/java/面试题"
     },
     {
         "description": "",
         "tags": [],
         "title": "JS 面向对象",
-        "uri": "/post/js/js-html"
+        "uri": "post/js/js-html"
     },
     {
         "description": "",
         "tags": [],
         "title": "Js工具类",
-        "uri": "/post/js/jsutils"
+        "uri": "post/js/jsutils"
     },
     {
         "description": "",
         "tags": [],
         "title": "机器学习与数学基础",
-        "uri": "/post/july/机器学习与数学基础"
+        "uri": "post/july/机器学习与数学基础"
     },
     {
         "description": "",
         "tags": [],
         "title": "CentOS7",
-        "uri": "/post/linux/CentOS7"
+        "uri": "post/linux/CentOS7"
     },
     {
         "description": "",
         "tags": [],
         "title": "CoreOS",
-        "uri": "/post/linux/CoreOS"
+        "uri": "post/linux/CoreOS"
     },
     {
         "description": "",
         "tags": [],
         "title": "alpine",
-        "uri": "/post/linux/alpine"
+        "uri": "post/linux/alpine"
     },
     {
         "description": "",
         "tags": [],
         "title": "ansible",
-        "uri": "/post/linux/ansible"
+        "uri": "post/linux/ansible"
     },
     {
         "description": "",
         "tags": [],
         "title": "Asciinema",
-        "uri": "/post/linux/asciinema"
+        "uri": "post/linux/asciinema"
     },
     {
         "description": "",
         "tags": [],
         "title": "awk",
-        "uri": "/post/linux/awk"
+        "uri": "post/linux/awk"
     },
     {
         "description": "",
         "tags": [],
         "title": "linux 基础命令",
-        "uri": "/post/linux/basic"
+        "uri": "post/linux/basic"
     },
     {
         "description": "",
         "tags": [],
         "title": "LVS 集群配置",
-        "uri": "/post/linux/cluster"
+        "uri": "post/linux/cluster"
     },
     {
         "description": "",
         "tags": [],
         "title": "clustershell",
-        "uri": "/post/linux/clustershell"
+        "uri": "post/linux/clustershell"
     },
     {
         "description": "",
         "tags": [],
         "title": "docker-compose",
-        "uri": "/post/linux/docker-compose"
+        "uri": "post/linux/docker-compose"
     },
     {
         "description": "",
         "tags": [],
         "title": "docker 参考",
-        "uri": "/post/linux/docker-ref"
+        "uri": "post/linux/docker-ref"
     },
     {
         "description": "",
         "tags": [],
         "title": "swarm",
-        "uri": "/post/linux/docker-swarm"
+        "uri": "post/linux/docker-swarm"
     },
     {
         "description": "",
         "tags": [],
         "title": "linux 系统分区",
-        "uri": "/post/linux/fen_qu"
+        "uri": "post/linux/fen_qu"
     },
     {
         "description": "Git的奇技淫巧",
@@ -645,7 +645,7 @@
             "git"
         ],
         "title": "Git的奇技淫巧",
-        "uri": "/post/linux/git-tips"
+        "uri": "post/linux/git-tips"
     },
     {
         "description": "",
@@ -653,151 +653,151 @@
             "git"
         ],
         "title": "git基础命令",
-        "uri": "/post/linux/git"
+        "uri": "post/linux/git"
     },
     {
         "description": "",
         "tags": [],
         "title": "Apache httpd 服务器",
-        "uri": "/post/linux/httpd"
+        "uri": "post/linux/httpd"
     },
     {
         "description": "",
         "tags": [],
         "title": "httpd 配置文件",
-        "uri": "/post/linux/httpdconf"
+        "uri": "post/linux/httpdconf"
     },
     {
         "description": "",
         "tags": [],
         "title": "jenkins 构建工具",
-        "uri": "/post/linux/jenkins"
+        "uri": "post/linux/jenkins"
     },
     {
         "description": "",
         "tags": [],
         "title": "CentOS基础设置",
-        "uri": "/post/linux/ji_chu_she_zhi"
+        "uri": "post/linux/ji_chu_she_zhi"
     },
     {
         "description": "",
         "tags": [],
         "title": "sed",
-        "uri": "/post/linux/linux-sed"
+        "uri": "post/linux/linux-sed"
     },
     {
         "description": "",
         "tags": [],
         "title": "linux tip",
-        "uri": "/post/linux/linux-tip"
+        "uri": "post/linux/linux-tip"
     },
     {
         "description": "",
         "tags": [],
         "title": "log",
-        "uri": "/post/linux/log"
+        "uri": "post/linux/log"
     },
     {
         "description": "",
         "tags": [],
         "title": "mariadb",
-        "uri": "/post/linux/mariadb"
+        "uri": "post/linux/mariadb"
     },
     {
         "description": "",
         "tags": [],
         "title": "maxsclae",
-        "uri": "/post/linux/maxscale"
+        "uri": "post/linux/maxscale"
     },
     {
         "description": "",
         "tags": [],
         "title": "Mongod",
-        "uri": "/post/linux/mongod"
+        "uri": "post/linux/mongod"
     },
     {
         "description": "",
         "tags": [],
         "title": "mycat命令",
-        "uri": "/post/linux/mycat/mycat-command-line"
+        "uri": "post/linux/mycat/mycat-command-line"
     },
     {
         "description": "",
         "tags": [],
         "title": "mycat",
-        "uri": "/post/linux/mycat"
+        "uri": "post/linux/mycat"
     },
     {
         "description": "",
         "tags": [],
         "title": "mysql主从配置",
-        "uri": "/post/linux/mysql-master-slave"
+        "uri": "post/linux/mysql-master-slave"
     },
     {
         "description": "",
         "tags": [],
         "title": "Mysql 常用操作",
-        "uri": "/post/linux/mysql"
+        "uri": "post/linux/mysql"
     },
     {
         "description": "",
         "tags": [],
         "title": "mysql基础操作",
-        "uri": "/post/linux/mysql1"
+        "uri": "post/linux/mysql1"
     },
     {
         "description": "",
         "tags": [],
         "title": "Mysql错误",
-        "uri": "/post/linux/mysqlcuo_wu"
+        "uri": "post/linux/mysqlcuo_wu"
     },
     {
         "description": "",
         "tags": [],
         "title": "Nagios",
-        "uri": "/post/linux/nagios"
+        "uri": "post/linux/nagios"
     },
     {
         "description": "",
         "tags": [],
         "title": "NFS配置",
-        "uri": "/post/linux/nfsjian_1"
+        "uri": "post/linux/nfsjian_1"
     },
     {
         "description": "",
         "tags": [],
         "title": "Nginx 安装配置",
-        "uri": "/post/linux/nginx"
+        "uri": "post/linux/nginx"
     },
     {
         "description": "",
         "tags": [],
         "title": "Rancher",
-        "uri": "/post/linux/rancher"
+        "uri": "post/linux/rancher"
     },
     {
         "description": "",
         "tags": [],
         "title": "Redis",
-        "uri": "/post/linux/redis"
+        "uri": "post/linux/redis"
     },
     {
         "description": "",
         "tags": [],
         "title": "软件安装",
-        "uri": "/post/linux/ruan_jian_an_zhuang"
+        "uri": "post/linux/ruan_jian_an_zhuang"
     },
     {
         "description": "",
         "tags": [],
         "title": "shell",
-        "uri": "/post/linux/shell"
+        "uri": "post/linux/shell"
     },
     {
         "description": "",
         "tags": [],
         "title": "ssh",
-        "uri": "/post/linux/ssh"
+        "uri": "post/linux/ssh"
     },
     {
         "description": "",
@@ -805,25 +805,25 @@
             "进程管理"
         ],
         "title": "supervisor",
-        "uri": "/post/linux/supervisord"
+        "uri": "post/linux/supervisord"
     },
     {
         "description": "",
         "tags": [],
         "title": "svn 安装与配置",
-        "uri": "/post/linux/svn-setup"
+        "uri": "post/linux/svn-setup"
     },
     {
         "description": "",
         "tags": [],
         "title": "ubuntu",
-        "uri": "/post/linux/ubuntu"
+        "uri": "post/linux/ubuntu"
     },
     {
         "description": "",
         "tags": [],
         "title": "vagrant 错误",
-        "uri": "/post/linux/vagrant"
+        "uri": "post/linux/vagrant"
     },
     {
         "description": "",
@@ -831,37 +831,37 @@
             "vagrant"
         ],
         "title": "Vagrant常用命令",
-        "uri": "/post/linux/vagrant"
+        "uri": "post/linux/vagrant"
     },
     {
         "description": "",
         "tags": [],
         "title": "vim编辑器",
-        "uri": "/post/linux/vim"
+        "uri": "post/linux/vim"
     },
     {
         "description": "",
         "tags": [],
         "title": "virtualbox错误",
-        "uri": "/post/linux/virtualbox"
+        "uri": "post/linux/virtualbox"
     },
     {
         "description": "",
         "tags": [],
         "title": "yum基础操作",
-        "uri": "/post/linux/yum"
+        "uri": "post/linux/yum"
     },
     {
         "description": "",
         "tags": [],
         "title": "zookeeper基础",
-        "uri": "/post/linux/zookeeper"
+        "uri": "post/linux/zookeeper"
     },
     {
         "description": "",
         "tags": [],
         "title": "Mailiqing 服务器配置",
-        "uri": "/post/mailiqing"
+        "uri": "post/mailiqing"
     },
     {
         "description": "",
@@ -869,223 +869,223 @@
             "LaTeX"
         ],
         "title": "LaTeX 数学符号",
-        "uri": "/post/mathematics/LaTeX-Math-Symbols"
+        "uri": "post/mathematics/LaTeX-Math-Symbols"
     },
     {
         "description": "",
         "tags": [],
         "title": "机器学习",
-        "uri": "/post/mathematics/machine-learn"
+        "uri": "post/mathematics/machine-learn"
     },
     {
         "description": "",
         "tags": [],
         "title": "逻辑量词",
-        "uri": "/post/mathematics/mappings-and-functions"
+        "uri": "post/mathematics/mappings-and-functions"
     },
     {
         "description": "",
         "tags": [],
         "title": "Greek letters",
-        "uri": "/post/mathematics/mathjax-ref"
+        "uri": "post/mathematics/mathjax-ref"
     },
     {
         "description": "",
         "tags": [],
         "title": "导数的概念",
-        "uri": "/post/mathematics/xuxiaozhan/daoshu-moxing"
+        "uri": "post/mathematics/xuxiaozhan/daoshu-moxing"
     },
     {
         "description": "",
         "tags": [],
         "title": "高阶导数",
-        "uri": "/post/mathematics/xuxiaozhan/gaojie-daoshu"
+        "uri": "post/mathematics/xuxiaozhan/gaojie-daoshu"
     },
     {
         "description": "",
         "tags": [],
         "title": "函数求导",
-        "uri": "/post/mathematics/xuxiaozhan/hanshu-qiudao"
+        "uri": "post/mathematics/xuxiaozhan/hanshu-qiudao"
     },
     {
         "description": "",
         "tags": [],
         "title": "一阶线性微分方程",
-        "uri": "/post/mathematics/xuxiaozhan/一阶线性微分方程"
+        "uri": "post/mathematics/xuxiaozhan/一阶线性微分方程"
     },
     {
         "description": "",
         "tags": [],
         "title": "不定积分",
-        "uri": "/post/mathematics/xuxiaozhan/不定积分"
+        "uri": "post/mathematics/xuxiaozhan/不定积分"
     },
     {
         "description": "",
         "tags": [],
         "title": "二次曲面",
-        "uri": "/post/mathematics/xuxiaozhan/二次曲面"
+        "uri": "post/mathematics/xuxiaozhan/二次曲面"
     },
     {
         "description": "",
         "tags": [],
         "title": "二重积分",
-        "uri": "/post/mathematics/xuxiaozhan/二重积分"
+        "uri": "post/mathematics/xuxiaozhan/二重积分"
     },
     {
         "description": "",
         "tags": [],
         "title": "伯努利方程",
-        "uri": "/post/mathematics/xuxiaozhan/伯努利方程"
+        "uri": "post/mathematics/xuxiaozhan/伯努利方程"
     },
     {
         "description": "",
         "tags": [],
         "title": "体积",
-        "uri": "/post/mathematics/xuxiaozhan/体积"
+        "uri": "post/mathematics/xuxiaozhan/体积"
     },
     {
         "description": "",
         "tags": [],
         "title": "偏导数",
-        "uri": "/post/mathematics/xuxiaozhan/偏导数"
+        "uri": "post/mathematics/xuxiaozhan/偏导数"
     },
     {
         "description": "",
         "tags": [],
         "title": "函数的单调性和极值",
-        "uri": "/post/mathematics/xuxiaozhan/函数的单调性和极值"
+        "uri": "post/mathematics/xuxiaozhan/函数的单调性和极值"
     },
     {
         "description": "",
         "tags": [],
         "title": "分步积分法",
-        "uri": "/post/mathematics/xuxiaozhan/分步积分法"
+        "uri": "post/mathematics/xuxiaozhan/分步积分法"
     },
     {
         "description": "",
         "tags": [],
         "title": "向量及其线性运算",
-        "uri": "/post/mathematics/xuxiaozhan/向量及其线性运算"
+        "uri": "post/mathematics/xuxiaozhan/向量及其线性运算"
     },
     {
         "description": "",
         "tags": [],
         "title": "多元函数",
-        "uri": "/post/mathematics/xuxiaozhan/多元函数"
+        "uri": "post/mathematics/xuxiaozhan/多元函数"
     },
     {
         "description": "",
         "tags": [],
         "title": "定积分的几何应用(4)弧长",
-        "uri": "/post/mathematics/xuxiaozhan/定积分的几何应用(4)弧长"
+        "uri": "post/mathematics/xuxiaozhan/定积分的几何应用(4)弧长"
     },
     {
         "description": "",
         "tags": [],
         "title": "定积分的换元法",
-        "uri": "/post/mathematics/xuxiaozhan/定积分的换元法"
+        "uri": "post/mathematics/xuxiaozhan/定积分的换元法"
     },
     {
         "description": "",
         "tags": [],
         "title": "定积分的概念与性质",
-        "uri": "/post/mathematics/xuxiaozhan/定积分的概念与性质"
+        "uri": "post/mathematics/xuxiaozhan/定积分的概念与性质"
     },
     {
         "description": "",
         "tags": [],
         "title": "平面曲线的弧长",
-        "uri": "/post/mathematics/xuxiaozhan/平面曲线的弧长"
+        "uri": "post/mathematics/xuxiaozhan/平面曲线的弧长"
     },
     {
         "description": "",
         "tags": [],
         "title": "微分",
-        "uri": "/post/mathematics/xuxiaozhan/微分"
+        "uri": "post/mathematics/xuxiaozhan/微分"
     },
     {
         "description": "",
         "tags": [],
         "title": "微分中值定理",
-        "uri": "/post/mathematics/xuxiaozhan/微分中值定理"
+        "uri": "post/mathematics/xuxiaozhan/微分中值定理"
     },
     {
         "description": "",
         "tags": [],
         "title": "微分方程",
-        "uri": "/post/mathematics/xuxiaozhan/微分方程"
+        "uri": "post/mathematics/xuxiaozhan/微分方程"
     },
     {
         "description": "",
         "tags": [],
         "title": "微积分基本公式",
-        "uri": "/post/mathematics/xuxiaozhan/微积分基本公式"
+        "uri": "post/mathematics/xuxiaozhan/微积分基本公式"
     },
     {
         "description": "",
         "tags": [],
         "title": "换元积分法(2)",
-        "uri": "/post/mathematics/xuxiaozhan/换元积分法(2)"
+        "uri": "post/mathematics/xuxiaozhan/换元积分法(2)"
     },
     {
         "description": "",
         "tags": [],
         "title": "换元积分法",
-        "uri": "/post/mathematics/xuxiaozhan/换元积分法"
+        "uri": "post/mathematics/xuxiaozhan/换元积分法"
     },
     {
         "description": "",
         "tags": [],
         "title": "曲线的凹凸性与拐点",
-        "uri": "/post/mathematics/xuxiaozhan/曲线的凹凸性与拐点"
+        "uri": "post/mathematics/xuxiaozhan/曲线的凹凸性与拐点"
     },
     {
         "description": "",
         "tags": [],
         "title": "有理函数的积分",
-        "uri": "/post/mathematics/xuxiaozhan/有理函数的积分"
+        "uri": "post/mathematics/xuxiaozhan/有理函数的积分"
     },
     {
         "description": "",
         "tags": [],
         "title": "欧拉方程",
-        "uri": "/post/mathematics/xuxiaozhan/欧拉方程"
+        "uri": "post/mathematics/xuxiaozhan/欧拉方程"
     },
     {
         "description": "",
         "tags": [],
         "title": "泰勒公式",
-        "uri": "/post/mathematics/xuxiaozhan/泰勒公式"
+        "uri": "post/mathematics/xuxiaozhan/泰勒公式"
     },
     {
         "description": "",
         "tags": [],
         "title": "洛必达法则",
-        "uri": "/post/mathematics/xuxiaozhan/洛必达法则"
+        "uri": "post/mathematics/xuxiaozhan/洛必达法则"
     },
     {
         "description": "",
         "tags": [],
         "title": "部分积分法",
-        "uri": "/post/mathematics/xuxiaozhan/部分积分法"
+        "uri": "post/mathematics/xuxiaozhan/部分积分法"
     },
     {
         "description": "",
         "tags": [],
         "title": "高阶线性微分方程",
-        "uri": "/post/mathematics/xuxiaozhan/高阶线性微分方程"
+        "uri": "post/mathematics/xuxiaozhan/高阶线性微分方程"
     },
     {
         "description": "",
         "tags": [],
         "title": "齐次方程",
-        "uri": "/post/mathematics/xuxiaozhan/齐次方程"
+        "uri": "post/mathematics/xuxiaozhan/齐次方程"
     },
     {
         "description": "",
         "tags": [],
         "title": "gollum",
-        "uri": "/post/my/gollum"
+        "uri": "post/my/gollum"
     },
     {
         "description": "",
@@ -1093,25 +1093,25 @@
             "hugo"
         ],
         "title": "hugo",
-        "uri": "/post/my/hugo"
+        "uri": "post/my/hugo"
     },
     {
         "description": "",
         "tags": [],
         "title": "lunr",
-        "uri": "/post/my/lunr"
+        "uri": "post/my/lunr"
     },
     {
         "description": "",
         "tags": [],
         "title": "面试",
-        "uri": "/post/my/面试"
+        "uri": "post/my/面试"
     },
     {
         "description": "",
         "tags": [],
         "title": "初级1",
-        "uri": "/post/niuke/初级1"
+        "uri": "post/niuke/初级1"
     },
     {
         "description": "",
@@ -1119,91 +1119,91 @@
             "windows"
         ],
         "title": "win 端口转发",
-        "uri": "/post/windows"
+        "uri": "post/windows"
     },
     {
         "description": "",
         "tags": [],
         "title": "bug",
-        "uri": "/post/work/app/bug"
+        "uri": "post/work/app/bug"
     },
     {
         "description": "",
         "tags": [],
         "title": "购物车",
-        "uri": "/post/work/app/cart"
+        "uri": "post/work/app/cart"
     },
     {
         "description": "",
         "tags": [],
         "title": "客服管理",
-        "uri": "/post/work/app/cservice"
+        "uri": "post/work/app/cservice"
     },
     {
         "description": "",
         "tags": [],
         "title": "商品模块",
-        "uri": "/post/work/app/goods"
+        "uri": "post/work/app/goods"
     },
     {
         "description": "",
         "tags": [],
         "title": "采购单模块",
-        "uri": "/post/work/app/procurement"
+        "uri": "post/work/app/procurement"
     },
     {
         "description": "",
         "tags": [],
         "title": "圈层模块",
-        "uri": "/post/work/app/quanceng"
+        "uri": "post/work/app/quanceng"
     },
     {
         "description": "",
         "tags": [],
         "title": "报价单模块",
-        "uri": "/post/work/app/quoteprice"
+        "uri": "post/work/app/quoteprice"
     },
     {
         "description": "",
         "tags": [],
         "title": "店铺模块",
-        "uri": "/post/work/app/shop"
+        "uri": "post/work/app/shop"
     },
     {
         "description": "",
         "tags": [],
         "title": "接口模板",
-        "uri": "/post/work/app/template"
+        "uri": "post/work/app/template"
     },
     {
         "description": "",
         "tags": [],
         "title": "消息模块",
-        "uri": "/post/work/app/xiaoxi"
+        "uri": "post/work/app/xiaoxi"
     },
     {
         "description": "",
         "tags": [],
         "title": "App 表设计",
-        "uri": "/post/work/app-tables"
+        "uri": "post/work/app-tables"
     },
     {
         "description": "",
         "tags": [],
         "title": "架构",
-        "uri": "/post/work/arch"
+        "uri": "post/work/arch"
     },
     {
         "description": "",
         "tags": [],
         "title": "SparkSql",
-        "uri": "/post/work/dayliy/2018-07-09"
+        "uri": "post/work/dayliy/2018-07-09"
     },
     {
         "description": "",
         "tags": [],
         "title": "graphviz",
-        "uri": "/post/work/dayliy/graphviz"
+        "uri": "post/work/dayliy/graphviz"
     },
     {
         "description": "",
@@ -1211,37 +1211,45 @@
             "elasticsearch"
         ],
         "title": "elasticsearch",
-        "uri": "/post/work/es"
+        "uri": "post/work/es"
     },
     {
         "description": "",
         "tags": [],
         "title": "图片服务器",
-        "uri": "/post/work/koto"
+        "uri": "post/work/koto"
     },
     {
         "description": "",
         "tags": [],
         "title": "mybatis",
-        "uri": "/post/work/myBatis-generator"
+        "uri": "post/work/myBatis-generator"
     },
     {
         "description": "",
         "tags": [],
         "title": "DO工具箱开发",
-        "uri": "/post/work/nokia/nokia"
+        "uri": "post/work/nokia/nokia"
     },
     {
         "description": "",
         "tags": [],
         "title": "yunnan-lt",
-        "uri": "/post/work/nokia/yunnan-lt/yunnan-lt"
+        "uri": "post/work/nokia/yunnan-lt/yunnan-lt"
     },
     {
         "description": "",
         "tags": [],
         "title": "osgi",
-        "uri": "/post/work/osgi"
+        "uri": "post/work/osgi"
+    },
+    {
+        "description": "临时 prometheus 域名 nvidia-smi",
+        "tags": [
+            ""
+        ],
+        "title": "2018-09-19",
+        "uri": "post/work/suning/2018-09-19"
     },
     {
         "description": "",
@@ -1249,7 +1257,7 @@
             ""
         ],
         "title": "grpc",
-        "uri": "/post/work/suning/grpc"
+        "uri": "post/work/suning/grpc"
     },
     {
         "description": "k8s 部署参考文档",
@@ -1257,7 +1265,7 @@
             ""
         ],
         "title": "k8s 命令",
-        "uri": "/post/work/suning/k8s"
+        "uri": "post/work/suning/k8s"
     },
     {
         "description": "Lazarus参考文档,res2go",
@@ -1265,7 +1273,7 @@
             ""
         ],
         "title": "Lazarus参考文档",
-        "uri": "/post/work/suning/lazarus"
+        "uri": "post/work/suning/lazarus"
     },
     {
         "description": "",
@@ -1273,43 +1281,43 @@
             ""
         ],
         "title": "suning001",
-        "uri": "/post/work/suning/work"
+        "uri": "post/work/suning/work"
     },
     {
         "description": "",
         "tags": [],
         "title": "tip",
-        "uri": "/post/work/tip"
+        "uri": "post/work/tip"
     },
     {
         "description": "",
         "tags": [],
         "title": "临时文件",
-        "uri": "/post/work/tmp"
+        "uri": "post/work/tmp"
     },
     {
         "description": "",
         "tags": [],
         "title": "临时文件",
-        "uri": "/post/work/tmp2016-10-26"
+        "uri": "post/work/tmp2016-10-26"
     },
     {
         "description": "",
         "tags": [],
         "title": "日常积累 点点滴滴",
-        "uri": "/post/work/well"
+        "uri": "post/work/well"
     },
     {
         "description": "",
         "tags": [],
         "title": "物流",
-        "uri": "/post/work/wuliu/basic"
+        "uri": "post/work/wuliu/basic"
     },
     {
         "description": "",
         "tags": [],
         "title": "文档",
-        "uri": "/post/work/wuliu/jiaojie"
+        "uri": "post/work/wuliu/jiaojie"
     },
     {
         "description": "",
@@ -1317,6 +1325,6 @@
             "neo4j"
         ],
         "title": "neo4j",
-        "uri": "/post/work/zichuan/neo4j"
+        "uri": "post/work/zichuan/neo4j"
     }
 ]

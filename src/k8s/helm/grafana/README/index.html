@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Grafana Helm Chart  Installs the web dashboarding system Grafana  TL;DR; $ helm install stable/grafana  Installing the Chart To install the chart with the release name my-release:
+$ helm install --name my-release stable/grafana  Uninstalling the Chart To uninstall/delete the my-release deployment:
+$ helm delete my-release  The command removes all the Kubernetes components associated with the chart and deletes the release.
+Configuration    Parameter Description Default     replicas Number of nodes 1   deploymentStrategy Deployment strategy RollingUpdate   securityContext Deployment securityContext {&quot;runAsUser&quot;: 472, &quot;fsGroup&quot;: 472}   image." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/grafana/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="grafana-helm-chart">Grafana Helm Chart</h1>
+
+<ul>
+<li>Installs the web dashboarding system <a href="http://grafana.org/">Grafana</a></li>
+</ul>
+
+<h2 id="tl-dr">TL;DR;</h2>
+
+<pre><code class="language-console">$ helm install stable/grafana
+</code></pre>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-console">$ helm install --name my-release stable/grafana
+</code></pre>
+
+<h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
+
+<p>To uninstall/delete the my-release deployment:</p>
+
+<pre><code class="language-console">$ helm delete my-release
+</code></pre>
+
+<p>The command removes all the Kubernetes components associated with the chart and deletes the release.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>replicas</code></td>
+<td>Number of nodes</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>deploymentStrategy</code></td>
+<td>Deployment strategy</td>
+<td><code>RollingUpdate</code></td>
+</tr>
+
+<tr>
+<td><code>securityContext</code></td>
+<td>Deployment securityContext</td>
+<td><code>{&quot;runAsUser&quot;: 472, &quot;fsGroup&quot;: 472}</code></td>
+</tr>
+
+<tr>
+<td><code>image.repository</code></td>
+<td>Image repository</td>
+<td><code>grafana/grafana</code></td>
+</tr>
+
+<tr>
+<td><code>image.tag</code></td>
+<td>Image tag. (<code>Must be &gt;= 5.0.0</code>)</td>
+<td><code>5.2.3</code></td>
+</tr>
+
+<tr>
+<td><code>image.pullPolicy</code></td>
+<td>Image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>service.type</code></td>
+<td>Kubernetes service type</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>service.port</code></td>
+<td>Kubernetes port where service is exposed</td>
+<td><code>9000</code></td>
+</tr>
+
+<tr>
+<td><code>service.annotations</code></td>
+<td>Service annotations</td>
+<td><code>80</code></td>
+</tr>
+
+<tr>
+<td><code>service.labels</code></td>
+<td>Custom labels</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>ingress.enabled</code></td>
+<td>Enables Ingress</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>ingress.annotations</code></td>
+<td>Ingress annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>ingress.labels</code></td>
+<td>Custom labels</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>ingress.hosts</code></td>
+<td>Ingress accepted hostnames</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>ingress.tls</code></td>
+<td>Ingress TLS configuration</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>resources</code></td>
+<td>CPU/Memory resource requests/limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeSelector</code></td>
+<td>Node labels for pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>tolerations</code></td>
+<td>Toleration labels for pod assignment</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>affinity</code></td>
+<td>Affinity settings for pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.enabled</code></td>
+<td>Use persistent volume to store data</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.size</code></td>
+<td>Size of persistent volume claim</td>
+<td><code>10Gi</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.existingClaim</code></td>
+<td>Use an existing PVC to persist data</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.storageClassName</code></td>
+<td>Type of persistent volume claim</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.accessModes</code></td>
+<td>Persistence access modes</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>persistence.subPath</code></td>
+<td>Mount a sub dir of the persistent volume</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>schedulerName</code></td>
+<td>Alternate scheduler name</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>env</code></td>
+<td>Extra environment variables passed to pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>envFromSecret</code></td>
+<td>Name of a Kubenretes secret (must be manually created in the same namespace) containing values to be added to the environment</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>extraSecretMounts</code></td>
+<td>Additional grafana server secret mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>datasources</code></td>
+<td>Configure grafana datasources</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>dashboardProviders</code></td>
+<td>Configure grafana dashboard providers</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>dashboards</code></td>
+<td>Dashboards to import</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>dashboardsConfigMaps</code></td>
+<td>ConfigMaps reference that contains dashboards</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>grafana.ini</code></td>
+<td>Grafana&rsquo;s primary configuration</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>ldap.existingSecret</code></td>
+<td>The name of an existing secret containing the <code>ldap.toml</code> file, this must have the key <code>ldap-toml</code>.</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>ldap.config</code></td>
+<td>Grafana&rsquo;s LDAP configuration</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>annotations</code></td>
+<td>Deployment annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>podAnnotations</code></td>
+<td>Pod annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>sidecar.dashboards.enabled</code></td>
+<td>Enabled the cluster wide search for dashboards and adds/updates/deletes them in grafana</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>sidecar.dashboards.label</code></td>
+<td>Label that config maps with dashboards should have to be added</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>sidecar.datasources.enabled</code></td>
+<td>Enabled the cluster wide search for datasources and adds/updates/deletes them in grafana</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>sidecar.datasources.label</code></td>
+<td>Label that config maps with datasources should have to be added</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>smtp.existingSecret</code></td>
+<td>The name of an existing secret containing the SMTP credentials, this must have the keys <code>user</code> and <code>password</code>.</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="sidecar-for-dashboards">Sidecar for dashboards</h2>
+
+<p>If the parameter <code>sidecar.dashboards.enabled</code> is set, a sidecar container is deployed in the grafana pod. This container watches all config maps in the cluster and filters out the ones with a label as defined in <code>sidecar.dashboards.label</code>. The files defined in those configmaps are written to a folder and accessed by grafana. Changes to the configmaps are monitored and the imported dashboards are deleted/updated. A recommendation is to use one configmap per dashboard, as an reduction of multiple dashboards inside one configmap is currently not properly mirrored in grafana.
+Example dashboard config:</p>
+
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-grafana-dashboard
+  labels:
+     grafana_dashboard: 1
+data:
+  k8s-dashboard.json: |-
+  [...]
+</code></pre>
+
+<h2 id="sidecar-for-datasources">Sidecar for datasources</h2>
+
+<p>If the parameter <code>sidecar.datasource.enabled</code> is set, a sidecar container is deployed in the grafana pod. This container watches all config maps in the cluster and filters out the ones with a label as defined in <code>sidecar.datasources.label</code>. The files defined in those configmaps are written to a folder and accessed by grafana on startup. Using these yaml files, the data sources in grafana can be modified.</p>
+
+<p>Example datasource config adapted from <a href="http://docs.grafana.org/administration/provisioning/#example-datasource-config-file">Grafana</a>:</p>
+
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-grafana-datasource
+  labels:
+     grafana_datasource: 1
+data:
+    datasource.yaml: |-
+        # config file version
+        apiVersion: 1
+
+        # list of datasources that should be deleted from the database
+        deleteDatasources:
+          - name: Graphite
+            orgId: 1
+
+        # list of datasources to insert/update depending
+        # whats available in the database
+        datasources:
+          # &lt;string, required&gt; name of the datasource. Required
+        - name: Graphite
+          # &lt;string, required&gt; datasource type. Required
+          type: graphite
+          # &lt;string, required&gt; access mode. proxy or direct (Server or Browser in the UI). Required
+          access: proxy
+          # &lt;int&gt; org id. will default to orgId 1 if not specified
+          orgId: 1
+          # &lt;string&gt; url
+          url: http://localhost:8080
+          # &lt;string&gt; database password, if used
+          password:
+          # &lt;string&gt; database user, if used
+          user:
+          # &lt;string&gt; database name, if used
+          database:
+          # &lt;bool&gt; enable/disable basic auth
+          basicAuth:
+          # &lt;string&gt; basic auth username
+          basicAuthUser:
+          # &lt;string&gt; basic auth password
+          basicAuthPassword:
+          # &lt;bool&gt; enable/disable with credentials headers
+          withCredentials:
+          # &lt;bool&gt; mark as default datasource. Max one per org
+          isDefault:
+          # &lt;map&gt; fields that will be converted to json and stored in json_data
+          jsonData:
+             graphiteVersion: &quot;1.1&quot;
+             tlsAuth: true
+             tlsAuthWithCACert: true
+          # &lt;string&gt; json object of data that will be encrypted.
+          secureJsonData:
+            tlsCACert: &quot;...&quot;
+            tlsClientCert: &quot;...&quot;
+            tlsClientKey: &quot;...&quot;
+          version: 1
+          # &lt;bool&gt; allow users to edit datasources from the UI.
+          editable: false
+
+</code></pre>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/elasticsearch/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/heapster/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Elasticsearch Helm Chart This chart uses a standard Docker image of Elasticsearch (docker.elastic.co/elasticsearch/elasticsearch-oss) and uses a service pointing to the master&rsquo;s transport port for service discovery. Elasticsearch does not communicate with the Kubernetes API, hence no need for RBAC permissions.
+Warning for previous users If you are currently using an earlier version of this Chart you will need to redeploy your Elasticsearch clusters. The discovery method used here is incompatible with using RBAC." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/elastic-stack/charts/elasticsearch/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="elasticsearch-helm-chart">Elasticsearch Helm Chart</h1>
+
+<p>This chart uses a standard Docker image of Elasticsearch (docker.elastic.co/elasticsearch/elasticsearch-oss) and uses a service pointing to the master&rsquo;s transport port for service discovery.
+Elasticsearch does not communicate with the Kubernetes API, hence no need for RBAC permissions.</p>
+
+<h2 id="warning-for-previous-users">Warning for previous users</h2>
+
+<p>If you are currently using an earlier version of this Chart you will need to redeploy your Elasticsearch clusters. The discovery method used here is incompatible with using RBAC.
+If you are upgrading to Elasticsearch 6 from the 5.5 version used in this chart before, please note that your cluster needs to do a full cluster restart.
+The simplest way to do that is to delete the installation (keep the PVs) and install this chart again with the new version.
+If you want to avoid doing that upgrade to Elasticsearch 5.6 first before moving on to Elasticsearch 6.0.</p>
+
+<h2 id="prerequisites-details">Prerequisites Details</h2>
+
+<ul>
+<li>Kubernetes 1.6+</li>
+<li>PV dynamic provisioning support on the underlying infrastructure</li>
+</ul>
+
+<h2 id="statefulsets-details">StatefulSets Details</h2>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/</a></li>
+</ul>
+
+<h2 id="statefulsets-caveats">StatefulSets Caveats</h2>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#limitations">https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#limitations</a></li>
+</ul>
+
+<h2 id="todo">Todo</h2>
+
+<ul>
+<li>Implement TLS/Auth/Security</li>
+<li>Smarter upscaling/downscaling</li>
+<li>Solution for memory locking</li>
+</ul>
+
+<h2 id="chart-details">Chart Details</h2>
+
+<p>This chart will do the following:</p>
+
+<ul>
+<li>Implemented a dynamically scalable elasticsearch cluster using Kubernetes StatefulSets/Deployments</li>
+<li>Multi-role deployment: master, client (coordinating) and data nodes</li>
+<li>Statefulset Supports scaling down without degrading the cluster</li>
+</ul>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-bash">$ helm install --name my-release stable/elasticsearch
+</code></pre>
+
+<h2 id="deleting-the-charts">Deleting the Charts</h2>
+
+<p>Delete the Helm deployment as normal</p>
+
+<pre><code>$ helm delete my-release
+</code></pre>
+
+<p>Deletion of the StatefulSet doesn&rsquo;t cascade to deleting associated PVCs. To delete them:</p>
+
+<pre><code>$ kubectl delete pvc -l release=my-release,component=data
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following table lists the configurable parameters of the elasticsearch chart and their default values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>appVersion</code></td>
+<td>Application Version (Elasticsearch)</td>
+<td><code>6.5.3</code></td>
+</tr>
+
+<tr>
+<td><code>image.repository</code></td>
+<td>Container image name</td>
+<td><code>docker.elastic.co/elasticsearch/elasticsearch-oss</code></td>
+</tr>
+
+<tr>
+<td><code>image.tag</code></td>
+<td>Container image tag</td>
+<td><code>6.5.1</code></td>
+</tr>
+
+<tr>
+<td><code>image.pullPolicy</code></td>
+<td>Container pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>initImage.repository</code></td>
+<td>Init container image name</td>
+<td><code>busybox</code></td>
+</tr>
+
+<tr>
+<td><code>initImage.tag</code></td>
+<td>Init container image tag</td>
+<td><code>latest</code></td>
+</tr>
+
+<tr>
+<td><code>initImage.pullPolicy</code></td>
+<td>Init container pull policy</td>
+<td><code>Always</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.name</code></td>
+<td>Cluster name</td>
+<td><code>elasticsearch</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.xpackEnable</code></td>
+<td>Writes the X-Pack configuration options to the configuration file</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.config</code></td>
+<td>Additional cluster config appended</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.keystoreSecret</code></td>
+<td>Name of secret holding secure config options in an es keystore</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.env</code></td>
+<td>Cluster environment variables</td>
+<td><code>{MINIMUM_MASTER_NODES: &quot;2&quot;}</code></td>
+</tr>
+
+<tr>
+<td><code>cluster.additionalJavaOpts</code></td>
+<td>Cluster parameters to be added to <code>ES_JAVA_OPTS</code> environment variable</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>client.name</code></td>
+<td>Client component name</td>
+<td><code>client</code></td>
+</tr>
+
+<tr>
+<td><code>client.replicas</code></td>
+<td>Client node replicas (deployment)</td>
+<td><code>2</code></td>
+</tr>
+
+<tr>
+<td><code>client.resources</code></td>
+<td>Client node resources requests &amp; limits</td>
+<td><code>{} - cpu limit must be an integer</code></td>
+</tr>
+
+<tr>
+<td><code>client.priorityClassName</code></td>
+<td>Client priorityClass</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>client.heapSize</code></td>
+<td>Client node heap size</td>
+<td><code>512m</code></td>
+</tr>
+
+<tr>
+<td><code>client.podAnnotations</code></td>
+<td>Client Deployment annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.nodeSelector</code></td>
+<td>Node labels for client pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.tolerations</code></td>
+<td>Client tolerations</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>client.serviceAnnotations</code></td>
+<td>Client Service annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.serviceType</code></td>
+<td>Client service type</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>client.loadBalancerIP</code></td>
+<td>Client loadBalancerIP</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.loadBalancerSourceRanges</code></td>
+<td>Client loadBalancerSourceRanges</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.antiAffinity</code></td>
+<td>Client anti-affinity policy</td>
+<td><code>soft</code></td>
+</tr>
+
+<tr>
+<td><code>client.nodeAffinity</code></td>
+<td>Client node affinity policy</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.ingress.enabled</code></td>
+<td>Enable Client Ingress</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>client.ingress.annotations</code></td>
+<td>Client Ingress annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>client.ingress.hosts</code></td>
+<td>Client Ingress Hostnames</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>client.ingress.tls</code></td>
+<td>Client Ingress TLS configuration</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>master.exposeHttp</code></td>
+<td>Expose http port 9200 on master Pods for monitoring, etc</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>master.name</code></td>
+<td>Master component name</td>
+<td><code>master</code></td>
+</tr>
+
+<tr>
+<td><code>master.replicas</code></td>
+<td>Master node replicas (deployment)</td>
+<td><code>2</code></td>
+</tr>
+
+<tr>
+<td><code>master.resources</code></td>
+<td>Master node resources requests &amp; limits</td>
+<td><code>{} - cpu limit must be an integer</code></td>
+</tr>
+
+<tr>
+<td><code>master.priorityClassName</code></td>
+<td>Master priorityClass</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.podAnnotations</code></td>
+<td>Master Deployment annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>master.nodeSelector</code></td>
+<td>Node labels for master pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>master.tolerations</code></td>
+<td>Master tolerations</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>master.heapSize</code></td>
+<td>Master node heap size</td>
+<td><code>512m</code></td>
+</tr>
+
+<tr>
+<td><code>master.name</code></td>
+<td>Master component name</td>
+<td><code>master</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.enabled</code></td>
+<td>Master persistent enabled/disabled</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.name</code></td>
+<td>Master statefulset PVC template name</td>
+<td><code>data</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.size</code></td>
+<td>Master persistent volume size</td>
+<td><code>4Gi</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.storageClass</code></td>
+<td>Master persistent volume Class</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>master.persistence.accessMode</code></td>
+<td>Master persistent Access Mode</td>
+<td><code>ReadWriteOnce</code></td>
+</tr>
+
+<tr>
+<td><code>master.antiAffinity</code></td>
+<td>Master anti-affinity policy</td>
+<td><code>soft</code></td>
+</tr>
+
+<tr>
+<td><code>master.nodeAffinity</code></td>
+<td>Master node affinity policy</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>master.updateStrategy</code></td>
+<td>Master node update strategy policy</td>
+<td><code>{type: &quot;onDelete&quot;}</code></td>
+</tr>
+
+<tr>
+<td><code>data.exposeHttp</code></td>
+<td>Expose http port 9200 on data Pods for monitoring, etc</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>data.replicas</code></td>
+<td>Data node replicas (statefulset)</td>
+<td><code>2</code></td>
+</tr>
+
+<tr>
+<td><code>data.resources</code></td>
+<td>Data node resources requests &amp; limits</td>
+<td><code>{} - cpu limit must be an integer</code></td>
+</tr>
+
+<tr>
+<td><code>data.priorityClassName</code></td>
+<td>Data priorityClass</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>data.heapSize</code></td>
+<td>Data node heap size</td>
+<td><code>1536m</code></td>
+</tr>
+
+<tr>
+<td>`data.hooks.drain.enabled</td>
+<td>Data nodes: Enable drain pre-stop and post-start hook</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>data.persistence.enabled</code></td>
+<td>Data persistent enabled/disabled</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>data.persistence.name</code></td>
+<td>Data statefulset PVC template name</td>
+<td><code>data</code></td>
+</tr>
+
+<tr>
+<td><code>data.persistence.size</code></td>
+<td>Data persistent volume size</td>
+<td><code>30Gi</code></td>
+</tr>
+
+<tr>
+<td><code>data.persistence.storageClass</code></td>
+<td>Data persistent volume Class</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>data.persistence.accessMode</code></td>
+<td>Data persistent Access Mode</td>
+<td><code>ReadWriteOnce</code></td>
+</tr>
+
+<tr>
+<td><code>data.podAnnotations</code></td>
+<td>Data StatefulSet annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>data.nodeSelector</code></td>
+<td>Node labels for data pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>data.tolerations</code></td>
+<td>Data tolerations</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>data.terminationGracePeriodSeconds</code></td>
+<td>Data termination grace period (seconds)</td>
+<td><code>3600</code></td>
+</tr>
+
+<tr>
+<td><code>data.antiAffinity</code></td>
+<td>Data anti-affinity policy</td>
+<td><code>soft</code></td>
+</tr>
+
+<tr>
+<td><code>data.nodeAffinity</code></td>
+<td>Data node affinity policy</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>data.updateStrategy</code></td>
+<td>Data node update strategy policy</td>
+<td><code>{type: &quot;onDelete&quot;}</code></td>
+</tr>
+
+<tr>
+<td><code>extraInitContainers</code></td>
+<td>Additional init container passed through the tpl</td>
+<td>``</td>
+</tr>
+
+<tr>
+<td><code>podSecurityPolicy.annotations</code></td>
+<td>Specify pod annotations in the pod security policy</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>podSecurityPolicy.enabled</code></td>
+<td>Specify if a pod security policy must be created</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.client.create</code></td>
+<td>If true, create the client service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.client.name</code></td>
+<td>Name of the client service account to use or create</td>
+<td><code>{{ elasticsearch.client.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.master.create</code></td>
+<td>If true, create the master service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.master.name</code></td>
+<td>Name of the master service account to use or create</td>
+<td><code>{{ elasticsearch.master.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.data.create</code></td>
+<td>If true, create the data service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.data.name</code></td>
+<td>Name of the data service account to use or create</td>
+<td><code>{{ elasticsearch.data.fullname }}</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>.</p>
+
+<p>In terms of Memory resources you should make sure that you follow that equation:</p>
+
+<ul>
+<li><code>${role}HeapSize &lt; ${role}MemoryRequests &lt; ${role}MemoryLimits</code></li>
+</ul>
+
+<p>The YAML value of cluster.config is appended to elasticsearch.yml file for additional customization (&ldquo;script.inline: on&rdquo; for example to allow inline scripting)</p>
+
+<h1 id="deep-dive">Deep dive</h1>
+
+<h2 id="application-version">Application Version</h2>
+
+<p>This chart aims to support Elasticsearch v2 to v6 deployments by specifying the <code>values.yaml</code> parameter <code>appVersion</code>.</p>
+
+<h3 id="version-specific-features">Version Specific Features</h3>
+
+<ul>
+<li>Memory Locking <em>(variable renamed)</em></li>
+<li>Ingest Node <em>(v5)</em></li>
+<li>X-Pack Plugin <em>(v5)</em></li>
+</ul>
+
+<p>Upgrade paths &amp; more info: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html</a></p>
+
+<h2 id="mlocking">Mlocking</h2>
+
+<p>This is a limitation in kubernetes right now. There is no way to raise the
+limits of lockable memory, so that these memory areas won&rsquo;t be swapped. This
+would degrade performance heavily. The issue is tracked in
+<a href="https://github.com/kubernetes/kubernetes/issues/3595">kubernetes/#3595</a>.</p>
+
+<pre><code>[WARN ][bootstrap] Unable to lock JVM Memory: error=12,reason=Cannot allocate memory
+[WARN ][bootstrap] This can result in part of the JVM being swapped out.
+[WARN ][bootstrap] Increase RLIMIT_MEMLOCK, soft limit: 65536, hard limit: 65536
+</code></pre>
+
+<h2 id="minimum-master-nodes">Minimum Master Nodes</h2>
+
+<blockquote>
+<p>The minimum_master_nodes setting is extremely important to the stability of your cluster. This setting helps prevent split brains, the existence of two masters in a single cluster.</p>
+
+<p>When you have a split brain, your cluster is at danger of losing data. Because the master is considered the supreme ruler of the cluster, it decides when new indices can be created, how shards are moved, and so forth. If you have two masters, data integrity becomes perilous, since you have two nodes that think they are in charge.</p>
+
+<p>This setting tells Elasticsearch to not elect a master unless there are enough master-eligible nodes available. Only then will an election take place.</p>
+
+<p>This setting should always be configured to a quorum (majority) of your master-eligible nodes. A quorum is (number of master-eligible nodes / 2) + 1</p>
+</blockquote>
+
+<p>More info: <a href="https://www.elastic.co/guide/en/elasticsearch/guide/1.x/_important_configuration_changes.html#_minimum_master_nodes">https://www.elastic.co/guide/en/elasticsearch/guide/1.x/_important_configuration_changes.html#_minimum_master_nodes</a></p>
+
+<h1 id="client-and-coordinating-nodes">Client and Coordinating Nodes</h1>
+
+<p>Elasticsearch v5 terminology has updated, and now refers to a <code>Client Node</code> as a <code>Coordinating Node</code>.</p>
+
+<p>More info: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.5/modules-node.html#coordinating-node">https://www.elastic.co/guide/en/elasticsearch/reference/5.5/modules-node.html#coordinating-node</a></p>
+
+<h2 id="enabling-elasticsearch-interal-monitoring">Enabling elasticsearch interal monitoring</h2>
+
+<p>Requires version 6.3+ and standard non <code>oss</code> repository defined. Starting with 6.3 Xpack is partially free and enabled by default. You need to set a new config to enable the collection of these internal metrics. (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.3/monitoring-settings.html">https://www.elastic.co/guide/en/elasticsearch/reference/6.3/monitoring-settings.html</a>)</p>
+
+<p>To do this through this helm chart override with the three following changes:</p>
+
+<pre><code>image.repository: docker.elastic.co/elasticsearch/elasticsearch
+cluster.xpackEnable: true
+cluster.env.XPACK_MONITORING_ENABLED: true
+</code></pre>
+
+<p>Note: to see these changes you will need to update your kibana repo to <code>image.repository: docker.elastic.co/kibana/kibana</code> instead of the <code>oss</code> version</p>
+
+<h2 id="select-right-storage-class-for-ssd-volumes">Select right storage class for SSD volumes</h2>
+
+<h3 id="gce-kubernetes-1-5">GCE + Kubernetes 1.5</h3>
+
+<p>Create StorageClass for SSD-PD</p>
+
+<pre><code>$ kubectl create -f - &lt;&lt;EOF
+kind: StorageClass
+apiVersion: extensions/v1beta1
+metadata:
+  name: ssd
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd
+EOF
+</code></pre>
+
+<p>Create cluster with Storage class <code>ssd</code> on Kubernetes 1.5+</p>
+
+<pre><code>$ helm install stable/elasticsearch --name my-release --set data.persistence.storageClass=ssd,data.storage=100Gi
+</code></pre>
+
+<h3 id="usage-of-the-tpl-function">Usage of the <code>tpl</code> Function</h3>
+
+<p>The <code>tpl</code> function allows us to pass string values from <code>values.yaml</code> through the templating engine. It is used for the following values:</p>
+
+<ul>
+<li><code>extraInitContainers</code></li>
+</ul>
+
+<p>It is important that these values be configured as strings. Otherwise, installation will fail.</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/elastic-stack/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/elastic-stack/charts/logstash/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

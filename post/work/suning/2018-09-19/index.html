@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2018-09-19</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="2018-09-19" />
+<meta property="og:description" content="临时 prometheus 域名 nvidia-smi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/suning/2018-09-19/" />
+
+
+<meta property="og:updated_time" content="2018-09-19T09:51:02&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">2018-09-19</h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2018-09-19 09:51:02 &#43;0000 UTC">September 19, 2018</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div class="paragraph">
+<p>echo "some_metric 3.14" | curl --data-binary @- <a href="http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job" class="bare">http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://dev.cxzx.fabx.com.cn/prometheus" class="bare">http://dev.cxzx.fabx.com.cn/prometheus</a></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>annotations:
+  kubernetes.io/ingress.class: nginx
+  nginx.ingress.kubernetes.io/rewrite-target: /</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dev.cxzx.fabx.com.cn/dashboard</p>
+</div>
+<div class="paragraph">
+<p>for i=1; i&#8656;1000; i ++
+do
+  echo "some_metric $i" | curl --data-binary @- <a href="http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job" class="bare">http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job</a>
+  sleep 2
+done</p>
+</div>
+<div class="paragraph">
+<p>${CXZX-T1-TOMCAT_SERVICE_HOST}</p>
+</div>
+<div class="paragraph">
+<p>10.200.169.32</p>
+</div>
+<div class="paragraph">
+<p>cxzx.fabx.com.cn
+dev.cxzx.fabx.com.cn</p>
+</div>
+<div class="paragraph">
+<p>monitor.fabx.com.cn
+bash.fabx.com.cn
+dashboard.fabx.com.cn</p>
+</div>
+<div class="paragraph">
+<p>#weave
+<a href="http://10.200.169.32:32404" class="bare">http://10.200.169.32:32404</a></p>
+</div>
+<div class="paragraph">
+<p>node_scrape_collector_duration_seconds{instance=<sub>"$node:$port",job=</sub>"$job"}</p>
+</div>
+<div class="paragraph">
+<p>{{collector}} - Scrape duration</p>
+</div>
+<div class="paragraph">
+<p>go_gc_duration_seconds{instance=<sub>"$node:$port",job=</sub>"$job",quantile="1"}</p>
+</div>
+<div class="paragraph">
+<p>some_{exported_job="some_job",instance=<sub>"$node:$port",job=</sub>"$job"}</p>
+</div>
+<div class="paragraph">
+<p>联赛
+<a href="http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;token=common_Ese32Cee9&amp;competitionId=1&amp;seasonId=1215" class="bare">http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;token=common_Ese32Cee9&amp;competitionId=1&amp;seasonId=1215</a></p>
+</div>
+<div class="paragraph">
+<p>杯赛
+<a href="http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;token=common_Ese32Cee9&amp;competitionId=14&amp;seasonId=128" class="bare">http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;token=common_Ese32Cee9&amp;competitionId=14&amp;seasonId=128</a></p>
+</div>
+<div class="paragraph">
+<p>积分
+ 赢 +3
+ 平 +1
+ 输 +0</p>
+</div>
+<div class="paragraph">
+<p>searchGroupsCount</p>
+</div>
+<div class="paragraph">
+<p>100 - (avg by (instance) (irate(wmi_cpu_cstate_seconds_total{mode="idle"}[5m])) * 100)</p>
+</div>
+<div class="paragraph">
+<p>100 - (avg by (instance) (irate(wmi_cpu_time_total{job="wim",mode="idle"}[5m])) * 100)</p>
+</div>
+<div class="paragraph">
+<p>sum by (mode) (rate(wmi_cpu_time_total{instance="10.200.168.14:9182"}[5m]))</p>
+</div>
+<div class="paragraph">
+<p>sum by (mode) (rate(wmi_cpu_time_total{instance="10.200.168.14:9182"}[5m]))</p>
+</div>
+<div class="paragraph">
+<p>kubectl-1.10.5-0.x86_64
+kubelet-1.10.5-0.x86_64
+kubeadm-1.10.5-0.x86_64</p>
+</div>
+<div class="paragraph">
+<p>kubectl kubelet kubeadm
+<a href="https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl" class="bare">https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl</a> version | base64 | tr -d '\n')</p>
+</div>
+<div class="paragraph">
+<p><a href="https://cloud.weave.works/k8s/scope.yaml?k8s-version=Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxMCIsIEdpdFZlcnNpb246InYxLjEwLjUiLCBHaXRDb21taXQ6IjMyYWMxYzkwNzNiMTMyYjhiYTE4YWE4MzBmNDZiNzdkY2NlYjA3MjMiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDE4LTA2LTIxVDExOjQ2OjAwWiIsIEdvVmVyc2lvbjoiZ28xLjkuMyIsIENvbXBpbGVyOiJnYyIsIFBsYXRmb3JtOiJsaW51eC9hbWQ2NCJ9ClNlcnZlciBWZXJzaW9uOiB2ZXJzaW9uLkluZm97TWFqb3I6IjEiLCBNaW5vcjoiMTAiLCBHaXRWZXJzaW9uOiJ2MS4xMC41IiwgR2l0Q29tbWl0OiIzMmFjMWM5MDczYjEzMmI4YmExOGFhODMwZjQ2Yjc3ZGNjZWIwNzIzIiwgR2l0VHJlZVN0YXRlOiJjbGVhbiIsIEJ1aWxkRGF0ZToiMjAxOC0wNi0yMVQxMTozNDoyMloiLCBHb1ZlcnNpb246ImdvMS45LjMiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQo=" class="bare">https://cloud.weave.works/k8s/scope.yaml?k8s-version=Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxMCIsIEdpdFZlcnNpb246InYxLjEwLjUiLCBHaXRDb21taXQ6IjMyYWMxYzkwNzNiMTMyYjhiYTE4YWE4MzBmNDZiNzdkY2NlYjA3MjMiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDE4LTA2LTIxVDExOjQ2OjAwWiIsIEdvVmVyc2lvbjoiZ28xLjkuMyIsIENvbXBpbGVyOiJnYyIsIFBsYXRmb3JtOiJsaW51eC9hbWQ2NCJ9ClNlcnZlciBWZXJzaW9uOiB2ZXJzaW9uLkluZm97TWFqb3I6IjEiLCBNaW5vcjoiMTAiLCBHaXRWZXJzaW9uOiJ2MS4xMC41IiwgR2l0Q29tbWl0OiIzMmFjMWM5MDczYjEzMmI4YmExOGFhODMwZjQ2Yjc3ZGNjZWIwNzIzIiwgR2l0VHJlZVN0YXRlOiJjbGVhbiIsIEJ1aWxkRGF0ZToiMjAxOC0wNi0yMVQxMTozNDoyMloiLCBHb1ZlcnNpb246ImdvMS45LjMiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQo=</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/mindprince/nvidia_gpu_prometheus_exporter" class="bare">https://github.com/mindprince/nvidia_gpu_prometheus_exporter</a>
+<a href="https://github.com/zhebrak/nvidia_smi_exporter" class="bare">https://github.com/zhebrak/nvidia_smi_exporter</a></p>
+</div>
+<div class="paragraph">
+<p>nvidia-smi --query-gpu=name,index,temperature.gpu,utilization.gpu,utilization.memory,memory.total,memory.free,memory.used --format=csv,noheader,nounits</p>
+</div>
+<div class="paragraph">
+<p>nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits</p>
+</div>
+<div class="paragraph">
+<div class="title">\wmi_exporter.exe --log.format logger:eventlog?name=wmi_exporter  --telemetry.addr :9182</div>
+<p>export http_proxy=http://127.0.0.1:7777
+export https_proxy=http://127.0.0.1:7777</p>
+</div>
+<div class="paragraph">
+<p>http_proxy=http://127.0.0.1:7777 go get  honnef.co/go/staticcheck/cmd/staticcheck</p>
+</div>
+<div class="paragraph">
+<p>go install github.com/prometheus/node_exporter</p>
+</div>
+<div class="paragraph">
+<p>count(count(node_cpu_seconds_total{instance=<sub>"$node:$port",job=</sub>"$job"}) by (cpu) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=<sub>"$node:$port",job=</sub>"$job"}[5m]))))</p>
+</div>
+<div class="paragraph">
+<p>/</p>
+</div>
+<div class="paragraph">
+<p>count(count(node_cpu_seconds_total{instance=<sub>"$node:$port",job=</sub>"$job"}) by (cpu))</p>
+</div>
+<div class="paragraph">
+<p>sum by</p>
+</div>
+<div class="paragraph">
+<p>sum by (mode)(irate(node_gpu_utilization_gpu{instance=<sub>"$node:$port",job=</sub>"$job"}[10s])))</p>
+</div>
+<div class="paragraph">
+<p>Description=node_exporter daemon</p>
+</div>
+<div class="paragraph">
+<p>Type=simple
+ExecStart=/home/ubuntu/go/bin/node_exporter --web.listen-address=":9182"</p>
+</div>
+<div class="paragraph">
+<p>WantedBy=multi-user.target</p>
+</div>
+<div class="paragraph">
+<p>sum(node_gpu_utilization_gpu{instance=<sub>"$node:$port",job=</sub>"$job"})/4</p>
+</div>
+<div class="paragraph">
+<p>node_gpu_utilization_gpu{instance=<sub>"$node:$port",job=</sub>"$job"}</p>
+</div>
+<div class="paragraph">
+<p>Windows Node
+2129</p>
+</div>
+<div class="paragraph">
+<p>Node Exporter Full
+1860</p>
+</div>
+<div class="paragraph">
+<p>Nvidia GPU
+6387</p>
+</div>
+<div class="paragraph">
+<p>192.168.88.32   dashboard.fabx.com.cn
+192.168.88.32   bash.fabx.com.cn
+192.168.88.32   monitor.fabx.com.cn
+192.168.88.32   dev.cxzx.fabx.com.cn
+192.168.88.32   cxzx.fabx.com.cn</p>
+</div>
+<div class="paragraph">
+<p>192.168.88.1    ros.fabx.com.cn
+192.168.88.12   jenkins.fabx.com.cn
+192.168.88.20   file.fabx.com.cn</p>
+</div>
+<div class="paragraph">
+<p>192.168.88.32   api.fabx.com.cn
+192.168.88.5    dock.fabx.com.cn
+192.168.88.8    lab.fabx.com.cn
+192.168.88.8    gitlab.fabx.com.cn</p>
+</div>
+<div class="paragraph">
+<p>etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|xargs -i sh -c 'etcdctl --endpoints=http://10.200.169.32:2379 del {}'</p>
+</div>
+<div class="paragraph">
+<p>etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep -E "coredns|kube-apiserver|kube-scheduler|kube-dns|flannel|kube-system|tiller|kube-public|minions"|xargs -i sh -c 'etcdctl --endpoints=http://10.200.169.32:2379 del {}'</p>
+</div>
+<div class="paragraph">
+<p>if (!fieldLength) continue</p>
+</div>
+<div class="paragraph">
+<p>void(this.length+=1)</p>
+</div>
+<div class="paragraph">
+<p>return 0===i.length?void(0):(i in n||(n[i]={docs:{}}),0===r.length?(n[i].docs[t.ref]=t,void(this.length+=1)):this.add(r,t,n[i]))</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>while(0 === i.length){r = r.slice(1),i = r.charAt(0)}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Prometheus监控server安装配置
+Http数据采集组件pushgateway安装配置
+Windows服务器wmi_exporter安装配置
+Linux服务器node_exporter安装配置
+Grafana安装配置
+串联Prometheus+pushgateway+wmi_exporter+node_exporter+Grafana</p>
+</div>
+<div class="paragraph">
+<p>K8S可视化组件weave安装配置</p>
+</div>
+<div class="paragraph">
+<p>kubernetes提供一个规范来描述集群的架构，定义服务的最终状态，将系统自动得达到和维持在这个状态。保证系统的敏捷、可靠、高弹性、易扩展、故障隔离保护、不中断业务持续更新</p>
+</div>
+<div class="paragraph">
+<p>Linux+Java+Spring+Mysql+Tomcat+ActiveMQ</p>
+</div>
+
+		</div>
+		
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags//" rel="tag"></a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/suning/lazarus/" rel="prev"><span>«Previous</span><p>Lazarus参考文档</p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/post/work/suning/grpc/" rel="next"><span>Next»</span><p>grpc</p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

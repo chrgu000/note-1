@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>零零碎碎</title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="零零碎碎" />
+<meta property="og:description" content=" John Doe&#39;s Personal blog about everything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" />
+
+
+<meta property="og:updated_time" content="2018-07-02T14:20:43&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+	<div id="main-content" class="mr-loop mr-content" role="main">
+		
+		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/bigdata-warehouse/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E5%90%8C%E6%AD%A5/" rel="bookmark">数据采集与同步</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-07-02 14:20:43 &#43;0000 UTC">July 02, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						selecttimestamp,cid,tb.uid,sessionId,ipAddress,page,ctype,type,event,useragent,version,content,lead(timestamp) over (partition by cid,sessionid order by timestamp asc) as next_timefrom b_event_trace_i where dt='' and envent='pageview'
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/spark-%E9%97%AE%E9%A2%98/" rel="bookmark">spark-问题</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-06-20 10:49:12 &#43;0000 UTC">June 20, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						有一个表中，有200+字段 然后我要分别统计每个字段的 空值和非空值的分布情况。 这个表一天的数据大概有24T 目前打算抽样一千万条数据。 想用透视表来做 哪位大神指导一下，要是用spark 的话 怎么写
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/scala/g8/" rel="bookmark">Scala g8 模板</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						g8模板本地docker pull moredip/giter8
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out moredip/giter8 foundweekends/giter8.g8 --name=my-new-website
+本地docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/spark-mvn.g8/ --name=spark-mvn
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/java-scala-mvn.g8/ --name=my-mvn-1
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/com-nsn-do.g8/ --name=com.nsn.messages.t1
+docker run --volume-driver=cifs -v 192.168.137.1/scala/g8out:/g8out -v 192.168.137.1/scala/g8:/g8 moredip/giter8 file:///g8/com-nsn-do.g8/ --name=com.nsn.do.tbox.spark.kpi.cucwm
+docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 file:///g8/com-nsn-do.g8/ --name=com.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/dayliy/graphviz/" rel="bookmark">graphviz</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						graphviz1. 参考2. graphviz-43. graphviz-54. graphviz-65. graphviz-76. 3.17.53-17. 监控 hdfs 文件,触发消息8. graphviz-89. graphviz-910. graphviz-1011. graphviz-1112. graphviz-1213. graphviz-1314. graphviz-1415. graphviz-1516. graphviz-1617. graphviz-17Erd1. Erd 11. 参考https://renenyffenegger.ch/notes/tools/Graphviz/examples/index
+http://tonyballantyne.com/graphs.html
+2. graphviz-43. graphviz-54.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/nokia/yunnan-lt/yunnan-lt/" rel="bookmark">yunnan-lt</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						yunnan-lt1. 多sheet保存csv2. 代办3. 问题4. ER4.1. 云南联通中间表小时4.2. 云南联通中间表天服务器信息
+172.33.2.17yarn http://172.33.2.17:23188/cluster
+172.33.2.17root/Huawei@123
+su - hadoop
+hadoop fs -ls /lte/xdr
+web172.33.10.51
+MRO数据源表O_LTE_MRO_IMSI
+MRS数据源表O_LTE_MRS_RSRPO_LTE_MRS_RSRQO_LTE_MRS_TADVO_LTE_MRS_POWERHEADROOMO_LTE_MRS_AOAO_LTE_MRS_SINRULO_LTE_MRS_RECEIVEDIPOWERO_LTE_MRS_RIPPRBO_LTE_MRS_TADVRSRPO_LTE_MRS_TADVAOAO_LTE_MRS_RIPRSRPO_LTE_MRS_RIPRSRQO_LTE_MRS_SINRULRIPO_LTE_MRS_PACKETLOSSRATEULQCI1O_LTE_MRS_PACKETLOSSRATEULQCI2O_LTE_MRS_PACKETLOSSRATEULQCI3O_LTE_MRS_PACKETLOSSRATEULQCI4O_LTE_MRS_PACKETLOSSRATEULQCI5O_LTE_MRS_PACKETLOSSRATEULQCI6O_LTE_MRS_PACKETLOSSRATEULQCI7O_LTE_MRS_PACKETLOSSRATEULQCI8O_LTE_MRS_PACKETLOSSRATEULQCI9O_LTE_MRS_PACKETLOSSRATEDLQCI1O_LTE_MRS_PACKETLOSSRATEDLQCI2O_LTE_MRS_PACKETLOSSRATEDLQCI3O_LTE_MRS_PACKETLOSSRATEDLQCI4O_LTE_MRS_PACKETLOSSRATEDLQCI5O_LTE_MRS_PACKETLOSSRATEDLQCI6O_LTE_MRS_PACKETLOSSRATEDLQCI7O_LTE_MRS_PACKETLOSSRATEDLQCI8O_LTE_MRS_PACKETLOSSRATEDLQCI9
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/niuke/%E5%88%9D%E7%BA%A71/" rel="bookmark">初级1</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						对数器二分查找的时间复杂度 \(O(\log{_2} N)\)
+对数器贪心策略
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/bigdata-warehouse/er/" rel="bookmark">大数据仓库构建-实体关系（ER）建模理论及应用场景案例1维度建模理论及应用场景案例1</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-04-14 21:33:54 &#43;0000 UTC">April 14, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						er1. 12. Data VauIt建模例子1. 12. Data VauIt建模例子
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/ambari/" rel="bookmark">Ambari</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-02-10 00:00:00 &#43;0000 UTC">February 10, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Ambari1. Ambari2. 参考3. ambari动态添加删除节点3.1. 下线节点3.2. 上线节点1. Ambaricurl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+curl -o /etc/yum.repos.d/ambari.repo http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.0/ambari.repo
+curl -o /etc/yum.repos.d/ambari.repo http://192.168.137.123/ambari/centos7/2.6.1.3-3/ambari.repo
+http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.1.3/ambari.repo
+curl -o /etc/yum.repos.d/hdp.repo http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.4.0/hdp.repo
+ambari-server setup --jdbc-db=mysql --jdbc-driver=/path/to/mysql/mysql-connector-java.jar
+ambari-server setup --jdbc-db=postgres --jdbc-driver=/root/postgresql-9.4.1211.jar
+admin/admin
+http://192.168.137.123/HDP/centos7/2.6.4.0-91/
+http://192.168.137.123/HDP-UTILS/
+http://192.168.137.123/HDP-GPL/centos7/2.6.4.0-91/
+http://192.168.137.123/HDP/centos7/2.6.4.0-91/HDP-2.6.4.0-91.xml
+2. 参考https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.0/bk_Installing_HDP_AMB/content/_start_the_ambari_server.html
+Python script has been killed due to timeout after waiting 1800 secs
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/clustershell/" rel="bookmark">clustershell</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-01-27 00:00:00 &#43;0000 UTC">January 27, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						clustershell1. clustershell2. 参考1. clustershell安装
+python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simplepip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple配置
+cat &gt; /etc/clustershell/groups.conf &lt;&lt;_EOF_# ClusterShell node groups main configuration file## Please see `man 5 groups.conf` and# http://clustershell.readthedocs.org/en/latest/config.html#node-groups# for further details.## NOTE: This is a simple group configuration example file, not a# default config file.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/streamingpro/streamingpro/" rel="bookmark">Streampro 学习</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-01-20 18:20:34 &#43;0000 UTC">January 20, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						==
+SHome=/d/sparkSPARK_HOME=/d/env/spark-2.2.1-bin-hadoop2.7
+sh $SPARK_HOME/bin/spark-submit --class streaming.core.StreamingApp \--master local[2] \--name test \$SHome/streamingpro-spark-2.0-1.0.0.jar \-streaming.name test \-streaming.platform spark \-streaming.job.file.path file://$SHome/batch_1.json-streaming.sql.source.a.path file://$SHome/data/source/batch_1.json-streaming.sql.out.b.path file://$SHome/data/out/parquet_1
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+
+		
+<div class="mr-loop-pagination clearfix">
+	
+	<a class="page-numbers" href="/">«</a>
+	
+	<span class="page-numbers current">2/32</span>
+	
+	<a class="page-numbers" href="/page/3/">»</a>
+	
+</div>
+
+	</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+<div class="mr-widget widget_search navbar-wrapper" >
+	<div class="search-form" role="search" >
+		<label>
+			<span class="screen-reader-text">Search for:</span>
+			<input id="lanren" type="text" class="search-field" placeholder="Search..." autocomplete="off" value="" />
+		</label>
+		
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+	</div>
+</div>
+
+	
+	
+
+
+<div class="mr-widget widget_categories">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Categories</span></h4>
+	<ul>
+		
+		<li class="cat-item"><a href="/categories/algorithm">Algorithm</a></li>
+		
+		<li class="cat-item"><a href="/categories/bug">Bug</a></li>
+		
+		<li class="cat-item"><a href="/categories/djt">Djt</a></li>
+		
+		<li class="cat-item"><a href="/categories/docker">Docker</a></li>
+		
+		<li class="cat-item"><a href="/categories/dw">Dw</a></li>
+		
+		<li class="cat-item"><a href="/categories/go">Go</a></li>
+		
+		<li class="cat-item"><a href="/categories/hadoop">Hadoop</a></li>
+		
+		<li class="cat-item"><a href="/categories/java">Java</a></li>
+		
+		<li class="cat-item"><a href="/categories/js">Js</a></li>
+		
+		<li class="cat-item"><a href="/categories/jvm">Jvm</a></li>
+		
+		<li class="cat-item"><a href="/categories/linux">Linux</a></li>
+		
+		<li class="cat-item"><a href="/categories/mailiqng-app">Mailiqng-App</a></li>
+		
+		<li class="cat-item"><a href="/categories/mysql">Mysql</a></li>
+		
+		<li class="cat-item"><a href="/categories/scala">Scala</a></li>
+		
+		<li class="cat-item"><a href="/categories/spark">Spark</a></li>
+		
+		<li class="cat-item"><a href="/categories/storm">Storm</a></li>
+		
+		<li class="cat-item"><a href="/categories/virtualbox">Virtualbox</a></li>
+		
+		<li class="cat-item"><a href="/categories/work">Work</a></li>
+		
+		<li class="cat-item"><a href="/categories/zookeeper">Zookeeper</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e7%ae%97%e6%b3%95">算法</a></li>
+		
+		<li class="cat-item"><a href="/categories/%e9%ab%98%e6%95%b0">高数</a></li>
+		
+	</ul>
+</div>
+
+
+
+    
+
+
+<div class="mr-widget widget_tag_cloud">
+	<h4 class="mr-widget-title"><span class="mr-widget-title-inner">Tags</span></h4>
+	<div class="tagcloud">
+		
+			<a href="/tags/" class="tag-link" title="" style="font-size: 12px;"></a>
+		
+			<a href="/tags/docker" class="tag-link" title="docker" style="font-size: 12px;">docker</a>
+		
+			<a href="/tags/elasticsearch" class="tag-link" title="elasticsearch" style="font-size: 12px;">elasticsearch</a>
+		
+			<a href="/tags/git" class="tag-link" title="git" style="font-size: 12px;">git</a>
+		
+			<a href="/tags/hugo" class="tag-link" title="hugo" style="font-size: 12px;">hugo</a>
+		
+			<a href="/tags/latex" class="tag-link" title="latex" style="font-size: 12px;">latex</a>
+		
+			<a href="/tags/neo4j" class="tag-link" title="neo4j" style="font-size: 12px;">neo4j</a>
+		
+			<a href="/tags/sublime" class="tag-link" title="sublime" style="font-size: 12px;">sublime</a>
+		
+			<a href="/tags/vagrant" class="tag-link" title="vagrant" style="font-size: 12px;">vagrant</a>
+		
+			<a href="/tags/windows" class="tag-link" title="windows" style="font-size: 12px;">windows</a>
+		
+			<a href="/tags/wuliu" class="tag-link" title="wuliu" style="font-size: 12px;">wuliu</a>
+		
+			<a href="/tags/%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" class="tag-link" title="源码分析" style="font-size: 12px;">源码分析</a>
+		
+			<a href="/tags/%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="tag-link" title="进程管理" style="font-size: 12px;">进程管理</a>
+		
+	</div>
+</div>
+
+
+
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

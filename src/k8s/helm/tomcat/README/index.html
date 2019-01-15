@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Tomcat Tomcat is is an open source implementation of the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies.
+Introduction This chart creates a tomcat application server Deployment, plus http Services for the server. The chart offers an optimization for application updates running in a servlet container-type engines like tomcat and Jboss. The chart uses the WAR, EAR, and other deployable components outside of the Servlet engine as sidecar container so application upgrades requires the sidecar container image only to be updated and not the Servlet engine as if both would run at the same image." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/tomcat/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="tomcat">Tomcat</h1>
+
+<p><a href="http://tomcat.apache.org">Tomcat</a> is is an open source implementation of the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This chart creates a <a href="http://tomcat.apache.org">tomcat application server</a> Deployment, plus http Services for the server.
+The chart offers an optimization for application updates running in a servlet container-type engines like tomcat and <a href="http://jbossas.jboss.org">Jboss</a>. The chart uses the WAR, EAR, and other deployable components outside of the Servlet engine as sidecar container so application upgrades requires the sidecar container image only to be updated and not the Servlet engine as if both would run at the same image.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>Kubernetes 1.8+</li>
+</ul>
+
+<h2 id="provider-specific-prerequisites">Provider-specific Prerequisites</h2>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-bash">$ helm install --name my-release stable/tomcat
+</code></pre>
+
+<p>This command deploys a tomcat dedicated server with sane defaults.</p>
+
+<blockquote>
+<p><strong>Tip</strong>: List all releases using <code>helm list</code></p>
+</blockquote>
+
+<h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
+
+<p>To uninstall/delete the <code>my-release</code> deployment:</p>
+
+<pre><code class="language-bash">$ helm delete my-release
+</code></pre>
+
+<p>The command removes all the Kubernetes components associated with the chart and deletes the release.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following table lists the configurable parameters of the tomcat chart and their default values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>image.webarchive.repository</code></td>
+<td>Sidecar image source repository name</td>
+<td><code>ananwaresystems/webarchive</code></td>
+</tr>
+
+<tr>
+<td><code>image.webarchive.tag</code></td>
+<td><code>webarchive</code> release tag.</td>
+<td><code>1.0</code></td>
+</tr>
+
+<tr>
+<td><code>image.tomcat.repository</code></td>
+<td>Tomact image source repository name</td>
+<td><code>tomcat</code></td>
+</tr>
+
+<tr>
+<td><code>image.tomcat.tag</code></td>
+<td><code>tomcat</code> release tag.</td>
+<td><code>7.0</code></td>
+</tr>
+
+<tr>
+<td><code>image.pullPolicy</code></td>
+<td>Image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>deploy.directory</code></td>
+<td>Webarchive deployment directory</td>
+<td><code>/usr/local/tomcat/webapps</code></td>
+</tr>
+
+<tr>
+<td><code>service.name</code></td>
+<td>Tomcat service name</td>
+<td><code>http</code></td>
+</tr>
+
+<tr>
+<td><code>service.externalPort</code></td>
+<td>Kubernetes service port</td>
+<td><code>80</code></td>
+</tr>
+
+<tr>
+<td><code>service.internalPort</code></td>
+<td>Tomcat front port</td>
+<td><code>8080</code></td>
+</tr>
+
+<tr>
+<td><code>service.type</code></td>
+<td>Kubernetes service type</td>
+<td><code>LoadBalancer</code></td>
+</tr>
+
+<tr>
+<td><code>resources</code></td>
+<td>CPU/Memory resource requests/limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeSelector</code></td>
+<td>Node affinity</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>tolerations</code></td>
+<td>Node tolerations</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Refer to <a href="values.yaml">values.yaml</a> for the full run-down on defaults. These are a mixture of Kubernetes and tomcat-related directives that map to environment variables.</p>
+
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release \
+  --set Values.someval=My Server,ImageTag=1.0 \
+    stable/tomcat
+</code></pre>
+
+<p>The above command deploys Tomcat dedicated with a server name of <code>My Server</code> and docker-tomcat image version <code>1.0</code>.</p>
+
+<p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release -f values.yaml stable/stable
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="values.yaml">values.yaml</a></p>
+</blockquote>
+
+<h2 id="persistence">Persistence</h2>
+
+<blockquote>
+<p><em>&ldquo;An emptyDir volume is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node. When a Pod is removed from a node for any reason, the data in the emptyDir is deleted forever.&rdquo;</em></p>
+</blockquote>
+
+<h2 id="credits">Credits</h2>
+
+<p><a href="https://github.com/kubernetes/examples/tree/master/staging/javaweb-tomcat-sidecar">Java Web Application with Tomcat and Sidecar Container</a></p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/redis/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/tmp/graphv/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Contents1. 测试服务器1.1. Docker 安装1.2. Rancher 安装1.2.1. registry server1.2.2. registry client端1.2.3. 下载 Rancher 所需镜像并 Push 到 Docker Registry1.3. Rancher 启动1.4. 应用1.5. 参考1. 测试服务器环境:
+名称版本下载地址Docker
+Docker version 1.13.1
+docker
+Rancher
+1.5
+rancher 1.5
+Docker Compose" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/work/wuliu/%E6%9C%8D%E5%8A%A1%E5%99%A8/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			<div id="toc" class="toc">
+<div id="toctitle">Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_测试服务器">1. 测试服务器</a>
+<ul class="sectlevel2">
+<li><a href="#_docker_安装">1.1. Docker 安装</a></li>
+<li><a href="#_rancher_安装">1.2. Rancher 安装</a>
+<ul class="sectlevel3">
+<li><a href="#_registry_server">1.2.1. registry server</a></li>
+<li><a href="#_registry_client端">1.2.2. registry client端</a></li>
+<li><a href="#_下载_strong_rancher_strong_所需镜像并_strong_push_strong_到_strong_docker_registry_strong">1.2.3. 下载 <strong>Rancher</strong> 所需镜像并 <strong>Push</strong> 到 <strong>Docker Registry</strong></a></li>
+</ul>
+</li>
+<li><a href="#_rancher_启动">1.3. Rancher 启动</a></li>
+<li><a href="#_应用">1.4. 应用</a></li>
+<li><a href="#_参考">1.5. 参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_测试服务器">1. 测试服务器</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>环境:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">名称</th>
+<th class="tableblock halign-left valign-top">版本</th>
+<th class="tableblock halign-left valign-top">下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker version 1.13.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://store.docker.com/editions/community/docker-ce-server-centos?tab=description">docker</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rancher</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/rancher/rancher/tree/v1.5">rancher 1.5</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker Compose</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker-compose version 1.8.1, build 878cff1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/docker/compose/releases/download/1.8.1/docker-compose-Linux-x86_64">docker-compose</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_docker_安装">1.1. Docker 安装</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>配置 <code>yum</code> 源</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cat &gt; /etc/yum.repos.d/docker-main.repo &lt;&lt;_EOF_
+[docker-main-repo]
+name=Docker main Repository
+baseurl=http://mirrors.aliyun.com/docker-engine/yum/repo/main/centos/7
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/docker-engine/yum/gpg
+_EOF_</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>安装 <code>docker</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">yum install -y docker-engine-1.12.1-1.el7.centos</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>关闭防火墙</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>systemctl stop firewalld.service #停止firewall
+
+systemctl disable firewalld.service #停止firewall开机启动</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>启动</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>systemctl enable docker # 开机启动
+systemctl start docker # 启动</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rancher_安装">1.2. Rancher 安装</h3>
+<div class="sect3">
+<h4 id="_registry_server">1.2.1. registry server</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>生成自签名证书</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">cd ~/
+
+mkdir registry &amp;&amp; cd registry &amp;&amp; mkdir certs &amp;&amp; cd certs
+
+openssl req -x509 -days 3650 -subj '/CN=mailiqing.com/' -nodes -newkey rsa:2048 -keyout registry.key -out registry.crt</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+CN=mailiqing.com 这里是域名
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>拉去 <strong>registry:2.5</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>docker pull registry:2.5</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>启动 <code>registry server</code></p>
+<div class="listingblock">
+<div class="title">registry.yml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yml" data-lang="yml">version: '2'
+
+services:
+  registry-v2:
+    image: registry:2.5
+    container_name: registry-v2
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/registry.key
+    volumes:
+      - /home/wuliu/registry-data:/var/lib/registry
+      - /home/wuliu/registry/certs:/certs</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">docker-compose -f registry.yml up</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_registry_client端">1.2.2. registry client端</h4>
+<div class="listingblock">
+<div class="title">registry-cert.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
+
+DOMAIN=mailiqing.com:5000
+
+mkdir -p /etc/docker/certs.d/$DOMAIN
+
+cat &gt; /etc/docker/certs.d/$DOMAIN/registry.crt &lt;&lt;_EOF_ <i class="conum" data-value="1"></i><b>(1)</b>
+-----BEGIN CERTIFICATE-----
+MIIDAzCCAeugAwIBAgIJAMsKmEFPgZmQMA0GCSqGSIb3DQEBCwUAMBgxFjAUBgNV
+BAMMDW1haWxpcWluZy5jb20wHhcNMTcwNTE1MDMxODU0WhcNMjcwNTEzMDMxODU0
+WjAYMRYwFAYDVQQDDA1tYWlsaXFpbmcuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAuurO4pKcIDgjQ3JMojee+JCvXj3pHqT5PLm+YO6UCTayOKqK
+Jh9Ykfs6NOo73VZXzLc0EPH+bNgNUbX6X7y5iYV/iBu+Yt9gxrSYr3UF8/LbtLGk
+mExWEe+JLVkJQna2mqXGsEq4UdUkQa/5de1ts5go5Uhzq79QYKdgduneh0wwmBjX
+rX2UYB36lBobMGDLnC6mVwavJprpxWpsr5t2L4nH02vLg44vJDz9grzm3EHQ1cOn
+pYsKRbFGptNmwX+/f7kt+jItOsIG+Om3CoM614Y2rzAGT0zfv/3jiyDLLyXiwvnc
+ABqrD9+BriEJd3nfkdF5gNtGn3CPHuq0EGOWkwIDAQABo1AwTjAdBgNVHQ4EFgQU
+jr05uLk9epuxBdo7x5gRjT/zfGwwHwYDVR0jBBgwFoAUjr05uLk9epuxBdo7x5gR
+jT/zfGwwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEArLB0Nbk5153a
+MqWHoLAVnFmVpkKDU4vOr+jw71xKNPlv5/cwppTWO1AagbZoQdyaprspVOvca0E1
+zrNigjuGkVSkb03rE61Kz6v2U0kJ/DTKhDQmvUHf5PqWpfyeZlnu4a+EyHeTPwpI
+U45htOenShJ7QEEfAZ0SxHq0gpu38CeSUIxY2xYXxSDjMSFEmGlekbNKpBO64V/E
+pqBUxAMaTMRczMh9JohN2yFpMcbbUCr87DAIExHJZIeyrYBorBf+sas3DDgbWalv
+CbJ3Q+lRb0nB7tYZerazeshBh3rVmE9eZq5idEVvdmXAIqdV3uZV0mhx0Rw+j2e3
+gHprA9NIog==
+-----END CERTIFICATE-----
+_EOF_
+
+echo 196.168.1.33 mailiqing.com &gt;&gt; /etc/hosts</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>内容对应 <code>registry server</code> 的 <code>registry.crt</code></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_下载_strong_rancher_strong_所需镜像并_strong_push_strong_到_strong_docker_registry_strong">1.2.3. 下载 <strong>Rancher</strong> 所需镜像并 <strong>Push</strong> 到 <strong>Docker Registry</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>脚本</p>
+<div class="listingblock">
+<div class="title">push.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">#!/bin/bash
+
+for var in $@
+do
+    echo "$var"
+    docker pull $var
+    docker tag $var mailiqing.com:5000/$var
+    docker push mailiqing.com:5000/$var
+    docker rmi mailiqing.com:5000/$var
+done</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>运行</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">sh push.sh rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2 rancher/server:v1.5.5</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rancher_启动">1.3. Rancher 启动</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>启动 <strong>rancher/server</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">docker run -d --name rancher-server --restart=unless-stopped -p 8080:8080 rancher/server:v1.5.5</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>rancher</strong> 管理界面地址</p>
+<div class="paragraph">
+<p><a href="http://196.168.1.33:8080">Rancher UI</a></p>
+</div>
+</li>
+<li>
+<p>添加主机</p>
+<div class="imageblock">
+<div class="content">
+<img src="E:/dishui/content/src/img/work/wuliu/2017-05-16_171531.png" alt="2017 05 16 171531">
+</div>
+</div>
+<hr>
+</li>
+<li>
+<p>拉去 <strong>agent</strong> 所需的镜像</p>
+<div class="listingblock">
+<div class="title">pull.sh</div>
+<div class="content">
+<pre class="highlight"><code>#!/bin/bash
+
+for var in $@
+do
+  echo "$var"
+  docker pull mailiqing.com:5000/$var
+  docker tag mailiqing.com:5000/$var $var
+  docker rmi mailiqing.com:5000/$var
+done</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sh pull.sh rancher/net:v0.11.2 rancher/net:holder rancher/scheduler:v0.7.5 rancher/healthcheck:v0.2.3 rancher/metadata:v0.9.1 rancher/dns:v0.14.2 rancher/network-manager:v0.6.6 rancher/agent:v1.2.2</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>启动</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.2 http://196.168.1.33:8080/v1/scripts/99136B97757188B5A670:1483142400000:TWiSTaoo3CPJZLWtS6NxPGyUU</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_应用">1.4. 应用</h3>
+<div class="imageblock">
+<div class="content">
+<img src="E:/dishui/content/src/img/work/wuliu/2017-05-16_171915.png" alt="2017 05 16 171915">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_参考">1.5. 参考</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://git.oschina.net/dishui/dockerfiles">测试服务器 dockerfiles</a></p>
+</li>
+<li>
+<p><a href="https://store.docker.com/">docker store</a></p>
+</li>
+<li>
+<p><a href="https://dev.aliyun.com/search.html">阿里云 镜像</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/post/work/wuliu/%E4%BA%A4%E6%8E%A5%E6%96%87%E6%A1%A3/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/java/alter-page/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

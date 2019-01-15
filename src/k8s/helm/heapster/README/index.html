@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Heapster Heapster enables Container Cluster Monitoring and Performance Analysis. It collects and interprets various signals like compute resource usage, lifecycle events, etc, and exports cluster metrics via REST endpoints. The Chart can also enable eventer, which can send the kubernetes event logs to a remote location.
+QuickStart $ helm install stable/heapster  Installing the Chart To install the chart with the release name my-release:
+$ helm install --name my-release stable/heapster  Uninstalling the Chart To uninstall/delete the my-release deployment:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/heapster/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="heapster">Heapster</h1>
+
+<p><a href="https://github.com/kubernetes/heapster">Heapster</a> enables Container Cluster Monitoring and Performance Analysis. It collects and interprets various signals like compute resource usage, lifecycle events, etc, and exports cluster metrics via REST endpoints.
+The Chart can also enable eventer, which can send the kubernetes event logs to a remote location.</p>
+
+<h2 id="quickstart">QuickStart</h2>
+
+<pre><code class="language-bash">$ helm install stable/heapster
+</code></pre>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-bash">$ helm install --name my-release stable/heapster
+</code></pre>
+
+<h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
+
+<p>To uninstall/delete the <code>my-release</code> deployment:</p>
+
+<pre><code class="language-bash">$ helm delete my-release --purge
+</code></pre>
+
+<p>The command removes all the Kubernetes components associated with the chart and deletes the release.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The default configuration values for this chart are listed in <code>values.yaml</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>image.repository</code></td>
+<td>Repository for container image</td>
+<td>k8s.gcr.io/heapster</td>
+</tr>
+
+<tr>
+<td><code>image.tag</code></td>
+<td>Container image tag</td>
+<td>v1.3.0</td>
+</tr>
+
+<tr>
+<td><code>image.pullPolicy</code></td>
+<td>Image pull policy</td>
+<td>IfNotPresent</td>
+</tr>
+
+<tr>
+<td><code>service.name</code></td>
+<td>Service port name</td>
+<td>api</td>
+</tr>
+
+<tr>
+<td><code>service.type</code></td>
+<td>Type for the service</td>
+<td>ClusterIP</td>
+</tr>
+
+<tr>
+<td><code>service.externalPort</code></td>
+<td>Service external port</td>
+<td>8082</td>
+</tr>
+
+<tr>
+<td><code>service.internalPort</code></td>
+<td>Service internal port</td>
+<td>8082</td>
+</tr>
+
+<tr>
+<td><code>service.annotations</code></td>
+<td>Service annotations, specified as a map</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>resources.limits</code></td>
+<td>Server resource  limits</td>
+<td>limits: {cpu: 100m, memory: 128Mi}</td>
+</tr>
+
+<tr>
+<td><code>resources.requests</code></td>
+<td>Server resource requests</td>
+<td>requests: {cpu: 100m, memory: 128Mi}</td>
+</tr>
+
+<tr>
+<td><code>command</code></td>
+<td>Commands for heapster pod</td>
+<td>&rdquo;/heapster &ndash;source=kubernetes.summary_api:&rdquo;</td>
+</tr>
+
+<tr>
+<td><code>rbac.create</code></td>
+<td>Bind system:heapster role</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td><code>rbac.serviceAccountName</code></td>
+<td>existing ServiceAccount to use (ignored if rbac.create=true)</td>
+<td>default</td>
+</tr>
+
+<tr>
+<td><code>resizer.enabled</code></td>
+<td>If enabled, scale resources</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td><code>eventer.enabled</code></td>
+<td>If enabled, start eventer</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td><code>podAnnotations</code></td>
+<td>Pod Annotations to be added to the heapster Pod</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeSelector</code></td>
+<td>Node labels for pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>The table below is only applicable if <code>resizer.enabled</code> is <code>true</code>. More information on resizer can be found <a href="https://github.com/kubernetes/contrib/blob/master/addon-resizer/README.md">here</a>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>resizer.image.repository</code></td>
+<td>Repository for container image</td>
+<td>k8s.gcr.io/addon-resizer</td>
+</tr>
+
+<tr>
+<td><code>resizer.image.tag</code></td>
+<td>Container image tag</td>
+<td>1.7</td>
+</tr>
+
+<tr>
+<td><code>resizer.image.pullPolicy</code></td>
+<td>Image pull policy</td>
+<td>IfNotPresent</td>
+</tr>
+
+<tr>
+<td><code>resizer.resources.limits</code></td>
+<td>Server resource  limits</td>
+<td>limits: {cpu: 50m, memory: 90Mi}</td>
+</tr>
+
+<tr>
+<td><code>resizer.resources.requests</code></td>
+<td>Server resource requests</td>
+<td>requests: {cpu: 50m, memory: 90Mi}</td>
+</tr>
+
+<tr>
+<td><code>resizer.flags</code></td>
+<td>Flags for pod nanny command</td>
+<td>Defaults set in values.yaml</td>
+</tr>
+</tbody>
+</table>
+
+<p>The table below is only applicable if <code>eventer.enabled</code> is <code>true</code>. More information on eventer can be found
+[here]<a href="https://github.com/kubernetes/heapster/blob/master/docs/overview.md">https://github.com/kubernetes/heapster/blob/master/docs/overview.md</a></p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>eventer.flags</code></td>
+<td>Flags for eventer command</td>
+<td>Defaults set in values.yaml</td>
+</tr>
+
+<tr>
+<td><code>eventer.resources.limits</code></td>
+<td>Server resource  limits</td>
+<td>requests: {}</td>
+</tr>
+
+<tr>
+<td><code>eventer.resources.requests</code></td>
+<td>Server resource requests</td>
+<td>requests: {}</td>
+</tr>
+
+<tr>
+<td><code>eventer.resizer.enabled</code></td>
+<td>If enabled, scale resources</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td><code>eventer.resizer.flags</code></td>
+<td>Flags for pod nanny command for eventer</td>
+<td>Defaults set in values.yaml</td>
+</tr>
+
+<tr>
+<td><code>eventer.resizer.resources.limits</code></td>
+<td>Server resource limits</td>
+<td>requests: {}</td>
+</tr>
+
+<tr>
+<td><code>eventer.resizer.resources.requests</code></td>
+<td>Server resource requests</td>
+<td>requests: {}</td>
+</tr>
+</tbody>
+</table>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/grafana/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/kubernetes-dashboard/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

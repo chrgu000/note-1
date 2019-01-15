@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Elasticsearch Helm Chart This functionality is in alpha status and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but alpha features are not subject to the support SLA of official GA features.
+This helm chart is a lightweight way to configure and run our official Elasticsearch docker image
+Requirements  Helm &gt;= 2.8.0 Kubernetes 1.8&frasl;1.9&frasl;1.10&frasl;1.11. Minimum cluster requirements include the following to run this chart with default settings." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/elasticsearch/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="elasticsearch-helm-chart">Elasticsearch Helm Chart</h1>
+
+<p>This functionality is in alpha status and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but alpha features are not subject to the support SLA of official GA features.</p>
+
+<p>This helm chart is a lightweight way to configure and run our official <a href="https://www.elastic.co/guide/en/kibana/current/docker.html">Elasticsearch docker image</a></p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li><a href="https://helm.sh/">Helm</a> &gt;= 2.8.0</li>
+<li>Kubernetes 1.<sup>8</sup>&frasl;<sub>1</sub>.<sup>9</sup>&frasl;<sub>1</sub>.<sup>10</sup>&frasl;<sub>1</sub>.11.</li>
+<li>Minimum cluster requirements include the following to run this chart with default settings. All of these settings are configurable.
+
+<ul>
+<li>Three Kubernetes nodes to respect the default &ldquo;hard&rdquo; affinity settings</li>
+<li>1GB of RAM for the JVM heap</li>
+</ul></li>
+</ul>
+
+<h2 id="usage-notes-and-getting-started">Usage notes and getting started</h2>
+
+<ul>
+<li>This repo includes a number of <a href="./examples">example</a> configurations which can be used as a reference. They are also used in the automated testing of this chart</li>
+<li>Automated testing of this chart is currently only run against GKE (Google Kubernetes Engine). If you are using a different Kubernetes provider you will likely need to adjust the <code>storageClassName</code> in the <code>volumeClaimTemplate</code></li>
+<li>The default storage class for GKE is <code>standard</code> which by default will give you <code>pd-ssd</code> type persistent volumes. This is network attached storage and will not perform as well as local storage. If you are using Kubernetes version 1.10 or greater you can use <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/local-ssd">Local PersistentVolumes</a> for increased performance</li>
+<li>The chart deploys a statefulset and by default will do an automated rolling update of your cluster. It does this by waiting for the cluster health to become green after each instance is updated. If you prefer to update manually you can set <a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#on-delete"><code>updateStrategy: OnDelete</code></a></li>
+<li>It is important to verify that the JVM heap size in <code>esJavaOpts</code> and to set the CPU/Memory <code>resources</code> to something suitable for your cluster</li>
+<li>To simplify chart and maintenance each set of node groups is deployed as a separate helm release. Take a look at the <a href="./examples/multi">multi</a> example to get an idea for how this works. Without doing this it isn&rsquo;t possible to resize persistent volumes in a statefulset. By setting it up this way it makes it possible to add more nodes with a new storage size then drain the old ones. It also solves the problem of allowing the user to determine which node groups to update first when doing upgrades or changes.</li>
+<li>We have designed this chart to be very un-opinionated about how to configure Elasticsearch. It exposes ways to set environment variables and mount secrets inside of the container. Doing this makes it much easier for this chart to support multiple versions with minimal changes.</li>
+</ul>
+
+<h2 id="installing">Installing</h2>
+
+<ul>
+<li>Add the elastic helm charts repo
+<code>
+helm repo add elastic https://helm.elastic.co
+</code></li>
+<li>Install it
+<code>
+helm install --name elasticsearch elastic/elasticsearch --version 6.5.3-alpha1
+</code></li>
+</ul>
+
+<h2 id="configuration">Configuration</h2>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>clusterName</code></td>
+<td>This will be used as the Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.name.html">cluster.name</a> and should be unique per cluster in the namespace</td>
+<td><code>elasticsearch</code></td>
+</tr>
+
+<tr>
+<td><code>nodeGroup</code></td>
+<td>This is the name that will be used for each group of nodes in the cluster. The name will be <code>clusterName-nodeGroup-X</code></td>
+<td><code>master</code></td>
+</tr>
+
+<tr>
+<td><code>masterService</code></td>
+<td>The service name used for <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-zen.html#unicast">discovery.zen.ping.unicast.hosts</a> to connect to the masters</td>
+<td><code>elasticsearch-master</code></td>
+</tr>
+
+<tr>
+<td><code>roles</code></td>
+<td>A hash map with the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html">specific roles</a> for the node group</td>
+<td><code>master: true</code><br><code>data: true</code><br><code>ingest: true</code></td>
+</tr>
+
+<tr>
+<td><code>replicas</code></td>
+<td>Kubernetes replica count for the statefulset (i.e. how many pods)</td>
+<td><code>3</code></td>
+</tr>
+
+<tr>
+<td><code>minimumMasterNodes</code></td>
+<td>The value for <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/discovery-settings.html#minimum_master_nodes">discovery.zen.minimum_master_nodes</a>. Should be set to <code>(replicas / 2) + 1</code></td>
+<td><code>2</code></td>
+</tr>
+
+<tr>
+<td><code>extraEnvs</code></td>
+<td>Extra <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#using-environment-variables-inside-of-your-config">environment variables</a> which will be appended to the <code>env:</code> definition for the container</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>secretMounts</code></td>
+<td>Allows you easily mount a secret as a file inside the statefulset. Useful for mounting certificates and other secrets. See <a href="./values.yaml">values.yaml</a> for an example</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>image</code></td>
+<td>The Elasticsearch docker image</td>
+<td><code>docker.elastic.co/elasticsearch/elasticsearch</code></td>
+</tr>
+
+<tr>
+<td><code>imageTag</code></td>
+<td>The Elasticsearch docker image tag</td>
+<td><code>6.5.3</code></td>
+</tr>
+
+<tr>
+<td><code>imagePullPolicy</code></td>
+<td>The Kubernetes <a href="https://kubernetes.io/docs/concepts/containers/images/#updating-images">imagePullPolicy</a> value</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>esJavaOpts</code></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/jvm-options.html">Java options</a> for Elasticsearch. This is where you should configure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html">jvm heap size</a></td>
+<td><code>-Xmx1g -Xms1g</code></td>
+</tr>
+
+<tr>
+<td><code>resources</code></td>
+<td>Allows you to set the <a href="https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/">resources</a> for the statefulset</td>
+<td><code>requests.cpu: 100m</code><br><code>requests.memory: 2Gi</code><br><code>limits.cpu: 1000m</code><br><code>limits.memory: 2Gi</code></td>
+</tr>
+
+<tr>
+<td><code>networkHost</code></td>
+<td>Value for the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/network.host.html">network.host Elasticsearch setting</a></td>
+<td><code>0.0.0.0</code></td>
+</tr>
+
+<tr>
+<td><code>volumeClaimTemplate</code></td>
+<td>Configuration for the <a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-storage">volumeClaimTemplate for statefulsets</a>. You will want to adjust the storage (default <code>30Gi</code>) and the <code>storageClassName</code> if you are using a different storage class</td>
+<td><code>accessModes: [ &quot;ReadWriteOnce&quot; ]</code><br><code>storageClassName: standard</code><br><code>resources.requests.storage: 30Gi</code></td>
+</tr>
+
+<tr>
+<td><code>antiAffinityTopologyKey</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity">anti-affinity topology key</a>. By default this will prevent multiple Elasticsearch nodes from running on the same Kubernetes node</td>
+<td><code>kubernetes.io/hostname</code></td>
+</tr>
+
+<tr>
+<td><code>antiAffinity</code></td>
+<td>Setting this to hard enforces the <a href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity">anti-affinity rules</a>. If it is set to soft it will be done &ldquo;best effort&rdquo;</td>
+<td><code>hard</code></td>
+</tr>
+
+<tr>
+<td><code>podManagementPolicy</code></td>
+<td>By default Kubernetes <a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies">deploys statefulsets serially</a>. This deploys them in parralel so that they can discover eachother</td>
+<td><code>Parallel</code></td>
+</tr>
+
+<tr>
+<td><code>protocol</code></td>
+<td>The protocol that will be used for the readinessProbe. Change this to <code>https</code> if you have <code>xpack.security.http.ssl.enabled</code> set</td>
+<td><code>http</code></td>
+</tr>
+
+<tr>
+<td><code>httpPort</code></td>
+<td>The http port that Kubernetes will use for the healthchecks and the service. If you change this you will also need to set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html#_settings_2">http.port</a> in <code>extraEnvs</code></td>
+<td><code>9200</code></td>
+</tr>
+
+<tr>
+<td><code>transportPort</code></td>
+<td>The transport port that Kubernetes will use for the service. If you change this you will also need to set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-transport.html#_tcp_transport">transport port configuration</a> in <code>extraEnvs</code></td>
+<td><code>9300</code></td>
+</tr>
+
+<tr>
+<td><code>updateStrategy</code></td>
+<td>The <a href="https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#updating-statefulsets">updateStrategy</a> for the statefulset. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to <code>OnDelete</code> will allow you to manually delete each pod during upgrades</td>
+<td><code>RollingUpdate</code></td>
+</tr>
+
+<tr>
+<td><code>maxUnavailable</code></td>
+<td>The <a href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/#specifying-a-poddisruptionbudget">maxUnavailable</a> value for the pod disruption budget. By default this will prevent Kubernetes from having more than 1 unhealthy pod in the node group</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>fsGroup</code></td>
+<td>The Group ID (GID) for <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">securityContext.fsGroup</a> so that the Elasticsearch user can read from the persistent volume</td>
+<td><code>1000</code></td>
+</tr>
+
+<tr>
+<td><code>terminationGracePeriod</code></td>
+<td>The <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods">terminationGracePeriod</a> in seconds used when trying to stop the pod</td>
+<td><code>120</code></td>
+</tr>
+
+<tr>
+<td><code>sysctlVmMaxMapCount</code></td>
+<td>Sets the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html#vm-max-map-count">sysctl vm.max_map_count</a> needed for Elasticsearch</td>
+<td><code>262144</code></td>
+</tr>
+
+<tr>
+<td><code>readinessProbe</code></td>
+<td>Configuration for the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/">readinessProbe</a></td>
+<td><code>failureThreshold: 3</code><br><code>initialDelaySeconds: 10</code><br><code>periodSeconds: 10</code><br><code>successThreshold: 3</code><br><code>timeoutSeconds: 5</code></td>
+</tr>
+
+<tr>
+<td><code>imagePullSecrets</code></td>
+<td>Configuration for <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret">imagePullSecrets</a> so that you can use a private registry for your image</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>nodeSelector</code></td>
+<td>Configurable <a href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector">nodeSelector</a> so that you can target specific nodes for your Elasticsearch cluster</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>tolerations</code></td>
+<td>Configurable <a href="https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/">tolerations</a></td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>ingress</code></td>
+<td>Configurable <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">ingress</a> to expose the Elasticsearch service. See <a href="./values.yaml"><code>values.yaml</code></a> for an example</td>
+<td><code>enabled: false</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="try-it-out">Try it out</h2>
+
+<p>In <a href="./examples">examples/</a> you will find some example configurations. These examples are used for the automated testing of this helm chart</p>
+
+<h3 id="default">Default</h3>
+
+<p>To deploy a cluster with all default values and run the integration tests</p>
+
+<pre><code>cd examples/default
+make
+</code></pre>
+
+<h3 id="multi">Multi</h3>
+
+<p>A cluster with dedicated node types</p>
+
+<pre><code>cd examples/multi
+make
+</code></pre>
+
+<h3 id="security">Security</h3>
+
+<p>A cluster with X-Pack security enabled</p>
+
+<ul>
+<li>Generate SSL certificates following the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.3/configuring-tls.html#node-certificates">official docs</a></li>
+<li>Make sure you have a copy of your <a href="https://www.elastic.co/subscriptions">license</a> handy.</li>
+<li>Create Kubernetes secrets for authentication credentials, X-Pack license and certificates
+<code>
+kubectl create secret generic elastic-credentials  --from-literal=password=changeme --from-literal=username=elastic
+kubectl create secret generic elastic-license --from-file=license.json
+kubectl create secret generic elastic-certificates --from-file=elastic-certificates.p12
+</code></li>
+<li>Deploy!
+<code>
+cd examples/security
+make
+</code></li>
+
+<li><p>Attach into one of the containers</p>
+
+<pre><code>kubectl exec -ti $(kubectl get pods -l release=helm-es-security -o name | awk -F'/' '{ print $NF }' | head -n 1) bash
+</code></pre></li>
+
+<li><p>Install the X-Pack license</p>
+
+<pre><code>curl -XPUT 'http://localhost:9200/_xpack/license' -H &quot;Content-Type: application/json&quot; -d @/usr/share/elasticsearch/config/license/license.json
+</code></pre></li>
+
+<li><p>Test that authentication is now enabled</p>
+
+<pre><code>curl 'http://localhost:9200/' # This one will fail
+curl -u elastic:changeme 'http://localhost:9200/'
+</code></pre></li>
+
+<li><p>Install some test data to play around with</p>
+
+<pre><code>wget https://download.elastic.co/demos/kibana/gettingstarted/logs.jsonl.gz &amp;&amp; gunzip logs.jsonl.gz &amp;&amp; curl -u elastic:changeme -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/_bulk?pretty' --data-binary @logs.jsonl
+</code></pre></li>
+</ul>
+
+<h3 id="minikube">Minikube</h3>
+
+<p>This chart also works successfully on minikube in addition to typical hosted Kubernetes environments.
+An example <code>values.yaml</code> file for minikube is provided under <code>examples/</code>.</p>
+
+<p>In order to properly support the required persistent volume claims for the Elasticsearch <code>StatefulSet</code>, the <code>default-storageclass</code> and <code>storage-provisioner</code> minikube addons must be enabled.</p>
+
+<pre><code>minikube addons enable default-storageclass
+minikube addons enable storage-provisioner
+cd examples/minikube
+make
+</code></pre>
+
+<p>Note that if <code>helm</code> or <code>kubectl</code> timeouts occur, you may consider creating a minikube VM with more CPU cores or memory allocated.</p>
+
+<h2 id="clustering-and-node-discovery">Clustering and Node Discovery</h2>
+
+<p>This chart facilitates Elasticsearch node discovery and services by creating two <code>Service</code> definitions in Kubernetes, one with the name <code>$clusterName-$nodeGroup</code> and another named <code>$clusterName-$nodeGroup-headless</code>.
+Only <code>Ready</code> pods are a part of the <code>$clusterName-$nodeGroup</code> service, while all pods (<code>Ready</code> or not) are a part of <code>$clusterName-$nodeGroup-headless</code>.</p>
+
+<p>The chart value for <code>masterService</code> is used to populate <code>discovery.zen.ping.unicast.hosts</code>, which Elasticsearch nodes will use to contact master nodes and form a cluster.
+Therefore, to add a group of nodes to an existing cluster, setting <code>masterService</code> to the desired <code>Service</code> name of the related cluster is sufficient.</p>
+
+<p>For an example of deploying both a group master nodes and data nodes using multiple releases of this chart, see the accompanying values files in <code>examples/multi</code>.</p>
+
+<h2 id="testing">Testing</h2>
+
+<p>This chart uses <a href="https://docs.pytest.org/en/latest/">pytest</a> to test the templating logic. The dependencies for testing can be installed from the <a href="../requirements.txt"><code>requirements.txt</code></a> in the parent directory.</p>
+
+<pre><code>pip install -r ../requirements.txt
+make test
+</code></pre>
+
+<p>You can also use <code>helm template</code> to look at the YAML being generated</p>
+
+<pre><code>make template
+</code></pre>
+
+<p>It is possible to run all of the tests and linting inside of a docker container</p>
+
+<pre><code>make test
+</code></pre>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/elastic-stack/charts/logstash/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/grafana/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

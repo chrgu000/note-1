@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Prometheus Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.
+TL;DR; $ helm install stable/prometheus  Introduction This chart bootstraps a Prometheus deployment on a Kubernetes cluster using the Helm package manager.
+Prerequisites  Kubernetes 1.3&#43; with Beta APIs enabled  Installing the Chart To install the chart with the release name my-release:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/prometheus/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="prometheus">Prometheus</h1>
+
+<p><a href="https://prometheus.io/">Prometheus</a>, a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.</p>
+
+<h2 id="tl-dr">TL;DR;</h2>
+
+<pre><code class="language-console">$ helm install stable/prometheus
+</code></pre>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This chart bootstraps a <a href="https://prometheus.io/">Prometheus</a> deployment on a <a href="http://kubernetes.io">Kubernetes</a> cluster using the <a href="https://helm.sh">Helm</a> package manager.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>Kubernetes 1.3+ with Beta APIs enabled</li>
+</ul>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-console">$ helm install --name my-release stable/prometheus
+</code></pre>
+
+<p>The command deploys Prometheus on the Kubernetes cluster in the default configuration. The <a href="#configuration">configuration</a> section lists the parameters that can be configured during installation.</p>
+
+<blockquote>
+<p><strong>Tip</strong>: List all releases using <code>helm list</code></p>
+</blockquote>
+
+<h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
+
+<p>To uninstall/delete the <code>my-release</code> deployment:</p>
+
+<pre><code class="language-console">$ helm delete my-release
+</code></pre>
+
+<p>The command removes all the Kubernetes components associated with the chart and deletes the release.</p>
+
+<h2 id="prometheus-2-x">Prometheus 2.x</h2>
+
+<p>Prometheus version 2.x has made changes to alertmanager, storage and recording rules. Check out the migration guide <a href="https://prometheus.io/docs/prometheus/2.0/migration/">here</a></p>
+
+<p>Users of this chart will need to update their alerting rules to the new format before they can upgrade.</p>
+
+<h2 id="upgrading-from-previous-chart-versions">Upgrading from previous chart versions.</h2>
+
+<p>As of version 5.0, this chart uses Prometheus 2.1. This version of prometheus introduces a new data format and is not compatible with prometheus 1.x. It is recommended to install this as a new release, as updating existing releases will not work. See the <a href="https://prometheus.io/docs/prometheus/latest/migration/#storage">prometheus docs</a> for instructions on retaining your old data.</p>
+
+<h3 id="example-migration">Example migration</h3>
+
+<p>Assuming you have an existing release of the prometheus chart, named <code>prometheus-old</code>. In order to update to prometheus 2.1 while keeping your old data do the following:</p>
+
+<ol>
+<li><p>Update the <code>prometheus-old</code> release. Disable scraping on every component besides the prometheus server, similar to the configuration below:</p>
+
+<pre><code>alertmanager:
+  enabled: false
+alertmanagerFiles:
+  alertmanager.yml: &quot;&quot;
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
+  enabled: false
+pushgateway:
+  enabled: false
+server:
+  extraArgs:
+    storage.local.retention: 720h
+serverFiles:
+  alerts: &quot;&quot;
+  prometheus.yml: &quot;&quot;
+  rules: &quot;&quot;
+</code></pre></li>
+
+<li><p>Deploy a new release of the chart with version 5.0+ using prometheus 2.x. In the values.yaml set the scrape config as usual, and also add the <code>prometheus-old</code> instance as a remote-read target.</p></li>
+</ol>
+
+<pre><code>      prometheus.yml:
+        ...
+        remote_read:
+        - url: http://prometheus-old/api/v1/read
+        ...
+</code></pre>
+
+<p>Old data will be available when you query the new prometheus instance.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following table lists the configurable parameters of the Prometheus chart and their default values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>alertmanager.enabled</code></td>
+<td>If true, create alertmanager</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.name</code></td>
+<td>alertmanager container name</td>
+<td><code>alertmanager</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.image.repository</code></td>
+<td>alertmanager container image repository</td>
+<td><code>prom/alertmanager</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.image.tag</code></td>
+<td>alertmanager container image tag</td>
+<td><code>v0.15.2</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.image.pullPolicy</code></td>
+<td>alertmanager container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.prefixURL</code></td>
+<td>The prefix slug at which the server can be accessed</td>
+<td>``</td>
+</tr>
+
+<tr>
+<td><code>alertmanager.baseURL</code></td>
+<td>The external url at which the server can be accessed</td>
+<td><code>/</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.extraArgs</code></td>
+<td>Additional alertmanager container arguments</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.configMapOverrideName</code></td>
+<td>Prometheus alertmanager ConfigMap override where full-name is <code>{{.Release.Name}}-{{.Values.alertmanager.configMapOverrideName}}</code> and setting this value will prevent the default alertmanager ConfigMap from being generated</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.ingress.enabled</code></td>
+<td>If true, alertmanager Ingress will be created</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.ingress.annotations</code></td>
+<td>alertmanager Ingress annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.ingress.extraLabels</code></td>
+<td>alertmanager Ingress additional labels</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.ingress.hosts</code></td>
+<td>alertmanager Ingress hostnames</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.ingress.tls</code></td>
+<td>alertmanager Ingress TLS configuration (YAML)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.nodeSelector</code></td>
+<td>node labels for alertmanager pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.tolerations</code></td>
+<td>node taints to tolerate (requires Kubernetes &gt;=1.6)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.affinity</code></td>
+<td>pod affinity</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.schedulerName</code></td>
+<td>alertmanager alternate scheduler name</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.enabled</code></td>
+<td>If true, alertmanager will create a Persistent Volume Claim</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.accessModes</code></td>
+<td>alertmanager data Persistent Volume access modes</td>
+<td><code>[ReadWriteOnce]</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.annotations</code></td>
+<td>Annotations for alertmanager Persistent Volume Claim</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.existingClaim</code></td>
+<td>alertmanager data Persistent Volume existing claim name</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.mountPath</code></td>
+<td>alertmanager data Persistent Volume mount root path</td>
+<td><code>/data</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.size</code></td>
+<td>alertmanager data Persistent Volume size</td>
+<td><code>2Gi</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.storageClass</code></td>
+<td>alertmanager data Persistent Volume Storage Class</td>
+<td><code>unset</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.persistentVolume.subPath</code></td>
+<td>Subdirectory of alertmanager data Persistent Volume to mount</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.podAnnotations</code></td>
+<td>annotations to be added to alertmanager pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.replicaCount</code></td>
+<td>desired number of alertmanager pods</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.priorityClassName</code></td>
+<td>alertmanager priorityClassName</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.resources</code></td>
+<td>alertmanager pod resource requests &amp; limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.securityContext</code></td>
+<td>Custom <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">security context</a> for Alert Manager containers</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.annotations</code></td>
+<td>annotations for alertmanager service</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.clusterIP</code></td>
+<td>internal alertmanager cluster service IP</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.externalIPs</code></td>
+<td>alertmanager service external IP addresses</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.loadBalancerIP</code></td>
+<td>IP address to assign to load balancer (if supported)</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.loadBalancerSourceRanges</code></td>
+<td>list of IP CIDRs allowed access to load balancer (if supported)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.servicePort</code></td>
+<td>alertmanager service port</td>
+<td><code>80</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanager.service.type</code></td>
+<td>type of alertmanager service to create</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>alertmanagerFiles.alertmanager.yml</code></td>
+<td>Prometheus alertmanager configuration</td>
+<td>example configuration</td>
+</tr>
+
+<tr>
+<td><code>configmapReload.name</code></td>
+<td>configmap-reload container name</td>
+<td><code>configmap-reload</code></td>
+</tr>
+
+<tr>
+<td><code>configmapReload.image.repository</code></td>
+<td>configmap-reload container image repository</td>
+<td><code>jimmidyson/configmap-reload</code></td>
+</tr>
+
+<tr>
+<td><code>configmapReload.image.tag</code></td>
+<td>configmap-reload container image tag</td>
+<td><code>v0.2.2</code></td>
+</tr>
+
+<tr>
+<td><code>configmapReload.image.pullPolicy</code></td>
+<td>configmap-reload container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>configmapReload.extraArgs</code></td>
+<td>Additional configmap-reload container arguments</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>configmapReload.extraConfigmapMounts</code></td>
+<td>Additional configmap-reload configMap mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>configmapReload.resources</code></td>
+<td>configmap-reload pod resource requests &amp; limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>initChownData.enabled</code></td>
+<td>If false, don&rsquo;t reset data ownership at startup</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td><code>initChownData.name</code></td>
+<td>init-chown-data container name</td>
+<td><code>init-chown-data</code></td>
+</tr>
+
+<tr>
+<td><code>initChownData.image.repository</code></td>
+<td>init-chown-data container image repository</td>
+<td><code>busybox</code></td>
+</tr>
+
+<tr>
+<td><code>initChownData.image.tag</code></td>
+<td>init-chown-data container image tag</td>
+<td><code>latest</code></td>
+</tr>
+
+<tr>
+<td><code>initChownData.image.pullPolicy</code></td>
+<td>init-chown-data container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>initChownData.resources</code></td>
+<td>init-chown-data pod resource requests &amp; limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.enabled</code></td>
+<td>If true, create kube-state-metrics</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.name</code></td>
+<td>kube-state-metrics container name</td>
+<td><code>kube-state-metrics</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.image.repository</code></td>
+<td>kube-state-metrics container image repository</td>
+<td><code>quay.io/coreos/kube-state-metrics</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.image.tag</code></td>
+<td>kube-state-metrics container image tag</td>
+<td><code>v1.4.0</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.image.pullPolicy</code></td>
+<td>kube-state-metrics container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.args</code></td>
+<td>kube-state-metrics container arguments</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.nodeSelector</code></td>
+<td>node labels for kube-state-metrics pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.podAnnotations</code></td>
+<td>annotations to be added to kube-state-metrics pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.deploymentAnnotations</code></td>
+<td>annotations to be added to kube-state-metrics deployment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.tolerations</code></td>
+<td>node taints to tolerate (requires Kubernetes &gt;=1.6)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.replicaCount</code></td>
+<td>desired number of kube-state-metrics pods</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.priorityClassName</code></td>
+<td>kube-state-metrics priorityClassName</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.resources</code></td>
+<td>kube-state-metrics resource requests and limits (YAML)</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.securityContext</code></td>
+<td>Custom <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">security context</a> for kube-state-metrics containers</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.annotations</code></td>
+<td>annotations for kube-state-metrics service</td>
+<td><code>{prometheus.io/scrape: &quot;true&quot;}</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.clusterIP</code></td>
+<td>internal kube-state-metrics cluster service IP</td>
+<td><code>None</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.externalIPs</code></td>
+<td>kube-state-metrics service external IP addresses</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.loadBalancerIP</code></td>
+<td>IP address to assign to load balancer (if supported)</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.loadBalancerSourceRanges</code></td>
+<td>list of IP CIDRs allowed access to load balancer (if supported)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.servicePort</code></td>
+<td>kube-state-metrics service port</td>
+<td><code>80</code></td>
+</tr>
+
+<tr>
+<td><code>kubeStateMetrics.service.type</code></td>
+<td>type of kube-state-metrics service to create</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.enabled</code></td>
+<td>If true, create node-exporter</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.name</code></td>
+<td>node-exporter container name</td>
+<td><code>node-exporter</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.image.repository</code></td>
+<td>node-exporter container image repository</td>
+<td><code>prom/node-exporter</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.image.tag</code></td>
+<td>node-exporter container image tag</td>
+<td><code>v0.16.0</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.image.pullPolicy</code></td>
+<td>node-exporter container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.extraArgs</code></td>
+<td>Additional node-exporter container arguments</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.extraHostPathMounts</code></td>
+<td>Additional node-exporter hostPath mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.extraConfigmapMounts</code></td>
+<td>Additional node-exporter configMap mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.nodeSelector</code></td>
+<td>node labels for node-exporter pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.podAnnotations</code></td>
+<td>annotations to be added to node-exporter pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.pod.labels</code></td>
+<td>labels to be added to node-exporter pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.tolerations</code></td>
+<td>node taints to tolerate (requires Kubernetes &gt;=1.6)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.priorityClassName</code></td>
+<td>node-exporter priorityClassName</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.resources</code></td>
+<td>node-exporter resource requests and limits (YAML)</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.securityContext</code></td>
+<td>securityContext for containers in pod</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.annotations</code></td>
+<td>annotations for node-exporter service</td>
+<td><code>{prometheus.io/scrape: &quot;true&quot;}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.clusterIP</code></td>
+<td>internal node-exporter cluster service IP</td>
+<td><code>None</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.externalIPs</code></td>
+<td>node-exporter service external IP addresses</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.loadBalancerIP</code></td>
+<td>IP address to assign to load balancer (if supported)</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.loadBalancerSourceRanges</code></td>
+<td>list of IP CIDRs allowed access to load balancer (if supported)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.servicePort</code></td>
+<td>node-exporter service port</td>
+<td><code>9100</code></td>
+</tr>
+
+<tr>
+<td><code>nodeExporter.service.type</code></td>
+<td>type of node-exporter service to create</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.enabled</code></td>
+<td>If true, create pushgateway</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.name</code></td>
+<td>pushgateway container name</td>
+<td><code>pushgateway</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.image.repository</code></td>
+<td>pushgateway container image repository</td>
+<td><code>prom/pushgateway</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.image.tag</code></td>
+<td>pushgateway container image tag</td>
+<td><code>v0.5.2</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.image.pullPolicy</code></td>
+<td>pushgateway container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.extraArgs</code></td>
+<td>Additional pushgateway container arguments</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.ingress.enabled</code></td>
+<td>If true, pushgateway Ingress will be created</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.ingress.annotations</code></td>
+<td>pushgateway Ingress annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.ingress.hosts</code></td>
+<td>pushgateway Ingress hostnames</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.ingress.tls</code></td>
+<td>pushgateway Ingress TLS configuration (YAML)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.nodeSelector</code></td>
+<td>node labels for pushgateway pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.podAnnotations</code></td>
+<td>annotations to be added to pushgateway pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.tolerations</code></td>
+<td>node taints to tolerate (requires Kubernetes &gt;=1.6)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.replicaCount</code></td>
+<td>desired number of pushgateway pods</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.priorityClassName</code></td>
+<td>pushgateway priorityClassName</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.resources</code></td>
+<td>pushgateway pod resource requests &amp; limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.annotations</code></td>
+<td>annotations for pushgateway service</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.clusterIP</code></td>
+<td>internal pushgateway cluster service IP</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.externalIPs</code></td>
+<td>pushgateway service external IP addresses</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.loadBalancerIP</code></td>
+<td>IP address to assign to load balancer (if supported)</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.loadBalancerSourceRanges</code></td>
+<td>list of IP CIDRs allowed access to load balancer (if supported)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.servicePort</code></td>
+<td>pushgateway service port</td>
+<td><code>9091</code></td>
+</tr>
+
+<tr>
+<td><code>pushgateway.service.type</code></td>
+<td>type of pushgateway service to create</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>rbac.create</code></td>
+<td>If true, create &amp; use RBAC resources</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>server.name</code></td>
+<td>Prometheus server container name</td>
+<td><code>server</code></td>
+</tr>
+
+<tr>
+<td><code>server.image.repository</code></td>
+<td>Prometheus server container image repository</td>
+<td><code>prom/prometheus</code></td>
+</tr>
+
+<tr>
+<td><code>server.image.tag</code></td>
+<td>Prometheus server container image tag</td>
+<td><code>v2.3.2</code></td>
+</tr>
+
+<tr>
+<td><code>server.image.pullPolicy</code></td>
+<td>Prometheus server container image pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>server.enableAdminApi</code></td>
+<td>If true, Prometheus administrative HTTP API will be enabled. Please note, that you should take care of administrative API access protection (ingress or some frontend Nginx with auth) before enabling it.</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>server.global.scrape_interval</code></td>
+<td>How frequently to scrape targets by default</td>
+<td><code>1m</code></td>
+</tr>
+
+<tr>
+<td><code>server.global.scrape_timeout</code></td>
+<td>How long until a scrape request times out</td>
+<td><code>10s</code></td>
+</tr>
+
+<tr>
+<td><code>server.global.evaluation_interval</code></td>
+<td>How frequently to evaluate rules</td>
+<td><code>1m</code></td>
+</tr>
+
+<tr>
+<td><code>server.extraArgs</code></td>
+<td>Additional Prometheus server container arguments</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.prefixURL</code></td>
+<td>The prefix slug at which the server can be accessed</td>
+<td>``</td>
+</tr>
+
+<tr>
+<td><code>server.baseURL</code></td>
+<td>The external url at which the server can be accessed</td>
+<td>``</td>
+</tr>
+
+<tr>
+<td><code>server.extraHostPathMounts</code></td>
+<td>Additional Prometheus server hostPath mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.extraConfigmapMounts</code></td>
+<td>Additional Prometheus server configMap mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.extraSecretMounts</code></td>
+<td>Additional Prometheus server Secret mounts</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.configMapOverrideName</code></td>
+<td>Prometheus server ConfigMap override where full-name is <code>{{.Release.Name}}-{{.Values.server.configMapOverrideName}}</code> and setting this value will prevent the default server ConfigMap from being generated</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>server.ingress.enabled</code></td>
+<td>If true, Prometheus server Ingress will be created</td>
+<td><code>false</code></td>
+</tr>
+
+<tr>
+<td><code>server.ingress.annotations</code></td>
+<td>Prometheus server Ingress annotations</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.ingress.extraLabels</code></td>
+<td>Prometheus server Ingress additional labels</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.ingress.hosts</code></td>
+<td>Prometheus server Ingress hostnames</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.ingress.tls</code></td>
+<td>Prometheus server Ingress TLS configuration (YAML)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.nodeSelector</code></td>
+<td>node labels for Prometheus server pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.tolerations</code></td>
+<td>node taints to tolerate (requires Kubernetes &gt;=1.6)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.affinity</code></td>
+<td>pod affinity</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.priorityClassName</code></td>
+<td>Prometheus server priorityClassName</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>server.schedulerName</code></td>
+<td>Prometheus server alternate scheduler name</td>
+<td><code>nil</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.enabled</code></td>
+<td>If true, Prometheus server will create a Persistent Volume Claim</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.accessModes</code></td>
+<td>Prometheus server data Persistent Volume access modes</td>
+<td><code>[ReadWriteOnce]</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.annotations</code></td>
+<td>Prometheus server data Persistent Volume annotations</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.existingClaim</code></td>
+<td>Prometheus server data Persistent Volume existing claim name</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.mountPath</code></td>
+<td>Prometheus server data Persistent Volume mount root path</td>
+<td><code>/data</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.size</code></td>
+<td>Prometheus server data Persistent Volume size</td>
+<td><code>8Gi</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.storageClass</code></td>
+<td>Prometheus server data Persistent Volume Storage Class</td>
+<td><code>unset</code></td>
+</tr>
+
+<tr>
+<td><code>server.persistentVolume.subPath</code></td>
+<td>Subdirectory of Prometheus server data Persistent Volume to mount</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>server.podAnnotations</code></td>
+<td>annotations to be added to Prometheus server pods</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.deploymentAnnotations</code></td>
+<td>annotations to be added to Prometheus server deployment</td>
+<td>`{}&rsquo;</td>
+</tr>
+
+<tr>
+<td><code>server.replicaCount</code></td>
+<td>desired number of Prometheus server pods</td>
+<td><code>1</code></td>
+</tr>
+
+<tr>
+<td><code>server.resources</code></td>
+<td>Prometheus server resource requests and limits</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.securityContext</code></td>
+<td>Custom <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">security context</a> for server containers</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.annotations</code></td>
+<td>annotations for Prometheus server service</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.clusterIP</code></td>
+<td>internal Prometheus server cluster service IP</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.externalIPs</code></td>
+<td>Prometheus server service external IP addresses</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.loadBalancerIP</code></td>
+<td>IP address to assign to load balancer (if supported)</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.loadBalancerSourceRanges</code></td>
+<td>list of IP CIDRs allowed access to load balancer (if supported)</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.nodePort</code></td>
+<td>Port to be used as the service NodePort (ignored if <code>server.service.type</code> is not <code>NodePort</code>)</td>
+<td><code>0</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.servicePort</code></td>
+<td>Prometheus server service port</td>
+<td><code>80</code></td>
+</tr>
+
+<tr>
+<td><code>server.service.type</code></td>
+<td>type of Prometheus server service to create</td>
+<td><code>ClusterIP</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.alertmanager.create</code></td>
+<td>If true, create the alertmanager service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.alertmanager.name</code></td>
+<td>name of the alertmanager service account to use or create</td>
+<td><code>{{ prometheus.alertmanager.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.kubeStateMetrics.create</code></td>
+<td>If true, create the kubeStateMetrics service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.kubeStateMetrics.name</code></td>
+<td>name of the kubeStateMetrics service account to use or create</td>
+<td><code>{{ prometheus.kubeStateMetrics.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.nodeExporter.create</code></td>
+<td>If true, create the nodeExporter service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.nodeExporter.name</code></td>
+<td>name of the nodeExporter service account to use or create</td>
+<td><code>{{ prometheus.nodeExporter.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.pushgateway.create</code></td>
+<td>If true, create the pushgateway service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.pushgateway.name</code></td>
+<td>name of the pushgateway service account to use or create</td>
+<td><code>{{ prometheus.pushgateway.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.server.create</code></td>
+<td>If true, create the server service account</td>
+<td><code>true</code></td>
+</tr>
+
+<tr>
+<td><code>serviceAccounts.server.name</code></td>
+<td>name of the server service account to use or create</td>
+<td><code>{{ prometheus.server.fullname }}</code></td>
+</tr>
+
+<tr>
+<td><code>server.terminationGracePeriodSeconds</code></td>
+<td>Prometheus server Pod termination grace period</td>
+<td><code>300</code></td>
+</tr>
+
+<tr>
+<td><code>server.retention</code></td>
+<td>(optional) Prometheus data retention</td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+
+<tr>
+<td><code>serverFiles.alerts</code></td>
+<td>Prometheus server alerts configuration</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>serverFiles.rules</code></td>
+<td>Prometheus server rules configuration</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>serverFiles.prometheus.yml</code></td>
+<td>Prometheus server scrape configuration</td>
+<td>example configuration</td>
+</tr>
+
+<tr>
+<td><code>networkPolicy.enabled</code></td>
+<td>Enable NetworkPolicy</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>. For example,</p>
+
+<pre><code class="language-console">$ helm install stable/prometheus --name my-release \
+    --set server.terminationGracePeriodSeconds=360
+</code></pre>
+
+<p>Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,</p>
+
+<pre><code class="language-console">$ helm install stable/prometheus --name my-release -f values.yaml
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="values.yaml">values.yaml</a></p>
+</blockquote>
+
+<h3 id="rbac-configuration">RBAC Configuration</h3>
+
+<p>Roles and RoleBindings resources will be created automatically for <code>server</code> and <code>kubeStateMetrics</code> services.</p>
+
+<p>To manually setup RBAC you need to set the parameter <code>rbac.create=false</code> and specify the service account to be used for each service by setting the parameters: <code>serviceAccounts.{{ component }}.create</code> to <code>false</code> and <code>serviceAccounts.{{ component }}.name</code> to the name of a pre-existing service account.</p>
+
+<blockquote>
+<p><strong>Tip</strong>: You can refer to the default <code>*-clusterrole.yaml</code> and <code>*-clusterrolebinding.yaml</code> files in <a href="templates/">templates</a> to customize your own.</p>
+</blockquote>
+
+<h3 id="configmap-files">ConfigMap Files</h3>
+
+<p>AlertManager is configured through <a href="https://prometheus.io/docs/alerting/configuration/">alertmanager.yml</a>. This file (and any others listed in <code>alertmanagerFiles</code>) will be mounted into the <code>alertmanager</code> pod.</p>
+
+<p>Prometheus is configured through <a href="https://prometheus.io/docs/operating/configuration/">prometheus.yml</a>. This file (and any others listed in <code>serverFiles</code>) will be mounted into the <code>server</code> pod.</p>
+
+<h3 id="ingress-tls">Ingress TLS</h3>
+
+<p>If your cluster allows automatic creation/retrieval of TLS certificates (e.g. <a href="https://github.com/jetstack/kube-lego">kube-lego</a>), please refer to the documentation for that mechanism.</p>
+
+<p>To manually configure TLS, first create/retrieve a key &amp; certificate pair for the address(es) you wish to protect. Then create a TLS secret in the namespace:</p>
+
+<pre><code class="language-console">kubectl create secret tls prometheus-server-tls --cert=path/to/tls.cert --key=path/to/tls.key
+</code></pre>
+
+<p>Include the secret&rsquo;s name, along with the desired hostnames, in the alertmanager/server Ingress TLS section of your custom <code>values.yaml</code> file:</p>
+
+<pre><code class="language-yaml">server:
+  ingress:
+    ## If true, Prometheus server Ingress will be created
+    ##
+    enabled: true
+
+    ## Prometheus server Ingress hostnames
+    ## Must be provided if Ingress is enabled
+    ##
+    hosts:
+      - prometheus.domain.com
+
+    ## Prometheus server Ingress TLS configuration
+    ## Secrets must be manually created in the namespace
+    ##
+    tls:
+      - secretName: prometheus-server-tls
+        hosts:
+          - prometheus.domain.com
+</code></pre>
+
+<h3 id="networkpolicy">NetworkPolicy</h3>
+
+<p>Enabling Network Policy for Prometheus will secure connections to Alert Manager
+and Kube State Metrics by only accepting connections from Prometheus Server.
+All inbound connections to Prometheus Server are still allowed.</p>
+
+<p>To enable network policy for Prometheus, install a networking plugin that
+implements the Kubernetes NetworkPolicy spec, and set <code>networkPolicy.enabled</code> to true.</p>
+
+<p>If NetworkPolicy is enabled for Prometheus&rsquo; scrape targets, you may also need
+to manually create a networkpolicy which allows it.</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/nginx-ingress/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/redis/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

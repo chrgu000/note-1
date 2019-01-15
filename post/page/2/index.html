@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2018-06-20T10:49:12&#43;00:00"/>
+<meta property="og:updated_time" content="2018-07-02T14:20:43&#43;00:00"/>
 
 
 
@@ -85,6 +85,27 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/bigdata-warehouse/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E5%90%8C%E6%AD%A5/" rel="bookmark">数据采集与同步</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-07-02 14:20:43 &#43;0000 UTC">July 02, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						selecttimestamp,cid,tb.uid,sessionId,ipAddress,page,ctype,type,event,useragent,version,content,lead(timestamp) over (partition by cid,sessionid order by timestamp asc) as next_timefrom b_event_trace_i where dt='' and envent='pageview'
+
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -297,29 +318,6 @@
 SHome=/d/sparkSPARK_HOME=/d/env/spark-2.2.1-bin-hadoop2.7
 sh $SPARK_HOME/bin/spark-submit --class streaming.core.StreamingApp \--master local[2] \--name test \$SHome/streamingpro-spark-2.0-1.0.0.jar \-streaming.name test \-streaming.platform spark \-streaming.job.file.path file://$SHome/batch_1.json-streaming.sql.source.a.path file://$SHome/data/source/batch_1.json-streaming.sql.out.b.path file://$SHome/data/out/parquet_1
 
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/java/algorithm/1-10/" rel="bookmark">leetcode算法</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-11-27 15:43:47 &#43;0000 UTC">November 27, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Longest Substring Without Repeating Characters(最长的子串不重复的字符)Intuition
-Check all the substring one by one to see if it has no duplicate character.
-Algorithm
-Suppose we have a function boolean allUnique(String substring) which will return true if the characters in the substring are all unique, otherwise false. We can iterate through all the possible substrings of the given string s and call the function allUnique. If it turns out to be true, then we update our answer of the maximum length of substring without duplicate characters.
 					</div>
 				</div>
 			</div>

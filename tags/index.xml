@@ -42,6 +42,229 @@
     </item>
     
     <item>
+      <title>2018-09-19</title>
+      <link>/post/work/suning/2018-09-19/</link>
+      <pubDate>Wed, 19 Sep 2018 09:51:02 +0000</pubDate>
+      
+      <guid>/post/work/suning/2018-09-19/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;echo &#34;some_metric 3.14&#34; | curl --data-binary @- &lt;a href=&#34;http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job&#34; class=&#34;bare&#34;&gt;http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://dev.cxzx.fabx.com.cn/prometheus&#34; class=&#34;bare&#34;&gt;http://dev.cxzx.fabx.com.cn/prometheus&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;annotations:
+  kubernetes.io/ingress.class: nginx
+  nginx.ingress.kubernetes.io/rewrite-target: /&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;dev.cxzx.fabx.com.cn/dashboard&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;for i=1; i&amp;#8656;1000; i ++
+do
+  echo &#34;some_metric $i&#34; | curl --data-binary @- &lt;a href=&#34;http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job&#34; class=&#34;bare&#34;&gt;http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job&lt;/a&gt;
+  sleep 2
+done&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;${CXZX-T1-TOMCAT_SERVICE_HOST}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;10.200.169.32&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cxzx.fabx.com.cn
+dev.cxzx.fabx.com.cn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;monitor.fabx.com.cn
+bash.fabx.com.cn
+dashboard.fabx.com.cn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;#weave
+&lt;a href=&#34;http://10.200.169.32:32404&#34; class=&#34;bare&#34;&gt;http://10.200.169.32:32404&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;node_scrape_collector_duration_seconds{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;{{collector}} - Scrape duration&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;go_gc_duration_seconds{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;,quantile=&#34;1&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;some_{exported_job=&#34;some_job&#34;,instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;联赛
+&lt;a href=&#34;http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;amp;token=common_Ese32Cee9&amp;amp;competitionId=1&amp;amp;seasonId=1215&#34; class=&#34;bare&#34;&gt;http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;amp;token=common_Ese32Cee9&amp;amp;competitionId=1&amp;amp;seasonId=1215&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;杯赛
+&lt;a href=&#34;http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;amp;token=common_Ese32Cee9&amp;amp;competitionId=14&amp;amp;seasonId=128&#34; class=&#34;bare&#34;&gt;http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;amp;token=common_Ese32Cee9&amp;amp;competitionId=14&amp;amp;seasonId=128&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;积分
+ 赢 +3
+ 平 +1
+ 输 +0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;searchGroupsCount&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;100 - (avg by (instance) (irate(wmi_cpu_cstate_seconds_total{mode=&#34;idle&#34;}[5m])) * 100)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;100 - (avg by (instance) (irate(wmi_cpu_time_total{job=&#34;wim&#34;,mode=&#34;idle&#34;}[5m])) * 100)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum by (mode) (rate(wmi_cpu_time_total{instance=&#34;10.200.168.14:9182&#34;}[5m]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum by (mode) (rate(wmi_cpu_time_total{instance=&#34;10.200.168.14:9182&#34;}[5m]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubectl-1.10.5-0.x86_64
+kubelet-1.10.5-0.x86_64
+kubeadm-1.10.5-0.x86_64&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubectl kubelet kubeadm
+&lt;a href=&#34;https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl&#34; class=&#34;bare&#34;&gt;https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl&lt;/a&gt; version | base64 | tr -d &#39;\n&#39;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://cloud.weave.works/k8s/scope.yaml?k8s-version=Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxMCIsIEdpdFZlcnNpb246InYxLjEwLjUiLCBHaXRDb21taXQ6IjMyYWMxYzkwNzNiMTMyYjhiYTE4YWE4MzBmNDZiNzdkY2NlYjA3MjMiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDE4LTA2LTIxVDExOjQ2OjAwWiIsIEdvVmVyc2lvbjoiZ28xLjkuMyIsIENvbXBpbGVyOiJnYyIsIFBsYXRmb3JtOiJsaW51eC9hbWQ2NCJ9ClNlcnZlciBWZXJzaW9uOiB2ZXJzaW9uLkluZm97TWFqb3I6IjEiLCBNaW5vcjoiMTAiLCBHaXRWZXJzaW9uOiJ2MS4xMC41IiwgR2l0Q29tbWl0OiIzMmFjMWM5MDczYjEzMmI4YmExOGFhODMwZjQ2Yjc3ZGNjZWIwNzIzIiwgR2l0VHJlZVN0YXRlOiJjbGVhbiIsIEJ1aWxkRGF0ZToiMjAxOC0wNi0yMVQxMTozNDoyMloiLCBHb1ZlcnNpb246ImdvMS45LjMiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQo=&#34; class=&#34;bare&#34;&gt;https://cloud.weave.works/k8s/scope.yaml?k8s-version=Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxMCIsIEdpdFZlcnNpb246InYxLjEwLjUiLCBHaXRDb21taXQ6IjMyYWMxYzkwNzNiMTMyYjhiYTE4YWE4MzBmNDZiNzdkY2NlYjA3MjMiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDE4LTA2LTIxVDExOjQ2OjAwWiIsIEdvVmVyc2lvbjoiZ28xLjkuMyIsIENvbXBpbGVyOiJnYyIsIFBsYXRmb3JtOiJsaW51eC9hbWQ2NCJ9ClNlcnZlciBWZXJzaW9uOiB2ZXJzaW9uLkluZm97TWFqb3I6IjEiLCBNaW5vcjoiMTAiLCBHaXRWZXJzaW9uOiJ2MS4xMC41IiwgR2l0Q29tbWl0OiIzMmFjMWM5MDczYjEzMmI4YmExOGFhODMwZjQ2Yjc3ZGNjZWIwNzIzIiwgR2l0VHJlZVN0YXRlOiJjbGVhbiIsIEJ1aWxkRGF0ZToiMjAxOC0wNi0yMVQxMTozNDoyMloiLCBHb1ZlcnNpb246ImdvMS45LjMiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQo=&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/mindprince/nvidia_gpu_prometheus_exporter&#34; class=&#34;bare&#34;&gt;https://github.com/mindprince/nvidia_gpu_prometheus_exporter&lt;/a&gt;
+&lt;a href=&#34;https://github.com/zhebrak/nvidia_smi_exporter&#34; class=&#34;bare&#34;&gt;https://github.com/zhebrak/nvidia_smi_exporter&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nvidia-smi --query-gpu=name,index,temperature.gpu,utilization.gpu,utilization.memory,memory.total,memory.free,memory.used --format=csv,noheader,nounits&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;\wmi_exporter.exe --log.format logger:eventlog?name=wmi_exporter  --telemetry.addr :9182&lt;/div&gt;
+&lt;p&gt;export http_proxy=http://127.0.0.1:7777
+export https_proxy=http://127.0.0.1:7777&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;http_proxy=http://127.0.0.1:7777 go get  honnef.co/go/staticcheck/cmd/staticcheck&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;go install github.com/prometheus/node_exporter&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;count(count(node_cpu_seconds_total{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}) by (cpu) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode=&#39;idle&#39;,instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}[5m]))))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;count(count(node_cpu_seconds_total{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}) by (cpu))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum by&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum by (mode)(irate(node_gpu_utilization_gpu{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}[10s])))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Description=node_exporter daemon&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Type=simple
+ExecStart=/home/ubuntu/go/bin/node_exporter --web.listen-address=&#34;:9182&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;WantedBy=multi-user.target&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum(node_gpu_utilization_gpu{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;})/4&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;node_gpu_utilization_gpu{instance=&lt;sub&gt;&#34;$node:$port&#34;,job=&lt;/sub&gt;&#34;$job&#34;}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Windows Node
+2129&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Node Exporter Full
+1860&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Nvidia GPU
+6387&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;192.168.88.32   dashboard.fabx.com.cn
+192.168.88.32   bash.fabx.com.cn
+192.168.88.32   monitor.fabx.com.cn
+192.168.88.32   dev.cxzx.fabx.com.cn
+192.168.88.32   cxzx.fabx.com.cn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;192.168.88.1    ros.fabx.com.cn
+192.168.88.12   jenkins.fabx.com.cn
+192.168.88.20   file.fabx.com.cn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;192.168.88.32   api.fabx.com.cn
+192.168.88.5    dock.fabx.com.cn
+192.168.88.8    lab.fabx.com.cn
+192.168.88.8    gitlab.fabx.com.cn&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|xargs -i sh -c &#39;etcdctl --endpoints=http://10.200.169.32:2379 del {}&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;etcdctl --endpoints=http://10.200.169.32:2379 get / --prefix --keys-only|grep -E &#34;coredns|kube-apiserver|kube-scheduler|kube-dns|flannel|kube-system|tiller|kube-public|minions&#34;|xargs -i sh -c &#39;etcdctl --endpoints=http://10.200.169.32:2379 del {}&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;if (!fieldLength) continue&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;void(this.length+=1)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;return 0===i.length?void(0):(i in n||(n[i]={docs:{}}),0===r.length?(n[i].docs[t.ref]=t,void(this.length+=1)):this.add(r,t,n[i]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;while(0 === i.length){r = r.slice(1),i = r.charAt(0)}&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Prometheus监控server安装配置
+Http数据采集组件pushgateway安装配置
+Windows服务器wmi_exporter安装配置
+Linux服务器node_exporter安装配置
+Grafana安装配置
+串联Prometheus+pushgateway+wmi_exporter+node_exporter+Grafana&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;K8S可视化组件weave安装配置&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubernetes提供一个规范来描述集群的架构，定义服务的最终状态，将系统自动得达到和维持在这个状态。保证系统的敏捷、可靠、高弹性、易扩展、故障隔离保护、不中断业务持续更新&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Linux+Java+Spring+Mysql+Tomcat+ActiveMQ&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>grpc</title>
       <link>/post/work/suning/grpc/</link>
       <pubDate>Wed, 19 Sep 2018 09:51:02 +0000</pubDate>
