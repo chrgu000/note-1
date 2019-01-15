@@ -173,7 +173,11 @@ PKG_CONFIG_PATH=D:\libgit2\lib\pkgconfig</p>
 <h2 id="_编译">2. 编译</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\x86_64-w64-mingw32-gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\x86_64-w64-mingw32-g++.exe &amp;&amp; go build -ldflags="-H windowsgui""</p>
+<p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\g++.exe &amp;&amp; go build -ldflags="-H windowsgui""</p>
+</div>
+<div class="paragraph">
+<p>注意事项:
+  编译libssh2,libgit2,go get 的时候 gcc版本一定要保持一直</p>
 </div>
 </div>
 </div>
