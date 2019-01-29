@@ -173,7 +173,7 @@ PKG_CONFIG_PATH=D:\libgit2\lib\pkgconfig</p>
 <h2 id="_编译">2. 编译</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\g++.exe &amp;&amp; go build -ldflags="-H windowsgui""</p>
+<p>cmd /C "set CGO_ENABLED=1&amp;&amp; set CC=D:\msys64\mingw64\bin\gcc.exe &amp;&amp; set CXX=D:\msys64\mingw64\bin\g++.exe &amp;&amp; go build -ldflags="-H windowsgui -extldflags '-static'""</p>
 </div>
 <div class="paragraph">
 <p>注意事项:

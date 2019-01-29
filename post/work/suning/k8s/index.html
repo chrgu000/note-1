@@ -95,21 +95,25 @@
 <ul class="sectlevel1">
 <li><a href="#_参考">1. 参考</a></li>
 <li><a href="#_k8s_命令">2. k8s 命令</a></li>
-<li><a href="#_k8s_yaml">3. k8s yaml</a></li>
-<li><a href="#_etcd">4. etcd</a></li>
-<li><a href="#_helm">5. helm</a></li>
-<li><a href="#_k8s_问题">6. k8s 问题</a></li>
-<li><a href="#_k8s_master_重新分配ip">7. k8s master 重新分配ip</a></li>
-<li><a href="#_linux">8. linux</a>
+<li><a href="#_强制删除">强制删除</a>
+<ul class="sectlevel1">
+<li><a href="#_k8s_yaml">1. k8s yaml</a></li>
+<li><a href="#_etcd">2. etcd</a></li>
+<li><a href="#_helm">3. helm</a></li>
+<li><a href="#_k8s_问题">4. k8s 问题</a></li>
+<li><a href="#_k8s_master_重新分配ip">5. k8s master 重新分配ip</a></li>
+<li><a href="#_linux">6. linux</a>
 <ul class="sectlevel2">
-<li><a href="#_nfs">8.1. nfs</a></li>
+<li><a href="#_nfs">6.1. nfs</a></li>
 </ul>
 </li>
-<li><a href="#_etcd_2">9. etcd</a></li>
-<li><a href="#_清除k8s">10. 清除k8s</a></li>
-<li><a href="#_firewalld_操作">11. Firewalld 操作</a></li>
-<li><a href="#_kubeadm_join_错误">12. kubeadm join 错误</a></li>
-<li><a href="#_docker">13. docker</a></li>
+<li><a href="#_etcd_2">7. etcd</a></li>
+<li><a href="#_清除k8s">8. 清除k8s</a></li>
+<li><a href="#_firewalld_操作">9. Firewalld 操作</a></li>
+<li><a href="#_kubeadm_join_错误">10. kubeadm join 错误</a></li>
+<li><a href="#_docker">11. docker</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -187,13 +191,22 @@ docker tag xiyangxixia/k8s-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-
 
 kubectl get pod --all-namespaces -o wide
 
-delete
-
-kubectl delete pod tiller-deploy-67d8b477f7-8b4r6 -n kube-system --grace-period=0 --force
-
-kubectl delete pods,services -n kube-system -l k8s-app=kube-dns
-
-describe
+.delete
+[source,]</pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_强制删除" class="sect0">强制删除</h1>
+<div class="paragraph">
+<p>kubectl delete pod tiller-deploy-67d8b477f7-8b4r6 -n kube-system --grace-period=0 --force</p>
+</div>
+<div class="paragraph">
+<p>kubectl delete pods,services -n kube-system -l k8s-app=kube-dns</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>describe
 
 kubectl -n kube-system describe secret kubernetes-dashboard
 kubectl -n default describe ingress-release-nginx-ingress-controller-cb646488f-rksrp
@@ -238,10 +251,8 @@ kubectl label node k8s02 node-role.kubernetes.io/node=node</pre>
 <pre>kubectl exec POD_NAME -c CONTAINER_NAME /sbin/kill 1</pre>
 </div>
 </div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_k8s_yaml">3. k8s yaml</h2>
+<h2 id="_k8s_yaml">1. k8s yaml</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -325,7 +336,7 @@ spec:                       #specification of the resource content 指定该资�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_etcd">4. etcd</h2>
+<h2 id="_etcd">2. etcd</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -335,7 +346,7 @@ spec:                       #specification of the resource content 指定该资�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_helm">5. helm</h2>
+<h2 id="_helm">3. helm</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -376,7 +387,7 @@ helm delete --purge tomcat-t1</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_k8s_问题">6. k8s 问题</h2>
+<h2 id="_k8s_问题">4. k8s 问题</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -390,16 +401,22 @@ helm delete --purge tomcat-t1</pre>
 <pre>kubectl taint nodes --all node-role.kubernetes.io/master-</pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">kubelet no space left on device</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>sudo sysctl fs.inotify.max_user_watches=1048576</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_k8s_master_重新分配ip">7. k8s master 重新分配ip</h2>
+<h2 id="_k8s_master_重新分配ip">5. k8s master 重新分配ip</h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_linux">8. linux</h2>
+<h2 id="_linux">6. linux</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -414,7 +431,7 @@ journalctl -xefu kubelet</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_nfs">8.1. nfs</h3>
+<h3 id="_nfs">6.1. nfs</h3>
 <div class="listingblock">
 <div class="content">
 <pre>yum install nfs-utils rpcbind -y
@@ -427,7 +444,7 @@ echo "/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)" &gt;&gt; /etc/exports
 </div>
 </div>
 <div class="sect1">
-<h2 id="_etcd_2">9. etcd</h2>
+<h2 id="_etcd_2">7. etcd</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>版本2连接server查看不到信息</p>
@@ -447,7 +464,7 @@ echo "/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)" &gt;&gt; /etc/exports
 </div>
 </div>
 <div class="sect1">
-<h2 id="_清除k8s">10. 清除k8s</h2>
+<h2 id="_清除k8s">8. 清除k8s</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>删除etcd目录 /var/lib/etcd</p>
@@ -458,7 +475,7 @@ echo "/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)" &gt;&gt; /etc/exports
 </div>
 </div>
 <div class="sect1">
-<h2 id="_firewalld_操作">11. Firewalld 操作</h2>
+<h2 id="_firewalld_操作">9. Firewalld 操作</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -517,7 +534,7 @@ iptables -I FORWARD -s 10.96.0.1/0 -j ACCEPT</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_kubeadm_join_错误">12. kubeadm join 错误</h2>
+<h2 id="_kubeadm_join_错误">10. kubeadm join 错误</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -533,7 +550,7 @@ yum remove cri-tools</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker">13. docker</h2>
+<h2 id="_docker">11. docker</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>cat /etc/docker/daemon.json

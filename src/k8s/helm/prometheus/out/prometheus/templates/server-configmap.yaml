@@ -9,7 +9,7 @@ metadata:
     component: "server"
     heritage: Tiller
     release: RELEASE-NAME
-  name: RELEASE-NAME-prometheus-server
+  name: test-prometheus-server
 data:
   alerts: |
     {}

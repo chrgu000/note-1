@@ -164,7 +164,7 @@ ServerName 210.14.137.119 &lt;VirtualHost *:7080&gt; ServerName 210.14.137.119 D
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
 						Contents1. 参考2. jmx3. dump1. 参考http://cmsblogs.com/.
-2. jmx-Djava.rmi.server.hostname=127.0.0.1-Dcom.sun.management.jmxremote.port=9880-Dcom.sun.management.jmxremote.ssl=false-Dcom.sun.management.jmxremote.authenticate=false
+2. jmx-Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.port=9880 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 3. dump1.获取heap dump文件
 windows下切换到JDK_HOME/bin/，执行以下命令：jmap -dump:format=b,file=heap.dump2 45748linux下切换到JDK_HOME/bin/，执行以下命令：./jmap -dump:format=b,file=heap.hprof 2576这样就会在当前目录下生成heap.hprof文件，这就是heap dump文件。2.获取thread dump文件
 windows下执行：jstack 2576 &gt; thread.txtlinux下执行：./jstack 2576 &gt; thread.txtwindows/linux则会将命令执行结果转储到thread.txt，这就是thread dump文件。有了dump文件后，我们就能借助性能分析工具获取dump文件中的信息。

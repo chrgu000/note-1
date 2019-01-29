@@ -425,7 +425,13 @@ cares.lib&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.com&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;mailto:18089513@suning-sports.com&#34;&gt;18089513@suning-sports.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://gitlab.fabx.com.cn/users/sign_in&#34; class=&#34;bare&#34;&gt;http://gitlab.fabx.com.cn/users/sign_in&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;142857git!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;mailto:18089513@suning.com&#34;&gt;18089513@suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;18089513/142857git!123456
@@ -652,14 +658,14 @@ docker pull registry.cn-hangzhou.aliyuncs.com/kuaihuoyun/disconf&lt;/pre&gt;
 创新业务中心研发部
 周凯 18089513
 手机：18710110778
-邮箱：&lt;a href=&#34;mailto:zhoukai@suning-sports.com&#34;&gt;zhoukai@suning-sports.com&lt;/a&gt;&lt;/p&gt;
+邮箱：&lt;a href=&#34;mailto:18089513@suning.com&#34;&gt;18089513@suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;外网签名
 苏宁体育集团
 苏宁体育文化传媒（北京）有限公司    周凯
 手机：18710110778
-邮箱：&lt;a href=&#34;mailto:zhoukai@suning-sports.com&#34;&gt;zhoukai@suning-sports.com&lt;/a&gt;
+邮箱：&lt;a href=&#34;mailto:18089513@suning.com&#34;&gt;18089513@suning.com&lt;/a&gt;
 地址：北京市朝阳区朝阳路167号苏宁生活广场苏宁中心写字楼16F
 邮编：100025
 网址：sports.pptv.com&lt;/p&gt;
@@ -669,7 +675,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/kuaihuoyun/disconf&lt;/pre&gt;
 苏宁体育集团
 苏宁体育文化传媒（北京）有限公司
 手机：18710110778
-邮箱：&lt;a href=&#34;mailto:zhoukai@suning-sports.com&#34;&gt;zhoukai@suning-sports.com&lt;/a&gt;
+邮箱：&lt;a href=&#34;mailto:18089513@suning.com&#34;&gt;18089513@suning.com&lt;/a&gt;
 地址：北京市朝阳区朝阳路167号苏宁生活广场苏宁中心写字楼16F
 邮编：100025
 网址：sports.pptv.com&lt;/p&gt;
@@ -704,6 +710,36 @@ vi /etc/systemd/system/vncserver@:1.service&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;parted -a optimal /dev/sdb mkpart primary 0% 4096MB&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Description=node_exporter daemon&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Type=simple
+ExecStart=/home/ubuntu/go/bin/node_exporter --web.listen-address=&#34;:9182&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;WantedBy=multi-user.target&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;instance:=GetIpMacAddrs(GetPulicIP())
+  ticker := time.NewTicker(2 * time.Second)
+  quit := make(chan struct{})
+  go func() {
+    for {
+      select {
+      case &amp;#8592;ticker.C:
+        // do stuff
+        e:=push.New(&#34;http://monitor.fabx.com.cn/pushgateway&#34;,&#34;linux&#34;).Grouping(&#34;instance&#34;,instance).Gatherer()
+        if e != nil {
+          log.Error(e.Error())
+        }
+      case &amp;#8592;quit:
+        ticker.Stop()
+        return
+      }
+    }
+  }()&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -721,21 +757,25 @@ vi /etc/systemd/system/vncserver@:1.service&lt;/p&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#_k8s_命令&#34;&gt;2. k8s 命令&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_k8s_yaml&#34;&gt;3. k8s yaml&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_etcd&#34;&gt;4. etcd&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_helm&#34;&gt;5. helm&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_k8s_问题&#34;&gt;6. k8s 问题&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_k8s_master_重新分配ip&#34;&gt;7. k8s master 重新分配ip&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_linux&#34;&gt;8. linux&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#_强制删除&#34;&gt;强制删除&lt;/a&gt;
+&lt;ul class=&#34;sectlevel1&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_yaml&#34;&gt;1. k8s yaml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_etcd&#34;&gt;2. etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_helm&#34;&gt;3. helm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_问题&#34;&gt;4. k8s 问题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_k8s_master_重新分配ip&#34;&gt;5. k8s master 重新分配ip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_linux&#34;&gt;6. linux&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_nfs&#34;&gt;8.1. nfs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_nfs&#34;&gt;6.1. nfs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_etcd_2&#34;&gt;9. etcd&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_清除k8s&#34;&gt;10. 清除k8s&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_firewalld_操作&#34;&gt;11. Firewalld 操作&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_kubeadm_join_错误&#34;&gt;12. kubeadm join 错误&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_docker&#34;&gt;13. docker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_etcd_2&#34;&gt;7. etcd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_清除k8s&#34;&gt;8. 清除k8s&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_firewalld_操作&#34;&gt;9. Firewalld 操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_kubeadm_join_错误&#34;&gt;10. kubeadm join 错误&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_docker&#34;&gt;11. docker&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -813,13 +853,22 @@ docker tag xiyangxixia/k8s-flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-
 
 kubectl get pod --all-namespaces -o wide
 
-delete
-
-kubectl delete pod tiller-deploy-67d8b477f7-8b4r6 -n kube-system --grace-period=0 --force
-
-kubectl delete pods,services -n kube-system -l k8s-app=kube-dns
-
-describe
+.delete
+[source,]&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_强制删除&#34; class=&#34;sect0&#34;&gt;强制删除&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubectl delete pod tiller-deploy-67d8b477f7-8b4r6 -n kube-system --grace-period=0 --force&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;kubectl delete pods,services -n kube-system -l k8s-app=kube-dns&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;describe
 
 kubectl -n kube-system describe secret kubernetes-dashboard
 kubectl -n default describe ingress-release-nginx-ingress-controller-cb646488f-rksrp
@@ -864,10 +913,8 @@ kubectl label node k8s02 node-role.kubernetes.io/node=node&lt;/pre&gt;
 &lt;pre&gt;kubectl exec POD_NAME -c CONTAINER_NAME /sbin/kill 1&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_k8s_yaml&#34;&gt;3. k8s yaml&lt;/h2&gt;
+&lt;h2 id=&#34;_k8s_yaml&#34;&gt;1. k8s yaml&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -951,7 +998,7 @@ spec:                       #specification of the resource content 指定该资�
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_etcd&#34;&gt;4. etcd&lt;/h2&gt;
+&lt;h2 id=&#34;_etcd&#34;&gt;2. etcd&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -961,7 +1008,7 @@ spec:                       #specification of the resource content 指定该资�
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_helm&#34;&gt;5. helm&lt;/h2&gt;
+&lt;h2 id=&#34;_helm&#34;&gt;3. helm&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -1002,7 +1049,7 @@ helm delete --purge tomcat-t1&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_k8s_问题&#34;&gt;6. k8s 问题&lt;/h2&gt;
+&lt;h2 id=&#34;_k8s_问题&#34;&gt;4. k8s 问题&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
@@ -1016,16 +1063,22 @@ helm delete --purge tomcat-t1&lt;/pre&gt;
 &lt;pre&gt;kubectl taint nodes --all node-role.kubernetes.io/master-&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;kubelet no space left on device&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo sysctl fs.inotify.max_user_watches=1048576&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_k8s_master_重新分配ip&#34;&gt;7. k8s master 重新分配ip&lt;/h2&gt;
+&lt;h2 id=&#34;_k8s_master_重新分配ip&#34;&gt;5. k8s master 重新分配ip&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_linux&#34;&gt;8. linux&lt;/h2&gt;
+&lt;h2 id=&#34;_linux&#34;&gt;6. linux&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -1040,7 +1093,7 @@ journalctl -xefu kubelet&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_nfs&#34;&gt;8.1. nfs&lt;/h3&gt;
+&lt;h3 id=&#34;_nfs&#34;&gt;6.1. nfs&lt;/h3&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre&gt;yum install nfs-utils rpcbind -y
@@ -1053,7 +1106,7 @@ echo &#34;/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)&#34; &amp;gt;&amp;gt
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_etcd_2&#34;&gt;9. etcd&lt;/h2&gt;
+&lt;h2 id=&#34;_etcd_2&#34;&gt;7. etcd&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;版本2连接server查看不到信息&lt;/p&gt;
@@ -1073,7 +1126,7 @@ echo &#34;/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)&#34; &amp;gt;&amp;gt
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_清除k8s&#34;&gt;10. 清除k8s&lt;/h2&gt;
+&lt;h2 id=&#34;_清除k8s&#34;&gt;8. 清除k8s&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;删除etcd目录 /var/lib/etcd&lt;/p&gt;
@@ -1084,7 +1137,7 @@ echo &#34;/data/k8s 192.168.88.0/24(rw,sync,no_root_squash)&#34; &amp;gt;&amp;gt
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_firewalld_操作&#34;&gt;11. Firewalld 操作&lt;/h2&gt;
+&lt;h2 id=&#34;_firewalld_操作&#34;&gt;9. Firewalld 操作&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
@@ -1143,7 +1196,7 @@ iptables -I FORWARD -s 10.96.0.1/0 -j ACCEPT&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_kubeadm_join_错误&#34;&gt;12. kubeadm join 错误&lt;/h2&gt;
+&lt;h2 id=&#34;_kubeadm_join_错误&#34;&gt;10. kubeadm join 错误&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
@@ -1159,7 +1212,7 @@ yum remove cri-tools&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_docker&#34;&gt;13. docker&lt;/h2&gt;
+&lt;h2 id=&#34;_docker&#34;&gt;11. docker&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;cat /etc/docker/daemon.json
