@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2017-04-26T15:43:39&#43;00:00"/>
+<meta property="og:updated_time" content="2017-05-31T22:53:49&#43;00:00"/>
 
 
 
@@ -85,6 +85,56 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/docker/etcd-flanneld/" rel="bookmark">etcd flanneld</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-05-31 22:53:49 &#43;0000 UTC">May 31, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						etcd flanneld1. 环境2. 启动2.1. etcd2.2. flanneld2.3. 修改Docker参数3. Q &amp; A4. 参考1. 环境名称版本下载地址etcd
+3.1.8
+etcd-v3.1.8-linux-amd64.tar.gz
+flanneld
+v0.7.1
+flanneld-amd64
+mk-docker-opts.sh
+mk-docker-opts.sh
+etcd flanneld mk-docker-opts.sh 下载到 $HOME/bin 下2.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/wuliu/jiaojie/" rel="bookmark">文档</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-05-15 09:06:35 &#43;0000 UTC">May 15, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 测试服务器1.1. Docker 安装1.2. Rancher 安装1.2.1. registry server1.2.2. registry client端1.2.3. 下载 Rancher 所需镜像并 Push 到 Docker Registry1.3. Rancher 启动1.4. 应用2. 正式服务器2.1. 参考3. Docker 操作命令4. Ansible5. Q &amp; A5.1. Rancher1. 测试服务器环境:
+名称版本下载地址Docker
+Docker version 1.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -215,7 +265,8 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexmap是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; "[partID:" + index + ", val: " + x + "]").iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregatedef func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {iter.
+						spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexasciinema::slave["/src/records/spark/2017-04-10.json","95","22","2"]
+map是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; "[partID:" + index + ", val: " + x + "]").iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregateasciinema::slave["
 					</div>
 				</div>
 			</div>
@@ -275,57 +326,6 @@ tar -zxvf spark-1.5.2-bin-hadoop2.6.tgz -C /usr/local1.1.3. 配置Spark
 张包峰
 高彦杰的博客
 赛赛的网络日志
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/scala/scala%E5%AE%9E%E6%88%98/" rel="bookmark">Scala实战</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-04-07 15:06:47 &#43;0000 UTC">April 07, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Scala实战1. Scala实战2. 项目概述2.1. 需求2.2. Akka简介3. 项目实现3.1. 架构图3.2. 重要类介绍3.2.1. ActorSystem3.2.2. Actor3.3. Master类3.4. Worker类1. Scala实战2. 项目概述2.1. 需求目前大多数的分布式架构底层通信都是通过RPC实现的，RPC框架非常多，比如前我们学过的Hadoop项目的RPC通信框架，但是Hadoop在设计之初就是为了运行长达数小时的批量而设计的，在某些极端的情况下，任务提交的延迟很高，所有Hadoop的RPC显得有些笨重。Spark 的RPC是通过Akka类库实现的，Akka用Scala语言开发，基于Actor并发模型实现，Akka具有高可靠、高性能、可扩展等特点，使用Akka可以轻松实现分布式RPC功能。2.2. Akka简介Akka基于Actor模型，提供了一个用于构建可扩展的（Scalable）、弹性的（Resilient）、快速响应的（Responsive）应用程序的平台。
-Actor模型在计算机科学领域，Actor模型是一个并行计算（Concurrent Computation）模型，它把actor作为并行计算的基本元素来对待：为响应一个接收到的消息，一个actor能够自己做出一些决策，如创建更多的actor，或发送更多的消息，或者确定如何去响应接收到的下一个消息。
-Actor是Akka中最核心的概念，它是一个封装了状态和行为的对象，Actor之间可以通过交换消息的方式进行通信，每个Actor都有自己的收件箱（Mailbox）。通过Actor能够简化锁及线程管理，可以非常容易地开发出正确地并发程序和并行系统，Actor具有如下特性：
-提供了一种高级抽象，能够简化在并发（Concurrency）/并行（Parallelism）应用场景下的编程开发
-提供了异步非阻塞的、高性能的事件驱动编程模型
-超级轻量级事件处理（每GB堆内存几百万Actor）
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/scala/scala%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" rel="bookmark">Scala高级特性</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-04-07 14:47:38 &#43;0000 UTC">April 07, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Scala高级特性1. 高阶函数1.1. 概念1.2. 作为值的函数1.3. 匿名函数1.4. 将方法转换成函数1.5. 柯里化1.6. 例子2. 隐式转换和隐式参数2.1. 概念2.2. 作用2.3. 隐式转换函数2.4. 隐式转换例子2.4.1. 隐式转换变量值2.4.2. 隐式转换方法1. 高阶函数1.1. 概念Scala混合了面向对象和函数式的特性，我们通常将可以做为参数传递到方法中的表达式叫做函数。在函数式编程语言中，函数是“头等公民”，高阶函数包含：作为值的函数、匿名函数、闭包、柯里化等等。
-1.2. 作为值的函数可以像任何其他数据类型一样被传递和操作的函数，每当你想要给算法传入具体动作时这个特性就会变得非常有用。
-定义函数时格式：val 变量名 =(输入参数类型和个数)&#8658;函数实现和返回值类型和个数“=”表示将函数赋给一个变量“&#8658;”左面表示输入参数名称、类型和个数，右边表示函数的实现和返回值类型和参数个数
-1.3. 匿名函数在Scala中，你不需要给每一个函数命名，没有将函数赋给变量的函数叫做匿名函数
-由于Scala可以自动推断出参数的类型，所有可以写的跟精简一些
-还记得神奇的下划线吗？这才是终极方式
-1.
 					</div>
 				</div>
 			</div>

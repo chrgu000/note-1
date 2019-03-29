@@ -8,8 +8,8 @@ metadata:
     chart: prometheus-7.0.3
     component: "server"
     heritage: Tiller
-    release: RELEASE-NAME
-  name: test-prometheus-server
+    release: prometheus
+  name: prometheus-server
 data:
   alerts: |
     {}
@@ -24,20 +24,60 @@ data:
     - /etc/config/rules
     - /etc/config/alerts
     scrape_configs:
-    - job_name: prometheus
+    - job_name: ubuntu
+      scrape_interval: 10s
       static_configs:
       - targets:
-        - localhost:9090
-    - honor_labels: true
-      job_name: prometheus-pushgateway
-      kubernetes_sd_configs:
-      - role: service
-      relabel_configs:
-      - action: keep
-        regex: pushgateway
-        source_labels:
-        - __meta_kubernetes_service_annotation_prometheus_io_probe
+        - 192.168.88.40:9182
+    - job_name: centos
+      scrape_interval: 5s
+      static_configs:
+      - targets:
+        - 192.168.88.5:9182
+        - 192.168.88.30:9182
+        - 192.168.88.32:9182
+        - 192.168.88.43:9182
+        - 192.168.88.44:9182
+        - 192.168.88.45:9182
+    - job_name: wmi
+      metrics_path: /pushgateway/metrics
+      scrape_interval: 1s
+      static_configs:
+      - targets:
+        - prometheus-pushgateway:9091
     
+    alerting:
+      alertmanagers:
+        - path_prefix: /alertmanager
+          static_configs:
+          - targets:
+            - prometheus-alertmanager
+      # - kubernetes_sd_configs:
+      #     - role: pod
+      #   tls_config:
+      #     ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      #   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+      #
+      #   relabel_configs:
+      #   - source_labels: [__meta_kubernetes_namespace]
+      #     regex: default
+      #     action: keep
+      #   - source_labels: [__meta_kubernetes_pod_label_app]
+      #     regex: prometheus
+      #     action: keep
+      #   - source_labels: [__meta_kubernetes_pod_label_component]
+      #     regex: alertmanager
+      #     action: keep
+      #   - source_labels: [__meta_kubernetes_pod_container_port_number]
+      #     regex:
+      #     action: drop
   rules: |
-    {}
+    groups:
+    - name: prometheus_go_goroutines
+      rules:
+      - alert: go_goroutines_numbers
+        annotations:
+          summary: Instance {{ $labels.instance }} 的gorotine数据超过5!
+        expr: go_goroutines > 50
+        for: 5s
     

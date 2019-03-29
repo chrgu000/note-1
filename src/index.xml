@@ -106,179 +106,6 @@
     
     <item>
       <title></title>
-      <link>/src/k8s/helm/activemq/README/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/src/k8s/helm/activemq/README/</guid>
-      <description>
-
-&lt;h1 id=&#34;tomcat&#34;&gt;Tomcat&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://tomcat.apache.org&#34;&gt;Tomcat&lt;/a&gt; is is an open source implementation of the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies.&lt;/p&gt;
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;This chart creates a &lt;a href=&#34;http://tomcat.apache.org&#34;&gt;tomcat application server&lt;/a&gt; Deployment, plus http Services for the server.
-The chart offers an optimization for application updates running in a servlet container-type engines like tomcat and &lt;a href=&#34;http://jbossas.jboss.org&#34;&gt;Jboss&lt;/a&gt;. The chart uses the WAR, EAR, and other deployable components outside of the Servlet engine as sidecar container so application upgrades requires the sidecar container image only to be updated and not the Servlet engine as if both would run at the same image.&lt;/p&gt;
-
-&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Kubernetes 1.8+&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;provider-specific-prerequisites&#34;&gt;Provider-specific Prerequisites&lt;/h2&gt;
-
-&lt;h2 id=&#34;installing-the-chart&#34;&gt;Installing the Chart&lt;/h2&gt;
-
-&lt;p&gt;To install the chart with the release name &lt;code&gt;my-release&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ helm install --name my-release stable/tomcat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This command deploys a tomcat dedicated server with sane defaults.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;: List all releases using &lt;code&gt;helm list&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;uninstalling-the-chart&#34;&gt;Uninstalling the Chart&lt;/h2&gt;
-
-&lt;p&gt;To uninstall/delete the &lt;code&gt;my-release&lt;/code&gt; deployment:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ helm delete my-release
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The command removes all the Kubernetes components associated with the chart and deletes the release.&lt;/p&gt;
-
-&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
-
-&lt;p&gt;The following table lists the configurable parameters of the tomcat chart and their default values.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Parameter&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;th&gt;Default&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;image.webarchive.repository&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Sidecar image source repository name&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;ananwaresystems/webarchive&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;image.webarchive.tag&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;webarchive&lt;/code&gt; release tag.&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;1.0&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;image.tomcat.repository&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Tomact image source repository name&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;tomcat&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;image.tomcat.tag&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;tomcat&lt;/code&gt; release tag.&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;7.0&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;image.pullPolicy&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Image pull policy&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;IfNotPresent&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;deploy.directory&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Webarchive deployment directory&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;/usr/local/tomcat/webapps&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;service.name&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Tomcat service name&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;http&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;service.externalPort&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Kubernetes service port&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;80&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;service.internalPort&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Tomcat front port&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;8080&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;service.type&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Kubernetes service type&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;LoadBalancer&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;resources&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;CPU/Memory resource requests/limits&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;nodeSelector&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Node affinity&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;tolerations&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Node tolerations&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Refer to &lt;a href=&#34;values.yaml&#34;&gt;values.yaml&lt;/a&gt; for the full run-down on defaults. These are a mixture of Kubernetes and tomcat-related directives that map to environment variables.&lt;/p&gt;
-
-&lt;p&gt;Specify each parameter using the &lt;code&gt;--set key=value[,key=value]&lt;/code&gt; argument to &lt;code&gt;helm install&lt;/code&gt;. For example,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ helm install --name my-release \
-  --set Values.someval=My Server,ImageTag=1.0 \
-    stable/tomcat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The above command deploys Tomcat dedicated with a server name of &lt;code&gt;My Server&lt;/code&gt; and docker-tomcat image version &lt;code&gt;1.0&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ helm install --name my-release -f values.yaml stable/stable
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;: You can use the default &lt;a href=&#34;values.yaml&#34;&gt;values.yaml&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;persistence&#34;&gt;Persistence&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;&amp;ldquo;An emptyDir volume is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node. When a Pod is removed from a node for any reason, the data in the emptyDir is deleted forever.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;credits&#34;&gt;Credits&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/kubernetes/examples/tree/master/staging/javaweb-tomcat-sidecar&#34;&gt;Java Web Application with Tomcat and Sidecar Container&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>/src/k8s/helm/elastic-stack/README/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1695,6 +1522,279 @@ make test
 
 &lt;pre&gt;&lt;code&gt;make test
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/src/k8s/helm/etcd/README/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/src/k8s/helm/etcd/README/</guid>
+      <description>
+
+&lt;h1 id=&#34;etcd-helm-chart&#34;&gt;Etcd Helm Chart&lt;/h1&gt;
+
+&lt;p&gt;Credit to &lt;a href=&#34;https://github.com/ingvagabund&#34;&gt;https://github.com/ingvagabund&lt;/a&gt;. This is an implementation of that work&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/kubernetes/contrib/pull/1295&#34;&gt;https://github.com/kubernetes/contrib/pull/1295&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;prerequisites-details&#34;&gt;Prerequisites Details&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Kubernetes 1.5 (for &lt;code&gt;StatefulSets&lt;/code&gt; support)&lt;/li&gt;
+&lt;li&gt;PV support on the underlying infrastructure&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;statefulset-details&#34;&gt;StatefulSet Details&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/&#34;&gt;https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;statefulset-caveats&#34;&gt;StatefulSet Caveats&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/#limitations&#34;&gt;https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/#limitations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;todo&#34;&gt;Todo&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Implement SSL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;chart-details&#34;&gt;Chart Details&lt;/h2&gt;
+
+&lt;p&gt;This chart will do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Implemented a dynamically scalable etcd cluster using Kubernetes StatefulSets&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;installing-the-chart&#34;&gt;Installing the Chart&lt;/h2&gt;
+
+&lt;p&gt;To install the chart with the release name &lt;code&gt;my-release&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+$ helm install --name my-release incubator/etcd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;The following table lists the configurable parameters of the etcd chart and their default values.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Parameter&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Default&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image.repository&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container image repository&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;k8s.gcr.io/etcd-amd64&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image.tag&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container image tag&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;2.2.5&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image.pullPolicy&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container pull policy&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;IfNotPresent&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;replicas&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;k8s statefulset replicas&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;3&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;resources&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;container required resources&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;clientPort&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;k8s service port&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;2379&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;peerPorts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Container listening port&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;2380&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;storage&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Persistent volume size&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;1Gi&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;storageClass&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Persistent volume storage class&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;anything&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;affinity&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;affinity settings for pod assignment&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;nodeSelector&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Node labels for pod assignment&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tolerations&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Toleration labels for pod assignment&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;extraEnv&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Optional environment variables&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;memoryMode&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Using memory as backend storage&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Specify each parameter using the &lt;code&gt;--set key=value[,key=value]&lt;/code&gt; argument to &lt;code&gt;helm install&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ helm install --name my-release -f values.yaml incubator/etcd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;: You can use the default &lt;a href=&#34;values.yaml&#34;&gt;values.yaml&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;deep-dive&#34;&gt;Deep dive&lt;/h1&gt;
+
+&lt;h2 id=&#34;cluster-health&#34;&gt;Cluster Health&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ for i in &amp;lt;0..n&amp;gt;; do kubectl exec &amp;lt;release-podname-$i&amp;gt; -- sh -c &#39;etcdctl cluster-health&#39;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;eg.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ for i in {0..9}; do kubectl exec named-lynx-etcd-$i --namespace=etcd -- sh -c &#39;etcdctl cluster-health&#39;; done
+member 7878c44dabe58db is healthy: got healthy result from http://named-lynx-etcd-7.named-lynx-etcd:2379
+member 19d2ab7b415341cc is healthy: got healthy result from http://named-lynx-etcd-4.named-lynx-etcd:2379
+member 6b627d1b92282322 is healthy: got healthy result from http://named-lynx-etcd-3.named-lynx-etcd:2379
+member 6bb377156d9e3fb3 is healthy: got healthy result from http://named-lynx-etcd-0.named-lynx-etcd:2379
+member 8ebbb00c312213d6 is healthy: got healthy result from http://named-lynx-etcd-8.named-lynx-etcd:2379
+member a32e3e8a520ff75f is healthy: got healthy result from http://named-lynx-etcd-5.named-lynx-etcd:2379
+member dc83003f0a226816 is healthy: got healthy result from http://named-lynx-etcd-2.named-lynx-etcd:2379
+member e3dc94686f60465d is healthy: got healthy result from http://named-lynx-etcd-6.named-lynx-etcd:2379
+member f5ee1ca177a88a58 is healthy: got healthy result from http://named-lynx-etcd-1.named-lynx-etcd:2379
+cluster is healthy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;failover&#34;&gt;Failover&lt;/h2&gt;
+
+&lt;p&gt;If any etcd member fails it gets re-joined eventually.
+You can test the scenario by killing process of one of the replicas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;$ ps aux | grep etcd-1
+$ kill -9 ETCD_1_PID
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;$ kubectl get pods -l &amp;quot;release=${RELEASE-NAME},app=etcd&amp;quot;
+NAME                 READY     STATUS        RESTARTS   AGE
+etcd-0               1/1       Running       0          54s
+etcd-2               1/1       Running       0          51s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After a while:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;$ kubectl get pods -l &amp;quot;release=${RELEASE-NAME},app=etcd&amp;quot;
+NAME                 READY     STATUS    RESTARTS   AGE
+etcd-0               1/1       Running   0          1m
+etcd-1               1/1       Running   0          20s
+etcd-2               1/1       Running   0          1m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can check state of re-joining from &lt;code&gt;etcd-1&lt;/code&gt;&amp;rsquo;s logs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;$ kubectl logs etcd-1
+Waiting for etcd-0.etcd to come up
+Waiting for etcd-1.etcd to come up
+ping: bad address &#39;etcd-1.etcd&#39;
+Waiting for etcd-1.etcd to come up
+Waiting for etcd-2.etcd to come up
+Re-joining etcd member
+Updated member with ID 7fd61f3f79d97779 in cluster
+2016-06-20 11:04:14.962169 I | etcdmain: etcd Version: 2.2.5
+2016-06-20 11:04:14.962287 I | etcdmain: Git SHA: bc9ddf2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;scaling-using-kubectl&#34;&gt;Scaling using kubectl&lt;/h2&gt;
+
+&lt;p&gt;This is for reference. Scaling should be managed by &lt;code&gt;helm upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The etcd cluster can be scale up by running &lt;code&gt;kubectl patch&lt;/code&gt; or &lt;code&gt;kubectl edit&lt;/code&gt;. For instance,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ kubectl get pods -l &amp;quot;release=${RELEASE-NAME},app=etcd&amp;quot;
+NAME      READY     STATUS    RESTARTS   AGE
+etcd-0    1/1       Running   0          7m
+etcd-1    1/1       Running   0          7m
+etcd-2    1/1       Running   0          6m
+
+$ kubectl patch statefulset/etcd -p &#39;{&amp;quot;spec&amp;quot;:{&amp;quot;replicas&amp;quot;: 5}}&#39;
+&amp;quot;etcd&amp;quot; patched
+
+$ kubectl get pods -l &amp;quot;release=${RELEASE-NAME},app=etcd&amp;quot;
+NAME      READY     STATUS    RESTARTS   AGE
+etcd-0    1/1       Running   0          8m
+etcd-1    1/1       Running   0          8m
+etcd-2    1/1       Running   0          8m
+etcd-3    1/1       Running   0          4s
+etcd-4    1/1       Running   0          1s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Scaling-down is similar. For instance, changing the number of replicas to &lt;code&gt;4&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ kubectl edit statefulset/etcd
+statefulset &amp;quot;etcd&amp;quot; edited
+
+$ kubectl get pods -l &amp;quot;release=${RELEASE-NAME},app=etcd&amp;quot;
+NAME      READY     STATUS    RESTARTS   AGE
+etcd-0    1/1       Running   0          8m
+etcd-1    1/1       Running   0          8m
+etcd-2    1/1       Running   0          8m
+etcd-3    1/1       Running   0          4s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once a replica is terminated (either by running &lt;code&gt;kubectl delete pod etcd-ID&lt;/code&gt; or scaling down),
+content of &lt;code&gt;/var/run/etcd/&lt;/code&gt; directory is cleaned up.
+If any of the etcd pods restarts (e.g. caused by etcd failure or any other),
+the directory is kept untouched so the pod can recover from the failure.&lt;/p&gt;
 </description>
     </item>
     

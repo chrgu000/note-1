@@ -422,7 +422,7 @@ cares.lib&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href=&#34;https://im.suning.com&#34; class=&#34;bare&#34;&gt;https://im.suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.com&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.comc&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.comc&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;a href=&#34;http://gitlab.fabx.com.cn/users/sign_in&#34; class=&#34;bare&#34;&gt;http://gitlab.fabx.com.cn/users/sign_in&lt;/a&gt;&lt;/p&gt;
@@ -434,7 +434,8 @@ cares.lib&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href=&#34;mailto:18089513@suning.com&#34;&gt;18089513@suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;18089513/142857git!123456
+&lt;p&gt;soa
+18089513/142857git!1234567
 18089513&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -1043,7 +1044,10 @@ helm upgrade tomcat-t1 .
 helm install --name tomcat-t1 .
 
 #删除
-helm delete --purge tomcat-t1&lt;/pre&gt;
+helm delete --purge tomcat-t1
+
+# 渲染
+helm template --name grafana --namespace kube-common --output-dir=./grafana/out ./grafana&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

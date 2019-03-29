@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2017-11-27T15:43:47&#43;00:00"/>
+<meta property="og:updated_time" content="2018-01-27T00:00:00&#43;00:00"/>
 
 
 
@@ -85,6 +85,51 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/clustershell/" rel="bookmark">clustershell</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-01-27 00:00:00 &#43;0000 UTC">January 27, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						clustershell1. clustershell2. 参考1. clustershell安装
+python2.7 get-pip.py -i https://pypi.tuna.tsinghua.edu.cn/simplepip install ClusterShell -i https://pypi.tuna.tsinghua.edu.cn/simple配置
+cat &gt; /etc/clustershell/groups.conf &lt;&lt;_EOF_# ClusterShell node groups main configuration file## Please see `man 5 groups.conf` and# http://clustershell.readthedocs.org/en/latest/config.html#node-groups# for further details.## NOTE: This is a simple group configuration example file, not a# default config file.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/streamingpro/streamingpro/" rel="bookmark">Streampro 学习</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2018-01-20 18:20:34 &#43;0000 UTC">January 20, 2018</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						==
+SHome=/d/sparkSPARK_HOME=/d/env/spark-2.2.1-bin-hadoop2.7
+sh $SPARK_HOME/bin/spark-submit --class streaming.core.StreamingApp \--master local[2] \--name test \$SHome/streamingpro-spark-2.0-1.0.0.jar \-streaming.name test \-streaming.platform spark \-streaming.job.file.path file://$SHome/batch_1.json-streaming.sql.source.a.path file://$SHome/data/source/batch_1.json-streaming.sql.out.b.path file://$SHome/data/out/parquet_1
+
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -270,56 +315,6 @@
 					<div class="mr-excerpt">
 						spark1. Hbase1. Hbase单节点启动 只有 HMaster 进程
 
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/july/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="bookmark">机器学习与数学基础</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-08-27 12:52:28 &#43;0000 UTC">August 27, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						机器学习与数学基础1. 不明白1. 不明白协方差
-
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/spark-sql2/" rel="bookmark">SparkSql</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-08-11 14:43:47 &#43;0000 UTC">August 11, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						SparkSql21. Spark SQL22. 内置函数3. 列名特殊字符处理1. Spark SQL2org.apache.spark.sql.SparkSession#sqlorg.apache.spark.sql.catalyst.parser.ParserInterface#parsePlan
-2. 内置函数floor
-https://blog.imaginea.com/spark-2-0-sql-source-code-tour-part-1-introduction-and-catalyst-query-parser/
-每个SessionState都有SQLConfig，SessionCalalog，Analyzer，SparkOptimizer，SparkSqlParser，SparkPlanner等等的实例。
-SessionCalalog 用于管理表和数据库状态的内部目录Analyzer 逻辑查询计划分析器用于解决未解决的属性和关系
-AbstractSqlParserSparkSqlParser
-sparkSession.sql("SELECT * FROM global_temp.people")org.apache.spark.sql.catalyst.parser.AbstractSqlParser#parsePlanorg.apache.spark.sql.execution.SparkSqlParser#parseorg.apache.spark.sql.catalyst.parser.AbstractSqlParser#parse
-SqlBaseLexer 词法分析ANTLRNoCaseStringStreamCommonTokenStreamSqlBaseParser
-Analyzer
-def sql(sqlText: String): DataFrame = {Dataset.ofRows(self, sessionState.sqlParser.parsePlan(sqlText))}sessionState.sqlParser.parsePlan(sqlText) -&gt; unresolved logical planSparkSql-1.0org.apache.spark.sql.SQLContext#sql
 					</div>
 				</div>
 			</div>

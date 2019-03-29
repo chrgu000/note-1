@@ -215,7 +215,8 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexmap是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; "[partID:" + index + ", val: " + x + "]").iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregatedef func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {iter.
+						spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexasciinema::slave["/src/records/spark/2017-04-10.json","95","22","2"]
+map是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; "[partID:" + index + ", val: " + x + "]").iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregateasciinema::slave["
 					</div>
 				</div>
 			</div>

@@ -87,6 +87,55 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/app/goods/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						商品模块商品列表统一接口URLhttp://app.mailiqing.com/app/goods/search
+支持格式JSON
+HTTP请求方式POST
+Content-Type: application/json;charset=UTF-8
+是否需要登录否
+携带参数说明{"from":0, # 起始页数"searchKey":"", # 搜索框"catId":"", # 管理类目id"brandName":"", # 品牌"productName":"", # 型号"region":"", # 出库地"sellerNick":"", # 供应商"priceFrom":"", # 起始价格"priceTo":"", # 结束价格"category":"", # 商品类目"shopId":"", # 店铺id"shopCat":"", # 店铺类目"sort":0 # 价格排序 0:升序 1:降序}成功参照 搜索 返回数据格式
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/app/procurement/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						采购单采购单列表URLhttp://app.mailiqing.com/app/procurement/list?start=1&amp;limit=10&amp;area=北京&amp;sort=1&amp;q=沥青
+支持格式GET JSON
+HTTP请求方式Content-Type: application/json;charset=UTF-8
+携带参数说明start # 起始页limit # 每页个数area # 地区筛选sort # 日期排序 0:降序 1:升序综合排序 传 start limitq # 搜索关键字是否需要登录否
+成功{"state": 1,"list": [{"id": "20150707E245t4x", #采购单id"title": "国产品牌 沥青4444444444444444", #采购单标题"count": 500.00, #数量"userId": "20160919OR42Yb6", #采购单发布者"
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/app/quanceng/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -282,49 +331,6 @@
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
 						Table of Contents1. Statistics1. Statisticspackage sougouimport org.apache.hadoop.io.{Text, LongWritable}import org.apache.hadoop.mapred.TextInputFormatimport org.apache.spark.{SparkConf, SparkContext}/*** Created by dishui on 2017/9/9.*/object Statistics {def main(args: Array[String]) {if (args.length &lt; 2) {println("args(0): 输入文件路径")println("args(1): 输出文件路径")return}val conf = new SparkConf().setAppName("sougouStatistics")// .setMaster("local[2]")val sc = new SparkContext(conf)// 乱码val resourceRDD = sc.hadoopFile(args(0),classOf[TextInputFormat],classOf[LongWritable], classOf[Text], 1).map(p =&gt; new String(p._2.getBytes, 0, p.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/djt/spark/spark-error/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Exception in thread "main" org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 0.0 failed 4 times, most recent failure: Lost task 0.3 in stage 0.0 (TID 7, djt11): java.lang.IllegalArgumentException: java.net.UnknownHostException: cluster1
-image::{img}/img/djt/2017-10-12_155002.png[]
-hadoop做HA后,spark在executer上找不到 hdfs-site.xml core-site.xml 文件,--files 指定 这两个文件的路径
-sh $SPARK_HOME/bin/spark-submit \--class ParseAndFilterLog \--master spark://djt11:7077 \--files file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml \--executor-memory 1g \--total-executor-cores 2 \spark-1.0-jar-with-dependencies.jar \hdfs://cluster1/tv/* \hdfs://cluster1/tv/spark-output-3
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/djt/spark/tvplay/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Table of Contents1. TvPlayBean2. TvPlayInputFormat3. TvPlayPartitioner4. TvPlayCount1. TvPlayBeanpackage hdfs.tvplay;import org.apache.hadoop.io.WritableComparable;import java.io.DataInput;import java.io.DataOutput;import java.io.IOException;/*** Created by dishui on 2017/9/8.*/public class TvPlayBean implements WritableComparable&lt;Object&gt; {private String name; //名称private int relation; //来源private int playCount; //播放量private int collectCount; //收藏数private int commentCount; //评论数private int stampCount; //踩数private int approveCount; //赞数public TvPlayBean() {}public TvPlayBean(String name, int relation, int playCount, int collectCount, int commentCount, int stampCount, int approveCount) {this.
 					</div>
 				</div>
 			</div>

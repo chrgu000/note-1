@@ -23,16 +23,11 @@ spec:
     spec:
       containers:
         - name: tomcat
-          image: tomcat:8.5
+          image: cxzx.com:5000/tomcat:8.5
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: data
-              mountPath: /usr/local/tomcat/webapps/cxzx.war
-              subPath: cxzx.war
-            - name: data
-              mountPath: /usr/local/tomcat/logs
-              subPath: logs
-          ports:
+              mountPath: /usr/local/tomcat/webapps
           ports:
             - containerPort: 8080
           

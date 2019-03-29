@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content=" John Doe&#39;s Personal blog about everything">
+<meta name="generator" content="Hugo 0.17" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Etcd Helm Chart Credit to https://github.com/ingvagabund. This is an implementation of that work
+ https://github.com/kubernetes/contrib/pull/1295  Prerequisites Details  Kubernetes 1.5 (for StatefulSets support) PV support on the underlying infrastructure  StatefulSet Details  https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/  StatefulSet Caveats  https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/#limitations  Todo  Implement SSL  Chart Details This chart will do the following:
+ Implemented a dynamically scalable etcd cluster using Kubernetes StatefulSets  Installing the Chart To install the chart with the release name my-release:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/src/k8s/helm/etcd/README/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/google-font.css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
+
+<link rel="stylesheet" href="/css/railscasts.css">
+<link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/jquery.bigautocomplete.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/asciinema-player.css" type="text/css" media="all" />
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body id="mr-mobile" class="home blog mr-right-sb" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="mr-container mr-container-outer">
+		<div class="mr-header-mobile-nav clearfix"></div>
+			<header class="mr-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+				<div class="mr-container mr-container-inner mr-row clearfix">
+					<div class="mr-custom-header clearfix">
+						<div class="mr-site-identity">
+							<div class="mr-site-logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+								<div class="mr-header-text">
+									<a class="mr-header-text-link" href="/" title="零零碎碎" rel="home">
+										<h1 class="mr-header-title">零零碎碎</h1>
+										<h2 class="mr-header-tagline">点滴记录</h2>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mr-main-nav-wrap">
+					<nav class="menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<ul class="menu__list">
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/docker">docker</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/hadoop">hadoop</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/scala">scala</a></li>
+        
+            <li class="menu__item"><a class="menu__link" href="/categories/spark">spark</a></li>
+        
+	</ul>
+</nav>
+				</div>
+			</header>
+		<div class="mr-wrapper clearfix">
+
+
+<div class="mr-content" id="main-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title"></h1>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+			</p>
+		</header>
+		<div class="entry-content clearfix">
+			
+			
+
+<h1 id="etcd-helm-chart">Etcd Helm Chart</h1>
+
+<p>Credit to <a href="https://github.com/ingvagabund">https://github.com/ingvagabund</a>. This is an implementation of that work</p>
+
+<ul>
+<li><a href="https://github.com/kubernetes/contrib/pull/1295">https://github.com/kubernetes/contrib/pull/1295</a></li>
+</ul>
+
+<h2 id="prerequisites-details">Prerequisites Details</h2>
+
+<ul>
+<li>Kubernetes 1.5 (for <code>StatefulSets</code> support)</li>
+<li>PV support on the underlying infrastructure</li>
+</ul>
+
+<h2 id="statefulset-details">StatefulSet Details</h2>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/">https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/</a></li>
+</ul>
+
+<h2 id="statefulset-caveats">StatefulSet Caveats</h2>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/#limitations">https://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/#limitations</a></li>
+</ul>
+
+<h2 id="todo">Todo</h2>
+
+<ul>
+<li>Implement SSL</li>
+</ul>
+
+<h2 id="chart-details">Chart Details</h2>
+
+<p>This chart will do the following:</p>
+
+<ul>
+<li>Implemented a dynamically scalable etcd cluster using Kubernetes StatefulSets</li>
+</ul>
+
+<h2 id="installing-the-chart">Installing the Chart</h2>
+
+<p>To install the chart with the release name <code>my-release</code>:</p>
+
+<pre><code class="language-bash">$ helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+$ helm install --name my-release incubator/etcd
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following table lists the configurable parameters of the etcd chart and their default values.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>image.repository</code></td>
+<td>Container image repository</td>
+<td><code>k8s.gcr.io/etcd-amd64</code></td>
+</tr>
+
+<tr>
+<td><code>image.tag</code></td>
+<td>Container image tag</td>
+<td><code>2.2.5</code></td>
+</tr>
+
+<tr>
+<td><code>image.pullPolicy</code></td>
+<td>Container pull policy</td>
+<td><code>IfNotPresent</code></td>
+</tr>
+
+<tr>
+<td><code>replicas</code></td>
+<td>k8s statefulset replicas</td>
+<td><code>3</code></td>
+</tr>
+
+<tr>
+<td><code>resources</code></td>
+<td>container required resources</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>clientPort</code></td>
+<td>k8s service port</td>
+<td><code>2379</code></td>
+</tr>
+
+<tr>
+<td><code>peerPorts</code></td>
+<td>Container listening port</td>
+<td><code>2380</code></td>
+</tr>
+
+<tr>
+<td><code>storage</code></td>
+<td>Persistent volume size</td>
+<td><code>1Gi</code></td>
+</tr>
+
+<tr>
+<td><code>storageClass</code></td>
+<td>Persistent volume storage class</td>
+<td><code>anything</code></td>
+</tr>
+
+<tr>
+<td><code>affinity</code></td>
+<td>affinity settings for pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>nodeSelector</code></td>
+<td>Node labels for pod assignment</td>
+<td><code>{}</code></td>
+</tr>
+
+<tr>
+<td><code>tolerations</code></td>
+<td>Toleration labels for pod assignment</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>extraEnv</code></td>
+<td>Optional environment variables</td>
+<td><code>[]</code></td>
+</tr>
+
+<tr>
+<td><code>memoryMode</code></td>
+<td>Using memory as backend storage</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Specify each parameter using the <code>--set key=value[,key=value]</code> argument to <code>helm install</code>.</p>
+
+<p>Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,</p>
+
+<pre><code class="language-bash">$ helm install --name my-release -f values.yaml incubator/etcd
+</code></pre>
+
+<blockquote>
+<p><strong>Tip</strong>: You can use the default <a href="values.yaml">values.yaml</a></p>
+</blockquote>
+
+<h1 id="deep-dive">Deep dive</h1>
+
+<h2 id="cluster-health">Cluster Health</h2>
+
+<pre><code>$ for i in &lt;0..n&gt;; do kubectl exec &lt;release-podname-$i&gt; -- sh -c 'etcdctl cluster-health'; done
+</code></pre>
+
+<p>eg.</p>
+
+<pre><code>$ for i in {0..9}; do kubectl exec named-lynx-etcd-$i --namespace=etcd -- sh -c 'etcdctl cluster-health'; done
+member 7878c44dabe58db is healthy: got healthy result from http://named-lynx-etcd-7.named-lynx-etcd:2379
+member 19d2ab7b415341cc is healthy: got healthy result from http://named-lynx-etcd-4.named-lynx-etcd:2379
+member 6b627d1b92282322 is healthy: got healthy result from http://named-lynx-etcd-3.named-lynx-etcd:2379
+member 6bb377156d9e3fb3 is healthy: got healthy result from http://named-lynx-etcd-0.named-lynx-etcd:2379
+member 8ebbb00c312213d6 is healthy: got healthy result from http://named-lynx-etcd-8.named-lynx-etcd:2379
+member a32e3e8a520ff75f is healthy: got healthy result from http://named-lynx-etcd-5.named-lynx-etcd:2379
+member dc83003f0a226816 is healthy: got healthy result from http://named-lynx-etcd-2.named-lynx-etcd:2379
+member e3dc94686f60465d is healthy: got healthy result from http://named-lynx-etcd-6.named-lynx-etcd:2379
+member f5ee1ca177a88a58 is healthy: got healthy result from http://named-lynx-etcd-1.named-lynx-etcd:2379
+cluster is healthy
+</code></pre>
+
+<h2 id="failover">Failover</h2>
+
+<p>If any etcd member fails it gets re-joined eventually.
+You can test the scenario by killing process of one of the replicas:</p>
+
+<pre><code class="language-shell">$ ps aux | grep etcd-1
+$ kill -9 ETCD_1_PID
+</code></pre>
+
+<pre><code class="language-shell">$ kubectl get pods -l &quot;release=${RELEASE-NAME},app=etcd&quot;
+NAME                 READY     STATUS        RESTARTS   AGE
+etcd-0               1/1       Running       0          54s
+etcd-2               1/1       Running       0          51s
+</code></pre>
+
+<p>After a while:</p>
+
+<pre><code class="language-shell">$ kubectl get pods -l &quot;release=${RELEASE-NAME},app=etcd&quot;
+NAME                 READY     STATUS    RESTARTS   AGE
+etcd-0               1/1       Running   0          1m
+etcd-1               1/1       Running   0          20s
+etcd-2               1/1       Running   0          1m
+</code></pre>
+
+<p>You can check state of re-joining from <code>etcd-1</code>&rsquo;s logs:</p>
+
+<pre><code class="language-shell">$ kubectl logs etcd-1
+Waiting for etcd-0.etcd to come up
+Waiting for etcd-1.etcd to come up
+ping: bad address 'etcd-1.etcd'
+Waiting for etcd-1.etcd to come up
+Waiting for etcd-2.etcd to come up
+Re-joining etcd member
+Updated member with ID 7fd61f3f79d97779 in cluster
+2016-06-20 11:04:14.962169 I | etcdmain: etcd Version: 2.2.5
+2016-06-20 11:04:14.962287 I | etcdmain: Git SHA: bc9ddf2
+...
+</code></pre>
+
+<h2 id="scaling-using-kubectl">Scaling using kubectl</h2>
+
+<p>This is for reference. Scaling should be managed by <code>helm upgrade</code></p>
+
+<p>The etcd cluster can be scale up by running <code>kubectl patch</code> or <code>kubectl edit</code>. For instance,</p>
+
+<pre><code class="language-sh">$ kubectl get pods -l &quot;release=${RELEASE-NAME},app=etcd&quot;
+NAME      READY     STATUS    RESTARTS   AGE
+etcd-0    1/1       Running   0          7m
+etcd-1    1/1       Running   0          7m
+etcd-2    1/1       Running   0          6m
+
+$ kubectl patch statefulset/etcd -p '{&quot;spec&quot;:{&quot;replicas&quot;: 5}}'
+&quot;etcd&quot; patched
+
+$ kubectl get pods -l &quot;release=${RELEASE-NAME},app=etcd&quot;
+NAME      READY     STATUS    RESTARTS   AGE
+etcd-0    1/1       Running   0          8m
+etcd-1    1/1       Running   0          8m
+etcd-2    1/1       Running   0          8m
+etcd-3    1/1       Running   0          4s
+etcd-4    1/1       Running   0          1s
+</code></pre>
+
+<p>Scaling-down is similar. For instance, changing the number of replicas to <code>4</code>:</p>
+
+<pre><code class="language-sh">$ kubectl edit statefulset/etcd
+statefulset &quot;etcd&quot; edited
+
+$ kubectl get pods -l &quot;release=${RELEASE-NAME},app=etcd&quot;
+NAME      READY     STATUS    RESTARTS   AGE
+etcd-0    1/1       Running   0          8m
+etcd-1    1/1       Running   0          8m
+etcd-2    1/1       Running   0          8m
+etcd-3    1/1       Running   0          4s
+</code></pre>
+
+<p>Once a replica is terminated (either by running <code>kubectl delete pod etcd-ID</code> or scaling down),
+content of <code>/var/run/etcd/</code> directory is cleaned up.
+If any of the etcd pods restarts (e.g. caused by etcd failure or any other),
+the directory is kept untouched so the pod can recover from the failure.</p>
+
+		</div>
+		
+	</article>
+	
+<div class="mr-author-box clearfix">
+	<figure class="mr-author-box-avatar">
+		<img alt="dishui avatar" src="/src/img/dishui.png" class="avatar avatar-90 photo" height="90" width="90">
+	</figure>
+	<div class="mr-author-box-header">
+		<span class="mr-author-box-name">About dishui</span>
+	</div>
+	<div class="mr-author-box-bio">
+		辛勤的搬运工!!!
+	</div>
+</div>
+
+	
+
+	<nav class="mr-post-nav mr-row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-prev">
+			<a href="/src/k8s/helm/elasticsearch/README/" rel="prev"><span>«Previous</span><p></p></a>
+		</div>
+		
+		
+		<div class="mr-col-1-2 mr-post-nav-item mr-post-nav-next">
+			<a href="/src/k8s/helm/grafana/README/" rel="next"><span>Next»</span><p></p></a>
+		</div>
+		
+	</nav>
+
+
+	
+</div>
+
+<aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<div class="mr-widget widget_search navbar-wrapper" >
+    <div class="search-form">
+        <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input id="lanren" type="text" class="search-field" placeholder="Search..." value="" name="q">
+        </label>
+        <div id="list-container" class="bdsug" style="height: auto; display: block;">
+        </div>
+    </div>
+    <div id="side-toc" class="entry-content">
+
+    </div>
+</div>
+</aside>
+	</div>
+		<div class="mr-copyright-wrap">
+			<div class="mr-container mr-container-inner clearfix">
+				<p class="mr-copyright">&copy; 2019 零零碎碎. <a href="https://git.oschina.net/dishui/dishui" target="_blank" rel="nofollow noopener noreferrer">dishui</a>.</p>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<script src="/js/asciinema-player.js"></script>
+<script data-main="/js/app.js" src="/js/require.js"></script>
+
+
+</body>
+</html>

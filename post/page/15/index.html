@@ -91,6 +91,48 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/awk/" rel="bookmark">awk</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. AWK1.1. 去除重复行1.2. ps 查询进程1. AWK1.1. 去除重复行awk '!a[$0]++' test-ins-2.txtcat arg.txt | awk -F '.' '{if($NF ~ "java"){print $0}}' | xargs -I t dirname t | awk '!a[$0]++' | xargs -I s ls s | awk '{print $1}' | awk -F'.' '{if($1 ~ /\$/){print $1}}'1.2. ps 查询进程ps -ef|grep varnish | awk '{if($1 ~ "
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/app/bug/" rel="bookmark">bug</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						我的店铺&#8212;&#8203;添加商品&#8212;&#8203;添加商品属性出库地址和销售区域 是选择的 不是填写的
+SELECTmpa.product_id,IFNULL(tranAddr (MAX(CASEmpa.attr_nameWHEN '销售地区'THEN mpa.attr_valueELSE NULLEND),'-'),CAST(mpa.attr_value AS CHAR(12))) sale_region,MAX(CASEmpa.attr_nameWHEN '出库地区'THEN tranAddr(mpa.attr_value,'-')ELSE NULLEND) repository_region,FROMmlq_product_attr mpaWHERE mpa.product_id = '201610261142512'
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/docker-ref/" rel="bookmark">docker 参考</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -266,48 +308,6 @@ asdf
 _index是list的一个属性&lt;#list list as a&gt;${a_index}&lt;/#list&gt;
 5.取LIST中第i个元素的值${list[i]}嵌套时前面要有括号，如下，将字符串变成list，然后取第i个元素的值${(str?split(","))[i]}
 list的嵌套：&lt;#list jsskList as jsskVO&gt;&lt;#list kcList as kcVO&gt;&lt;#if kcVO.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/git/" rel="bookmark">git基础命令</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						git1. git2. 拉取git项目中的特定文件夹2.1. 命令2.1.1. 远程分支2.2. 本地目录(存在文件),上传到码云2.2.1. 综合使用2.2.2. Q &amp; A1. git2. 拉取git项目中的特定文件夹# svn list &lt;repositry-url&gt; 查看文件夹svn list https://github.com/apache/spark.git# 拉取git项目中的特定文件夹svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.62.1. 命令2.1.1. 远程分支查看远程分支
-$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
-git remote add origin git@git.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go/" rel="bookmark">go 基础配置</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. go1.1. 配置1.1.1. 软件下载1.1.2. 环境变量配置1.2. sublime go 开发环境配置1.2.1. GoSublime1.2.2. 安装 gocode 和 margo1.3. go语言指针符号的*和&amp;1.3.1. 解释1.4. windows 环境 gcc 配置1.4.1. 下载 MSYS2集成系统环境变量1.4.2. 安装 GCC1.5. 翻墙下载1.6. 参考2. 编译2.1. gopm1. go1.1. 配置1.1.1. 软件下载Go SDK
 					</div>
 				</div>
 			</div>

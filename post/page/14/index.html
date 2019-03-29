@@ -91,6 +91,61 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/nfsjian_1/" rel="bookmark">NFS配置</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						include::content/post/base.adoc[] :toc-title: Contents
+NFS配置 ####一、 系统环境
+系统平台：CentOS 6.5 NFS Server IP：192.168.137.101 防火墙已关闭/iptables: Firewall is not running.  ####二、 安装NFS服务
+ 查看系统是否已安装NFS(系统默认安装)  bash [root@c1 tmp]# rpm -qa|grep nfs nfs-utils-lib-1.1.5-6.el6.i686 nfs4-acl-tools-0.3.3-6.el6.i686 nfs-utils-1.2.3-39.el6.i686    ####三、 NFS服务器的配置
+NFS服务器的配置相对比较简单，只需要在相应的配置文件中进行设置，然后启动NFS服务器即可。
+NFS的常用目录
+/etc/exports NFS服务的主要配置文件 /usr/sbin/exportfs NFS服务的管理命令 /usr/sbin/showmount 客户端的查看命令 /var/lib/nfs/etab 记录NFS分享出来的目录的完整权限设定值 /var/lib/nfs/xtab 记录曾经登录过的客户端信息  NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。
+/etc/exports文件内容格式：
+&lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）]  a. 输出目录：
+输出目录是指NFS系统中需要共享给客户机使用的目录；  b. 客户端：
+客户端是指网络中可以访问这个NFS输出目录的计算机
+客户端常用的指定方式
+指定ip地址的主机：192.168.0.200 指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0 指定域名的主机：david.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/nagios/" rel="bookmark">Nagios</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Nagios1.1. 马哥 Nagios基础和入门配置1. Nagios1.1. 马哥 Nagios基础和入门配置安装依赖 yum grouplist #查看 Development Tools 是否安装yum -y install httpd php mysql-devel php-mysql添加nagios运行所需要的用户和组
+groupadd nagcmduseradd -G nagcmd nagios把apache加入到nagcmd组,以便于在通过web Interface操作nagios时有足够的权限
+usermod -a -G nagcmd apache编译安装nagios
+date 0710103216 # 0710-月份 1031-时间 16-年./configure --help #查看帮助.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/nginx/" rel="bookmark">Nginx 安装配置</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -254,48 +309,6 @@ nginx 平台为：rhel 6.4/CentOS-6.5 32bit
 sudo apk --update add ruby ruby-nokogiri ruby-rdoc build-base ruby-dev icu-dev zlib-dev git安装gollum
 sudo gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/sudo gem install gollum github-markdown asciidoctor pygments.rb --no-ri --no-rdoc局域网访问慢
 sudo vi /usr/lib/ruby/2.2.0/webrick/config.rb#第 36 行：:DoNotReverseLookup =&gt; nil,:DoNotReverseLookup =&gt; true开机自启动(Adding a custom service to rc-service)
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/awk/" rel="bookmark">awk</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. AWK1.1. 去除重复行1.2. ps 查询进程1. AWK1.1. 去除重复行awk '!a[$0]++' test-ins-2.txtcat arg.txt | awk -F '.' '{if($NF ~ "java"){print $0}}' | xargs -I t dirname t | awk '!a[$0]++' | xargs -I s ls s | awk '{print $1}' | awk -F'.' '{if($1 ~ /\$/){print $1}}'1.2. ps 查询进程ps -ef|grep varnish | awk '{if($1 ~ "
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/app/bug/" rel="bookmark">bug</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						我的店铺&#8212;&#8203;添加商品&#8212;&#8203;添加商品属性出库地址和销售区域 是选择的 不是填写的
-SELECTmpa.product_id,IFNULL(tranAddr (MAX(CASEmpa.attr_nameWHEN '销售地区'THEN mpa.attr_valueELSE NULLEND),'-'),CAST(mpa.attr_value AS CHAR(12))) sale_region,MAX(CASEmpa.attr_nameWHEN '出库地区'THEN tranAddr(mpa.attr_value,'-')ELSE NULLEND) repository_region,FROMmlq_product_attr mpaWHERE mpa.product_id = '201610261142512'
-
 					</div>
 				</div>
 			</div>

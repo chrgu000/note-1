@@ -12,7 +12,7 @@
 <meta property="og:url" content="/" />
 
 
-<meta property="og:updated_time" content="2018-12-20T17:17:42&#43;00:00"/>
+<meta property="og:updated_time" content="2019-02-15T18:43:10&#43;00:00"/>
 
 
 
@@ -81,6 +81,66 @@
 	<div id="main-content" class="mr-loop mr-content" role="main">
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/my/cdh-5/" rel="bookmark">CDH-5.16.X 安装</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2019-02-15 18:43:10 &#43;0000 UTC">February 15, 2019</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. 参考2. CentOS 72.1. ssh2.2. 配置本地仓库1. 参考install_cm_cdh
+https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball_516.html#cm_vd_cdh_package_tarball_515
+安装
+2. CentOS 72.1. ssh配置sshd root用户密码登陆sudo sed -i 's@#PermitRootLogin no@PermitRootLogin yes@' /etc/ssh/sshd_configsudo sed -i 's@PasswordAuthentication no@PasswordAuthentication yes@' /etc/ssh/sshd_configsudo systemctl restart sshdsed -i s@SELINUX=enforcing@SELINUX=disabled@ /etc/selinux/config
+2.2. 配置本地仓库Namesudo yum install httpdsudo service httpd start#下载Cloudera Manager 5: https://archive.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/suning/grafana/" rel="bookmark">grafana</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2019-02-14 17:50:41 &#43;0000 UTC">February 14, 2019</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contentswmisum(wmi_gpu_utilization_memory{exported_instance="$server"}) / (count(wmi_gpu_utilization_memory{exported_instance="$server"}) by (gpu))
+sum by (mode) (rate(wmi_cpu_time_total{exported_instance="创新中心实验室|创新中心实验室|zk-PC2",mode="idle"}[1m]))
+curl 'http://monitor.fabx.com.cn/api/v1/query?query=up'
+GPU 内存负载
+sum(wmi_gpu_utilization_memory{exported_instance="创新中心实验室|创新中心实验室|zk-PC"})/(count(wmi_gpu_utilization_memory{exported_instance="创新中心实验室|创新中心实验室|zk-PC"}))
+http://monitor.fabx.com.cn/api/v1/query?query=sum(wmi_gpu_utilization_memory{exported_instance="创新中心实验室|创新中心实验室|zk-PC"})/(count(wmi_gpu_utilization_memory{exported_instance="创新中心实验室|创新中心实验室|zk-PC"}))
+在线监测http://monitor.fabx.com.cn/api/v1/query?query=sum (rate(wmi_cpu_time_total{exported_instance="创新中心实验室|创新中心实验室|zk-PC",mode="idle"}[30s]))
+CPU 使用率
+60s))
+sum(rate(wmi_cpu_time_total{exported_instance="创新中心实验室|创新中心实验室|zk-PC",mode='processor'}[60s]))
+sum(rate(wmi_cpu_time_total{exported_instance="'that.instance'",mode='processor'}[60s]))
+wmiSELECT PercentProcessorTime FROM Win32_PerfFormattedData_PerfOS_Processor
+SELECT PercentProcessorTime FROM Win32_PerfRawData_PerfOS_Processor
+SELECT PercentProcessorTime FROM Win32_PerfFormattedData_Counters_ProcessorInformation
+&lt;echart-status :instance="instance" /&gt;
+&lt;echart-guage :instance="instance" /&gt;192.168.88.5:9182192.168.88.30:9182192.168.88.32:9182192.168.88.43:9182192.168.88.44:9182192.168.88.45:9182
+systemctl enable node-exporter.
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -228,11 +288,11 @@
 						Contents1. k8s参考2. 编译出错3. 编译openssl3.1. 积分排行180907040
 邮箱地址:kaizhouk@pptv.com用户名/密码: kaizhouk/142857git!12345https://mail.pptv.com
 https://im.suning.com
-http://oa.cnsuning.com
+http://oa.cnsuning.comc
 http://gitlab.fabx.com.cn/users/sign_in
 142857git!
 18089513@suning.com
-18089513/142857git!12345618089513
+soa18089513/142857git!123456718089513
 薪资密码: 142857git!
 服务器地址:
 10.200.169.5 root 111111
@@ -294,53 +354,6 @@
 响应式异步交互
 异步编程模型
 
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/nokia/nokia/" rel="bookmark">DO工具箱开发</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2018-08-01 10:28:36 &#43;0000 UTC">August 01, 2018</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						DO工具箱1. OSGi2. 配置3. 指标呈现4. 指标呈现(天)5. 定界定位1. OSGiToolbox 工具箱
-工具箱的安装、开发及使用。时间充足的话再把消息队列详细说说。最好能让他参于到你的项目中，
-基于spark sql
-1, sql语句封装在xml里source：数据源
-summary:处理逻辑result:输出结果2. 配置datasources=hdfs,hivehdfs.source-type=HDFS-NORMALhdfs.type=HDFShdfs.title=HDFS for CMDIhdfs.arg.location=hdfs://vm26:8020/zhoukai/outputhive.source-type=HIVE-NORMALhive.type=HIVEhive.title=Hive for CMDIhive.arg.database=resulthive.arg.location=/output/zhoukai/resultruntime.spark.submit=/usr/bin/spark-submit输入:
-输出StreamSource：HiveStreamSourceHDFSStreamSource
-插件开发 Bundle-SymbolicName
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/work/dayliy/2018-07-09/" rel="bookmark">SparkSql</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2018-07-19 14:43:47 &#43;0000 UTC">July 19, 2018</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						stream1. tmp1. tmpasdfjlj
-
 					</div>
 				</div>
 			</div>

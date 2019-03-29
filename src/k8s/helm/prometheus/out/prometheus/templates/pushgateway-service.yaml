@@ -11,8 +11,8 @@ metadata:
     chart: prometheus-7.0.3
     component: "pushgateway"
     heritage: Tiller
-    release: RELEASE-NAME
-  name: RELEASE-NAME-prometheus-pushgateway
+    release: prometheus
+  name: prometheus-pushgateway
 spec:
   ports:
     - name: http
@@ -22,5 +22,5 @@ spec:
   selector:
     app: prometheus
     component: "pushgateway"
-    release: RELEASE-NAME
+    release: prometheus
   type: "ClusterIP"

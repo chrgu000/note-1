@@ -2784,13 +2784,9 @@ nohup /mnt/Nand3/H2000G &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
 &lt;li&gt;&lt;a href=&#34;#_systemd&#34;&gt;11. systemd&lt;/a&gt;
 &lt;ul class=&#34;sectlevel2&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_mount&#34;&gt;11.1. mount&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_分区&#34;&gt;11.2. 分区&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_查看整个日志&#34;&gt;查看整个日志&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_查看_mytimer_timer_的日志&#34;&gt;查看 mytimer.timer 的日志&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_查看_mytimer_timer_和_mytimer_service_的日志&#34;&gt;查看 mytimer.timer 和 mytimer.service 的日志&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_从结尾开始查看最新日志&#34;&gt;从结尾开始查看最新日志&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_从结尾开始查看_mytimer_timer_的日志&#34;&gt;从结尾开始查看 mytimer.timer 的日志&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
@@ -3087,7 +3083,7 @@ read only = no&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000002427568&#34;&gt; &lt;code&gt;Linux&lt;/code&gt; 下同步工具 &lt;code&gt;inotify&lt;/code&gt; + &lt;code&gt;rsync&lt;/code&gt; 使用详解&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000002427568&#34;&gt;Linux下同步工具inotify rsync使用详解&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -3218,35 +3214,70 @@ Where=/mnt/scratch
 Type=nfs
 
 [Install]
-WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;
+WantedBy=multi-user.target
+
+# 查看整个日志
+$ sudo journalctl
+
+# 查看 mytimer.timer 的日志
+$ sudo journalctl -u mytimer.timer
+
+# 查看 mytimer.timer 和 mytimer.service 的日志
+$ sudo journalctl -u mytimer
+
+# 从结尾开始查看最新日志
+$ sudo journalctl -f
+
+# 从结尾开始查看 mytimer.timer 的日志
+$ journalctl -f -u timer.timer&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_查看整个日志&#34; class=&#34;sect0&#34;&gt;查看整个日志&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$ sudo journalctl&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_查看_mytimer_timer_的日志&#34; class=&#34;sect0&#34;&gt;查看 mytimer.timer 的日志&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$ sudo journalctl -u mytimer.timer&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_查看_mytimer_timer_和_mytimer_service_的日志&#34; class=&#34;sect0&#34;&gt;查看 mytimer.timer 和 mytimer.service 的日志&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$ sudo journalctl -u mytimer&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_从结尾开始查看最新日志&#34; class=&#34;sect0&#34;&gt;从结尾开始查看最新日志&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$ sudo journalctl -f&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_从结尾开始查看_mytimer_timer_的日志&#34; class=&#34;sect0&#34;&gt;从结尾开始查看 mytimer.timer 的日志&lt;/h1&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$ journalctl -f -u timer.timer&lt;/p&gt;
-&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_分区&#34;&gt;11.2. 分区&lt;/h3&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;parted /dev/sdb mklabel gpt mkpart 1 ext4 1 33T
+# 挂载分区
+/dev/sdb1 /home/data  ext4     defaults     0 0
+
+/dev/md126p1 /home/Caroline/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+/dev/md126p2 /home/subor/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+/dev/md126p3 /home/lichen/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+
+
+mount /dev/md126p2 /home/subor/data
+mount /dev/md126p3 /home/lichen/data
+
+chown -R subor:subor /home/subor/data
+chown -R lichen:lichen /home/lichen/data&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;二、通过计算分区
+获取磁盘的几个参数（这里是软raid）
+# cat /sys/block/md127/queue/optimal_io_size
+3670016
+# cat /sys/block/md127/queue/minimum_io_size
+524288
+# cat /sys/block/md127/alignment_offset
+0
+# cat /sys/block/md127/queue/physical_block_size
+512
+optimal_io_size 加上 alignment_offset 的和 然后除以 physical_block_size
+在这个环境下是：
+(3670016 + 0) / 512 = 7168&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;那么分区的时候命令就应该是&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;mkpart primary 7168s 100%&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/zhangpengme/archive/2011/12/29/2305963.html&#34;&gt;parted分区参考&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

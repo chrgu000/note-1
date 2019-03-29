@@ -7,7 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="linux 基础命令" />
-<meta property="og:description" content="时区" />
+<meta property="og:description" content="时区 硬盘分区 parted" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/basic/" />
 
@@ -118,13 +118,9 @@
 <li><a href="#_systemd">11. systemd</a>
 <ul class="sectlevel2">
 <li><a href="#_mount">11.1. mount</a></li>
+<li><a href="#_分区">11.2. 分区</a></li>
 </ul>
 </li>
-<li><a href="#_查看整个日志">查看整个日志</a></li>
-<li><a href="#_查看_mytimer_timer_的日志">查看 mytimer.timer 的日志</a></li>
-<li><a href="#_查看_mytimer_timer_和_mytimer_service_的日志">查看 mytimer.timer 和 mytimer.service 的日志</a></li>
-<li><a href="#_从结尾开始查看最新日志">从结尾开始查看最新日志</a></li>
-<li><a href="#_从结尾开始查看_mytimer_timer_的日志">从结尾开始查看 mytimer.timer 的日志</a></li>
 </ul>
 </div>
 <div class="sect2">
@@ -421,7 +417,7 @@ read only = no</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://segmentfault.com/a/1190000002427568"> <code>Linux</code> 下同步工具 <code>inotify</code> + <code>rsync</code> 使用详解</a></p>
+<p><a href="https://segmentfault.com/a/1190000002427568">Linux下同步工具inotify rsync使用详解</a></p>
 </li>
 </ol>
 </div>
@@ -552,35 +548,70 @@ Where=/mnt/scratch
 Type=nfs
 
 [Install]
-WantedBy=multi-user.target</code></pre>
+WantedBy=multi-user.target
+
+# 查看整个日志
+$ sudo journalctl
+
+# 查看 mytimer.timer 的日志
+$ sudo journalctl -u mytimer.timer
+
+# 查看 mytimer.timer 和 mytimer.service 的日志
+$ sudo journalctl -u mytimer
+
+# 从结尾开始查看最新日志
+$ sudo journalctl -f
+
+# 从结尾开始查看 mytimer.timer 的日志
+$ journalctl -f -u timer.timer</code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-<h1 id="_查看整个日志" class="sect0">查看整个日志</h1>
-<div class="paragraph">
-<p>$ sudo journalctl</p>
-</div>
-<h1 id="_查看_mytimer_timer_的日志" class="sect0">查看 mytimer.timer 的日志</h1>
-<div class="paragraph">
-<p>$ sudo journalctl -u mytimer.timer</p>
-</div>
-<h1 id="_查看_mytimer_timer_和_mytimer_service_的日志" class="sect0">查看 mytimer.timer 和 mytimer.service 的日志</h1>
-<div class="paragraph">
-<p>$ sudo journalctl -u mytimer</p>
-</div>
-<h1 id="_从结尾开始查看最新日志" class="sect0">从结尾开始查看最新日志</h1>
-<div class="paragraph">
-<p>$ sudo journalctl -f</p>
-</div>
-<h1 id="_从结尾开始查看_mytimer_timer_的日志" class="sect0">从结尾开始查看 mytimer.timer 的日志</h1>
-<div class="paragraph">
-<p>$ journalctl -f -u timer.timer</p>
-</div>
+<div class="sect2">
+<h3 id="_分区">11.2. 分区</h3>
 <div class="listingblock">
 <div class="content">
-<pre></pre>
+<pre class="highlightjs highlight"><code>parted /dev/sdb mklabel gpt mkpart 1 ext4 1 33T
+# 挂载分区
+/dev/sdb1 /home/data  ext4     defaults     0 0
+
+/dev/md126p1 /home/Caroline/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+/dev/md126p2 /home/subor/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+/dev/md126p3 /home/lichen/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+
+
+mount /dev/md126p2 /home/subor/data
+mount /dev/md126p3 /home/lichen/data
+
+chown -R subor:subor /home/subor/data
+chown -R lichen:lichen /home/lichen/data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>二、通过计算分区
+获取磁盘的几个参数（这里是软raid）
+# cat /sys/block/md127/queue/optimal_io_size
+3670016
+# cat /sys/block/md127/queue/minimum_io_size
+524288
+# cat /sys/block/md127/alignment_offset
+0
+# cat /sys/block/md127/queue/physical_block_size
+512
+optimal_io_size 加上 alignment_offset 的和 然后除以 physical_block_size
+在这个环境下是：
+(3670016 + 0) / 512 = 7168</p>
+</div>
+<div class="paragraph">
+<p>那么分区的时候命令就应该是</p>
+</div>
+<div class="paragraph">
+<p>mkpart primary 7168s 100%</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.cnblogs.com/zhangpengme/archive/2011/12/29/2305963.html">parted分区参考</a></p>
+</div>
+</div>
 </div>
 </div>
 

@@ -18,19 +18,6 @@
 &lt;div id=&#34;toctitle&#34;&gt;hugo&lt;/div&gt;
 &lt;ul class=&#34;sectlevel1&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_环境&#34;&gt;1. 环境&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_hugo&#34;&gt;2. hugo&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_设置发布目录&#34;&gt;2.1. 设置发布目录&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_部署&#34;&gt;2.2. 部署&lt;/a&gt;
-&lt;ul class=&#34;sectlevel3&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_带项目名&#34;&gt;2.2.1. 带项目名&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_不带项目名&#34;&gt;2.2.2. 不带项目名&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_生成_strong_lunr_strong_索引&#34;&gt;3. 生成 &lt;strong&gt;lunr&lt;/strong&gt; 索引&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;4. 参考&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
@@ -117,8 +104,10 @@ end
 require &#39;asciidoctor-diagram&#39;
 require &#39;asciidoctor/extensions&#39;
 require &#39;asciidoctor/GistBlockMacro&#39;
+require &#39;asciidoctor/gojs&#39;
 Asciidoctor::Extensions.register do
     block_macro GistBlockMacro if document.basebackend? &#39;html&#39;
+    block Gojs::BlockProcessor, :gojs
 end
 #
 require &#39;asciidoctor/cli&#39;
@@ -159,17 +148,12 @@ end&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;== hugo&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;=== 设置发布目录&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_hugo&#34;&gt;2. hugo&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_设置发布目录&#34;&gt;2.1. 设置发布目录&lt;/h3&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;# 创建 gh-pages 分支
@@ -178,127 +162,29 @@ git checkout --orphan gh-pages
 git worktree add public gh-pages #public 是没有的目录&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_部署&#34;&gt;2.2. 部署&lt;/h3&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_带项目名&#34;&gt;2.2.1. 带项目名&lt;/h4&gt;
-&lt;div class=&#34;quoteblock&#34;&gt;
-&lt;blockquote&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://dishui.oschina.io/note-hugo/&#34; class=&#34;bare&#34;&gt;http://dishui.oschina.io/note-hugo/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;== Asciidoctor 拓展&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;hugo-local.sh&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
-
-cd /e/note-hugo/
-
-# 替换域名
-echo &#34;替换域名&#34;
-git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-sed -i &#39;s/dishui.oschina.io/localhost:1313/g&#39; themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-echo &#34;启动 hugo server&#34;
-hugo server&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;Unresolved directive in &amp;lt;stdin&amp;gt; - include::GistBlockMacro.rb[]&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;hugo.sh&lt;/div&gt;
+&lt;div class=&#34;title&#34;&gt;gojs&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
-
-cd /e/note-hugo/
-
-# 还原
-echo &#34;恢复域名&#34;
-git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-
-echo &#34;Generating site&#34;
-hugo
-
-echo &#34;Updating gh-pages branch&#34;
-cd public &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push
-
-echo &#34;Commit note-hugo&#34;
-cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;Unresolved directive in &amp;lt;stdin&amp;gt; - include::gojs.rb[]&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;C:\Ruby23-x64\lib\ruby\gems\2.3.0\gems\asciidoctor-1.5.5\bin\asciidoctor&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;Unresolved directive in &amp;lt;stdin&amp;gt; - include::asciidoctor[]&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_不带项目名&#34;&gt;2.2.2. 不带项目名&lt;/h4&gt;
-&lt;div class=&#34;quoteblock&#34;&gt;
-&lt;blockquote&gt;
+&lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://dishui.oschina.io&#34; class=&#34;bare&#34;&gt;http://dishui.oschina.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;== 参考&lt;/p&gt;
 &lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;hugo-local.sh&lt;/div&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
-
-cd /e/dishui/
-
-echo &#34;启动 hugo server&#34;
-hugo server&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;hugo-oschina.sh&lt;/div&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;#!/bin/sh
-
-cd /e/dishui/
-
-hugo
-
-echo &#34;Updating gh-pages branch&#34;
-cd public &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push
-
-echo &#34;Commit note&#34;
-cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(date +%Y-%m-%d)&#34; &amp;amp;&amp;amp; git push&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_生成_strong_lunr_strong_索引&#34;&gt;3. 生成 &lt;strong&gt;lunr&lt;/strong&gt; 索引&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;启动 &lt;strong&gt;nodejieba&lt;/strong&gt;&lt;br&gt;
-启动 &lt;strong&gt;docker-volume-netshare&lt;/strong&gt; ( &lt;a href=&#34;/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker&#34;&gt;docker-volume-netshare&lt;/a&gt; )&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;启动 &lt;strong&gt;nodejieba&lt;/strong&gt; 容器&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;docker run -it --name=lunr --volume-driver=cifs -v 192.168.137.1/dishui:/hugo registry.cn-hangzhou.aliyuncs.com/dishui/nodejieba:1.1 bash&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;构建索引&lt;/p&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;cd /hugo/content &amp;amp;&amp;amp; nodejs hugo-lunr.js &amp;amp;&amp;amp; nodejs index_builder.js&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_参考&#34;&gt;4. 参考&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
@@ -314,6 +200,10 @@ cd .. &amp;amp;&amp;amp; git add --all &amp;amp;&amp;amp; git commit -m &#34;$(d
 &lt;p&gt;&lt;a href=&#34;https://github.com/jgm/pandoc&#34;&gt;pandoc&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2017-03-17T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-03-22T00:00:00&#43;00:00"/>
 
 
 
@@ -85,6 +85,53 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/hadoop/docker/hadoop-docker/" rel="bookmark">hadoop-docker</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-22 00:00:00 &#43;0000 UTC">March 22, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						https://github.com/HariSekhon/Dockerfileshttps://hub.docker.com/r/harisekhon
+
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/hadoop/hbase/" rel="bookmark">hbase</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-03-22 00:00:00 &#43;0000 UTC">March 22, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						hbase1. 安装2. HBase 性能优化1. 安装上传首先确保用户是 hadoop ，用工具将 hbase 安装包 hbase-0.99.2-bin.tar.gz 上传到 /home/hadoop 下，确保 hbase-0.99.2-bin.tar.gz 的用户是 hadoop，如果不是，执行 chown 命令
+解压
+su – hadooptar –zxvf hbase-0.99.2-bin.tar.gz重命名
+mv hbase-0.99.2hbase修改环境变量
+在master机器上执行下面命令：
+su – rootvi/etc/profile添加内容：export HBASE_HOME=/home/hadoop/hbaseexport PATH=$PATH:$HBASE_HOME/bin执行命令：source /etc/profilesu – hadoop在其他机器上执行上述操作。
+修改配置文件
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -265,52 +312,6 @@ vi /etc/sysconfig/networkNETWORKING=yesHOSTNAME=mini1 ###修改IP
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
 						多元函数1. 多元函数1.1. 二元函数1.2. 二元函数图形1.3. 复杂的二元函数2. 多元函数的极限和连续性2.1. 一元函数的极限2.2. 二元函数的极限1. 多元函数1.1. 二元函数1.2. 二元函数图形1.3. 复杂的二元函数2.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/my/hugo/" rel="bookmark">hugo</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-08 00:00:00 &#43;0000 UTC">March 08, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						hugo1. 环境2. hugo2.1. 设置发布目录2.2. 部署2.2.1. 带项目名2.2.2. 不带项目名3. 生成 lunr 索引4. 参考1. 环境软件下载地址Ruby
-Ruby 2.3.3 (x64)
-Asciidoctor
-gem install asciidoctor asciidoctor-diagram &lt;1&gt;
-graphviz
-graphviz version 2.38.0
-1asciidoctor-diagram plantuml图设置淘宝gem源
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/mathematics/xuxiaozhan/%E6%AC%A7%E6%8B%89%E6%96%B9%E7%A8%8B/" rel="bookmark">欧拉方程</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-03-06 00:00:00 &#43;0000 UTC">March 06, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						欧拉方程1. 欧拉方程1. 欧拉方程
 					</div>
 				</div>
 			</div>

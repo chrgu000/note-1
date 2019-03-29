@@ -11,8 +11,10 @@ end
 require 'asciidoctor-diagram'
 require 'asciidoctor/extensions'
 require 'asciidoctor/GistBlockMacro'
+require 'asciidoctor/gojs'
 Asciidoctor::Extensions.register do
     block_macro GistBlockMacro if document.basebackend? 'html'
+    block Gojs::BlockProcessor, :gojs
 end
 #
 require 'asciidoctor/cli'

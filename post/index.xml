@@ -6,8 +6,266 @@
     <description>Recent content in Post-rsses on 零零碎碎</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 20 Dec 2018 17:17:42 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 Feb 2019 18:43:10 +0000</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>CDH-5.16.X 安装</title>
+      <link>/post/my/cdh-5/</link>
+      <pubDate>Fri, 15 Feb 2019 18:43:10 +0000</pubDate>
+      
+      <guid>/post/my/cdh-5/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_centos_7&#34;&gt;2. CentOS 7&lt;/a&gt;
+&lt;ul class=&#34;sectlevel2&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_ssh&#34;&gt;2.1. ssh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_配置本地仓库&#34;&gt;2.2. 配置本地仓库&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_参考&#34;&gt;1. 参考&lt;/h3&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cloudera.com/documentation/enterprise/6/latest/topics/installation.html#install_cm_cdh&#34;&gt;install_cm_cdh&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball_516.html#cm_vd_cdh_package_tarball_515&#34; class=&#34;bare&#34;&gt;https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball_516.html#cm_vd_cdh_package_tarball_515&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cloudera.com/documentation/enterprise/5-16-x/topics/configure_cm_repo.html&#34;&gt;安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_centos_7&#34;&gt;2. CentOS 7&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_ssh&#34;&gt;2.1. ssh&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;配置sshd root用户密码登陆&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo sed -i &#39;s@#PermitRootLogin no@PermitRootLogin yes@&#39; /etc/ssh/sshd_config
+sudo sed -i &#39;s@PasswordAuthentication no@PasswordAuthentication yes@&#39; /etc/ssh/sshd_config
+sudo systemctl restart sshd&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sed -i s@SELINUX=enforcing@SELINUX=disabled@ /etc/selinux/config&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_配置本地仓库&#34;&gt;2.2. 配置本地仓库&lt;/h3&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;Name&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;sudo yum install httpd
+sudo service httpd start&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;#下载
+Cloudera Manager 5: https://archive.cloudera.com/cm5/repo-as-tarball/
+CDH 5: https://archive.cloudera.com/cdh5/repo-as-tarball/
+
+#上传分发
+
+
+#制作私有仓库(每个node都执行)
+
+cat &amp;gt; /etc/yum.repos.d/cloudera-repo.repo &amp;lt;&amp;lt;_EOF_
+[cloudera-repo]
+name=cloudera-repo
+baseurl=http://192.168.137.81/cm/5
+enabled=1
+gpgcheck=0
+_EOF_
+
+#修改hosts
+
+hostnamectl set-hostname cdh1.example.com
+
+# Edit /etc/sysconfig/network with the FQDN of this host only:
+HOSTNAME=cdh1.example.com
+
+cat /etc/hosts &amp;lt;&amp;lt;_EOF_
+127.0.0.1   localhost
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.137.81  cdh1.example.com  cdh1
+192.168.137.82  cdh2.example.com  cdh2
+192.168.137.83  cdh3.example.com  cdh3
+_EOF_
+#免密登陆&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;# 安装数据库
+yum -y install mariadb-server mysql-connector-java
+systemctl start mariadb.service
+/usr/share/cmf/schema/scm_prepare_database.sh mysql -uroot -p --scm-host localhost scm scm scm_password
+
+mysql&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123&#39; WITH GRANT OPTION;
+mysql&amp;gt; flush privileges;
+
+create database hive;
+create database hue;
+create database oozie;
+
+
+# 安装 Cloudera Manager Server
+
+sudo yum install cloudera-manager-daemons cloudera-manager-server
+
+# 安装 Cloudera Manager agent (每个node都执行)
+sudo yum install cloudera-manager-daemons cloudera-manager-agent
+
+#启动
+systemctl start cloudera-scm-server.service
+systemctl start cloudera-scm-agent.service
+
+#访问
+http://192.168.137.81:7180&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;# 安装JDK
+mkdir /usr/java &amp;amp;&amp;amp; tar -zxf jdk-8u201-linux-x64.tar.gz -C /usr/java/
+
+
+
+http://192.168.137.81/cdh/5/
+http://192.168.137.81/cm/5/
+http://192.168.137.81/cm/RPM-GPG-KEY-cloudera&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>/post/work/suning/grafana/</link>
+      <pubDate>Thu, 14 Feb 2019 17:50:41 +0000</pubDate>
+      
+      <guid>/post/work/suning/grafana/</guid>
+      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
+&lt;div id=&#34;toctitle&#34;&gt;Contents&lt;/div&gt;
+&lt;ul class=&#34;sectlevel0&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#_wmi&#34;&gt;wmi&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum(wmi_gpu_utilization_memory{exported_instance=&#34;$server&#34;}) / (count(wmi_gpu_utilization_memory{exported_instance=&#34;$server&#34;}) by (gpu))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum by (mode) (rate(wmi_cpu_time_total{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC2&#34;,mode=&#34;idle&#34;}[1m]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;curl &#39;http://monitor.fabx.com.cn/api/v1/query?query=up&#39;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;GPU 内存负载&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum(wmi_gpu_utilization_memory{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;})/(count(wmi_gpu_utilization_memory{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;}))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://monitor.fabx.com.cn/api/v1/query?query=sum(wmi_gpu_utilization_memory{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;})/(count(wmi_gpu_utilization_memory{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;})&#34; class=&#34;bare&#34;&gt;http://monitor.fabx.com.cn/api/v1/query?query=sum(wmi_gpu_utilization_memory{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;})/(count(wmi_gpu_utilization_memory{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;})&lt;/a&gt;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;在线监测
+&lt;a href=&#34;http://monitor.fabx.com.cn/api/v1/query?query=sum&#34; class=&#34;bare&#34;&gt;http://monitor.fabx.com.cn/api/v1/query?query=sum&lt;/a&gt; (rate(wmi_cpu_time_total{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;,mode=&#34;idle&#34;}[30s]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;CPU 使用率&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://monitor.fabx.com.cn/api/v1/query?query=sum(rate(wmi_cpu_time_total{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;,mode=&#39;processor&#39;}&#34;&gt;60s&lt;/a&gt;))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum(rate(wmi_cpu_time_total{exported_instance=&#34;创新中心实验室|创新中心实验室|zk-PC&#34;,mode=&#39;processor&#39;}[60s]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;sum(rate(wmi_cpu_time_total{exported_instance=&#34;&#39;that.instance&#39;&#34;,mode=&#39;processor&#39;}[60s]))&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;_wmi&#34; class=&#34;sect0&#34;&gt;wmi&lt;/h1&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT PercentProcessorTime FROM Win32_PerfFormattedData_PerfOS_Processor&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT PercentProcessorTime FROM Win32_PerfRawData_PerfOS_Processor&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;SELECT PercentProcessorTime FROM Win32_PerfFormattedData_Counters_ProcessorInformation&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&amp;lt;echart-status :instance=&#34;instance&#34; /&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;literalblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;&amp;lt;echart-guage :instance=&#34;instance&#34; /&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;192.168.88.5:9182
+192.168.88.30:9182
+192.168.88.32:9182
+192.168.88.43:9182
+192.168.88.44:9182
+192.168.88.45:9182&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;systemctl enable node-exporter.service
+systemctl start node-exporter.service&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;gt; /etc/systemd/system/node-exporter.service &amp;lt;&amp;lt;_EOF_&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Description=node-exporter daemon&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Type=simple
+ExecStart=/usr/local/bin/node-exporter --web.listen-address=:9182&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;WantedBy=multi-user.target
+&lt;em&gt;EOF&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;ros
+test1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cat &amp;lt;&amp;lt;EOF | curl --data-binary @- &lt;a href=&#34;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/test1&#34; class=&#34;bare&#34;&gt;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/test1&lt;/a&gt;
+some_metric{label=&#34;val1&#34;} 42
+another_metric 2398.283
+EOF&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;12
+20&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;administrator     FabX2018&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;cmd /C &#34;set CGO_ENABLED=0 &amp;amp;&amp;amp; set GOOS=windows &amp;amp;&amp;amp; set GOARCH=amd64 &amp;amp;&amp;amp; go build &#34;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>cmake</title>
@@ -580,7 +838,7 @@ cares.lib&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href=&#34;https://im.suning.com&#34; class=&#34;bare&#34;&gt;https://im.suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.com&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.comc&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.comc&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;a href=&#34;http://gitlab.fabx.com.cn/users/sign_in&#34; class=&#34;bare&#34;&gt;http://gitlab.fabx.com.cn/users/sign_in&lt;/a&gt;&lt;/p&gt;
@@ -592,7 +850,8 @@ cares.lib&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href=&#34;mailto:18089513@suning.com&#34;&gt;18089513@suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;18089513/142857git!123456
+&lt;p&gt;soa
+18089513/142857git!1234567
 18089513&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -1201,7 +1460,10 @@ helm upgrade tomcat-t1 .
 helm install --name tomcat-t1 .
 
 #删除
-helm delete --purge tomcat-t1&lt;/pre&gt;
+helm delete --purge tomcat-t1
+
+# 渲染
+helm template --name grafana --namespace kube-common --output-dir=./grafana/out ./grafana&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1671,586 +1933,6 @@ from b_event_trace_i where dt=&#39;&#39; and envent=&#39;pageview&#39;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;docker run -v /root/tmp/g8out:/g8out -v /root/tmp/g8:/g8 moredip/giter8 &lt;a href=&#34;file:///g8/com-nsn-do-web.g8/&#34; class=&#34;bare&#34;&gt;file:///g8/com-nsn-do-web.g8/&lt;/a&gt; --name=com.nsn.web.do.tbox.spark.kpi.cucwm2&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>graphviz</title>
-      <link>/post/work/dayliy/graphviz/</link>
-      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
-      
-      <guid>/post/work/dayliy/graphviz/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;graphviz&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_参考&#34;&gt;1. 参考&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_4&#34;&gt;2. graphviz-4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_5&#34;&gt;3. graphviz-5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_6&#34;&gt;4. graphviz-6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_7&#34;&gt;5. graphviz-7&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_3_17_53_1&#34;&gt;6. 3.17.53-1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_监控_hdfs_文件_触发消息&#34;&gt;7. 监控 hdfs 文件,触发消息&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_8&#34;&gt;8. graphviz-8&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_9&#34;&gt;9. graphviz-9&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_10&#34;&gt;10. graphviz-10&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_11&#34;&gt;11. graphviz-11&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_12&#34;&gt;12. graphviz-12&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_13&#34;&gt;13. graphviz-13&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_14&#34;&gt;14. graphviz-14&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_15&#34;&gt;15. graphviz-15&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_16&#34;&gt;16. graphviz-16&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_graphviz_17&#34;&gt;17. graphviz-17&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_erd&#34;&gt;Erd&lt;/a&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_erd_1&#34;&gt;1. Erd 1&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_参考&#34;&gt;1. 参考&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;olist arabic&#34;&gt;
-&lt;ol class=&#34;arabic&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://renenyffenegger.ch/notes/tools/Graphviz/examples/index&#34; class=&#34;bare&#34;&gt;https://renenyffenegger.ch/notes/tools/Graphviz/examples/index&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://tonyballantyne.com/graphs.html&#34; class=&#34;bare&#34;&gt;http://tonyballantyne.com/graphs.html&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-1.svg&#34; alt=&#34;graphviz 1&#34; width=&#34;541&#34; height=&#34;170&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-2.svg&#34; alt=&#34;graphviz 2&#34; width=&#34;968&#34; height=&#34;315&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-3.svg&#34; alt=&#34;graphviz 3&#34; width=&#34;178&#34; height=&#34;154&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_4&#34;&gt;2. graphviz-4&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-4.svg&#34; alt=&#34;graphviz 4&#34; width=&#34;715&#34; height=&#34;543&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_5&#34;&gt;3. graphviz-5&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-5.svg&#34; alt=&#34;graphviz 5&#34; width=&#34;215&#34; height=&#34;155&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_6&#34;&gt;4. graphviz-6&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-6.svg&#34; alt=&#34;graphviz 6&#34; width=&#34;413&#34; height=&#34;204&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_7&#34;&gt;5. graphviz-7&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_3_17_53_1&#34;&gt;6. 3.17.53-1&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/3.17.53-1.svg&#34; alt=&#34;3.17.53 1&#34; width=&#34;2133&#34; height=&#34;442&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/3.17.53-1-1.svg&#34; alt=&#34;3.17.53 1 1&#34; width=&#34;1141&#34; height=&#34;97&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/3.17.53-1-2.svg&#34; alt=&#34;3.17.53 1 2&#34; width=&#34;1034&#34; height=&#34;264&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_监控_hdfs_文件_触发消息&#34;&gt;7. 监控 hdfs 文件,触发消息&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/3.17.53-2.svg&#34; alt=&#34;3.17.53 2&#34; width=&#34;824&#34; height=&#34;534&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_8&#34;&gt;8. graphviz-8&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_9&#34;&gt;9. graphviz-9&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-9.svg&#34; alt=&#34;graphviz 9&#34; width=&#34;3890&#34; height=&#34;3888&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_10&#34;&gt;10. graphviz-10&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-10.svg&#34; alt=&#34;graphviz 10&#34; width=&#34;449&#34; height=&#34;345&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_11&#34;&gt;11. graphviz-11&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-11.svg&#34; alt=&#34;graphviz 11&#34; width=&#34;178&#34; height=&#34;174&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_12&#34;&gt;12. graphviz-12&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-12.svg&#34; alt=&#34;graphviz 12&#34; width=&#34;425&#34; height=&#34;331&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_13&#34;&gt;13. graphviz-13&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-13.svg&#34; alt=&#34;graphviz 13&#34; width=&#34;441&#34; height=&#34;325&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_14&#34;&gt;14. graphviz-14&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-14.svg&#34; alt=&#34;graphviz 14&#34; width=&#34;535&#34; height=&#34;574&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_15&#34;&gt;15. graphviz-15&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-15.svg&#34; alt=&#34;graphviz 15&#34; width=&#34;264&#34; height=&#34;228&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_16&#34;&gt;16. graphviz-16&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-16.svg&#34; alt=&#34;graphviz 16&#34; width=&#34;329&#34; height=&#34;212&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_graphviz_17&#34;&gt;17. graphviz-17&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/graphviz-17.svg&#34; alt=&#34;graphviz 17&#34; width=&#34;82&#34; height=&#34;103&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;_erd&#34; class=&#34;sect0&#34;&gt;Erd&lt;/h1&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_erd_1&#34;&gt;1. Erd 1&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/erd-graphvi-1.svg&#34; alt=&#34;erd graphvi 1&#34; width=&#34;554&#34; height=&#34;417&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>yunnan-lt</title>
-      <link>/post/work/nokia/yunnan-lt/yunnan-lt/</link>
-      <pubDate>Sat, 14 Apr 2018 21:33:54 +0000</pubDate>
-      
-      <guid>/post/work/nokia/yunnan-lt/yunnan-lt/</guid>
-      <description>&lt;div id=&#34;toc&#34; class=&#34;toc&#34;&gt;
-&lt;div id=&#34;toctitle&#34;&gt;yunnan-lt&lt;/div&gt;
-&lt;ul class=&#34;sectlevel1&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_多sheet保存csv&#34;&gt;1. 多sheet保存csv&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_代办&#34;&gt;2. 代办&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_问题&#34;&gt;3. 问题&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_er&#34;&gt;4. ER&lt;/a&gt;
-&lt;ul class=&#34;sectlevel2&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#_云南联通中间表小时&#34;&gt;4.1. 云南联通中间表小时&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_云南联通中间表天&#34;&gt;4.2. 云南联通中间表天&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;服务器信息&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;172.33.2.17
-yarn &lt;a href=&#34;http://172.33.2.17:23188/cluster&#34; class=&#34;bare&#34;&gt;http://172.33.2.17:23188/cluster&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;172.33.2.17
-root/Huawei@123&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;su - hadoop&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;hadoop fs -ls /lte/xdr&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;web
-  172.33.10.51&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;MRO数据源表
-O_LTE_MRO_IMSI&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;MRS数据源表
-O_LTE_MRS_RSRP
-O_LTE_MRS_RSRQ
-O_LTE_MRS_TADV
-O_LTE_MRS_POWERHEADROOM
-O_LTE_MRS_AOA
-O_LTE_MRS_SINRUL
-O_LTE_MRS_RECEIVEDIPOWER
-O_LTE_MRS_RIPPRB
-O_LTE_MRS_TADVRSRP
-O_LTE_MRS_TADVAOA
-O_LTE_MRS_RIPRSRP
-O_LTE_MRS_RIPRSRQ
-O_LTE_MRS_SINRULRIP
-O_LTE_MRS_PACKETLOSSRATEULQCI1
-O_LTE_MRS_PACKETLOSSRATEULQCI2
-O_LTE_MRS_PACKETLOSSRATEULQCI3
-O_LTE_MRS_PACKETLOSSRATEULQCI4
-O_LTE_MRS_PACKETLOSSRATEULQCI5
-O_LTE_MRS_PACKETLOSSRATEULQCI6
-O_LTE_MRS_PACKETLOSSRATEULQCI7
-O_LTE_MRS_PACKETLOSSRATEULQCI8
-O_LTE_MRS_PACKETLOSSRATEULQCI9
-O_LTE_MRS_PACKETLOSSRATEDLQCI1
-O_LTE_MRS_PACKETLOSSRATEDLQCI2
-O_LTE_MRS_PACKETLOSSRATEDLQCI3
-O_LTE_MRS_PACKETLOSSRATEDLQCI4
-O_LTE_MRS_PACKETLOSSRATEDLQCI5
-O_LTE_MRS_PACKETLOSSRATEDLQCI6
-O_LTE_MRS_PACKETLOSSRATEDLQCI7
-O_LTE_MRS_PACKETLOSSRATEDLQCI8
-O_LTE_MRS_PACKETLOSSRATEDLQCI9&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_多sheet保存csv&#34;&gt;1. 多sheet保存csv&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Sub SaveToCSVs()&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Dim fDir As String&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Dim wB As Workbook&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Dim wS As Worksheet&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Dim fPath As String&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Dim sPath As String&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;fPath = &#34;C:\Users\dishui\Desktop\liantong-km\doc\&#34;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;sPath = &#34;C:\Users\dishui\Desktop\liantong-km\csv3\&#34;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;fDir = Dir(fPath)&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Do While (fDir &amp;lt;&amp;gt; &#34;&#34;)&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;If Right(fDir, 4) = &#34;.xls&#34; Or Right(fDir, 5) = &#34;.xlsx&#34; Then&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;On Error Resume Next&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Set wB = Workbooks.Open(fPath &amp;amp; fDir)&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;&#39;MsgBox (wB.Name)&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;For Each wS In wB.Sheets&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;wS.SaveAs sPath &amp;amp; wS.Name &amp;amp; &#34;.csv&#34;, xlCSV&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Next wS&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;wB.Close False&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Set wB = Nothing&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;End If&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;fDir = Dir&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;On Error GoTo 0&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;literalblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Loop&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;End Sub&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;s1u业务       &amp;#8592;   s1u_rpt业务
-s1u_dns业务       &amp;#8592;   s1u_dns_rpt业务
-s1u_http业务      &amp;#8592;   s1u_http_rpt业务
-s1u_mme业务       &amp;#8592;   s1u_mme_rpt业务&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;s1u_rpt业务
-s1u_dns_rpt业务
-s1u_http_rpt业务
-s1u_mme_rpt业务&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;算法设计器 (天级别的)
-    凌晨的&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;customer_group业务
-    定时 每个小时执行一次&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;customer_group_first业务
-    跑一个小时的 执行一次&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;customer_group_daily业务&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;问题&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;2018年6月24日
-1. O_LTE_RPM_EUTRANCELL源表没有&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;STARTTIME
-  O_LTE_RPM_EUTRANCELL
-    DAY_ID+HOUR_ID
-格式 yyyy-MM-dd hh:mm:ss&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;M_PM_LTE_CELL_H
-  HOPREPINCSUCCRATE 重复
-  AVAILCELLRATIO 根据什么分组  eci&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;O_AM
-  scity&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_代办&#34;&gt;2. 代办&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;p_rmconf
-  2:当EquipmentClass为EUTRANCELL时，取NeName与P_netconf表cell_oid字段相匹配，获取CELL_ID。同时通过NeName与O_RM_EUTRANCELL的NMS_ORIG_RES_NAME字段匹配获取STARTTIME。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;com.nsn.do.tbox.spark.kpi.cucwm
-com.nsn.do.tbox.spark.kpi.cucmr
-com.nsn.do.tbox.spark.kpi.cucmr.day
-com.nsn.do.tbox.spark.kpi.cucwm.day
-com.nsn.web.do.tbox.spark.kpi.cucmr
-com.nsn.web.do.tbox.spark.kpi.cucwm&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_问题&#34;&gt;3. 问题&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;云南联通汇总表(day)V3.1.1表
-S_MRO_LTE_RSRP_D 问题
-
-18行
-  某小区，SumPRRP/timeRSRP-140
-
-35行
-  某小区，(sum(RSRP_ALL)-sum(RSRP_110))/sum((RSRP_ALL)&amp;gt;10,and (sum(RSRP_ALL))&amp;gt;1000,1,0)
-
-
-p_rmconf.xlsx
-2行
-  不同网元用各自网元的START_TIME
-  O_RM_ENDEB
-  O_RM_EUTRANCELL
-  O_RM_HSS_FE
-  O_RM_MME
-  O_RM_PGW
-  O_RM_SGW&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect1&#34;&gt;
-&lt;h2 id=&#34;_er&#34;&gt;4. ER&lt;/h2&gt;
-&lt;div class=&#34;sectionbody&#34;&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_云南联通中间表小时&#34;&gt;4.1. 云南联通中间表小时&lt;/h3&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/yunnan-lt-1.svg&#34; alt=&#34;yunnan lt 1&#34; width=&#34;931&#34; height=&#34;1189&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;sect2&#34;&gt;
-&lt;h3 id=&#34;_云南联通中间表天&#34;&gt;4.2. 云南联通中间表天&lt;/h3&gt;
-&lt;div class=&#34;listingblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;pre&gt;Failed to generate image: erd.EXE failed: &#34;&amp;lt;stdin&amp;gt;&#34; (line 5, column 8):
-unexpected &#39;(&#39;
-expecting relationship or attribute
-
-title {label: &#34;云南联通中间表天&#34;, size: &#34;13&#34;}
-# Entities
-
-[S_MRO_LTE_RSRP_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
-   邻区MR(天)
-[S_MRS_LTE_RSRP_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
-   服务小区MR(天)
-[S_MRS_LTE_IOT_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
-   小区干扰(天)
-[S_PM_LTE_CELL_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
-   小区级KPI指标(天)
-[S_PM_LTE_SCITY_D] {bgcolor: &#34;#d0e0d0&#34;, size: &#34;12&#34;}
-   地市级KPI指标(天)
-
-# Relationships&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;imageblock&#34;&gt;
-&lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;/src/img/plantuml/yunnan-lt-3.svg&#34; alt=&#34;yunnan lt 3&#34; width=&#34;509&#34; height=&#34;422&#34;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>

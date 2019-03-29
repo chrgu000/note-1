@@ -574,7 +574,8 @@ git config --global alias.st status
 &lt;li&gt;&lt;a href=&#34;#_本地目录_存在文件_上传到码云&#34;&gt;2.2. 本地目录(存在文件),上传到码云&lt;/a&gt;
 &lt;ul class=&#34;sectlevel3&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#_综合使用&#34;&gt;2.2.1. 综合使用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;2.2.2. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_git如何忽略已经提交的文件_gitignore文件无效&#34;&gt;2.2.2. git如何忽略已经提交的文件 (.gitignore文件无效)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#_q_a&#34;&gt;2.2.3. Q &amp;amp; A&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -704,7 +705,17 @@ git push origin master:pingan&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
-&lt;h4 id=&#34;_q_a&#34;&gt;2.2.2. Q &amp;amp; A&lt;/h4&gt;
+&lt;h4 id=&#34;_git如何忽略已经提交的文件_gitignore文件无效&#34;&gt;2.2.2. git如何忽略已经提交的文件 (.gitignore文件无效)&lt;/h4&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlightjs highlight&#34;&gt;&lt;code&gt;git rm -r --cached public
+git commit -a -m &#34;msg&#34;
+git push origin master:master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_q_a&#34;&gt;2.2.3. Q &amp;amp; A&lt;/h4&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;

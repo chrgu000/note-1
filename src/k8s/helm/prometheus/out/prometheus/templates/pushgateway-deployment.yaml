@@ -8,8 +8,8 @@ metadata:
     chart: prometheus-7.0.3
     component: "pushgateway"
     heritage: Tiller
-    release: RELEASE-NAME
-  name: RELEASE-NAME-prometheus-pushgateway
+    release: prometheus
+  name: prometheus-pushgateway
 spec:
   replicas: 1
   template:
@@ -17,19 +17,20 @@ spec:
       labels:
         app: prometheus
         component: "pushgateway"
-        release: RELEASE-NAME
+        release: prometheus
     spec:
-      serviceAccountName: RELEASE-NAME-prometheus-pushgateway
+      serviceAccountName: prometheus-pushgateway
       containers:
         - name: prometheus-pushgateway
-          image: "prom/pushgateway:v0.5.2"
+          image: "prom/pushgateway:v0.7.0"
           imagePullPolicy: "IfNotPresent"
           args:
+            - --web.route-prefix=pushgateway
           ports:
             - containerPort: 9091
           readinessProbe:
             httpGet:
-              path: /#/status
+              path: /pushgateway/#/status
               port: 9091
             initialDelaySeconds: 10
             timeoutSeconds: 10

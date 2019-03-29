@@ -3,19 +3,22 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    
   labels:
     app: prometheus
     chart: prometheus-7.0.3
     component: "server"
     heritage: Tiller
-    release: RELEASE-NAME
-  name: RELEASE-NAME-prometheus-server
+    release: prometheus
+  name: prometheus-server
 spec:
   rules:
-    - host: dev.cxzx.fabx.com.cn
+    - host: monitor.fabx.com.cn
       http:
         paths:
-          - path: /prometheus
+          - path: /
             backend:
-              serviceName: RELEASE-NAME-prometheus-server
+              serviceName: prometheus-server
               servicePort: 80

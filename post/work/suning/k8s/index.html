@@ -381,7 +381,10 @@ helm upgrade tomcat-t1 .
 helm install --name tomcat-t1 .
 
 #删除
-helm delete --purge tomcat-t1</pre>
+helm delete --purge tomcat-t1
+
+# 渲染
+helm template --name grafana --namespace kube-common --output-dir=./grafana/out ./grafana</pre>
 </div>
 </div>
 </div>

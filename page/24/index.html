@@ -87,6 +87,49 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/djt/spark/spark-error/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Exception in thread "main" org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 0.0 failed 4 times, most recent failure: Lost task 0.3 in stage 0.0 (TID 7, djt11): java.lang.IllegalArgumentException: java.net.UnknownHostException: cluster1
+image::{img}/img/djt/2017-10-12_155002.png[]
+hadoop做HA后,spark在executer上找不到 hdfs-site.xml core-site.xml 文件,--files 指定 这两个文件的路径
+sh $SPARK_HOME/bin/spark-submit \--class ParseAndFilterLog \--master spark://djt11:7077 \--files file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/hdfs-site.xml,file:///home/hadoop/app/hadoop-2.6.5/etc/hadoop/core-site.xml \--executor-memory 1g \--total-executor-cores 2 \spark-1.0-jar-with-dependencies.jar \hdfs://cluster1/tv/* \hdfs://cluster1/tv/spark-output-3
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/djt/spark/tvplay/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Table of Contents1. TvPlayBean2. TvPlayInputFormat3. TvPlayPartitioner4. TvPlayCount1. TvPlayBeanpackage hdfs.tvplay;import org.apache.hadoop.io.WritableComparable;import java.io.DataInput;import java.io.DataOutput;import java.io.IOException;/*** Created by dishui on 2017/9/8.*/public class TvPlayBean implements WritableComparable&lt;Object&gt; {private String name; //名称private int relation; //来源private int playCount; //播放量private int collectCount; //收藏数private int commentCount; //评论数private int stampCount; //踩数private int approveCount; //赞数public TvPlayBean() {}public TvPlayBean(String name, int relation, int playCount, int collectCount, int commentCount, int stampCount, int approveCount) {this.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/bigdata/djt/spark/wordcount/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -270,53 +313,6 @@
 5.数据量
 每条是0.39K 1*60*24*5000
 hadoop 75节点 8核 32G 4T500G+ 20几种日志清洗计算(1小时之内) 500G * 1024 / 64M = 8000 map8000 / 75 = 107 map / 台107 / 16 = 7 并行map64M / 0.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/hadoop/yarn/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						ResourceManagerResourceTrackerNodeManager 通过RPC协议向 ResourceManager 注册,汇报节点健康状况和 Container运行状态,并领取ResourceManager下达的命令,这些命令包括重新初始化,清理Container 等,在该 RPC 协议中, ResourceManager扮演RPC Server的角色(由内部组件ResourceTrackerService实现),而NodeManager扮演RPC Client的角色,换句话说,NodeManager与ResourceManager之间采用了"pull模型", NodeManager 总是周期性地主动向 ResourceManager 发起请求,并通过领取下达给自己的命令ApplicationMasterProtocol应用程序的 ApplicationMaster 通过该 RPC 协议向 ResourceManager 注册,申请资源和释放资源.在该协议中, ApplicationMaster 扮演 RPC Client的角色,而 ResourceManager 扮演 RPC Server 的角色,换句话说, ResourceManager 与 ApplicationMaster 之间也采用了 "pull 模型"ApplicationClientProtocol应用程序的客户端通过该RPC协议向 ResourceManager 提交应用程序,查询应用程序状态和控制应用程序
-yarn 命令application 列表yarn application -listapplicationattempt 列表yarn applicationattempt -list &lt;Application-Id&gt;container 列表yarn container -list &lt;ApplicationAttempt-Id&gt;yarn logs -applicationId application_1531923430869_511705
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/rdd_action_operator/01/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						RDDAction操作(1)–first、count、reduce、collect 算子 算子是一个函数空间到函数空间上的映射O: X -&gt; X。
-广义上的算子可以推广到任何空间，如内积空间等。
-first def first(): T
-first返回RDD中的第一个元素，不排序
-scala&gt; var rdd1 = sc.makeRDD(Array((&quot;a&quot;,1),(&quot;b&quot;,2),(&quot;c&quot;,3),4)) rdd1: org.apache.spark.rdd.RDD[Any] = ParallelCollectionRDD[0] at makeRDD at &lt;console&gt;:27 scala&gt; rdd1.first res0: Any = (a,1) var rdd1 = sc.makeRDD(Seq(10, 4, 2, 12, 3)) rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at makeRDD at &lt;console&gt;:27 scala&gt; rdd1.first res1: Int = 10  count def count(): Long
-count返回RDD中元素数量
-scala&gt; var rdd1 = sc.makeRDD(Array((&quot;A&quot;,&quot;1&quot;),(&quot;B&quot;,&quot;2&quot;),(&quot;C&quot;,&quot;3&quot;)),2) rdd1: org.apache.spark.rdd.RDD[(String, String)] = ParallelCollectionRDD[34] at makeRDD at :21 scala&gt; rdd1.
 					</div>
 				</div>
 			</div>

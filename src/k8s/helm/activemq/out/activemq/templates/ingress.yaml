@@ -5,23 +5,20 @@ kind: Ingress
 metadata:
   name: activemq
   labels:
-    app: activemq
-    chart: activemq-0.1.0
-    release: activemq
-    heritage: Tiller
+    app.kubernetes.io/name: activemq
+    helm.sh/chart: activemq-0.1.0
+    app.kubernetes.io/instance: activemq
+    app.kubernetes.io/managed-by: Tiller
   annotations:
-    kubernetes.io/ingress.class: nginx
-    proxy_connect_timeout: 12s
-    proxy_read_timeout: 10800s
-    proxy_send_timeout: 12s
-    proxy_set_header: Connection "upgrade"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.kubernetes.io/ingress.class: nginx
     
 spec:
   rules:
-    - host: dev.cxzx.fabx.com.cn
+    - host: "dev.cxzx.fabx.com.cn"
       http:
         paths:
-          - path: /admin
+          - path: /mq
             backend:
               serviceName: activemq
               servicePort: 8161

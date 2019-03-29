@@ -7,9 +7,8 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="git基础命令" />
-<meta property="og:description" content="git1. git2. 拉取git项目中的特定文件夹2.1. 命令2.1.1. 远程分支2.2. 本地目录(存在文件),上传到码云2.2.1. 综合使用2.2.2. Q &amp; A1. git2. 拉取git项目中的特定文件夹# svn list &lt;repositry-url&gt; 查看文件夹svn list https://github.com/apache/spark.git# 拉取git项目中的特定文件夹svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.62.1. 命令2.1.1. 远程分支查看远程分支
-$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支
-git remote add origin git@git." />
+<meta property="og:description" content="git1. git2. 拉取git项目中的特定文件夹2.1. 命令2.1.1. 远程分支2.2. 本地目录(存在文件),上传到码云2.2.1. 综合使用2.2.2. git如何忽略已经提交的文件 (.gitignore文件无效)2.2.3. Q &amp; A1. git2. 拉取git项目中的特定文件夹# svn list &lt;repositry-url&gt; 查看文件夹svn list https://github.com/apache/spark.git# 拉取git项目中的特定文件夹svn.exe co https://github.com/apache/spark.git/branches/branch-1.6/examples /d/IdeaProject/bigdata/spark-examples-1.62.1. 命令2.1.1. 远程分支查看远程分支
+$ git remote -vorigin git@git.oschina.net:dishui/local_b2b.git (fetch)origin git@git.oschina.net:dishui/local_b2b.git (push)添加远程分支" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/linux/git/" />
 
@@ -106,7 +105,8 @@ git remote add origin git@git." />
 <li><a href="#_本地目录_存在文件_上传到码云">2.2. 本地目录(存在文件),上传到码云</a>
 <ul class="sectlevel3">
 <li><a href="#_综合使用">2.2.1. 综合使用</a></li>
-<li><a href="#_q_a">2.2.2. Q &amp; A</a></li>
+<li><a href="#_git如何忽略已经提交的文件_gitignore文件无效">2.2.2. git如何忽略已经提交的文件 (.gitignore文件无效)</a></li>
+<li><a href="#_q_a">2.2.3. Q &amp; A</a></li>
 </ul>
 </li>
 </ul>
@@ -236,7 +236,17 @@ git push origin master:pingan</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_q_a">2.2.2. Q &amp; A</h4>
+<h4 id="_git如何忽略已经提交的文件_gitignore文件无效">2.2.2. git如何忽略已经提交的文件 (.gitignore文件无效)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>git rm -r --cached public
+git commit -a -m "msg"
+git push origin master:master</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_q_a">2.2.3. Q &amp; A</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

@@ -454,7 +454,7 @@ server:
   ##
   image:
     repository: prom/prometheus
-    tag: v2.3.2
+    tag: v2.7.1
     pullPolicy: IfNotPresent
 
   ## prometheus server priorityClassName
@@ -472,7 +472,7 @@ server:
 
   ## This flag controls access to the administrative HTTP API which includes functionality such as deleting time
   ## series. This is disabled by default.
-  enableAdminApi: false
+  enableAdminApi: true
 
   global:
     ## How frequently to scrape targets by default
@@ -676,7 +676,7 @@ pushgateway:
   ##
   image:
     repository: prom/pushgateway
-    tag: v0.5.2
+    tag: v0.7.0
     pullPolicy: IfNotPresent
 
   ## pushgateway priorityClassName
@@ -810,27 +810,27 @@ serverFiles:
       - /etc/config/alerts
 
     scrape_configs:
-      - job_name: gpu
-        scrape_interval: 15s
-        static_configs:
-          - targets:
-            - 10.200.169.12:9182
+      # - job_name: gpu
+      #   scrape_interval: 15s
+      #   static_configs:
+      #     - targets:
+      #       - 10.200.169.12:9182
       - job_name: ubuntu
         scrape_interval: 10s
         static_configs:
           - targets:
             - 192.168.88.40:9182
 
-      - job_name: wmi
-        scrape_interval: 15s
-        scrape_timeout: 10s
-        static_configs:
-          - targets:
-            - 10.200.168.46:9182
-            - 192.168.88.20:9182
-            - 192.168.88.112:9182
+      # - job_name: wmi
+      #   scrape_interval: 15s
+      #   scrape_timeout: 10s
+      #   static_configs:
+      #     - targets:
+      #       - 10.200.168.46:9182
+      #       - 192.168.88.20:9182
+      #       - 192.168.88.112:9182
 
-      - job_name: pushgateway
+      - job_name: wmi
         scrape_interval: 1s
         metrics_path: /pushgateway/metrics
         static_configs:

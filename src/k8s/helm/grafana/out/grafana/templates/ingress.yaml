@@ -3,11 +3,11 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: RELEASE-NAME-grafana
+  name: grafana
   labels:
     app: grafana
     chart: grafana-1.14.3
-    release: RELEASE-NAME
+    release: grafana
     heritage: Tiller
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -20,5 +20,5 @@ spec:
         paths:
           - path: /grafana
             backend:
-              serviceName: RELEASE-NAME-grafana
+              serviceName: grafana
               servicePort: 80

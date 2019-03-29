@@ -1,5 +1,5 @@
 apiVersion: apps/v1beta2
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ template "tomcat.fullname" . }}
   labels:
@@ -28,8 +28,6 @@ spec:
               mountPath: {{ .Values.deploy.directory }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
-          
-
       volumes:
         - name: data
           persistentVolumeClaim:

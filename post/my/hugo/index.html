@@ -7,13 +7,7 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="hugo" />
-<meta property="og:description" content="hugo1. 环境2. hugo2.1. 设置发布目录2.2. 部署2.2.1. 带项目名2.2.2. 不带项目名3. 生成 lunr 索引4. 参考1. 环境软件下载地址Ruby
-Ruby 2.3.3 (x64)
-Asciidoctor
-gem install asciidoctor asciidoctor-diagram &lt;1&gt;
-graphviz
-graphviz version 2.38.0
-1asciidoctor-diagram plantuml图设置淘宝gem源" />
+<meta property="og:description" content="asciidoctor" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/my/hugo/" />
 
@@ -100,19 +94,6 @@
 <div id="toctitle">hugo</div>
 <ul class="sectlevel1">
 <li><a href="#_环境">1. 环境</a></li>
-<li><a href="#_hugo">2. hugo</a>
-<ul class="sectlevel2">
-<li><a href="#_设置发布目录">2.1. 设置发布目录</a></li>
-<li><a href="#_部署">2.2. 部署</a>
-<ul class="sectlevel3">
-<li><a href="#_带项目名">2.2.1. 带项目名</a></li>
-<li><a href="#_不带项目名">2.2.2. 不带项目名</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_生成_strong_lunr_strong_索引">3. 生成 <strong>lunr</strong> 索引</a></li>
-<li><a href="#_参考">4. 参考</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -199,8 +180,10 @@ end
 require 'asciidoctor-diagram'
 require 'asciidoctor/extensions'
 require 'asciidoctor/GistBlockMacro'
+require 'asciidoctor/gojs'
 Asciidoctor::Extensions.register do
     block_macro GistBlockMacro if document.basebackend? 'html'
+    block Gojs::BlockProcessor, :gojs
 end
 #
 require 'asciidoctor/cli'
@@ -241,17 +224,12 @@ end</code></pre>
 </li>
 </ol>
 </div>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>== hugo</p>
 </div>
+<div class="paragraph">
+<p>=== 设置发布目录</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_hugo">2. hugo</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_设置发布目录">2.1. 设置发布目录</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code># 创建 gh-pages 分支
@@ -260,127 +238,29 @@ git checkout --orphan gh-pages
 git worktree add public gh-pages #public 是没有的目录</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_部署">2.2. 部署</h3>
-<div class="sect3">
-<h4 id="_带项目名">2.2.1. 带项目名</h4>
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p><a href="http://dishui.oschina.io/note-hugo/" class="bare">http://dishui.oschina.io/note-hugo/</a></p>
-</div>
-</blockquote>
+<p>== Asciidoctor 拓展</p>
 </div>
 <div class="listingblock">
-<div class="title">hugo-local.sh</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>#!/bin/sh
-
-cd /e/note-hugo/
-
-# 替换域名
-echo "替换域名"
-git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-sed -i 's/dishui.oschina.io/localhost:1313/g' themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-echo "启动 hugo server"
-hugo server</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby" data-lang="ruby">Unresolved directive in &lt;stdin&gt; - include::GistBlockMacro.rb[]</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">hugo.sh</div>
+<div class="title">gojs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>#!/bin/sh
-
-cd /e/note-hugo/
-
-# 还原
-echo "恢复域名"
-git checkout -- themes/mainroad/static/js/app.js content/post/base.adoc config.toml themes/mainroad/static/js/jquery.bigautocomplete.js
-
-echo "Generating site"
-hugo
-
-echo "Updating gh-pages branch"
-cd public &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git push
-
-echo "Commit note-hugo"
-cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git push</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby" data-lang="ruby">Unresolved directive in &lt;stdin&gt; - include::gojs.rb[]</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">C:\Ruby23-x64\lib\ruby\gems\2.3.0\gems\asciidoctor-1.5.5\bin\asciidoctor</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby" data-lang="ruby">Unresolved directive in &lt;stdin&gt; - include::asciidoctor[]</code></pre>
 </div>
-<div class="sect3">
-<h4 id="_不带项目名">2.2.2. 不带项目名</h4>
-<div class="quoteblock">
-<blockquote>
+</div>
 <div class="paragraph">
-<p><a href="http://dishui.oschina.io" class="bare">http://dishui.oschina.io</a></p>
+<p>== 参考</p>
 </div>
-</blockquote>
-</div>
-<div class="listingblock">
-<div class="title">hugo-local.sh</div>
-<div class="content">
-<pre class="highlightjs highlight"><code>#!/bin/sh
-
-cd /e/dishui/
-
-echo "启动 hugo server"
-hugo server</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">hugo-oschina.sh</div>
-<div class="content">
-<pre class="highlightjs highlight"><code>#!/bin/sh
-
-cd /e/dishui/
-
-hugo
-
-echo "Updating gh-pages branch"
-cd public &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git push
-
-echo "Commit note"
-cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp;&amp; git push</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_生成_strong_lunr_strong_索引">3. 生成 <strong>lunr</strong> 索引</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>启动 <strong>nodejieba</strong><br>
-启动 <strong>docker-volume-netshare</strong> ( <a href="/post/docker/docker-base/#_mount_aws_efs_nfs_or_cifs_samba_volumes_in_docker">docker-volume-netshare</a> )</p>
-</li>
-<li>
-<p>启动 <strong>nodejieba</strong> 容器</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>docker run -it --name=lunr --volume-driver=cifs -v 192.168.137.1/dishui:/hugo registry.cn-hangzhou.aliyuncs.com/dishui/nodejieba:1.1 bash</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>构建索引</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>cd /hugo/content &amp;&amp; nodejs hugo-lunr.js &amp;&amp; nodejs index_builder.js</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_参考">4. 参考</h2>
-<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -396,6 +276,10 @@ cd .. &amp;&amp; git add --all &amp;&amp; git commit -m "$(date +%Y-%m-%d)" &amp
 <p><a href="https://github.com/jgm/pandoc">pandoc</a></p>
 </li>
 </ol>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

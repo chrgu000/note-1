@@ -8,8 +8,8 @@ metadata:
     chart: prometheus-7.0.3
     component: "server"
     heritage: Tiller
-    release: RELEASE-NAME
-  name: RELEASE-NAME-prometheus-server
+    release: prometheus
+  name: prometheus-server
 spec:
   ports:
     - name: http
@@ -19,5 +19,5 @@ spec:
   selector:
     app: prometheus
     component: "server"
-    release: RELEASE-NAME
+    release: prometheus
   type: "ClusterIP"

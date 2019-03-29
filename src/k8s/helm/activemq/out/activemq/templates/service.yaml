@@ -1,0 +1,23 @@
+---
+# Source: activemq/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: activemq
+  labels:
+    app.kubernetes.io/name: activemq
+    helm.sh/chart: activemq-0.1.0
+    app.kubernetes.io/instance: activemq
+    app.kubernetes.io/managed-by: Tiller
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8161
+      protocol: TCP
+      name: http
+    - port: 61616
+      protocol: TCP
+      name: transport
+  selector:
+    app.kubernetes.io/name: activemq
+    app.kubernetes.io/instance: activemq

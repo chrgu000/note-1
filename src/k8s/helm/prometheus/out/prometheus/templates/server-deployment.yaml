@@ -8,8 +8,8 @@ metadata:
     chart: prometheus-7.0.3
     component: "server"
     heritage: Tiller
-    release: RELEASE-NAME
-  name: RELEASE-NAME-prometheus-server
+    release: prometheus
+  name: prometheus-server
 spec:
   replicas: 1
   template:
@@ -17,9 +17,9 @@ spec:
       labels:
         app: prometheus
         component: "server"
-        release: RELEASE-NAME
+        release: prometheus
     spec:
-      serviceAccountName: RELEASE-NAME-prometheus-server
+      serviceAccountName: prometheus-server
       containers:
         - name: prometheus-server-configmap-reload
           image: "jimmidyson/configmap-reload:v0.2.2"
@@ -36,7 +36,7 @@ spec:
               readOnly: true
 
         - name: prometheus-server
-          image: "prom/prometheus:v2.3.2"
+          image: "prom/prometheus:v2.7.1"
           imagePullPolicy: "IfNotPresent"
           args:
             - --config.file=/etc/config/prometheus.yml
@@ -44,6 +44,7 @@ spec:
             - --web.console.libraries=/etc/prometheus/console_libraries
             - --web.console.templates=/etc/prometheus/consoles
             - --web.enable-lifecycle
+            - --web.enable-admin-api
           ports:
             - containerPort: 9090
           readinessProbe:
@@ -71,6 +72,6 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: RELEASE-NAME-prometheus-server
+            name: prometheus-server
         - name: storage-volume
           emptyDir: {}

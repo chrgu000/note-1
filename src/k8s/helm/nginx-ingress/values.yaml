@@ -376,6 +376,8 @@ imagePullSecrets: []
 tcp: 
   9300: "default/elasticsearch-master:9300"
   6379: "default/redis-master:6379"
+  2181: "kube-common/zookeeper:2181"
+  2379: "kube-common/etcd:2379"
 
 # UDP service key:value pairs
 # Ref: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx/examples/udp

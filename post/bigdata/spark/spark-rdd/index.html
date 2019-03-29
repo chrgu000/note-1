@@ -7,7 +7,8 @@
 <meta name="description" content=" John Doe&#39;s Personal blog about everything">
 <meta name="generator" content="Hugo 0.17" />
 <meta property="og:title" content="spark-rdd" />
-<meta property="og:description" content="spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexmap是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; &#34;[partID:&#34; &#43; index &#43; &#34;, val: &#34; &#43; x &#43; &#34;]&#34;).iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregatedef func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {iter." />
+<meta property="og:description" content="spark rdd1. mapPartitionsWithIndex2. aggregate3. aggregateByKey4. checkpoint5. combineByKey6. countByKey7. filterByRange8. foldByKey9. foreachPartition10. keys valuestmp1. mapPartitionsWithIndexasciinema::slave[&#34;/src/records/spark/2017-04-10.json&#34;,&#34;95&#34;,&#34;22&#34;,&#34;2&#34;]
+map是对每个元素操作, mapPartitions是对其中的每个partition操作mapPartitionsWithIndex : 把每个partition中的分区号和对应的值拿出来, 看源码val func = (index: Int, iter: Iterator[(Int)]) =&gt; {iter.toList.map(x =&gt; &#34;[partID:&#34; &#43; index &#43; &#34;, val: &#34; &#43; x &#43; &#34;]&#34;).iterator}val rdd1 = sc.parallelize(List(1,2,3,4,5,6,7,8,9), 2)rdd1.mapPartitionsWithIndex(func).collect2. aggregateasciinema::slave[&#34;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/bigdata/spark/spark-rdd/" />
 
@@ -112,7 +113,9 @@
 <div class="sect1">
 <h2 id="_mappartitionswithindex">1. mapPartitionsWithIndex</h2>
 <div class="sectionbody">
-<asciinema-player src="/src/records/spark/2017-04-10.json" cols="95" rows="22" speed="2"></asciinema-player>
+<div class="paragraph">
+<p>asciinema::slave["/src/records/spark/2017-04-10.json","95","22","2"]</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>map是对每个元素操作, mapPartitions是对其中的每个partition操作
@@ -130,7 +133,9 @@ rdd1.mapPartitionsWithIndex(func).collect</code></pre>
 <div class="sect1">
 <h2 id="_aggregate">2. aggregate</h2>
 <div class="sectionbody">
-<asciinema-player src="/src/records/spark/aggregate.json" cols="95" rows="22" speed="2"></asciinema-player>
+<div class="paragraph">
+<p>asciinema::slave["/src/records/spark/aggregate.json","95","22","2"]</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>def func1(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {
@@ -168,7 +173,9 @@ rdd5.aggregate("")((x,y) =&gt; math.min(x.length, y.length).toString, (x,y) =&gt
 <div class="sect1">
 <h2 id="_aggregatebykey">3. aggregateByKey</h2>
 <div class="sectionbody">
-<asciinema-player src="/src/records/spark/aggregateByKey.json" cols="95" rows="22" speed="2"></asciinema-player>
+<div class="paragraph">
+<p>asciinema::slave["/src/records/spark/aggregateByKey.json","95","22","2"]</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>val pairRDD = sc.parallelize(List( ("cat",2), ("cat", 5), ("mouse", 4),("cat", 12), ("dog", 12), ("mouse", 2)), 2)
@@ -210,7 +217,9 @@ rdd.collectAsMap</code></pre>
 <div class="sect1">
 <h2 id="_combinebykey">5. combineByKey</h2>
 <div class="sectionbody">
-<asciinema-player src="/src/records/spark/combineByKey.json" cols="95" rows="22" speed="2"></asciinema-player>
+<div class="paragraph">
+<p>asciinema::slave["/src/records/spark/combineByKey.json","95","22","2"]</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>和reduceByKey是相同的效果
