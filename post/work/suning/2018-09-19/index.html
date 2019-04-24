@@ -91,10 +91,22 @@
 		<div class="entry-content clearfix">
 			
 			<div class="paragraph">
-<p>echo "some_metric 3.14" | curl --data-binary @- <a href="http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job" class="bare">http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job</a></p>
+<p>echo "some_metric 3.14" | curl --data-binary @- <a href="http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1" class="bare">http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1</a></p>
 </div>
 <div class="paragraph">
-<p><a href="http://dev.cxzx.fabx.com.cn/prometheus" class="bare">http://dev.cxzx.fabx.com.cn/prometheus</a></p>
+<p>curl --data-binary "some_metric 3.14" <a href="http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1" class="bare">http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1</a></p>
+</div>
+<div class="paragraph">
+<p>Content-Type: text/plain</p>
+</div>
+<div class="paragraph">
+<p>Content-Type: application/vnd.google.protobuf;encoding=delimited;proto=io.prometheus.client.MetricFamily</p>
+</div>
+<div class="paragraph">
+<p>/tool fetch http-method=post http-content-type="text/plain" http-data="some_metric 3.14\n" url="http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1"</p>
+</div>
+<div class="paragraph">
+<p>/tool fetch http-method=post http-content-type="text/plain" http-data="some_metric{ip=\"10.200.169.15\"} 3.14" url="http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1"</p>
 </div>
 <div class="literalblock">
 <div class="content">

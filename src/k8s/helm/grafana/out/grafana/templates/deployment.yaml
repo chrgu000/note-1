@@ -63,6 +63,11 @@ spec:
                 secretKeyRef:
                   name: grafana
                   key: admin-password
+            - name: GF_INSTALL_PLUGINS
+              valueFrom:
+                configMapKeyRef:
+                  name: grafana
+                  key: plugins
             - name: "GF_SERVER_ROOT_URL"
               value: "http://monitor.fabx.com.cn/grafana"
           livenessProbe:

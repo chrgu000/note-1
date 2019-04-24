@@ -687,6 +687,7 @@ pushgateway:
   ##
   extraArgs: 
     web.route-prefix: "pushgateway"
+    web.external-url: "monitor.fabx.com.cn/pushgateway"
 
   ingress:
     ## If true, pushgateway Ingress will be created
@@ -697,9 +698,11 @@ pushgateway:
     ##
     annotations: 
       kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      #nginx.ingress.kubernetes.io/ssl-redirect: "false"
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
+      # nginx.ingress.kubernetes.io/rewrite-target: /
+      # nginx.kubernetes.io/ingress.class: nginx
 
     ## pushgateway Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled

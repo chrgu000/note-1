@@ -10,6 +10,7 @@ metadata:
     release: grafana
     heritage: Tiller
 data:
+  plugins: "ryantxu-ajax-panel"
   grafana.ini: |
     [analytics]
     check_for_updates = true

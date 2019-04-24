@@ -12,7 +12,7 @@
 <meta property="og:url" content="/post/" />
 
 
-<meta property="og:updated_time" content="2019-02-15T18:43:10&#43;00:00"/>
+<meta property="og:updated_time" content="2019-04-17T09:50:22&#43;00:00"/>
 
 
 
@@ -85,6 +85,27 @@
 		</header>
 		
 		
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
+						<a href="/post/work/suning/%E5%B9%BF%E6%92%AD%E5%BC%80%E5%8F%91/" rel="bookmark">全局广播,局部广播</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2019-04-17 09:50:22 &#43;0000 UTC">April 17, 2019</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						match_info
+
+					</div>
+				</div>
+			</div>
+		</article>
 		
 		<article class="mr-loop-item post type-post hentry clearfix">
 			
@@ -207,22 +228,17 @@
 				</header>
 				<div class="mr-loop-excerpt">
 					<div class="mr-excerpt">
-						echo "some_metric 3.14" | curl --data-binary @- http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job
-http://dev.cxzx.fabx.com.cn/prometheus
+						echo "some_metric 3.14" | curl --data-binary @- http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1
+curl --data-binary "some_metric 3.14" http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1
+Content-Type: text/plain
+Content-Type: application/vnd.google.protobuf;encoding=delimited;proto=io.prometheus.client.MetricFamily
+/tool fetch http-method=post http-content-type="text/plain" http-data="some_metric 3.14\n" url="http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1"
+/tool fetch http-method=post http-content-type="text/plain" http-data="some_metric{ip=\"10.200.169.15\"} 3.14" url="http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1"
 annotations:kubernetes.io/ingress.class: nginxnginx.ingress.kubernetes.io/rewrite-target: /dev.cxzx.fabx.com.cn/dashboard
 for i=1; i&#8656;1000; i ++doecho "some_metric $i" | curl --data-binary @- http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_jobsleep 2done
 ${CXZX-T1-TOMCAT_SERVICE_HOST}
 10.200.169.32
 cxzx.fabx.com.cndev.cxzx.fabx.com.cn
-monitor.fabx.com.cnbash.fabx.com.cndashboard.fabx.com.cn
-#weavehttp://10.200.169.32:32404
-node_scrape_collector_duration_seconds{instance="$node:$port",job="$job"}
-{{collector}} - Scrape duration
-go_gc_duration_seconds{instance="$node:$port",job="$job",quantile="1"}
-some_{exported_job="some_job",instance="$node:$port",job="$job"}
-联赛http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;token=common_Ese32Cee9&amp;competitionId=1&amp;seasonId=1215
-杯赛http://sportdata.suning.com/sdsp-web/all/team/getCompetitionRank.do?appCode=common&amp;token=common_Ese32Cee9&amp;competitionId=14&amp;seasonId=128
-积分赢 +3平 +1输 +0
 					</div>
 				</div>
 			</div>
@@ -292,7 +308,7 @@
 						Contents1. k8s参考2. 编译出错3. 编译openssl3.1. 积分排行180907040
 邮箱地址:kaizhouk@pptv.com用户名/密码: kaizhouk/142857git!12345https://mail.pptv.com
 https://im.suning.com
-http://oa.cnsuning.comc
+http://oa.cnsuning.com
 http://gitlab.fabx.com.cn/users/sign_in
 142857git!
 18089513@suning.com
@@ -334,30 +350,6 @@
 利用 Helm 简化应用部署
 https://jimmysong.io/posts/manage-kubernetes-native-app-with-helm/
 开启iptables情况下Swarm、kubernetes等组件正常工作的配置
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/scala/akka-%E6%A6%82%E5%BF%B5/" rel="bookmark">akka-概念</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2018-08-04 14:42:49 &#43;0000 UTC">August 04, 2018</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						akka-概念1. Akka的功能1. Akka的功能并行处理大量请求
-服务和客户端的并发交互
-响应式异步交互
-异步编程模型
-
 					</div>
 				</div>
 			</div>

@@ -87,6 +87,38 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/djt/%E9%A1%B9%E7%9B%AE/%E9%9D%A2%E8%AF%95/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						数据结构：所有种类的数据都是记录在同一个文件中，比如pv、play等数据。每个种类的数据的数据格式都是不一样的，需要通过url区分每个种类的数据参数顺序不一样，需要我们对每个种类的数据定义元数据，数据拆分需要此元数据
+数据采集规范：日志数据记录在多台日志服务器上，每个小时会生成一个文件，文件命名为2017052412.log文件会放到固定的目录，以便flume采集采集数据的时候需要添加文件名头信息，根据文件头解析出天和小时，并设置天和小时的头，在写hdfs时需要用到这些头信息。
+YARN分布式缓存工作流程具体如下:步骤1客户端将应用程序所需的文件资源(外部字典、JAR包、二进制文件等)提交到HDFS上。步骤2客户端将应用程序提交到ResourceManager上。步骤3 ResourceManager与某个NodeManager通信，启动应用程序ApplicationMaster,NodeManager收到命令后，首先从HDFS下载文件(缓存)，然后启动ApplicationMaster步骤4 ApplicationMaster与ResourceManager通信，以请求和获取计算资源。步骤5 ApplicationMaster收到新分配的计算资源后，与对应的NodeManager通信，以启动任务。步骤6如果该应用程序第一次在该节点上启动任务，则NodeManager首先从HDFS上下载文件缓存到本地，然后启动任务。步骤7 NodeManager后续收到启动任务请求后，如果文件以在本地缓存，则直接运行任务，否则等待文件缓存完成后再启动。各节点上的缓存文件由对应的NodeManager管理和维护。考虑到磁盘空间的有限性，NodeManager采用了一定的缓存置换算法定期清理失效文件。
+1、有哪些数据（见excel表格）、总体流程
+pv页面点击
+flum 24台日志机器，24个日志采集agent, 5台聚合agent高可用的拓扑结构
+2、采集的细节3、mapreduce、hdfs、资源管理器
+block 64M 2个10M的文件上传后会有几个block 2个文件上传流程、高可用
+应用程序设计流程、分布式缓存资源管理器种类、队列资源抢占
+4、hive sql
+5.数据量
+每条是0.39K 1*60*24*5000
+hadoop 75节点 8核 32G 4T500G+ 20几种日志清洗计算(1小时之内) 500G * 1024 / 64M = 8000 map8000 / 75 = 107 map / 台107 / 16 = 7 并行map64M / 0.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/bigdata/hadoop/yarn/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -304,28 +336,6 @@ create ‘lxw1234′,{NAME =&gt; ‘f1′,VERSIONS =&gt; 1},{NAME =&gt; ‘f2′
 						map、flagMap、distinct map 将一个RDD中的每个数据项，通过map中的函数映射变为一个新的元素。 输入分区与输出分区一对一，即：有多少个输入分区，就有多少个输出分区。
 hadoop fs -cat /tmp/lxw1234/1.txt hello world hello spark hello hive //读取HDFS文件到RDD scala&gt; var data = sc.textFile(&quot;/tmp/lxw1234/1.txt&quot;) data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[1] at textFile at :21 //使用map算子 scala&gt; var mapresult = data.map(line =&gt; line.split(&quot;\\s+&quot;)) mapresult: org.apache.spark.rdd.RDD[Array[String]] = MapPartitionsRDD[2] at map at :23 //运算map算子结果 scala&gt; mapresult.collect res0: Array[Array[String]] = Array(Array(hello, world), Array(hello, spark), Array(hello, hive))  flatMap 属于Transformation算子，第一步和map一样，最后将所有的输出分区合并成一个。
 /使用flatMap算子 scala&gt; var flatmapresult = data.flatMap(line =&gt; line.split(&quot;\\s+&quot;)) flatmapresult: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[3] at flatMap at :23 //运算flagMap算子结果 scala&gt; flatmapresult.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/bigdata/spark/sparknotes/rdd_%E9%94%AE%E5%80%BC%E8%BD%AC%E6%8D%A2/01/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						partitionBy、mapValues、flatMapValues partitionBy def partitionBy(partitioner: Partitioner): RDD[(K, V)]
-该函数根据partitioner函数生成新的ShuffleRDD，将原RDD重新分区。
-scala&gt; var rdd1 = sc.makeRDD(Array((1,&quot;A&quot;),(2,&quot;B&quot;),(3,&quot;C&quot;),(4,&quot;D&quot;)),2) rdd1: org.apache.spark.rdd.RDD[(Int, String)] = ParallelCollectionRDD[23] at makeRDD at :21 scala&gt; rdd1.partitions.size res20: Int = 2 //查看rdd1中每个分区的元素 scala&gt; rdd1.mapPartitionsWithIndex{ | (partIdx,iter) =&gt; { | var part_map = scala.collection.mutable.Map[String,List[(Int,String)]]() | while(iter.hasNext){ | var part_name = &quot;part_&quot; + partIdx; | var elem = iter.next() | if(part_map.contains(part_name)) { | var elems = part_map(part_name) | elems ::= elem | part_map(part_name) = elems | } else { | part_map(part_name) = List[(Int,String)]{elem} | } | } | part_map.
 					</div>
 				</div>
 			</div>

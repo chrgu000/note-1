@@ -91,6 +91,31 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/05/" rel="bookmark"></a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						解决方案五：将reduce join转为map join 方案适用场景： 在对RDD使用join类操作，或者是在Spark SQL中使用join语句时，而且join操作中的一个RDD或表的数据量比较小（比如几百M或者一两G），比较适用此方案。
+方案实现思路： 不使用join算子进行连接操作，而使用Broadcast变量与map类算子实现join操作，进而完全规避掉shuffle类的操作，彻底避免数据倾斜的发生和出现。将较小RDD中的数据直接通过collect算子拉取到Driver端的内存中来，然后对其创建一个Broadcast变量；接着对另外一个RDD执行map类算子，在算子函数内，从Broadcast变量中获取较小RDD的全量数据，与当前RDD的每一条数据按照连接key进行比对，如果连接key相同的话，那么就将两个RDD的数据用你需要的方式连接起来。
+方案实现原理： 普通的join是会走shuffle过程的，而一旦shuffle，就相当于会将相同key的数据拉取到一个shuffle read task中再进行join，此时就是reduce join。但是如果一个RDD是比较小的，则可以采用广播小RDD全量数据+map算子来实现与join同样的效果，也就是map join，此时就不会发生shuffle操作，也就不会发生数据倾斜。具体原理如下图所示。
+方案优点： 对join操作导致的数据倾斜，效果非常好，因为根本就不会发生shuffle，也就根本不会发生数据倾斜。
+方案缺点： 适用场景较少，因为这个方案只适用于一个大表和一个小表的情况。毕竟我们需要将小表进行广播，此时会比较消耗内存资源，driver和每个Executor内存中都会驻留一份小RDD的全量数据。如果我们广播出去的RDD数据比较大，比如10G以上，那么就可能发生内存溢出了。因此并不适合两个都是大表的情况。
+// 首先将数据量比较小的RDD的数据，collect到Driver中来。 List&lt;Tuple2&lt;Long, Row&gt;&gt; rdd1Data = rdd1.collect() // 然后使用Spark的广播功能，将小RDD的数据转换成广播变量，这样每个Executor就只有一份RDD的数据。 // 可以尽可能节省内存空间，并且减少网络传输性能开销。 final Broadcast&lt;List&lt;Tuple2&lt;Long, Row&gt;&gt;&gt; rdd1DataBroadcast = sc.broadcast(rdd1Data); // 对另外一个RDD执行map类操作，而不再是join类操作。 JavaPairRDD&lt;String, Tuple2&lt;String, Row&gt;&gt; joinedRdd = rdd2.mapToPair( new PairFunction&lt;Tuple2&lt;Long,String&gt;, String, Tuple2&lt;String, Row&gt;&gt;() { private static final long serialVersionUID = 1L; @Override public Tuple2&lt;String, Tuple2&lt;String, Row&gt;&gt; call(Tuple2&lt;Long, String&gt; tuple) throws Exception { // 在算子函数中，通过广播变量，获取到本地Executor中的rdd1数据。 List&lt;Tuple2&lt;Long, Row&gt;&gt; rdd1Data = rdd1DataBroadcast.
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/bigdata/spark/sparknotes/spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03.%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%B0%83%E4%BC%98/06/" rel="bookmark"></a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -311,26 +336,6 @@ spark.shuffle.sort.bypassMergeThreshold 默认值：200
 						《Go编程基础》 借用《Go Web编程》一书中的话，出本套教程并不代表我自身的能力有多强，而是我愿意将自己在学习过程中积累到的知识分享给大家，并结合自己遇到的一些坑爹经历来讲解如何处理各种奇葩问题，从而更好地帮助广大的和潜在的 Go 语言爱好者。
 基本信息  教程讲师：无闻 教程简介：《Go编程基础》是一套针对 Google 出品的 Go 语言的视频语音教程，主要面向 Go 语言新手级别的学习者。 开发环境：Go 语言 1.0.3-1.5.* 版本 开发工具：Sublime Text 2-3 开发系统：Windows 7 64 位 其它说明：每堂课都会建立一个文件（例如：lecture1.md）作为课堂笔记。课堂笔记中里面包含了该堂课所涵盖的知识点以及知识点开始讲解的时间点，方便学习者快速定位要了解的部分，节省不必要浪费的时间。此外，如果教程中因口误或其它原因使学习者产生迷惑的部分，同样会在课堂笔记中进行补充说明。 收录网站：  优才网 皆学问 网易云课堂 51CTO 学院  课程下载：  百度网盘（提取码：mgom）   捐赠作者 如果您觉得本套教程确实不错，并认为作者的努力值得肯定，可以通过 支付宝 为作者提供小额捐助，以资鼓励。
 教程大纲    课时数 课时标题 在线播放     第 1 课 Go开发环境搭建 土豆网 优才网 网易云课堂   第 2 课 Go基础知识 土豆网 优才网 网易云课堂   第 3 课 类型与变量 土豆网 优才网 网易云课堂   第 4 课 常量与运算符 土豆网 优才网 网易云课堂   第 5 课 控制语句 土豆网 优才网 网易云课堂   第 6 课 数组array 土豆网 优才网 网易云课堂   第 7 课 切片slice 土豆网 优才网 网易云课堂   第 8 课 map 土豆网 优才网 网易云课堂   第 9 课 函数function 土豆网 优才网 网易云课堂   第 10 课 结构struct 土豆网 优才网 网易云课堂   第 11 课 方法method 土豆网 优才网 网易云课堂   第 12 课 接口interface 土豆网 优才网 网易云课堂   第 13 课 反射reflection 土豆网 优才网 网易云课堂   第 14 课 并发concurrency 土豆网 优才网 网易云课堂   第 15 课 项目与坑 土豆网 优才网 网易云课堂    相关资源  教程资源  《Go Web基础》 《Go名库讲解》  QQ 交流群  Martini&amp;Macaron 交流群：371440803 Golang Web 开发：245386165 Go Web 交流：259316004  学习网站  Golang 友团 Go 语言学习园地 Golang 中国  辅助站点  Go Walker：在线 Go 项目 API 文档   授权许可 除特别声明外，本套教程中的内容使用CC BY-SA 3.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/go/go-fundamental-programming/lectures/lecture1/" rel="bookmark"></a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 01, 0001</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						 第 1 课：Go 开发环境搭建 基本信息  课程时长：20:02 在线观看：土豆网 优才网 网易云课堂  课程大纲 [00:00] Go 基本介绍 [04:10] 安装 Go 语言 [05:00] Go 环境变量与工作目录 [07:27] Go 命令简介 [11:06] godoc 建立本地文档 [15:40] Sublime Text 安装与配置 [18:05] &quot;Hello world!&quot;  补充说明  如果对安装 Sublime Text 部分不是很理解，完整教程请参考 博文  相关链接  Go 在谷歌：以软件工程为目的的语言设计 go-wiki Go Walker Go Language Resources Golang 相关 QQ 群 Go 源码安装：参考链接 Go 标准包安装：下载地址 CHM手册 其它 IDE 安装方案：参考链接 下载 Sublime Text：官方网站 安装 gosublime（破解版可能无法安装）：安装指令 Sublime Text 2 入门及技巧 Go 初学者常问的问题 FAQ  课程链接  第 2 课：Go 基础知识  
 					</div>
 				</div>
 			</div>

@@ -9,6 +9,18 @@
     <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>全局广播,局部广播</title>
+      <link>/post/work/suning/%E5%B9%BF%E6%92%AD%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Wed, 17 Apr 2019 09:50:22 +0000</pubDate>
+      
+      <guid>/post/work/suning/%E5%B9%BF%E6%92%AD%E5%BC%80%E5%8F%91/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;match_info&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Lazarus参考文档</title>
       <link>/post/work/suning/lazarus/</link>
       <pubDate>Mon, 10 Dec 2018 16:26:08 +0000</pubDate>
@@ -48,10 +60,22 @@
       
       <guid>/post/work/suning/2018-09-19/</guid>
       <description>&lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;echo &#34;some_metric 3.14&#34; | curl --data-binary @- &lt;a href=&#34;http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job&#34; class=&#34;bare&#34;&gt;http://dev.cxzx.fabx.com.cn/pushgateway/metrics/job/some_job&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;echo &#34;some_metric 3.14&#34; | curl --data-binary @- &lt;a href=&#34;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1&#34; class=&#34;bare&#34;&gt;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://dev.cxzx.fabx.com.cn/prometheus&#34; class=&#34;bare&#34;&gt;http://dev.cxzx.fabx.com.cn/prometheus&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;curl --data-binary &#34;some_metric 3.14&#34; &lt;a href=&#34;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1&#34; class=&#34;bare&#34;&gt;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Content-Type: text/plain&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Content-Type: application/vnd.google.protobuf;encoding=delimited;proto=io.prometheus.client.MetricFamily&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/tool fetch http-method=post http-content-type=&#34;text/plain&#34; http-data=&#34;some_metric 3.14\n&#34; url=&#34;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1&#34;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;/tool fetch http-method=post http-content-type=&#34;text/plain&#34; http-data=&#34;some_metric{ip=\&#34;10.200.169.15\&#34;} 3.14&#34; url=&#34;http://monitor.fabx.com.cn/pushgateway/metrics/job/ros/instance/ros1&#34;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;literalblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -422,7 +446,7 @@ cares.lib&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href=&#34;https://im.suning.com&#34; class=&#34;bare&#34;&gt;https://im.suning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.comc&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.comc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://oa.cnsuning.com&#34; class=&#34;bare&#34;&gt;http://oa.cnsuning.com&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;a href=&#34;http://gitlab.fabx.com.cn/users/sign_in&#34; class=&#34;bare&#34;&gt;http://gitlab.fabx.com.cn/users/sign_in&lt;/a&gt;&lt;/p&gt;

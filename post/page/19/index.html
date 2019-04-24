@@ -91,6 +91,30 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/svn-setup/" rel="bookmark">svn 安装与配置</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. svn2. `SVN`配置3. 启服务器及测试4. 项目自动发布5. Svn 命令6. 测试分支和主分支合并7. Svn 检出 github 目录1. svn`svn`安装
+yum -y install subversionyum -y install mod_dav_svn创建`SVN`根目录
+mkdir -p $HOME/svn/创建repo1库
+svnadmin create $HOME/svn/repo12. `SVN`配置用户密码`passwd`配置
+vim /root/svn/repo1/conf/passwd=xyc = 123lyf = 123权限控制`authz`配置
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/linux/docker-swarm/" rel="bookmark">swarm</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -287,30 +311,6 @@ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repocurl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo下载新的 epel-7.repo 到 /etc/yum.repos.d/
 curl -o /etc/yum.repos.d/epel-7.repo http://mirrors.aliyun.com/repo/epel-7.repo运行 yum makecache 生成缓存
 yum clean allyum makecacheyum安装rpm包本地不清除的方法[root@c1 ~]# sed -i 's=keepcache=0=keepcache=1=g' /etc/yum.conf[root@c1 ~]# grep keepcache /etc/yum.
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/zookeeper/" rel="bookmark">zookeeper基础</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. zookeeper1.1. ZooKeeper 常用四字命令：1. zookeepercreate /zk-book 123ls /zk-bookget /zk-book1.1. ZooKeeper 常用四字命令：ZooKeeper 支持某些特定的四字命令字母与其的交互。它们大多是查询命令，用来获取 ZooKeeper 服务的当前状态及相关信息。用户在客户端可以通过 telnet 或 nc 向 ZooKeeper 提交相应的命令
-来查看哪个节点被选择作为follower或者leader
-echo stat|nc 127.0.0.1 2181测试是否启动了该Server，若回复imok表示已经启动
-echo ruok|nc 127.0.0.1 2181列出未经处理的会话和临时节点。
-echo dump| nc 127.0.0.1 2181关掉server
 					</div>
 				</div>
 			</div>

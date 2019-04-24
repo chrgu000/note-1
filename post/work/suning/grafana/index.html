@@ -194,6 +194,45 @@ EOF</p>
 <div class="paragraph">
 <p>cmd /C "set CGO_ENABLED=0 &amp;&amp; set GOOS=windows &amp;&amp; set GOARCH=amd64 &amp;&amp; go build "</p>
 </div>
+<div class="paragraph">
+<p><a href="http://monitor.fabx.com.cn/api/v1/query?query=count(count(node_cpu_seconds_total{exported_instance=" class="bare">http://monitor.fabx.com.cn/api/v1/query?query=count(count(node_cpu_seconds_total{exported_instance=</a><sub>"南京概念店4号演播间:9182",exported_job=</sub>"linux"}) by (cpu))</p>
+</div>
+<div class="paragraph">
+<p><a href="http://monitor.fabx.com.cn/api/v1/query?query=node_ipmac_ipmac{exported_instance=" class="bare">http://monitor.fabx.com.cn/api/v1/query?query=node_ipmac_ipmac{exported_instance=</a><sub>"南京概念店4号演播间:9182",exported_job=</sub>"linux"}</p>
+</div>
+<div class="paragraph">
+<p>node_ipmac_ipmac{exported_instance=<sub>"南京概念店4号演播间:9182",exported_job=</sub>"linux"}</p>
+</div>
+<div class="paragraph">
+<p>&lt;div&gt;
+  &lt;ul&gt;
+    &lt;li ng-repeat="data in response"&gt;
+      &lt;a href=""&gt;
+        {{ data }}
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;IP&lt;/th&gt;
+    &lt;th&gt;MAC&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr ng-repeat="data in response.data.result"&gt;
+    &lt;td&gt;{{ data.metric.ip }}&lt;/td&gt;
+    &lt;td&gt;{{ data.metric.mac }}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;ul&gt;
+  &lt;li ng-repeat="data in response.data.result"&gt;
+    IP: {{ data.metric.ip }}
+  &lt;/li&gt;
+&lt;/ul&gt;</p>
+</div>
 
 		</div>
 		

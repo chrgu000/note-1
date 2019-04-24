@@ -611,6 +611,19 @@ optimal_io_size 加上 alignment_offset 的和 然后除以 physical_block_size
 <div class="paragraph">
 <p><a href="https://www.cnblogs.com/zhangpengme/archive/2011/12/29/2305963.html">parted分区参考</a></p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">#! /bin/bash
+echo 0 &gt; /proc/sys/net/ipv4/conf/all/rp_filter
+for IP in $(ip a | grep : | grep -v 127.0.0.1 | grep -v inet6 | grep -v lo | grep -v valid_lft | grep -v link/ether | grep -v virbr0 | awk '{print $2}' | cut -d ":" -f1)
+do
+echo 0 &gt; /proc/sys/net/ipv4/conf/${IP}/rp_filter
+done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>docker run -d -e REINDEX=30 -v /root/data/opengrok/src:/opengrok/src -p 8080:8080 opengrok/docker:latest</p>
+</div>
 </div>
 </div>
 </div>

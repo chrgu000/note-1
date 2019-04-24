@@ -91,6 +91,31 @@
 			<div class="mr-loop-content clearfix">
 				<header class="mr-loop-header">
 					<h3 class="entry-title mr-loop-title">
+						<a href="/post/linux/jenkins/" rel="bookmark">jenkins 构建工具</a>
+					</h3>
+					<div class="mr-meta mr-loop-meta">
+						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
+					</div>
+				</header>
+				<div class="mr-loop-excerpt">
+					<div class="mr-excerpt">
+						Contents1. Jenkins1.1. 增量构建1.1.1. 配置2. Ant3. Svn 增量更新1. Jenkins1.1. 增量构建1.1.1. 配置1 [[/src/img/2016-11-18-02.png]]
+2 [[/src/img/2016-11-18-03.png]]
+3 [[/src/img/2016-11-18-04.png]]
+4 [[/src/img/2016-11-18-05.png]]
+5 [[/src/img/2016-11-18-01.png]]==== 脚本
+#!/bin/bashsource /etc/profilebase="/root/.jenkins/workspace/mailiqing-increment"#更新文件列表update_list="$base/update.txt"#日期date=$(date +%Y-%m-%d)#增量打包文件tar_file="$base/path/app-path$date.tar.gz"#本地svn仓库地址svn_repo_url="$base/app"#编译后的class文件路径path="$svn_repo_url/WebRoot/WEB-INF/classes"webroot="$svn_repo_url/WebRoot"remote_cmd="
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="mr-loop-item post type-post hentry clearfix">
+			
+			<div class="mr-loop-content clearfix">
+				<header class="mr-loop-header">
+					<h3 class="entry-title mr-loop-title">
 						<a href="/post/java/jesery/" rel="bookmark">jesery</a>
 					</h3>
 					<div class="mr-meta mr-loop-meta">
@@ -292,28 +317,6 @@ $ fdisk -l # Disk /dev/sdd: 1000.2 GB, 1000204886016 bytes 255 heads, 63 sectors
 					<div class="mr-excerpt">
 						[[MyBatis Generator|http://mbg.cndocs.tk/running/runningWithJava.html]]
 
-					</div>
-				</div>
-			</div>
-		</article>
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
-			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/linux/mycat/" rel="bookmark">mycat</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-01-01 00:00:00 &#43;0000 UTC">January 01, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						Contents1. `mysql`一主一从2. centos-java dockerfile3. Mycat4. 主从数据库 授权1. `mysql`一主一从master-cnf
-[mysqld]# 表明不区分大小写lower_case_table_names=1# 字符编码character_set_server=utf8max_allowed_packet=4M# 开启二进制日志log-bin=master-binlog-bin-index=master-bin.index# 1-2^32 必须唯一server-id=1innodb_file_per_table=1+ slave-cnf
-[mysqld]lower_case_table_names=1character_set_server=utf8max_allowed_packet=4M# 开启中继日志relay-log=relay-logrelay-log-index=relay-log.index# 1-2^32 必须唯一server-id=11innodb_file_per_table=12. centos-java dockerfileFROM centosMAINTAINER dishui_git@126.comENV TZ "Asia/Shanghai"ADD jdk-7u79-linux-x64.rpm /tmpRUN mkdir -p /usr/java &amp;&amp; \rpm -ivh jdk-7u79-linux-x64.
 					</div>
 				</div>
 			</div>
